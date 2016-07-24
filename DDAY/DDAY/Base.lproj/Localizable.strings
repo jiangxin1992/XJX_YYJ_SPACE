@@ -1,0 +1,111 @@
+/*
+ Localizable.strings
+ DDAY
+ 
+ Created by yyj on 16/5/20.
+ Copyright © 2016年 YYJ. All rights reserved.
+ */
+/**
+ * SYSTEM
+ */
+"ok"="好的";
+"NetworkConnectError"="网络连接失败";
+"content_empty"="信息不能为空";
+"send"="发送";
+"done"="完成";
+"cancel"="取消";
+"submit_success"="提交成功";
+"system_camera"="请在iPhone的 设置－隐私－相机 选项中，允许留美盒子访问你的相机。";
+"system_album"="请在iPhone的 设置－隐私－相机 选项中，允许留美盒子访问你的相册。";
+"take_photos"="拍照";
+"open_album"="从手机相册选择";
+"right_format"="请输入正确格式";
+"no_more"="没有更多了";
+"pay_attention"="敬请期待";
+"right_postcode"="请输入正确格式邮编";
+"login_first"="请先登录";
+/**
+ * 发布品
+ */
+"goods_title"="发布品";
+
+/**
+ * 设计师
+ */
+"designer_title"="设计师";
+
+/**
+ * 确认订单
+ */
+"checkorder_title"="确认订单";
+
+/**
+ * 发布日
+ */
+"dday_title"="发布日";
+
+/**
+ * 共享带
+ */
+"circle_title"="共享带";
+"circle_publish_title"="发布搭配";
+"circle_detail_title"="共享搭配";
+"circle_apply_title"="申请成为达人";
+/**
+ * 我的
+ */
+"user_title"="我的";
+"user_home_page"="我的主页";
+"user_fans"="我的粉丝";
+"user_order"="订单";
+"user_coupons"="我的优惠券";
+"user_consumption"="线下消费记录";
+"user_conference"="我参与的发布会";
+"user_collection"="收藏";
+"user_contact_customer"="联系客服";
+/**
+ * 设置
+ */
+"user_set_title"="设置";
+"user_set_notice"="新消息通知";
+"user_set_clean"="清除缓存";
+"user_set_suggest"="建议与反馈";
+"user_set_about"="关于D-D-A-Y";
+"user_set_logout"="退出当前账号";
+/**
+ * 我得订单
+ */
+"order_title"="我的订单";
+"order_logistics"="查看物流";
+"order_detail"="订单详情";
+"order_refund_title"="退款";
+/**
+ * 我得资料
+ */
+"user_info_title"="我的资料";
+"user_info_head"="头像";
+"user_info_nickname"="昵称";
+"user_info_sex"="性别";
+"user_info_career"="职业";
+"user_info_body"="身材信息";
+"user_info_address"="收货地址";
+"user_info_alertPSW"="修改登录密码";
+/**
+ * 登录
+ */
+
+"login_psw_length"="请输入6-15位长度密码";
+"login_phone_flase"="请输入正确格式手机号码";
+"login_phone_null"="请输入手机号";
+"login_code_flase"="请输入正确验证码";
+"login_code_different"="两次输入密码不一致";
+/**
+ * 购物车
+ */
+"shop_title"="购物车";
+"shop_success"="成功加入购物车,请前往购物车查看";
+"shop_no_goods"="您还没有选择宝贝哦";
+/**
+ * 结算
+ */
+"clearing_no_address"="请先选择收件人";

@@ -1,0 +1,85 @@
+//
+//  PrefixHeader.pch
+//  DDAY
+//
+//  Created by yyj on 16/5/20.
+//  Copyright © 2016年 YYJ. All rights reserved.
+//
+#import "Header.h"
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/*************** DNS ***************/
+//#define DNS @"http://10.200.6.36:8080/dday-web/service/" //本地
+#define DNS @"http://121.40.57.9:8050/dday-web/service/" //测试服务器
+
+/*************** Color ***************/
+//[UIColor whiteColor]
+#define _define_backview_color [UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1]
+#define _define_black_color @"#000000"
+#define _define_white_color @"#FFFFFF"
+#define _define_light_gray_color @"#7C7B7B"
+#define _define_light_gray_color1 @"#A8A7A7"
+#define _define_light_red_color @"#FF2A43"
+
+/*************** SIZE ***************/
+#define kStatusBarHeight         20 //状态栏高度
+#define kNavigationBarHeight     44 //导航栏高度
+#define kNavHeight     64 //导航栏高度+状态栏高度
+#define ktabbarHeight 49 //tabbar高度
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height //当前设备屏幕高
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width //当前设备屏幕宽
+
+#define kIPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2208), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为5.5英寸屏幕
+
+#define kIiPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为4.7寸屏幕
+
+#define kIPhone5s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640,1136), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为4英寸屏幕
+
+#define kIPhone4s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640,960), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否3.5英寸屏幕
+
+#define IsPhone6_gt kIPhone6Plus||kIiPhone6 //判断当前设备是否为iPhone 6以上
+
+#define IsPhone5_gt kIPhone6Plus||kIiPhone6||kIPhone5s //判断当前设备是否为iPhone 5以上
+
+#define _isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) //是否是pad
+
+#define kIOSVersions [[[UIDevice currentDevice] systemVersion] floatValue] //获得iOS版本
+
+#define kIOSVersions_v9 kIOSVersions>=9.0 //判断当前系统是否为iOS 9以上
+
+/*************** @property 属性 ***************/
+
+#define __mu_array(__k__) @property(nonatomic,strong) NSMutableArray *__k__
+
+#define __mu_dict(__k__) @property(nonatomic,strong) NSMutableDictionary *__k__
+
+#define __array(__k__) @property(nonatomic,strong) NSArray *__k__
+
+#define __dict(__k__) @property(nonatomic,strong) NSDictionary *__k__
+
+#define __string(__k__) @property(nonatomic,strong) NSString *__k__
+
+#define __number(__k__) @property(nonatomic,strong) NSNumber *__k__
+
+#define __bool(__k__) @property(nonatomic,assign) BOOL __k__
+
+#define __float(__k__) @property(nonatomic,assign) CGFloat __k__
+
+#define __long(__k__) @property(nonatomic,assign) long __k__
+
+#define __int(__k__) @property(nonatomic,assign) NSInteger __k__
+
+#define __block_null(__k__) @property(nonatomic,copy) void (^__k__)()
+
+#define __block_type(__k__,__type__) @property(nonatomic,copy) void (^__k__)(NSString *__type__)
+
+/*************** Other ***************/
+
+#define PARTNER @"2088911850774983"
+
+#define SELLER  @"info@yunejian.com"
+
+#define PRIVATEKEY @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAO/LzQd+GvuL5/cZyfXwQoSqQqjVQ4XGdRmosXk9a15+hHU1XimmpqpH7c55U244jhaPiLgOpbWbNxSZ4WhmDhY8Hr/vEbjgxg02AWiJDKWcwXVdP/UNyMzYy4vOarICmYMka2L2uJOF7zErewaTAzygtbPuTfbpM8Valxk5iRvDAgMBAAECgYBAu+fRif2GwrIQRun6dq2+Wqg8I7ZiuryJ/LxMWoRNsiHX8lxFKjP77AcKoj4flyzkckMaTPn3GLu52AC9yi8q06pBKczxt74pFHjd6ysQkWBoWhQwKX7fhj/g6YQpQEUiH51eeaYBZ7wlsnOQ5FqzlTbYz/my2JTNEjlqXdQpYQJBAP0nnURlHPM1qq8YqsMaU+yW6CO+nLnLYp48h0mkSLVpN8U/xdNXRJhUFSp+AEuNMaKs3be/2hYS520CyDZOkK0CQQDyfcAnx1s1gntggcwgdJvw3HKQbp4bKpqZfULGzLzuSj9hQuivU0HhUCKQgrwx4MXxjilJcgAVZ76+xuT2hDwvAkBeDAh97z55EBfv4q8VukMxYsKs/NRGpctmU8BC2Hh2hLdGXTHGGOaP3LTcS2EasEKfV68q42hGyREWy3DL1BYlAkBuO3v+mUF9MbOkS1zf5CJ/e7cYsTBuaQ+edrLEbI32RQpKzH+6M77fDe6ogsXKZsOU62sZWBlxoZe0YfXzmmlBAkAqdmOPc41VhLaWxgx53C2VdPjoULOQzAzWoU3NAtyJR54/5mdTYuTzWo8p+cMBKSCttMf8MqDZCLvX9uq8bloY"
+
+#endif /* PrefixHeader_pch */
