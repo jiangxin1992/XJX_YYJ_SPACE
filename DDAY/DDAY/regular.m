@@ -119,7 +119,7 @@ static regular *_t = nil;
         _font=font;
         
     }
-    return [UIFont fontWithName:@"Skia" size:_font];
+    return [UIFont fontWithName:@"HelveticaNeue" size:_font];
 }
 +(UIFont *)getFont:(CGFloat )font
 {
@@ -133,7 +133,21 @@ static regular *_t = nil;
         _font=font;
         
     }
-    return (kIOSVersions_v9? [UIFont systemFontOfSize:_font]:[UIFont fontWithName:@"Helvetica Neue" size:_font]);
+    return (kIOSVersions_v9? [UIFont fontWithName:@"PingFangSC-Regular" size:_font]:[UIFont fontWithName:@"HelveticaNeue" size:_font]);
+}
++(UIFont *)getSemiboldFont:(CGFloat )font
+{
+    CGFloat _font=0;
+    if(_isPad)
+    {
+        _font=font+16;
+        
+    }else
+    {
+        _font=font;
+        
+    }
+    return (kIOSVersions_v9? [UIFont fontWithName:@"PingFangSC-Semibold" size:_font]:[UIFont fontWithName:@"HelveticaNeue-Bold" size:_font]);
 }
 +(UIAlertController *)alertTitle_Simple:(NSString *)title
 {

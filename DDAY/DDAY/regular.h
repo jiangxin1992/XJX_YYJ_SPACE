@@ -107,6 +107,10 @@
  */
 +(UIFont *)getFont:(CGFloat )font;
 /**
+ * 获取中文粗体
+ */
++(UIFont *)getSemiboldFont:(CGFloat )font;
+/**
  * 获取英文字体
  */
 +(UIFont *)get_en_Font:(CGFloat )font;

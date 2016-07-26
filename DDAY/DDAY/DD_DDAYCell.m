@@ -29,7 +29,7 @@
         _nameLabel.backgroundColor=[UIColor colorWithHexString:_define_black_color];
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(IsPhone6_gt?25:18);
+            make.top.mas_equalTo(IsPhone6_gt?20:8);
             make.left.mas_equalTo(IsPhone6_gt?61:58);
             make.right.mas_equalTo(IsPhone6_gt?-61:-58);
             make.height.mas_equalTo(25);
@@ -66,9 +66,9 @@
         _backImg=[[UIImageView alloc] init];
         [self.contentView addSubview:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(28);
-            make.right.mas_equalTo(-28);
-            make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
+            make.left.mas_equalTo(43);
+            make.right.mas_equalTo(-43);
+            make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?30:28);
             make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
         }];
     }

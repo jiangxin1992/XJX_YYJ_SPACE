@@ -46,6 +46,7 @@
     [backBtn setEnlargeEdge:20];
     
     UILabel *title=[UILabel getLabelWithAlignment:1 WithTitle:@"注册账号" WithFont:17.0f WithTextColor:nil WithSpacing:0];
+    title.font=[regular getSemiboldFont:17.0f];
     [self.view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(19+kStatusBarHeight);
