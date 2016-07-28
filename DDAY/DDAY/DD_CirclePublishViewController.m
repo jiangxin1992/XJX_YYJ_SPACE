@@ -470,8 +470,6 @@
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
-    
-    
 }
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated

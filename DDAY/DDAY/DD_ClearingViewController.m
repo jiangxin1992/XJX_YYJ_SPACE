@@ -14,7 +14,6 @@
 #import "DD_ClearingTool.h"
 #import "DD_ClearingViewController.h"
 #import "DD_ClearingTableViewCell.h"
-#import "DD_ClearingOrderModel.h"
 #import "DD_RemarksViewController.h"
 #import "DD_ClearingDoneViewController.h"
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>

@@ -44,10 +44,6 @@
         [fontNames addObjectsFromArray:names];
         
     }
-    
-    NSLog(@"fontNames==%@",fontNames);
-    NSLog(@"ScreenHeight=%f",ScreenHeight);
-    NSLog(@"111");
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare

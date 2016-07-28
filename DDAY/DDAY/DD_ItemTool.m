@@ -28,12 +28,26 @@
         [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
+    UIView *whiteWire=[UIView getCustomViewWithColor:_define_white_color];
+    [imageview addSubview:whiteWire];
+    [whiteWire mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(1);
+        make.right.mas_equalTo(imageview.mas_right).with.offset(-9);
+    }];
+    
     UILabel *name_label=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:name_label];
+    
     [name_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(index%2?0:10);
         make.right.mas_equalTo(index%2?-10:0);
-        make.top.mas_equalTo(imageview.mas_bottom).with.offset(7);
+        if(imageview){
+            make.top.mas_equalTo(imageview.mas_bottom).with.offset(7);
+        }else
+        {
+            make.top.mas_equalTo(0);
+        }
         make.height.mas_equalTo(25);
     }];
     

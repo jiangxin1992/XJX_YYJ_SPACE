@@ -977,19 +977,6 @@
 			path = GtSdkLib;
 			sourceTree = "<group>";
 		};
-		3F1401421CF82B170093474A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3F1401391CF7E28C0093474A /* DD_ShopModel.h */,
-				3F14013A1CF7E28C0093474A /* DD_ShopModel.m */,
-				3F14013C1CF824D40093474A /* DD_ShopSeriesModel.h */,
-				3F14013D1CF824D40093474A /* DD_ShopSeriesModel.m */,
-				3F14013F1CF825B20093474A /* DD_ShopItemModel.h */,
-				3F1401401CF825B20093474A /* DD_ShopItemModel.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		3F1401501CF836CE0093474A /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,7 +993,6 @@
 		3F21E1FD1D177E2D00FE7ADF /* 款式选择视图 */ = {
 			isa = PBXGroup;
 			children = (
-				3F21E20C1D17955900FE7ADF /* model */,
 				3F21E2031D17907E00FE7ADF /* cell */,
 				3F21E1FE1D177E5000FE7ADF /* DD_CircleChooseDetailView.h */,
 				3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */,
@@ -1023,17 +1009,6 @@
 				3F21E2061D1790AF00FE7ADF /* DD_CricleChooseCell.xib */,
 			);
 			name = cell;
-			sourceTree = "<group>";
-		};
-		3F21E20C1D17955900FE7ADF /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F21E2091D17954800FE7ADF /* DD_CricleChooseItemModel.h */,
-				3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */,
-				3F21E2101D17ACB500FE7ADF /* DD_CricleCategoryModel.h */,
-				3F21E2111D17ACB500FE7ADF /* DD_CricleCategoryModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F23A96A1CEF1A2700579A3B /* baseModel */ = {
@@ -1053,15 +1028,6 @@
 				3F2F76471D1CC55C002E22A6 /* DD_CircleApplyInfoView.m */,
 			);
 			name = InfoView;
-			sourceTree = "<group>";
-		};
-		3F2F76491D1CC736002E22A6 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F2F764E1D1CE22C002E22A6 /* DD_CircleFavouriteDesignerModel.h */,
-				3F2F764F1D1CE22C002E22A6 /* DD_CircleFavouriteDesignerModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */ = {
@@ -1229,7 +1195,6 @@
 				3F1401431CF82B2A0093474A /* DD_ShopTool.h */,
 				3F1401441CF82B2A0093474A /* DD_ShopTool.m */,
 				3F1401501CF836CE0093474A /* cell */,
-				3F1401421CF82B170093474A /* Model */,
 				3F3811BB1CF5D223007154F1 /* DD_ShopViewController.h */,
 				3F3811BC1CF5D223007154F1 /* DD_ShopViewController.m */,
 				3F3811BD1CF5D223007154F1 /* DD_ShopViewController.xib */,
@@ -1246,21 +1211,11 @@
 			name = "UIImageView+Custom";
 			sourceTree = "<group>";
 		};
-		3F3C3F041CFEBCB60056CD6B /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F3C3EFC1CFEB92E0056CD6B /* DD_DDAYModel.h */,
-				3F3C3EFD1CFEB92E0056CD6B /* DD_DDAYModel.m */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
 		3F3C3F051CFEBCBB0056CD6B /* 发布日首页 */ = {
 			isa = PBXGroup;
 			children = (
 				3F3C3F071CFEC7F40056CD6B /* DD_DDAYTool.h */,
 				3F3C3F081CFEC7F40056CD6B /* DD_DDAYTool.m */,
-				3F3C3F041CFEBCB60056CD6B /* model */,
 				3F3C3F061CFEBCC70056CD6B /* cell */,
 				3F9B8AE91CEF5625008EC460 /* DD_DDAYViewController.h */,
 				3F9B8AEA1CEF5625008EC460 /* DD_DDAYViewController.m */,
@@ -1304,6 +1259,7 @@
 		3F4187721CEEFB24001BCA3D /* DDAY */ = {
 			isa = PBXGroup;
 			children = (
+				3FBE22D71D48B254000C3EE9 /* Model */,
 				3F4187CB1CEEFEDE001BCA3D /* Controllers */,
 				3F4187C11CEEFE9F001BCA3D /* Category */,
 				3F4187B11CEEFDA8001BCA3D /* Class */,
@@ -1410,6 +1366,7 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3F6002041D499A88007E395F /* UIView+Custom */,
 				3F61531E1D3F284B00BB60FD /* UIColor+Hex */,
 				3F83EE9F1D38915D0051C89E /* UILabel+DD_Custom */,
 				3F83EE9E1D3891520051C89E /* UITextField+Custom */,
@@ -1419,8 +1376,6 @@
 				3F6813B21D1A6CD800F4807A /* UIImageView+LoadImage */,
 				3F0A6DFF1D1127B300CDCBC5 /* UIView+Frame */,
 				3F4187C51CEEFEAE001BCA3D /* NSString+extra */,
-				3F6153221D3F28CB00BB60FD /* UIView+Custom.h */,
-				3F6153231D3F28CB00BB60FD /* UIView+Custom.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1458,8 +1413,6 @@
 			children = (
 				3F9B8B031CEF6C58008EC460 /* DD_UserCell.h */,
 				3F9B8B041CEF6C58008EC460 /* DD_UserCell.m */,
-				3F9B8B001CEF6562008EC460 /* DD_UserModel.h */,
-				3F9B8B011CEF6562008EC460 /* DD_UserModel.m */,
 				3FA8365E1D050B73006D2919 /* 我的订单 */,
 				3F3811BA1CF5D209007154F1 /* 购物车 */,
 				3F9B8ABE1CEF542E008EC460 /* 登录 */,
@@ -1485,7 +1438,6 @@
 				3F7C51D41CF43B3900D3565D /* 确认订单页面 */,
 				3F7C51D31CF43B0700D3565D /* 填写备注 */,
 				3F4187FD1CEEFF40001BCA3D /* cell */,
-				3F4187F61CEEFF2C001BCA3D /* model */,
 			);
 			name = "结算";
 			sourceTree = "<group>";
@@ -1511,10 +1463,6 @@
 				3F4187E81CEEFF1A001BCA3D /* DD_CityVCT.h */,
 				3F4187E91CEEFF1A001BCA3D /* DD_CityVCT.m */,
 				3F4187EA1CEEFF1A001BCA3D /* DD_CityVCT.xib */,
-				3F4187EB1CEEFF1A001BCA3D /* DD_ProvinceModel.h */,
-				3F4187EC1CEEFF1A001BCA3D /* DD_ProvinceModel.m */,
-				3F4187ED1CEEFF1A001BCA3D /* DD_CityModel.h */,
-				3F4187EE1CEEFF1A001BCA3D /* DD_CityModel.m */,
 			);
 			name = "城市省列表";
 			sourceTree = "<group>";
@@ -1532,8 +1480,6 @@
 		3F4187D01CEEFF02001BCA3D /* 收货地址 */ = {
 			isa = PBXGroup;
 			children = (
-				3F9B8ABB1CEF1E84008EC460 /* DD_AddressModel.h */,
-				3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */,
 				3F4187D31CEEFF0B001BCA3D /* DD_AdressTableViewCell.h */,
 				3F4187D41CEEFF0B001BCA3D /* DD_AdressTableViewCell.m */,
 				3F4187D51CEEFF0B001BCA3D /* DD_AdressTableViewCell.xib */,
@@ -1542,19 +1488,6 @@
 				3F4187D81CEEFF0B001BCA3D /* DD_AddressViewController.xib */,
 			);
 			name = "收货地址";
-			sourceTree = "<group>";
-		};
-		3F4187F61CEEFF2C001BCA3D /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F3811B71CF59566007154F1 /* DD_ClearingSeriesModel.h */,
-				3F3811B81CF59566007154F1 /* DD_ClearingSeriesModel.m */,
-				3F4187F71CEEFF35001BCA3D /* DD_ClearingModel.h */,
-				3F4187F81CEEFF35001BCA3D /* DD_ClearingModel.m */,
-				3F4187F91CEEFF35001BCA3D /* DD_ClearingOrderModel.h */,
-				3F4187FA1CEEFF35001BCA3D /* DD_ClearingOrderModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F4187FD1CEEFF40001BCA3D /* cell */ = {
@@ -1599,8 +1532,6 @@
 		3F4553061D21310700524738 /* 我的粉丝 */ = {
 			isa = PBXGroup;
 			children = (
-				3F124B441D22213D002B4E87 /* DD_FansModel.h */,
-				3F124B451D22213D002B4E87 /* DD_FansModel.m */,
 				3F4553071D21312300524738 /* DD_FansViewController.h */,
 				3F4553081D21312300524738 /* DD_FansViewController.m */,
 				3F4553091D21312300524738 /* DD_FansViewController.xib */,
@@ -1620,15 +1551,6 @@
 				3F4904DF1D18DA0A009F4CD3 /* DD_CircleListCell.xib */,
 			);
 			name = cell;
-			sourceTree = "<group>";
-		};
-		3F4904D91D18D344009F4CD3 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F4904DA1D18D4C4009F4CD3 /* DD_CircleListModel.h */,
-				3F4904DB1D18D4C4009F4CD3 /* DD_CircleListModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F4904E21D18E10C009F4CD3 /* CustomView */ = {
@@ -1724,7 +1646,6 @@
 		3F4B81CE1D0052A700B323E4 /* 发布日详情 */ = {
 			isa = PBXGroup;
 			children = (
-				3F4B81DB1D005AA800B323E4 /* model */,
 				3F4B81DA1D005A9F00B323E4 /* CustomView */,
 				3F4B81CF1D0052CB00B323E4 /* DD_DDAYDetailViewController.h */,
 				3F4B81D01D0052CB00B323E4 /* DD_DDAYDetailViewController.m */,
@@ -1740,15 +1661,6 @@
 				3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */,
 			);
 			name = CustomView;
-			sourceTree = "<group>";
-		};
-		3F4B81DB1D005AA800B323E4 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F4B81D71D0058D900B323E4 /* DD_DDayDetailModel.h */,
-				3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F4B81DD1D01157100B323E4 /* 发布会 */ = {
@@ -1769,17 +1681,6 @@
 				3F5306DB1D124E5C000C9EC0 /* DD_CricleShowViewController.xib */,
 			);
 			name = "搭配图放大";
-			sourceTree = "<group>";
-		};
-		3F5306DE1D1269ED000C9EC0 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F5306DF1D126A0A000C9EC0 /* DD_CircleTagModel.h */,
-				3F5306E01D126A0A000C9EC0 /* DD_CircleTagModel.m */,
-				3F5306E21D126AEE000C9EC0 /* DD_CricleTagItemModel.h */,
-				3F5306E31D126AEE000C9EC0 /* DD_CricleTagItemModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F5306E51D129D5E000C9EC0 /* 自定义标签 */ = {
@@ -1836,49 +1737,11 @@
 			children = (
 				3F3811B61CF56A3B007154F1 /* CustomView */,
 				3F552EAA1CF21B1C00BC5E33 /* pagecontroller */,
-				3F552E921CF209BF00BC5E33 /* model */,
 				3F552E8D1CF2020500BC5E33 /* DD_GoodsDetailViewController.h */,
 				3F552E8E1CF2020500BC5E33 /* DD_GoodsDetailViewController.m */,
 				3F552E8F1CF2020500BC5E33 /* DD_GoodsDetailViewController.xib */,
 			);
 			name = "单品详情页";
-			sourceTree = "<group>";
-		};
-		3F552E921CF209BF00BC5E33 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F552E931CF20B5400BC5E33 /* DD_GoodsDetailModel.h */,
-				3F552E941CF20B5400BC5E33 /* DD_GoodsDetailModel.m */,
-				3F552EA61CF2145B00BC5E33 /* designer */,
-				3F552EA51CF2145500BC5E33 /* item */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
-		3F552EA51CF2145500BC5E33 /* item */ = {
-			isa = PBXGroup;
-			children = (
-				3F552E961CF20BFB00BC5E33 /* DD_GoodsItemModel.h */,
-				3F552E971CF20BFB00BC5E33 /* DD_GoodsItemModel.m */,
-				3F552E9C1CF2105700BC5E33 /* DD_ColorsModel.h */,
-				3F552E9D1CF2105700BC5E33 /* DD_ColorsModel.m */,
-				3F552E9F1CF210A000BC5E33 /* DD_SizeModel.h */,
-				3F552EA01CF210A000BC5E33 /* DD_SizeModel.m */,
-				3F552EA21CF212C300BC5E33 /* DD_GoodSeriesModel.h */,
-				3F552EA31CF212C300BC5E33 /* DD_GoodSeriesModel.m */,
-				3F552EA71CF214A000BC5E33 /* DD_OtherItemModel.h */,
-				3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */,
-			);
-			name = item;
-			sourceTree = "<group>";
-		};
-		3F552EA61CF2145B00BC5E33 /* designer */ = {
-			isa = PBXGroup;
-			children = (
-				3F552E991CF20EC600BC5E33 /* DD_GoodsDesignerModel.h */,
-				3F552E9A1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m */,
-			);
-			name = designer;
 			sourceTree = "<group>";
 		};
 		3F552EAA1CF21B1C00BC5E33 /* pagecontroller */ = {
@@ -1906,6 +1769,135 @@
 				3F576F301D3795580061602A /* UIButton+Custom.m */,
 			);
 			name = "UIButton+Custom";
+			sourceTree = "<group>";
+		};
+		3F6001F71D499748007E395F /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6001F81D499758007E395F /* 我的粉丝 */,
+			);
+			name = "我的";
+			sourceTree = "<group>";
+		};
+		3F6001F81D499758007E395F /* 我的粉丝 */ = {
+			isa = PBXGroup;
+			children = (
+				3F124B441D22213D002B4E87 /* DD_FansModel.h */,
+				3F124B451D22213D002B4E87 /* DD_FansModel.m */,
+			);
+			name = "我的粉丝";
+			sourceTree = "<group>";
+		};
+		3F6001FA1D4997B4007E395F /* 购物车 */ = {
+			isa = PBXGroup;
+			children = (
+				3F1401391CF7E28C0093474A /* DD_ShopModel.h */,
+				3F14013A1CF7E28C0093474A /* DD_ShopModel.m */,
+				3F14013C1CF824D40093474A /* DD_ShopSeriesModel.h */,
+				3F14013D1CF824D40093474A /* DD_ShopSeriesModel.m */,
+				3F14013F1CF825B20093474A /* DD_ShopItemModel.h */,
+				3F1401401CF825B20093474A /* DD_ShopItemModel.m */,
+			);
+			name = "购物车";
+			sourceTree = "<group>";
+		};
+		3F6001FB1D4997C9007E395F /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6001FD1D499808007E395F /* 订单列表 */,
+				3F6001FC1D4997F9007E395F /* 订单详情 */,
+			);
+			name = "我的订单";
+			sourceTree = "<group>";
+		};
+		3F6001FC1D4997F9007E395F /* 订单详情 */ = {
+			isa = PBXGroup;
+			children = (
+				3FC2D1841D06E47D005A1FF0 /* DD_OrderDetailInfoModel.h */,
+				3FC2D1851D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m */,
+				3FC2D1811D06CB3F005A1FF0 /* DD_OrderDetailModel.h */,
+				3FC2D1821D06CB3F005A1FF0 /* DD_OrderDetailModel.m */,
+			);
+			name = "订单详情";
+			sourceTree = "<group>";
+		};
+		3F6001FD1D499808007E395F /* 订单列表 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA8366C1D0512D7006D2919 /* DD_OrderItemModel.h */,
+				3FA8366D1D0512D7006D2919 /* DD_OrderItemModel.m */,
+				3FA8366F1D051308006D2919 /* DD_OrderModel.h */,
+				3FA836701D051308006D2919 /* DD_OrderModel.m */,
+			);
+			name = "订单列表";
+			sourceTree = "<group>";
+		};
+		3F6001FF1D499881007E395F /* 确认订单页面 */ = {
+			isa = PBXGroup;
+			children = (
+				3F3811B71CF59566007154F1 /* DD_ClearingSeriesModel.h */,
+				3F3811B81CF59566007154F1 /* DD_ClearingSeriesModel.m */,
+				3F4187F71CEEFF35001BCA3D /* DD_ClearingModel.h */,
+				3F4187F81CEEFF35001BCA3D /* DD_ClearingModel.m */,
+			);
+			name = "确认订单页面";
+			sourceTree = "<group>";
+		};
+		3F6002001D499906007E395F /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				3F3C3EFC1CFEB92E0056CD6B /* DD_DDAYModel.h */,
+				3F3C3EFD1CFEB92E0056CD6B /* DD_DDAYModel.m */,
+			);
+			name = "首页";
+			sourceTree = "<group>";
+		};
+		3F6002011D499915007E395F /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				3F4B81D71D0058D900B323E4 /* DD_DDayDetailModel.h */,
+				3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */,
+			);
+			name = "详情";
+			sourceTree = "<group>";
+		};
+		3F6002021D49993B007E395F /* 单品列表 */ = {
+			isa = PBXGroup;
+			children = (
+				3F552E6F1CF1E7BA00BC5E33 /* DD_ItemsModel.h */,
+				3F552E701CF1E7BA00BC5E33 /* DD_ItemsModel.m */,
+			);
+			name = "单品列表";
+			sourceTree = "<group>";
+		};
+		3F6002031D49994D007E395F /* 单品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				3F552E991CF20EC600BC5E33 /* DD_GoodsDesignerModel.h */,
+				3F552E9A1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m */,
+				3F552E961CF20BFB00BC5E33 /* DD_GoodsItemModel.h */,
+				3F552E971CF20BFB00BC5E33 /* DD_GoodsItemModel.m */,
+				3F552EA21CF212C300BC5E33 /* DD_GoodSeriesModel.h */,
+				3F552EA31CF212C300BC5E33 /* DD_GoodSeriesModel.m */,
+				3F552EA71CF214A000BC5E33 /* DD_OtherItemModel.h */,
+				3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */,
+				3F552E9F1CF210A000BC5E33 /* DD_SizeModel.h */,
+				3F552EA01CF210A000BC5E33 /* DD_SizeModel.m */,
+				3F552E9C1CF2105700BC5E33 /* DD_ColorsModel.h */,
+				3F552E9D1CF2105700BC5E33 /* DD_ColorsModel.m */,
+				3F552E931CF20B5400BC5E33 /* DD_GoodsDetailModel.h */,
+				3F552E941CF20B5400BC5E33 /* DD_GoodsDetailModel.m */,
+			);
+			name = "单品详情";
+			sourceTree = "<group>";
+		};
+		3F6002041D499A88007E395F /* UIView+Custom */ = {
+			isa = PBXGroup;
+			children = (
+				3F6153221D3F28CB00BB60FD /* UIView+Custom.h */,
+				3F6153231D3F28CB00BB60FD /* UIView+Custom.m */,
+			);
+			name = "UIView+Custom";
 			sourceTree = "<group>";
 		};
 		3F61531E1D3F284B00BB60FD /* UIColor+Hex */ = {
@@ -1950,7 +1942,6 @@
 			isa = PBXGroup;
 			children = (
 				3F8E76591D1B779300722FDA /* CustomView */,
-				3F6813B91D1A81A000F4807A /* model */,
 				3F6813B31D1A767100F4807A /* cell */,
 				3F6813A61D1A379C00F4807A /* DD_CircleDetailViewController.h */,
 				3F6813A71D1A379C00F4807A /* DD_CircleDetailViewController.m */,
@@ -1978,15 +1969,6 @@
 				3F6813B61D1A813300F4807A /* DD_CircleCommentCell.xib */,
 			);
 			name = cell;
-			sourceTree = "<group>";
-		};
-		3F6813B91D1A81A000F4807A /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3F6813BA1D1A81B100F4807A /* DD_CircleCommentModel.h */,
-				3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3F7729251D1151BD008A184F /* 款式选择 */ = {
@@ -2188,7 +2170,6 @@
 			isa = PBXGroup;
 			children = (
 				3F2F76591D1CF03C002E22A6 /* 设计师列表 */,
-				3F2F76491D1CC736002E22A6 /* model */,
 				3F2F76451D1CC529002E22A6 /* InfoView */,
 				3F8E76751D1BCE4100722FDA /* DD_CircleApplyViewController.h */,
 				3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */,
@@ -2234,8 +2215,6 @@
 			children = (
 				3F7E58B51D4079AA000FDE5F /* DD_ItemTool.h */,
 				3F7E58B61D4079AA000FDE5F /* DD_ItemTool.m */,
-				3F552E6F1CF1E7BA00BC5E33 /* DD_ItemsModel.h */,
-				3F552E701CF1E7BA00BC5E33 /* DD_ItemsModel.m */,
 				3F552E8C1CF201EC00BC5E33 /* 单品详情页 */,
 				3F552E8B1CF201D500BC5E33 /* 发布品列表 */,
 			);
@@ -2248,8 +2227,6 @@
 				3F8228E61D0D0D8900F95E79 /* DD_DesignerMainViewController.h */,
 				3F8228E71D0D0D8900F95E79 /* DD_DesignerMainViewController.m */,
 				3F8228E81D0D0D8900F95E79 /* DD_DesignerMainViewController.xib */,
-				3F552E811CF1F59E00BC5E33 /* DD_DesignerModel.h */,
-				3F552E821CF1F59E00BC5E33 /* DD_DesignerModel.m */,
 				3F8228EB1D0D0F0000F95E79 /* 我关注的 */,
 				3F552E841CF1FF1E00BC5E33 /* 设计师列表 */,
 			);
@@ -2259,9 +2236,6 @@
 		3F9B8AC31CEF5472008EC460 /* 共享带 */ = {
 			isa = PBXGroup;
 			children = (
-				3F2F765D1D1D0259002E22A6 /* DD_CircleModel.h */,
-				3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */,
-				3F4904D91D18D344009F4CD3 /* model */,
 				3F4904D81D18D33E009F4CD3 /* cell */,
 				3F6813A51D1A378200F4807A /* 搭配详情页 */,
 				3F8E76741D1BCE1C00722FDA /* 申请成为达人 */,
@@ -2468,7 +2442,6 @@
 				3FA836731D051B3F006D2919 /* DD_OrderTool.m */,
 				3FC2D17B1D06A25D005A1FF0 /* 订单详情 */,
 				3FC2D1751D069DA7005A1FF0 /* 物流信息 */,
-				3FA836651D050FE4006D2919 /* model */,
 				3FA836641D050B89006D2919 /* 订单列表 */,
 			);
 			name = "我的订单";
@@ -2482,17 +2455,6 @@
 				3FA836611D050B86006D2919 /* DD_OrderViewController.xib */,
 			);
 			name = "订单列表";
-			sourceTree = "<group>";
-		};
-		3FA836651D050FE4006D2919 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				3FA8366C1D0512D7006D2919 /* DD_OrderItemModel.h */,
-				3FA8366D1D0512D7006D2919 /* DD_OrderItemModel.m */,
-				3FA8366F1D051308006D2919 /* DD_OrderModel.h */,
-				3FA836701D051308006D2919 /* DD_OrderModel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		3FA836751D051DC9006D2919 /* cell */ = {
@@ -2514,12 +2476,142 @@
 				3F2F76601D1D1968002E22A6 /* DD_CirclePublishTool.h */,
 				3F2F76611D1D1968002E22A6 /* DD_CirclePublishTool.m */,
 				3F0A6DF11D11034A00CDCBC5 /* InfoView */,
-				3F5306DE1D1269ED000C9EC0 /* model */,
 				3FB3425E1D0FFF4D00C9A682 /* DD_CirclePublishViewController.h */,
 				3FB3425F1D0FFF4D00C9A682 /* DD_CirclePublishViewController.m */,
 				3FB342601D0FFF4D00C9A682 /* DD_CirclePublishViewController.xib */,
 			);
 			name = "发布搭配";
+			sourceTree = "<group>";
+		};
+		3FBE22D71D48B254000C3EE9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F9B8B001CEF6562008EC460 /* DD_UserModel.h */,
+				3F9B8B011CEF6562008EC460 /* DD_UserModel.m */,
+				3F6001FB1D4997C9007E395F /* 我的订单 */,
+				3F6001FA1D4997B4007E395F /* 购物车 */,
+				3F6001F71D499748007E395F /* 我的 */,
+				3FBE22DD1D48B887000C3EE9 /* 共享带 */,
+				3FBE22DC1D48B86F000C3EE9 /* 设计师 */,
+				3FBE22DB1D48B799000C3EE9 /* 发布品 */,
+				3FBE22DA1D48B760000C3EE9 /* 发布日 */,
+				3FBE22D91D48B743000C3EE9 /* 收货地址 */,
+				3FBE22D81D48B723000C3EE9 /* 结算 */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3FBE22D81D48B723000C3EE9 /* 结算 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6001FF1D499881007E395F /* 确认订单页面 */,
+				3F4187F91CEEFF35001BCA3D /* DD_ClearingOrderModel.h */,
+				3F4187FA1CEEFF35001BCA3D /* DD_ClearingOrderModel.m */,
+			);
+			name = "结算";
+			sourceTree = "<group>";
+		};
+		3FBE22D91D48B743000C3EE9 /* 收货地址 */ = {
+			isa = PBXGroup;
+			children = (
+				3F9B8ABB1CEF1E84008EC460 /* DD_AddressModel.h */,
+				3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */,
+				3F4187EB1CEEFF1A001BCA3D /* DD_ProvinceModel.h */,
+				3F4187EC1CEEFF1A001BCA3D /* DD_ProvinceModel.m */,
+				3F4187ED1CEEFF1A001BCA3D /* DD_CityModel.h */,
+				3F4187EE1CEEFF1A001BCA3D /* DD_CityModel.m */,
+			);
+			name = "收货地址";
+			sourceTree = "<group>";
+		};
+		3FBE22DA1D48B760000C3EE9 /* 发布日 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6002011D499915007E395F /* 详情 */,
+				3F6002001D499906007E395F /* 首页 */,
+			);
+			name = "发布日";
+			sourceTree = "<group>";
+		};
+		3FBE22DB1D48B799000C3EE9 /* 发布品 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6002031D49994D007E395F /* 单品详情 */,
+				3F6002021D49993B007E395F /* 单品列表 */,
+			);
+			name = "发布品";
+			sourceTree = "<group>";
+		};
+		3FBE22DC1D48B86F000C3EE9 /* 设计师 */ = {
+			isa = PBXGroup;
+			children = (
+				3F552E811CF1F59E00BC5E33 /* DD_DesignerModel.h */,
+				3F552E821CF1F59E00BC5E33 /* DD_DesignerModel.m */,
+			);
+			name = "设计师";
+			sourceTree = "<group>";
+		};
+		3FBE22DD1D48B887000C3EE9 /* 共享带 */ = {
+			isa = PBXGroup;
+			children = (
+				3F4904DA1D18D4C4009F4CD3 /* DD_CircleListModel.h */,
+				3F4904DB1D18D4C4009F4CD3 /* DD_CircleListModel.m */,
+				3F2F765D1D1D0259002E22A6 /* DD_CircleModel.h */,
+				3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */,
+				3FBE22E11D48BCA2000C3EE9 /* 发布搭配 */,
+				3FBE22E01D48BBED000C3EE9 /* 申请成为达人 */,
+				3FBE22DF1D48BB9D000C3EE9 /* 搭配详情页 */,
+				3FBE22DE1D48B8A3000C3EE9 /* 发布搭配 */,
+			);
+			name = "共享带";
+			sourceTree = "<group>";
+		};
+		3FBE22DE1D48B8A3000C3EE9 /* 发布搭配 */ = {
+			isa = PBXGroup;
+			children = (
+				3F5306DF1D126A0A000C9EC0 /* DD_CircleTagModel.h */,
+				3F5306E01D126A0A000C9EC0 /* DD_CircleTagModel.m */,
+				3F5306E21D126AEE000C9EC0 /* DD_CricleTagItemModel.h */,
+				3F5306E31D126AEE000C9EC0 /* DD_CricleTagItemModel.m */,
+			);
+			name = "发布搭配";
+			sourceTree = "<group>";
+		};
+		3FBE22DF1D48BB9D000C3EE9 /* 搭配详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6813BA1D1A81B100F4807A /* DD_CircleCommentModel.h */,
+				3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */,
+			);
+			name = "搭配详情页";
+			sourceTree = "<group>";
+		};
+		3FBE22E01D48BBED000C3EE9 /* 申请成为达人 */ = {
+			isa = PBXGroup;
+			children = (
+				3F2F764E1D1CE22C002E22A6 /* DD_CircleFavouriteDesignerModel.h */,
+				3F2F764F1D1CE22C002E22A6 /* DD_CircleFavouriteDesignerModel.m */,
+			);
+			name = "申请成为达人";
+			sourceTree = "<group>";
+		};
+		3FBE22E11D48BCA2000C3EE9 /* 发布搭配 */ = {
+			isa = PBXGroup;
+			children = (
+				3FBE22E21D48BCBA000C3EE9 /* 款式选择视图 */,
+			);
+			name = "发布搭配";
+			sourceTree = "<group>";
+		};
+		3FBE22E21D48BCBA000C3EE9 /* 款式选择视图 */ = {
+			isa = PBXGroup;
+			children = (
+				3F21E2091D17954800FE7ADF /* DD_CricleChooseItemModel.h */,
+				3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */,
+				3F21E2101D17ACB500FE7ADF /* DD_CricleCategoryModel.h */,
+				3F21E2111D17ACB500FE7ADF /* DD_CricleCategoryModel.m */,
+			);
+			name = "款式选择视图";
 			sourceTree = "<group>";
 		};
 		3FC2D1751D069DA7005A1FF0 /* 物流信息 */ = {
@@ -2535,10 +2627,6 @@
 		3FC2D17B1D06A25D005A1FF0 /* 订单详情 */ = {
 			isa = PBXGroup;
 			children = (
-				3FC2D1841D06E47D005A1FF0 /* DD_OrderDetailInfoModel.h */,
-				3FC2D1851D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m */,
-				3FC2D1811D06CB3F005A1FF0 /* DD_OrderDetailModel.h */,
-				3FC2D1821D06CB3F005A1FF0 /* DD_OrderDetailModel.m */,
 				3FC2D17C1D06A272005A1FF0 /* DD_OrderDetailViewController.h */,
 				3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */,
 				3FC2D17E1D06A272005A1FF0 /* DD_OrderDetailViewController.xib */,
