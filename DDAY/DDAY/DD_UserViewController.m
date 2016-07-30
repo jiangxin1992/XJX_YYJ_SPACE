@@ -108,7 +108,7 @@
                                               ,[[UIBarButtonItem alloc] initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(messageAction)]
                                               ];
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_title", @"") withmaxwidth:200];
-    self.view.backgroundColor=[UIColor colorWithHexString:_define_white_color];
+    self.view.backgroundColor=_define_white_color;
     
 }
 #pragma mark - SomeAction

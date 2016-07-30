@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (Custom)
-+(UIView *)getCustomViewWithColor:(NSString *)_color;
++(UIView *)getCustomViewWithColor:(UIColor *)_color;
 @end

@@ -48,6 +48,7 @@
 		3F2F765C1D1CF3C3002E22A6 /* DD_CircleApplyDesignerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F765B1D1CF3C3002E22A6 /* DD_CircleApplyDesignerModel.m */; };
 		3F2F765F1D1D0259002E22A6 /* DD_CircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */; };
 		3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F76611D1D1968002E22A6 /* DD_CirclePublishTool.m */; };
+		3F3462361D4B4A7700B96D86 /* DD_ColorBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */; };
 		3F3810C71CF5460B007154F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810C61CF5460B007154F1 /* Foundation.framework */; };
 		3F3810C91CF54630007154F1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810C81CF54630007154F1 /* libc++.tbd */; };
 		3F3810CB1CF5463D007154F1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810CA1CF5463D007154F1 /* CoreMotion.framework */; };
@@ -175,9 +176,11 @@
 		3F552EA41CF212C300BC5E33 /* DD_GoodSeriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EA31CF212C300BC5E33 /* DD_GoodSeriesModel.m */; };
 		3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */; };
 		3F552EAD1CF21B2400BC5E33 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAC1CF21B2400BC5E33 /* ImageViewController.m */; };
-		3F552EB01CF220B700BC5E33 /* DD_GoodInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAF1CF220B700BC5E33 /* DD_GoodInformView.m */; };
+		3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
+		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
+		3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */; };
 		3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6153231D3F28CB00BB60FD /* UIView+Custom.m */; };
 		3F66CF1C1D115379006A3D3F /* DD_CircleInfoImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F66CF1B1D115379006A3D3F /* DD_CircleInfoImgView.m */; };
 		3F66CF241D115BDF006A3D3F /* DD_CircleTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F66CF231D115BDF006A3D3F /* DD_CircleTagsView.m */; };
@@ -194,7 +197,7 @@
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
 		3F7C51CE1CF434C200D3565D /* DD_RemarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51CC1CF434C200D3565D /* DD_RemarksViewController.m */; };
 		3F7C51CF1CF434C200D3565D /* DD_RemarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7C51CD1CF434C200D3565D /* DD_RemarksViewController.xib */; };
-		3F7E58B31D40666F000FDE5F /* Waterflow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7E58B21D40666F000FDE5F /* Waterflow.a */; };
+		3F7E58B31D40666F000FDE5F /* Waterflow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7E58B21D40666F000FDE5F /* Waterflow.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E58B61D4079AA000FDE5F /* DD_ItemTool.m */; };
 		3F7E58BA1D408D0D000FDE5F /* DD_ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E58B91D408D0D000FDE5F /* DD_ImageModel.m */; };
 		3F8228E91D0D0D8900F95E79 /* DD_DesignerMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228E71D0D0D8900F95E79 /* DD_DesignerMainViewController.m */; };
@@ -260,6 +263,11 @@
 		3F9B8B521CF1AE08008EC460 /* DD_BodyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B501CF1AE08008EC460 /* DD_BodyViewController.xib */; };
 		3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */; };
 		3F9B8B5B1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */; };
+		3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */; };
+		3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */; };
+		3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */; };
+		3FA551171D4CBC0400528B5F /* DD_GoodsK_POINTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */; };
+		3FA5511A1D4CC65000528B5F /* DD_GoodsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */; };
 		3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA836601D050B86006D2919 /* DD_OrderViewController.m */; };
 		3FA836631D050B86006D2919 /* DD_OrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA836611D050B86006D2919 /* DD_OrderViewController.xib */; };
 		3FA8366E1D0512D7006D2919 /* DD_OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8366D1D0512D7006D2919 /* DD_OrderItemModel.m */; };
@@ -374,6 +382,8 @@
 		3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleModel.m; sourceTree = "<group>"; };
 		3F2F76601D1D1968002E22A6 /* DD_CirclePublishTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePublishTool.h; sourceTree = "<group>"; };
 		3F2F76611D1D1968002E22A6 /* DD_CirclePublishTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePublishTool.m; sourceTree = "<group>"; };
+		3F3462341D4B4A7700B96D86 /* DD_ColorBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ColorBtn.h; sourceTree = "<group>"; };
+		3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ColorBtn.m; sourceTree = "<group>"; };
 		3F3810C61CF5460B007154F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F3810C81CF54630007154F1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3F3810CA1CF5463D007154F1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -657,13 +667,17 @@
 		3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OtherItemModel.m; sourceTree = "<group>"; };
 		3F552EAB1CF21B2400BC5E33 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		3F552EAC1CF21B2400BC5E33 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
-		3F552EAE1CF220B700BC5E33 /* DD_GoodInformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodInformView.h; sourceTree = "<group>"; };
-		3F552EAF1CF220B700BC5E33 /* DD_GoodInformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodInformView.m; sourceTree = "<group>"; };
+		3F552EAE1CF220B700BC5E33 /* DD_GoodsInformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsInformView.h; sourceTree = "<group>"; };
+		3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsInformView.m; sourceTree = "<group>"; };
 		3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		3F576F281D377D4A0061602A /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
 		3F576F301D3795580061602A /* UIButton+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Custom.m"; sourceTree = "<group>"; };
+		3F6002471D49EEB5007E395F /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
+		3F6002481D49EEB5007E395F /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		3F60024B1D49EEFD007E395F /* DD_DrawManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DrawManageView.h; sourceTree = "<group>"; };
+		3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DrawManageView.m; sourceTree = "<group>"; };
 		3F6153221D3F28CB00BB60FD /* UIView+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Custom.h"; sourceTree = "<group>"; };
 		3F6153231D3F28CB00BB60FD /* UIView+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Custom.m"; sourceTree = "<group>"; };
 		3F66CF1A1D115379006A3D3F /* DD_CircleInfoImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoImgView.h; sourceTree = "<group>"; };
@@ -803,6 +817,16 @@
 		3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserInfo_AlertPSWViewController.h; sourceTree = "<group>"; };
 		3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfo_AlertPSWViewController.m; sourceTree = "<group>"; };
 		3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_UserInfo_AlertPSWViewController.xib; sourceTree = "<group>"; };
+		3FA5510C1D4CAEC400528B5F /* DD_GoodsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCircleView.h; sourceTree = "<group>"; };
+		3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsCircleView.m; sourceTree = "<group>"; };
+		3FA5510F1D4CBA2500528B5F /* DD_GoodsFabricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsFabricView.h; sourceTree = "<group>"; };
+		3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsFabricView.m; sourceTree = "<group>"; };
+		3FA551121D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsSendAndReturnsView.h; sourceTree = "<group>"; };
+		3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsSendAndReturnsView.m; sourceTree = "<group>"; };
+		3FA551151D4CBC0400528B5F /* DD_GoodsK_POINTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsK_POINTView.h; sourceTree = "<group>"; };
+		3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsK_POINTView.m; sourceTree = "<group>"; };
+		3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsTabBar.h; sourceTree = "<group>"; };
+		3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsTabBar.m; sourceTree = "<group>"; };
 		3FA8365F1D050B86006D2919 /* DD_OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderViewController.h; sourceTree = "<group>"; };
 		3FA836601D050B86006D2919 /* DD_OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderViewController.m; sourceTree = "<group>"; };
 		3FA836611D050B86006D2919 /* DD_OrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_OrderViewController.xib; sourceTree = "<group>"; };
@@ -1175,12 +1199,22 @@
 		3F3811B61CF56A3B007154F1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				3F552EAE1CF220B700BC5E33 /* DD_GoodInformView.h */,
-				3F552EAF1CF220B700BC5E33 /* DD_GoodInformView.m */,
+				3F552EAE1CF220B700BC5E33 /* DD_GoodsInformView.h */,
+				3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */,
 				3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */,
 				3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */,
-				3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */,
-				3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */,
+				3FA5510C1D4CAEC400528B5F /* DD_GoodsCircleView.h */,
+				3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */,
+				3FA5510F1D4CBA2500528B5F /* DD_GoodsFabricView.h */,
+				3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */,
+				3FA551121D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.h */,
+				3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */,
+				3FA551151D4CBC0400528B5F /* DD_GoodsK_POINTView.h */,
+				3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */,
+				3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */,
+				3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */,
+				3F3462341D4B4A7700B96D86 /* DD_ColorBtn.h */,
+				3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -1318,6 +1352,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3F60024A1D49EEB9007E395F /* drawView */,
 				3F7E58B41D40667D000FDE5F /* Waterflow */,
 			);
 			name = "视图类";
@@ -1735,6 +1770,8 @@
 		3F552E8C1CF201EC00BC5E33 /* 单品详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */,
+				3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */,
 				3F3811B61CF56A3B007154F1 /* CustomView */,
 				3F552EAA1CF21B1C00BC5E33 /* pagecontroller */,
 				3F552E8D1CF2020500BC5E33 /* DD_GoodsDetailViewController.h */,
@@ -1898,6 +1935,17 @@
 				3F6153231D3F28CB00BB60FD /* UIView+Custom.m */,
 			);
 			name = "UIView+Custom";
+			sourceTree = "<group>";
+		};
+		3F60024A1D49EEB9007E395F /* drawView */ = {
+			isa = PBXGroup;
+			children = (
+				3F60024B1D49EEFD007E395F /* DD_DrawManageView.h */,
+				3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */,
+				3F6002471D49EEB5007E395F /* DrawView.h */,
+				3F6002481D49EEB5007E395F /* DrawView.m */,
+			);
+			name = drawView;
 			sourceTree = "<group>";
 		};
 		3F61531E1D3F284B00BB60FD /* UIColor+Hex */ = {
@@ -2979,6 +3027,7 @@
 				3F3A0BED1D37CA14006CD46F /* UITextField+Custom.m in Sources */,
 				3FA836741D051B3F006D2919 /* DD_OrderTool.m in Sources */,
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
+				3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */,
 				3F21E2071D1790AF00FE7ADF /* DD_CricleChooseCell.m in Sources */,
 				3F4904EF1D18E16A009F4CD3 /* DD_CircleListInteractionView.m in Sources */,
 				3F9B8B231CF0472A008EC460 /* DD_forgetViewController.m in Sources */,
@@ -3005,9 +3054,10 @@
 				3F3811AF1CF54F7C007154F1 /* DataSigner.m in Sources */,
 				3F0A8CE41D07C855005549BE /* DD_OrderTabBar.m in Sources */,
 				3F552E831CF1F59E00BC5E33 /* DD_DesignerModel.m in Sources */,
-				3F552EB01CF220B700BC5E33 /* DD_GoodInformView.m in Sources */,
+				3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */,
 				3F9B8B081CEF6D29008EC460 /* DD_UserTool.m in Sources */,
 				3F3C3F021CFEBCB00056CD6B /* DD_DDAYCell.m in Sources */,
+				3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */,
 				3F9B8B151CF0095C008EC460 /* DD_RegisterViewController.m in Sources */,
 				3F5306DC1D124E5C000C9EC0 /* DD_CricleShowViewController.m in Sources */,
 				3F0A8CE01D07B892005549BE /* DD_OrderAddressView.m in Sources */,
@@ -3022,16 +3072,19 @@
 				3FB342661D1001DB00C9A682 /* DD_CircleInfoView.m in Sources */,
 				3F9B8B2F1CF08D32008EC460 /* DD_SetViewController.m in Sources */,
 				3F1401531CFC0AD70093474A /* DD_ShopHeaderView.m in Sources */,
+				3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */,
 				3F4187FB1CEEFF35001BCA3D /* DD_ClearingModel.m in Sources */,
 				3F9B8AFB1CEF56BC008EC460 /* DD_CustomViewController.m in Sources */,
 				3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */,
 				3F5306E91D129D82000C9EC0 /* DD_CircleCustomTagViewController.m in Sources */,
+				3F6002491D49EEB5007E395F /* DrawView.m in Sources */,
 				3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */,
 				3F9B8B1B1CF01F8D008EC460 /* DD_SetPSWViewController.m in Sources */,
 				3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */,
 				3F4904F21D1910A5009F4CD3 /* Tools.m in Sources */,
 				3F124B4A1D2225B8002B4E87 /* DD_FansCell.m in Sources */,
 				3F9B8AF11CEF5633008EC460 /* DD_GoodsViewController.m in Sources */,
+				3FA551171D4CBC0400528B5F /* DD_GoodsK_POINTView.m in Sources */,
 				3F576F311D3795580061602A /* UIButton+Custom.m in Sources */,
 				3F4B81D61D0058B400B323E4 /* DD_DDAYDetailView.m in Sources */,
 				3F3C3EFE1CFEB92E0056CD6B /* DD_DDAYModel.m in Sources */,
@@ -3058,6 +3111,7 @@
 				3F3811AD1CF54F7C007154F1 /* Order.m in Sources */,
 				3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */,
 				3F552E891CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m in Sources */,
+				3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */,
 				3F2F76531D1CE365002E22A6 /* DD_CirlcleApplyDesignerChooseView.m in Sources */,
 				3FC2D17F1D06A272005A1FF0 /* DD_OrderDetailViewController.m in Sources */,
 				3F4187E11CEEFF13001BCA3D /* DD_AddNewAddressViewController.m in Sources */,
@@ -3066,6 +3120,7 @@
 				3F9B8AE21CEF55DA008EC460 /* DD_CircleViewController.m in Sources */,
 				3F124B461D22213D002B4E87 /* DD_FansModel.m in Sources */,
 				3F66CF241D115BDF006A3D3F /* DD_CircleTagsView.m in Sources */,
+				3FA5511A1D4CC65000528B5F /* DD_GoodsTabBar.m in Sources */,
 				3F3811BE1CF5D223007154F1 /* DD_ShopViewController.m in Sources */,
 				3F9B8B331CF0917A008EC460 /* DD_SetTool.m in Sources */,
 				3FA8367E1D051E1D006D2919 /* DD_OrderCell.m in Sources */,
@@ -3103,6 +3158,7 @@
 				3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */,
 				3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */,
 				3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */,
+				3F3462361D4B4A7700B96D86 /* DD_ColorBtn.m in Sources */,
 				3F4187751CEEFB24001BCA3D /* main.m in Sources */,
 				3F3811B11CF54F7C007154F1 /* MD5DataSigner.m in Sources */,
 				3F3811B51CF54F7C007154F1 /* RSADataVerifier.m in Sources */,

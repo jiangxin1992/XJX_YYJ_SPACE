@@ -9,12 +9,12 @@
 #import "UIView+Custom.h"
 
 @implementation UIView (Custom)
-+(UIView *)getCustomViewWithColor:(NSString *)_color
++(UIView *)getCustomViewWithColor:(UIColor *)_color
 {
     UIView *view=[[UIView alloc] init];
     if(_color)
     {
-        view.backgroundColor=[UIColor colorWithHexString:_color];
+        view.backgroundColor=_color;
     }
     return view;
 }

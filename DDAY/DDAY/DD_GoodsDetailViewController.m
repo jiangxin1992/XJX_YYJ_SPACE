@@ -5,31 +5,50 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define yellow_color [UIColor colorWithRed:248.0f/255.0f green:210.0f/255.0f blue:82.0f/255.0f alpha:1]
+#import "DD_GoodsDetailViewController.h"
+
 #import "DD_ShopViewController.h"
 #import "DD_ClearingViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+#import "ImageViewController.h"
+
 #import "DD_ColorsModel.h"
 #import "DD_ClearingModel.h"
-#import "DD_GoodInformView.h"
-#import "ImageViewController.h"
 #import "DD_GoodsDetailModel.h"
-#import "DD_GoodsDetailViewController.h"
+
+#import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
+#import "DD_GoodsCircleView.h"
+#import "DD_GoodsFabricView.h"
+#import "DD_GoodsSendAndReturnsView.h"
+#import "DD_GoodsK_POINTView.h"
+#import "DD_GoodsTabBar.h"
+
 #import "DD_ChooseSizeView.h"
+#import "DD_DrawManageView.h"
+
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @end
 
 @implementation DD_GoodsDetailViewController
 {
-    UIImageView *mengban;
-    DD_GoodsDesignerView *_DesignerView;
-    DD_GoodInformView *_InformView;
+    DD_GoodsDetailModel *_DetailModel;//单品model
+    
     UIScrollView *_scrollview;
-    DD_GoodsDetailModel *_DetailModel;
-    UIPageViewController *_pageViewControler;
-    UIPageControl *_pageControl;
+    UIImageView *mengban;//蒙板
+    
+    DD_GoodsInformView *_InformView;//信息视图
+    DD_GoodsDesignerView *_DesignerView;//设计师系列视图
+    DD_GoodsCircleView *_CircleView;//搭配师说
+    DD_GoodsFabricView *_FabricView;//面料与洗涤
+    DD_GoodsSendAndReturnsView *_ReturnView;//寄送与退换
+    DD_GoodsK_POINTView *_K_PonitView;//YCO SPACE 体验店
+    
+    UIPageViewController *_pageViewControler;//单品图片浏览
+    DD_DrawManageView *ManageView;//自定义pageControler
+    
+    UIView *container;//_scrollView的view
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +67,226 @@
     }
     return self;
 }
+#pragma mark - SomePrepare
+-(void)SomePrepare
+{
+    [self PrepareData];
+    [self PrepareUI];
+}
+-(void)PrepareData{}
+-(void)PrepareUI
+{
+    
+    UIButton *buyBtn=[regular getBarCustomBtnWithImg:@"System_Buy" WithSelectImg:@"System_Buy" WithSize:CGSizeMake(24, 25)];
+    
+    [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
+    
+    UIButton *backBtn=[UIButton getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
+}
+#pragma mark - UIConfig
+-(void)CreateScrollView
+{
+    _scrollview=[[UIScrollView alloc] init];
+    [self.view addSubview:_scrollview];
+    container = [UIView new];
+    [_scrollview addSubview:container];
+    [container mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_scrollview);
+        make.width.equalTo(_scrollview);
+    }];
+}
+-(void)UIConfig
+{
+    [self CreateImgScreenView];
+    [self CreateInformView];
+    [self CreateDesignerView];
+    [self CreateCircleView];
+    [self CreateFabricView];
+    [self CreateSendAndReturnsView];
+    [self CreateKPOINTView];
+    [self CreateTabbar];
+}
+-(void)CreateImgScreenView
+{
+    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
+    [_pageViewControler.view removeFromSuperview];
+    [ManageView removeFromSuperview];
+    
+    if(_colorModel.pics.count)
+    {
+        //    创建pageViewControler（活动图片浏览视图）
+        _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        [container addSubview:_pageViewControler.view];
+        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-26*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
+        }];
+        imgvc.array=_colorModel.pics;
+        imgvc.view.backgroundColor = [UIColor clearColor];
+        [regular setBorder:_pageViewControler.view];
+        imgvc.currentPage = 0;
+        [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        _pageViewControler.delegate = self;
+        _pageViewControler.dataSource = self;
+        
+        
+        
+        ManageView=[[DD_DrawManageView alloc] initWithImgCount:_colorModel.pics.count];
+        [container addSubview:ManageView];
+        ManageView.userInteractionEnabled=NO;
+        ManageView.backgroundColor=_define_light_gray_color;
+        
+        [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(26);
+            make.right.mas_equalTo(-26);
+            make.top.mas_equalTo(12);
+            make.height.mas_equalTo(IsPhone6_gt?363:301);
+        }];
+        [ManageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_pageViewControler.view.mas_right).with.offset(-1);
+            make.bottom.mas_equalTo(_pageViewControler.view).with.offset(-1);
+            make.top.mas_equalTo(_pageViewControler.view).with.offset(1);
+            make.width.mas_equalTo(IsPhone6_gt?60:49);
+        }];
+        
+    }else
+    {
+        _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        [container addSubview:_pageViewControler.view];
+        [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(30);
+            make.right.mas_equalTo(-30);
+            make.top.mas_equalTo(12);
+            make.height.mas_equalTo(IsPhone6_gt?363:301);
+        }];
+    }
+}
+-(void)CreateInformView
+{
+    _InformView=[[DD_GoodsInformView alloc] initWithGoodsDetailModel:_DetailModel WithBlock:^( NSString *type) {
+        if([type isEqualToString:@"color_select"])
+        {
+//            颜色（款式）选择之后的回调
+            [self CreateImgScreenView];
+        }else if([type isEqualToString:@"collect"])
+        {
+            //            收藏
+            [self Colloct_Action];
+        }
+    }];
+    [container addSubview:_InformView];
+    [_InformView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(container).with.offset((IsPhone6_gt?363:301)+12);
+        make.left.and.right.mas_equalTo(0);
+    }];
+
+}
+-(void)CreateDesignerView
+{
+    _DesignerView=[[DD_GoodsDesignerView alloc] initWithGoodsDetailModel:_DetailModel WithBlock:^(NSString *type,NSInteger index) {
+        
+        if([type isEqualToString:@"follow"]||[type isEqualToString:@"unfollow"])
+        {
+            [self followAction:type];
+            
+        }else if([type isEqualToString:@"designer"])
+        {
+            [self PushDesignerView];
+        }else if([type isEqualToString:@"item"])
+        {
+            [self PushItemView:index];
+        }else if([type isEqualToString:@"servies"])
+        {
+            //            跳转系列详情
+        }
+    }];
+    [container addSubview:_DesignerView];
+    [_DesignerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_InformView.mas_bottom).with.offset(0);
+        make.left.and.right.mas_equalTo(0);
+    }];
+    
+}
+-(void)CreateCircleView
+{
+    _CircleView=[[DD_GoodsCircleView alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"click"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+        }
+    }];
+    [container addSubview:_CircleView];
+    [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
+        make.left.and.right.mas_equalTo(0);
+    }];
+}
+-(void)CreateFabricView
+{
+    _FabricView=[[DD_GoodsFabricView alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"click"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+        }
+    }];
+    [container addSubview:_FabricView];
+    [_FabricView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_CircleView.mas_bottom).with.offset(0);
+        make.left.and.right.mas_equalTo(0);
+    }];
+}
+-(void)CreateSendAndReturnsView
+{
+    _ReturnView=[[DD_GoodsSendAndReturnsView alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"click"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+        }
+    }];
+    [container addSubview:_ReturnView];
+    [_ReturnView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_FabricView.mas_bottom).with.offset(0);
+        make.left.and.right.mas_equalTo(0);
+    }];
+}
+-(void)CreateKPOINTView
+{
+    _K_PonitView=[[DD_GoodsK_POINTView alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"click"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+        }
+    }];
+    [container addSubview:_K_PonitView];
+    [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
+        make.left.and.right.mas_equalTo(0);
+    }];
+    [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+        // 让scrollview的contentSize随着内容的增多而变化
+        make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
+    }];
+}
+-(void)CreateTabbar
+{
+    DD_GoodsTabBar *tabbar=[[DD_GoodsTabBar alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"buy"])
+        {
+            [self Shop_Buy_Action:@"buy"];
+        }
+    }];
+    [self.view addSubview:tabbar];
+    [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.mas_equalTo(0);
+        make.height.mas_equalTo(ktabbarHeight);
+        make.bottom.mas_equalTo(0);
+    }];
+    
+}
 #pragma mark - RequestData
 -(void)RequestData
 {
@@ -64,183 +303,63 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-#pragma mark - UIConfig
--(void)UIConfig
-{
-    [self createImgScreenView];
-    [self CreateInformView];
-}
--(void)CreateDesignerView
-{
-    _DesignerView=[[DD_GoodsDesignerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_InformView.frame)+10, ScreenWidth, 250) WithGoodsDetailModel:_DetailModel WithBlock:^(NSString *type,NSInteger index) {
-        
-        if([type isEqualToString:@"follow"]||[type isEqualToString:@"unfollow"])
-        {
-            [self followAction:type];
-            
-        }else if([type isEqualToString:@"designer"])
-        {
-            [self PushDesignerView];
-        }else if([type isEqualToString:@"item"])
-        {
-            [self PushItemView:index];
-        }else if([type isEqualToString:@"servies"])
-        {
-//            跳转系列详情
-        }
-        
-    }];
-    _scrollview.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(_DesignerView.frame));
-    _DesignerView.backgroundColor=_define_backview_color;
-    [_scrollview addSubview:_DesignerView];
-}
--(void)CreateInformView
-{
-    _InformView=[[DD_GoodInformView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_pageViewControler.view.frame), ScreenWidth, 1000) WithGoodsDetailModel:_DetailModel WithBlock:^( NSString *type,CGFloat height) {
-        if([type isEqualToString:@"color_select"])
-        {
-//            颜色（款式）选择之后的回调
-            [self createImgScreenView];
-        }else if([type isEqualToString:@"shop"])
-        {
-//            加入购物车
-            [self Shop_Buy_Action:@"shop"];
-        }else if([type isEqualToString:@"collect"])
-        {
-//            收藏
-            [self Colloct_Action];
-        }
-        else if([type isEqualToString:@"buy"])
-        {
-//            购买
-            [self Shop_Buy_Action:@"buy"];
-        }else if([type isEqualToString:@"height"])
-        {
-//            重置视图高度
-            _InformView.frame=CGRectMake(CGRectGetMinX(_InformView.frame), CGRectGetMinY(_InformView.frame), CGRectGetWidth(_InformView.frame), height);
-            [self CreateDesignerView];
-        }
-    }];
-    _InformView.backgroundColor=_define_backview_color;
-    [_scrollview addSubview:_InformView];
-}
--(void)createImgScreenView
-{
-    DD_ColorsModel *_colorModel=[self getColorsModel];
-    if(_colorModel.pics.count)
-    {
-        [_pageViewControler.view removeFromSuperview];
-        //    创建pageViewControler（活动图片浏览视图）
-        _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-        
-        ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:350 WithBlock:^(NSString *type, NSInteger index) {
-            
-        }];
-        imgvc.array=_colorModel.pics;
-        imgvc.view.backgroundColor = [UIColor clearColor];
-        imgvc.currentPage = 0;
-        [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-        _pageViewControler.delegate = self;
-        _pageViewControler.dataSource = self;
-        _pageViewControler.view.frame = CGRectMake(0, 0, ScreenWidth, 350);
-        [_scrollview addSubview:_pageViewControler.view];
-        
-        _pageControl = [[UIPageControl alloc]init];
-        _pageControl.center = CGPointMake(ScreenWidth/2.0f, 350-10);
-        [_scrollview addSubview:_pageControl];
-        _pageControl.numberOfPages = _colorModel.pics.count;
-        _pageControl.currentPageIndicatorTintColor = yellow_color;
-        _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1];
-   
-    }
-}
--(void)CreateScrollView
-{
-    _scrollview =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight)];
-    _scrollview.contentSize=CGSizeMake(ScreenWidth, ScreenHeight);
-    [self.view addSubview:_scrollview];
-}
-#pragma mark - SomePrepare
--(void)SomePrepare
-{
-    [self PrepareData];
-    [self PrepareUI];
-    
-}
--(void)PrepareData{}
--(void)PrepareUI
-{
 
-    UIButton *buyBtn=[regular getBarCustomBtnWithImg:@"System_Buy" WithSelectImg:@"System_Buy" WithSize:CGSizeMake(24, 25)];
-    
-    [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-}
 #pragma  mark-pageViewController代理方法
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     
-    DD_ColorsModel *_colorModel=[self getColorsModel];
+    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
     
     ImageViewController *vc = (ImageViewController*)viewController;
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:350 WithBlock:^(NSString *type, NSInteger index) {
-        
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
     imgvc.maxPage = _colorModel.pics.count-1;
     imgvc.currentPage = index;
     return imgvc;
-    
-    
 }
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    DD_ColorsModel *_colorModel=[self getColorsModel];
+    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
     ImageViewController *vc = (ImageViewController*)viewController;
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:350 WithBlock:^(NSString *type, NSInteger index) {
-        
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
     imgvc.maxPage =_colorModel.pics.count-1;
     imgvc.currentPage = index;
-    
     return imgvc;
     
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-
     ImageViewController *vc =  pageViewController.viewControllers[0];
-    _pageControl.currentPage = vc.currentPage;
+    [ManageView changeSelectNum:vc.currentPage];
     return;
 }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    
-    DD_ColorsModel *_colorModel=[self getColorsModel];
-    return _colorModel.pics.count;
-}
 
 #pragma mark - SomeAction
+//返回
 -(void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];
-    [_InformView cancelTime];
 }
-
+//蒙板消失
+-(void)mengban_dismiss
+{
+    [mengban removeFromSuperview];
+}
+//收藏
 -(void)Colloct_Action
 {
     NSString *_url=nil;
@@ -271,103 +390,24 @@
     }];
     
 }
--(NSString *)getPriceStr
+//关注
+-(void)followAction:(NSString *)type
 {
-    long _nowTime=[regular date];
-    if(_nowTime>=_DetailModel.item.saleEndTime)
+    NSString *url=nil;
+    if([type isEqualToString:@"follow"])
     {
-        //        已经结束
-        if(_DetailModel.item.discountEnable)
-        {
-            return _DetailModel.item.price;
-        }else
-        {
-            return  _DetailModel.item.originalPrice;
-        }
-        
-    }else
+        url=@"designer/careDesigner.do";
+    }else if([type isEqualToString:@"unfollow"])
     {
-        //        发布中
-        return _DetailModel.item.price;
+        url=@"designer/unCareDesigner.do";
     }
-}
--(NSString *)getColorNameWithID:(NSString *)colorID
-{
-    for (DD_ColorsModel *color in _DetailModel.item.colors) {
-        if([color.colorId isEqualToString:colorID])
-        {
-            if(color.colorName)
-            {
-                return color.colorName;
-                
-            }else
-            {
-                return @"";
-            }
-            break;
-        }
-    }
-    return @"";
-}
--(void)ShopAction:(NSString *)sizeid
-{
-    NSArray *_itemArr=@[@{
-                            @"itemId":_DetailModel.item.itemId
-                            ,@"itemName":_DetailModel.item.itemName
-                            ,@"colorId":_DetailModel.item.colorId
-                            ,@"colorName":[self getColorNameWithID:_DetailModel.item.colorId]
-                            ,@"sizeId":sizeid
-                            ,@"sizeName":[_DetailModel.item getSizeNameWithID:sizeid]
-                            
-                            ,@"discountEnable":[NSNumber numberWithBool:_DetailModel.item.discountEnable]
-                            ,@"seriesId":_DetailModel.item.series.s_id
-                            ,@"seriesName":_DetailModel.item.series.name
-                            ,@"designerId":_DetailModel.designer.designerId
-                            ,@"brandName":_DetailModel.designer.brandName
-                            
-                            ,@"number":@"1"
-                            ,@"price":[self getPriceStr]
-                            ,@"originalPrice":_DetailModel.item.originalPrice
-                            ,@"pics":[_DetailModel.item getPicsArr]
-                            
-                            ,@"saleEndTime":[NSNumber numberWithLong:_DetailModel.item.saleEndTime*1000]
-                            ,@"saleStartTime":[NSNumber numberWithLong:_DetailModel.item.saleStartTime*1000]
-                            ,@"signEndTime":[NSNumber numberWithLong:_DetailModel.item.signEndTime*1000]
-                            ,@"signStartTime":[NSNumber numberWithLong:_DetailModel.item.signStartTime*1000]
-                            }
-                        ];
-
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"items":[_itemArr JSONString]};
-    [[JX_AFNetworking alloc] GET:@"item/putToShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"designerId":_DetailModel.designer.designerId};
+    [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"shop_success", @"")] animated:YES completion:nil];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
-   
-}
--(void)BuyAction:(NSString *)sizeid
-{
-//    NSArray *_itemArr=@[@{@"itemId":@"3",@"colorId":@"39",@"sizeId":@"24",@"number":@"6",@"price":@"2000"}
-//                        ,@{@"itemId":@"6",@"colorId":@"34",@"sizeId":@"20",@"number":@"1",@"price":@"5000"}
-//                        ,@{@"itemId":@"9",@"colorId":@"35",@"sizeId":@"20",@"number":@"2",@"price":@"1000"}
-//                        ,@{@"itemId":@"11",@"colorId":@"41",@"sizeId":@"20",@"number":@"4",@"price":@"1000"}
-//                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
-//                        ];
-    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":@"1",@"price":[self getPriceStr]}];
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
-    [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            DD_ClearingModel *_ClearingModel=[DD_ClearingModel getClearingModel:data];
-            [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:^(NSString *type) {
-                
-            }] animated:YES];
+            _DetailModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+            _DesignerView.detailModel=_DetailModel;
+            [_DesignerView UpdateFollowBtnState];
             
         }else
         {
@@ -377,19 +417,15 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
--(void)mengban_dismiss
-{
-    [mengban removeFromSuperview];
-}
+
 //shop buy
 -(void)Shop_Buy_Action:(NSString *)type
 {
-    mengban=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self.view addSubview:mengban];
-    mengban.userInteractionEnabled=YES;
-    mengban.image=[UIImage imageNamed:@"蒙板"];
+    mengban=[UIImageView getMaskImageView];
+    [self.view.window addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
-    DD_ColorsModel *_colorModel=[self getColorsModel];
+    
+    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
     [mengban addSubview:[[DD_ChooseSizeView alloc] initWithFrame:CGRectMake((ScreenWidth-300)/2.0f, (ScreenHeight-400)/2.0f, 300, 400) WithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithType:type WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid) {
         if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
         {
@@ -413,17 +449,78 @@
         
     }]];
 }
--(DD_ColorsModel *)getColorsModel
+//购买动作
+-(void)BuyAction:(NSString *)sizeid
 {
-    NSString *_colorId=_DetailModel.item.colorId;
-    for (DD_ColorsModel *_color in _DetailModel.item.colors) {
-        if([_color.colorId isEqualToString:_colorId])
+//    NSArray *_itemArr=@[@{@"itemId":@"3",@"colorId":@"39",@"sizeId":@"24",@"number":@"6",@"price":@"2000"}
+//                        ,@{@"itemId":@"6",@"colorId":@"34",@"sizeId":@"20",@"number":@"1",@"price":@"5000"}
+//                        ,@{@"itemId":@"9",@"colorId":@"35",@"sizeId":@"20",@"number":@"2",@"price":@"1000"}
+//                        ,@{@"itemId":@"11",@"colorId":@"41",@"sizeId":@"20",@"number":@"4",@"price":@"1000"}
+//                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
+//                        ];
+    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":@"1",@"price":[_DetailModel getPrice]}];
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
+    [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
         {
-            return _color;
+            DD_ClearingModel *_ClearingModel=[DD_ClearingModel getClearingModel:data];
+            [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:^(NSString *type) {
+                
+            }] animated:YES];
+            
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
         }
-    }
-    return nil;
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
 }
+//加入购物车动作
+-(void)ShopAction:(NSString *)sizeid
+{
+    NSArray *_itemArr=@[@{
+                            @"itemId":_DetailModel.item.itemId
+                            ,@"itemName":_DetailModel.item.itemName
+                            ,@"colorId":_DetailModel.item.colorId
+                            ,@"colorName":[_DetailModel getColorNameWithID:_DetailModel.item.colorId]
+                            ,@"sizeId":sizeid
+                            ,@"sizeName":[_DetailModel.item getSizeNameWithID:sizeid]
+                            
+                            ,@"discountEnable":[NSNumber numberWithBool:_DetailModel.item.discountEnable]
+                            ,@"seriesId":_DetailModel.item.series.s_id
+                            ,@"seriesName":_DetailModel.item.series.name
+                            ,@"designerId":_DetailModel.designer.designerId
+                            ,@"brandName":_DetailModel.designer.brandName
+                            
+                            ,@"number":@"1"
+                            ,@"price":[_DetailModel getPrice]
+                            ,@"originalPrice":_DetailModel.item.originalPrice
+                            ,@"pics":[_DetailModel.item getPicsArr]
+                            
+                            ,@"saleEndTime":[NSNumber numberWithLong:_DetailModel.item.saleEndTime*1000]
+                            ,@"saleStartTime":[NSNumber numberWithLong:_DetailModel.item.saleStartTime*1000]
+                            ,@"signEndTime":[NSNumber numberWithLong:_DetailModel.item.signEndTime*1000]
+                            ,@"signStartTime":[NSNumber numberWithLong:_DetailModel.item.signStartTime*1000]
+                            }
+                        ];
+    
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"items":[_itemArr JSONString]};
+    [[JX_AFNetworking alloc] GET:@"item/putToShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"shop_success", @"")] animated:YES completion:nil];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+    
+}
+
+//跳转单品详情页
 -(void)PushItemView:(NSInteger )index
 {
     DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
@@ -437,6 +534,7 @@
     
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];
 }
+//跳转设计师页面
 -(void)PushDesignerView
 {
     DD_DesignerHomePageViewController *_designer=[[DD_DesignerHomePageViewController alloc] init];
@@ -444,33 +542,7 @@
     _designer.designerId=_DetailModel.designer.designerId;
     [self.navigationController pushViewController:_designer animated:YES];
 }
--(void)followAction:(NSString *)type
-{
-    NSString *url=nil;
-    if([type isEqualToString:@"follow"])
-    {
-        url=@"designer/careDesigner.do";
-    }else if([type isEqualToString:@"unfollow"])
-    {
-        url=@"designer/unCareDesigner.do";
-    }
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"designerId":_DetailModel.designer.designerId};
-    [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            _DetailModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
-            _DesignerView.detailModel=_DetailModel;
-            [_DesignerView UpdateFollowBtnState];
-
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
-}
-//跳转购物车
+//跳转购物车视图
 -(void)PushShopView
 {
     DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];

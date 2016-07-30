@@ -13,4 +13,9 @@
  * 创建imageview 带image
  */
 +(UIImageView *)getImgWithImageStr:(NSString *)_imageStr;
+/**
+ * 获取imageview 网络加载的
+ */
++(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius;
++(UIImageView *)getMaskImageView;
 @end

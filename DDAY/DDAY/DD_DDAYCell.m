@@ -26,7 +26,7 @@
     if(self)
     {
         _nameLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18 WithTextColor:_define_white_color WithSpacing:0];
-        _nameLabel.backgroundColor=[UIColor colorWithHexString:_define_black_color];
+        _nameLabel.backgroundColor=_define_black_color;
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(IsPhone6_gt?20:8);
@@ -63,14 +63,23 @@
             make.height.mas_equalTo(23);
         }];
         
-        _backImg=[[UIImageView alloc] init];
-        [self.contentView addSubview:_backImg];
-        [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(43);
-            make.right.mas_equalTo(-43);
-            make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?30:28);
+        UIView *backview=[UIView getCustomViewWithColor:nil];
+        [self.contentView addSubview:backview];
+        [backview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(28);
+            make.right.mas_equalTo(-28);
+            make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
             make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
         }];
+        [regular setBorder:backview];
+        
+        _backImg=[[UIImageView alloc] init];
+        [backview addSubview:_backImg];
+        [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(15, 15, 15, 15));
+        }];
+        _backImg.contentMode=UIViewContentModeScaleAspectFit;
+        
     }
     return self;
 }
@@ -81,7 +90,7 @@
     [self startTimeWithType:@"BeforeSignStart"];
     _ApplyBtn.selected=YES;
     [_ApplyBtn setTitle:@"报    名" forState:UIControlStateSelected];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_define_light_gray_color1];
+    _ApplyBtn.backgroundColor=_define_light_gray_color1;
     _restLabel.hidden=NO;
 }
 //报名结束前
@@ -89,7 +98,7 @@
 {
     [self startTimeWithType:@"BeforeSignEnd"];
     _ApplyBtn.selected=NO;
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_define_black_color];
+    _ApplyBtn.backgroundColor=_define_black_color;
     if(_DDAYModel.isJoin)
     {
         [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
@@ -105,7 +114,7 @@
     [self startTimeWithType:@"BeforeSaleStart"];
     _ApplyBtn.selected=YES;
     [_ApplyBtn setTitle:@"报  名  已  结  束" forState:UIControlStateSelected];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_define_light_gray_color1];
+    _ApplyBtn.backgroundColor=_define_light_gray_color1;
     _restLabel.hidden=YES;
 }
 //发布会结束之前
@@ -114,7 +123,7 @@
     [self startTimeWithType:@"BeforeSaleEnd"];
     _ApplyBtn.selected=NO;
     [_ApplyBtn setTitle:@"发  布  会  开  始  啦" forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_define_black_color];
+    _ApplyBtn.backgroundColor=_define_black_color;
     _restLabel.hidden=YES;
 }
 //发布会结束之后
@@ -123,7 +132,7 @@
     _ApplyBtn.selected=NO;
     [_ApplyBtn setTitle:@"发  布  会  已  结  束" forState:UIControlStateNormal];
     _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_define_light_gray_color1];
+    _ApplyBtn.backgroundColor=_define_light_gray_color1;
     _restLabel.hidden=YES;
 }
 #pragma mark - GetState

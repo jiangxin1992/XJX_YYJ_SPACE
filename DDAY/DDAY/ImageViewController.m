@@ -15,31 +15,31 @@
 @end
 
 @implementation ImageViewController
--(instancetype)initWithHeight:(CGFloat )height WithBlock:(void(^)(NSString *type,NSInteger index))block
-{
+-(instancetype)initWithSize:(CGSize )size WithBlock:(void(^)(NSString *type,NSInteger index))block{
     self=[super init];
     if(self)
     {
-        _height=height;
+        _size=size;
         _block=block;
     }
     return self;
 }
--(void)loadView
-{
-    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, _height)];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _imgv = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    _imgv = [[UIImageView alloc] init];
     [self.view addSubview:_imgv];
-    _imgv.userInteractionEnabled=YES;
+    _imgv.contentMode=UIViewContentModeScaleAspectFit;
+    CGFloat _w=IsPhone6_gt?20:16;
+    [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.top.mas_equalTo(_w);
+        make.bottom.mas_equalTo(-_w);
+        make.right.mas_equalTo(-_w-(IsPhone6_gt?60:49));
+    }];
     [_imgv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchAction)]];
-    _imgv.backgroundColor=[UIColor clearColor];
-   
     _imgv.hidden=YES;
-
+    
 }
 -(void)touchAction
 {
@@ -56,7 +56,6 @@
     }
     _currentPage = currentPage;
     _imgv.hidden=NO;
-
     [_imgv JX_loadImageUrlStr:[_array objectAtIndex:_currentPage] WithSize:800 placeHolderImageName:nil radius:0];
 }
 

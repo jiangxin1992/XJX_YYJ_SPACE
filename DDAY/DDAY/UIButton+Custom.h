@@ -12,7 +12,7 @@
 /**
  * 创建带title 的自定义 btn
  */
-+(UIButton *)getCustomTitleBtnWithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithSpacing:(CGFloat )_spacing WithNormalTitle:(NSString *)_normalTitle WithNormalColor:(NSString *)_normalColor WithSelectedTitle:(NSString *)_selectedTitle WithSelectedColor:(NSString *)_selectedColor;
++(UIButton *)getCustomTitleBtnWithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithSpacing:(CGFloat )_spacing WithNormalTitle:(NSString *)_normalTitle WithNormalColor:(UIColor *)_normalColor WithSelectedTitle:(NSString *)_selectedTitle WithSelectedColor:(UIColor *)_selectedColor;
 /**
  * 创建带image 的自定义 btn
  */
@@ -22,4 +22,12 @@
  * 创建带backimage 的自定义 btn
  */
 +(UIButton *)getCustomBackImgBtnWithImageStr:(NSString *)_normalImageStr WithSelectedImageStr:(NSString *)_selectedImageStr;
+/**
+ * 创建自定义 btn
+ */
++(UIButton *)getCustomBtn;
+/**
+ * 返回返回按钮
+ */
++(UIButton *)getBackBtn;
 @end

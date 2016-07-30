@@ -9,7 +9,7 @@
 #import "UILabel+DD_Custom.h"
 
 @implementation UILabel (DD_Custom)
-+(UILabel *)getLabelWithAlignment:(NSInteger )_alignment WithTitle:(NSString *)_title WithFont:(CGFloat )_font WithTextColor:(NSString *)_textColor WithSpacing:(CGFloat )_spacing
++(UILabel *)getLabelWithAlignment:(NSInteger )_alignment WithTitle:(NSString *)_title WithFont:(CGFloat )_font WithTextColor:(UIColor *)_textColor WithSpacing:(CGFloat )_spacing
 {
     UILabel *label=[[UILabel alloc] init];
     label.textAlignment=_alignment;
@@ -25,10 +25,10 @@
     }
     if(_textColor)
     {
-        label.textColor=[UIColor colorWithHexString:_textColor];
+        label.textColor=_textColor;
     }else
     {
-        label.textColor=[UIColor colorWithHexString:_define_black_color];
+        label.textColor=_define_black_color;
     }
 
     if(_font)

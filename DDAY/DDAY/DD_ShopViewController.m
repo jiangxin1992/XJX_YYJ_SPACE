@@ -114,11 +114,10 @@
  */
 -(void)CreateSizeChooseViewWithSizeArr:(NSArray *)sizeArr WithIndexPath:(NSIndexPath *)indexPath
 {
-    mengban=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self.view addSubview:mengban];
-    mengban.userInteractionEnabled=YES;
-    mengban.image=[UIImage imageNamed:@"蒙板"];
+    mengban=[UIImageView getMaskImageView];
+    [self.view.window addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+    
     DD_ShopItemModel * itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
     [mengban addSubview:[[DD_ChooseSizeView alloc] initWithFrame:CGRectMake((ScreenWidth-300)/2.0f, (ScreenHeight-400)/2.0f, 300, 400) WithSizeArr:sizeArr WithColorID:itemModel.colorId WithType:@"alert" WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid) {
         [self mengban_dismiss];

@@ -9,14 +9,14 @@
 #import "UITextField+Custom.h"
 
 @implementation UITextField (Custom)
-+(UITextField *)getTextFieldWithPlaceHolder:(NSString *)_placeHolder WithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithTextColor:(NSString *)_textColor WithLeftView:(UIView *)_leftView WithRightView:(UIView *)_rightView WithSecureTextEntry:(BOOL )_isSecure
++(UITextField *)getTextFieldWithPlaceHolder:(NSString *)_placeHolder WithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithTextColor:(UIColor *)_textColor WithLeftView:(UIView *)_leftView WithRightView:(UIView *)_rightView WithSecureTextEntry:(BOOL )_isSecure
 {
     UITextField *_textfield=[[UITextField alloc] init];
     if(_textColor){
-        _textfield.textColor=[UIColor colorWithHexString:_textColor];
+        _textfield.textColor=_textColor;
     }else
     {
-        _textfield.textColor=[UIColor colorWithHexString:_define_black_color];
+        _textfield.textColor=_define_black_color;
     }
     if(_placeHolder){
         _textfield.placeholder=_placeHolder;

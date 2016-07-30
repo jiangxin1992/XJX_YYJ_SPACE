@@ -35,7 +35,7 @@
     //    创建pageViewControler（活动图片浏览视图）
     _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     [self addSubview:_pageViewControler.view];
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:300 WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     imgvc.array=_detailModel.pics;
@@ -91,7 +91,7 @@
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:300 WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     imgvc.array=_detailModel.pics;
@@ -109,7 +109,7 @@
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithHeight:300 WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     imgvc.array=_detailModel.pics;
@@ -129,10 +129,6 @@
     return;
 }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return _detailModel.pics.count;
-}
 #pragma mark - SomeAction
 /**
  * 跳转当前搭配对应的单品列表

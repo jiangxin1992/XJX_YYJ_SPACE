@@ -5,19 +5,24 @@
 //  Created by yyj on 16/5/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "UIButton+WebCache.h"
+#define hor_edge 26
+#define ver_edge 22
+
 #import "DD_GoodsDesignerView.h"
+
+#import "UIButton+WebCache.h"
 
 @implementation DD_GoodsDesignerView
 {
     UIButton *upView;
     UIButton *downView;
+    
     UIButton *guanzhu;
 }
 #pragma mark - 初始化
--(instancetype)initWithFrame:(CGRect)frame WithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block
+-(instancetype)initWithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block
 {
-    self=[super initWithFrame:frame];
+    self=[super init];
     if(self)
     {
         _detailModel=model;
@@ -34,16 +39,132 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI
-{
-//    self.backgroundColor=_define_backview_color;
-}
+-(void)PrepareUI{}
 #pragma mark - UIConfig
--(void)UIConfig
-{
+-(void)UIConfig{
     [self CreateUpView];
     [self CreateDownView];
 }
+
+-(void)CreateUpView
+{
+    upView=[UIButton getCustomBtn];
+    [self addSubview:upView];
+    [upView addTarget:self action:@selector(designerAction) forControlEvents:UIControlEventTouchUpInside];
+    [upView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+    }];
+    
+    UIView *view=[UIView getCustomViewWithColor:_define_black_color];
+    [upView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
+        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+    }];
+    
+    
+    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:30];
+    [upView addSubview:_headImge];
+    _headImge.userInteractionEnabled=NO;
+    [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hor_edge);
+        make.top.mas_equalTo(ver_edge);
+        make.width.and.height.mas_equalTo(50);
+        make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
+    }];
+    
+    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:30];
+    [upView addSubview:_brandImge];
+    _brandImge.userInteractionEnabled=NO;
+    [_brandImge mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_headImge.mas_right).with.offset(8);
+        make.top.mas_equalTo(ver_edge);
+        make.width.and.height.mas_equalTo(_headImge);
+    }];
+    
+    UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
+    [upView addSubview:userName];
+    [userName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
+        make.top.mas_equalTo(upView).with.offset(27);
+    }];
+    [userName sizeToFit];
+    
+    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
+    [upView addSubview:brandName];
+    [brandName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
+        make.top.mas_equalTo(userName.mas_bottom).with.offset(11);
+    }];
+    [brandName sizeToFit];
+    
+    guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_white_color];
+    [upView addSubview:guanzhu];
+    guanzhu.backgroundColor=[UIColor blackColor];
+    [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
+    [guanzhu mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-hor_edge);
+        make.width.mas_equalTo(50);
+        make.height.mas_equalTo(23);
+        make.centerY.mas_equalTo(upView);
+    }];
+    [self UpdateFollowBtnState];
+}
+
+-(void)CreateDownView
+{
+    downView=[UIButton getCustomBtn];
+    [self addSubview:downView];
+    [downView addTarget:self action:@selector(serviesAction) forControlEvents:UIControlEventTouchUpInside];
+    [downView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.mas_equalTo(0);
+        make.top.mas_equalTo(upView.mas_bottom).with.offset(0);
+        make.bottom.mas_equalTo(self);
+    }];
+    UIView *view=[UIView getCustomViewWithColor:_define_black_color];
+    [downView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
+        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+    }];
+    
+    UILabel *_series_label=[UILabel getLabelWithAlignment:1 WithTitle:_detailModel.item.series.name WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+    [downView addSubview:_series_label];
+    _series_label.backgroundColor=[UIColor blackColor];
+    [_series_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hor_edge);
+        make.top.mas_equalTo(downView).with.offset(ver_edge);
+        make.width.mas_equalTo(75);
+        make.height.mas_equalTo(23);
+    }];
+    
+    UIScrollView *_scrollview=[[UIScrollView alloc] init];
+    [downView addSubview:_scrollview];
+    NSInteger _item_count=_detailModel.item.otherItems.count;
+    _scrollview.contentSize=CGSizeMake(102*_item_count+6*(_item_count-1), 102);
+    for (int i=0; i<_item_count; i++) {
+        DD_OtherItemModel *_OtherItem=[_detailModel.item.otherItems objectAtIndex:i];
+        UIButton *imageview_btn=[UIButton buttonWithType:UIButtonTypeCustom];
+        imageview_btn.frame=CGRectMake(108*i, 0,102, 102);
+        [_scrollview addSubview:imageview_btn];
+        [imageview_btn sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:_OtherItem.itemPic WithSize:200]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"headImg_login1"]];
+        imageview_btn.tag=100+i;
+        [imageview_btn addTarget:self action:@selector(ItemAction:) forControlEvents:UIControlEventTouchUpInside];
+        [regular setBorder:imageview_btn];
+    }
+    
+    [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_series_label.mas_bottom).with.offset(ver_edge);
+        make.left.mas_equalTo(hor_edge);
+        make.right.mas_equalTo(-hor_edge);
+        make.height.mas_equalTo(102);
+        make.bottom.mas_equalTo(-ver_edge);
+    }];
+    
+}
+#pragma mark - SomeAction
 -(void)serviesAction
 {
     _block(@"servies",0);
@@ -51,37 +172,6 @@
 -(void)designerAction
 {
     _block(@"designer",0);
-}
--(void)CreateUpView
-{
-    upView=[UIButton buttonWithType:UIButtonTypeCustom];
-    upView.frame=CGRectMake(0, 0, ScreenWidth , 80);
-    [self addSubview:upView];
-    upView.backgroundColor=[UIColor whiteColor];
-    [upView addTarget:self action:@selector(designerAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIImageView *_headImge=[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
-    [upView addSubview:_headImge];
-    
-    [_headImge JX_loadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_headImge.frame)/2.0f];
-    
-    
-    UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(100, 10, 160, 60)];
-    [upView addSubview:namelabel];
-    namelabel.textColor=[UIColor blackColor];
-    namelabel.textAlignment=0;
-    namelabel.text=[[NSString alloc] initWithFormat:@"%@·%@",_detailModel.designer.designerName,_detailModel.designer.brandName];
-    
-    guanzhu=[UIButton buttonWithType:UIButtonTypeCustom];
-    [upView addSubview:guanzhu];
-    guanzhu.frame=CGRectMake(270, 15, 80, 50);
-    guanzhu.backgroundColor=[UIColor blackColor];
-    [guanzhu setTitle:@"关注" forState:UIControlStateNormal];
-    [guanzhu setTitle:@"已关注" forState:UIControlStateSelected];
-    [guanzhu setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [guanzhu setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self UpdateFollowBtnState];
 }
 -(void)UpdateFollowBtnState
 {
@@ -94,35 +184,6 @@
     }else
     {
         _block(@"follow",0);
-    }
-}
--(void)CreateDownView
-{
-    downView=[UIButton buttonWithType:UIButtonTypeCustom];
-    downView.frame=CGRectMake(0, 90, ScreenWidth, 150);
-    [self addSubview:downView];
-    downView.backgroundColor=[UIColor whiteColor];
-    [downView addTarget:self action:@selector(serviesAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *_series_label=[[UILabel alloc] initWithFrame:CGRectMake(10, 10, ScreenWidth-20, 40)];
-    [downView addSubview:_series_label];
-    _series_label.textAlignment=0;
-    _series_label.textColor=[UIColor blackColor];
-    _series_label.text=_detailModel.item.series.name;
-    
-    UIScrollView *_scrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(10, 60, ScreenWidth-20, 80)];
-    [downView addSubview:_scrollview];
-    NSInteger _item_count=_detailModel.item.otherItems.count;
-    _scrollview.contentSize=CGSizeMake(70*_item_count+10*(_item_count-1), 80);
-    for (int i=0; i<_item_count; i++) {
-        DD_OtherItemModel *_OtherItem=[_detailModel.item.otherItems objectAtIndex:i];
-        UIButton *imageview_btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        imageview_btn.frame=CGRectMake(80*i, 0,70, 80);
-        [_scrollview addSubview:imageview_btn];
-        
-        [imageview_btn sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:_OtherItem.itemPic WithSize:200]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"headImg_login1"]];
-        imageview_btn.tag=100+i;
-        [imageview_btn addTarget:self action:@selector(ItemAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 -(void)ItemAction:(UIButton *)btn

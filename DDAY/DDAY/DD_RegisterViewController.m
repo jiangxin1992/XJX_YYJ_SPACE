@@ -39,7 +39,7 @@
 -(void)UIConfig
 {
     
-    UIButton *backBtn=[UIButton getCustomBackImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
+    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {

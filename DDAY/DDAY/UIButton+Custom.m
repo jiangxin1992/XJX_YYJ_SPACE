@@ -9,7 +9,7 @@
 #import "UIButton+Custom.h"
 
 @implementation UIButton (Custom)
-+(UIButton *)getCustomTitleBtnWithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithSpacing:(CGFloat )_spacing WithNormalTitle:(NSString *)_normalTitle WithNormalColor:(NSString *)_normalColor WithSelectedTitle:(NSString *)_selectedTitle WithSelectedColor:(NSString *)_selectedColor;
++(UIButton *)getCustomTitleBtnWithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithSpacing:(CGFloat )_spacing WithNormalTitle:(NSString *)_normalTitle WithNormalColor:(UIColor *)_normalColor WithSelectedTitle:(NSString *)_selectedTitle WithSelectedColor:(UIColor *)_selectedColor;
 {
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -19,10 +19,10 @@
     }
     if(_normalColor)
     {
-        [btn setTitleColor:[UIColor colorWithHexString:_normalColor] forState:UIControlStateNormal];
+        [btn setTitleColor:_normalColor forState:UIControlStateNormal];
     }else
     {
-        [btn setTitleColor:[UIColor colorWithHexString:_define_black_color] forState:UIControlStateNormal];
+        [btn setTitleColor:_define_black_color forState:UIControlStateNormal];
     }
     
     if(_selectedTitle)
@@ -32,10 +32,10 @@
     
     if(_selectedColor)
     {
-        [btn setTitleColor:[UIColor colorWithHexString:_selectedColor] forState:UIControlStateSelected];
+        [btn setTitleColor:_selectedColor forState:UIControlStateSelected];
     }else
     {
-        [btn setTitleColor:[UIColor colorWithHexString:_define_black_color] forState:UIControlStateSelected];
+        [btn setTitleColor:_define_black_color forState:UIControlStateSelected];
     }
     
     btn.contentHorizontalAlignment=_alignment;
@@ -72,5 +72,15 @@
     }
     return btn;
 }
-
++(UIButton *)getCustomBtn
+{
+    return [UIButton buttonWithType:UIButtonTypeCustom];
+}
++(UIButton *)getBackBtn
+{
+    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
+    backBtn.frame=CGRectMake(0, 0, 11, 19);
+    [backBtn setEnlargeEdge:20];
+    return backBtn;
+}
 @end

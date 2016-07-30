@@ -15,8 +15,8 @@
 "done"="完成";
 "cancel"="取消";
 "submit_success"="提交成功";
-"system_camera"="请在iPhone的 设置－隐私－相机 选项中，允许留美盒子访问你的相机。";
-"system_album"="请在iPhone的 设置－隐私－相机 选项中，允许留美盒子访问你的相册。";
+"system_camera"="请在iPhone的 设置－隐私－相机 选项中，允许 YCO SPACE 访问你的相机。";
+"system_album"="请在iPhone的 设置－隐私－相机 选项中，允许 YCO SPACE 访问你的相册。";
 "take_photos"="拍照";
 "open_album"="从手机相册选择";
 "right_format"="请输入正确格式";
@@ -28,6 +28,13 @@
  * 发布品
  */
 "goods_title"="发布品";
+/**
+ * 单品详情
+ */
+"goods_detail_circle"="搭配师说";
+"goods_detail_fabric"="面料与洗涤";
+"goods_detail_send_return"="寄送与退换";
+"goods_detail_k_ponit"="YCO SPACE体验店";
 
 /**
  * 设计师

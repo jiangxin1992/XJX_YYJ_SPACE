@@ -15,9 +15,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         //设置normal状态下 title的颜色
-        [self setTitleColor:[UIColor colorWithHexString:_define_light_gray_color1] forState:UIControlStateNormal];
+        [self setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
         //设置select状态下 title的颜色
-        [self setTitleColor:[UIColor colorWithHexString:_define_black_color] forState:UIControlStateSelected];
+        [self setTitleColor:_define_black_color forState:UIControlStateSelected];
         //设置字体大小
         self.titleLabel.font=[regular getFont:11.0f];
         //设置居中

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ImageViewController : UIViewController
--(instancetype)initWithHeight:(CGFloat )height WithBlock:(void(^)(NSString *type,NSInteger index))block;
+-(instancetype)initWithSize:(CGSize )size WithBlock:(void(^)(NSString *type,NSInteger index))block;
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign) NSInteger maxPage;
 @property (nonatomic,copy) NSArray *array;
@@ -17,7 +17,7 @@
 /**
  * 高度
  */
-@property (nonatomic,assign) CGFloat height;
+@property (nonatomic,assign) CGSize size;
 /**
  * 回调block
  */

@@ -12,16 +12,18 @@
 /*************** DNS ***************/
 //#define DNS @"http://10.200.6.36:8080/dday-web/service/" //本地
 #define DNS @"http://121.40.57.9:8050/dday-web/service/" //测试服务器
+//#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
 
 /*************** Color ***************/
 //[UIColor whiteColor]
-#define _define_backview_color [UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1]
-#define _define_black_color @"#000000"
-#define _define_white_color @"#FFFFFF"
-#define _define_light_gray_color @"#7C7B7B"
-#define _define_light_gray_color1 @"#A8A7A7"
-#define _define_light_red_color @"#FF2A43"
-
+//#define _define_backview_color [UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1]
+#define _define_backview_color [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define _define_black_color [UIColor colorWithHexString:@"#000000"]
+#define _define_white_color [UIColor colorWithHexString:@"#FFFFFF"]
+#define _define_light_gray_color [UIColor colorWithHexString:@"#7C7B7B"]
+#define _define_light_gray_color1 [UIColor colorWithHexString:@"#A8A7A7"]
+#define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]
+#define _define_light_gray_color2 [UIColor colorWithHexString:@"EAEAEA"]
 /*************** SIZE ***************/
 #define kStatusBarHeight         20 //状态栏高度
 #define kNavigationBarHeight     44 //导航栏高度
