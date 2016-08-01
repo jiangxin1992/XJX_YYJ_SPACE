@@ -119,7 +119,7 @@
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
     DD_ShopItemModel * itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
-    [mengban addSubview:[[DD_ChooseSizeView alloc] initWithFrame:CGRectMake((ScreenWidth-300)/2.0f, (ScreenHeight-400)/2.0f, 300, 400) WithSizeArr:sizeArr WithColorID:itemModel.colorId WithType:@"alert" WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid) {
+    [mengban addSubview:[[DD_ChooseSizeView alloc] initWithSizeArr:sizeArr WithColorID:itemModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
         [self mengban_dismiss];
         if([type isEqualToString:@"alert"])
         {

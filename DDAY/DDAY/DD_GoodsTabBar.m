@@ -26,9 +26,10 @@
     UIView *view=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(3);
-        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.top.mas_equalTo(view.superview).with.offset(0);
+        make.height.mas_equalTo(5);
+        make.left.mas_offset(26);
+        make.right.mas_offset(-26);
+        make.top.mas_offset(0);
     }];
     
     UIButton *buyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"购买" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -36,10 +37,12 @@
     buyBtn.backgroundColor=_define_black_color;
     [buyBtn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
     [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(46);
         make.left.mas_equalTo(26);
-        make.width.mas_equalTo(140);
-        make.centerY.mas_equalTo(self);
+        make.width.mas_equalTo(182);
+        make.top.mas_equalTo(view.mas_bottom).with.offset(15);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-22);
+        NSLog(@"111");
     }];
     
 }

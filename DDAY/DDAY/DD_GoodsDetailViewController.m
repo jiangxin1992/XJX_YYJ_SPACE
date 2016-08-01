@@ -29,6 +29,8 @@
 
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
+__bool(isExpanded);
+
 @end
 
 @implementation DD_GoodsDetailViewController
@@ -37,6 +39,7 @@
     
     UIScrollView *_scrollview;
     UIImageView *mengban;//蒙板
+    DD_ChooseSizeView *sizeView;
     
     DD_GoodsInformView *_InformView;//信息视图
     DD_GoodsDesignerView *_DesignerView;//设计师系列视图
@@ -49,7 +52,9 @@
     DD_DrawManageView *ManageView;//自定义pageControler
     
     UIView *container;//_scrollView的view
+
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
@@ -73,7 +78,10 @@
     [self PrepareData];
     [self PrepareUI];
 }
--(void)PrepareData{}
+-(void)PrepareData
+{
+    _isExpanded=YES;
+}
 -(void)PrepareUI
 {
     
@@ -282,7 +290,6 @@
     [self.view addSubview:tabbar];
     [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
         make.bottom.mas_equalTo(0);
     }];
     
@@ -357,7 +364,12 @@
 //蒙板消失
 -(void)mengban_dismiss
 {
-    [mengban removeFromSuperview];
+    [UIView animateWithDuration:0.5 animations:^{
+        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
+    } completion:^(BOOL finished) {
+        [mengban removeFromSuperview];
+    }];
+
 }
 //收藏
 -(void)Colloct_Action
@@ -426,7 +438,7 @@
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
     DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-    [mengban addSubview:[[DD_ChooseSizeView alloc] initWithFrame:CGRectMake((ScreenWidth-300)/2.0f, (ScreenHeight-400)/2.0f, 300, 400) WithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithType:type WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid) {
+    sizeView=[[DD_ChooseSizeView alloc] initWithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
         if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
         {
             if([sizeid isEqualToString:@""])
@@ -434,23 +446,35 @@
                 [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
             }else
             {
-                [self mengban_dismiss];
-                if([type isEqualToString:@"shop"])
+                if(count)
                 {
-                    //                加入购物车
-                    [self ShopAction:sizeid];
-                }else if([type isEqualToString:@"buy"])
-                {
-                    //                购买
-                    [self BuyAction:sizeid];
+                    [self mengban_dismiss];
+                    if([type isEqualToString:@"shop"])
+                    {
+                        //                加入购物车
+                        [self ShopAction:sizeid WithNum:count];
+                    }else if([type isEqualToString:@"buy"])
+                    {
+                        //                购买
+                        [self BuyAction:sizeid WithNum:count];
+                    }
                 }
             }
+        }else if([type isEqualToString:@"stock_warning"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
         }
         
-    }]];
+    }];
+    [mengban addSubview:sizeView];
+    
+    sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
+    [UIView animateWithDuration:0.5 animations:^{
+        sizeView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?230:187), ScreenWidth, IsPhone6_gt?230:187);
+    }];
 }
 //购买动作
--(void)BuyAction:(NSString *)sizeid
+-(void)BuyAction:(NSString *)sizeid WithNum:(NSInteger )count
 {
 //    NSArray *_itemArr=@[@{@"itemId":@"3",@"colorId":@"39",@"sizeId":@"24",@"number":@"6",@"price":@"2000"}
 //                        ,@{@"itemId":@"6",@"colorId":@"34",@"sizeId":@"20",@"number":@"1",@"price":@"5000"}
@@ -458,7 +482,7 @@
 //                        ,@{@"itemId":@"11",@"colorId":@"41",@"sizeId":@"20",@"number":@"4",@"price":@"1000"}
 //                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
 //                        ];
-    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":@"1",@"price":[_DetailModel getPrice]}];
+    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice]}];
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
     [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -477,7 +501,7 @@
     }];
 }
 //加入购物车动作
--(void)ShopAction:(NSString *)sizeid
+-(void)ShopAction:(NSString *)sizeid WithNum:(NSInteger )count
 {
     NSArray *_itemArr=@[@{
                             @"itemId":_DetailModel.item.itemId
@@ -493,7 +517,7 @@
                             ,@"designerId":_DetailModel.designer.designerId
                             ,@"brandName":_DetailModel.designer.brandName
                             
-                            ,@"number":@"1"
+                            ,@"number":[[NSString alloc] initWithFormat:@"%ld",count]
                             ,@"price":[_DetailModel getPrice]
                             ,@"originalPrice":_DetailModel.item.originalPrice
                             ,@"pics":[_DetailModel.item getPicsArr]

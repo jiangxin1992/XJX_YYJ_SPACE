@@ -64,7 +64,7 @@
     }];
     
     
-    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:30];
+    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:25];
     [upView addSubview:_headImge];
     _headImge.userInteractionEnabled=NO;
     [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,7 +74,7 @@
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
     }];
     
-    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:30];
+    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:25];
     [upView addSubview:_brandImge];
     _brandImge.userInteractionEnabled=NO;
     [_brandImge mas_makeConstraints:^(MASConstraintMaker *make) {

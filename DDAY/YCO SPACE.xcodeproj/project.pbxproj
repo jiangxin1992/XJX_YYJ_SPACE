@@ -192,6 +192,12 @@
 		3F6813B71D1A813300F4807A /* DD_CircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6813B51D1A813300F4807A /* DD_CircleCommentCell.m */; };
 		3F6813B81D1A813300F4807A /* DD_CircleCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6813B61D1A813300F4807A /* DD_CircleCommentCell.xib */; };
 		3F6813BC1D1A81B100F4807A /* DD_CircleCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */; };
+		3F7160AA1D4EDD5000E165D2 /* DD_GoodsListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160A91D4EDD5000E165D2 /* DD_GoodsListView.m */; };
+		3F7160AD1D4EE23400E165D2 /* DD_GoodsListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160AC1D4EE23400E165D2 /* DD_GoodsListTableView.m */; };
+		3F7160B01D4EE3C700E165D2 /* DD_GoodsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160AF1D4EE3C700E165D2 /* DD_GoodsListTableViewCell.m */; };
+		3F7160B71D4F210A00E165D2 /* DD_GoodsCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160B61D4F210A00E165D2 /* DD_GoodsCategoryModel.m */; };
+		3F7160BA1D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160B91D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m */; };
+		3F7160BD1D4F2BBA00E165D2 /* DD_GoodsListBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7160BC1D4F2BBA00E165D2 /* DD_GoodsListBtn.m */; };
 		3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */; };
 		3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */; };
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
@@ -698,6 +704,18 @@
 		3F6813B61D1A813300F4807A /* DD_CircleCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_CircleCommentCell.xib; sourceTree = "<group>"; };
 		3F6813BA1D1A81B100F4807A /* DD_CircleCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleCommentModel.h; sourceTree = "<group>"; };
 		3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleCommentModel.m; sourceTree = "<group>"; };
+		3F7160A81D4EDD5000E165D2 /* DD_GoodsListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsListView.h; sourceTree = "<group>"; };
+		3F7160A91D4EDD5000E165D2 /* DD_GoodsListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsListView.m; sourceTree = "<group>"; };
+		3F7160AB1D4EE23400E165D2 /* DD_GoodsListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsListTableView.h; sourceTree = "<group>"; };
+		3F7160AC1D4EE23400E165D2 /* DD_GoodsListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsListTableView.m; sourceTree = "<group>"; };
+		3F7160AE1D4EE3C700E165D2 /* DD_GoodsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsListTableViewCell.h; sourceTree = "<group>"; };
+		3F7160AF1D4EE3C700E165D2 /* DD_GoodsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsListTableViewCell.m; sourceTree = "<group>"; };
+		3F7160B51D4F210A00E165D2 /* DD_GoodsCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCategoryModel.h; sourceTree = "<group>"; };
+		3F7160B61D4F210A00E165D2 /* DD_GoodsCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsCategoryModel.m; sourceTree = "<group>"; };
+		3F7160B81D4F21AE00E165D2 /* DD_GoodsCategorySubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCategorySubModel.h; sourceTree = "<group>"; };
+		3F7160B91D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsCategorySubModel.m; sourceTree = "<group>"; };
+		3F7160BB1D4F2BBA00E165D2 /* DD_GoodsListBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsListBtn.h; sourceTree = "<group>"; };
+		3F7160BC1D4F2BBA00E165D2 /* DD_GoodsListBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsListBtn.m; sourceTree = "<group>"; };
 		3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsDesignerView.h; sourceTree = "<group>"; };
 		3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsDesignerView.m; sourceTree = "<group>"; };
 		3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseSizeView.h; sourceTree = "<group>"; };
@@ -1213,6 +1231,8 @@
 				3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */,
 				3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */,
 				3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */,
+				3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */,
+				3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */,
 				3F3462341D4B4A7700B96D86 /* DD_ColorBtn.h */,
 				3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */,
 			);
@@ -1757,6 +1777,7 @@
 		3F552E8B1CF201D500BC5E33 /* 发布品列表 */ = {
 			isa = PBXGroup;
 			children = (
+				3F7160A41D4EDCEE00E165D2 /* 下拉选择 */,
 				3F552E771CF1EA3C00BC5E33 /* DD_ItemCell.h */,
 				3F552E781CF1EA3C00BC5E33 /* DD_ItemCell.m */,
 				3F552E791CF1EA3C00BC5E33 /* DD_ItemCell.xib */,
@@ -1770,8 +1791,6 @@
 		3F552E8C1CF201EC00BC5E33 /* 单品详情页 */ = {
 			isa = PBXGroup;
 			children = (
-				3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */,
-				3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */,
 				3F3811B61CF56A3B007154F1 /* CustomView */,
 				3F552EAA1CF21B1C00BC5E33 /* pagecontroller */,
 				3F552E8D1CF2020500BC5E33 /* DD_GoodsDetailViewController.h */,
@@ -1910,6 +1929,7 @@
 		3F6002031D49994D007E395F /* 单品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				3F7160B11D4F20C400E165D2 /* 类别 */,
 				3F552E991CF20EC600BC5E33 /* DD_GoodsDesignerModel.h */,
 				3F552E9A1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m */,
 				3F552E961CF20BFB00BC5E33 /* DD_GoodsItemModel.h */,
@@ -2017,6 +2037,32 @@
 				3F6813B61D1A813300F4807A /* DD_CircleCommentCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		3F7160A41D4EDCEE00E165D2 /* 下拉选择 */ = {
+			isa = PBXGroup;
+			children = (
+				3F7160BB1D4F2BBA00E165D2 /* DD_GoodsListBtn.h */,
+				3F7160BC1D4F2BBA00E165D2 /* DD_GoodsListBtn.m */,
+				3F7160AE1D4EE3C700E165D2 /* DD_GoodsListTableViewCell.h */,
+				3F7160AF1D4EE3C700E165D2 /* DD_GoodsListTableViewCell.m */,
+				3F7160AB1D4EE23400E165D2 /* DD_GoodsListTableView.h */,
+				3F7160AC1D4EE23400E165D2 /* DD_GoodsListTableView.m */,
+				3F7160A81D4EDD5000E165D2 /* DD_GoodsListView.h */,
+				3F7160A91D4EDD5000E165D2 /* DD_GoodsListView.m */,
+			);
+			name = "下拉选择";
+			sourceTree = "<group>";
+		};
+		3F7160B11D4F20C400E165D2 /* 类别 */ = {
+			isa = PBXGroup;
+			children = (
+				3F7160B51D4F210A00E165D2 /* DD_GoodsCategoryModel.h */,
+				3F7160B61D4F210A00E165D2 /* DD_GoodsCategoryModel.m */,
+				3F7160B81D4F21AE00E165D2 /* DD_GoodsCategorySubModel.h */,
+				3F7160B91D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m */,
+			);
+			name = "类别";
 			sourceTree = "<group>";
 		};
 		3F7729251D1151BD008A184F /* 款式选择 */ = {
@@ -3022,8 +3068,10 @@
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,
 				3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */,
+				3F7160B71D4F210A00E165D2 /* DD_GoodsCategoryModel.m in Sources */,
 				3F23A96D1CEF1A6F00579A3B /* DD_baseModel.m in Sources */,
 				3F3811AE1CF54F7C007154F1 /* base64.m in Sources */,
+				3F7160AD1D4EE23400E165D2 /* DD_GoodsListTableView.m in Sources */,
 				3F3A0BED1D37CA14006CD46F /* UITextField+Custom.m in Sources */,
 				3FA836741D051B3F006D2919 /* DD_OrderTool.m in Sources */,
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
@@ -3074,6 +3122,7 @@
 				3F1401531CFC0AD70093474A /* DD_ShopHeaderView.m in Sources */,
 				3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */,
 				3F4187FB1CEEFF35001BCA3D /* DD_ClearingModel.m in Sources */,
+				3F7160BA1D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m in Sources */,
 				3F9B8AFB1CEF56BC008EC460 /* DD_CustomViewController.m in Sources */,
 				3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */,
 				3F5306E91D129D82000C9EC0 /* DD_CircleCustomTagViewController.m in Sources */,
@@ -3097,6 +3146,7 @@
 				3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */,
 				3F4187F21CEEFF1A001BCA3D /* DD_CityVCT.m in Sources */,
 				3F8E76611D1B7EC300722FDA /* DD_CircleComentInputView.m in Sources */,
+				3F7160AA1D4EDD5000E165D2 /* DD_GoodsListView.m in Sources */,
 				3F4553051D21081E00524738 /* DD_TarentoHeadView.m in Sources */,
 				3FC2D1791D069DDF005A1FF0 /* DD_OrderLogisticsViewController.m in Sources */,
 				3F0A6DF81D11056100CDCBC5 /* DD_CircleInfoSuggestView.m in Sources */,
@@ -3111,6 +3161,7 @@
 				3F3811AD1CF54F7C007154F1 /* Order.m in Sources */,
 				3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */,
 				3F552E891CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m in Sources */,
+				3F7160BD1D4F2BBA00E165D2 /* DD_GoodsListBtn.m in Sources */,
 				3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */,
 				3F2F76531D1CE365002E22A6 /* DD_CirlcleApplyDesignerChooseView.m in Sources */,
 				3FC2D17F1D06A272005A1FF0 /* DD_OrderDetailViewController.m in Sources */,
@@ -3162,6 +3213,7 @@
 				3F4187751CEEFB24001BCA3D /* main.m in Sources */,
 				3F3811B11CF54F7C007154F1 /* MD5DataSigner.m in Sources */,
 				3F3811B51CF54F7C007154F1 /* RSADataVerifier.m in Sources */,
+				3F7160B01D4EE3C700E165D2 /* DD_GoodsListTableViewCell.m in Sources */,
 				3F4187F51CEEFF1A001BCA3D /* DD_CityModel.m in Sources */,
 				3F0A6DFE1D1127B000CDCBC5 /* UIView+Frame.m in Sources */,
 				3F14013E1CF824D40093474A /* DD_ShopSeriesModel.m in Sources */,

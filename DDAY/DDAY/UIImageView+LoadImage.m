@@ -40,6 +40,7 @@
         else {
             [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error) {
+                    NSLog(@"radius=%lf",radius);
                     UIImage *radiusImage = [UIImage createRoundedRectImage:image size:self.frame.size radius:radius];
                     self.image = radiusImage;
                     [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
