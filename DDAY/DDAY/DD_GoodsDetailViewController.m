@@ -23,6 +23,7 @@
 #import "DD_GoodsSendAndReturnsView.h"
 #import "DD_GoodsK_POINTView.h"
 #import "DD_GoodsTabBar.h"
+#import "DD_ShopBtn.h"
 
 #import "DD_ChooseSizeView.h"
 #import "DD_DrawManageView.h"
@@ -85,8 +86,7 @@ __bool(isExpanded);
 -(void)PrepareUI
 {
     
-    UIButton *buyBtn=[regular getBarCustomBtnWithImg:@"System_Buy" WithSelectImg:@"System_Buy" WithSize:CGSizeMake(24, 25)];
-    
+    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
     [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
@@ -511,8 +511,10 @@ __bool(isExpanded);
                             ,@"itemName":_DetailModel.item.itemName
                             ,@"colorId":_DetailModel.item.colorId
                             ,@"colorName":[_DetailModel getColorNameWithID:_DetailModel.item.colorId]
+                            ,@"colorCode":[_DetailModel getColorNameWithCode:_DetailModel.item.colorId]
                             ,@"sizeId":sizeid
                             ,@"sizeName":[_DetailModel.item getSizeNameWithID:sizeid]
+                            ,@"categoryName":_DetailModel.item.categoryName
                             
                             ,@"discountEnable":[NSNumber numberWithBool:_DetailModel.item.discountEnable]
                             ,@"seriesId":_DetailModel.item.series.s_id

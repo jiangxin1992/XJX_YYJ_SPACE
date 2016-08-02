@@ -28,6 +28,10 @@
  * 获取颜色对应的ID
  */
 -(NSString *)getColorNameWithID:(NSString *)colorID;
+/**
+ * 获取颜色对应的Code
+ */
+-(NSString *)getColorNameWithCode:(NSString *)colorID;
 
 __bool(shoucang);
 __bool(guanzhu);

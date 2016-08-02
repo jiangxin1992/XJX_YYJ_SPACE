@@ -37,4 +37,8 @@
     mengban.image=[UIImage imageNamed:@"System_Mask"];
     return mengban;
 }
++(UIImageView *)getCustomImg
+{
+    return [[UIImageView alloc] init];
+}
 @end

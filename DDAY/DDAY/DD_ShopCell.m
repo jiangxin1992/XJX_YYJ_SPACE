@@ -10,9 +10,17 @@
 
 @implementation DD_ShopCell
 {
-    UIButton *selectBtn;
-    UIImageView *itemImg;
-    UIView *backView;
+    UIButton *selectBtn;//选中
+    UIImageView *itemImg;//图片
+    
+    UILabel *itemNameLabel;//商品描述
+    UILabel *typeLabel;//商品类型
+    UILabel *priceLabel;//商品价格
+    
+    UIView *colorView;//商品颜色
+    
+    UIButton *sizeNameBtn;//商品尺寸按钮
+    UIButton *numBtn;//商品数量按钮
 }
 
 - (void)awakeFromNib {
@@ -38,58 +46,117 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI{}
+-(void)PrepareUI
+{
+    self.contentView.backgroundColor=_define_white_color;
+}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
     
-    backView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 138)];
-    [self.contentView addSubview:backView];
-    backView.backgroundColor=[UIColor whiteColor];
-//    勾选框
-    selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backView addSubview:selectBtn];
-    selectBtn.frame=CGRectMake(0, 0, 70, 138);
+    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_check"];
+    [self.contentView addSubview:selectBtn];
     [selectBtn addTarget:self action:@selector(chooseAction) forControlEvents:UIControlEventTouchUpInside];
-    selectBtn.titleLabel.font=[regular getFont:14.0f];
-    [selectBtn setTitle:@"未选中" forState:UIControlStateNormal];
-    [selectBtn setTitle:@"选中" forState:UIControlStateSelected];
-    [selectBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(15);
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(26);
+    }];
+    [selectBtn setEnlargeEdge:20];
+    
+    UIView *imageBack=[UIView getCustomViewWithColor:_define_white_color];
+    [self.contentView addSubview:imageBack];
+    [imageBack mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(selectBtn.mas_right).with.offset(16);
+        make.height.width.mas_equalTo(123);
+    }];
+    [regular setBorder:imageBack];
     
 //    款式照片
-    itemImg=[[UIImageView alloc] initWithFrame:CGRectMake(80, 9, 120, 120)];
-    [backView addSubview:itemImg];
-    if(_isInvalid)
-    {
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 25)];
-        [itemImg addSubview:label];
-        label.backgroundColor=[UIColor grayColor];
-        label.textColor=[UIColor whiteColor];
-        label.textAlignment=1;
-        label.font=[regular getFont:11.0f];
-        label.alpha=0.7;
-        label.text=@"失效";
-    }
+    itemImg=[UIImageView getCustomImg];
+    [imageBack addSubview:itemImg];
+    [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+    }];
     
 //    款式信息
-    CGFloat _height=30;
-    for (int i=0; i<5; i++) {
-        CGFloat _x_p=i==4?310:210;
-        CGFloat _width=i==4?55:i==3?100:155;
-        CGFloat _y_p=i==4?(9+90):9+30*i;
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(_x_p, _y_p, _width, _height)];
-        label.tag=100+i;
-        [backView addSubview:label];
-        label.textAlignment=i==4?2:0;
-        if(_isInvalid)
-        {
-            label.textColor=[UIColor lightGrayColor];
-        }else
-        {
-            label.textColor=[UIColor blackColor];
-        }
+    itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:itemNameLabel];
+    [itemNameLabel sizeToFit];
+    [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
+        make.top.mas_equalTo(17);
+        make.right.mas_equalTo(-26);
+    }];
+    
+    typeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:typeLabel];
+    [typeLabel sizeToFit];
+    [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(itemNameLabel);
+        make.right.mas_equalTo(itemNameLabel);
+    }];
+    
+    priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    [self.contentView addSubview:priceLabel];
+    [priceLabel sizeToFit];
+    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(typeLabel.mas_bottom).with.offset(15);
+        make.left.mas_equalTo(itemNameLabel);
+        make.right.mas_equalTo(itemNameLabel);
+    }];
+
+    
+    colorView=[UIView getCustomViewWithColor:nil];
+    [self.contentView addSubview:colorView];
+    [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(priceLabel.mas_bottom).with.offset(11);
+        make.left.mas_equalTo(itemNameLabel);
+        make.width.mas_equalTo(32);
+        make.height.mas_equalTo(9);
+    }];
+    
+    sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:sizeNameBtn];
+    [sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.left.mas_equalTo(itemNameLabel);
+    }];
+    [sizeNameBtn setEnlargeEdge:20];
+    
+    numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:numBtn];
+    [numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.right.mas_equalTo(-26);
+    }];
+    [numBtn setEnlargeEdge:20];
+    
+    //    失效
+    if(_isInvalid)
+    {
         
+        UIImageView *invalidImg=[UIImageView getImgWithImageStr:@"System_Mask"];
+        [self.contentView addSubview:invalidImg];
+        [invalidImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.bottom.mas_equalTo(0);
+        }];
+        
+        UILabel *invalidLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"失效" WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
+        [invalidImg addSubview:invalidLabel];
+        invalidLabel.backgroundColor=_define_black_color;
+        [invalidLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+            make.left.mas_equalTo(57);
+            make.top.mas_equalTo(10);
+        }];
     }
 }
 #pragma mark - Setter
@@ -103,16 +170,13 @@
     {
         [itemImg JX_loadImageUrlStr:[ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
     }
-    UILabel *brandNameLabel=[backView viewWithTag:100];
-    brandNameLabel.text=ItemModel.brandName;
-    
-    UILabel *itemNameLabel=[backView viewWithTag:101];
+    colorView.backgroundColor=[UIColor colorWithHexString:_ItemModel.colorCode];
     itemNameLabel.text=ItemModel.itemName;
+    typeLabel.text=ItemModel.categoryName;
     
-    UILabel *sizeNameLabel=[backView viewWithTag:102];
-    sizeNameLabel.text=ItemModel.sizeName;
+    [sizeNameBtn setTitle:ItemModel.sizeName forState:UIControlStateNormal];
+    [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ItemModel.number] forState:UIControlStateNormal];
     
-    UILabel *priceLabel=[backView viewWithTag:103];
     if(ItemModel.saleEndTime>[regular date])
     {
         priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
@@ -128,8 +192,6 @@
         }
         
     }
-    UILabel *numLabel=[backView viewWithTag:104];
-    numLabel.text=[[NSString alloc] initWithFormat:@"×%@",ItemModel.number];
     
 }
 #pragma mark - SomeAction

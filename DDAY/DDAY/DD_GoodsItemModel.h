@@ -21,6 +21,7 @@
 
 __string(colorId);
 __array(colors);
+__string(categoryName);//类别
 __string(discount);
 __bool(discountEnable);
 /**

@@ -48,6 +48,24 @@
         return self.item.price;
     }
 }
+-(NSString *)getColorNameWithCode:(NSString *)colorID
+{
+    for (DD_ColorsModel *color in self.item.colors) {
+        if([color.colorId isEqualToString:colorID])
+        {
+            if(color.colorCode)
+            {
+                return color.colorCode;
+                
+            }else
+            {
+                return @"";
+            }
+            break;
+        }
+    }
+    return @"";
+}
 -(NSString *)getColorNameWithID:(NSString *)colorID
 {
     for (DD_ColorsModel *color in self.item.colors) {

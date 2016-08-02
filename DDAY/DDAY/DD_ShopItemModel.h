@@ -50,9 +50,17 @@ __string(brandName);
  */
 __string(colorId);
 /**
+ * 颜色code
+ */
+__string(colorCode);
+/**
  * 颜色name
  */
 __string(colorName);
+/**
+ * 类别
+ */
+__string(categoryName);
 /**
  * 设计师ID
  */

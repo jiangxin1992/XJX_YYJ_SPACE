@@ -16,6 +16,7 @@
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 #import "DD_GoodsListView.h"
+#import "DD_ShopBtn.h"
 
 #import "DD_GoodsListTableViewCell.h"
 #import "DD_GoodsListTableView.h"
@@ -62,7 +63,7 @@
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
 
-    UIButton *buyBtn=[regular getBarCustomBtnWithImg:@"System_Buy" WithSelectImg:@"System_Buy" WithSize:CGSizeMake(24, 25)];
+    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
     
     [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     

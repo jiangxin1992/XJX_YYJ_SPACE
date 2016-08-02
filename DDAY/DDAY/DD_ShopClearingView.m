@@ -15,9 +15,9 @@
     UIButton *ConfirmBtn;
 }
 #pragma mark - 初始化
--(instancetype)initWithFrame:(CGRect)frame WithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *))block
+-(instancetype)initWithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *))block
 {
-    self=[super initWithFrame:frame];
+    self=[super init];
     if(self)
     {
         _shopModel=shopModel;
@@ -41,29 +41,51 @@
 {
     self.backgroundColor=[UIColor whiteColor];
     
-    selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:upLine];
+    [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.top.left.right.mas_equalTo(0);
+    }];
+    
+    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_check"];
     [self addSubview:selectBtn];
-    selectBtn.frame=CGRectMake(0, 0, 70, ktabbarHeight);
     [selectBtn addTarget:self action:@selector(chooseAction) forControlEvents:UIControlEventTouchUpInside];
-    selectBtn.titleLabel.font=[regular getFont:13.0f];
-    [selectBtn setTitle:@"全选" forState:UIControlStateNormal];
-    [selectBtn setTitle:@"取消全选" forState:UIControlStateSelected];
-    [selectBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(15);
+        make.centerY.mas_equalTo(self);
+        make.left.mas_equalTo(26);
+    }];
+    [selectBtn setEnlargeEdge:20];
+
+    UILabel *selectLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"全选" WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:selectLabel];
+    [selectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self);
+        make.left.mas_equalTo(selectBtn.mas_right).with.offset(16);
+        make.width.mas_equalTo(50);
+        make.centerY.mas_equalTo(selectBtn);
+    }];
     
-    price_label=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-300, 0, 190, ktabbarHeight)];
-    [self addSubview:price_label];
-    price_label.textAlignment=2;
-    price_label.textColor=[UIColor blackColor];
-    
-    
-    ConfirmBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    ConfirmBtn.frame=CGRectMake(ScreenWidth-100, 0, 100, ktabbarHeight);
+    ConfirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"结算" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:ConfirmBtn];
     [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     ConfirmBtn.backgroundColor=[UIColor blackColor];
-    [ConfirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [ConfirmBtn setTitle:@"结算" forState:UIControlStateNormal];
+    [ConfirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self);
+        make.right.mas_equalTo(0);
+        make.width.mas_equalTo(110);
+        make.centerY.mas_equalTo(self);
+    }];
+    
+    price_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
+    [self addSubview:price_label];
+    [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self);
+        make.left.mas_equalTo(selectLabel.mas_right).with.offset(0);
+        make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
+        make.height.mas_equalTo(self);
+    }];
     
 }
 #pragma mark - SomeAction

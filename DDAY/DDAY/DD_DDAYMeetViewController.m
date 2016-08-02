@@ -11,6 +11,7 @@
 #import "DD_ShopViewController.h"
 #import "DD_DDAYMeetViewController.h"
 #import "DD_GoodsDetailViewController.h"
+#import "DD_ShopBtn.h"
 
 @interface DD_DDAYMeetViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -62,7 +63,7 @@
         self.navigationItem.titleView=[regular returnNavView:@"查看发布品" withmaxwidth:200];
     }
 
-    UIButton *buyBtn=[regular getBarCustomBtnWithImg:@"System_Buy" WithSelectImg:@"System_Buy" WithSize:CGSizeMake(24, 25)];
+    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
     
     [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     

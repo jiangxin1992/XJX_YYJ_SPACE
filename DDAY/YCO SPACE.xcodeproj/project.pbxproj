@@ -274,6 +274,7 @@
 		3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */; };
 		3FA551171D4CBC0400528B5F /* DD_GoodsK_POINTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */; };
 		3FA5511A1D4CC65000528B5F /* DD_GoodsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */; };
+		3FA6E0141D50724D0038569C /* DD_ShopBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6E0131D50724D0038569C /* DD_ShopBtn.m */; };
 		3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA836601D050B86006D2919 /* DD_OrderViewController.m */; };
 		3FA836631D050B86006D2919 /* DD_OrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA836611D050B86006D2919 /* DD_OrderViewController.xib */; };
 		3FA8366E1D0512D7006D2919 /* DD_OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8366D1D0512D7006D2919 /* DD_OrderItemModel.m */; };
@@ -845,6 +846,8 @@
 		3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsK_POINTView.m; sourceTree = "<group>"; };
 		3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsTabBar.h; sourceTree = "<group>"; };
 		3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsTabBar.m; sourceTree = "<group>"; };
+		3FA6E0121D50724D0038569C /* DD_ShopBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopBtn.h; sourceTree = "<group>"; };
+		3FA6E0131D50724D0038569C /* DD_ShopBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopBtn.m; sourceTree = "<group>"; };
 		3FA8365F1D050B86006D2919 /* DD_OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderViewController.h; sourceTree = "<group>"; };
 		3FA836601D050B86006D2919 /* DD_OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderViewController.m; sourceTree = "<group>"; };
 		3FA836611D050B86006D2919 /* DD_OrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_OrderViewController.xib; sourceTree = "<group>"; };
@@ -1372,6 +1375,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3FA6E0151D5078760038569C /* DD_ShopBtn */,
 				3F60024A1D49EEB9007E395F /* drawView */,
 				3F7E58B41D40667D000FDE5F /* Waterflow */,
 			);
@@ -2523,6 +2527,15 @@
 			name = "修改登录密码";
 			sourceTree = "<group>";
 		};
+		3FA6E0151D5078760038569C /* DD_ShopBtn */ = {
+			isa = PBXGroup;
+			children = (
+				3FA6E0121D50724D0038569C /* DD_ShopBtn.h */,
+				3FA6E0131D50724D0038569C /* DD_ShopBtn.m */,
+			);
+			name = DD_ShopBtn;
+			sourceTree = "<group>";
+		};
 		3FA8365E1D050B73006D2919 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3037,6 +3050,7 @@
 				3F14014E1CF836C80093474A /* DD_ShopEditingCell.m in Sources */,
 				3F4938A71D0EB70F000D213B /* DD_UserDDAYViewController.m in Sources */,
 				3F552E9B1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m in Sources */,
+				3FA6E0141D50724D0038569C /* DD_ShopBtn.m in Sources */,
 				3F9B8B021CEF6562008EC460 /* DD_UserModel.m in Sources */,
 				3F552E981CF20BFB00BC5E33 /* DD_GoodsItemModel.m in Sources */,
 				3F66CF281D115D55006A3D3F /* DD_CircleFitPersonView.m in Sources */,

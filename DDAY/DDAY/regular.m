@@ -181,8 +181,8 @@ static regular *_t = nil;
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, maxwidth, 40)];
     
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
-    
-    titleLabel.font =  (kIOSVersions>=9.0? [UIFont systemFontOfSize:_Default_font]:[UIFont fontWithName:@"Helvetica Neue" size:_Default_font]);
+
+    titleLabel.font =  [regular getSemiboldFont:_Default_font];
     titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
     [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(_Default_Spacing)]];

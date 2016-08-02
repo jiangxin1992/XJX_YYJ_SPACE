@@ -136,13 +136,12 @@
     UIView *lastview=nil;
     for (int i=0; i<_colorsArr.count;i++) {
         DD_ColorsModel *_colorModel=[_colorsArr objectAtIndex:i];
-        DD_ColorBtn *imageBtn=[DD_ColorBtn buttonWithType:UIButtonTypeCustom];
-        [upview addSubview:imageBtn];
-        [imageBtn sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:_colorModel.colorPic WithSize:800]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"headImg_login1"]];
-        imageBtn.tag=200+i;
-        [imageBtn addTarget:self action:@selector(imageBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_imageArr addObject:imageBtn];
-        [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        UIButton *backBtn=[UIButton getCustomBtn];
+        [upview addSubview:backBtn];
+        backBtn.tag=200+i;
+        [backBtn addTarget:self action:@selector(imageBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(20);
             make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(hor_edge);
@@ -156,7 +155,15 @@
                 make.bottom.mas_equalTo(upview).with.offset(-ver_edge);
             }
         }];
-        lastview=imageBtn;
+        
+        UIView *colorView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_colorModel.colorCode]];
+        colorView.userInteractionEnabled=NO;
+        [backBtn addSubview:colorView];
+        [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(backBtn).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
+        }];
+        [_imageArr addObject:backBtn];
+        lastview=backBtn;
     }
     
 }
@@ -291,8 +298,7 @@
         if(index==i)
         {
             imageBtn.selected=YES;
-            imageBtn.layer.borderColor=[[UIColor blackColor] CGColor];
-            imageBtn.layer.borderWidth=1;
+            [regular setBorder:imageBtn];
             DD_ColorsModel *_colorModel=[_color objectAtIndex:i];
             _detailModel.item.colorId=_colorModel.colorId;
             

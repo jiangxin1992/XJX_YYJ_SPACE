@@ -17,5 +17,12 @@
  * 获取imageview 网络加载的
  */
 +(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius;
+/**
+ * 创建蒙板
+ */
 +(UIImageView *)getMaskImageView;
+/**
+ * 创建自定义 image
+ */
++(UIImageView *)getCustomImg;
 @end
