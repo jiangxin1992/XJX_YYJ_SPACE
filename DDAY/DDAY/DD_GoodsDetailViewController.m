@@ -506,15 +506,19 @@ __bool(isExpanded);
 //加入购物车动作
 -(void)ShopAction:(NSString *)sizeid WithNum:(NSInteger )count
 {
+    //    __string(sizeBriefPic);
+    //    __long(sizeBriefPicHeight);
+    //    __long(sizeBriefPicWidth);
+    DD_ColorsModel * colorModel=[_DetailModel getColorModelNameWithID:_DetailModel.item.colorId];
     NSArray *_itemArr=@[@{
                             @"itemId":_DetailModel.item.itemId
                             ,@"itemName":_DetailModel.item.itemName
                             ,@"colorId":_DetailModel.item.colorId
-                            ,@"colorName":[_DetailModel getColorNameWithID:_DetailModel.item.colorId]
-                            ,@"colorCode":[_DetailModel getColorNameWithCode:_DetailModel.item.colorId]
                             ,@"sizeId":sizeid
                             ,@"sizeName":[_DetailModel.item getSizeNameWithID:sizeid]
                             ,@"categoryName":_DetailModel.item.categoryName
+                            ,@"colorName":colorModel.colorName
+                            ,@"colorCode":colorModel.colorCode
                             
                             ,@"discountEnable":[NSNumber numberWithBool:_DetailModel.item.discountEnable]
                             ,@"seriesId":_DetailModel.item.series.s_id

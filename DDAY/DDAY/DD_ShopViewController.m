@@ -17,7 +17,8 @@
 #import "DD_ShopCell.h"
 #import "DD_ShopEditingCell.h"
 #import "DD_SizeModel.h"
-#import "DD_ChooseSizeView.h"
+#import "DD_ShopAlertNumView.h"
+#import "DD_ShopAlertSizeView.h"
 @interface DD_ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -30,6 +31,10 @@
     
     DD_ShopModel *_shopModel;//购物车model
 //    BOOL _isEditing;//cell样式切换，是否是编辑状态
+    
+    DD_ShopAlertNumView *_alertNumView;
+    DD_ShopAlertSizeView *_alertSizeView;
+
     
 }
 
@@ -113,31 +118,32 @@
     }];
 }
 /**
- * 创建选择尺寸视图
+ * 创建Size选择视图
  */
 -(void)CreateSizeChooseViewWithSizeArr:(NSArray *)sizeArr WithIndexPath:(NSIndexPath *)indexPath
 {
+    DD_SizeModel *sizeModel=[sizeArr objectAtIndex:0];
+    sizeModel.sizeBrief=@"http://dday.yunejian.com/dday/20160802/877fc284f702445f907eb4f684ec9c04";
+    sizeModel.sizeBriefPicWidth=790;
+    sizeModel.sizeBriefPicHeight=260;
     mengban=[UIImageView getMaskImageView];
     [self.view.window addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
-    
-    DD_ShopItemModel * itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
-    [mengban addSubview:[[DD_ChooseSizeView alloc] initWithSizeArr:sizeArr WithColorID:itemModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
-        [self mengban_dismiss];
+    DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+    _alertSizeView=[[DD_ShopAlertSizeView alloc] initWithSizeArr:sizeArr WithItem:itemModel WithBlock:^(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count) {
         if([type isEqualToString:@"alert"])
         {
-            if([sizeid isEqualToString:@""])
+            if([sizeId isEqualToString:@""])
             {
                 [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
-            }
-            else
+            }else
             {
-                DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
-//                判断是否有相同item
-//                有则删除、没有则修改
-                if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeid WithColorID:colorid])
+                [self mengban_dismiss];
+                //                判断是否有相同item
+                //                有则删除、没有则修改
+                if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeId WithColorID:itemModel.colorId])
                 {
-                    NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
+                    NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName}];
                     [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                         if(success)
                         {
@@ -159,14 +165,14 @@
                                              ,@"itemName":itemModel.itemName
                                              ,@"colorId":itemModel.colorId
                                              ,@"colorName":itemModel.colorName
-                                             ,@"sizeId":sizeid
-                                             ,@"sizeName":[self GetSizeNameWithID:sizeid WithSizeArr:sizeArr]
+                                             ,@"sizeId":sizeId
+                                             ,@"sizeName":sizeName
                                              ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
                                              ,@"seriesId":itemModel.seriesId
                                              ,@"seriesName":itemModel.seriesName
                                              ,@"designerId":itemModel.designerId
                                              ,@"brandName":itemModel.brandName
-                                             ,@"number":itemModel.number
+                                             ,@"number":[NSNumber numberWithLong:count]
                                              ,@"price":itemModel.price
                                              ,@"originalPrice":itemModel.originalPrice
                                              ,@"pics":itemModel.pics
@@ -184,8 +190,9 @@
                     [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                         if(success)
                         {
-                            itemModel.sizeId=sizeid;
-                            itemModel.sizeName=[self GetSizeNameWithID:sizeid WithSizeArr:sizeArr];
+                            itemModel.sizeId=sizeId;
+                            itemModel.sizeName=sizeName;
+                            itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
                             [_tableview reloadData];
                         }else
                         {
@@ -194,11 +201,127 @@
                     } failure:^(NSError *error, UIAlertController *failureAlert) {
                         [self presentViewController:failureAlert animated:YES completion:nil];
                     }];
-
+                    
                 }
             }
+        }else if([type isEqualToString:@"stock_warning"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
+        }else if([type isEqualToString:@"no_alert"])
+        {
+            [self mengban_dismiss];
         }
-    }]];
+        
+    }];
+    [mengban addSubview:_alertSizeView];
+//    230:187
+    CGFloat _allHeight=0;
+    if(!sizeModel.sizeBrief||[sizeModel.sizeBrief isEqualToString:@""])
+    {
+        _allHeight=IsPhone6_gt?185:152;
+    }else
+    {
+        CGFloat _imgHeight=(((CGFloat)sizeModel.sizeBriefPicHeight)/((CGFloat)sizeModel.sizeBriefPicWidth))*(ScreenWidth-26*2);
+        _allHeight=IsPhone6_gt?(208+_imgHeight):(165+_imgHeight);
+    }
+    _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _allHeight);
+    [UIView animateWithDuration:0.5 animations:^{
+        _alertSizeView.frame=CGRectMake(0, ScreenHeight-_allHeight, ScreenWidth, _allHeight);
+    }];
+    
+}
+/**
+ * 创建数量选择视图
+ */
+-(void)CreateNumChooseViewWithSizeArr:(NSArray *)sizeArr WithIndexPath:(NSIndexPath *)indexPath
+{
+    mengban=[UIImageView getMaskImageView];
+    [self.view.window addSubview:mengban];
+    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+
+    DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+    _alertNumView=[[DD_ShopAlertNumView alloc] initWithSizeArr:sizeArr WithItem:itemModel WithBlock:^(NSString *type,NSInteger count) {
+        if([type isEqualToString:@"alert"])
+        {
+            [self mengban_dismiss];
+            
+            //                判断是否有相同item
+            //                有则删除、没有则修改
+            if([self haveSameItemWithIndexPath:indexPath WithSizeID:itemModel.sizeId WithColorID:itemModel.colorId])
+            {
+                NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
+                [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
+                        [_tableview reloadData];
+                    }else
+                    {
+                        [self presentViewController:successAlert animated:YES completion:nil];
+                        [_tableview reloadData];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [self presentViewController:failureAlert animated:YES completion:nil];
+                    [_tableview reloadData];
+                }];
+            }else
+            {
+                NSArray *_itemsArr=@[@{
+                                         @"itemId":itemModel.itemId
+                                         ,@"itemName":itemModel.itemName
+                                         ,@"colorId":itemModel.colorId
+                                         ,@"colorName":itemModel.colorName
+                                         ,@"sizeId":itemModel.sizeId
+                                         ,@"sizeName":[self GetSizeNameWithID:itemModel.sizeId WithSizeArr:sizeArr]
+                                         ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
+                                         ,@"seriesId":itemModel.seriesId
+                                         ,@"seriesName":itemModel.seriesName
+                                         ,@"designerId":itemModel.designerId
+                                         ,@"brandName":itemModel.brandName
+                                         ,@"number":[NSNumber numberWithLong:count]
+                                         ,@"price":itemModel.price
+                                         ,@"originalPrice":itemModel.originalPrice
+                                         ,@"pics":itemModel.pics
+                                         ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
+                                         ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
+                                         ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
+                                         ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
+                                         ,@"oldSizeId":itemModel.sizeId
+                                         }
+                                     ];
+                NSDictionary *_parameters=@{
+                                            @"items":[_itemsArr JSONString]
+                                            ,@"token":[DD_UserModel getToken]
+                                            };
+                [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
+                        [_tableview reloadData];
+                    }else
+                    {
+                        [self presentViewController:successAlert animated:YES completion:nil];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [self presentViewController:failureAlert animated:YES completion:nil];
+                }];
+                
+            }
+            
+            
+        }else if([type isEqualToString:@"stock_warning"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
+        }
+        
+    }];
+    [mengban addSubview:_alertNumView];
+    
+    _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?185:152);
+    [UIView animateWithDuration:0.5 animations:^{
+        _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?185:152), ScreenWidth, IsPhone6_gt?185:152);
+    }];
+    
 }
 #pragma mark - RequestData
 /**
@@ -277,14 +400,21 @@
 /**
  * 选择尺寸
  */
--(void)ChooseSizeWithItem:(DD_ShopItemModel *)_ItemModel WithIndexPath:(NSIndexPath *)indexPath
+-(void)ChooseSizeWithItem:(DD_ShopItemModel *)_ItemModel WithIndexPath:(NSIndexPath *)indexPath WithType:(NSString *)type
 {
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_ItemModel.itemId,@"colorId":_ItemModel.colorId};
     [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *sizeArr=[DD_SizeModel getSizeModelArr:[data objectForKey:@"size"]];
-            [self CreateSizeChooseViewWithSizeArr:sizeArr WithIndexPath:indexPath];
+            if([type isEqualToString:@"num_alert"])
+            {
+                [self CreateNumChooseViewWithSizeArr:sizeArr WithIndexPath:indexPath];
+            }else if([type isEqualToString:@"size_alert"])
+            {
+                [self CreateSizeChooseViewWithSizeArr:sizeArr WithIndexPath:indexPath];
+            }
+            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -411,8 +541,15 @@
                     //                    cancel
                     ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=NO;
                     [self updateTabbarState];
+                }else if([type isEqualToString:@"num_alert"])
+                {
+                    DD_ShopItemModel *shopItem=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+                    [self ChooseSizeWithItem:shopItem WithIndexPath:indexPath WithType:@"num_alert"];
+                }else if([type isEqualToString:@"size_alert"])
+                {
+                    DD_ShopItemModel *shopItem=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+                    [self ChooseSizeWithItem:shopItem WithIndexPath:indexPath WithType:@"size_alert"];
                 }
-                
                 
             }];
         }

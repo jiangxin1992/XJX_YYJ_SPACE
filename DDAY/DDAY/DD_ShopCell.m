@@ -120,6 +120,7 @@
     
     sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:sizeNameBtn];
+    [sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
     [sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
@@ -130,6 +131,7 @@
     
     numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:numBtn];
+    [numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
     [numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
@@ -209,6 +211,14 @@
             _clickblock(@"select",_indexPath);
         }
     }
+}
+-(void)numAction
+{
+    _clickblock(@"num_alert",_indexPath);
+}
+-(void)sizeAction
+{
+    _clickblock(@"size_alert",_indexPath);
 }
 #pragma mark - Other
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

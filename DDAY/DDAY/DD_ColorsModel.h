@@ -18,8 +18,12 @@ __string(colorId);
 __string(colorPic);
 __string(itemId);
 __array(pics);
-__string(sizeBriefPic);
 __array(size);
 __string(colorName);
+__string(sizeBriefPic);
+__long(sizeBriefPicHeight);
+__long(sizeBriefPicWidth);
+
+
 
 @end

@@ -25,13 +25,9 @@
  */
 -(NSString *)getPriceStr;
 /**
- * 获取颜色对应的ID
+ * 获取颜色ID对应的colorModel
  */
--(NSString *)getColorNameWithID:(NSString *)colorID;
-/**
- * 获取颜色对应的Code
- */
--(NSString *)getColorNameWithCode:(NSString *)colorID;
+-(DD_ColorsModel *)getColorModelNameWithID:(NSString *)colorID;
 
 __bool(shoucang);
 __bool(guanzhu);

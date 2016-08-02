@@ -169,7 +169,6 @@
         make.top.mas_equalTo(buy);
         make.height.mas_equalTo(buy);
         make.left.mas_equalTo(26);
-//        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-22);
     }];
 }
 

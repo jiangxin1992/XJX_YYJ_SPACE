@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_GoodsDetailViewController.m"
-            timestampString = "491824985.671611"
+            filePath = "DDAY/DD_ShopViewController.m"
+            timestampString = "491848731.428306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-RequestData"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "-CreateSizeChooseViewWithSizeArr:WithIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
