@@ -144,7 +144,6 @@
     DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
         //        if(type)
     }];
-    _GoodsDetail.title=_itemModel.name;
     [self.navigationController pushViewController:_GoodsDetail animated:YES];
     
 }

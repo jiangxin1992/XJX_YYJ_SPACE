@@ -63,7 +63,7 @@
     [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(26);
         make.right.mas_equalTo(-26);
-        make.height.mas_equalTo(3);
+        make.height.mas_equalTo(5);
         make.top.mas_equalTo(IsPhone6_gt?31:18);
     }];
     
@@ -153,7 +153,7 @@
     buy.backgroundColor=_define_black_color;
     [buy addTarget:self action:@selector(buyAction) forControlEvents:UIControlEventTouchUpInside];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
+        make.right.mas_equalTo(-26);
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
         make.width.mas_equalTo(IsPhone6_gt?115:95);
         make.height.mas_equalTo(45);
@@ -165,10 +165,10 @@
     [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
     shop.backgroundColor=_define_black_color;
     [shop mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(buy.mas_right).with.offset(IsPhone6_gt?59:43);
+        make.right.mas_equalTo(buy.mas_left).with.offset(-(IsPhone6_gt?59:43));
         make.top.mas_equalTo(buy);
         make.height.mas_equalTo(buy);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(26);
 //        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-22);
     }];
 }

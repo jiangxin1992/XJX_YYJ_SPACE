@@ -549,8 +549,6 @@
         DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
         _ItemsModel.colorId=item.colorId;
         _ItemsModel.g_id=item.itemId;
-        
-        _GoodsDetailView.title=item.itemName;
         _GoodsDetailView.model=_ItemsModel;
         
         [self.navigationController pushViewController:_GoodsDetailView animated:YES];

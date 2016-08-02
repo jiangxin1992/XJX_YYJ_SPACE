@@ -97,14 +97,16 @@
 -(void)CreateTitle
 {
     
-    collect_btn=[UIButton getCustomImgBtnWithImageStr:@"System_Circle_Normal" WithSelectedImageStr:@"System_Circle_Select"];
+    collect_btn=[UIButton getCustomImgBtnWithImageStr:@"system_notcollection" WithSelectedImageStr:@"system_collection"];
     [upview addSubview:collect_btn];
     [collect_btn addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
     [collect_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(upview).with.offset(-(10+hor_edge));
-        make.width.and.height.mas_equalTo(45);
-        make.top.mas_equalTo(upview).with.offset(20);
+        make.right.mas_equalTo(upview).with.offset(-(18+hor_edge));
+        make.width.mas_equalTo(25.5);
+        make.height.mas_equalTo(23);
+        make.top.mas_equalTo(upview).with.offset(30);
     }];
+    [collect_btn setEnlargeEdge:20];
     
     NSArray *titleArr=@[_detailModel.item.itemName,_detailModel.item.itemName,[_detailModel getPriceStr]];
     for (int i=0; i<titleArr.count; i++) {

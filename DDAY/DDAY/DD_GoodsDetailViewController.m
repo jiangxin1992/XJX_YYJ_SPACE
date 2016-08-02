@@ -95,6 +95,7 @@ __bool(isExpanded);
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
+    self.navigationItem.titleView=[regular returnNavView:@"单品" withmaxwidth:110];
 }
 #pragma mark - UIConfig
 -(void)CreateScrollView
@@ -106,6 +107,7 @@ __bool(isExpanded);
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(_scrollview);
         make.width.equalTo(_scrollview);
+//        make.bottom.mas_equalTo();
     }];
 }
 -(void)UIConfig
@@ -274,7 +276,8 @@ __bool(isExpanded);
         make.left.and.right.mas_equalTo(0);
     }];
     [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view);
+        make.left.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(-88+ktabbarHeight);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
     }];
@@ -552,8 +555,6 @@ __bool(isExpanded);
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
     _ItemsModel.colorId=_OtherItem.colorId;
     _ItemsModel.g_id=_OtherItem.itemId;
-    
-    _GoodsDetailView.title=_OtherItem.itemName;
     _GoodsDetailView.model=_ItemsModel;
     
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];

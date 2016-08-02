@@ -413,7 +413,6 @@
     _ItemsModel.g_id=_item.itemId;
     
     DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
-    _GoodsDetailView.title=_item.itemName;
     _GoodsDetailView.model=_ItemsModel;
     
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];

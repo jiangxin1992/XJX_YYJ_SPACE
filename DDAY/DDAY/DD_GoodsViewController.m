@@ -70,6 +70,8 @@
 
     titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
     [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];
+    
+    [titleView setImage:[UIImage imageNamed:@"System_UpTriangle"] forState:UIControlStateSelected];
     [titleView setTitle:@"类别" forState:UIControlStateNormal];
     titleView.titleLabel.font=[regular getSemiboldFont:17.0f];
     [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -261,7 +263,6 @@
     DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_model WithBlock:^(DD_ItemsModel *model, NSString *type) {
         //        if(type)
     }];
-    _GoodsDetail.title=_model.name;
     [self.navigationController pushViewController:_GoodsDetail animated:YES];
 }
 
