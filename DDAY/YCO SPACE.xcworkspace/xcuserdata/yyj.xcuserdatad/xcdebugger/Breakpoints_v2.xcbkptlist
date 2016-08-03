@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_ShopViewController.m"
-            timestampString = "491848731.428306"
+            filePath = "DDAY/DD_ClearingViewController.m"
+            timestampString = "491934557.088815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "-CreateSizeChooseViewWithSizeArr:WithIndexPath:"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-CreateTabBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

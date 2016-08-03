@@ -37,7 +37,6 @@
 -(void)SomePrepare
 {
     _dataArr=[DD_CityTool getCityModelArr];
-    self.view.backgroundColor=_define_backview_color;
 }
 -(void)CreateTableView
 {

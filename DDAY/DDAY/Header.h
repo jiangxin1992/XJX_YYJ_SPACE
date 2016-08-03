@@ -35,5 +35,6 @@
 #import "DD_UserModel.h"
 #import "DD_CustomViewController.h"
 #import "DD_NOTInformClass.h"
+#import "DD_NavBtn.h"
 
 #endif /* Header_h */

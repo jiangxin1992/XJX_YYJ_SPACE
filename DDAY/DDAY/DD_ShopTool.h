@@ -19,7 +19,10 @@
  * 该section是否处于全选状态
  */
 +(BOOL)selectAllWithModel:(DD_ShopModel *)ShopModel WithSection:(NSInteger)section;
-
+/**
+ * 是否为全选状态
+ */
++(BOOL)selectAllWithModel:(DD_ShopModel *)ShopModel;
 
 /**
  * 获取结算的商品arr

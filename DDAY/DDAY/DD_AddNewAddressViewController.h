@@ -1,14 +1,14 @@
 //
 //  DD_AddNewAddressViewController.h
-//  DDAY
+//  YCO SPACE
 //
-//  Created by yyj on 16/5/17.
-//  Copyright © 2016年 mike_xie. All rights reserved.
+//  Created by yyj on 16/8/3.
+//  Copyright © 2016年 YYJ. All rights reserved.
 //
 #import "DD_AddressModel.h"
-#import <UIKit/UIKit.h>
+#import "DD_BaseViewController.h"
 
-@interface DD_AddNewAddressViewController : UIViewController
+@interface DD_AddNewAddressViewController : DD_BaseViewController
 @property (nonatomic,strong)DD_AddressModel *AddressModel;
 -(instancetype)initWithModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock;
 @property (nonatomic,copy) void (^saveblock)(NSString *type,DD_AddressModel *model,NSString *defaultID);

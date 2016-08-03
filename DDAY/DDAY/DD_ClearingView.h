@@ -12,19 +12,23 @@
 /**
  * 初始化方法
  */
--(instancetype)initWithFrame:(CGRect)frame WithDataArr:(NSArray *)dataArr Withfreight:(NSString *)freight WithCountPrice:(NSString *)subTotal WithBlock:(void (^)(NSString *type,CGFloat height))block;
+-(instancetype)initWithDataArr:(NSArray *)dataArr Withfreight:(NSString *)freight WithPayWay:(NSString *)payWay WithBlock:(void (^)(NSString *type,CGFloat height,NSString *payWay))block;
 -(void)setRemarksWithWebView:(NSString *)content;
 /**
  * 小计，不包括运费
  */
-__string(subTotal);
+//__string(subTotal);
 /**
  * 单个包裹运费
  */
 __string(freight);
 /**
+ * 支付方式
+ */
+__string(payWay);
+/**
  * 数据数组
  */
 __array(dataArr);
-@property (nonatomic,copy) void (^block)(NSString *type,CGFloat height);
+@property (nonatomic,copy) void (^block)(NSString *type,CGFloat height,NSString *payWay);
 @end

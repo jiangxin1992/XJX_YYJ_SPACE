@@ -36,6 +36,14 @@ __string(colorId);
  */
 __string(colorName);
 /**
+ * 颜色代码
+ */
+__string(colorCode);
+/**
+ * 类别
+ */
+__string(categoryName);
+/**
  * 发布会后是否恢复原价
  */
 __bool(discountEnable);

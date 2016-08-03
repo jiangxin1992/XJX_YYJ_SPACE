@@ -51,8 +51,12 @@
     _defaultID=@"";
 }
 -(void)PrepareUI{
+    
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
     self.navigationItem.titleView=[regular returnNavView:@"收件地址" withmaxwidth:200];
-    self.view.backgroundColor=_define_backview_color;
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -100,6 +104,11 @@
     
 }
 #pragma mark - SomeAction
+//返回
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(DD_AddressModel *)getDefaultModel
 {
 //    DD_AddressModel *_AddressModel=[_AddressModel]

@@ -9,24 +9,24 @@
 #import "DD_SetAddressBtn.h"
 
 @implementation DD_SetAddressBtn{
-    UILabel *_phone;
-    UILabel *_address;
-    UILabel *_name;
-    UILabel *_title_label;
+    UILabel *_nameLabel;
+    UILabel *_phoneLabel;
+    UILabel *_addressLabel;
+    UIImageView *addressImg;
 }
 /**
  * 初始化方法
  */
-+(instancetype)buttonWithType:(UIButtonType)buttonType WithFrame:(CGRect )frame WithAddressModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type))block
++(instancetype)buttonWithType:(UIButtonType)buttonType WithAddressModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type))block ;
 {
     DD_SetAddressBtn *btn=[DD_SetAddressBtn buttonWithType:UIButtonTypeCustom];
     if(btn)
     {
+        
         btn.touchBlock=block;
+        btn.backgroundColor=[UIColor redColor];
         btn.AddressModel=AddressModel;
-        btn.frame=frame;
         [btn SomePrepare];
-        [btn UIConfig];
         [btn SetState];
     }
     return btn;
@@ -51,50 +51,97 @@
     _touchBlock(@"address");
 }
 #pragma mark - UIConfig
--(void)UIConfig
+-(void)haveAdressView
 {
-    _title_label=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 60, 40)];
-    [self addSubview:_title_label];
-    _title_label.textAlignment=0;
-    _title_label.textColor=[UIColor blackColor];
+    CGFloat _jianju=9.0f;
     
-    _name=[[UILabel alloc] initWithFrame:CGRectMake(90,5, 100, 40)];
-    [self addSubview:_name];
-    _name.textAlignment=0;
-    _name.textColor=[UIColor blackColor];
+    _nameLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverName WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:_nameLabel];
+    [_nameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_jianju);
+        make.left.mas_equalTo(26);
+    }];
+    [_nameLabel sizeToFit];
     
-    _phone=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-160,5, 150, 40)];
-    [self addSubview:_phone];
-    _phone.textAlignment=0;
-    _phone.numberOfLines=0;
-    _phone.textColor=[UIColor blackColor];
+    addressImg=[UIImageView getImgWithImageStr:@"System_address"];
+    [self addSubview:addressImg];
+    [addressImg mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_nameLabel.mas_right).with.offset(20);
+        make.right.mas_equalTo(-26);
+        make.width.mas_equalTo(20.5);
+        make.height.mas_equalTo(27);
+        make.centerY.mas_equalTo(_nameLabel);
+    }];
     
-    _address=[[UILabel alloc] initWithFrame:CGRectMake(20, 45, ScreenWidth-40, 70)];
-    [self addSubview:_address];
-    _address.textAlignment=0;
-    _address.textColor=[UIColor blackColor];
+    _phoneLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverPhone WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:_phoneLabel];
+    [_phoneLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_nameLabel);
+        make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(_jianju);
+        make.width.mas_equalTo(200);
+    }];
+    [_phoneLabel sizeToFit];
     
+    _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.detailAddress WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:_addressLabel];
+    _addressLabel.numberOfLines=2;
+    _addressLabel.preferredMaxLayoutWidth = ScreenWidth-26*2;
+    [_addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_nameLabel);
+        make.top.mas_equalTo(_phoneLabel.mas_bottom).with.offset(_jianju);
+        make.right.mas_equalTo(-26);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-_jianju);
+    }];
+    [_addressLabel sizeToFit];
+    
+    
+    UIView *dibu=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:dibu];
+    [dibu mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(26);
+        make.right.mas_equalTo(-26);
+        make.height.mas_equalTo(1);
+        make.bottom.mas_equalTo(0);
+    }];
 }
-
+-(void)noAdressView
+{
+    [self setTitle:@"添加收货地址" forState:UIControlStateNormal];
+    self.titleLabel.font=[regular getFont:15.0f];
+    [self setTitleColor:_define_black_color forState:UIControlStateNormal];
+    self.contentHorizontalAlignment=1;
+    [self setImage:[UIImage imageNamed:@"System_Add"] forState:UIControlStateNormal];
+    UIView *con=[UIView getCustomViewWithColor:nil];
+    [self addSubview:con];
+    con.userInteractionEnabled=NO;
+    [con mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+        make.height.mas_equalTo(39).priorityLow();
+    }];
+}
 #pragma mark - SetState
 -(void)SetState
 {
-    if(_AddressModel==nil)
-    {
-        [self setTitle:@" + 添加收货地址" forState:UIControlStateNormal];
-        _title_label.text=@"";
-        _address.text=@"";
-        _phone.text=@"";
-        _name.text=@"";
-        
-    }else
-    {
-        [self setTitle:@"" forState:UIControlStateNormal];
-        _title_label.text=@"收件人";
-        _address.text=_AddressModel.detailAddress;
-        _phone.text=_AddressModel.deliverPhone;
-        _name.text=_AddressModel.deliverName;
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
     }
     
+    if(_AddressModel)
+    {
+        [self setTitle:@"" forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self haveAdressView];        
+    }else
+    {
+        [self noAdressView];
+    }
+}
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(26+22+15, 0, 100, 39);
+}
+-(CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(26, (39-22)/2.0f, 22, 22);
 }
 @end

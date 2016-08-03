@@ -5,10 +5,10 @@
 //  Created by 谢江新 on 14-12-5.
 //  Copyright (c) 2014年 谢江新. All rights reserved.
 //
-
+#import "DD_BaseViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface ImageViewController : UIViewController
+@interface ImageViewController : DD_BaseViewController
 -(instancetype)initWithSize:(CGSize )size WithBlock:(void(^)(NSString *type,NSInteger index))block;
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign) NSInteger maxPage;

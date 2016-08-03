@@ -5,9 +5,9 @@
 //  Created by yyj on 16/5/17.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
-
+#import "DD_BaseViewController.h"
 #import <UIKit/UIKit.h>
-@interface DD_CityVCT : UIViewController
+@interface DD_CityVCT : DD_BaseViewController
 
 -(instancetype)initWithBlock:(void(^)(NSString *p_id,NSString *c_id))block;
 

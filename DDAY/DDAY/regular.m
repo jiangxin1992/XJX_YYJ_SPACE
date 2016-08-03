@@ -174,58 +174,66 @@ static regular *_t = nil;
 }
 +(UIView *)returnNavView:(NSString *)title withmaxwidth:(CGFloat )maxwidth
 {
-    
-    
-    CGFloat _Default_font=16.0;
-    CGFloat _Default_Spacing=3.0f;
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, maxwidth, 40)];
     
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
-
-    titleLabel.font =  [regular getSemiboldFont:_Default_font];
+    titleLabel.font =  [regular getSemiboldFont:17.0f];
     titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
-    [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(_Default_Spacing)]];
+    [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(3.0f)]];
     [view addSubview:titleLabel];
-    [titleLabel sizeToFit];
-    BOOL _isfit;
-    if(CGRectGetWidth(titleLabel.frame)<=maxwidth)
-    {
-        _isfit=NO;
-    }else
-    {
-        for (int i=_Default_font*2;i>0;i--) {
-            
-            
-            if(_Default_Spacing<=0)
-            {
-                _Default_font-=0.5f;
-                
-            }else
-            {
-                _Default_Spacing-=0.5f;
-            }
-            titleLabel.font =
-            (kIOSVersions>=9.0? [UIFont systemFontOfSize:_Default_font]:[UIFont fontWithName:@"Helvetica Neue" size:_Default_font]);
-            [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(_Default_Spacing)]];
-            [titleLabel sizeToFit];
-            if(CGRectGetWidth(titleLabel.frame)<=maxwidth||_Default_font<=13.0f)
-            {
-                break;
-            }
-        }
-    }
-    
-    if(CGRectGetWidth(titleLabel.frame)>maxwidth&&_Default_font==13.0f)
-    {
-        titleLabel.frame=CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame));
-        
-    }else
-    {
-        titleLabel.frame=CGRectMake((CGRectGetWidth(view.frame)-CGRectGetWidth(titleLabel.frame))/2.0f, (CGRectGetHeight(view.frame)-CGRectGetHeight(titleLabel.frame))/2.0f, CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame));
-        
-    }
     return view;
+    
+//    CGFloat _Default_font=16.0;
+//    CGFloat _Default_Spacing=3.0f;
+//    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, maxwidth, 40)];
+//    
+//    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+//
+//    titleLabel.font =  [regular getSemiboldFont:_Default_font];
+//    titleLabel.textColor=[UIColor blackColor];
+//    titleLabel.textAlignment=1;
+//    [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(_Default_Spacing)]];
+//    [view addSubview:titleLabel];
+//    [titleLabel sizeToFit];
+//    BOOL _isfit;
+//    if(CGRectGetWidth(titleLabel.frame)<=maxwidth)
+//    {
+//        _isfit=NO;
+//    }else
+//    {
+//        for (int i=_Default_font*2;i>0;i--) {
+//            
+//            
+//            if(_Default_Spacing<=0)
+//            {
+//                _Default_font-=0.5f;
+//                
+//            }else
+//            {
+//                _Default_Spacing-=0.5f;
+//            }
+//            titleLabel.font =
+//            (kIOSVersions>=9.0? [UIFont systemFontOfSize:_Default_font]:[UIFont fontWithName:@"Helvetica Neue" size:_Default_font]);
+//            [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(_Default_Spacing)]];
+//            [titleLabel sizeToFit];
+//            if(CGRectGetWidth(titleLabel.frame)<=maxwidth||_Default_font<=13.0f)
+//            {
+//                break;
+//            }
+//        }
+//    }
+//    
+//    if(CGRectGetWidth(titleLabel.frame)>maxwidth&&_Default_font==13.0f)
+//    {
+//        titleLabel.frame=CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame));
+//        
+//    }else
+//    {
+//        titleLabel.frame=CGRectMake((CGRectGetWidth(view.frame)-CGRectGetWidth(titleLabel.frame))/2.0f, (CGRectGetHeight(view.frame)-CGRectGetHeight(titleLabel.frame))/2.0f, CGRectGetWidth(titleLabel.frame), CGRectGetHeight(titleLabel.frame));
+//        
+//    }
+//    return view;
 }
 + (NSMutableAttributedString *)createAttributeString:(NSString *)str andFloat:(NSNumber*)nsKern{
     NSMutableAttributedString *attributedString =[[NSMutableAttributedString alloc] initWithString:str attributes:@{NSKernAttributeName : nsKern}];

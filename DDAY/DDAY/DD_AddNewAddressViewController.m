@@ -1,18 +1,15 @@
 //
 //  DD_AddNewAddressViewController.m
-//  DDAY
+//  YCO SPACE
 //
-//  Created by yyj on 16/5/17.
-//  Copyright © 2016年 mike_xie. All rights reserved.
+//  Created by yyj on 16/8/3.
+//  Copyright © 2016年 YYJ. All rights reserved.
 //
-
 
 #import "DD_AddNewAddressViewController.h"
+
 #import "DD_CityTool.h"
 #import "DD_ProvinceVCT.h"
-@interface DD_AddNewAddressViewController ()
-
-@end
 
 @implementation DD_AddNewAddressViewController
 {
@@ -53,15 +50,8 @@
     [self PrepareData];
     [self PrepareUI];
 }
--(void)PrepareData
-{
-    
-}
--(void)PrepareUI
-{
-    self.view.backgroundColor=_define_backview_color;
-    
-}
+-(void)PrepareData{}
+-(void)PrepareUI{}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
@@ -121,7 +111,7 @@
             }
         }
         [((UIButton *)[self.view viewWithTag:103]) setTitle:[[NSString alloc] initWithFormat:@"%@ %@",[self getPCNameWithID:_p_id WithType:@"province"],[self getPCNameWithID:_c_id WithType:@"city"]] forState:UIControlStateNormal];
-       
+        
         _Default_btn.selected=_AddressModel.isDefault;
         
         
@@ -153,7 +143,7 @@
     if(![self checkEmpty])
     {
         
-//        12
+        //        12
         if([regular phoneVerify:[self getTextFieldStr:1]])
         {
             if([regular PostCodeVerify:[self getTextFieldStr:2]])
@@ -206,7 +196,7 @@
         
     }else
     {
-
+        
     }
 }
 -(NSString *)getStrWithTag:(NSInteger )_tag
@@ -273,7 +263,7 @@
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-      [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -288,7 +278,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 
 @end

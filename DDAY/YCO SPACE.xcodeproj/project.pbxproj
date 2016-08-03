@@ -99,8 +99,6 @@
 		3F4187DB1CEEFF0B001BCA3D /* DD_AdressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4187D51CEEFF0B001BCA3D /* DD_AdressTableViewCell.xib */; };
 		3F4187DC1CEEFF0B001BCA3D /* DD_AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187D71CEEFF0B001BCA3D /* DD_AddressViewController.m */; };
 		3F4187DD1CEEFF0B001BCA3D /* DD_AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4187D81CEEFF0B001BCA3D /* DD_AddressViewController.xib */; };
-		3F4187E11CEEFF13001BCA3D /* DD_AddNewAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187DF1CEEFF13001BCA3D /* DD_AddNewAddressViewController.m */; };
-		3F4187E21CEEFF13001BCA3D /* DD_AddNewAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4187E01CEEFF13001BCA3D /* DD_AddNewAddressViewController.xib */; };
 		3F4187EF1CEEFF1A001BCA3D /* DD_CityTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E41CEEFF1A001BCA3D /* DD_CityTool.m */; };
 		3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E61CEEFF1A001BCA3D /* DD_ProvinceVCT.m */; };
 		3F4187F11CEEFF1A001BCA3D /* DD_ProvinceVCT.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4187E71CEEFF1A001BCA3D /* DD_ProvinceVCT.xib */; };
@@ -217,6 +215,10 @@
 		3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */; };
 		3F8229021D0DA10500F95E79 /* DD_DesignerIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8229001D0DA10500F95E79 /* DD_DesignerIntroViewController.xib */; };
 		3F83EEA21D38916A0051C89E /* UILabel+DD_Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */; };
+		3F85E8161D5186A40077F848 /* DD_SizeAlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */; };
+		3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E8181D51930B0077F848 /* DD_NavBtn.m */; };
+		3F85E81D1D51B0990077F848 /* DD_AddNewAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E81C1D51B0990077F848 /* DD_AddNewAddressViewController.m */; };
+		3F85E8201D51FB690077F848 /* DD_GoodsSimilarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E81F1D51FB690077F848 /* DD_GoodsSimilarView.m */; };
 		3F8924391CF6A6A300B76E6E /* DD_ClearingDoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8924371CF6A6A300B76E6E /* DD_ClearingDoneViewController.m */; };
 		3F89243A1CF6A6A300B76E6E /* DD_ClearingDoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8924381CF6A6A300B76E6E /* DD_ClearingDoneViewController.xib */; };
 		3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E765B1D1B77D600722FDA /* DD_CircleCommentSignBoard.m */; };
@@ -274,7 +276,6 @@
 		3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */; };
 		3FA551171D4CBC0400528B5F /* DD_GoodsK_POINTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */; };
 		3FA5511A1D4CC65000528B5F /* DD_GoodsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */; };
-		3FA6E0141D50724D0038569C /* DD_ShopBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6E0131D50724D0038569C /* DD_ShopBtn.m */; };
 		3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA836601D050B86006D2919 /* DD_OrderViewController.m */; };
 		3FA836631D050B86006D2919 /* DD_OrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA836611D050B86006D2919 /* DD_OrderViewController.xib */; };
 		3FA8366E1D0512D7006D2919 /* DD_OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8366D1D0512D7006D2919 /* DD_OrderItemModel.m */; };
@@ -552,9 +553,6 @@
 		3F4187D61CEEFF0B001BCA3D /* DD_AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddressViewController.h; sourceTree = "<group>"; };
 		3F4187D71CEEFF0B001BCA3D /* DD_AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddressViewController.m; sourceTree = "<group>"; };
 		3F4187D81CEEFF0B001BCA3D /* DD_AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_AddressViewController.xib; sourceTree = "<group>"; };
-		3F4187DE1CEEFF13001BCA3D /* DD_AddNewAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddNewAddressViewController.h; sourceTree = "<group>"; };
-		3F4187DF1CEEFF13001BCA3D /* DD_AddNewAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddNewAddressViewController.m; sourceTree = "<group>"; };
-		3F4187E01CEEFF13001BCA3D /* DD_AddNewAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_AddNewAddressViewController.xib; sourceTree = "<group>"; };
 		3F4187E31CEEFF1A001BCA3D /* DD_CityTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CityTool.h; sourceTree = "<group>"; };
 		3F4187E41CEEFF1A001BCA3D /* DD_CityTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CityTool.m; sourceTree = "<group>"; };
 		3F4187E51CEEFF1A001BCA3D /* DD_ProvinceVCT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ProvinceVCT.h; sourceTree = "<group>"; };
@@ -752,6 +750,14 @@
 		3F8229001D0DA10500F95E79 /* DD_DesignerIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_DesignerIntroViewController.xib; sourceTree = "<group>"; };
 		3F83EEA01D38916A0051C89E /* UILabel+DD_Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+DD_Custom.h"; sourceTree = "<group>"; };
 		3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DD_Custom.m"; sourceTree = "<group>"; };
+		3F85E8141D5186A40077F848 /* DD_SizeAlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SizeAlertModel.h; sourceTree = "<group>"; };
+		3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SizeAlertModel.m; sourceTree = "<group>"; };
+		3F85E8171D51930B0077F848 /* DD_NavBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_NavBtn.h; sourceTree = "<group>"; };
+		3F85E8181D51930B0077F848 /* DD_NavBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_NavBtn.m; sourceTree = "<group>"; };
+		3F85E81B1D51B0990077F848 /* DD_AddNewAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddNewAddressViewController.h; sourceTree = "<group>"; };
+		3F85E81C1D51B0990077F848 /* DD_AddNewAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddNewAddressViewController.m; sourceTree = "<group>"; };
+		3F85E81E1D51FB690077F848 /* DD_GoodsSimilarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsSimilarView.h; sourceTree = "<group>"; };
+		3F85E81F1D51FB690077F848 /* DD_GoodsSimilarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsSimilarView.m; sourceTree = "<group>"; };
 		3F8924361CF6A6A300B76E6E /* DD_ClearingDoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingDoneViewController.h; sourceTree = "<group>"; };
 		3F8924371CF6A6A300B76E6E /* DD_ClearingDoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingDoneViewController.m; sourceTree = "<group>"; };
 		3F8924381CF6A6A300B76E6E /* DD_ClearingDoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_ClearingDoneViewController.xib; sourceTree = "<group>"; };
@@ -848,8 +854,6 @@
 		3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsK_POINTView.m; sourceTree = "<group>"; };
 		3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsTabBar.h; sourceTree = "<group>"; };
 		3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsTabBar.m; sourceTree = "<group>"; };
-		3FA6E0121D50724D0038569C /* DD_ShopBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopBtn.h; sourceTree = "<group>"; };
-		3FA6E0131D50724D0038569C /* DD_ShopBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopBtn.m; sourceTree = "<group>"; };
 		3FA8365F1D050B86006D2919 /* DD_OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderViewController.h; sourceTree = "<group>"; };
 		3FA836601D050B86006D2919 /* DD_OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderViewController.m; sourceTree = "<group>"; };
 		3FA836611D050B86006D2919 /* DD_OrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_OrderViewController.xib; sourceTree = "<group>"; };
@@ -1238,6 +1242,8 @@
 				3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */,
 				3FA551151D4CBC0400528B5F /* DD_GoodsK_POINTView.h */,
 				3FA551161D4CBC0400528B5F /* DD_GoodsK_POINTView.m */,
+				3F85E81E1D51FB690077F848 /* DD_GoodsSimilarView.h */,
+				3F85E81F1D51FB690077F848 /* DD_GoodsSimilarView.m */,
 				3FA551181D4CC65000528B5F /* DD_GoodsTabBar.h */,
 				3FA551191D4CC65000528B5F /* DD_GoodsTabBar.m */,
 				3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */,
@@ -1385,7 +1391,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
-				3FA6E0151D5078760038569C /* DD_ShopBtn */,
+				3FA6E0151D5078760038569C /* DD_NavBtn */,
 				3F60024A1D49EEB9007E395F /* drawView */,
 				3F7E58B41D40667D000FDE5F /* Waterflow */,
 			);
@@ -1421,8 +1427,7 @@
 		3F4187C01CEEFE70001BCA3D /* 常用类 */ = {
 			isa = PBXGroup;
 			children = (
-				3F7E58B81D408D0D000FDE5F /* DD_ImageModel.h */,
-				3F7E58B91D408D0D000FDE5F /* DD_ImageModel.m */,
+				3F85E81A1D51AEAA0077F848 /* DD_ImageModel */,
 				3F0B66D61D23BB0700A89F33 /* NotObj */,
 				3F4904F31D1910AB009F4CD3 /* Tools */,
 				3F3811441CF54F7C007154F1 /* ZFB */,
@@ -1539,9 +1544,8 @@
 		3F4187CF1CEEFEFB001BCA3D /* 添加收获地址 */ = {
 			isa = PBXGroup;
 			children = (
-				3F4187DE1CEEFF13001BCA3D /* DD_AddNewAddressViewController.h */,
-				3F4187DF1CEEFF13001BCA3D /* DD_AddNewAddressViewController.m */,
-				3F4187E01CEEFF13001BCA3D /* DD_AddNewAddressViewController.xib */,
+				3F85E81B1D51B0990077F848 /* DD_AddNewAddressViewController.h */,
+				3F85E81C1D51B0990077F848 /* DD_AddNewAddressViewController.m */,
 			);
 			name = "添加收获地址";
 			sourceTree = "<group>";
@@ -1861,6 +1865,8 @@
 		3F6001FA1D4997B4007E395F /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				3F85E8141D5186A40077F848 /* DD_SizeAlertModel.h */,
+				3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */,
 				3F1401391CF7E28C0093474A /* DD_ShopModel.h */,
 				3F14013A1CF7E28C0093474A /* DD_ShopModel.m */,
 				3F14013C1CF824D40093474A /* DD_ShopSeriesModel.h */,
@@ -2208,6 +2214,15 @@
 			name = "UILabel+DD_Custom";
 			sourceTree = "<group>";
 		};
+		3F85E81A1D51AEAA0077F848 /* DD_ImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F7E58B81D408D0D000FDE5F /* DD_ImageModel.h */,
+				3F7E58B91D408D0D000FDE5F /* DD_ImageModel.m */,
+			);
+			name = DD_ImageModel;
+			sourceTree = "<group>";
+		};
 		3F8E76591D1B779300722FDA /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2537,13 +2552,13 @@
 			name = "修改登录密码";
 			sourceTree = "<group>";
 		};
-		3FA6E0151D5078760038569C /* DD_ShopBtn */ = {
+		3FA6E0151D5078760038569C /* DD_NavBtn */ = {
 			isa = PBXGroup;
 			children = (
-				3FA6E0121D50724D0038569C /* DD_ShopBtn.h */,
-				3FA6E0131D50724D0038569C /* DD_ShopBtn.m */,
+				3F85E8171D51930B0077F848 /* DD_NavBtn.h */,
+				3F85E8181D51930B0077F848 /* DD_NavBtn.m */,
 			);
-			name = DD_ShopBtn;
+			name = DD_NavBtn;
 			sourceTree = "<group>";
 		};
 		3FA8365E1D050B73006D2919 /* 我的订单 */ = {
@@ -2931,7 +2946,6 @@
 				3F9B8AE31CEF55DA008EC460 /* DD_CircleViewController.xib in Resources */,
 				3F9B8AED1CEF5625008EC460 /* DD_DDAYViewController.xib in Resources */,
 				3FC2D1801D06A272005A1FF0 /* DD_OrderDetailViewController.xib in Resources */,
-				3F4187E21CEEFF13001BCA3D /* DD_AddNewAddressViewController.xib in Resources */,
 				3F8229021D0DA10500F95E79 /* DD_DesignerIntroViewController.xib in Resources */,
 				3F9B8B4D1CF1A652008EC460 /* DD_AlertViewController.xib in Resources */,
 				3F4187AE1CEEFD02001BCA3D /* area.json in Resources */,
@@ -3060,7 +3074,6 @@
 				3F14014E1CF836C80093474A /* DD_ShopEditingCell.m in Sources */,
 				3F4938A71D0EB70F000D213B /* DD_UserDDAYViewController.m in Sources */,
 				3F552E9B1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m in Sources */,
-				3FA6E0141D50724D0038569C /* DD_ShopBtn.m in Sources */,
 				3F9B8B021CEF6562008EC460 /* DD_UserModel.m in Sources */,
 				3F552E981CF20BFB00BC5E33 /* DD_GoodsItemModel.m in Sources */,
 				3F66CF281D115D55006A3D3F /* DD_CircleFitPersonView.m in Sources */,
@@ -3110,6 +3123,7 @@
 				3FC2D1861D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m in Sources */,
 				3F5306E11D126A0A000C9EC0 /* DD_CircleTagModel.m in Sources */,
 				3F2F76571D1CEFED002E22A6 /* DD_CircleApplyDesignerViewController.m in Sources */,
+				3F85E81D1D51B0990077F848 /* DD_AddNewAddressViewController.m in Sources */,
 				3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */,
 				3F6813AD1D1A6AF600F4807A /* UIImage+RoundedImage.m in Sources */,
 				3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */,
@@ -3146,6 +3160,7 @@
 				3FD02DBB1D50F06800E9D6EB /* DD_ShopAlertSizeView.m in Sources */,
 				3F1401531CFC0AD70093474A /* DD_ShopHeaderView.m in Sources */,
 				3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */,
+				3F85E8161D5186A40077F848 /* DD_SizeAlertModel.m in Sources */,
 				3F4187FB1CEEFF35001BCA3D /* DD_ClearingModel.m in Sources */,
 				3F7160BA1D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m in Sources */,
 				3F9B8AFB1CEF56BC008EC460 /* DD_CustomViewController.m in Sources */,
@@ -3188,9 +3203,9 @@
 				3F552E891CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m in Sources */,
 				3F7160BD1D4F2BBA00E165D2 /* DD_GoodsListBtn.m in Sources */,
 				3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */,
+				3F85E8201D51FB690077F848 /* DD_GoodsSimilarView.m in Sources */,
 				3F2F76531D1CE365002E22A6 /* DD_CirlcleApplyDesignerChooseView.m in Sources */,
 				3FC2D17F1D06A272005A1FF0 /* DD_OrderDetailViewController.m in Sources */,
-				3F4187E11CEEFF13001BCA3D /* DD_AddNewAddressViewController.m in Sources */,
 				3F66CF1C1D115379006A3D3F /* DD_CircleInfoImgView.m in Sources */,
 				3F9B8B481CF160BC008EC460 /* DD_UserInfoTool.m in Sources */,
 				3F9B8AE21CEF55DA008EC460 /* DD_CircleViewController.m in Sources */,
@@ -3219,6 +3234,7 @@
 				3F3811B01CF54F7C007154F1 /* DataVerifier.m in Sources */,
 				3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */,
 				3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */,
+				3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */,
 				3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */,
 				3F8E76661D1B926900722FDA /* DD_CircleDetailHeadView.m in Sources */,
 				3F4187FC1CEEFF35001BCA3D /* DD_ClearingOrderModel.m in Sources */,

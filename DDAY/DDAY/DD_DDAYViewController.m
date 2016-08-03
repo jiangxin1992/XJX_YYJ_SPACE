@@ -10,7 +10,6 @@
 #import "DD_ShopViewController.h"
 #import "DD_DDAYViewController.h"
 #import "DD_DDAYDetailViewController.h"
-#import "DD_ShopBtn.h"
 
 @interface DD_DDAYViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -62,9 +61,9 @@
     
     self.navigationItem.titleView=[regular returnNavView:@"YCO SPACE" withmaxwidth:200];
     
-    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
-    [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
+    DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
+    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
     
     UIButton *_calendarBtn=[regular getBarCustomBtnWithImg:@"DDAY_Calendar" WithSelectImg:@"DDAY_Calendar" WithSize:CGSizeMake(25, 25)];
     [_calendarBtn addTarget:self action:@selector(PushCalendarView) forControlEvents:UIControlEventTouchUpInside];

@@ -13,12 +13,7 @@
  * 初始化方法
  */
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
-/**
- * cell model
- */
-@property (nonatomic,strong) DD_ClearingOrderModel *ClearingModel;
-/**
- * 回调
- */
-__block_type(clickblock, type);
+
+@property (nonatomic,strong)DD_ClearingOrderModel *ClearingModel;
+@property (nonatomic,copy) void (^clickblock)(NSString *type);
 @end

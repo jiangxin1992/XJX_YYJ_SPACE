@@ -13,7 +13,7 @@
  * 初始化方法
  * AddressModel为当前的地址
  */
-+(instancetype)buttonWithType:(UIButtonType)buttonType WithFrame:(CGRect )frame WithAddressModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type))block ;
++(instancetype)buttonWithType:(UIButtonType)buttonType WithAddressModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type))block ;
 /**
  * 当前地址model
  */

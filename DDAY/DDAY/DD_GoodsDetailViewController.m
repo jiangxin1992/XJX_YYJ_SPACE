@@ -22,8 +22,8 @@
 #import "DD_GoodsFabricView.h"
 #import "DD_GoodsSendAndReturnsView.h"
 #import "DD_GoodsK_POINTView.h"
+#import "DD_GoodsSimilarView.h"
 #import "DD_GoodsTabBar.h"
-#import "DD_ShopBtn.h"
 
 #import "DD_ChooseSizeView.h"
 #import "DD_DrawManageView.h"
@@ -48,6 +48,7 @@ __bool(isExpanded);
     DD_GoodsFabricView *_FabricView;//面料与洗涤
     DD_GoodsSendAndReturnsView *_ReturnView;//寄送与退换
     DD_GoodsK_POINTView *_K_PonitView;//YCO SPACE 体验店
+    DD_GoodsSimilarView *_SimilarView;//相似款式
     
     UIPageViewController *_pageViewControler;//单品图片浏览
     DD_DrawManageView *ManageView;//自定义pageControler
@@ -86,12 +87,11 @@ __bool(isExpanded);
 -(void)PrepareUI
 {
     
-    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
-    [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
+    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
-    
-    UIButton *backBtn=[UIButton getBackBtn];
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
@@ -119,6 +119,7 @@ __bool(isExpanded);
     [self CreateFabricView];
     [self CreateSendAndReturnsView];
     [self CreateKPOINTView];
+    [self CreateSimilarItems];
     [self CreateTabbar];
 }
 -(void)CreateImgScreenView
@@ -275,12 +276,46 @@ __bool(isExpanded);
         make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
     }];
-    [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-88+ktabbarHeight);
-        // 让scrollview的contentSize随着内容的增多而变化
-        make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
-    }];
+    
+    
+}
+-(void)CreateSimilarItems
+{
+    if(_DetailModel.similarItems.count)
+    {
+        _SimilarView=[[DD_GoodsSimilarView alloc] initWithGoodsSimilarArr:_DetailModel.similarItems WithBlock:^(NSString *type, DD_OrderItemModel *itemModel) {
+            if([type isEqualToString:@"img_click"])
+            {
+                DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
+                DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
+                _ItemsModel.colorId=itemModel.colorId;
+                _ItemsModel.g_id=itemModel.itemId;
+                _GoodsDetailView.model=_ItemsModel;
+                [self.navigationController pushViewController:_GoodsDetailView animated:YES];
+                
+            }
+        }];
+        [container addSubview:_SimilarView];
+        [_SimilarView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
+            make.left.and.right.mas_equalTo(0);
+        }];
+        [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.mas_equalTo(0);
+            make.bottom.mas_equalTo(-88+ktabbarHeight);
+            // 让scrollview的contentSize随着内容的增多而变化
+            make.bottom.mas_equalTo(_SimilarView.mas_bottom).with.offset(0);
+        }];
+    }else
+    {
+        [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.mas_equalTo(0);
+            make.bottom.mas_equalTo(-88+ktabbarHeight);
+            // 让scrollview的contentSize随着内容的增多而变化
+            make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
+        }];
+    }
+
 }
 -(void)CreateTabbar
 {
@@ -371,6 +406,7 @@ __bool(isExpanded);
         sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
+        mengban=nil;
     }];
 
 }
@@ -436,45 +472,49 @@ __bool(isExpanded);
 //shop buy
 -(void)Shop_Buy_Action:(NSString *)type
 {
-    mengban=[UIImageView getMaskImageView];
-    [self.view.window addSubview:mengban];
-    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
-    
-    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-    sizeView=[[DD_ChooseSizeView alloc] initWithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
-        if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
-        {
-            if([sizeid isEqualToString:@""])
+    if(!mengban)
+    {
+        mengban=[UIImageView getMaskImageView];
+        [self.view.window addSubview:mengban];
+        [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+        
+        DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
+        sizeView=[[DD_ChooseSizeView alloc] initWithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
+            if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
             {
-                [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
-            }else
-            {
-                if(count)
+                if([sizeid isEqualToString:@""])
                 {
-                    [self mengban_dismiss];
-                    if([type isEqualToString:@"shop"])
+                    [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
+                }else
+                {
+                    if(count)
                     {
-                        //                加入购物车
-                        [self ShopAction:sizeid WithNum:count];
-                    }else if([type isEqualToString:@"buy"])
-                    {
-                        //                购买
-                        [self BuyAction:sizeid WithNum:count];
+                        [self mengban_dismiss];
+                        if([type isEqualToString:@"shop"])
+                        {
+                            //                加入购物车
+                            [self ShopAction:sizeid WithNum:count];
+                        }else if([type isEqualToString:@"buy"])
+                        {
+                            //                购买
+                            [self BuyAction:sizeid WithNum:count];
+                        }
                     }
                 }
+            }else if([type isEqualToString:@"stock_warning"])
+            {
+                [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
             }
-        }else if([type isEqualToString:@"stock_warning"])
-        {
-            [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
-        }
+            
+        }];
+        [mengban addSubview:sizeView];
         
-    }];
-    [mengban addSubview:sizeView];
+        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
+        [UIView animateWithDuration:0.5 animations:^{
+            sizeView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?230:187), ScreenWidth, IsPhone6_gt?230:187);
+        }];
+    }
     
-    sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
-    [UIView animateWithDuration:0.5 animations:^{
-        sizeView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?230:187), ScreenWidth, IsPhone6_gt?230:187);
-    }];
 }
 //购买动作
 -(void)BuyAction:(NSString *)sizeid WithNum:(NSInteger )count

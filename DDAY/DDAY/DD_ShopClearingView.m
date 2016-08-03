@@ -115,5 +115,12 @@
 -(void)SetState
 {
     price_label.text=[DD_ShopTool getAllPriceWithModel:_shopModel];
+    if([DD_ShopTool selectAllWithModel:_shopModel])
+    {
+        selectBtn.selected=YES;
+    }else
+    {
+        selectBtn.selected=NO;
+    }
 }
 @end

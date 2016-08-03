@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=_define_backview_color;
     [self UIConfig];
 }
 #pragma mark - 初始化

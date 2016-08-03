@@ -42,7 +42,6 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"order_logistics", @"") withmaxwidth:200];//设置标题
-    self.view.backgroundColor=_define_backview_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig{}

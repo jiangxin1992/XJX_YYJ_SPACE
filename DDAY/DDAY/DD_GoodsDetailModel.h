@@ -7,6 +7,7 @@
 //
 #import "DD_GoodsDesignerModel.h"
 #import "DD_GoodsItemModel.h"
+#import "DD_OrderItemModel.h"
 #import <Foundation/Foundation.h>
 
 @interface DD_GoodsDetailModel : NSObject
@@ -33,5 +34,7 @@ __bool(shoucang);
 __bool(guanzhu);
 @property (nonatomic,strong)DD_GoodsDesignerModel *designer;
 @property (nonatomic,strong)DD_GoodsItemModel *item;
+
+__array(similarItems);
 
 @end

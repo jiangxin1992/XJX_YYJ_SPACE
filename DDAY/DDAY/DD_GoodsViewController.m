@@ -16,7 +16,6 @@
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 #import "DD_GoodsListView.h"
-#import "DD_ShopBtn.h"
 
 #import "DD_GoodsListTableViewCell.h"
 #import "DD_GoodsListTableView.h"
@@ -63,11 +62,9 @@
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
 
-    DD_ShopBtn *buyBtn=[DD_ShopBtn getShopBtn];
-    
-    [buyBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:buyBtn];
+    DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
+    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
 
     titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
     [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];

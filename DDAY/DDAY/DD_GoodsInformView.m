@@ -108,7 +108,7 @@
     }];
     [collect_btn setEnlargeEdge:20];
     
-    NSArray *titleArr=@[_detailModel.item.itemName,_detailModel.item.itemName,[_detailModel getPriceStr]];
+    NSArray *titleArr=@[_detailModel.designer.brandName,_detailModel.item.itemName,[_detailModel getPriceStr]];
     for (int i=0; i<titleArr.count; i++) {
         UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:titleArr[i] WithFont:15.0f WithTextColor:i==2?_define_light_red_color:_define_black_color WithSpacing:0];
         [upview addSubview:label];

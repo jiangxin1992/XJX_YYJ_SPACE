@@ -74,7 +74,7 @@
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
     }];
     
-    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:25];
+    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:25];
     [upView addSubview:_brandImge];
     _brandImge.userInteractionEnabled=NO;
     [_brandImge mas_makeConstraints:^(MASConstraintMaker *make) {

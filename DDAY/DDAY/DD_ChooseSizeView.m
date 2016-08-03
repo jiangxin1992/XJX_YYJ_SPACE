@@ -13,7 +13,6 @@
     NSMutableArray *_sizeBtnArr;
     NSString *_sizeID;
     NSInteger _count;
-    
     UIButton *countBtn;
 }
 

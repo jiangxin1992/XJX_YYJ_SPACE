@@ -18,13 +18,13 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count))block
+-(instancetype)initWithSizeAlertModel:(DD_SizeAlertModel *)SizeAlertModel WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count))block
 {
     
     self=[super init];
     if(self)
     {
-        _sizeArr=sizeArr;
+        _SizeAlertModel=SizeAlertModel;
         _block=block;
         _ItemModel=ItemModel;
         _sizeID=_ItemModel.sizeId;
@@ -65,8 +65,8 @@
     }];
     
     UIView *lastView=nil;
-    for (int i=0; i<_sizeArr.count; i++) {
-        DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
+    for (int i=0; i<_SizeAlertModel.size.count; i++) {
+        DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
         UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
         [self addSubview:_btn];
         
@@ -110,17 +110,21 @@
         lastView=_btn;
     }
     
-    DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:0];
-    CGFloat _imgHeight=(((CGFloat)_sizeModel.sizeBriefPicHeight)/((CGFloat)_sizeModel.sizeBriefPicWidth))*(ScreenWidth-26*2);
-    UIImageView *sizeBriefImg=[UIImageView getCustomImg];
-    [self addSubview:sizeBriefImg];
-    [sizeBriefImg JX_loadImageUrlStr:_sizeModel.sizeBrief WithSize:800 placeHolderImageName:nil radius:0];
-    [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(26);
-        make.right.mas_offset(-26);
-        make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
-        make.height.mas_offset(_imgHeight);
-    }];
+    UIImageView *sizeBriefImg=nil;
+    if(_SizeAlertModel.sizeBriefPic&&![_SizeAlertModel.sizeBriefPic isEqualToString:@""])
+    {
+        CGFloat _imgHeight=(((CGFloat)_SizeAlertModel.sizeBriefPicHeight)/((CGFloat)_SizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-26*2);
+        sizeBriefImg=[UIImageView getCustomImg];
+        [self addSubview:sizeBriefImg];
+        [sizeBriefImg JX_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
+        [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_offset(26);
+            make.right.mas_offset(-26);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.height.mas_offset(_imgHeight);
+        }];
+    }
+    
     
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:downLine];
@@ -128,7 +132,14 @@
         make.left.mas_equalTo(26);
         make.right.mas_equalTo(-26);
         make.height.mas_equalTo(1);
-        make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        if(sizeBriefImg)
+        {
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        }else
+        {
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        }
+        
     }];
     
     UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -149,7 +160,7 @@
         _block(@"no_alert",_sizeID,_sizeName,_count);
     }else
     {
-        _block(@"alert",_sizeID,_sizeName,1);
+        _block(@"alert",_sizeID,_sizeName,_count);
     }
 }
 
@@ -175,7 +186,7 @@
         UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
         if(_index==i)
         {
-            DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
+            DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
             if(_btn.selected)
             {
                 _btn.selected=NO;

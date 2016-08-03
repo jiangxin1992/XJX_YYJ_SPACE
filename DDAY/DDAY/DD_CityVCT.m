@@ -49,7 +49,6 @@
         }
     }
 
-    self.view.backgroundColor=_define_backview_color;
 }
 -(void)CreateTableView
 {

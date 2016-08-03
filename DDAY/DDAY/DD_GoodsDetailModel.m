@@ -14,6 +14,7 @@
     DD_GoodsDetailModel *_GoodsDetailModel=[DD_GoodsDetailModel objectWithKeyValues:dict];
     _GoodsDetailModel.item=[DD_GoodsItemModel getGoodsItemModel:[dict objectForKey:@"item"]];
     _GoodsDetailModel.designer=[DD_GoodsDesignerModel getGoodsDesignerModel:[dict objectForKey:@"designer"]];
+    _GoodsDetailModel.similarItems=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"similarItems"]];
     return _GoodsDetailModel;
 }
 -(DD_ColorsModel *)getColorsModel

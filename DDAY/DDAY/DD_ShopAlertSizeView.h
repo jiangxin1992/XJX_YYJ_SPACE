@@ -6,11 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 #import "DD_ShopItemModel.h"
+#import "DD_SizeAlertModel.h"
 #import <UIKit/UIKit.h>
 
 @interface DD_ShopAlertSizeView : UIView
--(instancetype)initWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count))block;
+-(instancetype)initWithSizeAlertModel:(DD_SizeAlertModel *)SizeAlertModel WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count))block;
 @property (nonatomic,copy) void (^block)(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count);
-__array(sizeArr);
+
+@property (nonatomic,strong)DD_SizeAlertModel *SizeAlertModel;
 @property (nonatomic,strong)DD_ShopItemModel *ItemModel;
 @end

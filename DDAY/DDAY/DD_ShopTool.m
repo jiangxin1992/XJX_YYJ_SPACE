@@ -229,6 +229,20 @@
     }
     return NO;
 }
++(BOOL)selectAllWithModel:(DD_ShopModel *)ShopModel
+{
+
+    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
+        for (DD_ShopItemModel *item in _SeriesModel.items) {
+            if(!item.is_select)
+            {
+                return NO;
+                break;
+            }
+        }
+    }
+    return YES;
+}
 +(DD_ShopSeriesModel *)getNumberSection:(NSInteger )section WithModel:(DD_ShopModel *)ShopModel
 {
     NSInteger _seriesNormal=ShopModel.seriesNormal.count;

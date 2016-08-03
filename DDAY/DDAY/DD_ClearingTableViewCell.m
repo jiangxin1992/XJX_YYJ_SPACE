@@ -10,13 +10,16 @@
 
 @implementation DD_ClearingTableViewCell
 {
-    UIView *__contentview;
-    UIImageView *itemimg;
-    UILabel *brandName;
-    UILabel *itemName;
-    UILabel *sizeName;
-    UILabel *priceName;
-    UILabel *itemNum;
+    UIImageView *itemImg;//图片
+    
+    UILabel *itemNameLabel;//商品描述
+    UILabel *typeLabel;//商品类型
+    UILabel *priceLabel;//商品价格
+    
+    UIView *colorView;//商品颜色
+    
+    UIButton *sizeNameBtn;//商品尺寸按钮
+    UIButton *numBtn;//商品数量按钮
 }
 
 - (void)awakeFromNib {
@@ -34,6 +37,7 @@
     }
     return self;
 }
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -43,56 +47,117 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor clearColor];
-    self.contentView.backgroundColor=[UIColor clearColor];
+    self.contentView.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    __contentview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 138)];
-    __contentview.backgroundColor=[UIColor whiteColor];
-    [self.contentView addSubview:__contentview];
+    UIView *imageBack=[UIView getCustomViewWithColor:_define_white_color];
+    [self.contentView addSubview:imageBack];
+    [imageBack mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(26);
+        make.height.width.mas_equalTo(123);
+    }];
+    [regular setBorder:imageBack];
     
-    itemimg=[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 120, 120)];
-    [__contentview addSubview:itemimg];
+    //    款式照片
+    itemImg=[UIImageView getCustomImg];
+    [imageBack addSubview:itemImg];
+    [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+    }];
     
-    brandName=[[UILabel alloc] initWithFrame:CGRectMake(140, 10, 180, 30)];
-    brandName.textAlignment=0;
-    brandName.textColor=[UIColor blackColor];
-    [__contentview addSubview:brandName];
+    //    款式信息
+    itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:itemNameLabel];
+    [itemNameLabel sizeToFit];
+    [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
+        make.top.mas_equalTo(17);
+        make.right.mas_equalTo(-26);
+    }];
     
-    itemName=[[UILabel alloc] initWithFrame:CGRectMake(140, 40, 180, 30)];
-    itemName.textAlignment=0;
-    itemName.textColor=[UIColor blackColor];
-    [__contentview addSubview:itemName];
+    typeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:typeLabel];
+    [typeLabel sizeToFit];
+    [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(itemNameLabel);
+        make.right.mas_equalTo(itemNameLabel);
+    }];
     
-    sizeName=[[UILabel alloc] initWithFrame:CGRectMake(140, 70, 180, 30)];
-    sizeName.textAlignment=0;
-    sizeName.textColor=[UIColor blackColor];
-    [__contentview addSubview:sizeName];
+    priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    [self.contentView addSubview:priceLabel];
+    [priceLabel sizeToFit];
+    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(typeLabel.mas_bottom).with.offset(15);
+        make.left.mas_equalTo(itemNameLabel);
+        make.right.mas_equalTo(itemNameLabel);
+    }];
     
-    priceName=[[UILabel alloc] initWithFrame:CGRectMake(140, 100, 180, 30)];
-    priceName.textAlignment=0;
-    priceName.textColor=[UIColor blackColor];
-    [__contentview addSubview:priceName];
     
+    colorView=[UIView getCustomViewWithColor:nil];
+    [self.contentView addSubview:colorView];
+    [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(priceLabel.mas_bottom).with.offset(11);
+        make.left.mas_equalTo(itemNameLabel);
+        make.width.mas_equalTo(32);
+        make.height.mas_equalTo(9);
+    }];
     
-    itemNum=[[UILabel alloc] initWithFrame:CGRectMake(325, 100, 45, 30)];
-    itemNum.textAlignment=0;
-    itemNum.textColor=[UIColor blackColor];
-    [__contentview addSubview:itemNum];
+    sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:sizeNameBtn];
+
+    [sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.left.mas_equalTo(itemNameLabel);
+    }];
+    [sizeNameBtn setEnlargeEdge:20];
+    
+    numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:numBtn];
+    [numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.right.mas_equalTo(-26);
+    }];
+    [numBtn setEnlargeEdge:20];
 }
 #pragma mark - Setter Model
 -(void)setClearingModel:(DD_ClearingOrderModel *)ClearingModel
 {
     _ClearingModel=ClearingModel;
-    [itemimg JX_loadImageUrlStr:_ClearingModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-    brandName.text=_ClearingModel.brandName;
-    itemName.text=_ClearingModel.itemName;
-    sizeName.text=_ClearingModel.sizeName;
-//    根据传入时候的price 和 discountEnable判断当前的状态
-    priceName.text=[_ClearingModel getPriceStr];
-    itemNum.text=[[NSString alloc] initWithFormat:@"× %@",_ClearingModel.numbers];
+    if(ClearingModel.pic)
+    {
+        [itemImg JX_loadImageUrlStr:ClearingModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+    }
+    colorView.backgroundColor=[UIColor colorWithHexString:ClearingModel.colorCode];
+    itemNameLabel.text=ClearingModel.itemName;
+    typeLabel.text=ClearingModel.categoryName;
+    
+    [sizeNameBtn setTitle:ClearingModel.sizeName forState:UIControlStateNormal];
+    [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ClearingModel.numbers] forState:UIControlStateNormal];
+    
+    if(ClearingModel.saleEndTime>[regular date])
+    {
+        priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
+    }else
+    {
+        if(ClearingModel.discountEnable)
+        {
+            priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
+            
+        }else
+        {
+            priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ClearingModel.originalPrice];
+        }
+        
+    }
+
 }
 
 #pragma mark - Other
