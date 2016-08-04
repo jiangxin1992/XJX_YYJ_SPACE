@@ -75,6 +75,12 @@
     [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView=titleView;
     
+    if(_noTabbar)
+    {
+        DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+        [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    }
 }
 -(void)ChooseCategoryAction:(UIButton *)btn
 {
@@ -190,7 +196,14 @@
 {
     mywaterflow = [[Waterflow alloc] init];
     
-    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    if(_noTabbar)
+    {
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight);
+    }else
+    {
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    }
+    
     
     mywaterflow.dataSource = self;
     
@@ -218,6 +231,13 @@
     [mywaterflow.header beginRefreshing];
 }
 #pragma mark - SomeAction
+/**
+ * 返回
+ */
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 //跳转购物车
 -(void)PushShopView
 {
@@ -267,9 +287,17 @@
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarAppear];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if(_noTabbar)
+    {
+        [[DD_CustomViewController sharedManager] tabbarHide];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }else
+    {
+        [[DD_CustomViewController sharedManager] tabbarAppear];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
     [MobClick beginLogPageView:@"DD_GoodsViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

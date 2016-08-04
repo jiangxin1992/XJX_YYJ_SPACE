@@ -51,12 +51,12 @@
     _defaultID=@"";
 }
 -(void)PrepareUI{
-    
+//    210
     DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
-    self.navigationItem.titleView=[regular returnNavView:@"收件地址" withmaxwidth:200];
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_address_title", @"") withmaxwidth:200];
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -79,28 +79,41 @@
 -(void)UIConfig
 {
     [self CreateTableView];
-    [self CreateAddBtn];
+    [self CreateFootView];
 }
--(void)CreateAddBtn
+-(void )CreateFootView
 {
-    //    添加新地址
-    UIButton *tabbar=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:tabbar];
-    tabbar.frame=CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight);
-    [tabbar addTarget:self action:@selector(pushNewAddress) forControlEvents:UIControlEventTouchUpInside];
-    tabbar.backgroundColor=[UIColor orangeColor];
-    [tabbar setTitle:@"添加新地址" forState:UIControlStateNormal];
-    
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    UIButton *_AddressBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"添加新地址" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [footView addSubview:_AddressBtn];
+    _AddressBtn.backgroundColor=_define_black_color;
+    [_AddressBtn addTarget:self action:@selector(pushNewAddress) forControlEvents:UIControlEventTouchUpInside];
+    [_AddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(20);
+        make.bottom.mas_equalTo(-20);
+        make.height.mas_equalTo(40);
+        make.width.mas_equalTo(155);
+        make.centerX.mas_equalTo(footView);
+    }];
+    CGFloat height = [footView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGRect frame = footView.frame;
+    frame.size.height = height;
+    footView.frame = frame;
+    _tableview.tableFooterView = footView;
 }
+
 -(void)CreateTableView
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-ktabbarHeight) style:UITableViewStyleGrouped];
-    [self.view addSubview:_tableview];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     
+    [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+    }];
     
 }
 #pragma mark - SomeAction
@@ -188,7 +201,7 @@
             [_tableview reloadData];
         }
     }];
-    AddNewAddress.title=@"添加新地址";
+    AddNewAddress.title=@"修改地址";
     [self.navigationController pushViewController:AddNewAddress animated:YES];
 }
 -(void)pushNewAddress
@@ -215,7 +228,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    CGFloat _height=[DD_AdressTableViewCell heightWithModel:_dataArr[indexPath.section] WithDefaultID:_defaultID];
+    return _height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -254,28 +268,15 @@
         }];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    if(_dataArr.count>indexPath.section+1)
+    {
+        cell.is_last=NO;
+    }else
+    {
+        cell.is_last=YES;
+    }
     [cell setAddressModel:_dataArr[indexPath.section] WithDefaultID:_defaultID];
     return cell;
-}
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -284,7 +285,6 @@
         _touchBlock(@"add_address",[_dataArr objectAtIndex:indexPath.section]);
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
 }
 #pragma mark - Other
 - (void)viewWillAppear:(BOOL)animated
@@ -301,5 +301,27 @@
     [super didReceiveMemoryWarning];
     
 }
+#pragma mark - 弃用代码
+////section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 1;//section头部高度
+//}
+////section头部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+////section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+////section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+
 
 @end

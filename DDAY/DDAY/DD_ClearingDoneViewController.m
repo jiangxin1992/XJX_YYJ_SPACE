@@ -7,9 +7,10 @@
 //
 
 #import "DD_ClearingDoneViewController.h"
-
+#import "DD_GoodsViewController.h"
 #import "DD_OrderDetailViewController.h"
 #import "DD_ClearingViewController.h"
+#import "DD_OrderModel.h"
 
 @interface DD_ClearingDoneViewController ()
 
@@ -19,18 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self SomePrepare];
-    [self UIConfig];
+    
 }
 #pragma mark - 初始化
--(instancetype)initWithReturnCode:(NSString *)code WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithReturnCode:(NSString *)code WithTradeOrderCode:(NSString *)tradeOrderCode WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
+        _tradeOrderCode=tradeOrderCode;
         _type=type;
         _code=code;
         _block=block;
+        [self SomePrepare];
         [self UIConfig];
     }
     return self;
@@ -45,14 +47,10 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-}
-#pragma mark - UIConfig
-/**
- * 根据支付状态设置不同的界面
- */
--(void)UIConfig
-{
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
     NSString *title=nil;
     if([_code integerValue]==9000)
     {
@@ -61,14 +59,98 @@
     {
         title=@"支付失败";
     }
-    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:150];
+    
+}
+#pragma mark - UIConfig
+/**
+ * 根据支付状态设置不同的界面
+ */
+-(void)UIConfig
+{
+//    System_paid
+    NSString *title=nil;
+    if([_code integerValue]==9000)
+    {
+        title=@"支付成功";
+    }else
+    {
+        title=@"支付失败";
+    }
+    UIButton *btn=[UIButton getCustomBackImgBtnWithImageStr:@"System_paid" WithSelectedImageStr:nil];
     [self.view addSubview:btn];
-    btn.frame=CGRectMake((ScreenWidth-100)/2.0f, (ScreenHeight-50)/2.0f, 100, 50);
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(((ScreenHeight/2.0f)-kNavHeight-ktabbarHeight));
+        make.height.width.mas_equalTo(72);
+    }];
+    
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:title WithFont:17.0f WithTextColor:nil WithSpacing:0];
+    [self.view addSubview:titleLabel];
+    titleLabel.font=[regular getSemiboldFont:17.0f];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(btn.mas_bottom).with.offset(10);
+    }];
+    [titleLabel sizeToFit];
+    
+    NSArray *titleArr=@[@"查看订单",@"其他发布品"];
+    for (int i=0; i<titleArr.count; i++) {
+        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:titleArr[i] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+        [self.view addSubview:actionbtn];
+        actionbtn.backgroundColor=_define_black_color;
+        [actionbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(i==0)
+            {
+                [actionbtn addTarget:self action:@selector(checkOrderAction) forControlEvents:UIControlEventTouchUpInside];
+                make.left.mas_equalTo(42);
+            }else
+            {
+                [actionbtn addTarget:self action:@selector(otherItemAction) forControlEvents:UIControlEventTouchUpInside];
+                make.right.mas_equalTo(-42);
+            }
+            make.width.mas_equalTo(121);
+            make.height.mas_equalTo(40);
+            make.top.mas_equalTo(titleLabel.mas_bottom).with.offset(47);
+        }];
+    }
+    
 }
 #pragma mark - SomeAction
+/**
+ * 查看订单
+ */
+-(void)checkOrderAction
+{
+    [[JX_AFNetworking alloc] GET:@"order/queryTradeOrderInfo.do" parameters:@{@"tradeOrderCode":_tradeOrderCode,@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            NSLog(@"111");
+            NSArray *getArr=[DD_OrderModel getOrderModelArr:[data objectForKey:@"orders"]];
+            if(getArr.count)
+            {
+                DD_OrderModel *order=[getArr objectAtIndex:0];
+                [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:nil] animated:YES];
+
+            }
+            
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+}
+/**
+ * 其他发布品
+ */
+-(void)otherItemAction
+{
+    DD_GoodsViewController *goodView=[[DD_GoodsViewController alloc] init];
+    goodView.noTabbar=YES;
+    [self.navigationController pushViewController:goodView animated:YES];
+}
 /**
  * 返回结算界面之前的那个界面
  * type 类型 clear（结算页面处） order（订单列表处） detail_order（订单详情处）

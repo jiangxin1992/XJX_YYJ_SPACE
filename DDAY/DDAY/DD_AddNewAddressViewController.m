@@ -7,7 +7,7 @@
 //
 
 #import "DD_AddNewAddressViewController.h"
-
+#import "DD_AddNewAddressDefaultBtn.h"
 #import "DD_CityTool.h"
 #import "DD_ProvinceVCT.h"
 
@@ -15,14 +15,14 @@
 {
     NSString *_p_id;
     NSString *_c_id;
-    UIButton *_Default_btn;
+    DD_AddNewAddressDefaultBtn *_Default_btn;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
-    [self SetData];
+//    [self SetData];
 }
 #pragma mark - 初始化
 -(instancetype)initWithModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock
@@ -51,74 +51,133 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI{}
+-(void)PrepareUI
+{
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+}
+-(void)setTitle:(NSString *)title
+{
+    self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:200];
+}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
     NSArray *titlearr=@[@"收件人姓名",@"手机号码",@"邮政编码",@"省、市",@"详细地址"];
-    CGFloat _y_p=10+64;
-    for (int i=0; i<titlearr.count; i++) {
-        if(i==3)
-        {
-            UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-            btn.backgroundColor=[UIColor whiteColor];
-            [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-            btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-            [btn addTarget:self action:@selector(chooseProvince) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:btn];
-            btn.tag=100+i;
-            btn.frame=CGRectMake(20, _y_p,ScreenWidth-40, 40);
-            [btn setTitle:titlearr[i] forState:UIControlStateNormal];
-        }else
-        {
-            UITextField *textfield=[[UITextField alloc] initWithFrame:CGRectMake(20, _y_p,ScreenWidth-40, 40)];
-            textfield.backgroundColor=[UIColor whiteColor];
-            [self.view addSubview:textfield];
-            textfield.textAlignment=0;
-            textfield.tag=100+i;
-            textfield.placeholder=titlearr[i];
-        }
-        _y_p+=50;
-    }
-    _Default_btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:_Default_btn];
-    [_Default_btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [_Default_btn setTitle:@"默认地址" forState:UIControlStateNormal];
-    [_Default_btn setTitle:@"默认地址" forState:UIControlStateSelected];
-    [_Default_btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-    _Default_btn.frame=CGRectMake(40, 330, 100, 40);
-    [_Default_btn addTarget:self action:@selector(DefaultAddress) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *_submit_btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:_submit_btn];
-    [_submit_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_submit_btn setTitle:@"保存" forState:UIControlStateNormal];
-    _submit_btn.frame=CGRectMake((ScreenWidth-100)/2.0f, 330, 100, 40);
-    [_submit_btn addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
-    
-}
-#pragma mark - SetData
--(void)SetData
-{
+    NSArray *dataarr=nil;
     if(_AddressModel)
     {
-        NSArray *dataarr=@[_AddressModel.deliverName,_AddressModel.deliverPhone,_AddressModel.postCode,@"",_AddressModel.detailAddress];
-        for (int i=0; i<dataarr.count; i++) {
-            if(i!=3)
-            {
-                UITextField *textfield=(UITextField *)[self.view viewWithTag:100+i];
-                textfield.text=dataarr[i];
-            }
-        }
-        [((UIButton *)[self.view viewWithTag:103]) setTitle:[[NSString alloc] initWithFormat:@"%@ %@",[self getPCNameWithID:_p_id WithType:@"province"],[self getPCNameWithID:_c_id WithType:@"city"]] forState:UIControlStateNormal];
-        
-        _Default_btn.selected=_AddressModel.isDefault;
-        
-        
+        dataarr=@[_AddressModel.deliverName,_AddressModel.deliverPhone,_AddressModel.postCode,[[NSString alloc] initWithFormat:@"%@ %@",[self getPCNameWithID:_p_id WithType:@"province"],[self getPCNameWithID:_c_id WithType:@"city"]] ,_AddressModel.detailAddress];
     }
+
+    UIView *lastview=nil;
+    for (int i=0; i<titlearr.count; i++) {
+        UIView *cellview=[UIView getCustomViewWithColor:nil];
+        [self.view addSubview:cellview];
+        [cellview mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(lastview)
+            {
+                make.top.mas_equalTo(lastview.mas_bottom);
+            }else
+            {
+                make.top.mas_equalTo(kNavHeight);
+            }
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(41);
+        }];
+        
+        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:titlearr[i] WithFont:14.0f WithTextColor:nil WithSpacing:0];
+        [cellview addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(cellview);
+            make.left.mas_equalTo(26);
+            make.width.mas_equalTo([self getWeight:titlearr[i]]);
+        }];
+        
+        UIButton *editBtn=[UIButton getCustomImgBtnWithImageStr:@"System_diagonal" WithSelectedImageStr:@"System_diagonal"];
+        [cellview addSubview:editBtn];
+        [editBtn setEnlargeEdge:10];
+        editBtn.frame=CGRectMake(ScreenWidth-11-26, (41-11)/2.0f, 11, 11);
+        
+        
+        CGFloat _width=ScreenWidth-5-11-26-15-26-[self getWeight:titlearr[i]];
+        UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
+        upline.frame=CGRectMake(0, (41-titleLabel.frame.size.height)/2.0f+titleLabel.frame.size.height, _width, 1);
+        if(i==3)
+        {
+            UIButton *choose_p=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:14.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+            [cellview addSubview:choose_p];
+            choose_p.tag=100+i;
+            choose_p.frame=CGRectMake(26+[self getWeight:titlearr[i]]+15, (41-27)/2.0f, _width, 27);
+            [choose_p addTarget:self action:@selector(chooseProvince) forControlEvents:UIControlEventTouchUpInside];
+            if(_AddressModel)
+            {
+                [choose_p setTitle:[dataarr objectAtIndex:i] forState:UIControlStateNormal];
+            }
+            [choose_p addSubview:upline];
+            
+        }else
+        {
+            UITextField *textFiled=[[UITextField alloc] init];
+            [cellview addSubview:textFiled];
+            textFiled.tag=100+i;
+            textFiled.font=[regular getFont:14.0f];
+            textFiled.textColor=_define_black_color;
+            textFiled.textAlignment=0;
+            textFiled.frame=CGRectMake(26+[self getWeight:titlearr[i]]+15, (41-27)/2.0f, _width, 27);
+            if(_AddressModel)
+            {
+                textFiled.text=[dataarr objectAtIndex:i];
+            }
+            [textFiled addSubview:upline];
+        }
+        lastview=cellview;
+    }
+    
+
+    _Default_btn=[DD_AddNewAddressDefaultBtn getBtn];
+    [self.view addSubview:_Default_btn];
+    [_Default_btn addTarget:self action:@selector(DefaultAddress:) forControlEvents:UIControlEventTouchUpInside];
+    [_Default_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(lastview.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(26);
+        make.width.mas_equalTo(174);
+        make.height.mas_equalTo(57);
+    }];
+    
+    if(_AddressModel)
+    {
+        _Default_btn.selected=_AddressModel.isDefault;
+    }
+    
+    UIButton *saveBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"保   存" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self.view addSubview:saveBtn];
+    [saveBtn addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
+    saveBtn.backgroundColor=_define_black_color;
+    [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_Default_btn.mas_bottom).with.offset(15);
+        make.width.mas_equalTo(155);
+        make.centerX.mas_equalTo(self.view);
+        make.height.mas_equalTo(40);
+    }];
+
 }
 
+
 #pragma mark - SomeAction
+-(CGFloat )getWeight:(NSString *)str
+{
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:str WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    [titleLabel sizeToFit];
+    return titleLabel.frame.size.width;
+}
+
+//返回
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(BOOL)checkEmpty
 {
     BOOL _have_empty=NO;
@@ -205,14 +264,14 @@
     return textfield.text;
 }
 
--(void)DefaultAddress
+-(void)DefaultAddress:(UIButton *)btn
 {
-    if(_Default_btn.selected)
+    if(btn.selected)
     {
-        _Default_btn.selected=NO;
+        btn.selected=NO;
     }else
     {
-        _Default_btn.selected=YES;
+        btn.selected=YES;
     }
 }
 -(void)chooseProvince
@@ -278,6 +337,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
+#pragma mark - 弃用代码
+//#pragma mark - SetData
+//-(void)SetData
+//{
+//    if(_AddressModel)
+//    {
+//        NSArray *dataarr=@[_AddressModel.deliverName,_AddressModel.deliverPhone,_AddressModel.postCode,@"",_AddressModel.detailAddress];
+//        for (int i=0; i<dataarr.count; i++) {
+//            if(i!=3)
+//            {
+//                UITextField *textfield=(UITextField *)[self.view viewWithTag:100+i];
+//                textfield.text=dataarr[i];
+//            }
+//        }
+//        [((UIButton *)[self.view viewWithTag:103]) setTitle:[[NSString alloc] initWithFormat:@"%@ %@",[self getPCNameWithID:_p_id WithType:@"province"],[self getPCNameWithID:_c_id WithType:@"city"]] forState:UIControlStateNormal];
+//
+//        _Default_btn.selected=_AddressModel.isDefault;
+//    }
+//}
 
 @end

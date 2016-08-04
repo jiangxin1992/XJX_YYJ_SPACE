@@ -70,6 +70,7 @@
 "user_conference"="我参与的发布会";
 "user_collection"="收藏";
 "user_contact_customer"="联系客服";
+"user_address_title"="收件地址";
 /**
  * 设置
  */

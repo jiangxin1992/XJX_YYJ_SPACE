@@ -59,8 +59,18 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_info_title", @"") withmaxwidth:200];
+    
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
 }
 #pragma mark - SomeAction
+//返回
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /**
  * 跳转地址管理界面
  */

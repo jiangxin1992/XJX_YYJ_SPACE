@@ -13,7 +13,11 @@
 +(DD_NavBtn *)getNavBtnIsLeft:(BOOL )isLeft WithSize:(CGSize )size WithImgeStr:(NSString *)imgStr;
 +(DD_NavBtn *)getShopBtn;
 +(DD_NavBtn *)getBackBtn;
++(DD_NavBtn *)getBackBtnNormal;
+
 
 @property (nonatomic,assign)CGSize size;
 @property(nonatomic,assign) BOOL isLeft;
+@property(nonatomic,assign) BOOL isNormal;
+
 @end

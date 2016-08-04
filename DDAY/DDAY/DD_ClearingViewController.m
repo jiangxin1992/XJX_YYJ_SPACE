@@ -16,6 +16,7 @@
 #import "DD_ClearingTableViewCell.h"
 #import "DD_RemarksViewController.h"
 #import "DD_ClearingDoneViewController.h"
+#import "DD_ClearingTabbar.h"
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableDictionary *_dataDict;
@@ -23,7 +24,7 @@
     
     UITableView *_tableview;
     
-    UIView *_tabBar;
+    DD_ClearingTabbar *_tabBar;
     
     DD_ClearingView *_ClearingView;
     DD_SetAddressBtn *_AddressBtn;// 选择地址按钮
@@ -75,6 +76,7 @@
      * 客户端回调，会回调AppDelegate里面的支付宝结算回调中
      * 通过通知，发送回调消息
      */
+      
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payAction:) name:@"payAction" object:nil];
 }
 -(void)PrepareUI{
@@ -112,53 +114,63 @@
  */
 -(void)CreateTabBar
 {
-    _tabBar=[UIView getCustomViewWithColor:nil];
+    NSInteger _freight=[_Clearingmodel.freight integerValue];
+    CGFloat _Freight=_dataArr.count*_freight;
+    CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
+    CGFloat _countPrice=_count+_Freight;
+    
+    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice] WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"confirm"])
+        {
+            [self ConfirmAction];
+        }
+    }];
     [self.view addSubview:_tabBar];
-    _tabBar.backgroundColor=[UIColor whiteColor];
+    
     [_tabBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(ktabbarHeight);
     }];
     
-    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-    [_tabBar addSubview:upline];
-    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(1);
-        make.top.left.right.mas_equalTo(0);
-    }];
-    
-    UIButton *ConfirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确认订单" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [_tabBar addSubview:ConfirmBtn];
-    [ConfirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(0);
-        make.top.mas_equalTo(upline.mas_bottom).with.offset(0);
-        make.width.mas_equalTo(130);
-        make.bottom.mas_equalTo(0);
-    }];
-    [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-    ConfirmBtn.backgroundColor=_define_black_color;
-    
-    NSInteger _freight=[_Clearingmodel.freight integerValue];
-    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"%ld件商品",_freight] WithFont:14.0f WithTextColor:nil WithSpacing:0];
-    [_tabBar addSubview:numlabel];
-    [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.centerY.mas_equalTo(_tabBar);
-    }];
-    [numlabel sizeToFit];
-    
-    CGFloat _Freight=_dataArr.count*_freight;
-    
-    CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
-    CGFloat _countPrice=_count+_Freight;
-    
-    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice] WithFont:14.0f WithTextColor:nil WithSpacing:0];
-    [_tabBar addSubview:countlabel];
-    [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
-        make.left.mas_equalTo(numlabel.mas_right).with.offset(10);
-        make.top.bottom.mas_equalTo(0);
-    }];
+//    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
+//    [_tabBar addSubview:upline];
+//    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.mas_equalTo(1);
+//        make.top.left.right.mas_equalTo(0);
+//    }];
+//    
+//    UIButton *ConfirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确认订单" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+//    [_tabBar addSubview:ConfirmBtn];
+//    [ConfirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(0);
+//        make.top.mas_equalTo(upline.mas_bottom).with.offset(0);
+//        make.width.mas_equalTo(130);
+//        make.bottom.mas_equalTo(0);
+//    }];
+//    [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
+//    ConfirmBtn.backgroundColor=_define_black_color;
+//    
+//    NSInteger _freight=[_Clearingmodel.freight integerValue];
+//    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"%ld件商品",_freight] WithFont:14.0f WithTextColor:nil WithSpacing:0];
+//    [_tabBar addSubview:numlabel];
+//    [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(26);
+//        make.centerY.mas_equalTo(_tabBar);
+//    }];
+//    [numlabel sizeToFit];
+//    
+//    CGFloat _Freight=_dataArr.count*_freight;
+//    
+//    CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
+//    CGFloat _countPrice=_count+_Freight;
+//    
+//    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice] WithFont:14.0f WithTextColor:nil WithSpacing:0];
+//    [_tabBar addSubview:countlabel];
+//    [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
+//        make.left.mas_equalTo(numlabel.mas_right).with.offset(10);
+//        make.top.bottom.mas_equalTo(0);
+//    }];
     
     
 }
@@ -249,6 +261,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 /**
+ * 获取结算页面的订单个数
+ */
+-(NSInteger )getGoodsCount
+{
+    NSInteger _num=0;
+    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+        _num+=_Series.items.count;
+    }
+    return _num;
+}
+/**
  * 确认订单按钮点击动作
  */
 -(void)ConfirmAction
@@ -299,8 +322,13 @@
                                    orderSpec, signedString, @"RSA"];
                     NSLog(@"%@",orderString);
                     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                        [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithType:@"clear" WithBlock:^(NSString *type) {
-                            //                            if(type)
+                        NSData *returnData=[[resultDic objectForKey:@"result"] JSONData];
+                        NSDictionary *returnDict=[NSJSONSerialization  JSONObjectWithData:returnData options:0 error:nil];
+                        NSString *out_trade_no=[returnDict objectForKey:@"out_trade_no"];
+                        NSLog(@"returnData=%@",returnData);
+                        NSLog(@"out_trade_no=%@",out_trade_no);
+                        [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"clear" WithBlock:^(NSString *type) {
+                            
                         }] animated:YES];
                     }];
                 }
@@ -338,7 +366,7 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithType:@"clear" WithBlock:^(NSString *type) {
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"clear" WithBlock:^(NSString *type) {
         //                            if(type)
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];

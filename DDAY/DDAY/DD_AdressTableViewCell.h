@@ -11,8 +11,16 @@
 @interface DD_AdressTableViewCell : UITableViewCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
 -(void)setAddressModel:(DD_AddressModel *)AddressModel WithDefaultID:(NSString *)defaultID;
-
++ (CGFloat)heightWithModel:(DD_AddressModel *)model WithDefaultID:(NSString *)defaultID;
 @property (nonatomic,strong) DD_AddressModel *AddressModel;
-__string(defaultID);
+
 __block_type(alertblock, type);
+__string(defaultID);
+__bool(is_last);
+
+__label(addressName);
+__label(detailAddress);
+__label(phoneNum);
+__btn(alertBtn);
+__view(downline);
 @end

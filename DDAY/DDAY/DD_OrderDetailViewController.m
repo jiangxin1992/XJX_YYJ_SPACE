@@ -189,7 +189,7 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithType:@"detail_order" WithBlock:^(NSString *type) {
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"detail_order" WithBlock:^(NSString *type) {
         //                            if(type)
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];
@@ -310,7 +310,7 @@
                                orderSpec, signedString, @"RSA"];
                 NSLog(@"%@",orderString);
                 [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithType:@"detail_order" WithBlock:^(NSString *type) {
+                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:tradeOrderCode WithType:@"detail_order" WithBlock:^(NSString *type) {
                     }] animated:YES];
                 }];
             }

@@ -76,6 +76,11 @@
 
 #define __block_type(__k__,__type__) @property(nonatomic,copy) void (^__k__)(NSString *__type__)
 
+#define __label(__k__) @property(nonatomic,strong) UILabel *__k__
+#define __btn(__k__) @property(nonatomic,strong) UIButton *__k__
+#define __view(__k__) @property(nonatomic,strong) UIView *__k__
+
+
 /*************** Other ***************/
 
 #define PARTNER @"2088911850774983"

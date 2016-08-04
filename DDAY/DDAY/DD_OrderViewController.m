@@ -107,7 +107,7 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithType:@"order" WithBlock:^(NSString *type) {
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"order" WithBlock:^(NSString *type) {
         [self RequestData];
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];
@@ -247,7 +247,7 @@
                 NSLog(@"%@",orderString);
                 [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                     [self RequestData];
-                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithType:@"order" WithBlock:^(NSString *type) {
+                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:_OrderModel.tradeOrderCode WithType:@"order" WithBlock:^(NSString *type) {
                     }] animated:YES];
                 }];
             }

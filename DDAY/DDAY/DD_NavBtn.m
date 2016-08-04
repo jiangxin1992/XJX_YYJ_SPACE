@@ -49,14 +49,34 @@
     }
     return shopBtn;
 }
++(DD_NavBtn *)getBackBtnNormal
+{
+    DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
+    if(shopBtn)
+    {
+        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateNormal];
+        [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateSelected];
+        shopBtn.isNormal=YES;
+        shopBtn.size=CGSizeMake(11, 19);
+    }
+    return shopBtn;
+}
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    if(_isLeft)
+    if(_isNormal)
     {
-        return CGRectMake(((44-_size.width)/2.0f)-16,(44-_size.height)/2.0f , _size.width, _size.height);
+        return CGRectMake((44-_size.width)/2.0f ,(44-_size.height)/2.0f ,_size.width ,_size.height );
     }else
     {
-        return CGRectMake(16+((44-_size.width)/2.0f),(44-_size.height)/2.0f , _size.width, _size.height);
+        if(_isLeft)
+        {
+            return CGRectMake(((44-_size.width)/2.0f)-16,(44-_size.height)/2.0f , _size.width, _size.height);
+        }else
+        {
+            return CGRectMake(16+((44-_size.width)/2.0f),(44-_size.height)/2.0f , _size.width, _size.height);
+        }
     }
+    
 }
 @end

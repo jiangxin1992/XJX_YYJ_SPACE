@@ -9,12 +9,6 @@
 #import "DD_AdressTableViewCell.h"
 
 @implementation DD_AdressTableViewCell
-{
-    UILabel *addressName;
-    UILabel *detailAddress;
-    UILabel *phoneNum;
-    UIButton *alertBtn;
-}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -32,50 +26,88 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    addressName=[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 150, 20)];
-    [self.contentView addSubview:addressName];
-    addressName.textAlignment=0;
-    addressName.textColor=[UIColor blackColor];
+    CGFloat _jiange=9;
+    _addressName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:_addressName];
+    [_addressName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_jiange);
+        make.left.mas_equalTo(26);
+        make.width.lessThanOrEqualTo(@200);
+    }];
+    [_addressName sizeToFit];
     
-    phoneNum=[[UILabel alloc] initWithFrame:CGRectMake(200, 5, 150, 20)];
-    [self.contentView addSubview:phoneNum];
-    phoneNum.textAlignment=0;
-    phoneNum.textColor=[UIColor blackColor];
+    _alertBtn=[UIButton getCustomImgBtnWithImageStr:@"System_edit" WithSelectedImageStr:@"System_edit"];
+    [self.contentView addSubview:_alertBtn];
+    [_alertBtn addTarget:self action:@selector(alertAction) forControlEvents:UIControlEventTouchUpInside];
+    [_alertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-26);
+        make.centerY.mas_equalTo(_addressName);
+        make.width.height.mas_equalTo(24);
+    }];
+    [_alertBtn setEnlargeEdge:10];
     
-    detailAddress=[[UILabel alloc] initWithFrame:CGRectMake(20, 25, 300, 30)];
-    [self.contentView addSubview:detailAddress];
-    detailAddress.textAlignment=0;
-    detailAddress.numberOfLines=0;
-    detailAddress.textColor=[UIColor blackColor];
+    _phoneNum=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:_phoneNum];
+    [_phoneNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_addressName);
+        make.top.mas_equalTo(_addressName.mas_bottom).with.offset(_jiange);
+        make.width.lessThanOrEqualTo(@200);
+    }];
+    [_phoneNum sizeToFit];
     
-    alertBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.contentView addSubview:alertBtn];
-    alertBtn.frame=CGRectMake(305, 15, 50, 50);
-    [alertBtn setTitle:@"修改" forState:UIControlStateNormal];
-    [alertBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [alertBtn addTarget:self action:@selector(alertAction) forControlEvents:UIControlEventTouchUpInside];
+    _detailAddress=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:_detailAddress];
+    _detailAddress.numberOfLines=2;
+    [_detailAddress mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_addressName);
+        make.top.mas_equalTo(_phoneNum.mas_bottom).with.offset(_jiange);
+        make.width.lessThanOrEqualTo(@(ScreenWidth-26*2));
+    }];
+    [_detailAddress sizeToFit];
+    
+    _downline=[UIView getCustomViewWithColor:_define_black_color];
+    [self.contentView addSubview:_downline];
+    [_downline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(26);
+        make.right.mas_equalTo(-26);
+        make.height.mas_equalTo(1);
+        make.top.mas_equalTo(_detailAddress.mas_bottom).with.offset(_jiange);
+    }];
 }
 #pragma mark - Setter
+-(void)setIs_last:(BOOL)is_last
+{
+    _is_last=is_last;
+    _downline.hidden=_is_last;
+}
 -(void)setAddressModel:(DD_AddressModel *)AddressModel WithDefaultID:(NSString *)defaultID
 {
     _AddressModel=AddressModel;
     _defaultID=defaultID;
-    addressName.text=_AddressModel.deliverName;
+    _addressName.text=_AddressModel.deliverName;
     
     if([_AddressModel.udaId isEqualToString:_defaultID])
     {
-        detailAddress.text=[[NSString alloc] initWithFormat:@"[默认地址]%@",_AddressModel.detailAddress];
+        _detailAddress.text=[[NSString alloc] initWithFormat:@"[默认地址]%@",_AddressModel.detailAddress];
     }else
     {
-        detailAddress.text=_AddressModel.detailAddress;
+        _detailAddress.text=_AddressModel.detailAddress;
     }
-    phoneNum.text=_AddressModel.deliverPhone;
+    _phoneNum.text=_AddressModel.deliverPhone;
     
 }
 #pragma mark - SomeAction
 -(void)alertAction
 {
     self.alertblock(@"alert");
+}
+
++ (CGFloat)heightWithModel:(DD_AddressModel *)model WithDefaultID:(NSString *)defaultID{
+    DD_AdressTableViewCell *cell = [[DD_AdressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"" WithBlock:nil];
+    [cell setAddressModel:model WithDefaultID:defaultID];
+    [cell.contentView layoutIfNeeded];
+    CGRect frame =  cell.downline.frame;
+    return frame.origin.y + frame.size.height;
 }
 #pragma mark - Other
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

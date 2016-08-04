@@ -13,11 +13,12 @@
  * 初始化方法
  * 传入code（支付回调code）9000表成功 反之不成功
  */
--(instancetype)initWithReturnCode:(NSString *)code WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithReturnCode:(NSString *)code WithTradeOrderCode:(NSString *)tradeOrderCode WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block;
 /**
  * 类型
  */
 __string(type);
+__string(tradeOrderCode);
 /**
  * 回调
  */

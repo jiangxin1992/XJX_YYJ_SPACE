@@ -9,5 +9,5 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_GoodsViewController : DD_BaseViewController
-
+__bool(noTabbar);
 @end
