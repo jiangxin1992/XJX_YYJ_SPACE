@@ -81,10 +81,6 @@
 }
 -(void)PrepareUI{
     
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"checkorder_title", @"") withmaxwidth:200];
 }
 #pragma mark - UIConfig
@@ -255,11 +251,7 @@
 }
 
 #pragma mark - SomeAction
-//返回
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 /**
  * 获取结算页面的订单个数
  */
@@ -366,7 +358,10 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"clear" WithBlock:^(NSString *type) {
+    
+//    returnCode
+//    out_trade_no
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
         //                            if(type)
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];

@@ -51,12 +51,7 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI
-{
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-}
+-(void)PrepareUI{}
 -(void)setTitle:(NSString *)title
 {
     self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:200];
@@ -91,32 +86,33 @@
         [cellview addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(cellview);
-            make.left.mas_equalTo(26);
+            make.left.mas_equalTo(kEdge);
             make.width.mas_equalTo([self getWeight:titlearr[i]]);
         }];
         
         UIButton *editBtn=[UIButton getCustomImgBtnWithImageStr:@"System_diagonal" WithSelectedImageStr:@"System_diagonal"];
         [cellview addSubview:editBtn];
+        editBtn.tag=200+i;
         [editBtn setEnlargeEdge:10];
-        editBtn.frame=CGRectMake(ScreenWidth-11-26, (41-11)/2.0f, 11, 11);
+        [editBtn addTarget:self action:@selector(editBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        editBtn.frame=CGRectMake(ScreenWidth-11-kEdge, (41-11)/2.0f, 11, 11);
         
         
-        CGFloat _width=ScreenWidth-5-11-26-15-26-[self getWeight:titlearr[i]];
+        CGFloat _width=ScreenWidth-5-11-kEdge-15-kEdge-[self getWeight:titlearr[i]];
         UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-        upline.frame=CGRectMake(0, (41-titleLabel.frame.size.height)/2.0f+titleLabel.frame.size.height, _width, 1);
+        upline.frame=CGRectMake(0, 41-((41-[self getHeight:titlearr[i]])/2.0f), _width, 1);
         if(i==3)
         {
             UIButton *choose_p=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:14.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
             [cellview addSubview:choose_p];
             choose_p.tag=100+i;
-            choose_p.frame=CGRectMake(26+[self getWeight:titlearr[i]]+15, (41-27)/2.0f, _width, 27);
+            choose_p.frame=CGRectMake(kEdge+[self getWeight:titlearr[i]]+15, 0, _width, 41);
             [choose_p addTarget:self action:@selector(chooseProvince) forControlEvents:UIControlEventTouchUpInside];
             if(_AddressModel)
             {
                 [choose_p setTitle:[dataarr objectAtIndex:i] forState:UIControlStateNormal];
             }
             [choose_p addSubview:upline];
-            
         }else
         {
             UITextField *textFiled=[[UITextField alloc] init];
@@ -125,7 +121,7 @@
             textFiled.font=[regular getFont:14.0f];
             textFiled.textColor=_define_black_color;
             textFiled.textAlignment=0;
-            textFiled.frame=CGRectMake(26+[self getWeight:titlearr[i]]+15, (41-27)/2.0f, _width, 27);
+            textFiled.frame=CGRectMake(kEdge+[self getWeight:titlearr[i]]+15, 0, _width, 41);
             if(_AddressModel)
             {
                 textFiled.text=[dataarr objectAtIndex:i];
@@ -141,7 +137,7 @@
     [_Default_btn addTarget:self action:@selector(DefaultAddress:) forControlEvents:UIControlEventTouchUpInside];
     [_Default_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lastview.mas_bottom).with.offset(0);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.width.mas_equalTo(174);
         make.height.mas_equalTo(57);
     }];
@@ -151,7 +147,7 @@
         _Default_btn.selected=_AddressModel.isDefault;
     }
     
-    UIButton *saveBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"保   存" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *saveBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"保   存" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:saveBtn];
     [saveBtn addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
     saveBtn.backgroundColor=_define_black_color;
@@ -166,6 +162,18 @@
 
 
 #pragma mark - SomeAction
+-(void)editBtnAction:(UIButton *)btn
+{
+    NSInteger _index=btn.tag-200;
+    if(_index==3)
+    {
+        [self chooseProvince];
+    }else
+    {
+        UITextField *textfiled=(UITextField *)[self.view viewWithTag:100+_index];
+        [textfiled becomeFirstResponder];
+    }
+}
 -(CGFloat )getWeight:(NSString *)str
 {
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:str WithFont:14.0f WithTextColor:nil WithSpacing:0];
@@ -173,11 +181,13 @@
     return titleLabel.frame.size.width;
 }
 
-//返回
--(void)backAction
+-(CGFloat )getHeight:(NSString *)str
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:str WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    [titleLabel sizeToFit];
+    return titleLabel.frame.size.height;
 }
+
 -(BOOL)checkEmpty
 {
     BOOL _have_empty=NO;

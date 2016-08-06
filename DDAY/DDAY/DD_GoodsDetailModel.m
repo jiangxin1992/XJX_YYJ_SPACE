@@ -71,7 +71,7 @@
         if(self.item.discountEnable)
         {
             
-            _timestr=[[NSString alloc] initWithFormat:@"￥%.1f 折 %@原价￥%.1f",[self.item.price floatValue],self.item.discount,[self.item.originalPrice floatValue]];
+            _timestr=[[NSString alloc] initWithFormat:@"￥%.1f  %@折 原价￥%.1f",[self.item.price floatValue],self.item.discount,[self.item.originalPrice floatValue]];
         }else
         {
             _timestr=[[NSString alloc] initWithFormat:@"￥%.1f",[self.item.originalPrice floatValue]];
@@ -80,7 +80,15 @@
     }else
     {
         //        发布中
-        _timestr=[[NSString alloc] initWithFormat:@"￥%.1f 折 %@原价￥%.1f",[self.item.price floatValue],self.item.discount,[self.item.originalPrice floatValue]];
+        if([self.item.discount integerValue])
+        {
+            _timestr=[[NSString alloc] initWithFormat:@"￥%.1f  %@折 原价￥%.1f",[self.item.price floatValue],self.item.discount,[self.item.originalPrice floatValue]];
+            
+        }else
+        {
+            _timestr=[[NSString alloc] initWithFormat:@"￥%.1f",[self.item.originalPrice floatValue]];
+        }
+        
     }
     return _timestr;
 }

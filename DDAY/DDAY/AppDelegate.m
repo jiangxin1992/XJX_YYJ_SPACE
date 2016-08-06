@@ -382,7 +382,12 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:[resultDic objectForKey:@"resultStatus"]];
+            
+            NSDictionary *dict=@{
+                                 @"returnCode":[resultDic objectForKey:@"resultStatus"]
+                                 ,@"out_trade_no":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
+                                 };
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
         }];
     }
     return YES;
@@ -391,12 +396,30 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
     if ([url.host isEqualToString:@"safepay"]) {
+        
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:[resultDic objectForKey:@"resultStatus"]];
+            NSDictionary *dict=@{
+                                 @"returnCode":[resultDic objectForKey:@"resultStatus"]
+                                 ,@"out_trade_no":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
+                                 };
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
         }];
     }
     return YES;
+}
+-(NSString *)get_out_trade_no_WithResult:(NSString *)result
+{
+    NSArray *array = [result componentsSeparatedByString:@"\""];
+    for (int i=0; i<array.count; i++) {
+        NSString *str=[array objectAtIndex:i];
+        if([str isEqualToString:@"&out_trade_no="])
+        {
+            return [array objectAtIndex:i+1];
+            break;
+        }
+    }
+    return @"";
 }
 
 @end

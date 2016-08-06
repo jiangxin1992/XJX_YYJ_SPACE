@@ -40,6 +40,7 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
 }
@@ -94,20 +95,21 @@
     }];
     [titleLabel sizeToFit];
     
+    CGFloat _jiange=(ScreenWidth-121*2)/3.0f;
     NSArray *titleArr=@[@"查看订单",@"其他发布品"];
     for (int i=0; i<titleArr.count; i++) {
-        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:titleArr[i] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:titleArr[i] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
         [self.view addSubview:actionbtn];
         actionbtn.backgroundColor=_define_black_color;
         [actionbtn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
             {
                 [actionbtn addTarget:self action:@selector(checkOrderAction) forControlEvents:UIControlEventTouchUpInside];
-                make.left.mas_equalTo(42);
+                make.left.mas_equalTo(_jiange);
             }else
             {
                 [actionbtn addTarget:self action:@selector(otherItemAction) forControlEvents:UIControlEventTouchUpInside];
-                make.right.mas_equalTo(-42);
+                make.right.mas_equalTo(-_jiange);
             }
             make.width.mas_equalTo(121);
             make.height.mas_equalTo(40);
@@ -125,7 +127,6 @@
     [[JX_AFNetworking alloc] GET:@"order/queryTradeOrderInfo.do" parameters:@{@"tradeOrderCode":_tradeOrderCode,@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            NSLog(@"111");
             NSArray *getArr=[DD_OrderModel getOrderModelArr:[data objectForKey:@"orders"]];
             if(getArr.count)
             {

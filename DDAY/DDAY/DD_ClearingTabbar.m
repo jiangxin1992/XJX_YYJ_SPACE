@@ -47,7 +47,7 @@
     UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:_numStr WithFont:14.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:numlabel];
     [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(self);
     }];
     [numlabel sizeToFit];

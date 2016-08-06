@@ -10,6 +10,7 @@
 
 @interface DD_UserInfoViewController : DD_BaseViewController
 -(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block;
+-(instancetype)initWithBlock:(void (^)(DD_UserModel *model))block;
 @property (nonatomic,strong) DD_UserModel*usermodel;
 @property (nonatomic,copy) void (^block)(DD_UserModel *usermodel);
 @end

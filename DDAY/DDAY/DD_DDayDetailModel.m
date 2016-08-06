@@ -19,7 +19,9 @@
     _DDAYModel.signEndTime=_DDAYModel.signEndTime/1000;
     _DDAYModel.saleStartTime=_DDAYModel.saleStartTime/1000;
     _DDAYModel.saleEndTime=_DDAYModel.saleEndTime/1000;
-//    [self testData:_DDAYModel WithType:0];
+    //    _DDAYModel.leftQuota=12;
+//        _DDAYModel.isJoin=NO;
+//    [self testData1:_DDAYModel WithType:4];
     return _DDAYModel;
 }
 +(void)testData:(DD_DDayDetailModel *)_DDAYModel WithType:(NSInteger )type
@@ -59,6 +61,47 @@
         _DDAYModel.signStartTime=nowTime-9;
         _DDAYModel.signEndTime=nowTime-6;
         _DDAYModel.saleStartTime=nowTime-3;
+        _DDAYModel.saleEndTime=nowTime;
+    }
+    
+}
++(void)testData1:(DD_DDayDetailModel *)_DDAYModel WithType:(NSInteger )type
+{
+    long nowTime=[regular date];
+    if(type==0)
+    {
+        //        报名开始之前
+        _DDAYModel.signStartTime=nowTime+300;
+        _DDAYModel.signEndTime=nowTime+600;
+        _DDAYModel.saleStartTime=nowTime+900;
+        _DDAYModel.saleEndTime=nowTime+1200;
+    }else if(type==1)
+    {
+        //        报名结束之前
+        _DDAYModel.signStartTime=nowTime;
+        _DDAYModel.signEndTime=nowTime+300;
+        _DDAYModel.saleStartTime=nowTime+600;
+        _DDAYModel.saleEndTime=nowTime+900;
+    }else if(type==2)
+    {
+        //        发布会开始之前
+        _DDAYModel.signStartTime=nowTime-300;
+        _DDAYModel.signEndTime=nowTime;
+        _DDAYModel.saleStartTime=nowTime+300;
+        _DDAYModel.saleEndTime=nowTime+600;
+    }else if(type==3)
+    {
+        //         发布中
+        _DDAYModel.signStartTime=nowTime-600;
+        _DDAYModel.signEndTime=nowTime-300;
+        _DDAYModel.saleStartTime=nowTime;
+        _DDAYModel.saleEndTime=nowTime+300;
+    }else if(type==4)
+    {
+        //        发布会结束
+        _DDAYModel.signStartTime=nowTime-900;
+        _DDAYModel.signEndTime=nowTime-600;
+        _DDAYModel.saleStartTime=nowTime-300;
         _DDAYModel.saleEndTime=nowTime;
     }
     

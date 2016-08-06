@@ -65,7 +65,6 @@
 }
 -(void)PrepareUI
 {
-    self.view.backgroundColor=[UIColor whiteColor];
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_detail_title", @"") withmaxwidth:200];
 }
 

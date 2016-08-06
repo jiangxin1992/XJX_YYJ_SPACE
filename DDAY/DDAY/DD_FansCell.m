@@ -12,7 +12,7 @@
 {
     UIImageView *head;
     UILabel *username;
-    UIImageView *isNew;
+//    UIImageView *isNew;
 }
 
 - (void)awakeFromNib {
@@ -24,42 +24,52 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        head=[[UIImageView alloc] init];
-        [self.contentView addSubview:head];
-        [head mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.top.mas_equalTo(5);
-            make.height.and.width.mas_equalTo(50);
-        }];
-        isNew=[[UIImageView alloc] init];
-        [self.contentView addSubview:isNew];
-        isNew.backgroundColor=[UIColor redColor];
-        [isNew mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.and.width.mas_equalTo(2);
-            make.left.mas_equalTo(head.mas_right);
-            make.top.mas_equalTo(5);
-        }];
-        
-        username=[[UILabel alloc] init];
-        [self.contentView addSubview:username];
-        username.textAlignment=0;
-        username.font=[regular getFont:13.0f];
-        username.textColor=[UIColor blackColor];
-        [username mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(head.mas_right).with.offset(10);
-            make.top.mas_equalTo(5);
-            make.height.mas_equalTo(head);
-            make.width.mas_equalTo(100);
-        }];
-        
+        [self UIConfig];
     }
     return self;
+}
+-(void)UIConfig
+{
+    //        isNew=[[UIImageView alloc] init];
+    //        [self.contentView addSubview:isNew];
+    //        isNew.backgroundColor=[UIColor redColor];
+    //        [isNew mas_makeConstraints:^(MASConstraintMaker *make) {
+    //            make.height.and.width.mas_equalTo(2);
+    //            make.left.mas_equalTo(head.mas_right);
+    //            make.top.mas_equalTo(5);
+    //        }];
+    
+    head=[UIImageView getCustomImg];
+    [self.contentView addSubview:head];
+    [head mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(kEdge);
+        make.height.width.mas_equalTo(40);
+    }];
+    
+    username=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:username];
+    [username mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(head.mas_right).with.offset(14);
+    }];
+    [username sizeToFit];
+    
+    UIView *line=[UIView getCustomViewWithColor:_define_black_color];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(3);
+        make.centerY.mas_equalTo(self.contentView);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(16);
+    }];
 }
 -(void)setFansModel:(DD_FansModel *)fansModel
 {
     _fansModel=fansModel;
     username.text=_fansModel.userName;
-    [head JX_loadImageUrlStr:_fansModel.userHead WithSize:200 placeHolderImageName:nil radius:25];
-    isNew.hidden=!_fansModel.isNew;
+    [head JX_loadImageUrlStr:_fansModel.userHead WithSize:200 placeHolderImageName:nil radius:20];
+//    isNew.hidden=!_fansModel.isNew;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

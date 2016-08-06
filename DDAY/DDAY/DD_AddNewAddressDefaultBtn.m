@@ -33,11 +33,11 @@
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(56, 0, 174-56, 57);
+    return CGRectMake(30, 0, 174-56, 57);
 }
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(26, (57-15)/2.0f, 15, 15);
+    return CGRectMake(0, (57-15)/2.0f, 15, 15);
 }
 
 @end

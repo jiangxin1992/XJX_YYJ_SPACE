@@ -36,6 +36,15 @@
     }
     return self;
 }
+-(instancetype)initWithBlock:(void (^)(NSString *type))block
+{
+    self=[super init];
+    if(self)
+    {
+        _block=block;
+    }
+    return self;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -46,7 +55,6 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:200];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(popAction)];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -123,13 +131,7 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-#pragma mark - SomeAction
 
--(void)popAction
-{
-    [_tabBar cancelTime];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated

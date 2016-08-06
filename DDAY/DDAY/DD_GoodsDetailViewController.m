@@ -89,12 +89,14 @@ __bool(isExpanded);
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
     
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
     
+    self.navigationItem.rightBarButtonItems=@[[[UIBarButtonItem alloc] initWithCustomView:shopBtn]
+                                              ,[[UIBarButtonItem alloc] initWithCustomView:shareBtn]
+                                              ];
+
     self.navigationItem.titleView=[regular returnNavView:@"单品" withmaxwidth:110];
 }
 #pragma mark - UIConfig
@@ -133,7 +135,7 @@ __bool(isExpanded);
         //    创建pageViewControler（活动图片浏览视图）
         _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         [container addSubview:_pageViewControler.view];
-        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-26*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
+        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
         }];
         imgvc.array=_colorModel.pics;
         imgvc.view.backgroundColor = [UIColor clearColor];
@@ -151,8 +153,8 @@ __bool(isExpanded);
         ManageView.backgroundColor=_define_light_gray_color;
         
         [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(26);
-            make.right.mas_equalTo(-26);
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(12);
             make.height.mas_equalTo(IsPhone6_gt?363:301);
         }];
@@ -394,11 +396,7 @@ __bool(isExpanded);
 
 
 #pragma mark - SomeAction
-//返回
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 //蒙板消失
 -(void)mengban_dismiss
 {
@@ -549,7 +547,10 @@ __bool(isExpanded);
     //    __string(sizeBriefPic);
     //    __long(sizeBriefPicHeight);
     //    __long(sizeBriefPicWidth);
+    
+    
     DD_ColorsModel * colorModel=[_DetailModel getColorModelNameWithID:_DetailModel.item.colorId];
+
     NSArray *_itemArr=@[@{
                             @"itemId":_DetailModel.item.itemId
                             ,@"itemName":_DetailModel.item.itemName
@@ -612,6 +613,11 @@ __bool(isExpanded);
     _designer.title=_DetailModel.designer.designerName;
     _designer.designerId=_DetailModel.designer.designerId;
     [self.navigationController pushViewController:_designer animated:YES];
+}
+//分享
+-(void)ShareAction
+{
+    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
 }
 //跳转购物车视图
 -(void)PushShopView

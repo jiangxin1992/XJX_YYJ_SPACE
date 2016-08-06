@@ -5,7 +5,7 @@
 //  Created by yyj on 16/5/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define hor_edge 26
+
 #define ver_edge 22
 
 #import "DD_GoodsDesignerView.h"
@@ -68,7 +68,7 @@
     [upView addSubview:_headImge];
     _headImge.userInteractionEnabled=NO;
     [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(hor_edge);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(ver_edge);
         make.width.and.height.mas_equalTo(50);
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
@@ -104,7 +104,7 @@
     guanzhu.backgroundColor=[UIColor blackColor];
     [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     [guanzhu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-hor_edge);
+        make.right.mas_equalTo(-kEdge);
         make.width.mas_equalTo(50);
         make.height.mas_equalTo(23);
         make.centerY.mas_equalTo(upView);
@@ -134,7 +134,7 @@
     [downView addSubview:_series_label];
     _series_label.backgroundColor=[UIColor blackColor];
     [_series_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(hor_edge);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(downView).with.offset(ver_edge);
         make.width.mas_equalTo(75);
         make.height.mas_equalTo(23);
@@ -157,8 +157,8 @@
     
     [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_series_label.mas_bottom).with.offset(ver_edge);
-        make.left.mas_equalTo(hor_edge);
-        make.right.mas_equalTo(-hor_edge);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(102);
         make.bottom.mas_equalTo(-ver_edge);
     }];

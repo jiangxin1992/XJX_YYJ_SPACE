@@ -44,19 +44,19 @@
 {
     freightTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"邮费：" WithFont:12 WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self addSubview:freightTitleLabel];
-    freightTitleLabel.frame=CGRectMake(26, 0, 100, 30);
+    freightTitleLabel.frame=CGRectMake(kEdge, 0, 100, 30);
     
     CGFloat _Freight=_dataArr.count*[_freight floatValue];
     UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%.0lf",_Freight] WithFont:12 WithTextColor:nil WithSpacing:0];
     [self addSubview:freightLabel];
-    freightLabel.frame=CGRectMake(ScreenWidth-26-100, 0, 100, 30);
+    freightLabel.frame=CGRectMake(ScreenWidth-kEdge-100, 0, 100, 30);
     
-    remarksView=[[UIView alloc] initWithFrame:CGRectMake(26,CGRectGetMaxY(freightLabel.frame)+5 , ScreenWidth-26*2, 1)];
+    remarksView=[[UIView alloc] initWithFrame:CGRectMake(kEdge,CGRectGetMaxY(freightLabel.frame)+5 , ScreenWidth-kEdge*2, 1)];
     [self addSubview:remarksView];
     remarksView.userInteractionEnabled=YES;
     [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
     
-    _webView=[[UIWebView alloc] initWithFrame:CGRectMake(0 ,0 , ScreenWidth-26*2, 1)];
+    _webView=[[UIWebView alloc] initWithFrame:CGRectMake(0 ,0 , ScreenWidth-kEdge*2, 1)];
     [remarksView addSubview:_webView];
     _webView.userInteractionEnabled=NO;
     _webView.delegate=self;
@@ -73,8 +73,8 @@
     [payView addSubview:middleLine];
     [middleLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
     }];
     
@@ -82,7 +82,7 @@
     [payView addSubview:payWay];
     [payWay mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(middleLine.mas_bottom).with.offset(0);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(40);
     }];
@@ -92,7 +92,7 @@
     [payView addSubview:pulldowBtn];
     [pulldowBtn addTarget:self action:@selector(showPayWayView:) forControlEvents:UIControlEventTouchUpInside];
     [pulldowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(payWay);
         make.height.mas_equalTo(9);
         make.width.mas_equalTo(17);
@@ -109,8 +109,8 @@
         iconBtn.tag=100+i;
         iconBtn.hidden=YES;
         [iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(26);
-            make.width.mas_equalTo(26);
+            make.left.mas_equalTo(kEdge);
+            make.width.mas_equalTo(kEdge);
             make.height.mas_equalTo(21);
             if(lastview)
             {
@@ -140,7 +140,7 @@
         selectBtn.tag=300+i;
         [selectBtn addTarget:self action:@selector(choosePayAction:) forControlEvents:UIControlEventTouchUpInside];
         [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-26);
+            make.right.mas_equalTo(-kEdge);
             make.centerY.mas_equalTo(iconBtn.mas_centerY);
             make.width.height.mas_equalTo(15);
         }];

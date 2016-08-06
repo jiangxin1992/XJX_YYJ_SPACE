@@ -5,7 +5,6 @@
 //  Created by yyj on 16/5/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define hor_edge 26
 #define ver_edge 22
 
 #import "DD_GoodsInformView.h"
@@ -101,7 +100,7 @@
     [upview addSubview:collect_btn];
     [collect_btn addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
     [collect_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(upview).with.offset(-(18+hor_edge));
+        make.right.mas_equalTo(upview).with.offset(-(18+kEdge));
         make.width.mas_equalTo(25.5);
         make.height.mas_equalTo(23);
         make.top.mas_equalTo(upview).with.offset(30);
@@ -114,7 +113,7 @@
         [upview addSubview:label];
         label.tag=100+i;
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(hor_edge);
+            make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
             make.height.mas_equalTo(ver_edge);
             if(titleLastView){
@@ -144,11 +143,11 @@
         [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(20);
-            make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(hor_edge);
+            make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(kEdge);
             if(lastview){
                 make.left.mas_equalTo(lastview.mas_right).with.offset(11);
             }else{
-                make.left.mas_equalTo(upview).with.offset(hor_edge);
+                make.left.mas_equalTo(upview).with.offset(kEdge);
             }
             if(i==_colorsArr.count-1)
             {
@@ -201,7 +200,7 @@
         make.width.mas_equalTo(75);
         make.height.mas_equalTo(23);
         make.top.mas_equalTo(ver_edge);
-        make.left.mas_equalTo(downView).with.offset(hor_edge);
+        make.left.mas_equalTo(downView).with.offset(kEdge);
     }];
 }
 -(void)loadWebview
@@ -216,8 +215,8 @@
     [downView addSubview:_web];
     [_web mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_type_label.mas_bottom).with.offset(11);
-        make.left.mas_equalTo(hor_edge);
-        make.right.mas_equalTo(-hor_edge);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(10);
         make.bottom.mas_equalTo(downView.mas_bottom).with.offset(-ver_edge);
     }];

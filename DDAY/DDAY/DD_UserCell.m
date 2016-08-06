@@ -129,7 +129,6 @@
             make.width.mas_equalTo(200);
             make.height.mas_equalTo(80);
         }];
-        NSLog(@"111");
     }
     return self;
 }

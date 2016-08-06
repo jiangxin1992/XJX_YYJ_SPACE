@@ -10,6 +10,9 @@
 
 @interface DD_DDAYDetailViewController : DD_BaseViewController
 -(instancetype)initWithModel:(DD_DDAYModel *)model WithBlock:(void (^)(NSString *type))block;
+
+-(instancetype)initWithBlock:(void (^)(NSString *type))block;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
 @property (nonatomic,strong) DD_DDAYModel *model;
 @end

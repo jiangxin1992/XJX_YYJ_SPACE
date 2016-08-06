@@ -107,7 +107,8 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"order" WithBlock:^(NSString *type) {
+    
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
         [self RequestData];
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];
@@ -123,13 +124,17 @@
  */
 -(void)CreateTableView
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight) style:UITableViewStyleGrouped];
+    
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
-    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;//    消除分割线
+    //    消除分割线
+    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
-    _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
-    _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+    }];
 }
 #pragma mark - RequestData
 -(void)RequestData

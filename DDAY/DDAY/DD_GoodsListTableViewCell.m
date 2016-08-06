@@ -30,7 +30,7 @@
     [self.contentView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(5);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.height.mas_equalTo(self.contentView);
         make.centerY.mas_equalTo(self.contentView);
     }];

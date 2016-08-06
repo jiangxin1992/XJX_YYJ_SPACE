@@ -60,7 +60,7 @@
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(15);
         make.centerY.mas_equalTo(self.contentView);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
     }];
     [selectBtn setEnlargeEdge:20];
     
@@ -87,7 +87,7 @@
     [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
         make.top.mas_equalTo(17);
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
     }];
     
     typeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
@@ -136,7 +136,7 @@
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
         make.bottom.mas_equalTo(imageBack);
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
     }];
     [numBtn setEnlargeEdge:20];
     

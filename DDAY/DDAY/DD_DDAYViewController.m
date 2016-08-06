@@ -48,6 +48,7 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
 }
@@ -68,6 +69,8 @@
     UIButton *_calendarBtn=[regular getBarCustomBtnWithImg:@"DDAY_Calendar" WithSelectImg:@"DDAY_Calendar" WithSize:CGSizeMake(25, 25)];
     [_calendarBtn addTarget:self action:@selector(PushCalendarView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:_calendarBtn];
+    
+   
     
 }
 #pragma mark - SomeBlock

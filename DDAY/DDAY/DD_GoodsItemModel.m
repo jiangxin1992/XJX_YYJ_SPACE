@@ -56,12 +56,12 @@
     _GoodsItemModel.otherItems=[DD_OtherItemModel getOtherItemModelArr:[dict objectForKey:@"otherItems"]];
     
     _GoodsItemModel.series=[DD_GoodSeriesModel getGoodSeriesModel:[dict objectForKey:@"series"]];
-    [self TextData:_GoodsItemModel];
+//    [self TextData:_GoodsItemModel];
     return _GoodsItemModel;
 }
 +(void)TextData:(DD_GoodsItemModel *)_GoodsItemModel
 {
-    _GoodsItemModel.itemBrief=@"改革开放，是1978年12月十一届三中全会起中国开始实行的对内改革、对外开放的政策。中国的对内改革首先从农村开始，1978年11月，安徽省凤阳县小岗村开始实行“农村家庭联产承包责任制”，拉开了中国对内改革的大幕；对外开放是中国的一项基本国策，中国的强国之路，是社会主义事业发展的强大动力。改革开放建立了社会主义市场经济体制。1992年南巡讲话发布中国改革进入了新的阶段。改革开放使中国发生了巨大的变化。1992年10月召开的党的十四大宣布新时期最鲜明特点是改革开放，中国改革进入新的改革时期。2013年中国进入全面深化改革新时期。";
+//    _GoodsItemModel.itemBrief=@"改革开放，是1978年12月十一届三中全会起中国开始实行的对内改革、对外开放的政策。中国的对内改革首先从农村开始，1978年11月，安徽省凤阳县小岗村开始实行“农村家庭联产承包责任制”，拉开了中国对内改革的大幕；对外开放是中国的一项基本国策，中国的强国之路，是社会主义事业发展的强大动力。改革开放建立了社会主义市场经济体制。1992年南巡讲话发布中国改革进入了新的阶段。改革开放使中国发生了巨大的变化。1992年10月召开的党的十四大宣布新时期最鲜明特点是改革开放，中国改革进入新的改革时期。2013年中国进入全面深化改革新时期。";
 //    已结束
 //    _GoodsItemModel.saleEndTime=[regular date]-3;
 //    _GoodsItemModel.saleStartTime=[regular date]-6;

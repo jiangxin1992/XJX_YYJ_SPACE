@@ -37,6 +37,7 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
     [self SomeBlock];

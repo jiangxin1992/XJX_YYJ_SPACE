@@ -188,8 +188,9 @@
  * 支付回调
  */
 -(void)payAction:(NSNotification *)not
-{
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:not.object WithTradeOrderCode:@"" WithType:@"detail_order" WithBlock:^(NSString *type) {
+{   
+    
+    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
         //                            if(type)
     }];
     [self.navigationController pushViewController:_DoneView animated:YES];

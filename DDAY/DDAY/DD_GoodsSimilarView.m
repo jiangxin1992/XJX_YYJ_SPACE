@@ -27,7 +27,7 @@
     [self addSubview:SimilarTitleLabel];
     SimilarTitleLabel.backgroundColor=_define_black_color;
     [SimilarTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(self).with.offset(22);
         make.width.mas_equalTo(75);
         make.height.mas_equalTo(23);
@@ -38,7 +38,7 @@
     }];
     
     UIImageView *lastView=nil;
-    CGFloat _width=(ScreenWidth-26*2-26)/2.0f;
+    CGFloat _width=(ScreenWidth-kEdge*2-kEdge)/2.0f;
     for (int i=0; i<_similarArr.count; i++) {
         DD_OrderItemModel *model=[_similarArr objectAtIndex:i];
         UIImageView *img=[UIImageView getCustomImg];
@@ -51,10 +51,10 @@
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(26);
+                make.left.mas_equalTo(lastView.mas_right).with.offset(kEdge);
             }else
             {
-                make.left.mas_equalTo(26);
+                make.left.mas_equalTo(kEdge);
                 make.bottom.mas_equalTo(self.mas_bottom).with.offset(-20);
             }
             make.top.mas_equalTo(SimilarTitleLabel.mas_bottom).with.offset(11);

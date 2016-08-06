@@ -67,10 +67,11 @@
 "user_order"="订单";
 "user_coupons"="我的优惠券";
 "user_consumption"="线下消费记录";
-"user_conference"="我参与的发布会";
+"user_conference"="参与发布会";
 "user_collection"="收藏";
 "user_contact_customer"="联系客服";
 "user_address_title"="收件地址";
+
 /**
  * 设置
  */
@@ -78,12 +79,13 @@
 "user_set_notice"="新消息通知";
 "user_set_clean"="清除缓存";
 "user_set_suggest"="建议与反馈";
-"user_set_about"="关于D-D-A-Y";
+"user_set_about"="关于 YCO Space";
 "user_set_logout"="退出当前账号";
+"user_set_information"="编辑个人资料";
 /**
  * 我得订单
  */
-"order_title"="我的订单";
+"order_title"="所有订单";
 "order_logistics"="查看物流";
 "order_detail"="订单详情";
 "order_refund_title"="退款";

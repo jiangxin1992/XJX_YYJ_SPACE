@@ -48,9 +48,6 @@
             break;
         }
     }
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
 
 }
 -(void)CreateTableView
@@ -63,12 +60,6 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     
-}
-#pragma mark - SomeAction
-//返回
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - TableViewDelegate

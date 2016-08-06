@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_BaseViewController : UIViewController
-
+-(void)hideBackNavBtn;
 @end

@@ -25,6 +25,7 @@
 #define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]
 #define _define_light_gray_color2 [UIColor colorWithHexString:@"EAEAEA"]
 /*************** SIZE ***************/
+#define kEdge 26 //统一边距样式
 #define kStatusBarHeight         20 //状态栏高度
 #define kNavigationBarHeight     44 //导航栏高度
 #define kNavHeight     64 //导航栏高度+状态栏高度

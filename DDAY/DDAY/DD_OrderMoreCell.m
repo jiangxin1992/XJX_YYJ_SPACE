@@ -46,8 +46,9 @@
         }else if(_OrderModel.orderStatus==1)
         {
             //待发货
-            _leftBtn.hidden=YES;
-            _rightBtn.hidden=YES;
+            _leftBtn.hidden=NO;
+            _rightBtn.hidden=NO;
+            
         }else if(_OrderModel.orderStatus==2)
         {
             //待收货

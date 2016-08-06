@@ -31,7 +31,7 @@
     [self.contentView addSubview:_addressName];
     [_addressName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_jiange);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.width.lessThanOrEqualTo(@200);
     }];
     [_addressName sizeToFit];
@@ -40,7 +40,7 @@
     [self.contentView addSubview:_alertBtn];
     [_alertBtn addTarget:self action:@selector(alertAction) forControlEvents:UIControlEventTouchUpInside];
     [_alertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(_addressName);
         make.width.height.mas_equalTo(24);
     }];
@@ -61,15 +61,15 @@
     [_detailAddress mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_addressName);
         make.top.mas_equalTo(_phoneNum.mas_bottom).with.offset(_jiange);
-        make.width.lessThanOrEqualTo(@(ScreenWidth-26*2));
+        make.width.lessThanOrEqualTo(@(ScreenWidth-kEdge*2));
     }];
     [_detailAddress sizeToFit];
     
     _downline=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:_downline];
     [_downline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
         make.top.mas_equalTo(_detailAddress.mas_bottom).with.offset(_jiange);
     }];

@@ -59,7 +59,7 @@
     [self addSubview:_nameLabel];
     [_nameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_jianju);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
     }];
     [_nameLabel sizeToFit];
     
@@ -67,7 +67,7 @@
     [self addSubview:addressImg];
     [addressImg mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLabel.mas_right).with.offset(20);
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
         make.width.mas_equalTo(20.5);
         make.height.mas_equalTo(27);
         make.centerY.mas_equalTo(_nameLabel);
@@ -85,11 +85,11 @@
     _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.detailAddress WithFont:12.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_addressLabel];
     _addressLabel.numberOfLines=2;
-    _addressLabel.preferredMaxLayoutWidth = ScreenWidth-26*2;
+    _addressLabel.preferredMaxLayoutWidth = ScreenWidth-kEdge*2;
     [_addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLabel);
         make.top.mas_equalTo(_phoneLabel.mas_bottom).with.offset(_jianju);
-        make.right.mas_equalTo(-26);
+        make.right.mas_equalTo(-kEdge);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(-_jianju);
     }];
     [_addressLabel sizeToFit];
@@ -98,8 +98,8 @@
     UIView *dibu=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:dibu];
     [dibu mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
         make.bottom.mas_equalTo(0);
     }];
@@ -138,10 +138,10 @@
 }
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(26+22+15, 0, 100, 39);
+    return CGRectMake(kEdge+22+15, 0, 100, 39);
 }
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(26, (39-22)/2.0f, 22, 22);
+    return CGRectMake(kEdge, (39-22)/2.0f, 22, 22);
 }
 @end

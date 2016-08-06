@@ -51,8 +51,8 @@
     UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:upLine];
     [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(5);
         make.top.mas_equalTo(IsPhone6_gt?31:18);
     }];
@@ -61,7 +61,7 @@
     [self addSubview:subtract];
     [subtract addTarget:self action:@selector(subtractAction) forControlEvents:UIControlEventTouchUpInside];
     [subtract mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.width.and.height.mas_equalTo(22);
         make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
     }];
@@ -89,8 +89,8 @@
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
         make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
     }];
@@ -102,8 +102,8 @@
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
-        make.right.mas_equalTo(-26);
-        make.left.mas_equalTo(26);
+        make.right.mas_equalTo(-kEdge);
+        make.left.mas_equalTo(kEdge);
         make.height.mas_equalTo(45);
     }];
 }

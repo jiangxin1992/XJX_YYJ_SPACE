@@ -51,10 +51,6 @@
     _defaultID=@"";
 }
 -(void)PrepareUI{
-//    210
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_address_title", @"") withmaxwidth:200];
 }
@@ -84,7 +80,7 @@
 -(void )CreateFootView
 {
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    UIButton *_AddressBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"添加新地址" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *_AddressBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"添加新地址" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [footView addSubview:_AddressBtn];
     _AddressBtn.backgroundColor=_define_black_color;
     [_AddressBtn addTarget:self action:@selector(pushNewAddress) forControlEvents:UIControlEventTouchUpInside];
@@ -117,11 +113,7 @@
     
 }
 #pragma mark - SomeAction
-//返回
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 -(DD_AddressModel *)getDefaultModel
 {
 //    DD_AddressModel *_AddressModel=[_AddressModel]

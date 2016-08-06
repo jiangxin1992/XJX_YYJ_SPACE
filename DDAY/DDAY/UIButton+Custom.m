@@ -76,11 +76,5 @@
 {
     return [UIButton buttonWithType:UIButtonTypeCustom];
 }
-+(UIButton *)getBackBtn
-{
-    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
-    backBtn.frame=CGRectMake(0, 0, 11, 19);
-    [backBtn setEnlargeEdge:20];
-    return backBtn;
-}
+
 @end

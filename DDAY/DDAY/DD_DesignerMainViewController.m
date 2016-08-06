@@ -33,6 +33,7 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
 }
@@ -44,6 +45,7 @@
 }
 -(void)PrepareUI
 {
+    
     UIView *navview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 44)];
     for (int i=0; i<2; i++) {
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,6 +70,7 @@
     dibu=[[UIView alloc] initWithFrame:_rect_left];
     dibu.backgroundColor=[UIColor blackColor];
     [navview addSubview:dibu];
+    
 }
 #pragma mark - UIConfig
 

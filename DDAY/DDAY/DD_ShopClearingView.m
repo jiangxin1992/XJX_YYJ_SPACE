@@ -54,7 +54,7 @@
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(15);
         make.centerY.mas_equalTo(self);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
     }];
     [selectBtn setEnlargeEdge:20];
 

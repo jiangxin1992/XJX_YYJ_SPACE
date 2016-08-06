@@ -53,6 +53,7 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
 }
@@ -223,7 +224,7 @@
             _mengban_size_Height=IsPhone6_gt?185:152;
         }else
         {
-            CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-26*2);
+            CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
             _mengban_size_Height=IsPhone6_gt?(208+_imgHeight):(165+_imgHeight);
         }
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);

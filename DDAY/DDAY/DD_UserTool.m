@@ -20,6 +20,7 @@
              ,@"conference":NSLocalizedString(@"user_conference", @"")
              ,@"collection":NSLocalizedString(@"user_collection", @"")
              ,@"customer":NSLocalizedString(@"user_contact_customer", @"")
+             ,@"set":NSLocalizedString(@"user_set_title", @"")
              };
 }
 +(NSArray *)getUserListArr
@@ -29,12 +30,11 @@
     if(_usertype==0||_usertype==3)
     {
 //        3/0 未登录或普通用户
-        return @[@"order"
-                 ,@"coupons"
-                 ,@"consumption"
-                 ,@"conference"
+
+        return @[@"conference"
                  ,@"collection"
-                 ,@"customer"
+                 ,@"order"
+                 ,@"set"
                  ];
     }else if(_usertype==2)
     {
@@ -42,23 +42,20 @@
         return @[@"homepage"
                  ,@"fans"
                  ,@"order"
-                 ,@"coupons"
-                 ,@"consumption"
                  ,@"conference"
                  ,@"collection"
-                 ,@"customer"];
+                 ,@"set"
+                 ];
     }else
     {
 //        4 达人
         return @[@"homepage"
-                 ,@"order"
-                 ,@"coupons"
-                 ,@"consumption"
                  ,@"conference"
+                 ,@"order"
+                 ,@"set"
                  ,@"collection"
-                 ,@"customer"];
+                 ];
     }
-    
 }
 
 @end

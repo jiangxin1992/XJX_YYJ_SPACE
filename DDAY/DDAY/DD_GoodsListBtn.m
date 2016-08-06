@@ -33,7 +33,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(5);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.height.mas_equalTo(28);
         make.centerY.mas_equalTo(self);
     }];
@@ -46,7 +46,7 @@
         [btn setImage:[UIImage imageNamed:@"System_Add"] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"System_Subtract"] forState:UIControlStateSelected];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-26);
+            make.right.mas_equalTo(-kEdge);
             make.height.width.mas_equalTo(18);
             make.centerY.mas_equalTo(self);
         }];
@@ -71,7 +71,7 @@
         btn.selected=NO;
         [view mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(5);
-            make.left.mas_equalTo(26);
+            make.left.mas_equalTo(kEdge);
             make.height.mas_equalTo(28);
             make.centerY.mas_equalTo(self);
         }];
@@ -81,7 +81,7 @@
         btn.selected=YES;
         [view mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(5);
-            make.left.mas_equalTo(26);
+            make.left.mas_equalTo(kEdge);
             make.height.mas_equalTo(self);
             make.centerY.mas_equalTo(self);
         }];

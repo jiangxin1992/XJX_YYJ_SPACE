@@ -35,8 +35,19 @@
             }
         }
     }
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
 }
-
+-(void)hideBackNavBtn
+{
+    self.navigationItem.leftBarButtonItem=nil;
+}
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

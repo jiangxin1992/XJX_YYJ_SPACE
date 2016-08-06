@@ -6,11 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
+#import "DD_UserInfoViewController.h"
 #import "DD_SetTool.h"
 #import "DD_SetViewController.h"
 #import "DD_SuggestViewController.h"
 #import "DD_UserViewController.h"
-#import "DD_UserCell.h"
+#import "DD_SetCell.h"
+#import "DD_UserInfo_AlertPSWViewController.h"
 @interface DD_SetViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -95,6 +97,15 @@
     }];
     
 }
+/**
+ * 跳转修改密码界面
+ */
+-(void)alertPSW
+{
+    DD_UserInfo_AlertPSWViewController *_AlertPSW=[[DD_UserInfo_AlertPSWViewController alloc] init];
+    _AlertPSW.title=[_datadict objectForKey:@"alertPSW"];
+    [self.navigationController pushViewController:_AlertPSW animated:YES ];
+}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
@@ -113,7 +124,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 50;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -137,59 +148,48 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-
-    if([[_dataArr objectAtIndex:indexPath.section] isEqualToString:@"clean"])
-    {
-        //获取到数据以后
-        static NSString *cellid=@"cell_title";
-        DD_UserCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-        if(!cell)
-        {
-            cell=[[DD_UserCell alloc] initWithF_titleStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-        }
-        cell.f_title=[[NSString alloc] initWithFormat:@"%@ M",[regular getSize]];
-        cell.title=[_datadict objectForKey:[_dataArr objectAtIndex:indexPath.section]];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
-    }
+   
     //获取到数据以后
-    static NSString *cellid=@"cell_user";
-    DD_UserCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    static NSString *cellid=@"cell_title";
+    DD_SetCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_UserCell alloc] initWithTitleStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_SetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.title=[_datadict objectForKey:[_dataArr objectAtIndex:indexPath.section]];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSInteger _index=indexPath.section;
     if(_index==0)
     {
-//        新消息通知
-        [regular pushSystem];
+//    编辑个人资料
+        [self.navigationController pushViewController:[[DD_UserInfoViewController alloc] initWithBlock:nil] animated:YES];
         
     }else if(_index==1)
     {
-//        清除缓存
-        [self ClearCache];
+//        修改密码
+        [self alertPSW];
+
     }else if(_index==2)
-    {
-//        建议与反馈
-        [self.navigationController pushViewController:[[DD_SuggestViewController alloc] init] animated:YES];
-    }else if(_index==3)
-    {
-//        关于dday
-    }else if(_index==4)
     {
 //        退出当前账号
         [self logout];
+    }else if(_index==3)
+    {
+//        关于dday
+        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    }else if(_index==4)
+    {
+//        清除缓存
+        [self ClearCache];
     }
+    
 }
 
 //section头部间距

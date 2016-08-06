@@ -11,6 +11,7 @@
 @implementation DD_UserInfoTool
 +(NSDictionary *)getUserInfoListMap
 {
+    
     return @{
              @"head":NSLocalizedString(@"user_info_head", @"")
              ,@"nickname":NSLocalizedString(@"user_info_nickname", @"")
@@ -20,6 +21,7 @@
              ,@"address":NSLocalizedString(@"user_info_address", @"")
              ,@"alertPSW":NSLocalizedString(@"user_info_alertPSW", @"")
              };
+    
 }
 +(NSArray *)getUserInfoListArr
 {

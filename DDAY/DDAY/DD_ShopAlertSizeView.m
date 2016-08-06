@@ -58,8 +58,8 @@
     UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:upLine];
     [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(5);
         make.top.mas_equalTo(IsPhone6_gt?31:18);
     }];
@@ -101,7 +101,7 @@
                 make.left.mas_equalTo(lastView.mas_right).with.offset(15);
             }else
             {
-                make.left.mas_equalTo(26);
+                make.left.mas_equalTo(kEdge);
             }
             make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
             make.width.mas_equalTo(41);
@@ -113,13 +113,13 @@
     UIImageView *sizeBriefImg=nil;
     if(_SizeAlertModel.sizeBriefPic&&![_SizeAlertModel.sizeBriefPic isEqualToString:@""])
     {
-        CGFloat _imgHeight=(((CGFloat)_SizeAlertModel.sizeBriefPicHeight)/((CGFloat)_SizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-26*2);
+        CGFloat _imgHeight=(((CGFloat)_SizeAlertModel.sizeBriefPicHeight)/((CGFloat)_SizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
         sizeBriefImg=[UIImageView getCustomImg];
         [self addSubview:sizeBriefImg];
         [sizeBriefImg JX_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(26);
-            make.right.mas_offset(-26);
+            make.left.mas_offset(kEdge);
+            make.right.mas_offset(-kEdge);
             make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
             make.height.mas_offset(_imgHeight);
         }];
@@ -129,8 +129,8 @@
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
         if(sizeBriefImg)
         {
@@ -148,8 +148,8 @@
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
-        make.right.mas_equalTo(-26);
-        make.left.mas_equalTo(26);
+        make.right.mas_equalTo(-kEdge);
+        make.left.mas_equalTo(kEdge);
         make.height.mas_equalTo(45);
     }];
 }

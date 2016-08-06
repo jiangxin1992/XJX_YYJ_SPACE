@@ -60,10 +60,11 @@
     [self addSubview:rightBtn];
     rightBtn.frame=CGRectMake(ScreenWidth/2.0f, 1, ScreenWidth/2.0f, ktabbarHeight-1);
     rightBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+    [rightBtn setAdjustsImageWhenHighlighted:NO];
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
-
+    
 }
 
 #pragma mark - SetState
@@ -220,8 +221,10 @@
         
     }else if([[self getState] isEqualToString:@"beforeSaleEnd"])
     {
-        _block(@"enter_meet");
-        
+        if(_detailModel.isJoin)
+        {
+            _block(@"enter_meet");
+        }
     }else if([[self getState] isEqualToString:@"afterSaleEnd"])
     {
         if(_detailModel.isJoin)

@@ -42,8 +42,8 @@
     UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_fabric", nil) WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
     [backBtn addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(26);
-        make.right.mas_equalTo(-26);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.top.and.bottom.mas_equalTo(0);
     }];
     

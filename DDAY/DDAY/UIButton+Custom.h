@@ -26,8 +26,4 @@
  * 创建自定义 btn
  */
 +(UIButton *)getCustomBtn;
-/**
- * 返回返回按钮
- */
-+(UIButton *)getBackBtn;
 @end

@@ -85,7 +85,6 @@
                 }
                 [_dataArr addObjectsFromArray:modelArr];
                 [_tableview reloadData];
-                _block(@"reset_is_new");
             }else
             {
             }
@@ -105,7 +104,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

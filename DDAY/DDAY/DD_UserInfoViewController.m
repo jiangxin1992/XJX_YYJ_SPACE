@@ -32,7 +32,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
-    [self UIConfig];
+    [self CreateTableView];
+    if(_usermodel)
+    {
+        [_tableview reloadData];
+        
+    }else
+    {
+        [self RequestData];
+    }
+    
+    
 }
 #pragma mark - 初始化
 -(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block
@@ -42,6 +52,15 @@
     {
         _block=block;
         _usermodel=usermodel;
+    }
+    return self;
+}
+-(instancetype)initWithBlock:(void (^)(DD_UserModel *model))block
+{
+    self=[super init];
+    if(self)
+    {
+        _block=block;
     }
     return self;
 }
@@ -59,18 +78,32 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_info_title", @"") withmaxwidth:200];
-    
-    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
+}
+-(void)RequestData
+{
+    [[JX_AFNetworking alloc] GET:@"user/queryUserInfo.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            _usermodel=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
+            if(_usermodel)
+            {
+                if([_usermodel.userType integerValue]!=[DD_UserModel getUserType])
+                {
+                    [regular UpdateRoot];
+                }
+                [_tableview reloadData];
+                //                    [self RequestNewFansStatus];
+            }
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
 }
 #pragma mark - SomeAction
-//返回
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 /**
  * 跳转地址管理界面
  */
@@ -258,10 +291,7 @@
     }];
 }
 #pragma mark - UIConfig
--(void)UIConfig
-{
-    [self CreateTableView];
-}
+
 -(void)CreateTableView
 {
     _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight) style:UITableViewStyleGrouped];

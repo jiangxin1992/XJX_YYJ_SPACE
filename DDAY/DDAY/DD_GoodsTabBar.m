@@ -27,8 +27,8 @@
     [self addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(5);
-        make.left.mas_offset(26);
-        make.right.mas_offset(-26);
+        make.left.mas_offset(kEdge);
+        make.right.mas_offset(-kEdge);
         make.top.mas_offset(0);
     }];
     
@@ -38,11 +38,10 @@
     [buyBtn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
     [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(46);
-        make.left.mas_equalTo(26);
+        make.left.mas_equalTo(kEdge);
         make.width.mas_equalTo(182);
         make.top.mas_equalTo(view.mas_bottom).with.offset(15);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(-22);
-        NSLog(@"111");
     }];
     
 }

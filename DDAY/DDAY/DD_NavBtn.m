@@ -66,14 +66,19 @@
 {
     if(_isNormal)
     {
-        return CGRectMake((44-_size.width)/2.0f ,(44-_size.height)/2.0f ,_size.width ,_size.height );
+        return CGRectMake((44-_size.width)/2.0f ,(44-_size.height)/2.0f ,_size.width ,_size.height);
+        
     }else
     {
+        CGFloat _Offset=((44-_size.width)/2.0f)-16;
         if(_isLeft)
         {
-            return CGRectMake(((44-_size.width)/2.0f)-16,(44-_size.height)/2.0f , _size.width, _size.height);
+//            [self setEnlargeEdgeWithTop:0 right:-_Offset bottom:0 left:((44-_size.width)/2.0f)-16+_Offset];
+            return CGRectMake(_Offset,(44-_size.height)/2.0f , _size.width, _size.height);
+            
         }else
         {
+//            [self setEnlargeEdgeWithTop:0 right:+_Offset bottom:0 left:((44-_size.width)/2.0f)-16-_Offset];
             return CGRectMake(16+((44-_size.width)/2.0f),(44-_size.height)/2.0f , _size.width, _size.height);
         }
     }

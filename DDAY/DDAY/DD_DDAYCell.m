@@ -101,10 +101,11 @@
     _ApplyBtn.backgroundColor=_define_black_color;
     if(_DDAYModel.isJoin)
     {
-        [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
+        [_ApplyBtn setTitle:@"已  成  功  报  名" forState:UIControlStateNormal];
     }else
     {
-        [_ApplyBtn setTitle:@"已  成  功  报  名" forState:UIControlStateNormal];
+        [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
+        
     }
     _restLabel.hidden=NO;
 }
