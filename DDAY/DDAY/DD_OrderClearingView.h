@@ -12,8 +12,8 @@
 /**
  * 初始化方法
  */
--(instancetype)initWithFrame:(CGRect)frame WithOrderDetailInfoModel:(DD_OrderDetailInfoModel *)orderInfo Withfreight:(CGFloat )freight WithCountPrice:(NSString *)subTotal WithBlock:(void (^)(NSString *type,CGFloat height))block;
--(void)setRemarksWithWebView:(NSString *)content;
+-(instancetype)initWithOrderDetailInfoModel:(DD_OrderDetailInfoModel *)orderInfo Withfreight:(CGFloat )freight WithCountPrice:(NSString *)subTotal WithBlock:(void (^)(NSString *type,CGFloat height))block;
+//-(void)setRemarksWithWebView:(NSString *)content;
 /**
  * 小计，不包括运费
  */

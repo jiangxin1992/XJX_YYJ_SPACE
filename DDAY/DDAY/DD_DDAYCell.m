@@ -73,12 +73,11 @@
         }];
         [regular setBorder:backview];
         
-        _backImg=[[UIImageView alloc] init];
+        _backImg=[UIImageView getCustomImg];
         [backview addSubview:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(15, 15, 15, 15));
         }];
-        _backImg.contentMode=UIViewContentModeScaleAspectFit;
         
     }
     return self;

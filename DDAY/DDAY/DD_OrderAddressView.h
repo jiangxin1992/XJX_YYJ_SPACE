@@ -13,7 +13,7 @@
 /**
  * 初始化方法
  */
--(instancetype)initWithFrame:(CGRect)frame WithOrderDetailInfoModel:(DD_OrderDetailModel *)_OrderDetailModel WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithOrderDetailInfoModel:(DD_OrderDetailModel *)_OrderDetailModel WithBlock:(void (^)(NSString *type))block;
 /**
  * 更新
  */

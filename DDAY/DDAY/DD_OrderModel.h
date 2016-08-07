@@ -83,6 +83,10 @@ __string(seriesName);
  */
 __string(totalAmount);
 /**
+ * 运费
+ */
+__long(allFreight);
+/**
  * 订单号
  */
 __string(tradeOrderCode);

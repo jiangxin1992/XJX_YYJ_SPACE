@@ -11,28 +11,26 @@
 @implementation DD_ShopCell
 {
     UIButton *selectBtn;//选中
-    UIImageView *itemImg;//图片
+    UIImageView *_itemImg;//图片
     
-    UILabel *itemNameLabel;//商品描述
-    UILabel *typeLabel;//商品类型
-    UILabel *priceLabel;//商品价格
+    UILabel *_itemNameLabel;//商品描述
+
+    UILabel *_priceLabel;//商品价格
     
-    UIView *colorView;//商品颜色
+    UIView *_colorView;//商品颜色
     
-    UIButton *sizeNameBtn;//商品尺寸按钮
-    UIButton *numBtn;//商品数量按钮
+    UIButton *_sizeNameBtn;//商品尺寸按钮
+    UIButton *_numBtn;//商品数量按钮
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath WithIsInvalid:(BOOL)isInvalid WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        _isInvalid=isInvalid;
-        _indexPath=indexPath;
         _clickblock=block;
         [self SomePrepare];
         [self UIConfig];
@@ -73,72 +71,65 @@
     }];
     [regular setBorder:imageBack];
     
-//    款式照片
-    itemImg=[UIImageView getCustomImg];
-    [imageBack addSubview:itemImg];
-    [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
+    //    款式照片
+    _itemImg=[UIImageView getCustomImg];
+    [imageBack addSubview:_itemImg];
+    [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
     }];
     
-//    款式信息
-    itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:itemNameLabel];
-    [itemNameLabel sizeToFit];
-    [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    //    款式信息
+    _itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:_itemNameLabel];
+    _itemNameLabel.numberOfLines=2;
+    [_itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
         make.top.mas_equalTo(17);
         make.right.mas_equalTo(-kEdge);
+        //        make.right.mas_equalTo(-kEdge);
     }];
+    [_itemNameLabel sizeToFit];
     
-    typeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:typeLabel];
-    [typeLabel sizeToFit];
-    [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(0);
-        make.left.mas_equalTo(itemNameLabel);
-        make.right.mas_equalTo(itemNameLabel);
+    _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:_sizeNameBtn];
+    [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.left.mas_equalTo(_itemNameLabel);
     }];
+    [_sizeNameBtn setEnlargeEdge:20];
     
-    priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
-    [self.contentView addSubview:priceLabel];
-    [priceLabel sizeToFit];
-    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(typeLabel.mas_bottom).with.offset(15);
-        make.left.mas_equalTo(itemNameLabel);
-        make.right.mas_equalTo(itemNameLabel);
+    _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    [self.contentView addSubview:_numBtn];
+    [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(24);
+        make.width.mas_equalTo(80);
+        make.bottom.mas_equalTo(imageBack);
+        make.right.mas_equalTo(-kEdge);
     }];
-
+    [_numBtn setEnlargeEdge:20];
     
-    colorView=[UIView getCustomViewWithColor:nil];
-    [self.contentView addSubview:colorView];
-    [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(priceLabel.mas_bottom).with.offset(11);
-        make.left.mas_equalTo(itemNameLabel);
+    _colorView=[UIView getCustomViewWithColor:nil];
+    [self.contentView addSubview:_colorView];
+    [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.top.mas_equalTo(_priceLabel.mas_bottom).with.offset(11);
+        make.bottom.mas_equalTo(_sizeNameBtn.mas_top).with.offset(-9);
+        make.left.mas_equalTo(_itemNameLabel);
         make.width.mas_equalTo(32);
         make.height.mas_equalTo(9);
     }];
     
-    sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
-    [self.contentView addSubview:sizeNameBtn];
-    [sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
-    [sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(24);
-        make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
-        make.left.mas_equalTo(itemNameLabel);
-    }];
-    [sizeNameBtn setEnlargeEdge:20];
     
-    numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
-    [self.contentView addSubview:numBtn];
-    [numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
-    [numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(24);
-        make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
-        make.right.mas_equalTo(-kEdge);
+    _priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    [self.contentView addSubview:_priceLabel];
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.top.mas_equalTo(_typeLabel.mas_bottom).with.offset(15);
+        make.bottom.mas_equalTo(_colorView.mas_top).with.offset(-11);
+        make.left.mas_equalTo(_itemNameLabel);
+        //        make.right.mas_equalTo(_itemNameLabel);
     }];
-    [numBtn setEnlargeEdge:20];
+    [_priceLabel sizeToFit];
     
     //    失效
     if(_isInvalid)
@@ -170,27 +161,26 @@
     
     if(ItemModel.pics.count)
     {
-        [itemImg JX_loadImageUrlStr:[ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+        [_itemImg JX_loadImageUrlStr:[ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
     }
-    colorView.backgroundColor=[UIColor colorWithHexString:_ItemModel.colorCode];
-    itemNameLabel.text=ItemModel.itemName;
-    typeLabel.text=ItemModel.categoryName;
+    _colorView.backgroundColor=[UIColor colorWithHexString:_ItemModel.colorCode];
+    _itemNameLabel.text=ItemModel.itemName;
     
-    [sizeNameBtn setTitle:ItemModel.sizeName forState:UIControlStateNormal];
-    [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ItemModel.number] forState:UIControlStateNormal];
+    [_sizeNameBtn setTitle:ItemModel.sizeName forState:UIControlStateNormal];
+    [_numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ItemModel.number] forState:UIControlStateNormal];
     
     if(ItemModel.saleEndTime>[regular date])
     {
-        priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
+        _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
     }else
     {
         if(ItemModel.discountEnable)
         {
-            priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
+            _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
             
         }else
         {
-            priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ItemModel.originalPrice];
+            _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ItemModel.originalPrice];
         }
         
     }

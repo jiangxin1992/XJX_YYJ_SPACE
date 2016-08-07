@@ -48,7 +48,6 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
-    [self RequestData];
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -72,7 +71,18 @@
 -(void)UIConfig
 {
     [self CreateTableView];
+    [self MJRefresh];
     [self CreateTabbar];
+}
+#pragma mark - MJRefresh
+-(void)MJRefresh
+{
+    _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        [self RequestData];
+    }];
+    
+    [_tableview.header beginRefreshing];
 }
 /**
  * 创建自定义tabbar
@@ -342,13 +352,19 @@
             _shopModel=[DD_ShopModel getShopModel:data];//解析数据
             _tabbar.shopModel=_shopModel;
             [self updateTabbarState];
+            [_tableview.header endRefreshing];
+            [_tableview.footer endRefreshing];
             
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
+            [_tableview.header endRefreshing];
+            [_tableview.footer endRefreshing];
         }
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
+        [_tableview.header endRefreshing];
+        [_tableview.footer endRefreshing];
     }];
 }
 
@@ -553,7 +569,7 @@
         if(!cell)
         {
             
-            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid cellForRowAtIndexPath:indexPath WithIsInvalid:NO WithBlock:^(NSString *type, NSIndexPath *indexPath) {
+            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:^(NSString *type, NSIndexPath *indexPath) {
                 if([type isEqualToString:@"select"])
                 {
                     //                    select
@@ -587,7 +603,7 @@
         DD_ShopCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid cellForRowAtIndexPath:indexPath WithIsInvalid:YES WithBlock:nil];
+            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
         }
         cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         cell.contentView.backgroundColor=_define_backview_color;

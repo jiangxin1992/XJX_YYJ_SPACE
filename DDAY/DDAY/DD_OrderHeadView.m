@@ -14,12 +14,14 @@
     UILabel *orderIDLabel;
 }
 
--(instancetype)initWithFrame:(CGRect)frame WithOrderModel:(DD_OrderModel *)orderModel
+-(instancetype)initWithFrame:(CGRect)frame WithOrderModel:(DD_OrderModel *)orderModel WithSection:(NSInteger )Section WithBlock:(void(^)(NSString *type,NSInteger Section))block
 {
     self=[super initWithFrame:frame];
     if(self)
     {
+        _Section=Section;
         _orderModel=orderModel;
+        _block=block;
         [self SomePrepare];
         [self UIConfig];
         [self SetState];
@@ -37,31 +39,56 @@
 -(void)PrepareUI{}
 #pragma mark - UIConfig
 -(void)UIConfig{
-    self.backgroundColor = [UIColor clearColor];
-    UIView *backview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 38)];
-    [self addSubview:backview];
-    backview.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
+    self.userInteractionEnabled=YES;
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
     
-    orderIDLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 200, 38)];
-    [backview addSubview:orderIDLabel];
-    orderIDLabel.textAlignment=0;
+    UIView *leftLine=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:leftLine];
+    [leftLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.centerY.mas_equalTo(self);
+        make.height.mas_equalTo(16);
+        make.width.mas_equalTo(3);
+    }];
     
-    orderIDLabel.textColor=[UIColor blackColor];
-    orderIDLabel.font=[regular getFont:13.0f];
+    orderIDLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:orderIDLabel];
+    [orderIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(leftLine.mas_right).with.offset(5);
+        make.centerY.mas_equalTo(self);
+    }];
+    [orderIDLabel sizeToFit];
+
     
-    stateLabel=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-110, 0, 100, 38)];
-    [backview addSubview:stateLabel];
-    stateLabel.textAlignment=2;
-    stateLabel.textColor=[UIColor blackColor];
-    stateLabel.font=[regular getFont:13.0f];
+    stateLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:stateLabel];
+    [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEdge);
+        make.centerY.mas_equalTo(self);
+    }];
+    [stateLabel sizeToFit];
     
+    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:downLine];
+    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self);
+        make.height.mas_equalTo(1);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+    }];
+    
+}
+-(void)clickAction
+{
+    _block(@"click",_Section);
 }
 #pragma mark - SetState
 -(void)SetState
 {
     if(_orderModel.isPay)
     {
-        orderIDLabel.text=[[NSString alloc] initWithFormat:@"子订单号:%@",_orderModel.subOrderCode];
+        orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号:%@",_orderModel.subOrderCode];
     }else
     {
         orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号:%@",_orderModel.tradeOrderCode];

@@ -28,9 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _imgv = [[UIImageView alloc] init];
+    _imgv = [UIImageView getCustomImg];
     [self.view addSubview:_imgv];
-    _imgv.contentMode=UIViewContentModeScaleAspectFit;
     CGFloat _w=IsPhone6_gt?20:16;
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.top.mas_equalTo(_w);

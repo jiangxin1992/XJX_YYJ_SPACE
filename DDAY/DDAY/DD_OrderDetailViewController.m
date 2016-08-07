@@ -77,7 +77,7 @@
 }
 -(void)CreateTableView
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -85,6 +85,9 @@
     _tableview.dataSource=self;
     _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
 }
 
 /**
@@ -92,30 +95,41 @@
  */
 -(void)CreateFootView
 {
-    _ClearingView=[[DD_OrderClearingView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 300) WithOrderDetailInfoModel:_OrderDetailModel.orderInfo Withfreight:_OrderDetailModel.orderInfo.allFreight WithCountPrice:_OrderModel.totalAmount WithBlock:^(NSString *type, CGFloat height) {
-        if([type isEqualToString:@"remarks"])
-        {
-            //            跳转remarks界面
-//            [self PushRemarksView];
-            
-        }else if([type isEqualToString:@"height"])
-        {
-            _ClearingView.frame=CGRectMake(CGRectGetMinX(_ClearingView.frame), CGRectGetMinY(_ClearingView.frame), ScreenWidth, height+50);
-            _tableview.tableFooterView=_ClearingView;
-        }else if([type isEqualToString:@"contact"])
-        {
-            [self contactAction];
-        }
+    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    _ClearingView=[[DD_OrderClearingView alloc] initWithOrderDetailInfoModel:_OrderDetailModel.orderInfo Withfreight:_OrderDetailModel.orderInfo.allFreight WithCountPrice:_OrderModel.totalAmount WithBlock:nil];
+    
+    [headView addSubview:_ClearingView];
+    [_ClearingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(headView);
     }];
-    _tableview.tableFooterView=_ClearingView;
+    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGRect frame = headView.frame;
+    frame.size.height = height;
+    
+    headView.frame = frame;
+    _tableview.tableFooterView = headView;
+    
+    
 }
 /**
  * 创建地址视图 HeadView
  */
 -(void)CreateHeadView
 {
-    _AddressView=[[DD_OrderAddressView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 220) WithOrderDetailInfoModel:_OrderDetailModel WithBlock:nil];
-    _tableview.tableHeaderView=_AddressView;
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:nil];
+    [headView addSubview:_AddressView];
+    [_AddressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(headView);
+    }];
+    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGRect frame = headView.frame;
+    frame.size.height = height;
+    
+    headView.frame = frame;
+    _tableview.tableHeaderView = headView;
+    
 }
 /**
  * 确认订单按钮
@@ -417,32 +431,7 @@
     
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    //section头部高度
-    return 40;
-}
-//section头部视图
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
-    return [__OrderModel getViewHeader];
-}
 
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 40;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
-    return [__OrderModel getViewFooter];
-}
 
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
@@ -459,6 +448,32 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+#pragma mark - 弃用代码
+//section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    //section头部高度
+//    return 40;
+//}
+//section头部视图
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
+//    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
+//    return [__OrderModel getViewHeader];
+//}
 
+//section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 40;
+//}
+////section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
+//    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
+//    return [__OrderModel getViewFooter];
+//}
 
 @end

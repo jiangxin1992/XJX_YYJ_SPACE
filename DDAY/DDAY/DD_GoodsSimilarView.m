@@ -45,7 +45,6 @@
         [self addSubview:img];
         img.tag=100+i;
         img.userInteractionEnabled=YES;
-        img.contentMode=UIViewContentModeScaleAspectFit;
         [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
         [img JX_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
         [img mas_makeConstraints:^(MASConstraintMaker *make) {

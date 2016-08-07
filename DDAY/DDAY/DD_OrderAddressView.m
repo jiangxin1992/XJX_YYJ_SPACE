@@ -7,22 +7,16 @@
 //
 
 #import "DD_OrderAddressView.h"
-
+#define _jiange 9
 @implementation DD_OrderAddressView
 {
-    UILabel *_phone;
-    UILabel *_address;
-    UILabel *_name;
-    UILabel *_title_label;
     UIView *_upView;
     UIView *_downView;
-    
-
 }
 #pragma mark - 初始化
--(instancetype)initWithFrame:(CGRect)frame WithOrderDetailInfoModel:(DD_OrderDetailModel *)OrderDetailModel WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithOrderDetailInfoModel:(DD_OrderDetailModel *)OrderDetailModel WithBlock:(void (^)(NSString *type))block
 {
-    self=[super initWithFrame:frame];
+    self=[super init];
     if(self)
     {
         _DetailModel=OrderDetailModel;
@@ -41,7 +35,9 @@
 }
 
 -(void)PrepareData{}
--(void)PrepareUI{}
+-(void)PrepareUI{
+    self.backgroundColor=_define_white_color;
+}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
@@ -50,9 +46,22 @@
 }
 -(void)CreateUpView
 {
-    _upView=[[UIView alloc] initWithFrame:CGRectMake(0, 2, ScreenWidth, 96)];
+    _upView=[UIView getCustomViewWithColor:nil];
     [self addSubview:_upView];
-    _upView.backgroundColor=[UIColor grayColor];
+    [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+    }];
+    
+    UIView *backView=[UIView getCustomViewWithColor:nil];
+    [_upView addSubview:backView];
+    [regular setBorder:backView];
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(_jiange);
+        make.bottom.mas_equalTo(_upView);
+    }];
+    
     
     NSString *status=nil;
     if(_DetailModel.orderInfo.isPay)
@@ -68,62 +77,103 @@
     {
         status=@"待付款";
     }
-    NSArray *arr=@[@"订单号",_DetailModel.orderInfo.tradeOrderCode,@"订单状态",status];
-    CGFloat _width=0;
-    CGFloat _x_p=0;
-    for (int i=0; i<arr.count; i++) {
-        _width=i%2?(ScreenWidth-100-40):100;
-        _x_p=i%2?120:20;
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(_x_p, 8+40*(i/2), _width, 40)];
-        [_upView addSubview:label];
-        label.textColor=[UIColor whiteColor];
-        label.text=arr[i];
-        label.textAlignment=0;
+    UIView *lastView=nil;
+    for (int i=0; i<2; i++) {
+        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:i==0?@"订单号":@"订单状态" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        [backView addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(lastView)
+            {
+                make.top.mas_equalTo(lastView.mas_bottom).with.offset(_jiange);
+            }else
+            {
+                make.top.mas_equalTo(backView).with.offset(_jiange);
+            }
+            make.left.mas_equalTo(backView).with.offset(_jiange);
+            
+        }];
+        [titleLabel sizeToFit];
+        
+        UILabel *conLabel=[UILabel getLabelWithAlignment:0 WithTitle:i==0?_DetailModel.orderInfo.tradeOrderCode:status WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        [backView addSubview:conLabel];
+        [conLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleLabel.mas_right).with.offset(_jiange);
+            make.centerY.mas_equalTo(titleLabel);
+        }];
+        [conLabel sizeToFit];
+        
+        lastView=titleLabel;
     }
+    [lastView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(backView.mas_bottom).with.offset(-_jiange);
+    }];
 }
 -(void)CreateDownView
 {
-    _downView=[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_upView.frame)+2, ScreenWidth, 118)];
+    _downView=[UIView getCustomViewWithColor:nil];
     [self addSubview:_downView];
-    _downView.backgroundColor=[UIColor whiteColor];
+    [_downView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_upView.mas_bottom).with.offset(0);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
     
-    _title_label=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 60, 40)];
-    [_downView addSubview:_title_label];
-    _title_label.textAlignment=0;
-    _title_label.textColor=[UIColor blackColor];
+    UIView *lastView=nil;
+    for (int i=0; i<3; i++) {
+        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:_DetailModel.address.detailAddress WithFont:i==0?15:i==1?14:12 WithTextColor:nil WithSpacing:0];
+        [_downView addSubview:label];
+        label.tag=100+i;
+        if(i==2)
+        {
+            label.numberOfLines=2;
+        }
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(kEdge);
+            if(i==2)
+            {
+                make.right.mas_equalTo(-kEdge);
+            }
+            if(lastView)
+            {
+                make.top.mas_equalTo(lastView.mas_bottom).with.offset(_jiange);
+                
+            }else
+            {
+                make.top.mas_equalTo(_downView.mas_top).with.offset(_jiange);
+            }
+        }];
+        [label sizeToFit];
+        lastView=label;
+    }
+
+    UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
+    [_downView addSubview:upLine];
+    [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(1);
+        make.top.mas_equalTo(lastView.mas_bottom).with.offset(_jiange);
+        make.bottom.mas_equalTo(_downView.mas_bottom).with.offset(0);
+    }];
     
-    _name=[[UILabel alloc] initWithFrame:CGRectMake(90,5, 100, 40)];
-    [_downView addSubview:_name];
-    _name.textAlignment=0;
-    _name.textColor=[UIColor blackColor];
-    
-    _phone=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-160,5, 150, 40)];
-    [_downView addSubview:_phone];
-    _phone.textAlignment=0;
-    _phone.numberOfLines=0;
-    _phone.textColor=[UIColor blackColor];
-    
-    _address=[[UILabel alloc] initWithFrame:CGRectMake(20, 45, ScreenWidth-40, 70)];
-    [_downView addSubview:_address];
-    _address.textAlignment=0;
-    _address.textColor=[UIColor blackColor];
 }
+
 #pragma mark - SetState
 -(void)SetState
 {
     if(_DetailModel.address==nil)
     {
-        _title_label.text=@"";
-        _address.text=@"";
-        _phone.text=@"";
-        _name.text=@"";
+        for (int i=0; i<3; i++) {
+            UILabel *label=(UILabel *)[self viewWithTag:100+i];
+            label.text=@"";
+        }
         
     }else
     {
-        _title_label.text=@"收件人";
-        _address.text=_DetailModel.address.detailAddress;
-        _phone.text=_DetailModel.address.deliverPhone;
-        _name.text=_DetailModel.address.deliverName;
+        for (int i=0; i<3; i++) {
+            UILabel *label=(UILabel *)[self viewWithTag:100+i];
+            label.text=i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:_DetailModel.address.detailAddress;
+        }
     }
 }
 @end

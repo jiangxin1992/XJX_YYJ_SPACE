@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_ShopCell : UITableViewCell
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath WithIsInvalid:(BOOL)isInvalid WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
 @property (nonatomic,strong)DD_ShopItemModel *ItemModel;
 @property (nonatomic,copy) void (^clickblock)(NSString *type,NSIndexPath *indexPath);
 @property (nonatomic,strong)NSIndexPath *indexPath;

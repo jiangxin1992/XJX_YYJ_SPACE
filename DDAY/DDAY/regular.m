@@ -165,6 +165,20 @@ static regular *_t = nil;
     [alertController addAction:okAction];
     return alertController;
 }
+
++(UIAlertController *)alertTitleCancel_Simple:(NSString *)title WithBlock:(void(^)())block
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:title preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        block();
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
+
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    return alertController;
+}
+
 +(UIAlertController *)alert_NONETWORKING
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"NetworkConnectError", @"") preferredStyle:UIAlertControllerStyleAlert];

@@ -26,7 +26,7 @@
 {
     NSMutableArray *_dataArr;
     UITableView *_tableview;
-    void (^cellblock)(NSString *type,NSInteger section);
+    void (^cellblock)(NSString *type,NSIndexPath *indexPath);
     NSInteger _page;
 }
 
@@ -41,30 +41,35 @@
 {
     __block DD_OrderViewController *_orderView=self;
     __block NSArray *__dataArr=_dataArr;
-    cellblock=^(NSString *type,NSInteger section)
+    __block DD_OrderViewController *_order=self;
+    cellblock=^(NSString *type,NSIndexPath *indexPath)
     {
         if([type isEqualToString:@"pay"])
         {
 //            支付 1
-            [_orderView PayActionWithModel:[__dataArr objectAtIndex:section]];
+            [_orderView PayActionWithModel:[__dataArr objectAtIndex:indexPath.section]];
             
         }else if([type isEqualToString:@"cancel"])
         {
 //            取消订单 1
-            [_orderView CancelActionWithModel:[__dataArr objectAtIndex:section] WithIndex:section];
+            [_orderView CancelActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
             
         }else if([type isEqualToString:@"confirm"])
         {
 //            确认收货
-            [_orderView ConfirmActionWithModel:[__dataArr objectAtIndex:section] WithIndex:section];
+            [_orderView ConfirmActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"delect"])
         {
 //            删除订单
-            [_orderView DelectActionWithModel:[__dataArr objectAtIndex:section] WithIndex:section];
+            [_orderView DelectActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"logistics"])
         {
 //            查看物流
-            [_orderView checkLogisticsInfoWithModel:[__dataArr objectAtIndex:section]];
+            [_orderView checkLogisticsInfoWithModel:[__dataArr objectAtIndex:indexPath.section]];
+        }else if([type isEqualToString:@"click"])
+        {
+            //    跳转订单详情
+            [_order.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:nil] animated:YES];
         }
     };
 }
@@ -126,12 +131,13 @@
 {
     
     _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    _tableview.alwaysBounceHorizontal=NO;
+    _tableview.alwaysBounceVertical=YES;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
@@ -179,55 +185,65 @@
  */
 -(void)DelectActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            [_dataArr removeObjectAtIndex:section];
-            [_tableview reloadData];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+    [self presentViewController:[regular alertTitleCancel_Simple:@"删除该订单？" WithBlock:^{
+        [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                [_dataArr removeObjectAtIndex:section];
+                [_tableview reloadData];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }] animated:YES completion:nil];
+    
 }
 /**
  * 确认收货
  */
 -(void)ConfirmActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            _OrderModel.orderStatus=3;
-            [_tableview reloadData];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+    [self presentViewController:[regular alertTitleCancel_Simple:@"确认收货？" WithBlock:^{
+        [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                _OrderModel.orderStatus=3;
+                [_tableview reloadData];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }] animated:YES completion:nil];
+    
 }
 /**
  * 取消订单
  */
 -(void)CancelActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
-    [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            [_dataArr removeObjectAtIndex:section];
-            [_tableview reloadData];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+    [self presentViewController:[regular alertTitleCancel_Simple:@"取消该订单？" WithBlock:^{
+        NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
+        [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                [_dataArr removeObjectAtIndex:section];
+                [_tableview reloadData];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }] animated:YES completion:nil];
+    
+    
 }
 /**
  * 继续支付
@@ -266,9 +282,17 @@
 }
 #pragma mark - TableViewDelegate
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    DD_OrderModel *_order=[_dataArr objectAtIndex:indexPath.section];
+    if(_order.orderStatus==1)
+    {
+        return 178;
+    }else
+    {
+        return 222;
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -297,34 +321,38 @@
     if([_order isSingle])
     {
         static NSString *CellIdentifier = @"cell_single";
-        BOOL nibsRegistered = NO;
-        if (!nibsRegistered) {
-            UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_OrderCell class]) bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-            nibsRegistered = YES;
+    
+        DD_OrderCell *cell=[_tableview dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell)
+        {
+            
+            cell=[[DD_OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier WithBlock:^(NSString *type, NSIndexPath *indexPath) {
+                
+            }];
         }
-        DD_OrderCell *cell = (DD_OrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.indexPath=indexPath;
         cell.cellblock=cellblock;
         cell.OrderModel=_order;
-        cell.index=indexPath.section;
         return cell;
     }else
     {
         static NSString *CellIdentifier = @"cell_single_f";
-        BOOL nibsRegistered = NO;
-        if (!nibsRegistered) {
-            UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_OrderMoreCell class]) bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-            nibsRegistered = YES;
+        DD_OrderMoreCell *cell=[_tableview dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(!cell)
+        {
+            
+            cell=[[DD_OrderMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier WithBlock:^(NSString *type, NSIndexPath *indexPath) {
+                
+            }];
         }
-        DD_OrderMoreCell *cell = (DD_OrderMoreCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.indexPath=indexPath;
         cell.cellblock=cellblock;
         cell.OrderModel=_order;
-        cell.index=indexPath.section;
         return cell;
-    } 
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -336,12 +364,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     //section头部高度
-    return 40;
+    return 35;
 }
 //section头部视图
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40) WithOrderModel:[_dataArr objectAtIndex:section]];
+//    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithBlock];
+    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithSection:section WithBlock:^(NSString *type, NSInteger section) {
+        if([type isEqualToString:@"click"])
+        {
+            [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:nil] animated:YES];
+        }
+    }];
 }
 //section底部间距
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

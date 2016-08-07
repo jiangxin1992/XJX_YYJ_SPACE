@@ -9,36 +9,19 @@
 #import "DD_OrderModel.h"
 #import <UIKit/UIKit.h>
 
-@interface DD_OrderMoreCell : UITableViewCell
+@interface DD_OrderMoreCell : UITableViewCell<UIScrollViewDelegate>
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
+
+@property (nonatomic,strong)NSIndexPath *indexPath;
 /**
  * cell 回调
  */
-@property(nonatomic,copy) void (^cellblock)(NSString *type,NSInteger section);
+@property (nonatomic,copy) void (^cellblock)(NSString *type,NSIndexPath *indexPath);
 
-/**
- * model index
- */
-@property (nonatomic,assign)NSInteger index;
 /**
  * cell model
  */
 @property (nonatomic,strong)DD_OrderModel *OrderModel;
 
-/**
- * 商品图片展示
- */
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-/**
- * 当前订单item数量label
- */
-@property (weak, nonatomic) IBOutlet UILabel *itemCountLabel;
-/**
- * 小计label
- */
-@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
-/**
- * 两个btn
- */
-@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
-@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+
 @end

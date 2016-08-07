@@ -39,6 +39,8 @@
 }
 +(UIImageView *)getCustomImg
 {
-    return [[UIImageView alloc] init];
+    UIImageView *img=[[UIImageView alloc] init];
+    img.contentMode=UIViewContentModeScaleAspectFit;
+    return img;
 }
 @end
