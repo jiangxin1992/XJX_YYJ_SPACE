@@ -73,4 +73,56 @@
     return cell;
 }
 
++(WaterflowCell *)getHomePageCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
+{
+    WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
+    cell.backgroundColor=_define_white_color;
+    UIView *imagebackview=nil;
+    if(item.pics&&item.pics.count)
+    {
+        imagebackview=[UIView getCustomViewWithColor:nil];
+        [cell addSubview:imagebackview];
+        [regular setBorder:imagebackview];
+        [imagebackview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(index%2?0:10);
+            make.right.mas_equalTo(index%2?-10:0);
+            make.top.mas_equalTo(19);
+            make.height.mas_equalTo(_height);
+        }];
+        
+        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        UIImageView *imageview=[UIImageView getCustomImg];
+        [imagebackview addSubview:imageview];
+        [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(imagebackview).with.insets(UIEdgeInsetsMake(14, 14, 14, 14));
+        }];
+    }
+    
+    UILabel *name_label=[UILabel getLabelWithAlignment:1 WithTitle:item.seriesName WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:name_label];
+    [name_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(index%2?0:10);
+        make.right.mas_equalTo(index%2?-10:0);
+        if(imagebackview){
+            make.top.mas_equalTo(imagebackview.mas_bottom).with.offset(8);
+        }else
+        {
+            make.top.mas_equalTo(0);
+        }
+        make.height.mas_equalTo(13);
+    }];
+    
+    UILabel *series_label=[UILabel getLabelWithAlignment:1 WithTitle:item.name WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:series_label];
+    [series_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(index%2?0:10);
+        make.right.mas_equalTo(index%2?-10:0);
+        make.top.mas_equalTo(name_label.mas_bottom).with.offset(3);
+        make.height.mas_equalTo(name_label);
+    }];
+    return cell;
+}
+
+
 @end

@@ -9,6 +9,8 @@
 #import "DD_DDayDetailModel.h"
 #import "DD_DDAYDetailViewController.h"
 #import "DD_DDAYMeetViewController.h"
+#import "DD_ShopViewController.h"
+#import "DD_DDAYContainerView.h"
 @interface DD_DDAYDetailViewController ()
 
 @end
@@ -17,6 +19,8 @@
 {
     DD_DDAYDetailView *_tabBar;
     DD_DDayDetailModel *_detailModel;
+    UIScrollView *_scrollView;
+    UIView *_container;
 }
 
 - (void)viewDidLoad {
@@ -55,11 +59,27 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:200];
+    DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
+    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    
+    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItems=@[[[UIBarButtonItem alloc] initWithCustomView:shopBtn]
+                                              ,[[UIBarButtonItem alloc] initWithCustomView:shareBtn]
+                                              ];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    
+    _scrollView=[[UIScrollView alloc] init];
+    [self.view addSubview:_scrollView];
+    _container = [DD_DDAYContainerView new];
+    [_scrollView addSubview:_container];
+    [_container mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_scrollView);
+        make.width.equalTo(_scrollView);
+    }];
 }
 -(void)CreateTabbar
 {
@@ -115,13 +135,37 @@
     [self.view addSubview:_tabBar];
 
 }
+#pragma mark - SomeAction
+//分享
+-(void)ShareAction
+{
+    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+}
+//跳转购物车视图
+-(void)PushShopView
+{
+    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+    [self.navigationController pushViewController:_shop animated:YES];
+}
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"series/querySeriesDetail.do" parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_model.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSLog(@"token=%@",[DD_UserModel getToken]);
+    [[JX_AFNetworking alloc] GET:@"series/querySeriesPageInfo.do" parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_model.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            _detailModel=[DD_DDayDetailModel getDDayDetailModel:[data objectForKey:@"seriesDetail"]];
+            _detailModel=[DD_DDayDetailModel getDDayDetailModel:[data objectForKey:@"seriesPageInfo"]];
+            DD_DDAYContainerView *_DDAYContainerView=[[DD_DDAYContainerView alloc] initWithGoodsDetailModel:_detailModel WithBlock:nil];
+            [_container addSubview:_DDAYContainerView];
+            [_DDAYContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.mas_equalTo(0);
+                make.top.mas_equalTo(kNavHeight);
+            }];
+            [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(self.view);
+                // 让scrollview的contentSize随着内容的增多而变化
+                make.bottom.mas_equalTo(_DDAYContainerView.mas_bottom).with.offset(0);
+            }];
             [self CreateTabbar];
         }else
         {
@@ -131,8 +175,6 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-
-
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {

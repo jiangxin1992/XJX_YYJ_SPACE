@@ -28,6 +28,7 @@
                               ,@"sizeId":_orderModel.sizeId
                               ,@"number":_orderModel.numbers
                               ,@"price":[_orderModel getPrice]
+                              ,@"colorCode":_orderModel.colorCode
                               }];
     }
     return ItemsArr;

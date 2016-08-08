@@ -43,40 +43,48 @@
     __block NSMutableArray *__dataArr=_dataArr;
     __block UITableView *__tableview=_tableview;
     __block DD_DesignerFollowViewController *_desginerView=self;
+    __block void (^___block)(DD_DesignerModel *model)=_block;
     followblock=^(NSInteger index,NSString *type)
     {
-        DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
-        NSString *url=nil;
-        if([type isEqualToString:@"unfollow"])
+        if([type isEqualToString:@"click"])
         {
-            //            取消关注
-            url=@"designer/unCareDesigner.do";
-            
-            
-        }else if([type isEqualToString:@"follow"])
+            DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
+            ___block(_model);
+        }else
         {
-            //            关注
-            url=@"designer/careDesigner.do";
-        }
-        [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+            DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
+            NSString *url=nil;
+            if([type isEqualToString:@"unfollow"])
             {
-                if([type isEqualToString:@"unfollow"])
-                {
-                    [__dataArr removeObjectAtIndex:index];
-                    
-                }else if([type isEqualToString:@"follow"])
-                {
-                    _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
-                }
-                 [__tableview reloadData];
-            }else
+                //            取消关注
+                url=@"designer/unCareDesigner.do";
+                
+                
+            }else if([type isEqualToString:@"follow"])
             {
-                [_desginerView presentViewController:successAlert animated:YES completion:nil];
+                //            关注
+                url=@"designer/careDesigner.do";
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [_desginerView presentViewController:failureAlert animated:YES completion:nil];
-        }];
+            [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    if([type isEqualToString:@"unfollow"])
+                    {
+                        [__dataArr removeObjectAtIndex:index];
+                        
+                    }else if([type isEqualToString:@"follow"])
+                    {
+                        _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                    }
+                    [__tableview reloadData];
+                }else
+                {
+                    [_desginerView presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [_desginerView presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
     };
 }
 #pragma mark - SomeAction
@@ -172,7 +180,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 400;
+    return [DD_DesignerCell heightWithModel:[_dataArr objectAtIndex:indexPath.section]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -191,52 +199,27 @@
         UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid ];
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
-    
-    static NSString *CellIdentifier = @"cell_user";
-    BOOL nibsRegistered = NO;
-    if (!nibsRegistered) {
-        UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_DesignerCell class]) bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-        nibsRegistered = YES;
+    static NSString *cellid=@"cell_dday";
+    DD_DesignerCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    if(!cell)
+    {
+        cell=[[DD_DesignerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    DD_DesignerCell *cell = (DD_DesignerCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.followblock=followblock;
-    cell.Designer=[_dataArr objectAtIndex:indexPath.section];
     cell.index=indexPath.section;
+    cell.Designer=[_dataArr objectAtIndex:indexPath.section];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_DesignerModel *_model=[_dataArr objectAtIndex:indexPath.section];
     _block(_model);
-}
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
 }
 
 #pragma mark - Other

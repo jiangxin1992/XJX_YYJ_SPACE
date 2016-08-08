@@ -10,6 +10,7 @@
 #import "DD_DesignerViewController.h"
 #import "DD_DesignerFollowViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+#import "Tools.h"
 @interface DD_DesignerMainViewController ()
 
 @end
@@ -39,33 +40,33 @@
 }
 -(void)PrepareData
 {
-    _rect_left=CGRectMake(0, 39, 100, 3);
-    _rect_right=CGRectMake(150, 39, 100, 3);
+    CGSize size = [Tools sizeOfStr:@"全部" andFont:[regular getFont:15.0f] andMaxSize:CGSizeMake(999999, 30) andLineBreakMode:NSLineBreakByWordWrapping];
+    CGFloat _width=size.width;
+    _rect_left=CGRectMake(0, 33, _width, 3);
+    _rect_right=CGRectMake(ScreenWidth-2*kEdge-_width, 33, _width, 3);
     btnarr=[[NSMutableArray alloc] init];
 }
 -(void)PrepareUI
 {
-    
-    UIView *navview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 44)];
+    UIView *navview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-2*kEdge, kNavigationBarHeight)];
+    CGFloat _width=CGRectGetWidth(navview.frame)/2.0f;
     for (int i=0; i<2; i++) {
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame=CGRectMake((CGRectGetWidth(navview.frame)-100)*i, 0, 100, CGRectGetHeight(navview.frame));
+        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:i==0?1:2 WithFont:15.0f WithSpacing:0 WithNormalTitle:i==0?@"全部":@"关注" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:i==0?@"全部":@"关注" WithSelectedColor:nil];
         [navview addSubview:btn];
+        btn.frame=CGRectMake(_width*i, 0, _width, 33);
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag=100+i;
-        btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-        NSString *str=i==0?@"所有设计师":@"我关注的";
-        btn.titleLabel.font=(kIOSVersions>=9.0? [UIFont systemFontOfSize:16.0f]:[UIFont fontWithName:@"Helvetica Neue" size:16.0f]);
-        [btn setTitle:str forState:UIControlStateNormal];
-        [btn.titleLabel setAttributedText:[regular createAttributeString:str andFloat:@(3.0)]];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         if(i==0)
         {
             btn.selected=YES;
+            [btn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:kEdge];
+        }else
+        {
+            [btn setEnlargeEdgeWithTop:0 right:kEdge bottom:0 left:0];
         }
         [btnarr addObject:btn];
     }
+    
     self.navigationItem.titleView=navview;
     dibu=[[UIView alloc] initWithFrame:_rect_left];
     dibu.backgroundColor=[UIColor blackColor];
@@ -83,7 +84,6 @@
     {
         left=[[DD_DesignerViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
             DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-            _DesignerHomePage.title=model.name;
             _DesignerHomePage.designerId=model.designerId;
             [self.navigationController pushViewController:_DesignerHomePage animated:YES];
             [[DD_CustomViewController sharedManager] tabbarHide];
@@ -104,7 +104,6 @@
             {
                 left=[[DD_DesignerViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
                     DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                    _DesignerHomePage.title=model.name;
                     _DesignerHomePage.designerId=model.designerId;
                     [self.navigationController pushViewController:_DesignerHomePage animated:YES];
                     [[DD_CustomViewController sharedManager] tabbarHide];
@@ -139,7 +138,6 @@
             {
                 right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
                     DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                    _DesignerHomePage.title=model.name;
                     _DesignerHomePage.designerId=model.designerId;
                     [self.navigationController pushViewController:_DesignerHomePage animated:YES];
                     [[DD_CustomViewController sharedManager] tabbarHide];

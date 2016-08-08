@@ -23,6 +23,7 @@
     _ClearingOrderModel.sizeId=_item.sizeId;
     _ClearingOrderModel.sizeName=_item.sizeName;
     _ClearingOrderModel.brandName=_item.brand;
+    _ClearingOrderModel.colorCode=_item.colorCode;
     return _ClearingOrderModel;
 }
 @end

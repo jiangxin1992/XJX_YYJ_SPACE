@@ -135,6 +135,7 @@
     {
         [itemImg JX_loadImageUrlStr:ClearingModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
+    
     colorView.backgroundColor=[UIColor colorWithHexString:ClearingModel.colorCode];
     itemNameLabel.text=ClearingModel.itemName;
     typeLabel.text=ClearingModel.categoryName;

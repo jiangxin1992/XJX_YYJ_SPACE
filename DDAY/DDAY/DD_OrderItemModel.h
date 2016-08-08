@@ -22,6 +22,10 @@ __string(brand);
  */
 __string(colorId);
 /**
+ * 颜色code
+ */
+__string(colorCode);
+/**
  * 颜色名
  */
 __string(colorName);

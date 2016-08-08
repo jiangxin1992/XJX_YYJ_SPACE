@@ -523,7 +523,8 @@ __bool(isExpanded);
 //                        ,@{@"itemId":@"11",@"colorId":@"41",@"sizeId":@"20",@"number":@"4",@"price":@"1000"}
 //                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
 //                        ];
-    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice]}];
+    DD_ColorsModel *clolorModel=[_DetailModel getColorsModel];
+    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorCode":clolorModel.colorCode,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice]}];
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
     [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -610,7 +611,6 @@ __bool(isExpanded);
 -(void)PushDesignerView
 {
     DD_DesignerHomePageViewController *_designer=[[DD_DesignerHomePageViewController alloc] init];
-    _designer.title=_DetailModel.designer.designerName;
     _designer.designerId=_DetailModel.designer.designerId;
     [self.navigationController pushViewController:_designer animated:YES];
 }

@@ -25,6 +25,7 @@
 @implementation DD_UserViewController
 {
     NSArray *_dataArr;
+    NSArray *_imgDataArr;
     NSDictionary *_datadict;
     DD_UserModel *_usermodel;
     
@@ -54,7 +55,10 @@
 }
 -(void)PrepareUI
 {
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(messageAction)];
+//    System_News
+    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(26, 24) WithImgeStr:@"System_News"];
+    [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -95,7 +99,7 @@
     CGFloat _bianju=kIiPhone6?43:33;
     CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
     for (int i=0; i<_dataArr.count; i++) {
-        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+60*(i/2), i%2?_width-_offset:_width, 60) WithImgSize:CGSizeMake(21, 21) WithImgeStr:@"system_notcollection" WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
+        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+60*(i/2), i%2?_width-_offset:_width, 60) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
         [self.view addSubview:item];
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -232,7 +236,6 @@
         {
             //        我的主页
             DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-            _DesignerHomePage.title=@"我的主页";
             _DesignerHomePage.designerId=_usermodel.u_id;
             [self.navigationController pushViewController:_DesignerHomePage animated:YES];
             [[DD_CustomViewController sharedManager] tabbarHide];
@@ -252,6 +255,7 @@
 -(void)MonitorRootChangeAction
 {
     _dataArr=[DD_UserTool getUserListArr];
+    _imgDataArr=[DD_UserTool getUserImgListArr];
 }
 /**
  * 跳转消息界面
@@ -296,6 +300,7 @@
 -(void)SetDataArr
 {
     _dataArr=[DD_UserTool getUserListArr];
+    _imgDataArr=[DD_UserTool getUserImgListArr];
 }
 /**
  * 跳转登录界面

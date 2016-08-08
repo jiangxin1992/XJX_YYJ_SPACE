@@ -11,4 +11,5 @@
 @interface DD_UserTool : NSObject
 +(NSDictionary *)getUserListMap;
 +(NSArray *)getUserListArr;
++(NSArray *)getUserImgListArr;
 @end

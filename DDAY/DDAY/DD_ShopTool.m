@@ -155,7 +155,7 @@
         for (DD_ShopItemModel *item in _SeriesModel.items) {
             if(item.is_select)
             {
-                [confrimArr addObject:@{@"itemId":item.itemId,@"colorId":item.colorId,@"sizeId":item.sizeId,@"number":item.number,@"price":[[NSString alloc] initWithFormat:@"%.1lf",[item getPrice]]}];
+                [confrimArr addObject:@{@"itemId":item.itemId,@"colorId":item.colorId,@"colorCode":item.colorCode,@"sizeId":item.sizeId,@"number":item.number,@"price":[[NSString alloc] initWithFormat:@"%.1lf",[item getPrice]]}];
                 
             }
         }
@@ -232,16 +232,22 @@
 +(BOOL)selectAllWithModel:(DD_ShopModel *)ShopModel
 {
 
-    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
-        for (DD_ShopItemModel *item in _SeriesModel.items) {
-            if(!item.is_select)
-            {
-                return NO;
-                break;
+    if(ShopModel.seriesNormal.count)
+    {
+        for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
+            for (DD_ShopItemModel *item in _SeriesModel.items) {
+                if(!item.is_select)
+                {
+                    return NO;
+                    break;
+                }
             }
         }
+        return YES;
+    }else
+    {
+        return NO;
     }
-    return YES;
 }
 +(DD_ShopSeriesModel *)getNumberSection:(NSInteger )section WithModel:(DD_ShopModel *)ShopModel
 {

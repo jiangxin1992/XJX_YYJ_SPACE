@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_DesignerCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *name_label;
-@property (weak, nonatomic) IBOutlet UIImageView *headImge;
-@property (weak, nonatomic) IBOutlet UIImageView *item_image;
-@property (weak, nonatomic) IBOutlet UIButton *followBtn;
+
+
++ (CGFloat)heightWithModel:(DD_DesignerModel *)model;
+
 @property (nonatomic,copy) void (^followblock)(NSInteger index,NSString *type);
+
 @property (nonatomic,strong)DD_DesignerModel *Designer;
 __int(index);
+__scrollView(scrollview);
 @end

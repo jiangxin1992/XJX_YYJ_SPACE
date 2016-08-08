@@ -265,11 +265,14 @@
 }
 // 返回每一个cell的高度，非必要，默认为80
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
-    
     DD_ItemsModel *item=[_dataArr objectAtIndex:index];
-    DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-    return _height+95;
+    if(item.pics)
+    {
+        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height+95;
+    }
+    return 95;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowType:(WaterflowMarginType)type{

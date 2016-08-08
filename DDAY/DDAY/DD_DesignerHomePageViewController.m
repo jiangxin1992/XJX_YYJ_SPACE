@@ -20,24 +20,20 @@
 {
     DD_DesignerModel *_DesignerModel;
     
-    UIButton *right_btn;
     
     UIView *_UpView;
     UIView *_MiddleView;
-    UIView *dibu;
+    
     NSMutableArray *btnarr;
     
     NSInteger currentPage;
     
-    CGRect _rect_left;
-    CGRect _rect_middle;
-    CGRect _rect_right;
-    
     DD_DesignerItemViewController *ctn1;
-    DD_DesignerCircleViewController *ctn2;
-    DD_DesignerIntroViewController *ctn3;
+    DD_DesignerIntroViewController *ctn2;
+    DD_DesignerCircleViewController *ctn3;
     
     UIPageViewController *_pageVc;
+    UIButton *followBtn;
 }
 
 - (void)viewDidLoad {
@@ -58,16 +54,40 @@
 }
 -(void)PrepareUI
 {
+    
+    DD_NavBtn *backBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(11, 19) WithImgeStr:@"System_Back"];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:backBtn];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kStatusBarHeight);
+        make.width.height.mas_equalTo(44);
+        make.left.mas_equalTo(0);
+    }];
+    
+    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shareBtn];
+    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kStatusBarHeight);
+        make.right.mas_equalTo(0);
+        make.width.height.mas_equalTo(44);
+    }];
+    
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];
     if(![_designerId isEqualToString:user.u_id])
     {
-        right_btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        right_btn.frame=CGRectMake(0, 0, 40, 30);
-        right_btn.titleLabel.font=[regular getFont:13.0f];
-        [right_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [right_btn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:right_btn];
+        followBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_black_color];
+        [self.view addSubview:followBtn];
+        [regular setBorder:followBtn];
+        [followBtn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];
+        [followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(shareBtn.mas_left).with.offset(0);
+            make.centerY.mas_equalTo(shareBtn);
+            make.width.mas_equalTo(68);
+            make.height.mas_equalTo(25);
+        }];
     }
+    
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -78,10 +98,12 @@
             _DesignerModel=[DD_DesignerModel getDesignerModel:data];
             if(_DesignerModel.guanzhu)
             {
-                [right_btn setTitle:@"已关注" forState:UIControlStateNormal];
+                followBtn.selected=YES;
+                followBtn.backgroundColor=_define_white_color;
             }else
             {
-                [right_btn setTitle:@"关注" forState:UIControlStateNormal];
+                followBtn.selected=NO;
+                followBtn.backgroundColor=_define_black_color;
             }
             [self SetUpView];
         }else
@@ -101,54 +123,69 @@
 }
 -(void)CreateUpView
 {
-    _UpView=[[UIView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, 170)];
+    _UpView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_UpView];
-    _UpView.backgroundColor=[UIColor whiteColor];
+    [_UpView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kNavHeight);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(145);
+    }];
 }
 -(void)CreateMiddleView
 {
-    _MiddleView=[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_UpView.frame)+2, ScreenWidth, 50)];
+    _MiddleView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_MiddleView];
-    _MiddleView.backgroundColor=[UIColor whiteColor];
+    [_MiddleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_UpView.mas_bottom).with.offset(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(24);
+    }];
     
-    CGFloat _width=(ScreenWidth-50*2-30*2)/3.0f;
+    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
+    [_MiddleView addSubview:upline];
+    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+
+    
+    UIButton *lastview=nil;
     for (int i=0; i<3; i++) {
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame=CGRectMake(50+(_width+30)*i, 0, _width, CGRectGetHeight(_MiddleView.frame));
-        CGRect _rect=CGRectMake(50+(_width+30)*i, CGRectGetHeight(_MiddleView.frame)-3, _width, 3);
-        if(i==0){
-            _rect_left=_rect;
-        }else if(i==1){
-            _rect_middle=_rect;
-        }else if(i==2){
-            _rect_right=_rect;
-        }
+        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithNormalColor:_define_black_color WithSelectedTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithSelectedColor:_define_white_color];
         [_MiddleView addSubview:btn];
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag=100+i;
-        btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-        NSString *str=i==0?@"发布品":i==1?@"共享":@"故事";
-        btn.titleLabel.font=(kIOSVersions>=9.0? [UIFont systemFontOfSize:13.0f]:[UIFont fontWithName:@"Helvetica Neue" size:13.0f]);
-        [btn setTitle:str forState:UIControlStateNormal];
-        [btn.titleLabel setAttributedText:[regular createAttributeString:str andFloat:@(3.0)]];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        btn.backgroundColor=[UIColor clearColor];
         if(i==0)
         {
             btn.selected=YES;
+            btn.backgroundColor=_define_black_color;
         }
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            if(lastview)
+            {
+                make.left.mas_equalTo(lastview.mas_right).with.offset(kEdge);
+                make.width.mas_equalTo(lastview);
+            }else
+            {
+                make.left.mas_equalTo(kEdge);
+            }
+            if(i==2)
+            {
+                make.right.mas_equalTo(-kEdge);
+            }
+        }];
         [btnarr addObject:btn];
+        lastview=btn;
     }
-    dibu=[[UIView alloc] initWithFrame:_rect_left];
-    dibu.backgroundColor=[UIColor blackColor];
-    [_MiddleView addSubview:dibu];
     
 }
 -(void)CreatePageViewCtn
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
-    _pageVc.view.frame = CGRectMake(0, CGRectGetMaxY(_MiddleView.frame)+2, 1000, 1000);
-    _pageVc.view.backgroundColor = [UIColor yellowColor];
+    _pageVc.view.frame = CGRectMake(0, 169+kNavHeight, 1000, 1000);
     if(ctn1==nil)
     {
         ctn1=[[DD_DesignerItemViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_ItemsModel *model) {
@@ -166,6 +203,15 @@
     [self.view addSubview:_pageVc.view];
 }
 #pragma mark - SomeAction
+-(void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+//分享
+-(void)ShareAction
+{
+    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+}
 /**
  * 切换视图
  */
@@ -190,12 +236,6 @@
                 
             }
             [_pageVc setViewControllers:@[ctn1] direction:1 animated:YES completion:nil];
-            [UIView beginAnimations:@"anmationName1" context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDelegate:self];
-            dibu.frame=_rect_left;
-            [UIView commitAnimations];
             
         }
         
@@ -206,45 +246,23 @@
         {
             if(ctn2==nil)
             {
-                ctn2=[[DD_DesignerCircleViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_CircleListModel *listModel) {
-                        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-                            if([type isEqualToString:@"reload"])
-                            {
-                                [ctn2 reloadData];
-                            }
-                        }] animated:YES];
+                ctn2=[[DD_DesignerIntroViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type) {
+                    
                 }];
             }
             
             [_pageVc setViewControllers:@[ctn2] direction:1 animated:YES completion:nil];
-            [UIView beginAnimations:@"anmationName1" context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDelegate:self];
-            dibu.frame=_rect_middle;
-            [UIView commitAnimations];
             
         }else if(currentPage<1)
         {
             if(ctn2==nil)
             {
-                ctn2=[[DD_DesignerCircleViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_CircleListModel *listModel) {
+                ctn2=[[DD_DesignerIntroViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type) {
                     
-                    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-                        if([type isEqualToString:@"reload"])
-                        {
-                            [ctn2 reloadData];
-                        }
-                    }] animated:YES];
                 }];
+                
             }
             [_pageVc setViewControllers:@[ctn2] direction:0 animated:YES completion:nil];
-            [UIView beginAnimations:@"anmationName1" context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDelegate:self];
-            dibu.frame=_rect_middle;
-            [UIView commitAnimations];
         }
         
         
@@ -252,32 +270,36 @@
     {
         if(ctn3==nil)
         {
-            ctn3=[[DD_DesignerIntroViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type) {
+            ctn3=[[DD_DesignerCircleViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_CircleListModel *listModel) {
                 
+                [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
+                    if([type isEqualToString:@"reload"])
+                    {
+                        [ctn3 reloadData];
+                    }
+                }] animated:YES];
             }];
         }
         if(currentPage<2&&ctn3!=nil)
         {
             [_pageVc setViewControllers:@[ctn3] direction:0 animated:YES completion:nil];
-            [UIView beginAnimations:@"anmationName1" context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-            [UIView setAnimationDelegate:self];
-            dibu.frame=_rect_right;
-            [UIView commitAnimations];
         }
         
     }
+    
     for (UIButton *_btn in btnarr) {
-        _btn.selected=NO;
-//        _btn.backgroundColor=[UIColor colorWithRed:251.0f/255.0f green:251.0f/255.0f blue:251.0f/255.0f alpha:1];
         if(_btn.tag==btn.tag)
         {
             _btn.selected=YES;
-//            _btn.backgroundColor=[UIColor whiteColor];
+            _btn.backgroundColor=_define_black_color;
             currentPage=_btn.tag-100;
+        }else
+        {
+            _btn.selected=NO;
+            _btn.backgroundColor=[UIColor clearColor];
         }
     }
+    
 }
 /**
  * 设置upview
@@ -285,16 +307,29 @@
 -(void)SetUpView
 {
     for (int i=0; i<2; i++) {
-        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth-240)/2.0f+160*i, 30, 80, 80)];
+
+        UIImageView *imageView=[UIImageView getCustomImg];
         [_UpView addSubview:imageView];
-        
-        [imageView JX_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(imageView.frame)/2.0f];
-        
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(imageView.frame)-40, CGRectGetMaxY(imageView.frame), CGRectGetWidth(imageView.frame)+80, 50)];
+        [imageView JX_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:200 placeHolderImageName:nil radius:30];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(i==0)
+            {
+                make.right.mas_equalTo(_UpView.mas_centerX).with.offset(-39);
+            }else
+            {
+                make.left.mas_equalTo(_UpView.mas_centerX).with.offset(39);
+            }
+            make.top.mas_equalTo(10);
+            make.height.width.mas_equalTo(60);
+        }];
+
+        UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:i==0?_DesignerModel.name:_DesignerModel.brandName WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [_UpView addSubview:label];
-        label.textAlignment=1;
-        label.textColor=[UIColor blackColor];
-        label.text=i==0?_DesignerModel.name:_DesignerModel.brandName;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(imageView.mas_bottom).with.offset(11);
+            make.centerX.mas_equalTo(imageView);
+        }];
+        [label sizeToFit];
     }
 }
 /**
@@ -318,10 +353,12 @@
             _DesignerModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
             if(_DesignerModel.guanzhu)
             {
-                [right_btn setTitle:@"已关注" forState:UIControlStateNormal];
+                followBtn.selected=YES;
+                followBtn.backgroundColor=_define_white_color;
             }else
             {
-                [right_btn setTitle:@"关注" forState:UIControlStateNormal];
+                followBtn.selected=NO;
+                followBtn.backgroundColor=_define_black_color;
             }
             
         }else
@@ -336,6 +373,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

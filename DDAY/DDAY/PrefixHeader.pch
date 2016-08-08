@@ -11,8 +11,8 @@
 
 /*************** DNS ***************/
 //#define DNS @"http://10.200.6.36:8080/dday-web/service/" //本地
-//#define DNS @"http://121.40.57.9:8050/dday-web/service/" //测试服务器
-#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
+#define DNS @"http://121.40.57.9:8050/dday-web/service/" //测试服务器
+//#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
 
 /*************** Color ***************/
 //[UIColor whiteColor]
@@ -80,6 +80,7 @@
 #define __label(__k__) @property(nonatomic,strong) UILabel *__k__
 #define __btn(__k__) @property(nonatomic,strong) UIButton *__k__
 #define __view(__k__) @property(nonatomic,strong) UIView *__k__
+#define __scrollView(__k__) @property(nonatomic,strong) UIScrollView *__k__
 
 
 /*************** Other ***************/

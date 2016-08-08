@@ -10,6 +10,7 @@
 @interface regular : NSObject
 @property (nonatomic,strong)NSString *value;
 @property(nonatomic,copy) CGFloat (^getSize)(CGFloat length1,CGFloat length2,CGFloat length3);
+
 /**
  * 获取自定义 UIBarButtonItem
  */

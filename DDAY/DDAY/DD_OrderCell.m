@@ -179,7 +179,7 @@
     {
         DD_OrderItemModel *_itemModel=[_OrderModel.itemList objectAtIndex:0];
         [_itemImg JX_loadImageUrlStr:_itemModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-        _colorView.backgroundColor=[UIColor blueColor];
+        _colorView.backgroundColor=[UIColor colorWithHexString:_itemModel.colorCode];
         _itemNameLabel.text=_itemModel.itemName;
         [_sizeNameBtn setTitle:_itemModel.sizeName forState:UIControlStateNormal];
         [_numBtn setTitle:[[NSString alloc] initWithFormat:@"×%ld",_itemModel.itemCount] forState:UIControlStateNormal];

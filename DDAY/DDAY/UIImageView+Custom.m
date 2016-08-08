@@ -19,6 +19,7 @@
     if(_imageStr){
         imageview.image=[UIImage imageNamed:_imageStr];
     }
+    imageview.contentMode=UIViewContentModeScaleAspectFit;
     return imageview;
 }
 
@@ -27,6 +28,7 @@
     UIImageView *imageview=[[UIImageView alloc] init];
     imageview.userInteractionEnabled=YES;
     [imageview JX_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius];
+    imageview.contentMode=UIViewContentModeScaleAspectFit;
     return imageview;
 }
 

@@ -36,6 +36,7 @@
                                ,@"itemId":order.itemId
                                ,@"itemName":order.itemName
                                ,@"colorId":order.colorId
+                               ,@"colorCode":order.colorCode
                                ,@"colorName":order.colorName
                                ,@"sizeId":order.sizeId
                                ,@"sizeName":order.sizeName

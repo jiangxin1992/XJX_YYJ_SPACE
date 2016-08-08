@@ -179,6 +179,8 @@
 		3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
+		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
+		3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */; };
 		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
 		3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */; };
 		3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6153231D3F28CB00BB60FD /* UIView+Custom.m */; };
@@ -689,6 +691,10 @@
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
 		3F576F301D3795580061602A /* UIButton+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Custom.m"; sourceTree = "<group>"; };
+		3F5888E11D58168C00AFD0A3 /* DD_UserDDAYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserDDAYCell.h; sourceTree = "<group>"; };
+		3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserDDAYCell.m; sourceTree = "<group>"; };
+		3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYContainerView.h; sourceTree = "<group>"; };
+		3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYContainerView.m; sourceTree = "<group>"; };
 		3F6002471D49EEB5007E395F /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		3F6002481D49EEB5007E395F /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		3F60024B1D49EEFD007E395F /* DD_DrawManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DrawManageView.h; sourceTree = "<group>"; };
@@ -1732,6 +1738,8 @@
 		3F4938A31D0EB6DB000D213B /* 我参与的发布会 */ = {
 			isa = PBXGroup;
 			children = (
+				3F5888E11D58168C00AFD0A3 /* DD_UserDDAYCell.h */,
+				3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */,
 				3F4938A41D0EB70F000D213B /* DD_UserDDAYViewController.h */,
 				3F4938A51D0EB70F000D213B /* DD_UserDDAYViewController.m */,
 				3F4938A61D0EB70F000D213B /* DD_UserDDAYViewController.xib */,
@@ -1755,6 +1763,8 @@
 			children = (
 				3F4B81D41D0058B400B323E4 /* DD_DDAYDetailView.h */,
 				3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */,
+				3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */,
+				3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -3139,6 +3149,7 @@
 				3F3811AE1CF54F7C007154F1 /* base64.m in Sources */,
 				3F7160AD1D4EE23400E165D2 /* DD_GoodsListTableView.m in Sources */,
 				3F3A0BED1D37CA14006CD46F /* UITextField+Custom.m in Sources */,
+				3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */,
 				3FA836741D051B3F006D2919 /* DD_OrderTool.m in Sources */,
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
 				3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */,
@@ -3229,6 +3240,7 @@
 				3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */,
 				3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */,
 				3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */,
+				3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */,
 				3F4938951D0EAEF7000D213B /* DD_UserMainCollectViewController.m in Sources */,
 				3F3811AD1CF54F7C007154F1 /* Order.m in Sources */,
 				3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */,

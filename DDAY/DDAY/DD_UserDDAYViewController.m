@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 #import "DD_DDAYModel.h"
-#import "DD_DDAYCell.h"
+#import "DD_UserDDAYCell.h"
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
 #import "DD_UserDDAYViewController.h"
@@ -43,7 +43,7 @@
 }
 -(void)PrepareUI
 {
-    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_conference", @"") withmaxwidth:200];//设置标题
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_conference_detail", @"") withmaxwidth:200];//设置标题
 }
 #pragma mark - SomeBlock
 -(void)SomeBlock
@@ -86,13 +86,16 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+    }];
 }
 
 #pragma mark - RequestData
@@ -132,7 +135,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 500;
+    return 145;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -156,21 +159,18 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
-    static NSString *CellIdentifier = @"cell_dday";
-    BOOL nibsRegistered = NO;
-    if (!nibsRegistered) {
-        UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_DDAYCell class]) bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-        nibsRegistered = YES;
+
+    static NSString *cellid=@"cell_dday";
+    DD_UserDDAYCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    if(!cell)
+    {
+        cell=[[DD_UserDDAYCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    DD_DDAYCell *cell = (DD_DDAYCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.ddayblock=ddayblock;
-    
     DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
     cell.DDAYModel=ddaymodel;
+    cell.ddayblock=ddayblock;
     cell.index=indexPath.section;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

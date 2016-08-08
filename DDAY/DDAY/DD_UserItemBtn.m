@@ -32,7 +32,7 @@
 }
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(0, (50-(_size.height/_size.width)*21)/2.0f, 21, (_size.height/_size.width)*21);
+    return CGRectMake(0, (_kframe.size.height-(_size.height/_size.width)*21)/2.0f, 21, (_size.height/_size.width)*21);
 }
 
 @end

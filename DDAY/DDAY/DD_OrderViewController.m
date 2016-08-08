@@ -369,7 +369,6 @@
 //section头部视图
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithBlock];
     return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithSection:section WithBlock:^(NSString *type, NSInteger section) {
         if([type isEqualToString:@"click"])
         {

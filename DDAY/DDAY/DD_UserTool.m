@@ -23,6 +23,40 @@
              ,@"set":NSLocalizedString(@"user_set_title", @"")
              };
 }
++(NSArray *)getUserImgListArr
+{
+    //    2 设计师 3 普通用户 4 达人
+    NSInteger _usertype=[DD_UserModel getUserType];
+    if(_usertype==0||_usertype==3)
+    {
+        //        3/0 未登录或普通用户
+        
+        return @[@"System_Conference"
+                 ,@"system_notcollection"
+                 ,@"System_Order"
+                 ,@"System_set_up"
+                 ];
+    }else if(_usertype==2)
+    {
+        //        2 设计师
+        return @[@"System_Home"
+                 ,@"System_Fans"
+                 ,@"System_Order"
+                 ,@"System_Conference"
+                 ,@"system_notcollection"
+                 ,@"System_set_up"
+                 ];
+    }else
+    {
+        //        4 达人
+        return @[@"System_Home"
+                 ,@"System_Conference"
+                 ,@"System_Order"
+                 ,@"System_set_up"
+                 ,@"system_notcollection"
+                 ];
+    }
+}
 +(NSArray *)getUserListArr
 {
 //    2 设计师 3 普通用户 4 达人
