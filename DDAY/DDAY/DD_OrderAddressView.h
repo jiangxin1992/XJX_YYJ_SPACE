@@ -23,6 +23,10 @@
  */
 __block_type(addressBlock, type);
 /**
+ * 退款按钮  
+ */
+__btn(refundBtn);
+/**
  * model
  */
 @property (nonatomic,strong)DD_OrderDetailModel *DetailModel;

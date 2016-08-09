@@ -73,8 +73,8 @@
     [[JX_AFNetworking alloc] GET:@"designer/queryDesignerStoryPage.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
+//            @"http://10.200.6.36:8080/dday-web/service/designer/queryDesignerStoryContent.do?designerId=397"
             NSString *_url=[data objectForKey:@"url"];
-
             [_webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:_url]]];
             [_webView sizeToFit];
         }else

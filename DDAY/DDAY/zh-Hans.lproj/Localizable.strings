@@ -90,6 +90,13 @@
 "order_logistics"="查看物流";
 "order_detail"="订单详情";
 "order_refund_title"="退款";
+"order_if_delete_order"="删除该订单？";
+"order_if_confirm"="确认收货？";
+"order_if_cancel_order"="取消该订单？";
+"order_if_refund_order"="退款？";
+//删除该订单？
+//确认收货？
+//取消该订单？
 /**
  * 我得资料
  */

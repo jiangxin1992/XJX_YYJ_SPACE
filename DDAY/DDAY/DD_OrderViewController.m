@@ -185,7 +185,7 @@
  */
 -(void)DelectActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    [self presentViewController:[regular alertTitleCancel_Simple:@"删除该订单？" WithBlock:^{
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_delete_order", @"") WithBlock:^{
         [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -206,7 +206,7 @@
  */
 -(void)ConfirmActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    [self presentViewController:[regular alertTitleCancel_Simple:@"确认收货？" WithBlock:^{
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_confirm", @"") WithBlock:^{
         [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -227,7 +227,7 @@
  */
 -(void)CancelActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
-    [self presentViewController:[regular alertTitleCancel_Simple:@"取消该订单？" WithBlock:^{
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_cancel_order", @"") WithBlock:^{
         NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
         [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)

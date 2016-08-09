@@ -181,6 +181,8 @@
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
 		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
 		3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */; };
+		3F5888EC1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888EB1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.m */; };
+		3F58E55F1D596995002F77B2 /* DD_DDAYDeatilBarBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F58E55E1D596995002F77B2 /* DD_DDAYDeatilBarBtn.m */; };
 		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
 		3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */; };
 		3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6153231D3F28CB00BB60FD /* UIView+Custom.m */; };
@@ -695,6 +697,10 @@
 		3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserDDAYCell.m; sourceTree = "<group>"; };
 		3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYContainerView.h; sourceTree = "<group>"; };
 		3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYContainerView.m; sourceTree = "<group>"; };
+		3F5888EA1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderTabBarBtn.h; sourceTree = "<group>"; };
+		3F5888EB1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderTabBarBtn.m; sourceTree = "<group>"; };
+		3F58E55D1D596995002F77B2 /* DD_DDAYDeatilBarBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYDeatilBarBtn.h; sourceTree = "<group>"; };
+		3F58E55E1D596995002F77B2 /* DD_DDAYDeatilBarBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYDeatilBarBtn.m; sourceTree = "<group>"; };
 		3F6002471D49EEB5007E395F /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		3F6002481D49EEB5007E395F /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		3F60024B1D49EEFD007E395F /* DD_DrawManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DrawManageView.h; sourceTree = "<group>"; };
@@ -1015,6 +1021,8 @@
 		3F0A8CE11D07C841005549BE /* tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				3F5888EA1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.h */,
+				3F5888EB1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.m */,
 				3F0A8CE21D07C855005549BE /* DD_OrderTabBar.h */,
 				3F0A8CE31D07C855005549BE /* DD_OrderTabBar.m */,
 			);
@@ -1761,6 +1769,8 @@
 		3F4B81DA1D005A9F00B323E4 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				3F58E55D1D596995002F77B2 /* DD_DDAYDeatilBarBtn.h */,
+				3F58E55E1D596995002F77B2 /* DD_DDAYDeatilBarBtn.m */,
 				3F4B81D41D0058B400B323E4 /* DD_DDAYDetailView.h */,
 				3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */,
 				3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */,
@@ -2614,10 +2624,10 @@
 		3FA8365E1D050B73006D2919 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
-				3F0A8CE51D07F6CE005549BE /* 退款界面 */,
-				3F0A8CE11D07C841005549BE /* tabbar */,
 				3F0A8CDD1D07B881005549BE /* 地址 */,
 				3FCC604D1D06FC4F006D6E44 /* 总结 */,
+				3F0A8CE51D07F6CE005549BE /* 退款界面 */,
+				3F0A8CE11D07C841005549BE /* tabbar */,
 				3FA836851D055C19006D2919 /* DD_OrderHeadView.h */,
 				3FA836861D055C19006D2919 /* DD_OrderHeadView.m */,
 				3FA836721D051B3F006D2919 /* DD_OrderTool.h */,
@@ -3285,6 +3295,7 @@
 				3F41880B1CEEFF5A001BCA3D /* DD_ClearingViewController.m in Sources */,
 				3F9B8AFF1CEF56E8008EC460 /* DD_TabbarItem.m in Sources */,
 				3F4904E01D18DA0A009F4CD3 /* DD_CircleListCell.m in Sources */,
+				3F58E55F1D596995002F77B2 /* DD_DDAYDeatilBarBtn.m in Sources */,
 				3F3811B91CF59566007154F1 /* DD_ClearingSeriesModel.m in Sources */,
 				3F2F76501D1CE22C002E22A6 /* DD_CircleFavouriteDesignerModel.m in Sources */,
 				3FA8366E1D0512D7006D2919 /* DD_OrderItemModel.m in Sources */,
@@ -3294,6 +3305,7 @@
 				3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */,
 				3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */,
 				3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */,
+				3F5888EC1D58BAC400AFD0A3 /* DD_OrderTabBarBtn.m in Sources */,
 				3F3462361D4B4A7700B96D86 /* DD_ColorBtn.m in Sources */,
 				3F4187751CEEFB24001BCA3D /* main.m in Sources */,
 				3F3811B11CF54F7C007154F1 /* MD5DataSigner.m in Sources */,

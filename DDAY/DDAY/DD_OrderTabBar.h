@@ -16,7 +16,7 @@
 /**
  * 更新状态
  */
--(void)SetState;
+-(void)UIConfig;
 /**
  * 回调方法
  */

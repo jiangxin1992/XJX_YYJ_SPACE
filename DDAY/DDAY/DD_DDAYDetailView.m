@@ -8,12 +8,18 @@
 
 #import "DD_DDAYDetailView.h"
 
+#import "DD_DDAYDeatilBarBtn.h"
 @implementation DD_DDAYDetailView
 {
-    UILabel *leftLabel;
-    UIButton *rightBtn;
     dispatch_source_t _timer;
     BOOL _is_back;
+    
+    UILabel *leftLabel;
+    
+    DD_DDAYDeatilBarBtn *rightBtn;
+    DD_DDAYDeatilBarBtn *backBtn;
+    UIView *upline;
+    
 }
 #pragma mark - 初始化
 -(instancetype)initWithFrame:(CGRect)frame WithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block
@@ -39,31 +45,30 @@
 {
     _is_back=NO;
 }
--(void)PrepareUI
-{
-    self.backgroundColor=_define_backview_color;
-}
+-(void)PrepareUI{}
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    [self addSubview:view];
-    view.backgroundColor=[UIColor blackColor];
     
-    leftLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 1, ScreenWidth/2.0f, ktabbarHeight-1)];
-    [self addSubview:leftLabel];
-    leftLabel.textAlignment=1;
-    leftLabel.textColor=[UIColor blackColor];
-    leftLabel.font=[regular getFont:11.0f];
+    backBtn=[DD_DDAYDeatilBarBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
+    [self addSubview:backBtn];
+    backBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    [backBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    rightBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self addSubview:rightBtn];
+    leftLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18.0f WithTextColor:nil WithSpacing:0];
+    [backBtn addSubview:leftLabel];
+    leftLabel.backgroundColor=_define_white_color;
+    leftLabel.frame=CGRectMake(0, 1, ScreenWidth/2.0f, ktabbarHeight-1);
+    
+    
+    rightBtn=[DD_DDAYDeatilBarBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
+    [backBtn addSubview:rightBtn];
     rightBtn.frame=CGRectMake(ScreenWidth/2.0f, 1, ScreenWidth/2.0f, ktabbarHeight-1);
-    rightBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-    [rightBtn setAdjustsImageWhenHighlighted:NO];
-    [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-    [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    upline=[UIView getCustomViewWithColor:_define_black_color];
+    [backBtn addSubview:upline];
+    upline.frame=CGRectMake(0, 0, CGRectGetWidth(backBtn.frame), 1);
     
 }
 
@@ -107,70 +112,128 @@
 //报名开始前
 -(void)BeforeSignStart
 {
-    [self startTimeWithType:@"beforeSignStart"];
-    //    倒计时
+    
+    [self backBtnSubViewHide:NO];
+    
+    leftLabel.textColor=_define_light_gray_color1;
+    
     rightBtn.selected=YES;
-    [rightBtn setTitle:@"报名还没开始" forState:UIControlStateSelected];
+    [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateSelected];
+    rightBtn.type=@"";
+    rightBtn.backgroundColor=_define_light_gray_color1;
+    
+    [self startTimeWithType:@"beforeSignStart"];
 }
 //报名结束前
 -(void)BeforeSignEnd
 {
     if(_detailModel.isQuotaLimt)
     {
+        [self backBtnSubViewHide:NO];
+        if(_detailModel.isJoin)
+        {
+            leftLabel.textColor=_define_black_color;
+            rightBtn.selected=NO;
+            rightBtn.backgroundColor=_define_black_color;
+            rightBtn.type=@"cancel";
+            [rightBtn setTitle:@"取消报名" forState:UIControlStateNormal];
+        }else
+        {
+            if(_detailModel.leftQuota)
+            {
+                leftLabel.textColor=_define_black_color;
+                rightBtn.selected=NO;
+                rightBtn.backgroundColor=_define_black_color;
+                rightBtn.type=@"apply";
+                [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateNormal];
+            }else
+            {
+                leftLabel.textColor=_define_light_gray_color1;
+                rightBtn.selected=YES;
+                rightBtn.backgroundColor=_define_light_gray_color1;
+                rightBtn.type=@"";
+                [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateSelected];
+            }
+        }
         leftLabel.text=[[NSString alloc] initWithFormat:@"剩余%ld个名额",_detailModel.leftQuota];
+        
     }else
     {
-        leftLabel.text=@"没有名额限制";
-    }
-    
-    
-    rightBtn.selected=NO;
-    if(_detailModel.isJoin)
-    {
-        [rightBtn setTitle:@"成功报名发布会" forState:UIControlStateNormal];
-    }else
-    {
-        [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateNormal];
+        [self backBtnSubViewHide:YES];
+        
+        NSString *title=nil;
+        NSString *type_str=nil;
+        if(_detailModel.isJoin)
+        {
+            title=@"取消报名";
+            type_str=@"cancel";
+        }else
+        {
+            title=@"报名线上发布会";
+            type_str=@"apply";
+        }
+        backBtn.selected=NO;
+        backBtn.backgroundColor=_define_black_color;
+        backBtn.type=type_str;
+        [backBtn setTitle:title forState:UIControlStateNormal];
     }
     
 }
 //发布会开始之前
 -(void)BeforeSaleStart
 {
-    leftLabel.text=@"报名已结束";
-    
-    rightBtn.selected=YES;
-    [rightBtn setTitle:@"报名已结束" forState:UIControlStateSelected];
+//    倒计时
+    if(_detailModel.isJoin)
+    {
+        [self backBtnSubViewHide:NO];
+        leftLabel.textColor=_define_light_gray_color1;
+        
+        rightBtn.selected=YES;
+        rightBtn.type=@"";
+        rightBtn.backgroundColor=_define_light_gray_color1;
+        [rightBtn setTitle:@"已报名" forState:UIControlStateSelected];
+        [self startTimeWithType:@"beforeSaleStart"];
+    }else
+    {
+        [self backBtnSubViewHide:YES];
+        backBtn.selected=YES;
+        backBtn.type=@"";
+        backBtn.backgroundColor=_define_light_gray_color1;
+        [backBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
+    }
 }
 //发布会结束之前
 -(void)BeforeSaleEnd
 {
-    [self startTimeWithType:@"beforeSaleEnd"];
+    [self backBtnSubViewHide:YES];
     //    倒计时
     if(_detailModel.isJoin)
-    {
-        rightBtn.selected=NO;
-        [rightBtn setTitle:@"进入发布会" forState:UIControlStateNormal];
+    {   
+        backBtn.selected=NO;
+        backBtn.type=@"enter_meet";
+        backBtn.backgroundColor=_define_black_color;
+        [backBtn setTitle:@"进入发布会" forState:UIControlStateNormal];
     }else
     {
-        rightBtn.selected=YES;
-        [rightBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
+        backBtn.selected=YES;
+        backBtn.type=@"";
+        backBtn.backgroundColor=_define_light_gray_color1;
+        [backBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
+        NSLog(@"111");
     }
 }
 //发布会结束之后
 -(void)AfterSaleEnd
 {
-    leftLabel.text=@"发布会已结束";
-    if(_detailModel.isJoin)
-    {
-        rightBtn.selected=NO;
-        [rightBtn setTitle:@"查看发布品" forState:UIControlStateNormal];
-    }else
-    {
-        rightBtn.selected=YES;
-        [rightBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
-    }
+    [self backBtnSubViewHide:NO];
     
+    leftLabel.textColor=_define_black_color;
+    leftLabel.text=@"发布会已结束";
+    
+    [rightBtn setTitle:@"查看发布品" forState:UIControlStateNormal];
+    rightBtn.selected=NO;
+    rightBtn.backgroundColor=_define_black_color;
+    rightBtn.type=@"check_good";
 }
 #pragma mark - getState
 /**
@@ -204,34 +267,29 @@
     return @"";
 }
 #pragma mark - SomeAction
--(void)rightBtnAction
+-(void)backBtnSubViewHide:(BOOL)hide
 {
-    
-    if([[self getState] isEqualToString:@"beforeSignEnd"])
+//    for (UIView *view in backBtn.subviews) {
+//        view.hidden=hide;
+//    }
+    leftLabel.hidden=hide;
+    rightBtn.hidden=hide;
+    upline.hidden=hide;
+}
+-(void)btnAction:(DD_DDAYDeatilBarBtn *)btn
+{
+    if([btn.type isEqualToString:@"apply"])
     {
-        //        报名结束之前
-        //        报名
-        if(_detailModel.isJoin)
-        {
-            _block(@"cancel");
-        }else
-        {
-            _block(@"join");
-        }
-        
-    }else if([[self getState] isEqualToString:@"beforeSaleEnd"])
+        _block(@"join");
+    }else if([btn.type isEqualToString:@"cancel"])
     {
-        if(_detailModel.isJoin)
-        {
-            _block(@"enter_meet");
-        }
-    }else if([[self getState] isEqualToString:@"afterSaleEnd"])
+        _block(@"cancel");
+    }else if([btn.type isEqualToString:@"check_good"])
     {
-        if(_detailModel.isJoin)
-        {
-            _block(@"check_good");
-        }
-        
+        _block(@"check_good");
+    }else if([btn.type isEqualToString:@"enter_meet"])
+    {
+        _block(@"enter_meet");
     }
 }
 /**
@@ -255,9 +313,9 @@
     if([type isEqualToString:@"beforeSignStart"])
     {
         timeout=_detailModel.signStartTime-[regular date];
-    }else if([type isEqualToString:@"beforeSaleEnd"])
+    }else if([type isEqualToString:@"beforeSaleStart"])
     {
-        timeout=_detailModel.saleEndTime-[regular date];
+        timeout=_detailModel.saleStartTime-[regular date];
     }
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -271,9 +329,9 @@
                 if([type isEqualToString:@"beforeSignStart"])
                 {
                     [self BeforeSignEnd];
-                }else if([type isEqualToString:@"beforeSaleEnd"])
+                }else if([type isEqualToString:@"beforeSaleStart"])
                 {
-                    [self AfterSaleEnd];
+                    [self BeforeSaleEnd];
                 }
                 
             });
@@ -298,11 +356,11 @@
                         [self BeforeSignEnd];
                     }else if([type isEqualToString:@"beforeSaleEnd"])
                     {
-                        [self AfterSaleEnd];
+                        [self BeforeSaleEnd];
                     }
                 }else
                 {
-                    leftLabel.text=[[NSString alloc] initWithFormat:@"%ld天%ld时%ld分%ld秒",[d day],[d hour],[d minute],[d second]];
+                    leftLabel.text=[[NSString alloc] initWithFormat:@"%ld 天 %ld : %ld : %ld",[d day],[d hour],[d minute],[d second]];
                 }
                 timeout--;
             });
@@ -338,7 +396,6 @@
                 //        发布会开始之前
                 [self BeforeSaleEnd];
                 [self timerCountStartWithTime:_detailModel.saleEndTime-[regular date] WithType:@"beforeSaleEnd"];
-                
                 
             }else if([type isEqualToString:@"beforeSaleEnd"])
             {

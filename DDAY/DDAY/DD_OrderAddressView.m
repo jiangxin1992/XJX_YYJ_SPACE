@@ -126,6 +126,20 @@
         if(i==2)
         {
             label.numberOfLines=2;
+        }else if(i==0)
+        {
+            _refundBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"退款" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+            [_downView addSubview:_refundBtn];
+            _refundBtn.backgroundColor=_define_black_color;
+            _refundBtn.hidden=YES;
+            [_refundBtn addTarget:self action:@selector(refundAction) forControlEvents:UIControlEventTouchUpInside];
+            [_refundBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(-kEdge);
+                make.centerY.mas_equalTo(label);
+                make.width.mas_equalTo(49);
+                make.height.mas_equalTo(22);
+            }];
+            
         }
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
@@ -157,6 +171,11 @@
     }];
     
 }
+#pragma mark - SomeAction
+-(void)refundAction
+{
+    _addressBlock(@"refund");
+}
 
 #pragma mark - SetState
 -(void)SetState
@@ -175,5 +194,21 @@
             label.text=i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:_DetailModel.address.detailAddress;
         }
     }
+    
+    if(_DetailModel.orderInfo.orderList.count)
+    {
+        DD_OrderModel *_order=[_DetailModel.orderInfo.orderList objectAtIndex:0];
+        if(_order.orderStatus==1||_order.orderStatus==2||_order.orderStatus==3)
+        {
+            //待发货
+            //待收货
+            //交易成功
+            _refundBtn.hidden=NO;
+        }else
+        {
+            _refundBtn.hidden=YES;
+        }
+    }
+    
 }
 @end

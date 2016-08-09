@@ -118,7 +118,13 @@
 -(void)CreateHeadView
 {
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:nil];
+    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"refund"])
+        {
+            //            跳转退款界面
+            [self RefundAction];
+        }
+    }];
     [headView addSubview:_AddressView];
     [_AddressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(headView);
@@ -159,10 +165,10 @@
         {
             //            删除订单
             [self DelectAction];
-        }else if([type isEqualToString:@"refund"])
+        }else if([type isEqualToString:@"contact"])
         {
-            //            跳转退款界面
-            [self RefundAction];
+            //            联系客服
+            [self contactAction];
         }
         
     }];
@@ -175,16 +181,19 @@
  */
 -(void)RefundAction
 {
-    [self.navigationController pushViewController:[[DD_OrderRefundViewController alloc] initWithModel:_OrderDetailModel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"update"])
-        {
-            [_tableview reloadData];
-            _tabBar.orderInfo=_OrderDetailModel.orderInfo;
-            [_tabBar SetState];
-            _AddressView.DetailModel=_OrderDetailModel;
-            [_AddressView SetState];
-        }
-    }] animated:YES];
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_refund_order", @"") WithBlock:^{
+        [self.navigationController pushViewController:[[DD_OrderRefundViewController alloc] initWithModel:_OrderDetailModel WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"update"])
+            {
+                [_tableview reloadData];
+                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
+                [_tabBar UIConfig];
+                _AddressView.DetailModel=_OrderDetailModel;
+                [_AddressView SetState];
+            }
+        }] animated:YES];
+    }] animated:YES completion:nil];
+    
 }
 /**
  * 查看物流信息
@@ -214,14 +223,72 @@
  */
 -(void)DelectAction
 {
-    if(_OrderDetailModel.orderInfo.orderList.count)
-    {
-        DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
-        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode};
-        [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_delete_order", @"") WithBlock:^{
+        if(_OrderDetailModel.orderInfo.orderList.count)
+        {
+            DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
+            NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode};
+            [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功删除订单" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
+    }] animated:YES completion:nil];
+    
+    
+}
+/**
+ * 确认收货
+ */
+-(void)ConfirmAction
+{
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_confirm", @"") WithBlock:^{
+        if(_OrderDetailModel.orderInfo.orderList.count)
+        {
+            DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
+            [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    _OrderModel.orderStatus=3;
+                    [_tableview reloadData];
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
+    }] animated:YES completion:nil];
+    
+    
+}
+
+/**
+ * 取消订单
+ */
+-(void)CancelAction
+{
+
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_cancel_order", @"") WithBlock:^{
+        NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderDetailModel.orderInfo.tradeOrderCode};
+        [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功删除订单" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功取消订单" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
@@ -234,56 +301,7 @@
         } failure:^(NSError *error, UIAlertController *failureAlert) {
             [self presentViewController:failureAlert animated:YES completion:nil];
         }];
-    }
-    
-}
-/**
- * 确认收货
- */
--(void)ConfirmAction
-{
-    if(_OrderDetailModel.orderInfo.orderList.count)
-    {
-        DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
-        [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                _OrderModel.orderStatus=3;
-                [_tableview reloadData];
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
-    }
-    
-}
-
-/**
- * 取消订单
- */
--(void)CancelAction
-{
-
-    NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderDetailModel.orderInfo.tradeOrderCode};
-    [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功取消订单" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+    }] animated:YES completion:nil];
    
 }
 
