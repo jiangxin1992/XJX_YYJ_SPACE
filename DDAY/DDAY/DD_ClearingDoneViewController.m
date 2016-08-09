@@ -7,8 +7,10 @@
 //
 
 #import "DD_ClearingDoneViewController.h"
+
 #import "DD_GoodsViewController.h"
 #import "DD_OrderDetailViewController.h"
+#import "DD_ClearingOrderViewController.h"
 #import "DD_ClearingViewController.h"
 #import "DD_OrderModel.h"
 
@@ -130,11 +132,15 @@
             NSArray *getArr=[DD_OrderModel getOrderModelArr:[data objectForKey:@"orders"]];
             if(getArr.count)
             {
-                DD_OrderModel *order=[getArr objectAtIndex:0];
-                [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:nil] animated:YES];
-
+                if(getArr.count>1)
+                {
+                    [self.navigationController pushViewController:[[DD_ClearingOrderViewController alloc] initWithDataArr:[[NSMutableArray alloc] initWithArray:getArr] WithTradeOrderCode:_tradeOrderCode] animated:YES];
+                }else
+                {
+                    DD_OrderModel *order=[getArr objectAtIndex:0];
+                    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:nil] animated:YES];
+                }
             }
-            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

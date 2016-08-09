@@ -1,12 +1,12 @@
 //
-//  DD_OrderViewController.m
-//  DDAY
+//  DD_ClearingOrderViewController.m
+//  YCO SPACE
 //
-//  Created by yyj on 16/6/6.
+//  Created by yyj on 16/8/9.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_OrderViewController.h"
+#import "DD_ClearingOrderViewController.h"
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "DD_ClearingViewController.h"
@@ -24,57 +24,64 @@
 #import "DD_ClearingModel.h"
 #import "DD_OrderModel.h"
 
-
-@interface DD_OrderViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DD_ClearingOrderViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation DD_OrderViewController
+@implementation DD_ClearingOrderViewController
 {
     NSMutableArray *_dataArr;
     UITableView *_tableview;
     void (^cellblock)(NSString *type,NSIndexPath *indexPath);
-    NSInteger _page;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
     [self SomeBlock];
 }
+-(instancetype)initWithDataArr:(NSMutableArray *)dataArr WithTradeOrderCode:(NSString *)tradeOrderCode
+{
+    self=[super init];
+    if(self)
+    {
+        _dataArr=dataArr;
+        _tradeOrderCode=tradeOrderCode;
+    }
+    return self;
+}
 #pragma mark - SomeBlock
 -(void)SomeBlock
 {
-    __block DD_OrderViewController *_orderView=self;
+    __block DD_ClearingOrderViewController *_orderView=self;
     __block NSArray *__dataArr=_dataArr;
     cellblock=^(NSString *type,NSIndexPath *indexPath)
     {
         if([type isEqualToString:@"pay"])
         {
-//            支付 1
+            //            支付 1
             [_orderView PayActionWithModel:[__dataArr objectAtIndex:indexPath.section]];
             
         }else if([type isEqualToString:@"cancel"])
         {
-//            取消订单 1
+            //            取消订单 1
             [_orderView CancelActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
             
         }else if([type isEqualToString:@"confirm"])
         {
-//            确认收货
+            //            确认收货
             [_orderView ConfirmActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"delect"])
         {
-//            删除订单
+            //            删除订单
             [_orderView DelectActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"logistics"])
         {
-//            查看物流
+            //            查看物流
             [_orderView checkLogisticsInfoWithModel:[__dataArr objectAtIndex:indexPath.section]];
         }else if([type isEqualToString:@"click"])
         {
-//            跳转订单详情
+            //            跳转订单详情
             [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:nil] animated:YES];
         }
     };
@@ -85,17 +92,8 @@
 {
     _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
-        _page=1;
         [self RequestData];
     }];
-    
-    _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        _page+=1;
-        [self RequestData];
-    }];
-    
-    [_tableview.header beginRefreshing];
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -105,8 +103,6 @@
 }
 -(void)PrepareData
 {
-    _page=1;
-    _dataArr=[[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payAction:) name:@"payAction" object:nil];
 }
 -(void)PrepareUI
@@ -147,24 +143,21 @@
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
+    [_tableview reloadData];
+    
 }
 #pragma mark - RequestData
 -(void)RequestData
 {
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"page":[NSNumber numberWithLong:_page]};
-    [[JX_AFNetworking alloc] GET:@"order/queryOrderList.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    
+    [[JX_AFNetworking alloc] GET:@"order/queryTradeOrderInfo.do" parameters:@{@"tradeOrderCode":_tradeOrderCode,@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            if(_page==1)
-            {
-                [_dataArr removeAllObjects];//删除所有数据
-            }
+            [_dataArr removeAllObjects];
             NSArray *getArr=[DD_OrderModel getOrderModelArr:[data objectForKey:@"orders"]];
             [_dataArr addObjectsFromArray:getArr];
-            [_tableview reloadData];
             [_tableview.header endRefreshing];
             [_tableview.footer endRefreshing];
-            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -176,6 +169,7 @@
         [_tableview.header endRefreshing];
         [_tableview.footer endRefreshing];
     }];
+    
 }
 #pragma mark - SomeActions
 /**
@@ -183,7 +177,7 @@
  */
 -(void)checkLogisticsInfoWithModel:(DD_OrderModel *)_OrderModel
 {
-//    跳转物流信息界面
+    //    跳转物流信息界面
     [self.navigationController pushViewController:[[DD_OrderLogisticsViewController alloc] initWithModel:_OrderModel WithBlock:nil] animated:YES];
 }
 /**
@@ -256,13 +250,13 @@
  */
 -(void)PayActionWithModel:(DD_OrderModel *)_OrderModel
 {
-//不验证直接获取orderSpec 发起支付
+    //不验证直接获取orderSpec 发起支付
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
     [[JX_AFNetworking alloc] GET:@"order/queryOrderPayParams.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSString *appScheme = @"DDAY";
-//            payParam
+            //            payParam
             NSString *orderSpec = [data objectForKey:@"payParam"];
             NSLog(@"orderSpec = %@",orderSpec);
             id<DataSigner> signer = CreateRSADataSigner([data objectForKey:@"privateKey"]);
@@ -327,7 +321,7 @@
     if([_order isSingle])
     {
         static NSString *CellIdentifier = @"cell_single";
-    
+        
         DD_OrderCell *cell=[_tableview dequeueReusableCellWithIdentifier:CellIdentifier];
         if(!cell)
         {
@@ -363,7 +357,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    跳转订单详情
+    //    跳转订单详情
     [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:nil] animated:YES];
 }
 //section头部间距
@@ -408,6 +402,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

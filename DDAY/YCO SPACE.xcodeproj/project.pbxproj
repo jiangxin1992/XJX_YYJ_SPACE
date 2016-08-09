@@ -278,6 +278,7 @@
 		3F9B8B521CF1AE08008EC460 /* DD_BodyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B501CF1AE08008EC460 /* DD_BodyViewController.xib */; };
 		3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */; };
 		3F9B8B5B1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */; };
+		3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */; };
 		3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */; };
 		3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */; };
 		3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */; };
@@ -866,6 +867,8 @@
 		3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserInfo_AlertPSWViewController.h; sourceTree = "<group>"; };
 		3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfo_AlertPSWViewController.m; sourceTree = "<group>"; };
 		3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_UserInfo_AlertPSWViewController.xib; sourceTree = "<group>"; };
+		3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingOrderViewController.h; sourceTree = "<group>"; };
+		3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingOrderViewController.m; sourceTree = "<group>"; };
 		3FA5510C1D4CAEC400528B5F /* DD_GoodsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCircleView.h; sourceTree = "<group>"; };
 		3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsCircleView.m; sourceTree = "<group>"; };
 		3FA5510F1D4CBA2500528B5F /* DD_GoodsFabricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsFabricView.h; sourceTree = "<group>"; };
@@ -1538,6 +1541,7 @@
 		3F4187CC1CEEFEE5001BCA3D /* 结算 */ = {
 			isa = PBXGroup;
 			children = (
+				3FA32FF21D59989700311A6A /* 结算成功订单列表 */,
 				3F8924361CF6A6A300B76E6E /* DD_ClearingDoneViewController.h */,
 				3F8924371CF6A6A300B76E6E /* DD_ClearingDoneViewController.m */,
 				3F8924381CF6A6A300B76E6E /* DD_ClearingDoneViewController.xib */,
@@ -2612,6 +2616,15 @@
 			name = "修改登录密码";
 			sourceTree = "<group>";
 		};
+		3FA32FF21D59989700311A6A /* 结算成功订单列表 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */,
+				3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */,
+			);
+			name = "结算成功订单列表";
+			sourceTree = "<group>";
+		};
 		3FA6E0151D5078760038569C /* DD_NavBtn */ = {
 			isa = PBXGroup;
 			children = (
@@ -3135,6 +3148,7 @@
 				3FCB11551CFC33BC00FBB018 /* DD_ShopClearingView.m in Sources */,
 				3F4187C41CEEFEAA001BCA3D /* NSString+extra.m in Sources */,
 				3F2F76481D1CC55C002E22A6 /* DD_CircleApplyInfoView.m in Sources */,
+				3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */,
 				3F552EA41CF212C300BC5E33 /* DD_GoodSeriesModel.m in Sources */,
 				3F552E7F1CF1F58C00BC5E33 /* DD_DesignerCell.m in Sources */,
 				3F8E76721D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m in Sources */,
