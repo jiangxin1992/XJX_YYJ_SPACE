@@ -5,15 +5,14 @@
 //  Created by yyj on 16/6/27.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_TarentoHomePageViewController.h"
+
 #import "DD_TarentoHeadView.h"
 #import "DD_CircleListCell.h"
 #import "DD_CircleListModel.h"
 #import "DD_CircleItemListViewController.h"
-#import "DD_CircleApplyViewController.h"
-#import "DD_CirclePublishViewController.h"
 #import "DD_CircleDetailViewController.h"
-
-#import "DD_TarentoHomePageViewController.h"
 
 @interface DD_TarentoHomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -57,7 +56,32 @@
 
 }
 -(void)PrepareUI{
-    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:200];
+    DD_NavBtn *backBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(11, 19) WithImgeStr:@"System_Back"];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:backBtn];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kStatusBarHeight);
+        make.width.height.mas_equalTo(44);
+        make.left.mas_equalTo(0);
+    }];
+    
+    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shareBtn];
+    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kStatusBarHeight);
+        make.right.mas_equalTo(0);
+        make.width.height.mas_equalTo(44);
+    }];
+    
+    UIView *titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:140];
+    [self.view addSubview:titleView];
+    [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(44);
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(kStatusBarHeight);
+    }];
 }
 
 /**
@@ -116,20 +140,21 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
-    DD_TarentoHeadView *headView=[[DD_TarentoHeadView alloc] initWithUserModel:_usermodel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"head_click"])
-        {
-            
-        }
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(kNavHeight, 0, 0, 0));
     }];
-    headView.frame=CGRectMake(0, 0, ScreenWidth, 170);
+    
+    DD_TarentoHeadView *headView=[[DD_TarentoHeadView alloc] initWithUserModel:_usermodel WithBlock:^(NSString *type) {
+        
+    }];
+    headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_TarentoHeadView heightWithModel:_usermodel]);
     _tableview.tableHeaderView=headView;
 }
 #pragma mark - RequestData
@@ -210,28 +235,17 @@
 {
     [self PushCommentViewWithIndex:indexPath.section];
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+#pragma mark - SomeAction
+-(void)backAction
 {
-    return 1;//section头部高度
+    [self.navigationController popViewControllerAnimated:YES];
 }
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//分享
+-(void)ShareAction
 {
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
+    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
 }
 
-#pragma mark - SomeAction
 -(void)MJRefresh
 {
     _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -248,7 +262,6 @@
     
     [_tableview.header beginRefreshing];
 }
-#pragma mark - SomeAction
 /**
  * 删除
  */
@@ -363,17 +376,22 @@
 
 
 #pragma mark - Other
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [[DD_CustomViewController sharedManager] tabbarHide];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [MobClick beginLogPageView:@"DD_TarentoHomePageViewController"];
 }
-- (void)viewWillDisappear:(BOOL)animated
+-(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [MobClick endLogPageView:@"DD_TarentoHomePageViewController"];
+
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

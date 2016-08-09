@@ -291,14 +291,15 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_OrderModel *_order=[_dataArr objectAtIndex:indexPath.section];
-    if(_order.orderStatus==1)
-    {
-        return 178;
-    }else
-    {
-        return 222;
-    }
+//    DD_OrderModel *_order=[_dataArr objectAtIndex:indexPath.section];
+//    if(_order.orderStatus==1)
+//    {
+//        return 178;
+//    }else
+//    {
+//        return 222;
+//    }
+    return 222;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

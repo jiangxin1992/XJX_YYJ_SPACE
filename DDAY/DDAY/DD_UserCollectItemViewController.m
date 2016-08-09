@@ -5,22 +5,30 @@
 //  Created by yyj on 16/6/13.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_GoodsDetailViewController.h"
-#import "DD_ItemCell.h"
-#import "MJRefresh.h"
-#import "DD_ShopViewController.h"
+
 #import "DD_UserCollectItemViewController.h"
 
-@interface DD_UserCollectItemViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "DD_ItemTool.h"
+#import "DD_ItemsModel.h"
+
+#import "MJRefresh.h"
+
+#import "Waterflow.h"
+#import "WaterflowCell.h"
+
+
+@interface DD_UserCollectItemViewController ()<WaterflowDataSource,WaterflowDelegate>
 
 @end
 
 @implementation DD_UserCollectItemViewController
 {
-    UITableView *_tableview;
+    Waterflow *mywaterflow;
     NSMutableArray *_dataArr;
     NSInteger _page;
+    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
@@ -39,9 +47,9 @@
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
+    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
-    
 }
 -(void)PrepareData
 {
@@ -49,6 +57,7 @@
     _dataArr=[[NSMutableArray alloc] init];
 }
 -(void)PrepareUI{}
+
 #pragma mark - RequestData
 -(void)RequestData
 {
@@ -64,137 +73,106 @@
                     [_dataArr removeAllObjects];//删除所有数据
                 }
                 [_dataArr addObjectsFromArray:modelArr];
-                [_tableview reloadData];
+                [mywaterflow reloadData];
             }else
             {
-//                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_more", @"")] animated:YES completion:nil];
+                //                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_more", @"")] animated:YES completion:nil];
             }
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
         }
-        [_tableview.header endRefreshing];
-        [_tableview.footer endRefreshing];
-        
+        [mywaterflow.header endRefreshing];
+        [mywaterflow.footer endRefreshing];
+
     } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [_tableview.header endRefreshing];
-        [_tableview.footer endRefreshing];
+        [mywaterflow.header endRefreshing];
+        [mywaterflow.footer endRefreshing];
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    [self CreateTableview];
+    [self CreateWaterFlow];
     [self MJRefresh];
 }
--(void)CreateTableview
+-(void)CreateWaterFlow
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-54) style:UITableViewStyleGrouped];
-    [self.view addSubview:_tableview];
-    //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
-    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
-    _tableview.delegate=self;
-    _tableview.dataSource=self;
+    mywaterflow = [[Waterflow alloc] init];
     
+    
+    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-54);
+    
+    mywaterflow.dataSource = self;
+    
+    mywaterflow.delegate = self;
+    
+    [self.view addSubview:mywaterflow];
 }
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {
-    _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    mywaterflow.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page=1;
         [self RequestData];
     }];
     
-    _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    mywaterflow.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page+=1;
         [self RequestData];
     }];
     
-    [_tableview.header beginRefreshing];
-}
-#pragma mark - SomeAction
-//跳转购物车
--(void)PushShopView
-{
-    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-    [self.navigationController pushViewController:_shop animated:YES];
+    [mywaterflow.header beginRefreshing];
 }
 
 #pragma mark - UITableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+// cell的个数，必须实现
+- (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
+    
     return _dataArr.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    数据还未获取时候
-    if(_dataArr.count==indexPath.section)
+// 返回cell，必须实现
+- (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
+    DD_ItemsModel *item=[_dataArr objectAtIndex:index];
+    DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+    CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+    return [DD_ItemTool getCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
+}
+// 这个方法可选不是必要的，默认是3列
+- (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
+    return 2;
+}
+// 返回每一个cell的高度，非必要，默认为80
+- (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
+    DD_ItemsModel *item=[_dataArr objectAtIndex:index];
+    if(item.pics)
     {
-        static NSString *cellid=@"cellid";
-        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-        if(!cell)
-        {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-        }
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
+        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height+95;
     }
-    
-    static NSString *CellIdentifier = @"cell_goods";
-    BOOL nibsRegistered = NO;
-    if (!nibsRegistered) {
-        UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_ItemCell class]) bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-        nibsRegistered = YES;
-    }
-    DD_ItemCell *cell = (DD_ItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.item=[_dataArr objectAtIndex:indexPath.section];
-    return cell;
+    return 95;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DD_ItemsModel *_model=[_dataArr objectAtIndex:indexPath.section];
+// 间隔，非必要，默认均为10
+- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowType:(WaterflowMarginType)type{
+    return 13;
+}
+// 非必要
+- (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
+    
+    DD_ItemsModel *_model=[_dataArr objectAtIndex:index];
     _block(@"detail",_model);
-    
-}
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
 }
 
 #pragma mark - Other
-- (void)viewWillAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
+    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_UserCollectItemViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -206,4 +184,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 @end

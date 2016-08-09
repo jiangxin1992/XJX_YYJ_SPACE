@@ -12,6 +12,7 @@
  * 初始化
  */
 -(instancetype)initWithUserModel:(DD_UserModel *)usermodel WithBlock:(void (^)(NSString *type))block;
++ (CGFloat)heightWithModel:(DD_UserModel *)model;
 /**
  * 用户信息
  */
@@ -20,4 +21,5 @@
  * 回调block
  */
 @property(nonatomic,copy) void (^block)(NSString *type);
+__label(des);
 @end

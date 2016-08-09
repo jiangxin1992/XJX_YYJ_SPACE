@@ -131,7 +131,7 @@
                         [regular UpdateRoot];
                     }
                     _userName.text=_usermodel.nickName;
-                    [_userHeadImg JX_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:83/2.0f];
+                    [_userHeadImg JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
                 }
             }else
             {

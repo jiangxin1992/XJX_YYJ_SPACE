@@ -8,14 +8,16 @@
 
 #import "DD_OrderMoreCell.h"
 
+#import "DD_OrderCellBtn.h"
+
 @implementation DD_OrderMoreCell
 {
     UIScrollView *_scrollview;
     UILabel *_goodNumLabel;//商品数量
     UILabel *_totalPriceLabel;//总计
     
-    UIButton *_leftBtn;
-    UIButton *_rightBtn;
+    DD_OrderCellBtn *_leftBtn;
+    DD_OrderCellBtn *_rightBtn;
     NSMutableArray *itemArr;
 }
 
@@ -86,10 +88,10 @@
         make.top.mas_equalTo(_totalPriceLabel);
     }];
     
-    _rightBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _rightBtn=[DD_OrderCellBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.contentView addSubview:_rightBtn];
     _rightBtn.backgroundColor=_define_black_color;
-    [_rightBtn addTarget:self action:@selector(rightBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(_goodNumLabel.mas_bottom).with.offset(0);
@@ -97,10 +99,10 @@
         make.height.mas_equalTo(35);
     }];
     
-    _leftBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _leftBtn=[DD_OrderCellBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.contentView addSubview:_leftBtn];
     _leftBtn.backgroundColor=_define_black_color;
-    [_leftBtn addTarget:self action:@selector(leftBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_leftBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(_rightBtn.mas_left).with.offset(-15);
         make.top.mas_equalTo(_rightBtn);
@@ -158,57 +160,36 @@
             //待付款
             _leftBtn.hidden=NO;
             _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"继续支付" forState:UIControlStateNormal];
+            [_leftBtn setTitle:@"去支付" forState:UIControlStateNormal];
+            _leftBtn.type=@"pay";
             [_rightBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-        }else if(_OrderModel.orderStatus==1)
+            _rightBtn.type=@"cancel";
+        }else if(_OrderModel.orderStatus==1||_OrderModel.orderStatus==4||_OrderModel.orderStatus==5)
         {
-            //待发货
+            //待发货 //申请退款 //退款处理中
             _leftBtn.hidden=YES;
-            _rightBtn.hidden=YES;
+            _leftBtn.type=@"";
+            _rightBtn.hidden=NO;
+            [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
+            _rightBtn.type=@"logistics";
         }else if(_OrderModel.orderStatus==2)
         {
             //待收货
             _leftBtn.hidden=NO;
             _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-            [_rightBtn setTitle:@"确认收货" forState:UIControlStateNormal];
-            //                确认收货
-        }else if(_OrderModel.orderStatus==3)
+            [_leftBtn setTitle:@"确认收货" forState:UIControlStateNormal];
+            _leftBtn.type=@"confirm";
+            [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
+            _rightBtn.type=@"logistics";
+        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
         {
-            //交易成功
+            //交易成功 //已退款 //拒绝退款
             _leftBtn.hidden=NO;
             _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-            [_rightBtn setTitle:@"删除订单" forState:UIControlStateNormal];
-        }else if(_OrderModel.orderStatus==4)
-        {
-            
-            //申请退款
-            _leftBtn.hidden=NO;
-            _rightBtn.hidden=YES;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-        }else if(_OrderModel.orderStatus==5)
-        {
-            //退款处理中
-            _leftBtn.hidden=NO;
-            _rightBtn.hidden=YES;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-        }else if(_OrderModel.orderStatus==6)
-        {
-            
-            //已退款
-            _leftBtn.hidden=NO;
-            _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-            [_rightBtn setTitle:@"删除订单" forState:UIControlStateNormal];
-        }else if(_OrderModel.orderStatus==7)
-        {
-            
-            //拒绝退款
-            _leftBtn.hidden=NO;
-            _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"查看物流" forState:UIControlStateNormal];
-            [_rightBtn setTitle:@"删除订单" forState:UIControlStateNormal];
+            [_leftBtn setTitle:@"删除订单" forState:UIControlStateNormal];
+            _leftBtn.type=@"delect";
+            [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
+            _rightBtn.type=@"logistics";
         }
         
     }
@@ -221,34 +202,28 @@
 {
     _cellblock(@"click",_indexPath);
 }
--(void)rightBtnAction:(UIButton *)btn {
-    if(_OrderModel.orderStatus==0)
+-(void)btnAction:(DD_OrderCellBtn *)btn
+{
+    if([btn.type isEqualToString:@"cancel"])
     {
         //取消订单
-        _cellblock(@"cancel",_indexPath);
-        
-    }else if(_OrderModel.orderStatus==2)
+        //        _cellblock(btn.type,_indexPath);
+    }else if([btn.type isEqualToString:@"confirm"])
     {
         //确认收货
-        _cellblock(@"confirm",_indexPath);
-    }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
+        //        _cellblock(btn.type,_indexPath);
+    }else if([btn.type isEqualToString:@"delect"])
     {
         //删除订单
-        _cellblock(@"delect",_indexPath);
-    }
-}
--(void)leftBtnAction:(UIButton *)btn {
-    if(_OrderModel.orderStatus==0)
+        //        _cellblock(btn.type,_indexPath);
+    }else if([btn.type isEqualToString:@"pay"])
     {
         //支付
-        _cellblock(@"pay",_indexPath);
-    }else if(_OrderModel.orderStatus==1)
-    {
-        //        提醒卖家发货
-    }else if(_OrderModel.orderStatus==2||_OrderModel.orderStatus==3||_OrderModel.orderStatus==4||_OrderModel.orderStatus==5||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
+        //        _cellblock(btn.type,_indexPath);
+    }else if([btn.type isEqualToString:@"logistics"])
     {
         //查看物流
-        _cellblock(@"logistics",_indexPath);
+        //        _cellblock(btn.type,_indexPath);
     }
 }
 

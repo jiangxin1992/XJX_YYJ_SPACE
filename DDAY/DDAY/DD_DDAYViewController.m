@@ -243,7 +243,7 @@
  */
 -(void)PushCalendarView
 {
-    
+    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
 }
 /**
  * 发布日详情页

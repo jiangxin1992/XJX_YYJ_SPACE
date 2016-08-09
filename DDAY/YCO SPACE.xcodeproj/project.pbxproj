@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F00D4101D5A3C8400896ED5 /* DD_OrderCellBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00D40F1D5A3C8400896ED5 /* DD_OrderCellBtn.m */; };
 		3F0A6DF81D11056100CDCBC5 /* DD_CircleInfoSuggestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */; };
 		3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DFA1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m */; };
 		3F0A6DFE1D1127B000CDCBC5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DFD1D1127B000CDCBC5 /* UIView+Frame.m */; };
@@ -331,6 +332,8 @@
 
 /* Begin PBXFileReference section */
 		32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.debug.xcconfig"; sourceTree = "<group>"; };
+		3F00D40E1D5A3C8400896ED5 /* DD_OrderCellBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderCellBtn.h; sourceTree = "<group>"; };
+		3F00D40F1D5A3C8400896ED5 /* DD_OrderCellBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderCellBtn.m; sourceTree = "<group>"; };
 		3F0A6DF61D11056100CDCBC5 /* DD_CircleInfoSuggestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoSuggestView.h; sourceTree = "<group>"; };
 		3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleInfoSuggestView.m; sourceTree = "<group>"; };
 		3F0A6DF91D1123F000CDCBC5 /* DD_CircleChooseStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleChooseStyleView.h; sourceTree = "<group>"; };
@@ -2655,6 +2658,8 @@
 		3FA836641D050B89006D2919 /* 订单列表 */ = {
 			isa = PBXGroup;
 			children = (
+				3F00D40E1D5A3C8400896ED5 /* DD_OrderCellBtn.h */,
+				3F00D40F1D5A3C8400896ED5 /* DD_OrderCellBtn.m */,
 				3F6457391D547F78003B4E1A /* cell */,
 				3FA8365F1D050B86006D2919 /* DD_OrderViewController.h */,
 				3FA836601D050B86006D2919 /* DD_OrderViewController.m */,
@@ -3174,6 +3179,7 @@
 				3F7160AD1D4EE23400E165D2 /* DD_GoodsListTableView.m in Sources */,
 				3F3A0BED1D37CA14006CD46F /* UITextField+Custom.m in Sources */,
 				3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */,
+				3F00D4101D5A3C8400896ED5 /* DD_OrderCellBtn.m in Sources */,
 				3FA836741D051B3F006D2919 /* DD_OrderTool.m in Sources */,
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
 				3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */,

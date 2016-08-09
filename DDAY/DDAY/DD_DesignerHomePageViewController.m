@@ -5,13 +5,17 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_DesignerHomePageViewController.h"
+
+#import "DD_DesignerModel.h"
+
 #import "DD_CircleDetailViewController.h"
 #import "DD_DesignerItemViewController.h"
 #import "DD_DesignerCircleViewController.h"
 #import "DD_DesignerIntroViewController.h"
-#import "DD_DesignerModel.h"
-#import "DD_DesignerHomePageViewController.h"
 #import "DD_GoodsDetailViewController.h"
+
 @interface DD_DesignerHomePageViewController ()
 
 @end
@@ -85,6 +89,16 @@
             make.centerY.mas_equalTo(shareBtn);
             make.width.mas_equalTo(68);
             make.height.mas_equalTo(25);
+        }];
+    }else
+    {
+        UIView *titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:140];
+        [self.view addSubview:titleView];
+        [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(140);
+            make.height.mas_equalTo(44);
+            make.centerX.mas_equalTo(self.view);
+            make.top.mas_equalTo(self.view.mas_top).with.offset(kStatusBarHeight);
         }];
     }
     

@@ -305,7 +305,6 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
     _block(@"push_circle_detail",listModel);
-    
 }
 //section头部间距
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

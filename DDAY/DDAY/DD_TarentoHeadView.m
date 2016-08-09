@@ -21,6 +21,13 @@
     }
     return self;
 }
++ (CGFloat)heightWithModel:(DD_UserModel *)model{
+    
+    DD_TarentoHeadView *cell = [[DD_TarentoHeadView alloc] initWithUserModel:model WithBlock:nil];
+    [cell layoutIfNeeded];
+    CGRect frame =  cell.des.frame;
+    return frame.origin.y + frame.size.height+10;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -35,44 +42,45 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIImageView *head=[[UIImageView alloc] init];
-    [self addSubview:head];
-    [head JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:40];
-    head.userInteractionEnabled=YES;
-    [head addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
-    [head mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.width.and.height.mas_equalTo(80);
-        make.top.mas_equalTo(20);
+    UIView *headBackView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:headBackView];
+    headBackView.layer.masksToBounds=YES;
+    headBackView.layer.cornerRadius=81/2.0f;
+    [regular setBorder:headBackView];
+    [headBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(9);
+        make.width.height.mas_equalTo(81);
+        make.centerX.mas_equalTo(self);
     }];
     
-    UILabel *nickName=[[UILabel alloc] init];
+    UIImageView *headImg=[UIImageView getCustomImg];
+    [headBackView addSubview:headImg];
+    [headImg JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
+    headImg.userInteractionEnabled=YES;
+    [headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(headBackView);
+        make.width.and.height.mas_equalTo(69);
+    }];
+    
+    UILabel *nickName=[UILabel getLabelWithAlignment:1 WithTitle:_usermodel.nickName WithFont:18.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:nickName];
-    nickName.textColor=[UIColor blackColor];
-    nickName.font=[regular getFont:13.0f];
-    nickName.text=_usermodel.nickName;
-    nickName.textAlignment=1;
-    
     [nickName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(head.mas_bottom).with.mas_equalTo(0);
-        make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(30);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(headBackView.mas_bottom).with.offset(6);
     }];
+    [nickName sizeToFit];
     
-    UILabel *des=[[UILabel alloc] init];
-    [self addSubview:des];
-    des.textColor=[UIColor lightGrayColor];
-    des.font=[regular getFont:13.0f];
-    des.text=_usermodel.nickName;
-    des.textAlignment=1;
-    des.numberOfLines=0;
-    
-    [des mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(nickName.mas_bottom).with.mas_equalTo(0);
-        make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(30);
+    _des=[UILabel getLabelWithAlignment:1 WithTitle:_usermodel.nickName WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:_des];
+    _des.numberOfLines=2;
+    [_des mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(nickName.mas_bottom).with.mas_equalTo(6);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
     }];
-
+    [_des sizeToFit];
 }
 -(void)headClick
 {
