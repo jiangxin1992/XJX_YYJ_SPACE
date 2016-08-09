@@ -15,7 +15,7 @@
     UIPageViewController *_pageViewControler;
     UIPageControl *_pageControl;
 
-    UIButton *itemBtn;//单品按钮，点击进入该搭配的单品列表
+//    UIButton *itemBtn;//单品按钮，点击进入该搭配的单品列表
 }
 
 #pragma mark - 初始化
@@ -26,6 +26,8 @@
     {
         _block=block;
         _detailModel=model;
+        [self setState];
+        NSLog(@"111");
     }
     return self;
 }
@@ -35,11 +37,12 @@
     //    创建pageViewControler（活动图片浏览视图）
     _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     [self addSubview:_pageViewControler.view];
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(210, 300) WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     imgvc.array=_detailModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
+    [regular setBorder:_pageViewControler.view];
     imgvc.currentPage = 0;
     [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     _pageViewControler.delegate = self;
@@ -47,7 +50,7 @@
     [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.and.right.mas_equalTo(0);
         make.height.mas_equalTo(300);
-        make.bottom.mas_equalTo(0);
+//        make.bottom.mas_equalTo(0);
     }];
     
     _pageControl = [[UIPageControl alloc]init];
@@ -60,25 +63,25 @@
         make.centerX.equalTo(self.mas_centerX);
     }];
     
-    itemBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self addSubview:itemBtn];
-    itemBtn.alpha=0.7;
-    [itemBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    itemBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-    itemBtn.titleLabel.font=[regular get_en_Font:20.0f];
-    itemBtn.backgroundColor=[UIColor whiteColor];
-    [itemBtn addTarget:self action:@selector(showItemListAction) forControlEvents:UIControlEventTouchUpInside];
-    [itemBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_detailModel.items.count] forState:UIControlStateNormal];
-    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.and.height.mas_equalTo(@80);
-        make.right.and.bottom.mas_equalTo(-20);
-    }];
+//    itemBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+//    [self addSubview:itemBtn];
+//    itemBtn.alpha=0.7;
+//    [itemBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    itemBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+//    itemBtn.titleLabel.font=[regular get_en_Font:20.0f];
+//    itemBtn.backgroundColor=[UIColor whiteColor];
+//    [itemBtn addTarget:self action:@selector(showItemListAction) forControlEvents:UIControlEventTouchUpInside];
+//    [itemBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_detailModel.items.count] forState:UIControlStateNormal];
+//    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.and.height.mas_equalTo(@80);
+//        make.right.and.bottom.mas_equalTo(-20);
+//    }];
 }
--(void)setDetailModel:(DD_CircleListModel *)detailModel
-{
-    _detailModel=detailModel;
-    [self setState];
-}
+//-(void)setDetailModel:(DD_CircleListModel *)detailModel
+//{
+//    _detailModel=detailModel;
+//    [self setState];
+//}
 #pragma mark - setState
 -(void)setState
 {
@@ -130,11 +133,11 @@
 }
 
 #pragma mark - SomeAction
-/**
- * 跳转当前搭配对应的单品列表
- */
--(void)showItemListAction
-{
-    _block(@"show_item_list",0);
-}
+///**
+// * 跳转当前搭配对应的单品列表
+// */
+//-(void)showItemListAction
+//{
+//    _block(@"show_item_list",0);
+//}
 @end

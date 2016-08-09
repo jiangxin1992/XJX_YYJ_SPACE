@@ -5,6 +5,7 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+#import "DD_OrderItemModel.h"
 #import "DD_CircleListModel.h"
 #import <UIKit/UIKit.h>
 
@@ -12,12 +13,12 @@
 /**
  * 初始化
  */
--(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block;
-
+-(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *type,NSInteger index,DD_OrderItemModel *item))block;
++ (CGFloat)heightWithModel:(DD_CircleListModel *)model;
 /**
  * 更新
  */
--(void)update;
+//-(void)update;
 /**
  * 搭配model
  */
@@ -25,9 +26,9 @@
 /**
  * 回调block
  */
-@property(nonatomic,copy) void (^block)(NSString *type,NSInteger index);
+@property(nonatomic,copy) void (^block)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 
-
+__btn(lastView_state);
 /**
  * 更新
  */

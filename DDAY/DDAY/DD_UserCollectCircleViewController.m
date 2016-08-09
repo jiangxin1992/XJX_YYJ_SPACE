@@ -19,7 +19,7 @@
     NSMutableArray *_dataArr;
     NSInteger _page;
     
-    void (^cellBlock)(NSString *type,NSInteger index);
+    void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,7 +54,7 @@
 -(void)SomeBlock
 {
     __block DD_UserCollectCircleViewController *_CircleView=self;
-    cellBlock=^(NSString *type,NSInteger index)
+    cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
         if([type isEqualToString:@"show_item_list"])
         {

@@ -104,18 +104,28 @@
 }
 -(void)setDesigner:(DD_DesignerModel *)Designer
 {
+    DD_UserModel *_userModel=[DD_UserModel getLocalUserInfo];
+    
+    if([Designer.designerId isEqualToString:_userModel.u_id])
+    {
+        _followBtn.hidden=YES;
+    }else
+    {
+        _followBtn.hidden=NO;
+        if(Designer.guanzhu)
+        {
+            _followBtn.selected=YES;
+            _followBtn.backgroundColor=_define_white_color;
+        }else
+        {
+            _followBtn.selected=NO;
+            _followBtn.backgroundColor=_define_black_color;
+        }
+    }
     
     [_head JX_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:25];
     [_brand JX_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:25];
-    if(Designer.guanzhu)
-    {
-        _followBtn.selected=YES;
-        _followBtn.backgroundColor=_define_white_color;
-    }else
-    {
-        _followBtn.selected=NO;
-        _followBtn.backgroundColor=_define_black_color;
-    }
+    
     _name_label.text=Designer.name;
     _brand_label.text=Designer.brandName;
     

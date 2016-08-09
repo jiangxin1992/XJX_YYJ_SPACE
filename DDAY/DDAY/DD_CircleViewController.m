@@ -6,6 +6,8 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
+#import "DD_CircleViewController.h"
+
 #import "DD_CircleListCell.h"
 #import "DD_CircleListModel.h"
 #import "DD_CircleItemListViewController.h"
@@ -13,8 +15,8 @@
 #import "DD_CirclePublishViewController.h"
 #import "DD_CircleDetailViewController.h"
 #import "MJRefresh.h"
-
-#import "DD_CircleViewController.h"
+#import "DD_CricleChooseItemModel.h"
+#import "DD_GoodsDetailViewController.h"
 
 @interface DD_CircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -26,7 +28,7 @@
     NSInteger _page;
     UITableView *_tableview;
     BOOL _getChangeNot;
-    void (^cellBlock)(NSString *type,NSInteger index);
+    void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 }
 
 - (void)viewDidLoad {
@@ -61,7 +63,7 @@
 {
     __block DD_CircleViewController *_CircleView=self;
     __block NSMutableArray *___dataArr=_dataArr;
-    cellBlock=^(NSString *type,NSInteger index)
+    cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
         DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
         if([type isEqualToString:@"show_item_list"])
@@ -97,9 +99,22 @@
             [_CircleView praiseActionIsCancel:NO WithIndex:index];
         }else if([type isEqualToString:@"delete"])
         {
+            [_CircleView presentViewController:[regular alertTitleCancel_Simple:@"删除该评论?" WithBlock:^{
+                [_CircleView deleteActionWithIndex:index];
+            }] animated:YES completion:nil];
 //            删除
-            [_CircleView deleteActionWithIndex:index];
+        }else if([type isEqualToString:@"item_click"])
+        {
+//            点击item
+            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+            _item.g_id=item.itemId;
+            _item.colorId=item.colorId;
+            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                //        if(type)
+            }];
+            [_CircleView.navigationController pushViewController:_GoodsDetail animated:YES];
         }
+
     };
 }
 #pragma mark - UIConfig
@@ -110,13 +125,16 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -140,7 +158,7 @@
                 [_tableview reloadData];
             }else
             {
-//                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_more", @"")] animated:YES completion:nil];
+
             }
         }else
         {
@@ -155,71 +173,8 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-#pragma mark - UITableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    return 454+listModel.suggestHeight;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return _dataArr.count;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    数据还未获取时候
-    if(_dataArr.count==indexPath.section)
-    {
-        static NSString *cellid=@"cellid";
-        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-        if(!cell)
-        {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-        }
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    //获取到数据以后
-    static NSString *cellid=@"cell_title";
-    DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-    if(!cell)
-    {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-    }
-    cell.listModel=[_dataArr objectAtIndex:indexPath.section];
-    cell.index=indexPath.section;
-    cell.cellBlock=cellBlock;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self PushCommentViewWithIndex:indexPath.section];
-}
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
+
+
 
 #pragma mark - SomeAction
 -(void)MJRefresh
@@ -307,26 +262,19 @@
  */
 -(void)deleteActionWithIndex:(NSInteger )index
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除该搭配" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-        [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                [_dataArr removeObjectAtIndex:index];
-                [_tableview reloadData];
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            [_dataArr removeObjectAtIndex:index];
+            [_tableview reloadData];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
     }];
-    [alertController addAction:cancelAction];
-    [alertController addAction:deleteAction];
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 /**
  * 跳转评论页面
@@ -458,14 +406,65 @@
     //     1 管理员 2 设计师 3 普通用户 4 达人
     if([DD_UserModel getUserType]==3)
     {
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"申请" style:UIBarButtonItemStylePlain target:self action:@selector(ApplyAction)];
+        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
+        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.rightBarButtonItem=nil;
     }
     if([DD_UserModel getUserType]==2||[DD_UserModel getUserType]==4||[DD_UserModel getUserType]==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(PublishAction)];
+        
+        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
+        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
     }
+}
+#pragma mark - UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+    CGFloat _height=[DD_CircleListCell heightWithModel:listModel];
+    return _height;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return _dataArr.count;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    数据还未获取时候
+    if(_dataArr.count==indexPath.section)
+    {
+        static NSString *cellid=@"cellid";
+        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    //获取到数据以后
+    static NSString *cellid=@"cell_title";
+    DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    if(!cell)
+    {
+        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
+    cell.listModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.index=indexPath.section;
+    cell.cellBlock=cellBlock;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self PushCommentViewWithIndex:indexPath.section];
 }
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
@@ -489,7 +488,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - 弃用代码
+//section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 1;//section头部高度
+//}
+////section头部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+////section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+////section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
 
 
 @end

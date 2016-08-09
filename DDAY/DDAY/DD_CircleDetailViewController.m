@@ -127,7 +127,7 @@
 -(void)CreateTableViewHead
 {
     __block DD_CircleDetailViewController *_DetailView=self;
-    _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel WithBlock:^(NSString *type,NSInteger index) {
+    _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
@@ -196,7 +196,7 @@
             [self presentViewController:alertController animated:YES completion:nil];
         }
     }];
-    _headView.frame=CGRectMake(0, 0, ScreenWidth, 454+nowListModel.suggestHeight);
+    _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:_ListModel]);
     _tableview.tableHeaderView=_headView;
 }
 
@@ -313,26 +313,7 @@
     [_commentview return_KeyBoard];
     [self cellClickActionWithIndex:indexPath.section];
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
+
 
 #pragma mark - SomeAction
 /**
@@ -372,7 +353,7 @@
             {
                 _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
             }
-            [_headView update];
+            [_headView setState];
             if(_ListModel)
             {
                 _block(@"reload");
@@ -410,7 +391,7 @@
                 _ListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
                 _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
             }
-            [_headView update];
+            [_headView setState];
             if(_ListModel)
             {
                 _block(@"reload");
@@ -488,7 +469,7 @@
             [_tableview.header beginRefreshing];
             
             [_commentview initTextView];
-            [_headView update];
+            [_headView setState];
             if(_ListModel)
             {
                 _block(@"reload");

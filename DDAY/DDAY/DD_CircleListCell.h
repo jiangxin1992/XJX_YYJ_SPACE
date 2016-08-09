@@ -5,6 +5,7 @@
 //  Created by yyj on 16/6/21.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+#import "DD_OrderItemModel.h"
 #import "DD_CircleListModel.h"
 #import <UIKit/UIKit.h>
 
@@ -13,6 +14,8 @@
  * 初始化
  */
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
++ (CGFloat)heightWithModel:(DD_CircleListModel *)model;
+-(void)setAction;
 /**
  * 搭配model
  */
@@ -24,6 +27,7 @@
 /**
  * 回调block
  */
-@property(nonatomic,copy) void (^cellBlock)(NSString *type,NSInteger index);
+@property(nonatomic,copy) void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
+__btn(lastView_state);
 @end
 

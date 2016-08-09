@@ -146,7 +146,6 @@ __bool(isExpanded);
         _pageViewControler.dataSource = self;
         
         
-        
         ManageView=[[DD_DrawManageView alloc] initWithImgCount:_colorModel.pics.count];
         [container addSubview:ManageView];
         ManageView.userInteractionEnabled=NO;

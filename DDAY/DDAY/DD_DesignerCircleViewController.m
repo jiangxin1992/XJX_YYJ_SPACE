@@ -23,7 +23,7 @@
     NSInteger _page;
     UITableView *_tableview;
     
-    void (^cellBlock)(NSString *type,NSInteger index);
+    void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +62,7 @@
 {
     __block DD_DesignerCircleViewController *_CircleView=self;
     __block NSMutableArray *___dataArr=_dataArr;
-    cellBlock=^(NSString *type,NSInteger index)
+    cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
         DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
         if([type isEqualToString:@"show_item_list"])

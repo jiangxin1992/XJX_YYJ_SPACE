@@ -107,7 +107,7 @@
 }
 -(void)PrepareUI
 {
-    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"order_title", @"") withmaxwidth:200];//设置标题
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"clearing_order_list", @"") withmaxwidth:200];//设置标题
 }
 /**
  * 支付回调

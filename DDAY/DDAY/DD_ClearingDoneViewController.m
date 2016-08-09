@@ -73,14 +73,17 @@
 {
 //    System_paid
     NSString *title=nil;
+    NSString *imgStr=nil;
     if([_code integerValue]==9000)
     {
         title=@"支付成功";
+        imgStr=@"System_paid";
     }else
     {
         title=@"支付失败";
+        imgStr=@"System_Fail_pay";
     }
-    UIButton *btn=[UIButton getCustomBackImgBtnWithImageStr:@"System_paid" WithSelectedImageStr:nil];
+    UIButton *btn=[UIButton getCustomBackImgBtnWithImageStr:imgStr WithSelectedImageStr:nil];
     [self.view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);

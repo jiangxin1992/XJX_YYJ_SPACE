@@ -94,19 +94,14 @@
         make.width.mas_equalTo(20);
     }];
     
-    praiseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    praiseBtn=[UIButton getCustomImgBtnWithImageStr:@"System_NoGood" WithSelectedImageStr:@"System_Good"];
     [self addSubview:praiseBtn];
     [praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
-    [praiseBtn setTitle:@"点赞" forState:UIControlStateNormal];
-    [praiseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [praiseBtn setTitle:@"取消点赞" forState:UIControlStateSelected];
-    [praiseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    praiseBtn.titleLabel.font=[regular getFont:13.0f];
     [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(55);
+        make.width.mas_equalTo(22);
         make.right.mas_equalTo(praiseLabel.mas_left).with.offset(-5);
-        make.top.mas_equalTo(10);
-        make.height.mas_equalTo(userName);
+        make.centerY.mas_equalTo(praiseLabel);
+        make.height.mas_equalTo(22);
     }];
     
     
@@ -114,7 +109,6 @@
     [self.contentView addSubview:comment];
     comment.textAlignment=0;
     comment.numberOfLines=0;
-    comment.textColor=[UIColor grayColor];
     comment.font=[regular getFont:13.0f];
     
     [comment mas_makeConstraints:^(MASConstraintMaker *make) {

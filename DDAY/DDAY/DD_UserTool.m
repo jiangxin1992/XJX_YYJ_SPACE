@@ -32,7 +32,7 @@
         //        3/0 未登录或普通用户
         
         return @[@"System_Conference"
-                 ,@"system_notcollection"
+                 ,@"System_Notcollection"
                  ,@"System_Order"
                  ,@"System_set_up"
                  ];
@@ -43,7 +43,7 @@
                  ,@"System_Fans"
                  ,@"System_Order"
                  ,@"System_Conference"
-                 ,@"system_notcollection"
+                 ,@"System_Notcollection"
                  ,@"System_set_up"
                  ];
     }else
@@ -53,7 +53,7 @@
                  ,@"System_Conference"
                  ,@"System_Order"
                  ,@"System_set_up"
-                 ,@"system_notcollection"
+                 ,@"System_Notcollection"
                  ];
     }
 }

@@ -96,7 +96,7 @@
 -(void)CreateTitle
 {
     
-    collect_btn=[UIButton getCustomImgBtnWithImageStr:@"system_notcollection" WithSelectedImageStr:@"system_collection"];
+    collect_btn=[UIButton getCustomImgBtnWithImageStr:@"System_Notcollection" WithSelectedImageStr:@"System_Collection"];
     [upview addSubview:collect_btn];
     [collect_btn addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
     [collect_btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -154,7 +154,7 @@
                 make.bottom.mas_equalTo(upview).with.offset(-ver_edge);
             }
         }];
-        
+
         UIView *colorView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_colorModel.colorCode]];
         colorView.userInteractionEnabled=NO;
         [backBtn addSubview:colorView];

@@ -23,6 +23,34 @@ static regular *_t = nil;
     }
     return _t;
 }
++(NSString *)getSpacingTime:(long)createTime
+{
+    long _minute=60;
+    long _hour=60*60;
+    long _day=60*60*24;
+    long _year=60*60*24*365;
+    long space=[regular date]-createTime;
+    if(space)
+    {
+        if(space<_minute)
+        {
+            return [[NSString alloc] initWithFormat:@"%ld秒前",space];
+        }else if(space<_hour)
+        {
+            return [[NSString alloc] initWithFormat:@"%ld分钟前",space/_minute];
+        }else if(space<_day)
+        {
+            return [[NSString alloc] initWithFormat:@"%ld小时前",space/_hour];
+        }else if(space<_year)
+        {
+            return [[NSString alloc] initWithFormat:@"%ld天前",space/_day];
+        }else
+        {
+            return [[NSString alloc] initWithFormat:@"%ld年前",space/_year];
+        }
+    }
+    return @"";
+}
 +(UIButton *)getBarCustomBtnWithImg:(NSString *)_img WithSelectImg:(NSString *)_select_img WithSize:(CGSize )_size
 {
     UIButton *_btn=[UIButton getCustomBackImgBtnWithImageStr:_img WithSelectedImageStr:_select_img];

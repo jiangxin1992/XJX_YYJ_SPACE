@@ -30,11 +30,8 @@
     
     _imgv = [UIImageView getCustomImg];
     [self.view addSubview:_imgv];
-    CGFloat _w=IsPhone6_gt?20:16;
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(_w);
-        make.bottom.mas_equalTo(-_w);
-        make.right.mas_equalTo(-_w-(IsPhone6_gt?60:49));
+        make.left.top.right.bottom.mas_equalTo(0);
     }];
     [_imgv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchAction)]];
     _imgv.hidden=YES;
