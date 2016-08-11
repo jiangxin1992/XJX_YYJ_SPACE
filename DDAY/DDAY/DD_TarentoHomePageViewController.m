@@ -11,8 +11,9 @@
 #import "DD_TarentoHeadView.h"
 #import "DD_CircleListCell.h"
 #import "DD_CircleListModel.h"
-#import "DD_CircleItemListViewController.h"
 #import "DD_CircleDetailViewController.h"
+#import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
 
 @interface DD_TarentoHomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -26,19 +27,22 @@
     NSInteger _page;
     UITableView *_tableview;
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
+    
+    DD_UserModel *_usermodel;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
+    [self RequestUserData];
 }
 #pragma mark - 初始化
--(instancetype)initWithUserModel:(DD_UserModel *)usermodel
+-(instancetype)initWithUserId:(NSString *)userID
 {
     self=[super init];
     if(self)
     {
-        _usermodel=usermodel;
+        _userID=userID;
     }
     return self;
 }
@@ -97,10 +101,21 @@
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
-            [_CircleView PushItemListViewWithID:listModel.shareId];
+//            [_CircleView PushItemListViewWithID:listModel.shareId];
         }else if([type isEqualToString:@"head_click"])
         {
             //            点击用户头像
+            if([listModel.userType integerValue]==2)
+            {
+                //                设计师
+                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                _DesignerHomePage.designerId=listModel.userId;
+                [_CircleView.navigationController pushViewController:_DesignerHomePage animated:YES];
+            }else if([listModel.userType integerValue]==4)
+            {
+                //                达人
+                [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
+            }
         }else if([type isEqualToString:@"collect_cancel"])
         {
             //            取消收藏
@@ -151,17 +166,48 @@
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(kNavHeight, 0, 0, 0));
     }];
     
-    DD_TarentoHeadView *headView=[[DD_TarentoHeadView alloc] initWithUserModel:_usermodel WithBlock:^(NSString *type) {
-        
-    }];
-    headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_TarentoHeadView heightWithModel:_usermodel]);
+    UIView *headView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 145)];
     _tableview.tableHeaderView=headView;
 }
 #pragma mark - RequestData
--(void)RequestData
+-(void)RequestUserData
 {
-    DD_UserModel *user=[DD_UserModel getLocalUserInfo];
-    [[JX_AFNetworking alloc] GET:@"share/queryDesignerShares.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken],@"designerId":user.u_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *_parameters=@{@"userId":_userID,@"token":[DD_UserModel getToken]};
+    [[JX_AFNetworking alloc] GET:@"user/queryUserInfoById.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            _usermodel=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
+            DD_TarentoHeadView *headView=[[DD_TarentoHeadView alloc] initWithUserModel:_usermodel WithBlock:^(NSString *type) {
+                if([type isEqualToString:@"head_click"])
+                {
+                    //            点击用户头像
+                    if([_usermodel.userType integerValue]==2)
+                    {
+                        //                设计师
+                        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                        _DesignerHomePage.designerId=_usermodel.u_id;
+                        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                    }else if([_usermodel.userType integerValue]==4)
+                    {
+                        //                达人
+                        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+                    }
+                    
+                }
+            }];
+            headView.frame=CGRectMake(0, 0, ScreenWidth, 145);
+            _tableview.tableHeaderView=headView;
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+}
+-(void)RequestListData
+{
+    [[JX_AFNetworking alloc] GET:@"share/queryDesignerShares.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken],@"designerId":_userID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_CircleListModel getCircleListModelArr:[data objectForKey:@"shares"]];
@@ -251,13 +297,13 @@
     _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page=1;
-        [self RequestData];
+        [self RequestListData];
     }];
     
     _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page+=1;
-        [self RequestData];
+        [self RequestListData];
     }];
     
     [_tableview.header beginRefreshing];
@@ -367,12 +413,12 @@
 /**
  * 跳转搭配商品列表
  */
--(void)PushItemListViewWithID:(NSString *)shareId
-{
-    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-        
-    }] animated:YES];
-}
+//-(void)PushItemListViewWithID:(NSString *)shareId
+//{
+//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+//        
+//    }] animated:YES];
+//}
 
 
 #pragma mark - Other
@@ -380,14 +426,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [MobClick beginLogPageView:@"DD_TarentoHomePageViewController"];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [MobClick endLogPageView:@"DD_TarentoHomePageViewController"];
 
 }

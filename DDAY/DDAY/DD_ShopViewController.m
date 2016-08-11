@@ -231,11 +231,11 @@
         _mengban_size_Height=0;
         if(!sizeAlertModel.sizeBriefPic||[sizeAlertModel.sizeBriefPic isEqualToString:@""])
         {
-            _mengban_size_Height=IsPhone6_gt?185:152;
+            _mengban_size_Height=IsPhone6_gt?159:136;
         }else
         {
             CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(208+_imgHeight):(165+_imgHeight);
+            _mengban_size_Height=IsPhone6_gt?(182+_imgHeight):(159+_imgHeight);
         }
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{
@@ -332,9 +332,9 @@
         }];
         [mengban_num addSubview:_alertNumView];
         
-        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?185:152);
+        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?161:138);
         [UIView animateWithDuration:0.5 animations:^{
-            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?185:152), ScreenWidth, IsPhone6_gt?185:152);
+            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?161:138), ScreenWidth, IsPhone6_gt?161:138);
         }];
     }
    
@@ -626,12 +626,13 @@
     {
         DD_ShopItemModel *item=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         //                修改/跳转详情页
-        DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
         DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
         _ItemsModel.colorId=item.colorId;
         _ItemsModel.g_id=item.itemId;
-        _GoodsDetailView.model=_ItemsModel;
-        
+        _ItemsModel.colorCode=item.colorCode;
+        DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
+            
+        }];
         [self.navigationController pushViewController:_GoodsDetailView animated:YES];
     }
 }
@@ -644,7 +645,6 @@
     {
         [self RequestData];
     }
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_ShopViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

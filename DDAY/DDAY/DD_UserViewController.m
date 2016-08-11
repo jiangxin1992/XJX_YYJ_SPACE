@@ -13,6 +13,7 @@
 #import "DD_OrderViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_UserMainCollectViewController.h"
+#import "DD_UserMessageViewController.h"
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_FansViewController.h"
 #import "DD_UserDDAYViewController.h"
@@ -56,7 +57,7 @@
 -(void)PrepareUI
 {
 //    System_News
-    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(26, 24) WithImgeStr:@"System_News"];
+    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(26, 24) WithImgeStr:@"System_NoNews"];
     [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
 }
@@ -181,7 +182,9 @@
         [self.navigationController pushViewController:[DD_OrderViewController new] animated:YES];
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
 }
 /**
@@ -194,7 +197,9 @@
         [self.navigationController pushViewController:[[DD_FansViewController alloc] initWithBlock:nil] animated:YES];
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
     
 }
@@ -208,7 +213,9 @@
         [self.navigationController pushViewController:[[DD_UserMainCollectViewController alloc] init] animated:YES];
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
 }
 /**
@@ -221,7 +228,9 @@
         [self.navigationController pushViewController:[[DD_UserDDAYViewController alloc] init] animated:YES];
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
 }
 /**
@@ -238,14 +247,15 @@
             DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
             _DesignerHomePage.designerId=_usermodel.u_id;
             [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-            [[DD_CustomViewController sharedManager] tabbarHide];
         }else if([DD_UserModel getUserType]==4)
         {
-            [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserModel:_usermodel] animated:YES];
+            [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
         }
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
     
 }
@@ -260,7 +270,10 @@
 /**
  * 跳转消息界面
  */
--(void)messageAction{}
+-(void)messageAction
+{
+    [self.navigationController pushViewController:[DD_UserMessageViewController new] animated:YES];
+}
 /**
  * 界面更新
  */
@@ -291,7 +304,9 @@
         [self.navigationController pushViewController:_set animated:YES];
     }else
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }
 }
 /**
@@ -329,7 +344,6 @@
         [self RequestData];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [MobClick beginLogPageView:@"DD_UserViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

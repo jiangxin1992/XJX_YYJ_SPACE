@@ -65,6 +65,8 @@
 {
     userHeadImg=[UIImageView getCustomImg];
     [self addSubview:userHeadImg];
+    userHeadImg.userInteractionEnabled=YES;
+    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(IsPhone6_gt?34:15);
         make.top.mas_equalTo(9);
@@ -151,17 +153,27 @@
         UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":i==2?@"System_Notcollection":@"System_Dustbin" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":i==2?@"System_Collection":@"System_Dustbin"];
         [self addSubview:btn];
         btn.tag=200+i;
-        [btn setEnlargeEdge:15];
+        
+        if(i==0)
+        {
+            [btn setEnlargeEdgeWithTop:0 right:15 bottom:0 left:15];
+        }else
+        {
+            [btn setEnlargeEdge:15];
+        }
         [btn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(16);
-            make.height.width.mas_equalTo(22);
             if(_lastView_state)
             {
                 make.right.mas_equalTo(_lastView_state.mas_left).with.offset(-20);
+                make.height.width.mas_equalTo(22);
+                make.centerY.mas_equalTo(_lastView_state);
             }else
             {
                 make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+                make.width.mas_equalTo(22);
+                make.height.mas_equalTo(39);
+                make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8.5f);
             }
         }];
         [userBtnArr addObject:btn];
@@ -281,7 +293,12 @@
 
 }
 
+
 #pragma mark - SomeAction
+-(void)headClick
+{
+    _block(@"head_click",0,nil);
+}
 /**
  * 更新
  */

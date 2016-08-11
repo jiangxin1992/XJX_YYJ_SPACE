@@ -101,7 +101,7 @@
         make.width.mas_equalTo(22);
         make.right.mas_equalTo(praiseLabel.mas_left).with.offset(-5);
         make.centerY.mas_equalTo(praiseLabel);
-        make.height.mas_equalTo(22);
+        make.height.mas_equalTo(39);
     }];
     
     

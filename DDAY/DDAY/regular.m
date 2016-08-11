@@ -320,6 +320,7 @@ static regular *_t = nil;
         NSDate *NiceNewdate=[regular zoneChange:[regular date]+time];
         NSDateComponents *d = [cal components:unitFlags fromDate:today toDate:NiceNewdate options:0];
         
+        
         if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
         {
             return @"发布会已结束";

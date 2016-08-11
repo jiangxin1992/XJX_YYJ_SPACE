@@ -52,6 +52,7 @@
     CGFloat _width=CGRectGetWidth(navview.frame)/2.0f;
     for (int i=0; i<2; i++) {
         UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:i==0?1:2 WithFont:15.0f WithSpacing:0 WithNormalTitle:i==0?@"全部":@"关注" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:i==0?@"全部":@"关注" WithSelectedColor:nil];
+        btn.titleLabel.font=[regular getSemiboldFont:15.0f];
         [navview addSubview:btn];
         btn.frame=CGRectMake(_width*i, 0, _width, 33);
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,7 +132,9 @@
         
         if([[DD_UserModel getToken]isEqualToString:@""])
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
         }else
         {
             if(!right)

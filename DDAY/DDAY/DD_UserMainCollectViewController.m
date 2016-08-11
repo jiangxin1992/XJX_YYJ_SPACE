@@ -8,8 +8,10 @@
 #import "DD_GoodsDetailViewController.h"
 #import "DD_UserCollectItemViewController.h"
 #import "DD_UserCollectCircleViewController.h"
-#import "DD_CircleItemListViewController.h"
 #import "DD_CircleDetailViewController.h"
+#import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
+#import "DD_OrderItemModel.h"
 
 #import "DD_UserMainCollectViewController.h"
 
@@ -162,17 +164,19 @@
         
         if([[DD_UserModel getToken]isEqualToString:@""])
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
         }else
         {
             if(!ctn2)
             {
-                ctn2 =[[DD_UserCollectCircleViewController alloc] initWithBlock:^(NSString *type, DD_CircleListModel *model) {
+                ctn2 =[[DD_UserCollectCircleViewController alloc] initWithBlock:^(NSString *type, DD_CircleListModel *model,DD_OrderItemModel *item) {
                     if([type isEqualToString:@"push_item_list"])
                     {
-                        [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:model.shareId WithBlock:^(NSString *type) {
-                    
-                        }] animated:YES];
+//                        [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:model.shareId WithBlock:^(NSString *type) {
+//                    
+//                        }] animated:YES];
                     }else if([type isEqualToString:@"push_circle_detail"])
                     {
                         [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:model WithShareID:model.shareId WithBlock:^(NSString *type) {
@@ -182,6 +186,29 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"getChangeNot" object:nil];
                             }
                         }] animated:YES];
+                    }else if([type isEqualToString:@"head_click"])
+                    {
+                        if([model.userType integerValue]==2)
+                        {
+                            //                设计师
+                            DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                            _DesignerHomePage.designerId=model.userId;
+                            [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                        }else if([model.userType integerValue]==4)
+                        {
+                            //                达人
+                            [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:model.userId] animated:YES];
+                        }
+                    }else if([type isEqualToString:@"item_click"])
+                    {
+                        DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                        _item.g_id=item.itemId;
+                        _item.colorId=item.colorId;
+                        _item.colorCode=item.colorCode;
+                        DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                            //        if(type)
+                        }];
+                        [self.navigationController pushViewController:_GoodsDetail animated:YES];
                     }
                     
                 }];
@@ -211,7 +238,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -21,13 +21,13 @@
     }
     return self;
 }
-+ (CGFloat)heightWithModel:(DD_UserModel *)model{
-    
-    DD_TarentoHeadView *cell = [[DD_TarentoHeadView alloc] initWithUserModel:model WithBlock:nil];
-    [cell layoutIfNeeded];
-    CGRect frame =  cell.des.frame;
-    return frame.origin.y + frame.size.height+10;
-}
+//+ (CGFloat)heightWithModel:(DD_UserModel *)model{
+//    
+//    DD_TarentoHeadView *cell = [[DD_TarentoHeadView alloc] initWithUserModel:model WithBlock:nil];
+//    [cell layoutIfNeeded];
+//    CGRect frame =  cell.des.frame;
+//    return frame.origin.y + frame.size.height+10;
+//}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {

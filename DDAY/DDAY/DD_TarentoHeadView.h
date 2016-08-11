@@ -12,7 +12,7 @@
  * 初始化
  */
 -(instancetype)initWithUserModel:(DD_UserModel *)usermodel WithBlock:(void (^)(NSString *type))block;
-+ (CGFloat)heightWithModel:(DD_UserModel *)model;
+//+ (CGFloat)heightWithModel:(DD_UserModel *)model;
 /**
  * 用户信息
  */

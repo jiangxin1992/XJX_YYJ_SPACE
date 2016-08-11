@@ -220,6 +220,7 @@
     {
         [self updateDesigner];
     }
+    [[DD_CustomViewController sharedManager] tabbarAppear];
     [MobClick beginLogPageView:@"DD_DesignerViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

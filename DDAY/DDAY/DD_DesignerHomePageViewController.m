@@ -10,6 +10,7 @@
 
 #import "DD_DesignerModel.h"
 
+#import "DD_TarentoHomePageViewController.h"
 #import "DD_CircleDetailViewController.h"
 #import "DD_DesignerItemViewController.h"
 #import "DD_DesignerCircleViewController.h"
@@ -152,7 +153,7 @@
     [_MiddleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_UpView.mas_bottom).with.offset(0);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(24);
+        make.height.mas_equalTo(26);
     }];
     
     UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
@@ -165,7 +166,7 @@
     
     UIButton *lastview=nil;
     for (int i=0; i<3; i++) {
-        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithNormalColor:_define_black_color WithSelectedTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithSelectedColor:_define_white_color];
+        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithNormalColor:_define_black_color WithSelectedTitle:i==0?@"发布品":i==1?@"故事":@"共享" WithSelectedColor:_define_white_color];
         [_MiddleView addSubview:btn];
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag=100+i;
@@ -199,7 +200,7 @@
 -(void)CreatePageViewCtn
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
-    _pageVc.view.frame = CGRectMake(0, 169+kNavHeight, 1000, 1000);
+    _pageVc.view.frame = CGRectMake(0, 171+kNavHeight, 1000, 1000);
     if(ctn1==nil)
     {
         ctn1=[[DD_DesignerItemViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_ItemsModel *model) {
@@ -285,13 +286,29 @@
         if(ctn3==nil)
         {
             ctn3=[[DD_DesignerCircleViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_CircleListModel *listModel) {
-                
-                [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-                    if([type isEqualToString:@"reload"])
+                if([type isEqualToString:@"head_click"])
+                {
+                    if([_DesignerModel.userType integerValue]==2)
                     {
-                        [ctn3 reloadData];
+                        //                设计师
+                        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                        _DesignerHomePage.designerId=_DesignerModel.designerId;
+                        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                    }else if([_DesignerModel.userType integerValue]==4)
+                    {
+                        //                达人
+                        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_DesignerModel.designerId] animated:YES];
                     }
-                }] animated:YES];
+                }else if([type isEqualToString:@"push_comment"])
+                {
+                    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
+                        if([type isEqualToString:@"reload"])
+                        {
+                            [ctn3 reloadData];
+                        }
+                    }] animated:YES];
+                }
+                
             }];
         }
         if(currentPage<2&&ctn3!=nil)
@@ -392,7 +409,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -104,8 +104,8 @@
                 make.left.mas_equalTo(kEdge);
             }
             make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.width.mas_equalTo(41);
-            make.height.mas_equalTo(22);
+            make.width.mas_equalTo(42);
+            make.height.mas_equalTo(20);
         }];
         lastView=_btn;
     }
@@ -126,28 +126,35 @@
     }
     
     
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(1);
-        if(sizeBriefImg)
-        {
-            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
-        }else
-        {
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
-        }
-        
-    }];
+//    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+//    [self addSubview:downLine];
+//    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_equalTo(-kEdge);
+//        make.height.mas_equalTo(1);
+//        if(sizeBriefImg)
+//        {
+//            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+//        }else
+//        {
+//            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+//        }
+//        
+//    }];
     
     UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:confirmBtn];
     confirmBtn.backgroundColor=_define_black_color;
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
+//        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
+        if(sizeBriefImg)
+        {
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(15);
+        }else
+        {
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(15);
+        }
         make.right.mas_equalTo(-kEdge);
         make.left.mas_equalTo(kEdge);
         make.height.mas_equalTo(45);

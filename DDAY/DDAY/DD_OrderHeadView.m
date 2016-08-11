@@ -88,10 +88,10 @@
 {
     if(_orderModel.isPay)
     {
-        orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号:%@",_orderModel.subOrderCode];
+        orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号 %@",_orderModel.subOrderCode];
     }else
     {
-        orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号:%@",_orderModel.tradeOrderCode];
+        orderIDLabel.text=[[NSString alloc] initWithFormat:@"订单号 %@",_orderModel.tradeOrderCode];
     }
     
     if(_orderModel.itemList.count)

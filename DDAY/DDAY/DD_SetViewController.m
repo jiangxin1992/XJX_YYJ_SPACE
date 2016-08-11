@@ -81,6 +81,7 @@
         {
             [DD_UserModel logout];
             [MobClick profileSignOff];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
             _successblock(@"logout");
             for (id obj in self.navigationController.viewControllers) {
                 if([obj isKindOfClass:[DD_UserViewController class]])
@@ -217,7 +218,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_SetViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

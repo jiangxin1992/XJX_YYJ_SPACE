@@ -27,7 +27,7 @@
     [self UIConfig];
 }
 #pragma mark - 初始化
--(instancetype)initWithBlock:(void(^)(NSString *type,DD_CircleListModel *model))block
+-(instancetype)initWithBlock:(void(^)(NSString *type,DD_CircleListModel *model,DD_OrderItemModel *item))block
 {
     self=[super init];
     if(self)
@@ -63,6 +63,8 @@
         }else if([type isEqualToString:@"head_click"])
         {
             //            点击用户头像
+            [_CircleView PushHomePageViewWithIndex:index];
+
         }else if([type isEqualToString:@"collect_cancel"])
         {
             //            取消收藏
@@ -86,6 +88,10 @@
         {
             //             点赞
             [_CircleView praiseActionIsCancel:NO WithIndex:index];
+        }else if([type isEqualToString:@"item_click"])
+        {
+            //            点击商品
+            [_CircleView PushItemViewWithIndex:index WithItemModel:item];
         }
     };
 }
@@ -157,6 +163,16 @@
     [_tableview.header beginRefreshing];
 }
 #pragma mark - SomeAction
+-(void)PushItemViewWithIndex:(NSInteger )index WithItemModel:(DD_OrderItemModel *)item
+{
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    _block(@"item_click",listModel,item);
+}
+-(void)PushHomePageViewWithIndex:(NSInteger )index
+{
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    _block(@"head_click",listModel,nil);
+}
 /**
  * 刷新
  */
@@ -256,7 +272,7 @@
 -(void)PushItemListViewWithIndex:(NSInteger )index
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    _block(@"push_item_list",listModel);
+    _block(@"push_item_list",listModel,nil);
 }
 
 
@@ -304,7 +320,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    _block(@"push_circle_detail",listModel);
+    _block(@"push_circle_detail",listModel,nil);
 }
 //section头部间距
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

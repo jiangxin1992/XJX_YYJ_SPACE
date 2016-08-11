@@ -443,10 +443,10 @@
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
     _ItemsModel.colorId=_item.colorId;
     _ItemsModel.g_id=_item.itemId;
-    
-    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
-    _GoodsDetailView.model=_ItemsModel;
-    
+    _ItemsModel.colorCode=_item.colorCode;
+    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
+        
+    }];
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];
 }
 
@@ -455,7 +455,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_OrderDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

@@ -390,7 +390,6 @@
     {
         [self RequestData];
     }
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_OrderViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

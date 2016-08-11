@@ -10,4 +10,5 @@
 
 @interface DD_BaseViewController : UIViewController
 -(void)hideBackNavBtn;
+-(void)pushLoginView;
 @end

@@ -102,7 +102,7 @@
     mywaterflow = [[Waterflow alloc] init];
     
     
-    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-54);
+    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-54);
     
     mywaterflow.dataSource = self;
     
@@ -172,7 +172,6 @@
 {
     
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_UserCollectItemViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

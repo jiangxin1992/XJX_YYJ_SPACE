@@ -11,8 +11,6 @@
 @implementation DD_CircleInfoImgView
 {
     
-    UIView *_upView;
-    
     UIView *_downView;
     NSMutableArray *btnArr;
     
@@ -56,64 +54,17 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    [self CreateUpView];
-    [self CreateDownView];
-}
--(void)CreateUpView
-{
-    _upView=[[UIView alloc] init];
-    [self addSubview:_upView];
-    [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(@50);
-    }];
-    
-    UILabel *leftLabel=[[UILabel alloc] init];
-    [_upView addSubview:leftLabel];
-    leftLabel.textAlignment=0;
-    leftLabel.textColor=[UIColor lightGrayColor];
-    leftLabel.text=@"搭配图";
-    
-    UILabel *rightLabel=[[UILabel alloc] init];
-    [_upView addSubview:rightLabel];
-    rightLabel.textAlignment=2;
-    rightLabel.textColor=[UIColor lightGrayColor];
-    rightLabel.text=@"最多可上传8张 >";
-    
-    UIView *_xian=[[UIView alloc] init];
-    [_upView addSubview:_xian];
-    _xian.backgroundColor=_define_backview_color;
-    
-    [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.top.and.bottom.mas_equalTo(0);
-    }];
-    [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
-        make.top.and.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(leftLabel);
-        make.left.mas_equalTo(leftLabel.mas_right).with.offset(0);
-    }];
-    
-    [_xian mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-        make.bottom.mas_equalTo(-1);
-        make.height.mas_equalTo(@1);
-    }];
-    
-}
--(void)CreateDownView
-{
     _downView=[[UIView alloc] init];
     [self addSubview:_downView];
     [_downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
-        make.top.mas_equalTo(_upView.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(0);
         make.height.mas_equalTo(_width+20);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(0);
     }];
 }
+
+
 #pragma mark - SomeAction
 /**
  * 重新设置当前视图
@@ -124,6 +75,7 @@
         [btn removeFromSuperview];
     }
     
+//    System_Big_Issue
     NSInteger _count=0;
     if(_circleModel.picArr.count)
     {
@@ -137,7 +89,11 @@
     }else
     {
         _count=1;
+        
+        
     }
+    
+    
     CGFloat _h=0;
     if(_circleModel.picArr.count)
     {
@@ -182,9 +138,6 @@
             [view setBackgroundImage:[dict objectForKey:@"data"] forState:UIControlStateNormal];
             [view addTarget:self action:@selector(showAction:) forControlEvents:UIControlEventTouchUpInside];
         }
-        
-//        view.backgroundColor = [UIColor colorWithHue:(arc4random() % 256 / 256.0 ) saturation:( arc4random() % 128 / 256.0 ) + 0.5
-//                                          brightness:( arc4random() % 128 / 256.0 ) + 0.5 alpha:0.2];
         
         // 添加约束
         [view mas_makeConstraints:^(MASConstraintMaker *make) {

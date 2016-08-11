@@ -92,6 +92,7 @@
     
     _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
+    [_sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
     [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
@@ -102,6 +103,7 @@
     
     _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_numBtn];
+    [_numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
     [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);

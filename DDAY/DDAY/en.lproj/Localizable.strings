@@ -63,6 +63,7 @@
  */
 "user_title"="我的";
 "user_home_page"="我的主页";
+"user_message_title"="消息";
 "user_fans"="我的粉丝";
 "user_order"="订单";
 "user_coupons"="我的优惠券";

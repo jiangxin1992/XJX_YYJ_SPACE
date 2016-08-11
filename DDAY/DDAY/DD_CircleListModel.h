@@ -33,6 +33,10 @@ __string(userName);
  * 用户id
  */
 __string(userId);
+/**
+ * 用户类型 2设计师 3普通用户 4达人
+ */
+__string(userType);
 
 /**
  * 搭配ID

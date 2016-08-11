@@ -5,6 +5,7 @@
 //  Created by yyj on 16/5/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
 #import "DD_SizeModel.h"
 #import "DD_ChooseSizeView.h"
 
@@ -17,15 +18,16 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithSizeArr:(NSArray *)sizeArr WithColorID:(NSString *)colorID WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block
+-(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block
 {
     
     self=[super init];
     if(self)
     {
-        _sizeArr=sizeArr;
+        _sizeArr=colorModel.size;
+        _sizeID=colorModel.colorId;
         _block=block;
-        _colorid=colorID;
+        _ColorsModel=colorModel;
         [self SomePrepare];
         [self UIConfig];
     }
@@ -56,7 +58,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    
+
     UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:upLine];
     [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +74,7 @@
         DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
         UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_btn];
-//        40 20
+//        42 20
         if(_sizeModel.stock)
         {
             [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -83,6 +85,7 @@
             _btn.layer.borderWidth=1;
         }else
         {
+            
             [_btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             _btn.backgroundColor=[UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1];
             _btn.userInteractionEnabled=NO;
@@ -102,8 +105,8 @@
                 make.left.mas_equalTo(kEdge);
             }
             make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.width.mas_equalTo(41);
-            make.height.mas_equalTo(22);
+            make.width.mas_equalTo(42);
+            make.height.mas_equalTo(20);
         }];
         lastView=_btn;
     }
@@ -137,14 +140,35 @@
     }];
 
     
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(1);
-        make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
-    }];
+    UIImageView *sizeBriefImg=nil;
+    if(_ColorsModel.sizeBriefPic&&![_ColorsModel.sizeBriefPic isEqualToString:@""])
+    {
+        CGFloat _imgHeight=(((CGFloat)_ColorsModel.sizeBriefPicHeight)/((CGFloat)_ColorsModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
+        sizeBriefImg=[UIImageView getCustomImg];
+        [self addSubview:sizeBriefImg];
+        [sizeBriefImg JX_loadImageUrlStr:_ColorsModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
+        [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_offset(kEdge);
+            make.right.mas_offset(-kEdge);
+            make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.height.mas_offset(_imgHeight);
+        }];
+    }
+    
+//    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+//    [self addSubview:downLine];
+//    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_equalTo(-kEdge);
+//        make.height.mas_equalTo(1);
+//        if(sizeBriefImg)
+//        {
+//            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+//        }else
+//        {
+//            make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
+//        }
+//    }];
     
     
     UIButton * buy=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"结   算" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -153,7 +177,14 @@
     [buy addTarget:self action:@selector(buyAction) forControlEvents:UIControlEventTouchUpInside];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
+//        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
+        if(sizeBriefImg)
+        {
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(15);
+        }else
+        {
+            make.top.mas_equalTo(subtract.mas_bottom).with.offset(15);
+        }
         make.width.mas_equalTo(IsPhone6_gt?115:95);
         make.height.mas_equalTo(45);
     }];
@@ -197,7 +228,6 @@
         _count--;
         [countBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_count] forState:UIControlStateNormal];
     }
-    
 }
 -(void)buyAction
 {

@@ -30,7 +30,9 @@
 }
 -(void)CreateBackView{
     backview=[UIView getCustomViewWithColor:nil];
+//    Item_Frame
     [self addSubview:backview];
+    backview.contentMode=UIViewContentModeScaleAspectFit;
     CGFloat height=_imgCount*12+(_imgCount-1)*5;
     [backview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
@@ -43,7 +45,7 @@
     CGFloat _x_p=((IsPhone6_gt?60:49)-16)/2.0f;
     CGFloat _y_p=0;
     for (int i=0; i<_imgCount; i++) {
-        DrawView *drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, _y_p,16, 12) WithStartP:CGPointMake(0, 6) WithEndP:CGPointMake(16, 6) WithLineWidth:2 WithColorType:1];
+        DrawView *drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
         [backview addSubview:drawView];
         _y_p+=17;
         [viewArr addObject:drawView];
@@ -61,7 +63,7 @@
             {
                 [drawView removeFromSuperview];
                 [viewArr removeObjectAtIndex:i];
-                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(1, 1) WithEndP:CGPointMake(15, 11) WithLineWidth:2 WithColorType:2];
+                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(2, 2) WithEndP:CGPointMake(14, 10) WithLineWidth:3 WithColorType:2];
                 [backview addSubview:drawView];
                 [viewArr insertObject:drawView atIndex:i];
             }
@@ -71,7 +73,7 @@
             {
                 [drawView removeFromSuperview];
                 [viewArr removeObjectAtIndex:i];
-                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 6) WithEndP:CGPointMake(16, 6) WithLineWidth:2 WithColorType:1];
+                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
                 [backview addSubview:drawView];
                 [viewArr insertObject:drawView atIndex:i];
             }

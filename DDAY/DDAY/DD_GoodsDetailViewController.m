@@ -54,11 +54,13 @@ __bool(isExpanded);
     DD_DrawManageView *ManageView;//自定义pageControler
     
     UIView *container;//_scrollView的view
-
+    
+    CGFloat _mengban_size_Height;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self SomePrepare];
     [self CreateScrollView];
     [self RequestData];
@@ -149,7 +151,7 @@ __bool(isExpanded);
         ManageView=[[DD_DrawManageView alloc] initWithImgCount:_colorModel.pics.count];
         [container addSubview:ManageView];
         ManageView.userInteractionEnabled=NO;
-        ManageView.backgroundColor=_define_light_gray_color;
+        ManageView.backgroundColor=_define_light_gray_color2;
         
         [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
@@ -287,11 +289,13 @@ __bool(isExpanded);
         _SimilarView=[[DD_GoodsSimilarView alloc] initWithGoodsSimilarArr:_DetailModel.similarItems WithBlock:^(NSString *type, DD_OrderItemModel *itemModel) {
             if([type isEqualToString:@"img_click"])
             {
-                DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
                 DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
                 _ItemsModel.colorId=itemModel.colorId;
                 _ItemsModel.g_id=itemModel.itemId;
-                _GoodsDetailView.model=_ItemsModel;
+                _ItemsModel.colorCode=itemModel.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    
+                }];
                 [self.navigationController pushViewController:_GoodsDetailView animated:YES];
                 
             }
@@ -336,7 +340,8 @@ __bool(isExpanded);
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"item/queryItemDetail.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_model.g_id,@"colorId":_model.colorId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        
+    [[JX_AFNetworking alloc] GET:@"item/queryItemDetailByColorCode.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_model.g_id,@"colorCode":_model.colorCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             _DetailModel=[DD_GoodsDetailModel getGoodsDetailModel:data];
@@ -400,13 +405,14 @@ __bool(isExpanded);
 -(void)mengban_dismiss
 {
     [UIView animateWithDuration:0.5 animations:^{
-        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
+        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
         mengban=nil;
     }];
 
 }
+
 //收藏
 -(void)Colloct_Action
 {
@@ -420,7 +426,8 @@ __bool(isExpanded);
 //        收藏
         _url=@"item/collectItem.do";
     }
-    NSDictionary *_parameters=@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"token":[DD_UserModel getToken]};
+    DD_ColorsModel *colorModel=[_DetailModel getColorsModel];
+    NSDictionary *_parameters=@{@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId,@"colorCode":colorModel.colorCode,@"token":[DD_UserModel getToken]};
     [[JX_AFNetworking alloc] GET:_url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -476,7 +483,7 @@ __bool(isExpanded);
         [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
         
         DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-        sizeView=[[DD_ChooseSizeView alloc] initWithSizeArr:_colorModel.size WithColorID:_colorModel.colorId WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
+        sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
             if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
             {
                 if([sizeid isEqualToString:@""])
@@ -506,9 +513,18 @@ __bool(isExpanded);
         }];
         [mengban addSubview:sizeView];
         
-        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?230:187);
+        _mengban_size_Height=0;
+        if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
+        {
+            _mengban_size_Height=IsPhone6_gt?228:185;
+        }else
+        {
+            CGFloat _imgHeight=(((CGFloat)_colorModel.sizeBriefPicHeight)/((CGFloat)_colorModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
+            _mengban_size_Height=IsPhone6_gt?(227+_imgHeight):(284+_imgHeight);
+        }
+        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{
-            sizeView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?230:187), ScreenWidth, IsPhone6_gt?230:187);
+            sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
         }];
     }
     
@@ -597,13 +613,12 @@ __bool(isExpanded);
 //跳转单品详情页
 -(void)PushItemView:(NSInteger )index
 {
-    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] init];
     DD_OtherItemModel *_OtherItem=[_DetailModel.item.otherItems objectAtIndex:index];
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
     _ItemsModel.colorId=_OtherItem.colorId;
     _ItemsModel.g_id=_OtherItem.itemId;
-    _GoodsDetailView.model=_ItemsModel;
-    
+    _ItemsModel.colorCode=_OtherItem.colorCode;
+    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:nil];
     [self.navigationController pushViewController:_GoodsDetailView animated:YES];
 }
 //跳转设计师页面
@@ -629,8 +644,6 @@ __bool(isExpanded);
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_GoodsDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

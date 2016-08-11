@@ -45,4 +45,8 @@ __array(pics);
  * 单品颜色id
  */
 __string(colorId);
+/**
+ * 单品颜色code
+ */
+__string(colorCode);
 @end

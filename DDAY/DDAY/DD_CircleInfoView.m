@@ -40,12 +40,27 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
+    [self CreateInfoImgView];
     [self CreateRemarksView];
     [self CreateChooseStyleView];
-    [self CreateInfoImgView];
     [self CreateTagsView];
     [self CreateFitPersonView];
     [self CreateSubmitBtn];
+}
+/**
+ * 搭配图视图创建
+ */
+-(void)CreateInfoImgView
+{
+    _imgView=[[DD_CircleInfoImgView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,NSInteger index) {
+        _block(type,index);
+    }];
+    [self addSubview:_imgView];
+    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(10);
+        make.left.and.right.mas_equalTo(0);
+        make.height.mas_equalTo(240);
+    }];
 }
 /**
  * 创建备注视图
@@ -57,7 +72,7 @@
     }];
     [self addSubview:_remarksView];
     [_remarksView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10);
+        make.top.mas_equalTo(_imgView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
     }];
 }
@@ -77,20 +92,7 @@
     }];
     
 }
-/**
- * 搭配图视图创建
- */
--(void)CreateInfoImgView
-{
-    _imgView=[[DD_CircleInfoImgView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,NSInteger index) {
-        _block(type,index);
-    }];
-    [self addSubview:_imgView];
-    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_chooseStyleView.mas_bottom).with.offset(10);
-        make.left.and.right.mas_equalTo(0);
-    }];
-}
+
 /**
  * 标签视图创建
  */
@@ -101,7 +103,7 @@
     }];
     [self addSubview:_tagsView];
     [_tagsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_imgView.mas_bottom).with.offset(10);
+        make.top.mas_equalTo(_chooseStyleView.mas_bottom).with.offset(10);
         make.left.and.right.mas_equalTo(0);
     }];
 }

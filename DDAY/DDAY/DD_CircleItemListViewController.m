@@ -141,6 +141,7 @@
     DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
     _item.g_id=_itemModel.g_id;
     _item.colorId=_itemModel.colorId;
+    _item.colorCode=_itemModel.colorCode;
     DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
         //        if(type)
     }];
@@ -171,8 +172,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_CircleItemListViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

@@ -9,6 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_TarentoHomePageViewController : DD_BaseViewController
--(instancetype)initWithUserModel:(DD_UserModel *)usermodel;
-@property (nonatomic,strong)DD_UserModel *usermodel;
+-(instancetype)initWithUserId:(NSString *)userID;
+__string(userID);
+
 @end

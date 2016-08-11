@@ -14,4 +14,5 @@ __string(itemPic);
 __string(itemName);
 __string(itemId);
 __string(colorId);
+__string(colorCode);
 @end

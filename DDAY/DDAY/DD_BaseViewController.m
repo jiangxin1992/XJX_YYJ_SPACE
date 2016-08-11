@@ -8,6 +8,8 @@
 
 #import "DD_BaseViewController.h"
 
+#import "DD_LoginViewController.h"
+
 @interface DD_BaseViewController ()
 
 @end
@@ -44,9 +46,35 @@
 {
     self.navigationItem.leftBarButtonItem=nil;
 }
+/**
+ * 跳转登录界面
+ */
+-(void)pushLoginView
+{
+    if(![DD_UserModel isLogin])
+    {
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+    }
+}
 -(void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[DD_CustomViewController sharedManager] tabbarHide];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

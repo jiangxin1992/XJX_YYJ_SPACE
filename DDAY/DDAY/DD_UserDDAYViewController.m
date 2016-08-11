@@ -231,8 +231,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [MobClick beginLogPageView:@"DD_UserDDAYViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

@@ -296,11 +296,9 @@
     if(_noTabbar)
     {
         [[DD_CustomViewController sharedManager] tabbarHide];
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }else
     {
         [[DD_CustomViewController sharedManager] tabbarAppear];
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
     [MobClick beginLogPageView:@"DD_GoodsViewController"];
 }

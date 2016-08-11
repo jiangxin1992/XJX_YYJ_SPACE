@@ -6,7 +6,6 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 #import "DD_CircleListCell.h"
-#import "DD_CircleItemListViewController.h"
 #import "DD_CircleApplyViewController.h"
 #import "DD_CirclePublishViewController.h"
 #import "DD_CircleDetailViewController.h"
@@ -61,17 +60,18 @@
 -(void)SomeBlock
 {
     __block DD_DesignerCircleViewController *_CircleView=self;
-    __block NSMutableArray *___dataArr=_dataArr;
+//    __block NSMutableArray *___dataArr=_dataArr;
     cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
-        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
+//        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
-            [_CircleView PushItemListViewWithID:listModel.shareId];
+//            [_CircleView PushItemListViewWithID:listModel.shareId];
         }else if([type isEqualToString:@"head_click"])
         {
             //            点击用户头像
+            [_CircleView PushHomePageView];
         }else if([type isEqualToString:@"collect_cancel"])
         {
             //            取消收藏
@@ -103,6 +103,7 @@
         }
     };
 }
+
 #pragma mark - UIConfig
 -(void)UIConfig
 {
@@ -277,7 +278,13 @@
 -(void)PushCommentViewWithIndex:(NSInteger )index
 {
     _block(@"push_comment",[_dataArr objectAtIndex:index]);
-
+}
+/**
+ * 跳转用户主页
+ */
+-(void)PushHomePageView
+{
+    _block(@"head_click",nil);
 }
 /**
  * 点赞和取消点赞
@@ -338,17 +345,17 @@
 /**
  * 跳转搭配商品列表
  */
--(void)PushItemListViewWithID:(NSString *)shareId
-{
-    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-        
-    }] animated:YES];
-}
+//-(void)PushItemListViewWithID:(NSString *)shareId
+//{
+//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+//        
+//    }] animated:YES];
+//}
+
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [MobClick beginLogPageView:@"DD_DesignerCircleViewController"];
 }

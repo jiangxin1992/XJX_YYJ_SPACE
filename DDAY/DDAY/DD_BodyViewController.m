@@ -68,7 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
+    [[DD_CustomViewController sharedManager] tabbarAppear];
     [MobClick beginLogPageView:@"DD_BodyViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

@@ -218,13 +218,6 @@ static DD_CustomViewController *tabbarController = nil;
         make.height.mas_equalTo(ktabbarHeight);
     }];
     
-    UIView *dingbu=[UIView getCustomViewWithColor:_define_black_color];
-    [_tabbar addSubview:dingbu];
-    [dingbu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.mas_equalTo(0);
-        make.top.mas_equalTo(_tabbar).with.offset(0);
-        make.height.mas_equalTo(1);
-    }];
 }
 #pragma mark - UITabBarControllerDelegate(点击时候触发)
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController

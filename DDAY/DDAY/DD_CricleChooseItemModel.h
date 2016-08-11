@@ -38,6 +38,7 @@ __string(g_id);
  * 款式对应的颜色 id
  */
 __string(colorId);
+__string(colorCode);
 /**
  * 当前款式是否处于被选中状态
  */

@@ -54,6 +54,7 @@
 +(NSString *)getTimeStr:(long)time;
 /**
  * 时间戳转时间
+ *
  */
 +(NSString *)getTimeStr:(long)time WithFormatter:(NSString *)_formatter;
 /**

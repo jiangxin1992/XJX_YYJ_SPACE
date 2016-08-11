@@ -222,6 +222,7 @@
             [regular UpdateRoot];
             // 更新友盟用户统计和渠道
             [regular updateProfileSignInWithPUID];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
             _successblock(@"success");
             [self.navigationController popViewControllerAnimated:YES];
         }else
@@ -305,6 +306,7 @@
                      [regular UpdateRoot];
                      // 更新友盟用户统计和渠道
                      [regular updateProfileSignInWithPUID];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
                      _successblock(@"success");
                      
                      [self.navigationController popViewControllerAnimated:YES];
@@ -363,7 +365,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [MobClick beginLogPageView:@"DD_LoginViewController"];
 }

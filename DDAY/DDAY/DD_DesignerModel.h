@@ -19,5 +19,9 @@ __string(head);
 __string(name);
 __array(items);
 __string(brandIcon);
+/**
+ * 用户类型 2设计师 3普通用户 4达人
+ */
+__string(userType);
 
 @end

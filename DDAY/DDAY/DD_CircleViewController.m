@@ -8,9 +8,10 @@
 
 #import "DD_CircleViewController.h"
 
+#import "DD_TarentoHomePageViewController.h"
+#import "DD_DesignerHomePageViewController.h"
 #import "DD_CircleListCell.h"
 #import "DD_CircleListModel.h"
-#import "DD_CircleItemListViewController.h"
 #import "DD_CircleApplyViewController.h"
 #import "DD_CirclePublishViewController.h"
 #import "DD_CircleDetailViewController.h"
@@ -51,6 +52,7 @@
     _getChangeNot=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeNotAction) name:@"getChangeNot" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction) name:@"rootChange" object:nil];
+    
 }
 -(void)PrepareUI{
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
@@ -69,10 +71,22 @@
         if([type isEqualToString:@"show_item_list"])
         {
 //            显示商品列表
-            [_CircleView PushItemListViewWithID:listModel.shareId];
+//            [_CircleView PushItemListViewWithID:listModel.shareId];
         }else if([type isEqualToString:@"head_click"])
         {
 //            点击用户头像
+            if([listModel.userType integerValue]==2)
+            {
+//                设计师
+                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                _DesignerHomePage.designerId=listModel.userId;
+                [_CircleView.navigationController pushViewController:_DesignerHomePage animated:YES];
+            }else if([listModel.userType integerValue]==4)
+            {
+//                达人
+                [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
+            }
+            
         }else if([type isEqualToString:@"collect_cancel"])
         {
 //            取消收藏
@@ -109,6 +123,7 @@
             DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
             _item.g_id=item.itemId;
             _item.colorId=item.colorId;
+            _item.colorCode=item.colorCode;
             DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
                 //        if(type)
             }];
@@ -384,12 +399,12 @@
 /**
  * 跳转搭配商品列表
  */
--(void)PushItemListViewWithID:(NSString *)shareId
-{
-    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-        
-    }] animated:YES];
-}
+//-(void)PushItemListViewWithID:(NSString *)shareId
+//{
+//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+//        
+//    }] animated:YES];
+//}
 /**
  * 改变_getChangeNot的值
  * _getChangeNot为yes是表示该页面数据变化  需要重新加载
@@ -475,7 +490,6 @@
         [_tableview.header beginRefreshing];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [MobClick beginLogPageView:@"DD_CircleViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

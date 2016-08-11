@@ -187,7 +187,9 @@
                             ,@"colorId":_model.colorId
                             ,@"itemName":_model.name
                             ,@"price":_model.price
-                            ,@"pic":_model.pic}
+                            ,@"pic":_model.pic
+                            ,@"colorCode":_model.colorCode
+                            }
          ];
     }
     return mutArr;

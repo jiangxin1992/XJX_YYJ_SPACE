@@ -5,14 +5,18 @@
 //  Created by yyj on 16/6/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_CircleDetailViewController.h"
+
 #import "DD_CircleDetailHeadView.h"
 #import "DD_CircleCommentModel.h"
 #import "DD_CircleComentInputView.h"
 #import "DD_CircleCommentCell.h"
-#import "DD_CircleItemListViewController.h"
 #import "DD_CircleShowDetailImgViewController.h"
-
-#import "DD_CircleDetailViewController.h"
+#import "DD_ItemsModel.h"
+#import "DD_GoodsDetailViewController.h"
+#import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
 
 @interface DD_CircleDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -131,10 +135,22 @@
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
-            [_DetailView PushItemListViewWithID:_ShareID];
+//            [_DetailView PushItemListViewWithID:_ShareID];
         }else if([type isEqualToString:@"head_click"])
         {
             //            点击用户头像
+            if([nowListModel.userType integerValue]==2)
+            {
+                //                设计师
+                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                _DesignerHomePage.designerId=nowListModel.userId;
+                [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+            }else if([nowListModel.userType integerValue]==4)
+            {
+                //                达人
+                [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:nowListModel.userId] animated:YES];
+            }
+            
         }else if([type isEqualToString:@"collect_cancel"])
         {
             //            取消收藏
@@ -194,6 +210,16 @@
             [alertController addAction:cancelAction];
             [alertController addAction:deleteAction];
             [self presentViewController:alertController animated:YES completion:nil];
+        }else if([type isEqualToString:@"item_click"])
+        {
+            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+            _item.g_id=item.itemId;
+            _item.colorId=item.colorId;
+            _item.colorCode=item.colorCode;
+            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                //        if(type)
+            }];
+            [self.navigationController pushViewController:_GoodsDetail animated:YES];
         }
     }];
     _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:_ListModel]);
@@ -326,12 +352,12 @@
 /**
  * 跳转搭配商品列表
  */
--(void)PushItemListViewWithID:(NSString *)shareId
-{
-    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-        
-    }] animated:YES];
-}
+//-(void)PushItemListViewWithID:(NSString *)shareId
+//{
+//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+//        
+//    }] animated:YES];
+//}
 /**
  * 收藏和取消收藏
  */
@@ -441,7 +467,9 @@
 {
     if(![DD_UserModel isLogin])
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_first", @"")] animated:YES completion:nil];
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }else if([content isEqualToString:@""])
     {
         [self presentViewController:[regular alertTitle_Simple:@"请输入评论内容"] animated:YES completion:nil];
@@ -536,8 +564,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [[DD_CustomViewController sharedManager] tabbarHide];
     [MobClick beginLogPageView:@"DD_CircleDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
