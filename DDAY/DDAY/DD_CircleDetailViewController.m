@@ -8,6 +8,7 @@
 
 #import "DD_CircleDetailViewController.h"
 
+#import "DD_LoginViewController.h"
 #import "DD_CircleDetailHeadView.h"
 #import "DD_CircleCommentModel.h"
 #import "DD_CircleComentInputView.h"
@@ -132,95 +133,73 @@
 {
     __block DD_CircleDetailViewController *_DetailView=self;
     _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
-        if([type isEqualToString:@"show_item_list"])
+//        涉及用户登录权限
+        if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
         {
-            //            显示商品列表
-//            [_DetailView PushItemListViewWithID:_ShareID];
-        }else if([type isEqualToString:@"head_click"])
+            if(![DD_UserModel isLogin])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                if([type isEqualToString:@"collect_cancel"])
+                {
+                    //            取消收藏
+                    [_DetailView collectActionIsCancel:YES];
+                }else if([type isEqualToString:@"collect"])
+                {
+                    //            收藏
+                    [_DetailView collectActionIsCancel:NO];
+                }
+                else if([type isEqualToString:@"praise_cancel"])
+                {
+                    //            取消点赞
+                    [_DetailView praiseActionIsCancel:YES];
+                }else if([type isEqualToString:@"praise"])
+                {
+                    //             点赞
+                    [_DetailView praiseActionIsCancel:NO];
+                }
+                else if([type isEqualToString:@"delete"])
+                {
+                    [_DetailView deleteThisCircle];
+                }
+            }
+        }else
         {
-            //            点击用户头像
-            if([nowListModel.userType integerValue]==2)
+            if([type isEqualToString:@"show_item_list"])
             {
-                //                设计师
-                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                _DesignerHomePage.designerId=nowListModel.userId;
-                [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-            }else if([nowListModel.userType integerValue]==4)
+                //            显示商品列表
+                //            [_DetailView PushItemListViewWithID:_ShareID];
+            }else if([type isEqualToString:@"head_click"])
             {
-                //                达人
-                [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:nowListModel.userId] animated:YES];
+                //            点击用户头像
+                [_DetailView pushUserHomePage];
+                
+            }else if([type isEqualToString:@"share"])
+            {
+                //            分享
+                [_DetailView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+            }else if([type isEqualToString:@"comment"])
+            {
+                //            跳转评论页面
+                [_commentview becomeFirstResponder];
+                
+            }else if([type isEqualToString:@"show_img"])
+            {
+                //            显示图片
+                [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithIndex:index WithBlock:^(NSString *type) {
+                    
+                }] animated:YES];
+            }else if([type isEqualToString:@"item_click"])
+            {
+                //                查看商品
+                [_DetailView pushItemViewWithItemModel:item];
             }
             
-        }else if([type isEqualToString:@"collect_cancel"])
-        {
-            //            取消收藏
-            [_DetailView collectActionIsCancel:YES];
-        }else if([type isEqualToString:@"collect"])
-        {
-            //            收藏
-            [_DetailView collectActionIsCancel:NO];
-        }else if([type isEqualToString:@"share"])
-        {
-            //            分享
-            [_DetailView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
-        }else if([type isEqualToString:@"comment"])
-        {
-            //            跳转评论页面
-            [_commentview becomeFirstResponder];
-            
-        }else if([type isEqualToString:@"praise_cancel"])
-        {
-            //            取消点赞
-            [_DetailView praiseActionIsCancel:YES];
-        }else if([type isEqualToString:@"praise"])
-        {
-            //             点赞
-            [_DetailView praiseActionIsCancel:NO];
-        }else if([type isEqualToString:@"show_img"])
-        {
-            //            显示图片
-            [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithIndex:index WithBlock:^(NSString *type) {
-                
-            }] animated:YES];
-        }else if([type isEqualToString:@"delete"])
-        {
-            
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
-
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
-            
-            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除该搭配" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                    if(success)
-                    {
-                        [self.navigationController popViewControllerAnimated:YES];
-                        if(_ListModel)
-                        {
-                            _block(@"delete");
-                        }
-                    }else
-                    {
-                        [self presentViewController:successAlert animated:YES completion:nil];
-                    }
-                } failure:^(NSError *error, UIAlertController *failureAlert) {
-                    [self presentViewController:failureAlert animated:YES completion:nil];
-                }];
-                
-            }];
-            [alertController addAction:cancelAction];
-            [alertController addAction:deleteAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        }else if([type isEqualToString:@"item_click"])
-        {
-            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-            _item.g_id=item.itemId;
-            _item.colorId=item.colorId;
-            _item.colorCode=item.colorCode;
-            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-                //        if(type)
-            }];
-            [self.navigationController pushViewController:_GoodsDetail animated:YES];
         }
+        
     }];
     _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:_ListModel]);
     _tableview.tableHeaderView=_headView;
@@ -266,7 +245,14 @@
         if(success)
         {
             nowListModel=[DD_CircleListModel getCircleListModel:[data objectForKey:@"shareInfo"]];
-            [self CreateTableViewHead];
+//            已创建就更新
+            if(_headView)
+            {
+                _headView.listModel=nowListModel;
+            }else
+            {
+                [self CreateTableViewHead];
+            }
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -282,6 +268,7 @@
         // 进入刷新状态后会自动调用这个block
         _page=1;
         [self RequestData];
+        [self RequestDataHeadData];
     }];
     
     _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -340,7 +327,6 @@
     [self cellClickActionWithIndex:indexPath.section];
 }
 
-
 #pragma mark - SomeAction
 /**
  * touch开始时
@@ -350,115 +336,210 @@
     [_commentview return_KeyBoard];
 }
 /**
- * 跳转搭配商品列表
+ * 跳转登录界面
  */
-//-(void)PushItemListViewWithID:(NSString *)shareId
-//{
-//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-//        
-//    }] animated:YES];
-//}
+-(void)pushLoginView
+{
+    if(![DD_UserModel isLogin])
+    {
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                [_tableview.header beginRefreshing];
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+    }
+}
+/**
+ * 跳转单品详情页
+ */
+-(void)pushItemViewWithItemModel:(DD_OrderItemModel *)item
+{
+    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+    _item.g_id=item.itemId;
+    _item.colorId=item.colorId;
+    _item.colorCode=item.colorCode;
+    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+        //        if(type)
+    }];
+    [self.navigationController pushViewController:_GoodsDetail animated:YES];
+}
+/**
+ * 跳转主页
+ */
+-(void)pushUserHomePage
+{
+    if([nowListModel.userType integerValue]==2)
+    {
+        //                设计师
+        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+        _DesignerHomePage.designerId=nowListModel.userId;
+        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+    }else if([nowListModel.userType integerValue]==4)
+    {
+        //                达人
+        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:nowListModel.userId] animated:YES];
+    }
+}
+/**
+ * 删除该搭配
+ */
+-(void)deleteThisCircle
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除该搭配" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+                if(_ListModel)
+                {
+                    _block(@"delete");
+                }
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+        
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:deleteAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 /**
  * 收藏和取消收藏
  */
 -(void)collectActionIsCancel:(BOOL)is_cancel
 {
-    NSString *url=nil;
-    if(is_cancel)
+    if(![DD_UserModel isLogin])
     {
-        url=@"share/delCollectShare.do";
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }else
     {
-        url=@"share/collectShare.do";
-    }
-    [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
+        NSString *url=nil;
+        if(is_cancel)
         {
-            nowListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
-            if(_ListModel)
-            {
-                _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
-            }
-            [_headView setState];
-            if(_ListModel)
-            {
-                _block(@"reload");
-            }
-            
+            url=@"share/delCollectShare.do";
         }else
         {
-            [self presentViewController:successAlert animated:YES completion:nil];
+            url=@"share/collectShare.do";
         }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                nowListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
+                if(_ListModel)
+                {
+                    _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
+                }
+                [_headView setState];
+                if(_ListModel)
+                {
+                    _block(@"reload");
+                }
+                
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
+    
 }
 /**
  * 对搭配的点赞和取消点赞
  */
 -(void)praiseActionIsCancel:(BOOL)is_cancel
 {
-    NSString *url=nil;
-    if(is_cancel)
+    if(![DD_UserModel isLogin])
     {
-        url=@"share/unLikeShare.do";
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }else
     {
-        url=@"share/likeShare.do";
-    }
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"shareId":_ShareID};
-    [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
+        NSString *url=nil;
+        if(is_cancel)
         {
-            nowListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-            nowListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
-            if(_ListModel)
-            {
-                _ListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-                _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
-            }
-            [_headView setState];
-            if(_ListModel)
-            {
-                _block(@"reload");
-            }
-            
+            url=@"share/unLikeShare.do";
         }else
         {
-            [self presentViewController:successAlert animated:YES completion:nil];
+            url=@"share/likeShare.do";
         }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"shareId":_ShareID};
+        [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                nowListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
+                nowListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
+                if(_ListModel)
+                {
+                    _ListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
+                    _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
+                }
+                [_headView setState];
+                if(_ListModel)
+                {
+                    _block(@"reload");
+                }
+                
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
 }
 /**
  * 点赞和取消点赞
  */
 -(void)praiseActionIsCancel:(BOOL)is_cancel WithIndex:(NSInteger)index
 {
-    NSString *url=nil;
-    if(is_cancel)
+    if(![DD_UserModel isLogin])
     {
-        url=@"share/unLikeComment.do";
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }else
     {
-        url=@"share/likeComment.do";
-    }
-    DD_CircleCommentModel *CommentModel=[_dataArr objectAtIndex:index];
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"commentId":CommentModel.commId};
-    [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
+        NSString *url=nil;
+        if(is_cancel)
         {
-            CommentModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-            CommentModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
-            [_tableview reloadData];
+            url=@"share/unLikeComment.do";
         }else
         {
-            [self presentViewController:successAlert animated:YES completion:nil];
+            url=@"share/likeComment.do";
         }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        DD_CircleCommentModel *CommentModel=[_dataArr objectAtIndex:index];
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"commentId":CommentModel.commId};
+        [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                CommentModel.isLike=[[data objectForKey:@"isLike"] boolValue];
+                CommentModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
+                [_tableview reloadData];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
 }
 /**
  * 提交评论验证
@@ -515,20 +596,28 @@
  */
 -(void)deleteActionWithIndex:(NSInteger )index
 {
-    DD_CircleCommentModel *commentModel=[_dataArr objectAtIndex:index];
-    commToId=@"";
-    [[JX_AFNetworking alloc] GET:@"share/deleteCommentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"commentId":commentModel.commId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            [_dataArr removeObjectAtIndex:index];
-            [_tableview reloadData];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_CircleCommentModel *commentModel=[_dataArr objectAtIndex:index];
+        commToId=@"";
+        [[JX_AFNetworking alloc] GET:@"share/deleteCommentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"commentId":commentModel.commId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                [_dataArr removeObjectAtIndex:index];
+                [_tableview reloadData];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
 }
 /**
  * cell点击
@@ -574,5 +663,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+/**
+ * 跳转搭配商品列表
+ */
+//-(void)PushItemListViewWithID:(NSString *)shareId
+//{
+//    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+//
+//    }] animated:YES];
+//}
 
 @end

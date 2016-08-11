@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
+#import "DD_CircleDetailHeadView.h"
+
 #import "DD_CircleDetailImgView.h"
 //#import "DD_CircleListSuggestView.h"
 //#import "DD_CircleListUserView.h"
 //#import "DD_CircleListInteractionView.h"
-
-#import "DD_CircleDetailHeadView.h"
 
 @implementation DD_CircleDetailHeadView
 {
@@ -41,7 +41,6 @@
         [self SomePrepare];
         [self UIConfig];
         [self setState];
-
     }
     return self;
 }
@@ -58,7 +57,7 @@
 }
 -(void)PrepareUI
 {
-    self.backgroundColor=_define_backview_color;
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -192,6 +191,24 @@
 //    [self CreateSuggestView];
 //    [self CreateInteractionView];
 }
+#pragma mark - setter
+-(void)setListModel:(DD_CircleListModel *)listModel
+{
+    _listModel=listModel;
+    [self setState];
+}
+
+#pragma mark - SomeAction
+/**
+ * 点击头像
+ */
+-(void)headClick
+{
+    _block(@"head_click",0,nil);
+}
+/**
+ * 点赞评论...
+ */
 -(void)userAction:(UIButton *)btn
 {
     NSInteger _btnindex=btn.tag-200;
@@ -228,12 +245,18 @@
         _block(@"delete",0,nil);
     }
 }
+/**
+ * 点击单品
+ */
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
     
     DD_OrderItemModel *_item=[_listModel.items objectAtIndex:ges.view.tag-100];
     _block(@"item_click",0,_item);
 }
+/**
+ * 计算高度
+ */
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model{
     
     DD_CircleDetailHeadView *cell = [[DD_CircleDetailHeadView alloc] initWithCircleListModel:model WithBlock:nil];
@@ -241,63 +264,6 @@
     [cell layoutIfNeeded];
     CGRect frame =  cell.lastView_state.frame;
     return frame.origin.y + frame.size.height+10;
-}
-//-(void)CreateUserView
-//{
-//    _userView=[[DD_CircleListUserView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
-//        _block(type,0);
-//    }];
-//    [self addSubview:_userView];
-//    [_userView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.and.right.mas_equalTo(0);
-//    }];
-//}
-//-(void)CreateImgView
-//{
-//    _imgView=[[DD_CircleDetailImgView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type,NSInteger index) {
-//        _block(type,0,nil);
-//    }];
-//    [self addSubview:_imgView];
-//    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.mas_equalTo(0);
-//        make.top.mas_equalTo(_userView.mas_bottom).with.offset(0);
-//    }];
-//}
-//-(void)CreateSuggestView
-//{
-//    _suggestView=[[DD_CircleListSuggestView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
-//        _block(type,0);
-//    }];
-//    [self addSubview:_suggestView];
-//    [_suggestView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.mas_equalTo(0);
-//        make.top.mas_equalTo(_imgView.mas_bottom).with.offset(0);
-//    }];
-//}
-//-(void)CreateInteractionView
-//{
-//    _interactionView=[[DD_CircleListInteractionView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
-//        _block(type,0);
-//    }];
-//    [self addSubview:_interactionView];
-//    [_interactionView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.mas_equalTo(0);
-//        make.top.mas_equalTo(_suggestView.mas_bottom).with.offset(2);
-//    }];
-//}
-#pragma mark - setter
--(void)setListModel:(DD_CircleListModel *)listModel
-{
-    _listModel=listModel;
-    [self setState];
-
-}
-
-
-#pragma mark - SomeAction
--(void)headClick
-{
-    _block(@"head_click",0,nil);
 }
 /**
  * 更新
@@ -357,5 +323,47 @@
 //{
 //    _interactionView.detailModel=_listModel;
 //}
-
+//-(void)CreateUserView
+//{
+//    _userView=[[DD_CircleListUserView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
+//        _block(type,0);
+//    }];
+//    [self addSubview:_userView];
+//    [_userView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.and.right.mas_equalTo(0);
+//    }];
+//}
+//-(void)CreateImgView
+//{
+//    _imgView=[[DD_CircleDetailImgView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type,NSInteger index) {
+//        _block(type,0,nil);
+//    }];
+//    [self addSubview:_imgView];
+//    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.mas_equalTo(0);
+//        make.top.mas_equalTo(_userView.mas_bottom).with.offset(0);
+//    }];
+//}
+//-(void)CreateSuggestView
+//{
+//    _suggestView=[[DD_CircleListSuggestView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
+//        _block(type,0);
+//    }];
+//    [self addSubview:_suggestView];
+//    [_suggestView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.mas_equalTo(0);
+//        make.top.mas_equalTo(_imgView.mas_bottom).with.offset(0);
+//    }];
+//}
+//-(void)CreateInteractionView
+//{
+//    _interactionView=[[DD_CircleListInteractionView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type) {
+//        _block(type,0);
+//    }];
+//    [self addSubview:_interactionView];
+//    [_interactionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.mas_equalTo(0);
+//        make.top.mas_equalTo(_suggestView.mas_bottom).with.offset(2);
+//    }];
+//}
 @end

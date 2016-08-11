@@ -29,6 +29,7 @@
     [super viewDidLoad];
     
     _imgv = [UIImageView getCustomImg];
+    _imgv.userInteractionEnabled=YES;
     [self.view addSubview:_imgv];
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.bottom.mas_equalTo(0);

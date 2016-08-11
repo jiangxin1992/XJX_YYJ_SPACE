@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DesignerMainViewController.m"
-            timestampString = "492586475.96474"
+            filePath = "DDAY/DD_CircleDetailViewController.m"
+            timestampString = "492609860.819701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-CreatePageView"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "-RequestDataHeadData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DesignerMainViewController.m"
-            timestampString = "492586478.100587"
+            filePath = "DDAY/DD_CircleDetailViewController.m"
+            timestampString = "492609860.819701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-qiehuan:"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "-RequestDataHeadData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,45 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DesignerMainViewController.m"
-            timestampString = "492586480.351006"
+            filePath = "DDAY/DD_CircleDetailViewController.m"
+            timestampString = "492609860.819701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "-qiehuan:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DesignerMainViewController.m"
-            timestampString = "492586509.707569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_BaseViewController.m"
-            timestampString = "492586542.294412"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-pushLoginView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

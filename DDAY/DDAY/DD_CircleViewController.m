@@ -67,69 +67,87 @@
     __block NSMutableArray *___dataArr=_dataArr;
     cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
-        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
-        if([type isEqualToString:@"show_item_list"])
-        {
-//            显示商品列表
-//            [_CircleView PushItemListViewWithID:listModel.shareId];
-        }else if([type isEqualToString:@"head_click"])
-        {
-//            点击用户头像
-            if([listModel.userType integerValue]==2)
-            {
-//                设计师
-                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                _DesignerHomePage.designerId=listModel.userId;
-                [_CircleView.navigationController pushViewController:_DesignerHomePage animated:YES];
-            }else if([listModel.userType integerValue]==4)
-            {
-//                达人
-                [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
-            }
-            
-        }else if([type isEqualToString:@"collect_cancel"])
-        {
-//            取消收藏
-            [_CircleView collectActionIsCancel:YES WithIndex:index];
-        }else if([type isEqualToString:@"collect"])
-        {
-//            收藏
-            [_CircleView collectActionIsCancel:NO WithIndex:index];
-        }else if([type isEqualToString:@"share"])
-        {
-//            分享
-            [_CircleView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
-        }else if([type isEqualToString:@"comment"])
-        {
-//            跳转评论页面
-            [_CircleView PushCommentViewWithIndex:index];
-        }else if([type isEqualToString:@"praise_cancel"])
-        {
-//            取消点赞
-            [_CircleView praiseActionIsCancel:YES WithIndex:index];
-        }else if([type isEqualToString:@"praise"])
-        {
-//             点赞
-            [_CircleView praiseActionIsCancel:NO WithIndex:index];
-        }else if([type isEqualToString:@"delete"])
-        {
-            [_CircleView presentViewController:[regular alertTitleCancel_Simple:@"删除该评论?" WithBlock:^{
-                [_CircleView deleteActionWithIndex:index];
-            }] animated:YES completion:nil];
-//            删除
-        }else if([type isEqualToString:@"item_click"])
-        {
-//            点击item
-            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-            _item.g_id=item.itemId;
-            _item.colorId=item.colorId;
-            _item.colorCode=item.colorCode;
-            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-                //        if(type)
-            }];
-            [_CircleView.navigationController pushViewController:_GoodsDetail animated:YES];
-        }
 
+        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
+        if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
+        {
+//            涉及用户权限的操作
+            if(![DD_UserModel isLogin])
+            {
+                [_CircleView presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [_CircleView pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                if([type isEqualToString:@"collect_cancel"])
+                {
+                    
+                    //            取消收藏
+                    [_CircleView collectActionIsCancel:YES WithIndex:index];
+                }else if([type isEqualToString:@"collect"])
+                {
+                    //            收藏
+                    [_CircleView collectActionIsCancel:NO WithIndex:index];
+                }
+                else if([type isEqualToString:@"praise_cancel"])
+                {
+                    //            取消点赞
+                    [_CircleView praiseActionIsCancel:YES WithIndex:index];
+                }else if([type isEqualToString:@"praise"])
+                {
+                    //             点赞
+                    [_CircleView praiseActionIsCancel:NO WithIndex:index];
+                }else if([type isEqualToString:@"delete"])
+                {
+                    //            删除
+                    [_CircleView presentViewController:[regular alertTitleCancel_Simple:@"删除该评论?" WithBlock:^{
+                        [_CircleView deleteActionWithIndex:index];
+                    }] animated:YES completion:nil];
+                    
+                }
+            }
+        }else
+        {
+            if([type isEqualToString:@"show_item_list"])
+            {
+                //            显示商品列表
+                //            [_CircleView PushItemListViewWithID:listModel.shareId];
+            }else if([type isEqualToString:@"head_click"])
+            {
+                //            点击用户头像
+                if([listModel.userType integerValue]==2)
+                {
+                    //                设计师
+                    DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                    _DesignerHomePage.designerId=listModel.userId;
+                    [_CircleView.navigationController pushViewController:_DesignerHomePage animated:YES];
+                }else if([listModel.userType integerValue]==4)
+                {
+                    //                达人
+                    [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
+                }
+                
+            }else if([type isEqualToString:@"share"])
+            {
+                //            分享
+                [_CircleView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+            }else if([type isEqualToString:@"comment"])
+            {
+                //            跳转评论页面
+                [_CircleView PushCommentViewWithIndex:index];
+            }else if([type isEqualToString:@"item_click"])
+            {
+                //            点击item
+                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                _item.g_id=item.itemId;
+                _item.colorId=item.colorId;
+                _item.colorCode=item.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    //        if(type)
+                }];
+                [_CircleView.navigationController pushViewController:_GoodsDetail animated:YES];
+            }
+        }
     };
 }
 #pragma mark - UIConfig
