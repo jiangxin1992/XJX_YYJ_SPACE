@@ -61,7 +61,6 @@
 - (void)keyboardWillShow:(NSNotification *)not
 {
     [_SignBoard.commentField becomeFirstResponder];
-    
 }
 #pragma mark - UIConfig
 -(void)UIConfig

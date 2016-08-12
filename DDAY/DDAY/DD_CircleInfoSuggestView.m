@@ -8,10 +8,14 @@
 
 #import "DD_CircleInfoSuggestView.h"
 
+#import "DD_CircleInfoSuggestSignBoard.h"
+
 @implementation DD_CircleInfoSuggestView
 {
-    UIWebView *_webView;//搭配建议内容
+    DD_CircleInfoSuggestSignBoard *_SignBoard;
+    UITextView *_textView;
     UILabel *_numlabel;//字数
+    NSString *_content;
 }
 
 #pragma mark - 初始化
@@ -37,72 +41,117 @@
 {
     [self PrepareData];
     [self PrepareUI];
+    [self createNotification];
 }
--(void)PrepareData{}
+-(void)PrepareData
+{
+    _content=@"";
+}
 -(void)PrepareUI
 {
     self.backgroundColor=[UIColor whiteColor];
     self.userInteractionEnabled=YES;
-    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
+//    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
+}
+//给键盘加上监听，捕获他的隐藏和显示
+- (void)createNotification
+{
+    //    UIKeyboardWillShowNotification这个通知在软键盘弹出时由系统发送
+    //    UIKeyboardWillShowNotification 通知：键盘将要显示的通知
+    //    在通知中心中添加监测对象，当该对象受到UIKeyboardWillShowNotification的通知时，会调用参数二所代表的方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+//键盘将要隐藏时调用的方法
+//将底部的评论 view，根据键盘的变化而变化
+- (void)keyboardWillHide:(NSNotification *)not
+{
+    [_SignBoard.commentField resignFirstResponder];
+    
+}
+//键盘将要出现时调用的方法
+//将底部的评论 view，根据键盘的变化而变化
+- (void)keyboardWillShow:(NSNotification *)not
+{
+    _SignBoard.commentField.text=_textView.text;
+    [_SignBoard.commentField becomeFirstResponder];
+    
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    _webView=[[UIWebView alloc] initWithFrame:CGRectMake(20, 10, ScreenWidth-40, 10)];
-    [self addSubview:_webView];
-    _webView.backgroundColor=[UIColor clearColor];
-    _webView.userInteractionEnabled=NO;
-    _webView.delegate=self;
-    _webView.opaque = NO;
-    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
-    [self addSubview:_webView];
-    [self setRemarksWithWebView:_holdStr];
-    
-    _numlabel=[[UILabel alloc] init];
-    [self addSubview:_numlabel];
-    _numlabel.textAlignment=2;
-    _numlabel.textColor=[UIColor lightGrayColor];
-    _numlabel.font=[regular getFont:13.0f];
-    _numlabel.text=[[NSString alloc] initWithFormat:@"0/%ld",_limitNum];
-    [_numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-        make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(@20);
+    UIView *backView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:backView];
+    [regular setBorder:backView];
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(0);
+        make.height.mas_equalTo(85);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(0);
     }];
+    
+    _numlabel=[UILabel getLabelWithAlignment:2 WithTitle:[self getlength] WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [backView addSubview:_numlabel];
+    [_numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.right.mas_equalTo(-11);
+    }];
+    [_numlabel sizeToFit];
+    
+    
+    _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithBlock:^(NSString *type, NSString *content) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [regular dismissKeyborad];
+        }else if([type isEqualToString:@"save"])
+        {
+            _content=content;
+            _textView.text=_content;
+            _numlabel.text=[self getlength];
+            [regular dismissKeyborad];
+            
+        }else
+        {
+            _block(type,content.length);
+        }
+    }];
+    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, 140);
+    
+    _textView=[[UITextView alloc] init];
+    _textView.inputAccessoryView = _SignBoard;
+    _textView.returnKeyType=UIReturnKeyDefault;
+    _textView.font=[regular getFont:10.5f];
+    [backView addSubview:_textView];
+    [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(11);
+        make.right.mas_equalTo(-11);
+        make.bottom.mas_equalTo(_numlabel.mas_top).with.offset(0);
+    }];
+
 }
 #pragma mark - SomeAction
+-(NSString *)getlength
+{
+    return [[NSString alloc] initWithFormat:@"%ld/%ld",_content.length,_limitNum];
+}
 /**
  * 跳转填写备注界面
  */
--(void)remarksAction
-{
-    _block(_blockType,_limitNum);
-}
+//-(void)remarksAction
+//{
+//    _block(_blockType,_limitNum);
+//}
+
 /**
- * 备注填写完毕之后，回调更新备注视图的内容
+ * 键盘消失
  */
--(void)setRemarksWithWebView:(NSString *)content
-{
-    NSString *font=@"17px/23px";
-    [_webView loadHTMLString:[NSString stringWithFormat:@"<style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:#9b9b9b}</style><div align='justify'>%@<div>",font,content] baseURL:nil];
-    [_webView sizeToFit];//自适应
-    _numlabel.text=[[NSString alloc] initWithFormat:@"%ld/%ld",content.length,_limitNum];//更新字数
-}
-#pragma mark - UIWebViewDelegate
-/**
- * 适应
- */
-- (void)webViewDidFinishLoad:(UIWebView *)webView { //webview 自适应高度
-    CGRect frame = webView.frame;
-    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-    frame.size = fittingSize;
-    webView.frame = frame;
-    
-    [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(webView.mas_bottom).with.offset(20);
-    }];
-}
+//-(void)return_KeyBoard
+//{
+//    [regular dismissKeyborad];
+//    _textView.text=_SignBoard.commentField.text;
+//}
+
 @end
 
 

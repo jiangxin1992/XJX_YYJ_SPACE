@@ -58,35 +58,20 @@
 }
 -(void)CreateUpView
 {
-    _upView=[[UIView alloc] init];
+    _upView=[UIView getCustomViewWithColor:nil];
     [self addSubview:_upView];
     [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.and.right.mas_equalTo(0);
         make.height.mas_equalTo(@50);
     }];
     
-    UILabel *leftLabel=[[UILabel alloc] init];
+    UILabel *leftLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"适合人群" WithFont:14.0f WithTextColor:nil WithSpacing:0];
     [_upView addSubview:leftLabel];
-    leftLabel.textAlignment=0;
-    leftLabel.textColor=[UIColor lightGrayColor];
-    leftLabel.text=@"适合人群";
-    leftLabel.font=[regular getFont:14.0f];
-    
-    UIView *_xian=[[UIView alloc] init];
-    [_upView addSubview:_xian];
-    _xian.backgroundColor=_define_backview_color;
     
     [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.top.and.bottom.mas_equalTo(0);
-    }];
-    
-    [_xian mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-        make.bottom.mas_equalTo(-1);
-        make.height.mas_equalTo(@1);
     }];
     
 }
@@ -122,20 +107,16 @@
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
-                make.top.mas_equalTo(lastView.mas_bottom).with.offset(10);
+                make.top.mas_equalTo(lastView.mas_bottom).with.offset(0);
             }else
             {
-                make.top.mas_equalTo(10);
+                make.top.mas_equalTo(0);
             }
-            make.left.mas_equalTo(20);
-            make.right.mas_equalTo(-20);
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
         }];
-        UILabel *titleLabel=[[UILabel alloc] init];
+        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:_tagModel.CategoryName WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:titleLabel];
-        titleLabel.font=[regular getFont:15.0f];
-        titleLabel.textColor=[UIColor blackColor];
-        titleLabel.textAlignment=0;
-        titleLabel.text=_tagModel.CategoryName;
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.and.right.mas_equalTo(0);
             make.height.mas_equalTo(30);
@@ -150,7 +131,10 @@
         // 循环创建view
         for (int j=0; j<_tagModel.tags.count; j++) {
             DD_CricleTagItemModel *item=[_tagModel.tags objectAtIndex:j];
-            UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+            UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:item.tagName WithNormalColor:_define_black_color WithSelectedTitle:item.tagName WithSelectedColor:_define_white_color];
+            [backView addSubview:btn];
+            btn.tag=100*i+j;
+            [regular setBorder:btn];
             if(item.is_select)
             {
                 btn.selected=item.is_select;
@@ -161,21 +145,12 @@
                 btn.backgroundColor=[UIColor whiteColor];
             }
             
-            [backView addSubview:btn];
-            btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-            btn.tag=100*i+j;
-            [regular drawLayerWithView:btn WithR:5 WithColor:[UIColor blackColor]];
-            
-            [btn setTitle:item.tagName forState:UIControlStateNormal];
-            [btn setTitle:item.tagName forState:UIControlStateSelected];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
             
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                 // 给个高度约束
                 make.width.mas_equalTo(width);
-                make.height.mas_equalTo(@40);
+                make.height.mas_equalTo(@25);
                 // 2. 判断是否是第一列
                 if (j % num == 0) {
                     // 一：是第一列时 添加左侧与父视图左侧约束
@@ -194,7 +169,7 @@
                     make.top.mas_equalTo(btn.superview).offset(30);
                 } else {
                     // 其余添加顶部约束 intes*10 是我留出的距顶部高度
-                    make.top.mas_equalTo(30 + ( j / num )* (40 + intes));
+                    make.top.mas_equalTo(30 + ( j / num )* (25 + intes));
                 }
             }];
             // 每次循环结束 此次的View为下次约束的基准
@@ -203,7 +178,7 @@
         if(lastBtn)
         {
             [lastBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(-10);
+                make.bottom.mas_equalTo(0);
             }];
         }else
         {
@@ -217,7 +192,7 @@
     if(lastView)
     {
         [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-20);
+            make.bottom.mas_equalTo(-10);
         }];
     }else
     {

@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleInfoSuggestView : UIView<UIWebViewDelegate>
+@interface DD_CircleInfoSuggestView : UIView
 /**
  * 初始化
  */
 -(instancetype)initWithPlaceHoldStr:(NSString *)holdStr WithBlockType:(NSString *)blockType WithLimitNum:(long)limitNum Block:(void (^)(NSString *type,NSInteger num))block;
-/**
- * 更新内容，重新sizetofit webview
- */
--(void)setRemarksWithWebView:(NSString *)content;
+
 /**
  * block type
  */

@@ -188,6 +188,7 @@
 		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
 		3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */; };
 		3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6153231D3F28CB00BB60FD /* UIView+Custom.m */; };
+		3F6163521D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6163511D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m */; };
 		3F64573F1D5495D1003B4E1A /* DD_SetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F64573E1D5495D1003B4E1A /* DD_SetCell.m */; };
 		3F66CF1C1D115379006A3D3F /* DD_CircleInfoImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F66CF1B1D115379006A3D3F /* DD_CircleInfoImgView.m */; };
 		3F66CF241D115BDF006A3D3F /* DD_CircleTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F66CF231D115BDF006A3D3F /* DD_CircleTagsView.m */; };
@@ -714,6 +715,8 @@
 		3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DrawManageView.m; sourceTree = "<group>"; };
 		3F6153221D3F28CB00BB60FD /* UIView+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Custom.h"; sourceTree = "<group>"; };
 		3F6153231D3F28CB00BB60FD /* UIView+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Custom.m"; sourceTree = "<group>"; };
+		3F6163501D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoSuggestSignBoard.h; sourceTree = "<group>"; };
+		3F6163511D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleInfoSuggestSignBoard.m; sourceTree = "<group>"; };
 		3F64573D1D5495D1003B4E1A /* DD_SetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SetCell.h; sourceTree = "<group>"; };
 		3F64573E1D5495D1003B4E1A /* DD_SetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SetCell.m; sourceTree = "<group>"; };
 		3F66CF1A1D115379006A3D3F /* DD_CircleInfoImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoImgView.h; sourceTree = "<group>"; };
@@ -1012,6 +1015,7 @@
 		3F0A6DF21D11035300CDCBC5 /* 搭配建议 */ = {
 			isa = PBXGroup;
 			children = (
+				3F6163531D5D9DA3003F8AC3 /* 键盘上视图 */,
 				3F0A6DF61D11056100CDCBC5 /* DD_CircleInfoSuggestView.h */,
 				3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */,
 			);
@@ -2057,6 +2061,15 @@
 				3F4B7F731D3DB52300E34B98 /* UIColor+Hex.m */,
 			);
 			name = "UIColor+Hex";
+			sourceTree = "<group>";
+		};
+		3F6163531D5D9DA3003F8AC3 /* 键盘上视图 */ = {
+			isa = PBXGroup;
+			children = (
+				3F6163501D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.h */,
+				3F6163511D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m */,
+			);
+			name = "键盘上视图";
 			sourceTree = "<group>";
 		};
 		3F6457391D547F78003B4E1A /* cell */ = {
@@ -3222,6 +3235,7 @@
 				3F6813A91D1A379C00F4807A /* DD_CircleDetailViewController.m in Sources */,
 				3F83EEA21D38916A0051C89E /* UILabel+DD_Custom.m in Sources */,
 				3F3811AF1CF54F7C007154F1 /* DataSigner.m in Sources */,
+				3F6163521D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m in Sources */,
 				3F0A8CE41D07C855005549BE /* DD_OrderTabBar.m in Sources */,
 				3F552E831CF1F59E00BC5E33 /* DD_DesignerModel.m in Sources */,
 				3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */,

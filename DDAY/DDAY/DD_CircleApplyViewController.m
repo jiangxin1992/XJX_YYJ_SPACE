@@ -163,11 +163,12 @@
 -(void)CreateInforView
 {
     _infoView=[[DD_CircleApplyInfoView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,long index) {
-        if([type isEqualToString:@"suggest_remarks"]||[type isEqualToString:@"like_reason_remarks"])
-        {
-            //            跳转搭配建议界面
-            [self PushRemarksViewWithNum:index WithType:type];
-        }else if([type isEqualToString:@"chooseStyle"])
+//        if([type isEqualToString:@"suggest_remarks"]||[type isEqualToString:@"like_reason_remarks"])
+//        {
+//            //            跳转搭配建议界面
+//            [self PushRemarksViewWithNum:index WithType:type];
+//        }else
+        if([type isEqualToString:@"chooseStyle"])
         {
             //            款式选择
             [self PushChooseDetailView];
@@ -353,43 +354,43 @@
 /**
  * 跳转填写备注界面
  */
--(void)PushRemarksViewWithNum:(NSInteger )num WithType:(NSString *)_type
-{
-    NSString *pushStr=@"";
-    NSString *title=@"";
-    if([_type isEqualToString:@"suggest_remarks"])
-    {
-        pushStr=_CircleModel.remark;
-        title=@"搭配建议";
-    }else if([_type isEqualToString:@"like_reason_remarks"])
-    {
-        pushStr=_CircleModel.designerModel.likeReason;
-        title=@"喜爱ta的理由";
-    }
-    
-    [self.navigationController pushViewController:[[DD_RemarksViewController alloc] initWithRemarks:pushStr WithLimit:num WithTitle:title WithBlock:^(NSString *type, NSString *content) {
-        //        备注界面点击完成
-        if([type isEqualToString:@"done"])
-        {
-            if(_infoView)
-            {
-                if([_type isEqualToString:@"suggest_remarks"])
-                {
-                    //                remarksview中更新内容
-                    [_infoView.remarksView setRemarksWithWebView:content];
-                    //                _detailModel中更新备注内容
-                    _CircleModel.remark=content;
-                }else if([_type isEqualToString:@"like_reason_remarks"])
-                {
-                    //                likeReasonView中更新内容
-                    [_infoView.likeReasonView setRemarksWithWebView:content];
-                    //                _detailModel中更新备注内容
-                    _CircleModel.designerModel.likeReason=content;
-                }
-            }
-        }
-    }] animated:YES];
-}
+//-(void)PushRemarksViewWithNum:(NSInteger )num WithType:(NSString *)_type
+//{
+//    NSString *pushStr=@"";
+//    NSString *title=@"";
+//    if([_type isEqualToString:@"suggest_remarks"])
+//    {
+//        pushStr=_CircleModel.remark;
+//        title=@"搭配建议";
+//    }else if([_type isEqualToString:@"like_reason_remarks"])
+//    {
+//        pushStr=_CircleModel.designerModel.likeReason;
+//        title=@"喜爱ta的理由";
+//    }
+//    
+//    [self.navigationController pushViewController:[[DD_RemarksViewController alloc] initWithRemarks:pushStr WithLimit:num WithTitle:title WithBlock:^(NSString *type, NSString *content) {
+//        //        备注界面点击完成
+//        if([type isEqualToString:@"done"])
+//        {
+//            if(_infoView)
+//            {
+//                if([_type isEqualToString:@"suggest_remarks"])
+//                {
+//                    //                remarksview中更新内容
+//                    [_infoView.remarksView setRemarksWithWebView:content];
+//                    //                _detailModel中更新备注内容
+//                    _CircleModel.remark=content;
+//                }else if([_type isEqualToString:@"like_reason_remarks"])
+//                {
+//                    //                likeReasonView中更新内容
+//                    [_infoView.likeReasonView setRemarksWithWebView:content];
+//                    //                _detailModel中更新备注内容
+//                    _CircleModel.designerModel.likeReason=content;
+//                }
+//            }
+//        }
+//    }] animated:YES];
+//}
 /**
  * 跳转款式选择界面
  */

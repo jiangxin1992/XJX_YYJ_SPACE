@@ -14,7 +14,7 @@
  * 初始化
  */
 -(instancetype)initWithCircleModel:(DD_CircleModel *)CircleModel WithBlock:(void (^)(NSString *type,DD_CricleTagItemModel *tagModel))block;
-@property (weak, nonatomic) IBOutlet UITextField *tagTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *tagTextField;
 /**
  * 发布视图model
  */

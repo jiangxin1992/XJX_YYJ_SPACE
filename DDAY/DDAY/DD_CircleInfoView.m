@@ -8,7 +8,12 @@
 
 #import "DD_CircleInfoView.h"
 
+#import "DD_CircleInfoSuggestView.h"
+
 @implementation DD_CircleInfoView
+{
+    DD_CircleInfoSuggestView *_commentview;
+}
 
 #pragma mark - 初始化
 /**
@@ -45,7 +50,7 @@
     [self CreateChooseStyleView];
     [self CreateTagsView];
     [self CreateFitPersonView];
-    [self CreateSubmitBtn];
+    [self CreatePreviewBtn];
 }
 /**
  * 搭配图视图创建
@@ -59,7 +64,7 @@
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(10);
         make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(240);
+        make.height.mas_equalTo(IsPhone6_gt?240:200);
     }];
 }
 /**
@@ -67,15 +72,17 @@
  */
 -(void)CreateRemarksView
 {
-    _remarksView=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"*写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSInteger num) {
+
+    _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSInteger num) {
         _block(type,num);
     }];
-    [self addSubview:_remarksView];
-    [_remarksView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:_commentview];
+    [_commentview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_imgView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
     }];
 }
+
 
 /**
  * 款式选择视图创建
@@ -87,7 +94,7 @@
     }];
     [self addSubview:_chooseStyleView];
     [_chooseStyleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_remarksView.mas_bottom).with.offset(10);
+        make.top.mas_equalTo(_commentview.mas_bottom).with.offset(10);
         make.left.and.right.mas_equalTo(0);
     }];
     
@@ -122,23 +129,25 @@
     }];
 }
 /**
- * 创建提交按钮
+ * 创建预览按钮
  */
--(void)CreateSubmitBtn
+-(void)CreatePreviewBtn
 {
-    UIButton *_submitBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *_submitBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:_submitBtn];
     _submitBtn.backgroundColor=[UIColor blackColor];
-    [_submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_submitBtn setTitle:@"提交" forState:UIControlStateNormal];
     [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
     
     [_submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_fitPersonView.mas_bottom).with.offset(20);
-        make.width.mas_equalTo(@200);
-        make.centerX.mas_equalTo(self);
-        make.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.bottom.mas_equalTo(-30);
     }];
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [regular dismissKeyborad];
 }
 #pragma mark - SomeAction
 /**

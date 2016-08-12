@@ -5,14 +5,20 @@
 //  Created by yyj on 16/6/16.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CirclePublishTool.h"
+
 #import "DD_CircleCustomTagViewController.h"
+
+#import "DrawView.h"
+#import "DD_CirclePublishTool.h"
 
 @interface DD_CircleCustomTagViewController ()
 
 @end
 
 @implementation DD_CircleCustomTagViewController
+{
+    UITextField *_tagTextField;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +50,26 @@
     self.navigationItem.titleView=[regular returnNavView:@"添加标签" withmaxwidth:200];
 }
 #pragma mark - UIConfig
--(void)UIConfig{}
+-(void)UIConfig
+{
+    _tagTextField=[[UITextField alloc] init];
+    [self.view addSubview:_tagTextField];
+    _tagTextField.leftViewMode=UITextFieldViewModeAlways;
+    _tagTextField.leftView=[[DrawView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) WithStartP:CGPointMake(15.5f, 6.5f) WithEndP:CGPointMake(15.5f, 25.5f) WithLineWidth:1 WithColorType:1];
+    _tagTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _tagTextField.returnKeyType=UIReturnKeyDefault;
+    _tagTextField.borderStyle= UITextBorderStyleNone;
+    _tagTextField.placeholder=@"添加标签";
+    _tagTextField.textColor=_define_black_color;
+    _tagTextField.font=[regular getFont:12.0f];
+    [regular setBorder:_tagTextField];
+    [_tagTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(44+kNavHeight);
+        make.centerX.mas_equalTo(self.view);
+        make.width.mas_equalTo(250);
+        make.height.mas_equalTo(32);
+    }];
+}
 #pragma mark - doneAction
 -(void)doneAction
 {
@@ -79,6 +104,10 @@
             }];
         }
     }
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [regular dismissKeyborad];
 }
 #pragma mark - Other
 - (void)viewWillAppear:(BOOL)animated

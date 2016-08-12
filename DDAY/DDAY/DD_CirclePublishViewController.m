@@ -5,6 +5,9 @@
 //  Created by yyj on 16/6/14.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_CirclePublishViewController.h"
+
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
@@ -18,9 +21,7 @@
 #import "DD_CircleCustomTagViewController.h"
 #import "DD_CricleShowViewController.h"
 #import "DD_CircleInfoView.h"
-#import "DD_RemarksViewController.h"
-
-#import "DD_CirclePublishViewController.h"
+//#import "DD_RemarksViewController.h"
 
 @interface DD_CirclePublishViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -92,7 +93,9 @@
     [self CreateInforView];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view);
+        make.top.right.left.mas_equalTo(0);
+        make.bottom.mas_equalTo(ktabbarHeight);
+//        make.edges.mas_equalTo(self.view);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_infoView.mas_bottom).with.offset(0);
     }];
@@ -100,11 +103,12 @@
 -(void)CreateInforView
 {
     _infoView=[[DD_CircleInfoView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,long index) {
-        if([type isEqualToString:@"suggest_remarks"])
-        {
-//            跳转搭配建议界面
-            [self PushRemarksView];
-        }else if([type isEqualToString:@"chooseStyle"])
+//        if([type isEqualToString:@"suggest_remarks"])
+//        {
+////            跳转搭配建议界面
+//            [self PushRemarksView];
+//        }else
+        if([type isEqualToString:@"chooseStyle"])
         {
 //            款式选择
             [self PushChooseDetailView];
@@ -116,6 +120,9 @@
         {
 //            显示搭配图
             [self ShowImgWithIndex:index];
+        }else if([type isEqualToString:@"delete_pic"])
+        {
+            [self DeleteImgWithIndex:index];
         }else if([type isEqualToString:@"person_tag_delete"])
         {
 //            适合人群标签删除
@@ -182,6 +189,28 @@
     }];
 }
 #pragma mark - SomeAction
+-(void)backAction
+{
+    [self presentViewController:[regular alertTitleCancel_Simple:@"放弃编辑？" WithBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }] animated:YES completion:nil];
+}
+/**
+ * 跳转自定义标签界面
+ */
+-(void)CustomTag
+{
+    [self.navigationController pushViewController:[[DD_CircleCustomTagViewController alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type, DD_CricleTagItemModel *tagModel) {
+        //        添加新的标签
+        if([type isEqualToString:@"add_new_tag"])
+        {
+            //            _detailModel中添加新的自定义tag
+            [DD_CirclePublishTool addCustomModel:tagModel WithCircleModel:_CircleModel];
+            //            tagsview更新
+            [_infoView.tagsView setState];
+        }
+    }] animated:YES];
+}
 /**
  * 提交
  */
@@ -257,41 +286,8 @@
     [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_CircleModel];
     [_infoView.chooseStyleView updateImageView];
 }
-/**
- * 跳转自定义标签界面
- */
--(void)CustomTag
-{
-    [self.navigationController pushViewController:[[DD_CircleCustomTagViewController alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type, DD_CricleTagItemModel *tagModel) {
-//        添加新的标签
-        if([type isEqualToString:@"add_new_tag"])
-        {
-//            _detailModel中添加新的自定义tag
-            [DD_CirclePublishTool addCustomModel:tagModel WithCircleModel:_CircleModel];
-//            tagsview更新
-            [_infoView.tagsView setState];
-        }
-    }] animated:YES];
-}
-/**
- * 跳转填写备注界面
- */
--(void)PushRemarksView
-{
-    [self.navigationController pushViewController:[[DD_RemarksViewController alloc] initWithRemarks:_CircleModel.remark WithLimit:200 WithTitle:@"搭配建议" WithBlock:^(NSString *type, NSString *content) {
-//        备注界面点击完成
-        if([type isEqualToString:@"done"])
-        {
-            if(_infoView)
-            {
-//                remarksview中更新内容
-                [_infoView.remarksView setRemarksWithWebView:content];
-//                _detailModel中更新备注内容
-                _CircleModel.remark=content;
-            }
-        }
-    }] animated:YES];
-}
+
+
 
 /**
  * 选择搭配图
@@ -347,6 +343,23 @@
             [_infoView.imgView setState];
         }
     }] animated:YES];
+}
+-(void)DeleteImgWithIndex:(long )index
+{
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_CircleModel.picArr objectAtIndex:index] objectForKey:@"key"]};
+    [[JX_AFNetworking alloc] GET:@"file/deleteQiNiuFile.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            [_CircleModel.picArr removeObjectAtIndex:index];
+            [_infoView.imgView setState];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+    
 }
 #pragma mark - 打开相册
 /**
@@ -487,4 +500,23 @@
     [super didReceiveMemoryWarning];
 }
 
+/**
+ * 跳转填写备注界面
+ */
+//-(void)PushRemarksView
+//{
+//    [self.navigationController pushViewController:[[DD_RemarksViewController alloc] initWithRemarks:_CircleModel.remark WithLimit:200 WithTitle:@"搭配建议" WithBlock:^(NSString *type, NSString *content) {
+////        备注界面点击完成
+//        if([type isEqualToString:@"done"])
+//        {
+//            if(_infoView)
+//            {
+////                remarksview中更新内容
+//                [_infoView.remarksView setRemarksWithWebView:content];
+////                _detailModel中更新备注内容
+//                _CircleModel.remark=content;
+//            }
+//        }
+//    }] animated:YES];
+//}
 @end
