@@ -18,7 +18,7 @@
 {
     _itemModel=itemModel;
     _TitleLabel.text=_itemModel.name;
-    [_ImgView JX_loadImageUrlStr:_itemModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+    [_ImgView JX_loadImageUrlStr:_itemModel.pic.pic WithSize:800 placeHolderImageName:nil radius:0];
     _selectBtn.selected=_itemModel.isSelect;
 }
 #pragma mark - SomeAction

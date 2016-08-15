@@ -22,6 +22,19 @@
     }
     return shopBtn;
 }
++(DD_NavBtn *)getNavBtnIsLeft:(BOOL )isLeft WithSize:(CGSize )size WithImgeStr:(NSString *)imgStr WithWidth:(CGFloat )width
+{
+    DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
+    if(shopBtn)
+    {
+        shopBtn.frame=CGRectMake(0, 0, width, 44);
+        [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
+        [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateSelected];
+        shopBtn.isLeft=isLeft;
+        shopBtn.size=size;
+    }
+    return shopBtn;
+}
 +(DD_NavBtn *)getNavBtnWithSize:(CGSize )size WithImgeStr:(NSString *)imgStr
 {
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];

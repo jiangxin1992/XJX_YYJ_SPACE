@@ -5,7 +5,10 @@
 //  Created by yyj on 16/6/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
 #import <Foundation/Foundation.h>
+
+#import "DD_ImageModel.h"
 
 @interface DD_CricleChooseItemModel : NSObject
 /**
@@ -29,7 +32,8 @@ __string(price);
 /**
  * 款式照片
  */
-__string(pic);
+//__string(pic);
+@property (nonatomic,strong)DD_ImageModel *pic;
 /**
  * 款式item id
  */

@@ -5,6 +5,7 @@
 //  Created by yyj on 16/6/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+#import "WaterflowCell.h"
 #import "DD_CircleModel.h"
 #import "DD_CricleTagItemModel.h"
 #import "DD_CircleTagModel.h"
@@ -12,6 +13,9 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CirclePublishTool : NSObject
+-(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height WithBlock:(void(^)(NSString *type,NSInteger index))block;
+@property(nonatomic,copy) void (^block)(NSString *type,NSInteger index);
+__int(index);
 /**
  * 设置标签
  * 标签网络获取成功之后，setter值

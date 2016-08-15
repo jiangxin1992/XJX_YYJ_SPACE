@@ -9,6 +9,85 @@
 #import "DD_CirclePublishTool.h"
 
 @implementation DD_CirclePublishTool
+-(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height WithBlock:(void(^)(NSString *type,NSInteger index))block
+{
+    _block=block;
+    _index=index;
+    WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
+    cell.userInteractionEnabled=YES;
+    
+    UIView *backView=[UIView getCustomViewWithColor:nil];
+    [cell addSubview:backView];
+    if(item.isSelect)
+    {
+        [regular setBorder:backView];
+    }
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(12);
+        make.right.mas_equalTo(-12);
+        make.height.mas_equalTo(_height);
+    }];
+    
+    UIImageView *imgView=[UIImageView getCustomImg];
+    [backView addSubview:imgView];
+    imgView.contentMode=UIViewContentModeScaleToFill;
+    imgView.userInteractionEnabled=NO;
+    [imgView JX_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if(item.isSelect)
+        {
+            make.left.top.mas_equalTo(11);
+            make.bottom.right.mas_equalTo(-11);
+           
+        }else
+        {
+            make.edges.mas_equalTo(backView);
+        }
+    }];
+    
+    UILabel *priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:12.0f WithTextColor:_define_white_color WithSpacing:0];
+    [imgView addSubview:priceLabel];
+    priceLabel.backgroundColor=_define_black_color;
+    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(0);
+    }];
+    [priceLabel sizeToFit];
+    
+    
+    UIButton *itemBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_No_choose" WithSelectedImageStr:@"System_Select"];
+    [cell addSubview:itemBtn];
+    [itemBtn addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
+    itemBtn.selected=item.isSelect;
+    [itemBtn setEnlargeEdge:20];
+    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.mas_equalTo(0);
+        make.width.height.mas_equalTo(20);
+    }];
+    
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:item.name WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:titleLabel];
+    titleLabel.numberOfLines=2;
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        if(item.isSelect)
+        {
+            make.left.mas_equalTo(23);
+            make.right.mas_equalTo(-23);
+            
+        }else
+        {
+            make.left.mas_equalTo(12);
+            make.right.mas_equalTo(-12);
+        }
+        make.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(backView.mas_bottom).with.offset(0);
+    }];
+    
+    return cell;
+}
+-(void)selectAction
+{
+    _block(@"select",_index);
+}
 /**
  * 标签网络获取成功之后，setter值
  */

@@ -210,6 +210,7 @@
     
     mywaterflow.delegate = self;
     
+    
 //    mywaterflow.showsVerticalScrollIndicator=NO;
     
     [self.view addSubview:mywaterflow];
@@ -276,7 +277,7 @@
     return 95;
 }
 // 间隔，非必要，默认均为10
-- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowType:(WaterflowMarginType)type{
+- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     return 13;
 }
 // 非必要

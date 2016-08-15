@@ -46,7 +46,9 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
+    UIButton *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(40, 25) WithImgeStr:@"Share_Label" WithWidth:55];
+    [shareBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
     self.navigationItem.titleView=[regular returnNavView:@"添加标签" withmaxwidth:200];
 }
 #pragma mark - UIConfig

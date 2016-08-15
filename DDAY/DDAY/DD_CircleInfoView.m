@@ -90,7 +90,7 @@
 -(void)CreateChooseStyleView
 {
     _chooseStyleView=[[DD_CircleChooseStyleView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,NSInteger index) {
-        _block(type,0);
+        _block(type,index);
     }];
     [self addSubview:_chooseStyleView];
     [_chooseStyleView mas_makeConstraints:^(MASConstraintMaker *make) {
