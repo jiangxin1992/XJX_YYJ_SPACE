@@ -266,7 +266,9 @@
                             ,@"colorId":_model.colorId
                             ,@"itemName":_model.name
                             ,@"price":_model.price
-                            ,@"pic":_model.pic
+                            ,@"pic":_model.pic.pic
+                            ,@"height":_model.pic.height
+                            ,@"width":_model.pic.width
                             ,@"colorCode":_model.colorCode
                             }
          ];

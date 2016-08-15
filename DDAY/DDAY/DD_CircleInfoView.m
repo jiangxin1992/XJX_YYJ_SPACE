@@ -73,8 +73,8 @@
 -(void)CreateRemarksView
 {
 
-    _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSInteger num) {
-        _block(type,num);
+    _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSString *content) {
+        _CircleModel.remark=content;
     }];
     [self addSubview:_commentview];
     [_commentview mas_makeConstraints:^(MASConstraintMaker *make) {

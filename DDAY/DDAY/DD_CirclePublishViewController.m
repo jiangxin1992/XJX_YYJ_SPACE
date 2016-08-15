@@ -14,7 +14,7 @@
 #import <AVFoundation/AVMediaFormat.h>
 
 #import "QiniuSDK.h"
-
+#import "DD_CirclePushlishPreViewController.h"
 #import "DD_CirclePublishTool.h"
 #import "DD_CircleModel.h"
 #import "DD_CircleChooseDetailView.h"

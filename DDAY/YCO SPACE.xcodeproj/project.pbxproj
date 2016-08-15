@@ -311,6 +311,8 @@
 		3FD02DBB1D50F06800E9D6EB /* DD_ShopAlertSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */; };
 		3FD74B681CF445B400C10C32 /* DD_SetAddressBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */; };
 		3FFC4FE31D50E1FD00FD6866 /* DD_ShopAlertNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFC4FE21D50E1FD00FD6866 /* DD_ShopAlertNumView.m */; };
+		3FFCCF5A1D61E9F700E1DC7C /* DD_CircleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCF591D61E9F700E1DC7C /* DD_CircleSearchView.m */; };
+		3FFCCF5E1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */; };
 		3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */; };
 		F4DB50141276DD44E4BCEF24 /* Pods_YCO_SPACE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26B9372E7FA886611FAF22A /* Pods_YCO_SPACE.framework */; };
 /* End PBXBuildFile section */
@@ -930,6 +932,10 @@
 		3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SetAddressBtn.m; sourceTree = "<group>"; };
 		3FFC4FE11D50E1FD00FD6866 /* DD_ShopAlertNumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopAlertNumView.h; sourceTree = "<group>"; };
 		3FFC4FE21D50E1FD00FD6866 /* DD_ShopAlertNumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopAlertNumView.m; sourceTree = "<group>"; };
+		3FFCCF581D61E9F700E1DC7C /* DD_CircleSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleSearchView.h; sourceTree = "<group>"; };
+		3FFCCF591D61E9F700E1DC7C /* DD_CircleSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleSearchView.m; sourceTree = "<group>"; };
+		3FFCCF5C1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePushlishPreViewController.h; sourceTree = "<group>"; };
+		3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePushlishPreViewController.m; sourceTree = "<group>"; };
 		3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingTabbar.h; sourceTree = "<group>"; };
 		3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingTabbar.m; sourceTree = "<group>"; };
 		CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.release.xcconfig"; sourceTree = "<group>"; };
@@ -1001,6 +1007,7 @@
 		3F0A6DF11D11034A00CDCBC5 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
+				3FFCCF5B1D6211AE00E1DC7C /* 预览 */,
 				3F66CF251D115D3E006A3D3F /* 适合人群 */,
 				3F66CF1E1D115B91006A3D3F /* 标签 */,
 				3F66CF191D115353006A3D3F /* 搭配图 */,
@@ -1095,6 +1102,8 @@
 		3F21E1FD1D177E2D00FE7ADF /* 款式选择视图 */ = {
 			isa = PBXGroup;
 			children = (
+				3FFCCF581D61E9F700E1DC7C /* DD_CircleSearchView.h */,
+				3FFCCF591D61E9F700E1DC7C /* DD_CircleSearchView.m */,
 				3F21E2031D17907E00FE7ADF /* cell */,
 				3F21E1FE1D177E5000FE7ADF /* DD_CircleChooseDetailView.h */,
 				3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */,
@@ -2867,6 +2876,15 @@
 			name = "总结";
 			sourceTree = "<group>";
 		};
+		3FFCCF5B1D6211AE00E1DC7C /* 预览 */ = {
+			isa = PBXGroup;
+			children = (
+				3FFCCF5C1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.h */,
+				3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */,
+			);
+			name = "预览";
+			sourceTree = "<group>";
+		};
 		8A062CCCA9A13B7A299C92D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3211,6 +3229,7 @@
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
 				3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */,
 				3F21E2071D1790AF00FE7ADF /* DD_CricleChooseCell.m in Sources */,
+				3FFCCF5E1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m in Sources */,
 				3F4904EF1D18E16A009F4CD3 /* DD_CircleListInteractionView.m in Sources */,
 				3F9B8B231CF0472A008EC460 /* DD_forgetViewController.m in Sources */,
 				3F1401451CF82B2A0093474A /* DD_ShopTool.m in Sources */,
@@ -3333,6 +3352,7 @@
 				3F4904EC1D18E15F009F4CD3 /* DD_CircleListUserView.m in Sources */,
 				3F4187DA1CEEFF0B001BCA3D /* DD_AdressTableViewCell.m in Sources */,
 				3F2F765F1D1D0259002E22A6 /* DD_CircleModel.m in Sources */,
+				3FFCCF5A1D61E9F700E1DC7C /* DD_CircleSearchView.m in Sources */,
 				3F3811B01CF54F7C007154F1 /* DataVerifier.m in Sources */,
 				3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */,
 				3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */,

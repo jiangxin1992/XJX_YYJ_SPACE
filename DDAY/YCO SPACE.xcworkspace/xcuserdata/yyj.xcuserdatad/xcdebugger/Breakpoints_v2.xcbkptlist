@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleChooseDetailView.m"
-            timestampString = "492946651.475286"
+            filePath = "DDAY/DD_CirclePublishViewController.m"
+            timestampString = "492969376.315593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "-CreateImgView"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "-SubmitAction"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DD_CircleChooseDetailView CreateImgView]"
-                  moduleName = "YCO SPACE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_CircleChooseDetailView.m"
-                  timestampString = "492946651.773105"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "157">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__42-[DD_CircleChooseDetailView CreateImgView]_block_invoke"
-                  moduleName = "YCO SPACE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_CircleChooseDetailView.m"
-                  timestampString = "492946651.773961"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

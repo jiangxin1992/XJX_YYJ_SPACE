@@ -22,7 +22,7 @@
 /**
  * 初始化
  */
--(instancetype)initWithPlaceHoldStr:(NSString *)holdStr WithBlockType:(NSString *)blockType WithLimitNum:(long)limitNum Block:(void (^)(NSString *type,NSInteger num))block
+-(instancetype)initWithPlaceHoldStr:(NSString *)holdStr WithBlockType:(NSString *)blockType WithLimitNum:(long)limitNum Block:(void (^)(NSString *type,NSString *content))block
 {
     self=[super init];
     if(self)
@@ -110,10 +110,10 @@
             _textView.text=_content;
             _numlabel.text=[self getlength];
             [regular dismissKeyborad];
-            
+            _block(@"save",_content);
         }else
         {
-            _block(type,content.length);
+            _block(type,_content);
         }
     }];
     _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, 140);

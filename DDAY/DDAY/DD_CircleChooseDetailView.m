@@ -14,6 +14,7 @@
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 #import "DD_CirclePublishTool.h"
+#import "DD_CircleSearchView.h"
 //#import "DD_CricleChooseCell.h"
 //#import "UIButton+WebCache.h"
 
@@ -34,6 +35,9 @@
     NSString *queryStr;//关键词
     NSMutableArray *btnArr;//存放的按钮数组
     NSMutableArray *_dataArr;//当前款式列表数据
+    
+    UIButton *searchBtn;
+    DD_CircleSearchView *_searchView;
 
 //    void (^cellblock)(NSString *type,NSInteger index);//cell回调block
     //    NSString *categoryCode;//当前选择分类code
@@ -97,18 +101,40 @@
 -(void)CreateUpView
 {
     [self initUpView];
+    [self CreateSearchBar];
     [self CreateImgView];
 }
 -(void)initUpView
 {
     _upView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_upView];
-//    _upView.backgroundColor=[UIColor redColor];
     [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.width.mas_equalTo(ScreenWidth);
         make.top.mas_equalTo(64);
     }];
+}
+-(void)CreateSearchBar
+{
+    UIView *searchView=[UIView getCustomViewWithColor:nil];
+    [_upView addSubview:searchView];
+    [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(43);
+    }];
+//    31 22
+    searchBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:[queryStr isEqualToString:@""]?@"搜索款式、设计师、品牌":queryStr WithNormalColor:_define_light_gray_color1 WithSelectedTitle:nil WithSelectedColor:nil];
+    [searchView addSubview:searchBtn];
+    [searchBtn setImage:[UIImage imageNamed:@"System_Nosearch"] forState:UIControlStateNormal];
+    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake((43-22)/2.0f, 16, (43-22)/2.0f, ScreenWidth-31-16-kEdge)];
+    [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [searchBtn addTarget:self action:@selector(ShowSearchView) forControlEvents:UIControlEventTouchUpInside];
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.mas_equalTo(0);
+        make.right.mas_equalTo(-kEdge);
+    }];
+    
+    
 }
 -(void)UpdateImgView
 {
@@ -124,9 +150,9 @@
     if(_circleModel.chooseItem.count)
     {
         [_upView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(_width);
+            make.height.mas_equalTo(_width+43);
         }];
-        _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(kEdge, 0, ScreenWidth-kEdge*2, _width)];
+        _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(kEdge, 43, ScreenWidth-kEdge*2, _width)];
         [_upView addSubview:_scrollView];
         _scrollView.showsHorizontalScrollIndicator=NO;
         _scrollView.contentSize=CGSizeMake((_circleModel.chooseItem.count-1)*intes+_width*_circleModel.chooseItem.count, _width);
@@ -168,7 +194,7 @@
     }else
     {
         [_upView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0);
+            make.height.mas_equalTo(43);
         }];
     }
 }
@@ -331,6 +357,24 @@
 
 }
 #pragma mark - SomeAction
+-(void)ShowSearchView
+{
+    _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:queryStr WithChooseItem:_circleModel.chooseItem WithBlock:^(NSString *type, NSString *_queryStr) {
+        if([type isEqualToString:@"back"])
+        {
+            [_searchView removeFromSuperview];
+        }else if([type isEqualToString:@"search"])
+        {
+            queryStr=_queryStr;
+            [searchBtn setTitle:queryStr forState:UIControlStateNormal];
+            [mywaterflow.header beginRefreshing];
+            [_searchView removeFromSuperview];
+        }
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.view addSubview:_searchView];
+}
 -(void)MJRefresh
 {
     mywaterflow.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

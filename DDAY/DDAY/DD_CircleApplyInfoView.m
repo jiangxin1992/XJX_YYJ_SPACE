@@ -70,8 +70,9 @@
 }
 -(void)CreateLikeReasonView
 {
-    _likeReasonView=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"*你喜欢ta的理由" WithBlockType:@"like_reason_remarks" WithLimitNum:300 Block:^(NSString *type, NSInteger num) {
-        _block(type,num);
+    _likeReasonView=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"*你喜欢ta的理由" WithBlockType:@"like_reason_remarks" WithLimitNum:300 Block:^(NSString *type, NSString *content) {
+//        _block(type,content);
+        _CircleModel.remark=content;
     }];
     [self addSubview:_likeReasonView];
     [_likeReasonView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,8 +133,9 @@
  */
 -(void)CreateRemarksView
 {
-    _remarksView=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"*写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSInteger num) {
-        _block(type,num);
+    _remarksView=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"*写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSString *content) {
+//        _block(type,num);
+        _CircleModel.remark=content;
     }];
     [self addSubview:_remarksView];
     [_remarksView mas_makeConstraints:^(MASConstraintMaker *make) {

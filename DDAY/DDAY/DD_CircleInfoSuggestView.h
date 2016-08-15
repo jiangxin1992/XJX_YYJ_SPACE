@@ -12,7 +12,7 @@
 /**
  * 初始化
  */
--(instancetype)initWithPlaceHoldStr:(NSString *)holdStr WithBlockType:(NSString *)blockType WithLimitNum:(long)limitNum Block:(void (^)(NSString *type,NSInteger num))block;
+-(instancetype)initWithPlaceHoldStr:(NSString *)holdStr WithBlockType:(NSString *)blockType WithLimitNum:(long)limitNum Block:(void (^)(NSString *type,NSString *content))block;
 
 /**
  * block type
@@ -29,6 +29,6 @@ __long(limitNum);
 /**
  * 回调block
  */
-@property(nonatomic,copy) void (^block)(NSString *type,NSInteger num);
+@property(nonatomic,copy) void (^block)(NSString *type,NSString *content);
 
 @end
