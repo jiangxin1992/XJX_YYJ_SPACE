@@ -32,6 +32,7 @@
     }
     return self;
 }
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -45,6 +46,7 @@
     self.backgroundColor=[UIColor whiteColor];
 }
 #pragma mark - UIConfig
+
 -(void)UIConfig
 {
     collectBtn=[UIButton buttonWithType:UIButtonTypeCustom];

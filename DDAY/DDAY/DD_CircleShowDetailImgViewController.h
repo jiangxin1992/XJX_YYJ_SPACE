@@ -12,7 +12,8 @@
 /**
  * 初始化
  */
--(instancetype)initWithCircleArr:(NSArray *)picArrs WithIndex:(NSInteger )index WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithCircleArr:(NSArray *)picArrs WithType:(NSString *)type WithIndex:(NSInteger )index WithBlock:(void (^)(NSString *type))block;
+__string(type);
 /**
  * 搭配图数组
  */

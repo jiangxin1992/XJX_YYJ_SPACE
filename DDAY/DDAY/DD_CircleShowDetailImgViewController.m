@@ -18,11 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
--(instancetype)initWithCircleArr:(NSArray *)picArrs WithIndex:(NSInteger )index WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithCircleArr:(NSArray *)picArrs WithType:(NSString *)type WithIndex:(NSInteger )index WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
+        _type=type;
         _picArrs=picArrs;
         _index=index;
         _block=block;
@@ -48,7 +49,14 @@
 {
     UIImageView *_pho=[[UIImageView alloc] init];
     [self.view addSubview:_pho];
-    [_pho JX_loadImageUrlStr:[_picArrs objectAtIndex:_index] WithSize:800 placeHolderImageName:nil radius:0];
+    if([_type isEqualToString:@"data"])
+    {
+        
+        [_pho setImage:[_picArrs objectAtIndex:_index]];
+    }else if([_type isEqualToString:@"model"])
+    {
+        [_pho JX_loadImageUrlStr:[_picArrs objectAtIndex:_index] WithSize:800 placeHolderImageName:nil radius:0];
+    }
     _pho.userInteractionEnabled=YES;
     // 旋转手势
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateView:)];

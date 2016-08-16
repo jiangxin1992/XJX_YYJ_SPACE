@@ -8,6 +8,10 @@
 
 #import "DD_BaseViewController.h"
 
-@interface DD_CirclePushlishPreViewController : DD_BaseViewController
+#import "DD_CircleModel.h"
 
+@interface DD_CirclePushlishPreViewController : DD_BaseViewController
+-(instancetype)initWithCircleModel:(DD_CircleModel *)circleModel;
+__block_type(block, type);
+@property (nonatomic,strong)DD_CircleModel *circleModel;
 @end

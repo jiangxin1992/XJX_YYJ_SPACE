@@ -15,10 +15,11 @@
 @end
 
 @implementation ImageViewController
--(instancetype)initWithSize:(CGSize )size WithBlock:(void(^)(NSString *type,NSInteger index))block{
+-(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithBlock:(void(^)(NSString *type,NSInteger index))block{
     self=[super init];
     if(self)
     {
+        _type=type;
         _size=size;
         _block=block;
     }
@@ -53,7 +54,13 @@
     }
     _currentPage = currentPage;
     _imgv.hidden=NO;
-    [_imgv JX_loadImageUrlStr:[_array objectAtIndex:_currentPage] WithSize:800 placeHolderImageName:nil radius:0];
+    if([_type isEqualToString:@"model"])
+    {
+        [_imgv JX_loadImageUrlStr:[_array objectAtIndex:_currentPage] WithSize:800 placeHolderImageName:nil radius:0];
+    }else if([_type isEqualToString:@"data"])
+    {
+        [_imgv setImage:[_array objectAtIndex:_currentPage]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

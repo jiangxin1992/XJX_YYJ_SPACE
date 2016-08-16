@@ -26,6 +26,20 @@
     {
         _block=block;
         _detailModel=model;
+        _type=@"model";
+        [self setState];
+        NSLog(@"111");
+    }
+    return self;
+}
+-(instancetype)initWithCirclePicArr:(NSArray *)picArr WithBlock:(void (^)(NSString *type,NSInteger index))block
+{
+    self=[super init];
+    if(self)
+    {
+        _block=block;
+        _picArr=picArr;
+        _type=@"data";
         [self setState];
         NSLog(@"111");
     }
@@ -37,10 +51,18 @@
     //    创建pageViewControler（活动图片浏览视图）
     _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     [self addSubview:_pageViewControler.view];
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(210, 300) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(210, 300) WithType:@"data" WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
-    imgvc.array=_detailModel.pics;
+    imgvc.type=_type;
+    if([_type isEqualToString:@"data"])
+    {
+        imgvc.array=_picArr;
+    }else
+    {
+        imgvc.array=_detailModel.pics;
+    }
+    
     imgvc.view.backgroundColor = [UIColor clearColor];
     [regular setBorder:_pageViewControler.view];
     imgvc.currentPage = 0;
@@ -55,7 +77,14 @@
     
     _pageControl = [[UIPageControl alloc]init];
     [self addSubview:_pageControl];
-    _pageControl.numberOfPages = _detailModel.pics.count;
+    if([_type isEqualToString:@"data"])
+    {
+        _pageControl.numberOfPages = _picArr.count;
+    }else
+    {
+        _pageControl.numberOfPages = _detailModel.pics.count;
+    }
+    
     _pageControl.currentPageIndicatorTintColor = yellow_color;
     _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1];
     [_pageControl mas_makeConstraints:^(MASConstraintMaker * make){
@@ -94,12 +123,19 @@
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:@"data" WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
-    imgvc.array=_detailModel.pics;
+    if([_type isEqualToString:@"data"])
+    {
+        imgvc.array=_picArr;
+        imgvc.maxPage = _picArr.count-1;
+    }else
+    {
+        imgvc.array=_detailModel.pics;
+        imgvc.maxPage = _detailModel.pics.count-1;
+    }
     imgvc.view.backgroundColor = [UIColor clearColor];
-    imgvc.maxPage = _detailModel.pics.count-1;
     imgvc.currentPage = index;
     return imgvc;
     
@@ -112,12 +148,19 @@
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:@"data" WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
-    imgvc.array=_detailModel.pics;
+    if([_type isEqualToString:@"data"])
+    {
+        imgvc.array=_picArr;
+        imgvc.maxPage = _picArr.count-1;
+    }else
+    {
+        imgvc.array=_detailModel.pics;
+        imgvc.maxPage = _detailModel.pics.count-1;
+    }
     imgvc.view.backgroundColor = [UIColor clearColor];
-    imgvc.maxPage =_detailModel.pics.count-1;
     imgvc.currentPage = index;
     
     return imgvc;

@@ -189,7 +189,7 @@
             }else if([type isEqualToString:@"show_img"])
             {
                 //            显示图片
-                [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithIndex:index WithBlock:^(NSString *type) {
+                [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithType:@"model" WithIndex:index WithBlock:^(NSString *type) {
                     
                 }] animated:YES];
             }else if([type isEqualToString:@"item_click"])

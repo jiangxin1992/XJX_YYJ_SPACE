@@ -13,6 +13,7 @@
  * 初始化
  */
 -(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block;
+-(instancetype)initWithCirclePicArr:(NSArray *)picArr WithBlock:(void (^)(NSString *type,NSInteger index))block;
 /**
  * 更新
  */
@@ -21,6 +22,8 @@
  * 搭配model
  */
 @property (nonatomic,strong) DD_CircleListModel *detailModel;
+__array(picArr);
+__string(type);
 /**
  * 回调block
  */

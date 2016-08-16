@@ -293,6 +293,14 @@
     }
     return mu_Arr;
 }
++(NSArray *)getPicDataArrWithCircleModel:(DD_CircleModel *)CircleModel
+{
+    NSMutableArray *mu_Arr=[[NSMutableArray alloc] init];
+    for (NSDictionary *dict in CircleModel.picArr) {
+        [mu_Arr addObject:[dict objectForKey:@"data"]];
+    }
+    return mu_Arr;
+}
 /**
  * 获取当前shareTags personTags中DD_CircleTagModel的parameterName
  * 返回参数数组

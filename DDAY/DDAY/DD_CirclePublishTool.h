@@ -57,4 +57,5 @@ __int(index);
  * 获取picArr对应的key数组
  */
 +(NSArray *)getPicArrWithCircleModel:(DD_CircleModel *)CircleModel;
++(NSArray *)getPicDataArrWithCircleModel:(DD_CircleModel *)CircleModel;
 @end

@@ -137,7 +137,7 @@ __bool(isExpanded);
         //    创建pageViewControler（活动图片浏览视图）
         _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         [container addSubview:_pageViewControler.view];
-        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
+        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
         }];
         imgvc.array=_colorModel.pics;
         imgvc.view.backgroundColor = [UIColor clearColor];
@@ -365,7 +365,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
@@ -381,7 +381,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];

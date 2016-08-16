@@ -22,7 +22,7 @@
     UIImageView *userHeadImg;
     UILabel *userNameLabel;
     UILabel *userCareerLabel;
-    UIImageView *goodImgView;
+//    UIImageView *goodImgView;
     UILabel *conentLabel;
     UILabel *timeLabel;
     
@@ -273,10 +273,10 @@
     [userHeadImg JX_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_listModel.userName;
     userCareerLabel.text=_listModel.career;
-    if(_listModel.pics.count)
-    {
-        [goodImgView JX_loadImageUrlStr:[_listModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
-    }
+//    if(_listModel.pics.count)
+//    {
+//        [goodImgView JX_loadImageUrlStr:[_listModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+//    }
     
     NSInteger count_index=0;
     if(_listModel.items.count>3)

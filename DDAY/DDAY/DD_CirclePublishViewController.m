@@ -21,6 +21,8 @@
 #import "DD_CircleCustomTagViewController.h"
 #import "DD_CricleShowViewController.h"
 #import "DD_CircleInfoView.h"
+#import "DD_CirclePushlishPreViewController.h"
+
 //#import "DD_RemarksViewController.h"
 
 @interface DD_CirclePublishViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -231,29 +233,10 @@
         [self presentViewController:[regular alertTitle_Simple:@"请先选择标签"] animated:YES completion:nil];
     }else
     {
-        NSDictionary *_parameters=@{
-                                    @"shareInfo":[@{
-                                            @"shareAdvise":_CircleModel.remark
-                                            ,@"items":[DD_CirclePublishTool getParameterItemArrWithCircleModel:_CircleModel]
-                                            ,@"tags":_CircleModel.tagMap
-                                            ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_CircleModel]
-                                            } JSONString]
-                                    ,@"token":[DD_UserModel getToken]
-                                    };
-        [[JX_AFNetworking alloc] GET:@"share/saveShare.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-//                回调、搭配列表下拉刷新数据
-                _block(@"refresh");
-//                返回搭配列表界面
-                [self.navigationController popViewControllerAnimated:YES];
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
+        DD_CirclePushlishPreViewController *PreView=[[DD_CirclePushlishPreViewController alloc] initWithCircleModel:_CircleModel];
+        PreView.block=_block;
+        [self.navigationController pushViewController:PreView animated:YES];
+
     }
     
 }
