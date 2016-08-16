@@ -284,7 +284,8 @@ static regular *_t = nil;
 }
 +(NSString *)getImgUrl:(NSString *)img WithSize:(NSInteger )_size
 {
-    return [[NSString alloc] initWithFormat:@"%@-z%ld.jpg",img,_size];
+    NSString *head=[[NSString alloc] initWithFormat:@"%@-z%ld.jpg",img,_size];
+    return head;
 }
 +(NSString *)getSize
 {

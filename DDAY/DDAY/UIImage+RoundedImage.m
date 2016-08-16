@@ -37,17 +37,17 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 @implementation UIImage (RoundedImage)
 + (id)createRoundedRectImage:(UIImage*)image size:(CGSize)size radius:(NSInteger)r
 {
-    int w = size.width;
-    int h = size.height;
+    CGFloat w = size.width*2;
+    CGFloat h = size.height*2;
     
     UIImage *img = image;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
-    //CGContextRef context = UIGraphicsGetCurrentContext();
+    
     CGRect rect = CGRectMake(0, 0, w, h);
     
     CGContextBeginPath(context);
-    addRoundedRectToPath(context, rect, r, r);
+    addRoundedRectToPath(context, rect, w/2.0f, h/2.0f);
     CGContextClosePath(context);
     CGContextClip(context);
     CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);

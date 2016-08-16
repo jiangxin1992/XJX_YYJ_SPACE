@@ -129,6 +129,9 @@
     _name_label.text=Designer.name;
     _brand_label.text=Designer.brandName;
     
+    for (UIView *view in _scrollview.subviews) {
+        [view removeFromSuperview];
+    }
     CGFloat _x_p=14;
     for (int i=0; i<Designer.items.count; i++) {
         NSString *imgStr=[Designer.items objectAtIndex:i];

@@ -259,6 +259,7 @@
  */
 -(void)GetUserInfo:(SSDKPlatformType)platformType
 {
+    [ShareSDK cancelAuthorize:platformType];
     [ShareSDK getUserInfo:platformType
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
      {
@@ -266,15 +267,32 @@
          if (state == SSDKResponseStateSuccess)
          {
              NSString *url=nil;
+             NSString *_icon=nil;
              if(platformType==SSDKPlatformTypeWechat)
              {
                  url=@"user/weiXinLogin.do";
+                 _icon=user.icon;
              }else if(platformType==SSDKPlatformSubTypeQZone)
              {
                  url=@"user/sinaLogin.do";
+                 if([user.rawData objectForKey:@"figureurl_qq_2"])
+                 {
+                     _icon=[user.rawData objectForKey:@"figureurl_qq_2"];
+                 }else
+                 {
+                     _icon=user.icon;
+                 }
+                 
              }else if(platformType==SSDKPlatformTypeSinaWeibo)
              {
                  url=@"user/qqLogin.do";
+                 if([user.rawData objectForKey:@"avatar_hd"])
+                 {
+                     _icon=[user.rawData objectForKey:@"avatar_hd"];
+                 }else
+                 {
+                     _icon=user.icon;
+                 }
              }
              
              NSString *_works=nil;
@@ -296,8 +314,8 @@
              {
                  _aboutMe=user.aboutMe;
              }
-
-             NSDictionary *_parameters=@{@"uid":user.uid,@"nickname":user.nickname,@"icon":user.icon,@"gender":[NSNumber numberWithInteger:user.gender],@"aboutMe":_aboutMe,@"works":_works};
+             
+             NSDictionary *_parameters=@{@"uid":user.uid,@"nickname":user.nickname,@"icon":_icon,@"gender":[NSNumber numberWithInteger:user.gender],@"aboutMe":_aboutMe,@"works":_works};
              [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                  if(success)
                  {
