@@ -63,6 +63,15 @@
     [_downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
+    UILabel *imgTitle=[UILabel getLabelWithAlignment:0 WithTitle:@"添加搭配图" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [_downView addSubview:imgTitle];
+    [imgTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.top.mas_equalTo(0);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(20);
+    }];
+    [imgTitle sizeToFit];
 }
 
 
@@ -135,10 +144,10 @@
                 // 4. 判断是否为第一列
                 if (i / num == 0) {
                     // 第一列添加顶部约束
-                    make.top.mas_equalTo(backView.superview).offset(0);
+                    make.top.mas_equalTo(backView.superview).offset(20);
                 } else {
                     // 其余添加顶部约束 intes*10 是我留出的距顶部高度
-                    make.top.mas_equalTo(( i / num )* (_width + intes));
+                    make.top.mas_equalTo(20+( i / num )* (_width + intes));
                 }
             }];
             

@@ -12,8 +12,8 @@
 /**
  * 初始化
  */
--(instancetype)initWithBlock:(void (^)(NSString *type,NSString *content))block;
-
+-(instancetype)initWithHoldStr:(NSString *)holdStr WithBlock:(void (^)(NSString *type,NSString *content))block;
+__string(holdStr);
 /**
  * 回调block
  */

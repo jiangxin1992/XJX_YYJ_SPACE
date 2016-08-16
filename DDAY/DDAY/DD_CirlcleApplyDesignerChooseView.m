@@ -51,10 +51,17 @@
     [_designerBtn addTarget:self action:@selector(ChooseDesigner) forControlEvents:UIControlEventTouchUpInside];
     
     [_designerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-        make.height.mas_equalTo(60);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(35);
         make.top.and.bottom.mas_equalTo(0);
+    }];
+    
+    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+    [_designerBtn addSubview:downLine];
+    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.bottom.right.left.mas_equalTo(0);
     }];
 }
 #pragma mark - SomeAction

@@ -22,6 +22,7 @@
 #import "DD_CricleShowViewController.h"
 
 #import "DD_CircleApplyViewController.h"
+#import "DD_CirclePushlishPreViewController.h"
 
 @interface DD_CircleApplyViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -36,6 +37,9 @@
     UIView *container;//_scrollView的view
     
     UILabel *statusLabel;
+    
+    UIButton *_preView;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -149,6 +153,19 @@
         make.width.equalTo(_scrollView);
     }];
 }
+-(void)CreateTabbar
+{
+    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self.view addSubview:_preView];
+    _preView.backgroundColor=[UIColor blackColor];
+    [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_preView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(ktabbarHeight);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+}
 -(void)CreateContentView
 {
     //    创建搭配界面
@@ -159,6 +176,7 @@
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_infoView.mas_bottom).with.offset(0);
     }];
+    [self CreateTabbar];
 }
 -(void)CreateInforView
 {
@@ -247,6 +265,8 @@
         make.left.and.right.mas_equalTo(0);
         make.height.mas_equalTo(300);
     }];
+    
+    [_preView removeFromSuperview];
 }
 #pragma mark - SomeAction
 /**
@@ -272,25 +292,12 @@
         [self presentViewController:[regular alertTitle_Simple:@"请先填写理由"] animated:YES completion:nil];
     }else
     {
-        NSDictionary *_parameters=@{@"applyInfo":[@{
-                                            @"likeDesignerId":_CircleModel.designerModel.likeDesignerId
-                                            ,@"likeDesignerName":_CircleModel.designerModel.likeDesignerName
-                                            ,@"likeReason":_CircleModel.designerModel.likeReason
-                                            ,@"shareInfo":@{
-                                                    @"shareAdvise":_CircleModel.remark
-                                                    ,@"items":[DD_CirclePublishTool getParameterItemArrWithCircleModel:_CircleModel]
-                                                    ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_CircleModel]
-                                                    ,@"tags":_CircleModel.tagMap
-                                                    }
-                                            } JSONString],@"token":[DD_UserModel getToken]};
-        
-        [[JX_AFNetworking alloc] GET:@"share/applyToDoyen.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+        DD_CirclePushlishPreViewController *PreView=[[DD_CirclePushlishPreViewController alloc] initWithCircleModel:_CircleModel WithType:@"apply" WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"update_status"])
             {
                 for (UIView *view in _scrollView.subviews) {
                     [view removeFromSuperview];
                 }
-                _CircleModel.status=[[data objectForKey:@"status"] integerValue];
                 NSString *nav_title=@"";
                 if(_CircleModel.status==-1)
                 {
@@ -300,7 +307,7 @@
                 {
                     nav_title=@"审核中";
                     [self CreateStatusLabel:@"审核中"];
-                    
+    
                 }else if(_CircleModel.status==1)
                 {
                     nav_title=@"成功变身达人";
@@ -311,13 +318,9 @@
                     [self CreateContentView];
                 }
                 self.navigationItem.titleView=[regular returnNavView:nav_title withmaxwidth:200];
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
         }];
+        [self.navigationController pushViewController:PreView animated:YES];
         
     }
 }

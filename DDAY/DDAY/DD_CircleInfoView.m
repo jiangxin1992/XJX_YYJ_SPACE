@@ -8,12 +8,8 @@
 
 #import "DD_CircleInfoView.h"
 
-#import "DD_CircleInfoSuggestView.h"
 
 @implementation DD_CircleInfoView
-{
-    DD_CircleInfoSuggestView *_commentview;
-}
 
 #pragma mark - 初始化
 /**
@@ -50,7 +46,7 @@
     [self CreateChooseStyleView];
     [self CreateTagsView];
     [self CreateFitPersonView];
-    [self CreatePreviewBtn];
+//    [self CreatePreviewBtn];
 }
 /**
  * 搭配图视图创建
@@ -64,7 +60,7 @@
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(10);
         make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(IsPhone6_gt?240:200);
+        make.height.mas_equalTo(IsPhone6_gt?260:220);
     }];
 }
 /**
@@ -82,8 +78,6 @@
         make.left.and.right.mas_equalTo(0);
     }];
 }
-
-
 /**
  * 款式选择视图创建
  */
@@ -126,25 +120,26 @@
     [_fitPersonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_tagsView.mas_bottom).with.offset(10);
         make.left.and.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-30);
     }];
 }
 /**
  * 创建预览按钮
  */
--(void)CreatePreviewBtn
-{
-    UIButton *_submitBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:_submitBtn];
-    _submitBtn.backgroundColor=[UIColor blackColor];
-    [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_fitPersonView.mas_bottom).with.offset(20);
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.bottom.mas_equalTo(-30);
-    }];
-}
+//-(void)CreatePreviewBtn
+//{
+//    UIButton *_submitBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+//    [self addSubview:_submitBtn];
+//    _submitBtn.backgroundColor=[UIColor blackColor];
+//    [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [_submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(_fitPersonView.mas_bottom).with.offset(20);
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_equalTo(-kEdge);
+//        make.bottom.mas_equalTo(-30);
+//    }];
+//}
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [regular dismissKeyborad];
@@ -153,8 +148,8 @@
 /**
  * 提交
  */
--(void)sumbitAction
-{
-    _block(@"submit",0);
-}
+//-(void)sumbitAction
+//{
+//    _block(@"submit",0);
+//}
 @end

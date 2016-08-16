@@ -11,11 +11,12 @@
 @implementation DD_CircleInfoSuggestSignBoard
 
 #pragma mark - 初始化
--(instancetype)initWithBlock:(void (^)(NSString *type,NSString *content))block
+-(instancetype)initWithHoldStr:(NSString *)holdStr WithBlock:(void (^)(NSString *type,NSString *content))block
 {
     self=[super init];
     if(self)
     {
+        _holdStr=holdStr;
         _block=block;
         [self SomePrepare];
         [self UIConfig];
@@ -76,7 +77,7 @@
     _commentField.returnKeyType=UIReturnKeyDefault;
     _commentField.delegate=self;
     _commentField.font=[regular getFont:14.0f];
-    _commentField.textColor=[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1];
+    _commentField.textColor=_define_black_color;
     [_commentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(7);
         make.right.mas_equalTo(-7);
@@ -103,6 +104,15 @@
 #pragma mark - UITextViewDelegate
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
+    if (textView.text.length<1) {
+        
+        textView.text = _holdStr;
+        textView.textColor=_define_light_gray_color1;
+        
+    }else
+    {
+        textView.textColor=_define_black_color;
+    }
     return YES;
 }
 //键盘return的时候发送 发送评论的请求
@@ -110,4 +120,13 @@
     [self sendAction];
     return YES;
 }
+//在开始编辑的代理方法中进行如下操作
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.textColor=_define_black_color;
+    if ([textView.text isEqualToString:_holdStr]) {
+        
+        textView.text = @"";
+    }
+}
+
 @end

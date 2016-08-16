@@ -99,8 +99,7 @@
     }];
     [_numlabel sizeToFit];
     
-    
-    _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithBlock:^(NSString *type, NSString *content) {
+    _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"cancel"])
         {
             [regular dismissKeyborad];
@@ -122,14 +121,39 @@
     _textView.inputAccessoryView = _SignBoard;
     _textView.returnKeyType=UIReturnKeyDefault;
     _textView.font=[regular getFont:10.5f];
+    _textView.text=_holdStr;
+    _textView.textColor=_define_light_gray_color1;
+    _textView.delegate=self;
     [backView addSubview:_textView];
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(11);
         make.right.mas_equalTo(-11);
         make.bottom.mas_equalTo(_numlabel.mas_top).with.offset(0);
     }];
-
 }
+#pragma mark - UITextViewDelegate
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    if (textView.text.length<1) {
+        
+        textView.text = _holdStr;
+        textView.textColor=_define_light_gray_color1;
+        
+    }else
+    {
+        textView.textColor=_define_black_color;
+    }
+    return YES;
+}
+//在开始编辑的代理方法中进行如下操作
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.textColor=_define_black_color;
+    if ([textView.text isEqualToString:_holdStr]) {
+        
+        textView.text = @"";
+    }
+}
+
 #pragma mark - SomeAction
 -(NSString *)getlength
 {

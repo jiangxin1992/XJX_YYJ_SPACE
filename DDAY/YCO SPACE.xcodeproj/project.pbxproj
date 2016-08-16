@@ -179,6 +179,7 @@
 		3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */; };
 		3F552EAD1CF21B2400BC5E33 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAC1CF21B2400BC5E33 /* ImageViewController.m */; };
 		3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */; };
+		3F5717331D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
 		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
@@ -699,6 +700,8 @@
 		3F552EAE1CF220B700BC5E33 /* DD_GoodsInformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsInformView.h; sourceTree = "<group>"; };
 		3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsInformView.m; sourceTree = "<group>"; };
 		3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3F5717311D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoSuggestSimpleView.h; sourceTree = "<group>"; };
+		3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleInfoSuggestSimpleView.m; sourceTree = "<group>"; };
 		3F576F281D377D4A0061602A /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
@@ -1134,6 +1137,8 @@
 		3F2F76451D1CC529002E22A6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
+				3F5717311D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.h */,
+				3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */,
 				3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */,
 				3F2F76461D1CC55C002E22A6 /* DD_CircleApplyInfoView.h */,
 				3F2F76471D1CC55C002E22A6 /* DD_CircleApplyInfoView.m */,
@@ -3339,6 +3344,7 @@
 				3F4904E51D18E12E009F4CD3 /* DD_CircleListImgView.m in Sources */,
 				3F4904DC1D18D4C4009F4CD3 /* DD_CircleListModel.m in Sources */,
 				3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */,
+				3F5717331D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m in Sources */,
 				3F3A0BEA1D37C7A5006CD46F /* UIImageView+Custom.m in Sources */,
 				3F4187781CEEFB24001BCA3D /* AppDelegate.m in Sources */,
 				3FA836871D055C19006D2919 /* DD_OrderHeadView.m in Sources */,

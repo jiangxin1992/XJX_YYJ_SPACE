@@ -38,6 +38,8 @@
     DD_CircleInfoView *_infoView;//交互视图
     
     UIView *container;//_scrollView的view
+    
+    UIButton *_preView;
 }
 
 - (void)viewDidLoad {
@@ -77,6 +79,7 @@
 {
     [self CreateScrollView];
     [self CreateContentView];
+    [self CreateTabbar];
 }
 -(void)CreateScrollView
 {
@@ -89,19 +92,33 @@
         make.width.equalTo(_scrollView);
     }];
 }
+-(void)CreateTabbar
+{
+    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self.view addSubview:_preView];
+    _preView.backgroundColor=[UIColor blackColor];
+    [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
+
+    [_preView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(ktabbarHeight);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+}
 -(void)CreateContentView
 {
 //    创建搭配界面
     [self CreateInforView];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.left.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
-//        make.edges.mas_equalTo(self.view);
+//        make.top.right.left.mas_equalTo(0);
+//        make.bottom.mas_equalTo(ktabbarHeight);
+        make.edges.mas_equalTo(self.view);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_infoView.mas_bottom).with.offset(0);
     }];
 }
+
 -(void)CreateInforView
 {
     _infoView=[[DD_CircleInfoView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,long index) {
@@ -153,10 +170,6 @@
         {
 //            款式选择视图更新
             [_infoView.chooseStyleView updateImageView];
-        }else if([type isEqualToString:@"submit"])
-        {
-//            提交
-            [self SubmitAction];
         }else if([type isEqualToString:@"delete_choose_item"])
         {
 //            删除已选款式
@@ -233,8 +246,9 @@
         [self presentViewController:[regular alertTitle_Simple:@"请先选择标签"] animated:YES completion:nil];
     }else
     {
-        DD_CirclePushlishPreViewController *PreView=[[DD_CirclePushlishPreViewController alloc] initWithCircleModel:_CircleModel];
-        PreView.block=_block;
+        DD_CirclePushlishPreViewController *PreView=[[DD_CirclePushlishPreViewController alloc] initWithCircleModel:_CircleModel WithType:@"publish" WithBlock:^(NSString *type) {
+            _block(type);
+        }];
         [self.navigationController pushViewController:PreView animated:YES];
 
     }

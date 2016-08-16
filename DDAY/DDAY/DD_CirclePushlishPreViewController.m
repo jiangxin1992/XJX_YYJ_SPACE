@@ -40,12 +40,14 @@
     [super viewDidLoad];
 }
 #pragma mark - 初始化
--(instancetype)initWithCircleModel:(DD_CircleModel *)circleModel
+-(instancetype)initWithCircleModel:(DD_CircleModel *)circleModel WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
+        _block=block;
         _circleModel=circleModel;
+        _type=type;
         [self SomePrepare];
         [self UIConfig];
         [self RequestData];
@@ -206,7 +208,14 @@
     UIButton *submit=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:@"发布搭配" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [container addSubview:submit];
     submit.backgroundColor=_define_black_color;
-    [submit addTarget:self action:@selector(submitAction) forControlEvents:UIControlEventTouchUpInside];
+    if([_type isEqualToString:@"apply"])
+    {
+        [submit addTarget:self action:@selector(submitApplyAction) forControlEvents:UIControlEventTouchUpInside];
+    }else if([_type isEqualToString:@"publish"])
+    {
+        [submit addTarget:self action:@selector(submitPublishAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     [submit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
@@ -223,7 +232,36 @@
     }];
 }
 #pragma mark - SomeAction
--(void)submitAction
+-(void)submitApplyAction
+{
+    NSDictionary *_parameters=@{@"applyInfo":[@{
+                                                @"likeDesignerId":_circleModel.designerModel.likeDesignerId
+                                                ,@"likeDesignerName":_circleModel.designerModel.likeDesignerName
+                                                ,@"likeReason":_circleModel.designerModel.likeReason
+                                                ,@"shareInfo":@{
+                                                        @"shareAdvise":_circleModel.remark
+                                                        ,@"items":[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel]
+                                                        ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
+                                                        ,@"tags":_circleModel.tagMap
+                                                        }
+                                                } JSONString],@"token":[DD_UserModel getToken]};
+    
+    [[JX_AFNetworking alloc] GET:@"share/applyToDoyen.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            _circleModel.status=[[data objectForKey:@"status"] integerValue];
+            _block(@"update_status");
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+}
+-(void)submitPublishAction
 {
     NSDictionary *_parameters=@{
                                 @"shareInfo":[@{

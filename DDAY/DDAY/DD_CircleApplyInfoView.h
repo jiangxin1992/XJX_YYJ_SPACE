@@ -12,6 +12,7 @@
 #import "DD_CircleTagsView.h"
 #import "DD_CircleFitPersonView.h"
 #import "DD_CircleModel.h"
+#import "DD_CircleInfoSuggestSimpleView.h"
 
 #import <UIKit/UIKit.h>
 
@@ -28,11 +29,11 @@
 /**
  * 喜欢该设计师的理由
  */
-@property (nonatomic,strong) DD_CircleInfoSuggestView *likeReasonView;
+@property (nonatomic,strong) DD_CircleInfoSuggestSimpleView *likeReasonView;
 /**
  * 搭配建议
  */
-@property (nonatomic,strong) DD_CircleInfoSuggestView *remarksView;
+@property (nonatomic,strong) DD_CircleInfoSuggestView *commentview;
 /**
  * 款式选择
  */

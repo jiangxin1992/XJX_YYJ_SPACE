@@ -10,6 +10,7 @@
 #import "DD_CircleInfoImgView.h"
 #import "DD_CircleTagsView.h"
 #import "DD_CircleFitPersonView.h"
+#import "DD_CircleInfoSuggestView.h"
 
 #import "DD_CircleModel.h"
 
@@ -30,6 +31,10 @@
  * 搭配图
  */
 @property (nonatomic,strong) DD_CircleInfoImgView *imgView;
+/**
+ * 搭配建议
+ */
+@property (nonatomic,strong) DD_CircleInfoSuggestView *commentview;
 /**
  * 官方标签和自定义标签视图
  */
