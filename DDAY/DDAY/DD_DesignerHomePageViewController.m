@@ -298,6 +298,9 @@
                     {
                         //                达人
                         [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_DesignerModel.designerId] animated:YES];
+                    }else
+                    {
+                        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
                     }
                 }else if([type isEqualToString:@"push_comment"])
                 {
@@ -368,37 +371,45 @@
  */
 -(void)followAction
 {
-    NSString *url=nil;
-    if(_DesignerModel.guanzhu)
+    if(![DD_UserModel isLogin])
     {
-        //            取消关注
-        url=@"designer/unCareDesigner.do";
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
     }else
     {
-        //            关注
-        url=@"designer/careDesigner.do";
-    }
-    [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_DesignerModel.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
+        NSString *url=nil;
+        if(_DesignerModel.guanzhu)
         {
-            _DesignerModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
-            if(_DesignerModel.guanzhu)
-            {
-                followBtn.selected=YES;
-                followBtn.backgroundColor=_define_white_color;
-            }else
-            {
-                followBtn.selected=NO;
-                followBtn.backgroundColor=_define_black_color;
-            }
-            
+            //            取消关注
+            url=@"designer/unCareDesigner.do";
         }else
         {
-            [self presentViewController:successAlert animated:YES completion:nil];
+            //            关注
+            url=@"designer/careDesigner.do";
         }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_DesignerModel.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                _DesignerModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                if(_DesignerModel.guanzhu)
+                {
+                    followBtn.selected=YES;
+                    followBtn.backgroundColor=_define_white_color;
+                }else
+                {
+                    followBtn.selected=NO;
+                    followBtn.backgroundColor=_define_black_color;
+                }
+                
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
 }
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated

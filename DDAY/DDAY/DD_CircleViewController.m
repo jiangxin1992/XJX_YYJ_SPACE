@@ -125,6 +125,9 @@
                 {
                     //                达人
                     [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
+                }else
+                {
+                    [_CircleView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
                 }
                 
             }else if([type isEqualToString:@"share"])
@@ -338,13 +341,22 @@
  */
 -(void)PublishAction
 {
-    [self.navigationController pushViewController:[[DD_CirclePublishViewController alloc] initWithBlock:^(NSString *type) {
-        if([type isEqualToString:@"refresh"])
-        {
-//            重新刷新
-            [_tableview.header beginRefreshing];
-        }
-    }] animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        [self.navigationController pushViewController:[[DD_CirclePublishViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"refresh"])
+            {
+                //            重新刷新
+                [_tableview.header beginRefreshing];
+            }
+        }] animated:YES];
+    }
+    
 }
 /**
  * 申请成为达人
@@ -354,9 +366,18 @@
  */
 -(void)ApplyAction
 {
-    [self.navigationController pushViewController:[[DD_CircleApplyViewController alloc] initWithBlock:^(NSString *type) {
-        
-    }] animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        [self.navigationController pushViewController:[[DD_CircleApplyViewController alloc] initWithBlock:^(NSString *type) {
+            
+        }] animated:YES];
+    }
+    
 }
 /**
  * 点赞和取消点赞
@@ -447,7 +468,12 @@
     if([DD_UserModel getUserType]==2||[DD_UserModel getUserType]==4||[DD_UserModel getUserType]==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
-        
+        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
+        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+    }else
+    {
+        self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];

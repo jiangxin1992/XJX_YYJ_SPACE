@@ -86,49 +86,75 @@
     _tabBar=[[DD_DDAYDetailView alloc] initWithFrame:CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight) WithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"join"])
         {
-            NSString *url=nil;
-            if([type isEqualToString:@"cancel"])
+            if(![DD_UserModel isLogin])
             {
-                url=@"series/quitSeries.do";
-            }else if([type isEqualToString:@"join"])
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
             {
-                url=@"series/joinSeries.do";
-            }
-            [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_detailModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                if(success)
+                NSString *url=nil;
+                if([type isEqualToString:@"cancel"])
                 {
-                    _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
-                    _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                    _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
-                    
-                    _model.isJoin=_detailModel.isJoin;
-                    _model.leftQuota=_detailModel.leftQuota;
-                    _model.isQuotaLimt=_detailModel.isQuotaLimt;
-                    
-                    _block(@"update");
-                    
-                    _tabBar.detailModel=_detailModel;
-                    [_tabBar setState];
-                    
-                }else
+                    url=@"series/quitSeries.do";
+                }else if([type isEqualToString:@"join"])
                 {
-                    [self presentViewController:successAlert animated:YES completion:nil];
+                    url=@"series/joinSeries.do";
                 }
-            } failure:^(NSError *error, UIAlertController *failureAlert) {
-                [self presentViewController:failureAlert animated:YES completion:nil];
-            }];
+                [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_detailModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
+                        _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
+                        _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                        
+                        _model.isJoin=_detailModel.isJoin;
+                        _model.leftQuota=_detailModel.leftQuota;
+                        _model.isQuotaLimt=_detailModel.isQuotaLimt;
+                        
+                        _block(@"update");
+                        
+                        _tabBar.detailModel=_detailModel;
+                        [_tabBar setState];
+                        
+                    }else
+                    {
+                        [self presentViewController:successAlert animated:YES completion:nil];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [self presentViewController:failureAlert animated:YES completion:nil];
+                }];
+            }
+            
         }else if([type isEqualToString:@"enter_meet"])
         {
 //            进入发布会
-            [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
-                
-            }] animated:YES];
+            if(![DD_UserModel isLogin])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
+                    
+                }] animated:YES];
+            }
+            
         }else if([type isEqualToString:@"check_good"])
         {
 //            查看发布品
-            [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"good" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
-                
-            }] animated:YES];
+            if(![DD_UserModel isLogin])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"good" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
+                    
+                }] animated:YES];
+            }
         }
         
     }];
@@ -144,8 +170,16 @@
 //跳转购物车视图
 -(void)PushShopView
 {
-    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-    [self.navigationController pushViewController:_shop animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+        [self.navigationController pushViewController:_shop animated:YES];
+    }
 }
 #pragma mark - RequestData
 -(void)RequestData

@@ -522,6 +522,10 @@
     //弹出
     [self presentViewController:picker animated:YES completion:nil];
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [regular dismissKeyborad];
+}
 /**
  * 打开相机/相册
  */

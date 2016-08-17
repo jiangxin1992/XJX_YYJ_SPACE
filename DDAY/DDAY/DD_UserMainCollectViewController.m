@@ -198,6 +198,9 @@
                         {
                             //                达人
                             [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:model.userId] animated:YES];
+                        }else
+                        {
+                            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
                         }
                     }else if([type isEqualToString:@"item_click"])
                     {

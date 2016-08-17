@@ -115,6 +115,9 @@
             {
                 //                达人
                 [_CircleView.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:listModel.userId] animated:YES];
+            }else
+            {
+                [_CircleView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
             }
         }else if([type isEqualToString:@"collect_cancel"])
         {
@@ -191,6 +194,9 @@
                     {
                         //                达人
                         [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+                    }else
+                    {
+                        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
                     }
                     
                 }

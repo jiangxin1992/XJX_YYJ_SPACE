@@ -81,29 +81,37 @@
     __block DD_DDAYViewController *_dayView=self;
     ddayblock=^(NSInteger index,NSString *type)
     {
-        DD_DDAYModel *dayModel=[__dataArr objectAtIndex:index];
-        NSString *url=nil;
-        if([type isEqualToString:@"cancel"])
+        if(![DD_UserModel isLogin])
         {
-            url=@"series/quitSeries.do";
-        }else if([type isEqualToString:@"join"])
+            [_dayView presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [_dayView pushLoginView];
+            }] animated:YES completion:nil];
+        }else
         {
-            url=@"series/joinSeries.do";
-        }
-        [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":dayModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+            DD_DDAYModel *dayModel=[__dataArr objectAtIndex:index];
+            NSString *url=nil;
+            if([type isEqualToString:@"cancel"])
             {
-                dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
-                dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
-                [__tableview reloadData];
-            }else
+                url=@"series/quitSeries.do";
+            }else if([type isEqualToString:@"join"])
             {
-                [_dayView presentViewController:successAlert animated:YES completion:nil];
+                url=@"series/joinSeries.do";
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [_dayView presentViewController:failureAlert animated:YES completion:nil];
-        }];
+            [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":dayModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
+                    dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
+                    dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                    [__tableview reloadData];
+                }else
+                {
+                    [_dayView presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [_dayView presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
     };
 }
 #pragma mark - UIConfig
@@ -300,8 +308,16 @@
 //跳转购物车
 -(void)PushShopView
 {
-    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-    [self.navigationController pushViewController:_shop animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+        [self.navigationController pushViewController:_shop animated:YES];
+    }
 }
 -(void)MJRefresh
 {

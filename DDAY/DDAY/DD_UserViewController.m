@@ -291,23 +291,15 @@
  */
 -(void)setAction
 {
-    if([DD_UserModel isLogin])
-    {
-        DD_SetViewController *_set=[[DD_SetViewController alloc] initWithBlock:^(NSString *type) {
-            if([type isEqualToString:@"logout"])
-            {
-                _usermodel=nil;
-                [self UpdateUI];
-                
-            }
-        }];
-        [self.navigationController pushViewController:_set animated:YES];
-    }else
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }
+    DD_SetViewController *_set=[[DD_SetViewController alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"logout"])
+        {
+            _usermodel=nil;
+            [self UpdateUI];
+            
+        }
+    }];
+    [self.navigationController pushViewController:_set animated:YES];
 }
 /**
  * 获取当前的list arr

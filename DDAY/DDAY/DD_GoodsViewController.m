@@ -243,8 +243,16 @@
 //跳转购物车
 -(void)PushShopView
 {
-    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-    [self.navigationController pushViewController:_shop animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+        [self.navigationController pushViewController:_shop animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDelegate

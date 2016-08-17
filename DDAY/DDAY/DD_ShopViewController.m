@@ -20,6 +20,7 @@
 #import "DD_SizeAlertModel.h"
 #import "DD_ShopAlertNumView.h"
 #import "DD_ShopAlertSizeView.h"
+#import "DD_LoginViewController.h"
 
 @interface DD_ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -139,8 +140,9 @@
 {
     if(!mengban_num&&!mengban_size)
     {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_size=[UIImageView getMaskImageView];
-        [self.view.window addSubview:mengban_size];
+        [self.view addSubview:mengban_size];
         [mengban_size addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_size_dismiss)]];
         DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         _alertSizeView=[[DD_ShopAlertSizeView alloc] initWithSizeAlertModel:sizeAlertModel WithItem:itemModel WithBlock:^(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count) {
@@ -151,71 +153,80 @@
                     [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
                 }else
                 {
-                    [self mengban_size_dismiss];
-                    //                判断是否有相同item
-                    //                有则删除、没有则修改
-                    if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeId WithColorID:itemModel.colorId])
+                    if(![DD_UserModel isLogin])
                     {
-                        NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName}];
-                        [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                            if(success)
-                            {
-                                [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
-                                [_tableview reloadData];
-                            }else
-                            {
-                                [self presentViewController:successAlert animated:YES completion:nil];
-                                [_tableview reloadData];
-                            }
-                        } failure:^(NSError *error, UIAlertController *failureAlert) {
-                            [self presentViewController:failureAlert animated:YES completion:nil];
-                            [_tableview reloadData];
-                        }];
+                        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                            [self pushLoginView];
+                        }] animated:YES completion:nil];
                     }else
                     {
-                        NSArray *_itemsArr=@[@{
-                                                 @"itemId":itemModel.itemId
-                                                 ,@"itemName":itemModel.itemName
-                                                 ,@"colorId":itemModel.colorId
-                                                 ,@"colorName":itemModel.colorName
-                                                 ,@"sizeId":sizeId
-                                                 ,@"sizeName":sizeName
-                                                 ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
-                                                 ,@"seriesId":itemModel.seriesId
-                                                 ,@"seriesName":itemModel.seriesName
-                                                 ,@"designerId":itemModel.designerId
-                                                 ,@"brandName":itemModel.brandName
-                                                 ,@"number":[NSNumber numberWithLong:count]
-                                                 ,@"price":itemModel.price
-                                                 ,@"originalPrice":itemModel.originalPrice
-                                                 ,@"pics":itemModel.pics
-                                                 ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
-                                                 ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
-                                                 ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
-                                                 ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
-                                                 ,@"oldSizeId":itemModel.sizeId
-                                                 }
-                                             ];
-                        NSDictionary *_parameters=@{
-                                                    @"items":[_itemsArr JSONString]
-                                                    ,@"token":[DD_UserModel getToken]
-                                                    };
-                        [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                            if(success)
-                            {
-                                itemModel.sizeId=sizeId;
-                                itemModel.sizeName=sizeName;
-                                itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
+                        [self mengban_size_dismiss];
+                        //                判断是否有相同item
+                        //                有则删除、没有则修改
+                        if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeId WithColorID:itemModel.colorId])
+                        {
+                            NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName}];
+                            [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                                if(success)
+                                {
+                                    [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
+                                    [_tableview reloadData];
+                                }else
+                                {
+                                    [self presentViewController:successAlert animated:YES completion:nil];
+                                    [_tableview reloadData];
+                                }
+                            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                                [self presentViewController:failureAlert animated:YES completion:nil];
                                 [_tableview reloadData];
-                            }else
-                            {
-                                [self presentViewController:successAlert animated:YES completion:nil];
-                            }
-                        } failure:^(NSError *error, UIAlertController *failureAlert) {
-                            [self presentViewController:failureAlert animated:YES completion:nil];
-                        }];
-                        
+                            }];
+                        }else
+                        {
+                            NSArray *_itemsArr=@[@{
+                                                     @"itemId":itemModel.itemId
+                                                     ,@"itemName":itemModel.itemName
+                                                     ,@"colorId":itemModel.colorId
+                                                     ,@"colorName":itemModel.colorName
+                                                     ,@"sizeId":sizeId
+                                                     ,@"sizeName":sizeName
+                                                     ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
+                                                     ,@"seriesId":itemModel.seriesId
+                                                     ,@"seriesName":itemModel.seriesName
+                                                     ,@"designerId":itemModel.designerId
+                                                     ,@"brandName":itemModel.brandName
+                                                     ,@"number":[NSNumber numberWithLong:count]
+                                                     ,@"price":itemModel.price
+                                                     ,@"originalPrice":itemModel.originalPrice
+                                                     ,@"pics":itemModel.pics
+                                                     ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
+                                                     ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
+                                                     ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
+                                                     ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
+                                                     ,@"oldSizeId":itemModel.sizeId
+                                                     }
+                                                 ];
+                            NSDictionary *_parameters=@{
+                                                        @"items":[_itemsArr JSONString]
+                                                        ,@"token":[DD_UserModel getToken]
+                                                        };
+                            [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                                if(success)
+                                {
+                                    itemModel.sizeId=sizeId;
+                                    itemModel.sizeName=sizeName;
+                                    itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
+                                    [_tableview reloadData];
+                                }else
+                                {
+                                    [self presentViewController:successAlert animated:YES completion:nil];
+                                }
+                            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                                [self presentViewController:failureAlert animated:YES completion:nil];
+                            }];
+                            
+                        }
                     }
+                    
                 }
             }else if([type isEqualToString:@"stock_warning"])
             {
@@ -250,80 +261,87 @@
 {
     if(!mengban_num&&!mengban_size)
     {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_num=[UIImageView getMaskImageView];
-        [self.view.window addSubview:mengban_num];
+        [self.view addSubview:mengban_num];
         [mengban_num addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_num_dismiss)]];
         
         DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         _alertNumView=[[DD_ShopAlertNumView alloc] initWithSizeArr:sizeAlertModel.size WithItem:itemModel WithBlock:^(NSString *type,NSInteger count) {
             if([type isEqualToString:@"alert"])
             {
-                [self mengban_num_dismiss];
-                
-                //                判断是否有相同item
-                //                有则删除、没有则修改
-                if([self haveSameItemWithIndexPath:indexPath WithSizeID:itemModel.sizeId WithColorID:itemModel.colorId])
+                if(![DD_UserModel isLogin])
                 {
-                    NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
-                    [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                        if(success)
-                        {
-                            [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
-                            [_tableview reloadData];
-                        }else
-                        {
-                            [self presentViewController:successAlert animated:YES completion:nil];
-                            [_tableview reloadData];
-                        }
-                    } failure:^(NSError *error, UIAlertController *failureAlert) {
-                        [self presentViewController:failureAlert animated:YES completion:nil];
-                        [_tableview reloadData];
-                    }];
+                    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                        [self pushLoginView];
+                    }] animated:YES completion:nil];
                 }else
                 {
-                    NSArray *_itemsArr=@[@{
-                                             @"itemId":itemModel.itemId
-                                             ,@"itemName":itemModel.itemName
-                                             ,@"colorId":itemModel.colorId
-                                             ,@"colorName":itemModel.colorName
-                                             ,@"sizeId":itemModel.sizeId
-                                             ,@"sizeName":[self GetSizeNameWithID:itemModel.sizeId WithSizeArr:sizeAlertModel.size]
-                                             ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
-                                             ,@"seriesId":itemModel.seriesId
-                                             ,@"seriesName":itemModel.seriesName
-                                             ,@"designerId":itemModel.designerId
-                                             ,@"brandName":itemModel.brandName
-                                             ,@"number":[NSNumber numberWithLong:count]
-                                             ,@"price":itemModel.price
-                                             ,@"originalPrice":itemModel.originalPrice
-                                             ,@"pics":itemModel.pics
-                                             ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
-                                             ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
-                                             ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
-                                             ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
-                                             ,@"oldSizeId":itemModel.sizeId
-                                             }
-                                         ];
-                    NSDictionary *_parameters=@{
-                                                @"items":[_itemsArr JSONString]
-                                                ,@"token":[DD_UserModel getToken]
-                                                };
-                    [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                        if(success)
-                        {
-                            itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
-                            [_tableview reloadData];
-                        }else
-                        {
-                            [self presentViewController:successAlert animated:YES completion:nil];
-                        }
-                    } failure:^(NSError *error, UIAlertController *failureAlert) {
-                        [self presentViewController:failureAlert animated:YES completion:nil];
-                    }];
+                    [self mengban_num_dismiss];
                     
+                    //                判断是否有相同item
+                    //                有则删除、没有则修改
+                    if([self haveSameItemWithIndexPath:indexPath WithSizeID:itemModel.sizeId WithColorID:itemModel.colorId])
+                    {
+                        NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
+                        [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                            if(success)
+                            {
+                                [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
+                                [_tableview reloadData];
+                            }else
+                            {
+                                [self presentViewController:successAlert animated:YES completion:nil];
+                                [_tableview reloadData];
+                            }
+                        } failure:^(NSError *error, UIAlertController *failureAlert) {
+                            [self presentViewController:failureAlert animated:YES completion:nil];
+                            [_tableview reloadData];
+                        }];
+                    }else
+                    {
+                        NSArray *_itemsArr=@[@{
+                                                 @"itemId":itemModel.itemId
+                                                 ,@"itemName":itemModel.itemName
+                                                 ,@"colorId":itemModel.colorId
+                                                 ,@"colorName":itemModel.colorName
+                                                 ,@"sizeId":itemModel.sizeId
+                                                 ,@"sizeName":[self GetSizeNameWithID:itemModel.sizeId WithSizeArr:sizeAlertModel.size]
+                                                 ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
+                                                 ,@"seriesId":itemModel.seriesId
+                                                 ,@"seriesName":itemModel.seriesName
+                                                 ,@"designerId":itemModel.designerId
+                                                 ,@"brandName":itemModel.brandName
+                                                 ,@"number":[NSNumber numberWithLong:count]
+                                                 ,@"price":itemModel.price
+                                                 ,@"originalPrice":itemModel.originalPrice
+                                                 ,@"pics":itemModel.pics
+                                                 ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
+                                                 ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
+                                                 ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
+                                                 ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
+                                                 ,@"oldSizeId":itemModel.sizeId
+                                                 }
+                                             ];
+                        NSDictionary *_parameters=@{
+                                                    @"items":[_itemsArr JSONString]
+                                                    ,@"token":[DD_UserModel getToken]
+                                                    };
+                        [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                            if(success)
+                            {
+                                itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
+                                [_tableview reloadData];
+                            }else
+                            {
+                                [self presentViewController:successAlert animated:YES completion:nil];
+                            }
+                        } failure:^(NSError *error, UIAlertController *failureAlert) {
+                            [self presentViewController:failureAlert animated:YES completion:nil];
+                        }];
+                        
+                    }
                 }
-                
-                
             }else if([type isEqualToString:@"stock_warning"])
             {
                 [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
@@ -369,6 +387,7 @@
 }
 
 #pragma mark - SomeActions
+
 /**
  * 返回
  * 取消所有定时器
@@ -450,6 +469,27 @@
     }];
 }
 /**
+ * 跳转登录界面
+ */
+-(void)pushLoginView
+{
+    if(![DD_UserModel isLogin])
+    {
+        [mengban_size removeFromSuperview];
+        mengban_size=nil;
+        [mengban_num removeFromSuperview];
+        mengban_num=nil;
+        
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+    }
+}
+/**
  * 删除蒙版
  */
 -(void)mengban_size_dismiss
@@ -459,6 +499,7 @@
     } completion:^(BOOL finished) {
         [mengban_size removeFromSuperview];
         mengban_size=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }];
 }
 -(void)mengban_num_dismiss
@@ -468,6 +509,7 @@
     } completion:^(BOOL finished) {
         [mengban_num removeFromSuperview];
         mengban_num=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }];
 }
 
@@ -641,6 +683,7 @@
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     if(_tableview)
     {
         [self RequestData];

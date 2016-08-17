@@ -8,7 +8,7 @@
 #import "DD_DesignerModel.h"
 #import "DD_BaseViewController.h"
 
-@interface DD_DesignerViewController : DD_BaseViewController
--(instancetype)initWithBlock:(void(^)(DD_DesignerModel *model))block;
-@property(nonatomic,copy) void (^block)(DD_DesignerModel *model);
+@interface DD_DesignerViewController : UIViewController
+-(instancetype)initWithBlock:(void(^)(NSString *type , DD_DesignerModel *model))block;
+@property(nonatomic,copy) void (^block)(NSString *type ,DD_DesignerModel *model);
 @end

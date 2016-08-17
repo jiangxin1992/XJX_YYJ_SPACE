@@ -45,7 +45,7 @@
     
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block
+-(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(NSString *type ,DD_UserModel *model))block
 {
     self=[super init];
     if(self)
@@ -55,7 +55,7 @@
     }
     return self;
 }
--(instancetype)initWithBlock:(void (^)(DD_UserModel *model))block
+-(instancetype)initWithBlock:(void (^)(NSString *type ,DD_UserModel *model))block
 {
     self=[super init];
     if(self)
@@ -129,7 +129,7 @@
 {
     DD_AlertViewController *_AlertView=[[DD_AlertViewController alloc] initWithModel:_usermodel WithBlock:^(DD_UserModel *model) {
         _usermodel=model;
-        _block(_usermodel);
+        _block(@"info_update",_usermodel);
         [_tableview reloadData];
     }];
     _AlertView.content=content;
@@ -144,7 +144,7 @@
 {
     [self.navigationController pushViewController:[[DD_BodyViewController alloc] initWithModel:_usermodel WithBlock:^(DD_UserModel *model) {
         _usermodel=model;
-        _block(_usermodel);
+        _block(@"info_update",_usermodel);
         [_tableview reloadData];
     }] animated:YES];
 }
@@ -281,7 +281,7 @@
 //            更换头像
             _usermodel=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
             [_tableview reloadData];
-            _block(_usermodel);
+            _block(@"info_update",_usermodel);
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

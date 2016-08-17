@@ -83,11 +83,20 @@
     _pageVc.view.backgroundColor=[UIColor whiteColor];
     if(left==nil)
     {
-        left=[[DD_DesignerViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
-            DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-            _DesignerHomePage.designerId=model.designerId;
-            [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-            [[DD_CustomViewController sharedManager] tabbarHide];
+        left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
+            if([type isEqualToString:@"login"])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else if([type isEqualToString:@"select"]||[type isEqualToString:@"click"])
+            {
+                DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                _DesignerHomePage.designerId=model.designerId;
+                [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                [[DD_CustomViewController sharedManager] tabbarHide];
+            }
+            
         }];
     }
     [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
@@ -103,11 +112,19 @@
         {
             if(!left)
             {
-                left=[[DD_DesignerViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
-                    DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                    _DesignerHomePage.designerId=model.designerId;
-                    [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-                    [[DD_CustomViewController sharedManager] tabbarHide];
+                left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type,DD_DesignerModel *model) {
+                    if([type isEqualToString:@"login"])
+                    {
+                        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                            [self pushLoginView];
+                        }] animated:YES completion:nil];
+                    }else if([type isEqualToString:@"select"]||[type isEqualToString:@"click"])
+                    {
+                        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                        _DesignerHomePage.designerId=model.designerId;
+                        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                        [[DD_CustomViewController sharedManager] tabbarHide];
+                    }
                 }];
             }
             [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
@@ -139,11 +156,19 @@
         {
             if(!right)
             {
-                right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(DD_DesignerModel *model) {
-                    DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                    _DesignerHomePage.designerId=model.designerId;
-                    [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-                    [[DD_CustomViewController sharedManager] tabbarHide];
+                right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
+                    if([type isEqualToString:@"login"])
+                    {
+                        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                            [self pushLoginView];
+                        }] animated:YES completion:nil];
+                    }else
+                    {
+                        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                        _DesignerHomePage.designerId=model.designerId;
+                        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                        [[DD_CustomViewController sharedManager] tabbarHide];
+                    }
                 }];
             }
             if(currentPage<1)

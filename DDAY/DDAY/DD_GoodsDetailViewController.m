@@ -11,6 +11,7 @@
 #import "DD_ClearingViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "ImageViewController.h"
+#import "DD_LoginViewController.h"
 
 #import "DD_ColorsModel.h"
 #import "DD_ClearingModel.h"
@@ -187,8 +188,16 @@ __bool(isExpanded);
             [self CreateImgScreenView];
         }else if([type isEqualToString:@"collect"])
         {
-            //            收藏
-            [self Colloct_Action];
+            if(![DD_UserModel isLogin])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                //            收藏
+                [self Colloct_Action];
+            } 
         }
     }];
     [container addSubview:_InformView];
@@ -204,7 +213,15 @@ __bool(isExpanded);
         
         if([type isEqualToString:@"follow"]||[type isEqualToString:@"unfollow"])
         {
-            [self followAction:type];
+            if(![DD_UserModel isLogin])
+            {
+                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [self pushLoginView];
+                }] animated:YES completion:nil];
+            }else
+            {
+                [self followAction:type];
+            }
             
         }else if([type isEqualToString:@"designer"])
         {
@@ -400,6 +417,24 @@ __bool(isExpanded);
 
 
 #pragma mark - SomeAction
+/**
+ * 跳转登录界面
+ */
+-(void)pushLoginView
+{
+    if(![DD_UserModel isLogin])
+    {
+        [mengban removeFromSuperview];
+        mengban=nil;
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+    }
+}
 
 //蒙板消失
 -(void)mengban_dismiss
@@ -409,6 +444,7 @@ __bool(isExpanded);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
         mengban=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }];
 
 }
@@ -478,14 +514,16 @@ __bool(isExpanded);
 {
     if(!mengban)
     {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban=[UIImageView getMaskImageView];
-        [self.view.window addSubview:mengban];
+        [self.view addSubview:mengban];
         [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
         
         DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
         sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
             if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
             {
+                
                 if([sizeid isEqualToString:@""])
                 {
                     [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
@@ -493,18 +531,28 @@ __bool(isExpanded);
                 {
                     if(count)
                     {
-                        [self mengban_dismiss];
-                        if([type isEqualToString:@"shop"])
+                        if(![DD_UserModel isLogin])
                         {
-                            //                加入购物车
-                            [self ShopAction:sizeid WithNum:count];
-                        }else if([type isEqualToString:@"buy"])
+                            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                                [self pushLoginView];
+                            }] animated:YES completion:nil];
+                        }else
                         {
-                            //                购买
-                            [self BuyAction:sizeid WithNum:count];
+                            [self mengban_dismiss];
+                            if([type isEqualToString:@"shop"])
+                            {
+                                //                加入购物车
+                                [self ShopAction:sizeid WithNum:count];
+                            }else if([type isEqualToString:@"buy"])
+                            {
+                                //                购买
+                                [self BuyAction:sizeid WithNum:count];
+                            }
                         }
+                        
                     }
                 }
+                
             }else if([type isEqualToString:@"stock_warning"])
             {
                 [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
@@ -636,8 +684,16 @@ __bool(isExpanded);
 //跳转购物车视图
 -(void)PushShopView
 {
-    DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-    [self.navigationController pushViewController:_shop animated:YES];
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+        [self.navigationController pushViewController:_shop animated:YES];
+    }
 }
 
 #pragma mark - Other

@@ -28,7 +28,7 @@
     [self SomeBlock];
 }
 #pragma mark - 初始化
--(instancetype)initWithBlock:(void(^)(DD_DesignerModel *model))block;
+-(instancetype)initWithBlock:(void(^)(NSString *type ,DD_DesignerModel *model))block;
 {
     self=[super init];
     if(self)
@@ -43,47 +43,54 @@
     __block NSMutableArray *__dataArr=_dataArr;
     __block UITableView *__tableview=_tableview;
     __block DD_DesignerFollowViewController *_desginerView=self;
-    __block void (^___block)(DD_DesignerModel *model)=_block;
+    __block void (^___block)(NSString *type ,DD_DesignerModel *model)=_block;
     followblock=^(NSInteger index,NSString *type)
     {
         if([type isEqualToString:@"click"])
         {
             DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
-            ___block(_model);
+            ___block(@"click",_model);
         }else
         {
-            DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
-            NSString *url=nil;
-            if([type isEqualToString:@"unfollow"])
+            if(![DD_UserModel isLogin])
             {
-                //            取消关注
-                url=@"designer/unCareDesigner.do";
-                
-                
-            }else if([type isEqualToString:@"follow"])
+                ___block(@"login",nil);
+            }else
             {
-                //            关注
-                url=@"designer/careDesigner.do";
-            }
-            [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                if(success)
+                DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
+                NSString *url=nil;
+                if([type isEqualToString:@"unfollow"])
                 {
-                    if([type isEqualToString:@"unfollow"])
-                    {
-                        [__dataArr removeObjectAtIndex:index];
-                        
-                    }else if([type isEqualToString:@"follow"])
-                    {
-                        _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
-                    }
-                    [__tableview reloadData];
-                }else
+                    //            取消关注
+                    url=@"designer/unCareDesigner.do";
+                    
+                    
+                }else if([type isEqualToString:@"follow"])
                 {
-                    [_desginerView presentViewController:successAlert animated:YES completion:nil];
+                    //            关注
+                    url=@"designer/careDesigner.do";
                 }
-            } failure:^(NSError *error, UIAlertController *failureAlert) {
-                [_desginerView presentViewController:failureAlert animated:YES completion:nil];
-            }];
+                [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        if([type isEqualToString:@"unfollow"])
+                        {
+                            [__dataArr removeObjectAtIndex:index];
+                            
+                        }else if([type isEqualToString:@"follow"])
+                        {
+                            _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                        }
+                        [__tableview reloadData];
+                    }else
+                    {
+                        [_desginerView presentViewController:successAlert animated:YES completion:nil];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [_desginerView presentViewController:failureAlert animated:YES completion:nil];
+                }];
+            }
+            
         }
     };
 }
@@ -219,7 +226,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_DesignerModel *_model=[_dataArr objectAtIndex:indexPath.section];
-    _block(_model);
+    _block(@"select",_model);
 }
 
 #pragma mark - Other
@@ -234,7 +241,6 @@
     {
         [self updateDesigner];
     }
-    [[DD_CustomViewController sharedManager] tabbarAppear];
     [MobClick beginLogPageView:@"DD_DesignerFollowViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

@@ -202,7 +202,11 @@
         
     }];
     _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:_ListModel]);
+    _headView.userInteractionEnabled=YES;
+    [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+
     _tableview.tableHeaderView=_headView;
+    
 }
 
 #pragma mark - RequestData
@@ -335,6 +339,10 @@
 {
     [_commentview return_KeyBoard];
 }
+-(void)KeyBoardDismiss
+{
+    [_commentview return_KeyBoard];
+}
 /**
  * 跳转登录界面
  */
@@ -380,6 +388,9 @@
     {
         //                达人
         [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:nowListModel.userId] animated:YES];
+    }else
+    {
+        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
     }
 }
 /**

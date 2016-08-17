@@ -29,15 +29,18 @@
 }
 +(NSArray *)getSetListArr
 {
-//    return @[@"notice"
-//             ,@"clean"
-//             ,@"suggest"
-//             ,@"about"
-//             ,@"logout"
-//             ];
+
+    if([DD_UserModel isLogin])
+    {
+        return @[@"information"
+                 ,@"alertPSW"
+                 ,@"logout"
+                 ,@"about"
+                 ,@"clean"
+                 ];
+    }
     return @[@"information"
              ,@"alertPSW"
-             ,@"logout"
              ,@"about"
              ,@"clean"
              ];
