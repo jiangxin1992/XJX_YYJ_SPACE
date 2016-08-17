@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DD_ImageModel.h"
 
 @interface DD_DesignerModel : NSObject
 +(DD_DesignerModel *)getDesignerModel:(NSDictionary *)dict;

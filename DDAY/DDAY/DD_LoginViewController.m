@@ -219,10 +219,10 @@
         {
             [DD_UserModel setLocalUserInfo:data];
             // 更新当前权限状态
-            [regular UpdateRoot];
+//            [regular UpdateRoot];
             // 更新友盟用户统计和渠道
             [regular updateProfileSignInWithPUID];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
             _successblock(@"success");
             [self.navigationController popViewControllerAnimated:YES];
         }else
@@ -321,10 +321,10 @@
                  {
                      [DD_UserModel setLocalUserInfo:data];
                      // 更新当前权限状态
-                     [regular UpdateRoot];
+//                     [regular UpdateRoot];
                      // 更新友盟用户统计和渠道
                      [regular updateProfileSignInWithPUID];
-                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
                      _successblock(@"success");
                      
                      [self.navigationController popViewControllerAnimated:YES];

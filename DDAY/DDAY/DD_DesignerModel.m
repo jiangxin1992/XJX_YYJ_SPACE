@@ -12,6 +12,7 @@
 +(DD_DesignerModel *)getDesignerModel:(NSDictionary *)dict
 {
     DD_DesignerModel *_DesignerModel=[DD_DesignerModel objectWithKeyValues:dict];
+    _DesignerModel.items=[DD_ImageModel getImageModelArr:[dict objectForKey:@"items"]];
     return _DesignerModel;
 }
 +(NSArray *)getDesignerModelArr:(NSArray *)arr

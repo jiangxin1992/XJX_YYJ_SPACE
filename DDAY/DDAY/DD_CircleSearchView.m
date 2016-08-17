@@ -12,7 +12,7 @@
 
 @implementation DD_CircleSearchView
 {
-    UITextField *searchField;
+    UISearchBar *_searchBar;
     UITableView *_tableview;
     UIView *searchView;
     NSMutableArray *_dataArr;
@@ -56,6 +56,7 @@
 }
 -(void)CreateSearchBar
 {
+    
     searchView=[UIView getCustomViewWithColor:nil];
     [self addSubview:searchView];
     [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,36 +65,38 @@
         make.height.mas_equalTo(43);
     }];
     
-    searchField=[[UITextField alloc] init];
-    [searchView addSubview:searchField];
-    searchField.returnKeyType=UIReturnKeySearch;
-    searchField.placeholder=@"搜索款式、设计师、品牌";
-    searchField.delegate=self;
-    searchField.textColor=_define_black_color;
-    searchField.text=_queryStr;
-    [searchField becomeFirstResponder];
-    [searchField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(16+35);
-        make.right.mas_equalTo(-16-35);
-        make.top.bottom.mas_equalTo(0);
+    _searchBar = [[UISearchBar alloc] init];
+    [searchView addSubview:_searchBar];
+    _searchBar.delegate=self;
+    _searchBar.placeholder=@"搜索款式、设计师、品牌";
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.backgroundColor=[UIColor whiteColor];
+    imageView.frame=CGRectMake(0, 0, ScreenWidth, 43);
+    [_searchBar insertSubview:imageView atIndex:1];
+    _searchBar.searchBarStyle=UISearchBarStyleDefault;
+    _searchBar.text=_queryStr;
+    [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(searchView);
     }];
+    [_searchBar becomeFirstResponder];
     
-    UIView *leftView=[UIView getCustomViewWithColor:_define_white_color];
-    [searchView addSubview:leftView];
-    leftView.frame=CGRectMake(16, 0, 35, 43);
     
-    UIButton *leftBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
-    [leftView addSubview:leftBtn];
-    leftBtn.frame=CGRectMake(0, (CGRectGetHeight(leftView.frame)-26)/2.0f, 26, 26);
-    [leftBtn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *rightView=[UIView getCustomViewWithColor:_define_white_color];
-    [searchView addSubview:rightView];
-    rightView.frame=CGRectMake(ScreenWidth-16-35, 0, 35, 43);
-    UIButton *rightBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
-    [rightView addSubview:rightBtn];
-    rightBtn.frame=CGRectMake(CGRectGetWidth(rightView.frame)-26,(CGRectGetHeight(rightView.frame)-26)/2.0f, 26, 26);
-    [rightBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIView *leftView=[UIView getCustomViewWithColor:_define_white_color];
+//    [searchView addSubview:leftView];
+//    leftView.frame=CGRectMake(16, 0, 35, 43);
+//    
+//    UIButton *leftBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
+//    [leftView addSubview:leftBtn];
+//    leftBtn.frame=CGRectMake(0, (CGRectGetHeight(leftView.frame)-26)/2.0f, 26, 26);
+//    [leftBtn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIView *rightView=[UIView getCustomViewWithColor:_define_white_color];
+//    [searchView addSubview:rightView];
+//    rightView.frame=CGRectMake(ScreenWidth-16-35, 0, 35, 43);
+//    UIButton *rightBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
+//    [rightView addSubview:rightBtn];
+//    rightBtn.frame=CGRectMake(CGRectGetWidth(rightView.frame)-26,(CGRectGetHeight(rightView.frame)-26)/2.0f, 26, 26);
+//    [rightBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [searchView addSubview:downLine];
@@ -117,16 +120,49 @@
         make.top.mas_equalTo(searchView.mas_bottom).with.offset(0);
     }];
 }
--(void)leftAction
+#pragma mark - someAction
+-(void)searchAction
 {
-    [searchField becomeFirstResponder];
+    if(![_searchBar.text isEqualToString:@""])
+    {
+        NSDictionary *_parameters=@{@"queryStr":_searchBar.text,@"page":[NSNumber numberWithLong:_page],@"token":[DD_UserModel getToken]};
+        [[JX_AFNetworking alloc] GET:@"item/queryColorItemsByParam.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                }
+                NSArray *getarr=[DD_CricleChooseItemModel getItemsModelArr:[data objectForKey:@"items"] WithDetail:_chooseItem];
+                [_dataArr addObjectsFromArray:getarr];
+                [_tableview reloadData];
+            }else
+            {
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                }
+                [_tableview reloadData];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+        }];
+    }else
+    {
+        [_dataArr removeAllObjects];
+        _page=1;
+        [_tableview reloadData];
+    }
 }
--(void)rightAction
-{
-    _block(@"back",@"");
-//    _queryStr=@"";
-//    searchField.text=_queryStr;
-}
+//-(void)leftAction
+//{
+//    [_searchBar becomeFirstResponder];
+//}
+//-(void)rightAction
+//{
+//    _block(@"back",@"");
+////    _queryStr=@"";
+////    searchField.text=_queryStr;
+//}
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -172,42 +208,27 @@
     DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:indexPath.section];
     _block(@"search",item.name);
 }
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-    if(![searchField.text isEqualToString:@""])
-    {
-        NSDictionary *_parameters=@{@"itemName":searchField.text,@"page":[NSNumber numberWithLong:_page],@"token":[DD_UserModel getToken]};
-        [[JX_AFNetworking alloc] GET:@"item/queryColorItemsByParam.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                if(_page==1)
-                {
-                    [_dataArr removeAllObjects];//删除所有数据
-                }
-                NSArray *getarr=[DD_CricleChooseItemModel getItemsModelArr:[data objectForKey:@"items"] WithDetail:_chooseItem];
-                [_dataArr addObjectsFromArray:getarr];
-                [_tableview reloadData];
-            }else
-            {
-                if(_page==1)
-                {
-                    [_dataArr removeAllObjects];//删除所有数据
-                }
-                [_tableview reloadData];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-        }];
-    }else
-    {
-        [_dataArr removeAllObjects];
-        _page=1;
-        [_tableview reloadData];
-    }
-    
+    [self searchAction];
+    NSLog(@"ShouldBeginEditing");
     return YES;
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    _block(@"search",searchField.text);
-    return YES;
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self searchAction];
+    NSLog(@"DidChange");
 }
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    _block(@"search",_searchBar.text);
+
+}
+
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    _block(@"search",_searchBar.text);
+//    return YES;
+//}
 @end

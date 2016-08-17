@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleViewController.m"
-            timestampString = "493105012.833834"
+            filePath = "DDAY/DD_CircleSearchView.m"
+            timestampString = "493120713.761843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-ApplyAction"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DesignerMainViewController.m"
-            timestampString = "493105867.198506"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-CreateSearchBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

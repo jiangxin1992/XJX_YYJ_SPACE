@@ -368,7 +368,7 @@ static regular *_t = nil;
             if([DD_UserModel getUserType]!=[[data objectForKey:@"userType"] integerValue])
             {
                 [DD_UserModel UpdateUserType:[[data objectForKey:@"userType"] integerValue]];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"root_update"];
             }
         }else
         {

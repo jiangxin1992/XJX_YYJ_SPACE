@@ -40,6 +40,7 @@
 }
 -(void)PrepareData
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction:) name:@"rootChange" object:nil];
     CGSize size = [Tools sizeOfStr:@"全部" andFont:[regular getFont:15.0f] andMaxSize:CGSizeMake(999999, 30) andLineBreakMode:NSLineBreakByWordWrapping];
     CGFloat _width=size.width;
     _rect_left=CGRectMake(0, 33, _width, 3);
@@ -104,6 +105,22 @@
     [self.view addSubview:_pageVc.view];
 }
 #pragma mark - SomeAction
+-(void)RootChangeAction:(NSNotification *)not
+{
+    if([not.object isEqualToString:@"logout"]||[not.object isEqualToString:@"login"])
+    {
+        for (UIButton *_btn in btnarr) {
+            _btn.selected=NO;
+            if(_btn.tag==100)
+            {
+                _btn.selected=YES;
+                currentPage=_btn.tag-100;
+            }
+        }
+        [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
+        dibu.frame=_rect_left;
+    }
+}
 -(void)qiehuan:(UIButton *)btn
 {
     if(btn.tag-100==0)

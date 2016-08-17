@@ -13,6 +13,9 @@
 @end
 
 @implementation DD_CircleShowDetailImgViewController
+{
+    UIImageView *_pho;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +50,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIImageView *_pho=[[UIImageView alloc] init];
+    _pho=[UIImageView getCustomImg];
     [self.view addSubview:_pho];
     if([_type isEqualToString:@"data"])
     {
@@ -102,9 +105,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    _pho.hidden=YES;
     [MobClick endLogPageView:@"DD_CircleShowDetailImgViewController"];
 }
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

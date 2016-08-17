@@ -56,6 +56,7 @@
 {
     _page=1;
     _dataArr=[[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rootChange:) name:@"rootChange" object:nil];
 }
 -(void)PrepareUI
 {
@@ -246,6 +247,17 @@
 }
 
 #pragma mark - SomeAction
+/**
+ * 权限发生改变
+ */
+-(void)rootChange:(NSNotification *)not
+{
+    if([not.object isEqualToString:@"login"]||[not.object isEqualToString:@"logout"])
+    {
+        _page=1;
+        [self RequestData];
+    }
+}
 /**
  * 跳转日历
  */

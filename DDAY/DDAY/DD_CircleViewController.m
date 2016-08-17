@@ -51,12 +51,32 @@
     _page=1;
     _getChangeNot=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeNotAction) name:@"getChangeNot" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction) name:@"rootChange" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction:) name:@"rootChange" object:nil];
     
 }
 -(void)PrepareUI{
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
-    [self RootChangeAction];
+    //     1 管理员 2 设计师 3 普通用户 4 达人
+    if([DD_UserModel getUserType]==3)
+    {
+        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
+        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
+        self.navigationItem.rightBarButtonItem=nil;
+    }
+    if([DD_UserModel getUserType]==2||[DD_UserModel getUserType]==4||[DD_UserModel getUserType]==1)
+    {
+        self.navigationItem.leftBarButtonItem=nil;
+        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
+        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+    }else
+    {
+        self.navigationItem.leftBarButtonItem=nil;
+        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
+        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+    }
 }
 /**
  * cell中交互回调
@@ -455,7 +475,7 @@
 /**
  * 用户权限变化
  */
--(void)RootChangeAction
+-(void)RootChangeAction:(NSNotification *)not
 {
     //     1 管理员 2 设计师 3 普通用户 4 达人
     if([DD_UserModel getUserType]==3)
@@ -477,6 +497,11 @@
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+    }
+    if([not.object isEqualToString:@"login"]||[not.object isEqualToString:@"logout"])
+    {
+        _page=1;
+        [self RequestData];
     }
 }
 #pragma mark - UITableViewDelegate

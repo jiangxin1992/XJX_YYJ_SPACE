@@ -296,11 +296,11 @@
         {
             _usermodel=nil;
             [self UpdateUI];
-            
         }
     }];
     [self.navigationController pushViewController:_set animated:YES];
 }
+
 /**
  * 获取当前的list arr
  */

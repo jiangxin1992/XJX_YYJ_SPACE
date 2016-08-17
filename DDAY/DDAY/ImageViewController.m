@@ -15,10 +15,11 @@
 @end
 
 @implementation ImageViewController
--(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithBlock:(void(^)(NSString *type,NSInteger index))block{
+-(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithIsFit:(BOOL )is_fit WithBlock:(void(^)(NSString *type,NSInteger index))block{
     self=[super init];
     if(self)
     {
+        _is_fit=is_fit;
         _type=type;
         _size=size;
         _block=block;
@@ -33,7 +34,15 @@
     _imgv.userInteractionEnabled=YES;
     [self.view addSubview:_imgv];
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.mas_equalTo(0);
+        if(_is_fit)
+        {
+            make.edges.mas_equalTo(self.view);
+        }else
+        {
+            make.left.top.bottom.mas_equalTo(0);
+            make.right.mas_offset(IsPhone6_gt?-60:-49);
+        }
+        
     }];
     [_imgv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchAction)]];
     _imgv.hidden=YES;
@@ -41,6 +50,7 @@
 }
 -(void)touchAction
 {
+    NSLog(@"_currentPage=%ld",_currentPage);
     _block(@"show_img",_currentPage);
 }
 

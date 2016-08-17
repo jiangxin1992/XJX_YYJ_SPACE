@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ImageViewController : DD_BaseViewController
--(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithBlock:(void(^)(NSString *type,NSInteger index))block;
+-(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithIsFit:(BOOL )is_fit WithBlock:(void(^)(NSString *type,NSInteger index))block;
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign) NSInteger maxPage;
 @property (nonatomic,copy) NSArray *array;
+__bool(is_fit);
 __string(type);
 /**
  * 高度

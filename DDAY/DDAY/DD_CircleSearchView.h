@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleSearchView : UIView<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface DD_CircleSearchView : UIView<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 -(instancetype)initWithQueryStr:(NSString *)queryStr WithChooseItem:(NSArray *)chooseItem WithBlock:(void(^)(NSString *type,NSString *queryStr))block;
 __string(queryStr);
 __array(chooseItem);

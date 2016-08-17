@@ -235,7 +235,7 @@
 -(void)RequestData
 {
 
-    NSDictionary *_parameters=@{@"itemName":queryStr,@"page":[NSNumber numberWithLong:_page],@"token":[DD_UserModel getToken]};
+    NSDictionary *_parameters=@{@"queryStr":queryStr,@"page":[NSNumber numberWithLong:_page],@"token":[DD_UserModel getToken]};
     [[JX_AFNetworking alloc] GET:@"item/queryColorItemsByParam.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

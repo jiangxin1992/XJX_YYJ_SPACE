@@ -135,10 +135,11 @@ __bool(isExpanded);
     
     if(_colorModel.pics.count)
     {
+        
         //    创建pageViewControler（活动图片浏览视图）
         _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         [container addSubview:_pageViewControler.view];
-        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
+        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
         }];
         imgvc.array=_colorModel.pics;
         imgvc.view.backgroundColor = [UIColor clearColor];
@@ -147,19 +148,18 @@ __bool(isExpanded);
         [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         _pageViewControler.delegate = self;
         _pageViewControler.dataSource = self;
-        
-        
-        ManageView=[[DD_DrawManageView alloc] initWithImgCount:_colorModel.pics.count];
-        [container addSubview:ManageView];
-        ManageView.userInteractionEnabled=NO;
-        ManageView.backgroundColor=_define_light_gray_color2;
-        
         [_pageViewControler.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(12);
             make.height.mas_equalTo(IsPhone6_gt?363:301);
         }];
+        
+        ManageView=[[DD_DrawManageView alloc] initWithImgCount:_colorModel.pics.count];
+        [container addSubview:ManageView];
+        ManageView.userInteractionEnabled=NO;
+        ManageView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Item_Frame"]];
+        
         [ManageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(_pageViewControler.view.mas_right).with.offset(-1);
             make.bottom.mas_equalTo(_pageViewControler.view).with.offset(-1);
@@ -382,7 +382,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
@@ -398,7 +398,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
@@ -608,10 +608,6 @@ __bool(isExpanded);
 //加入购物车动作
 -(void)ShopAction:(NSString *)sizeid WithNum:(NSInteger )count
 {
-    //    __string(sizeBriefPic);
-    //    __long(sizeBriefPicHeight);
-    //    __long(sizeBriefPicWidth);
-    
     
     DD_ColorsModel * colorModel=[_DetailModel getColorModelNameWithID:_DetailModel.item.colorId];
 

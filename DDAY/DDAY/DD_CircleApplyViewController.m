@@ -106,7 +106,6 @@
                 [self CreateContentView];
             }
             self.navigationItem.titleView=[regular returnNavView:nav_title withmaxwidth:200];
-            [regular UpdateRoot];
             
         }else
         {

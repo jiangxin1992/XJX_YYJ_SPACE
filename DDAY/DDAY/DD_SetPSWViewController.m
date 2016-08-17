@@ -117,9 +117,10 @@
             // 本地化数据
             [DD_UserModel setLocalUserInfo:data];
             // 更新当前权限状态
-            [regular UpdateRoot];
+//            [regular UpdateRoot];
             // 更新友盟用户统计和渠道
             [regular updateProfileSignInWithPUID];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
             _successblock(@"success");
             //            回到登录发起页面
             NSArray *controllers=self.navigationController.viewControllers;

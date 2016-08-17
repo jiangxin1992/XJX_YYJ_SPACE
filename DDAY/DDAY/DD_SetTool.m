@@ -12,13 +12,6 @@
 +(NSDictionary *)getSetListMap
 {
 
-//    return @{
-//             @"notice":NSLocalizedString(@"user_set_notice", @"")
-//             ,@"clean":NSLocalizedString(@"user_set_clean", @"")
-//             ,@"suggest":NSLocalizedString(@"user_set_suggest", @"")
-//             ,@"about":NSLocalizedString(@"user_set_about", @"")
-//             ,@"logout":NSLocalizedString(@"user_set_logout", @"")
-//             };
     return @{
              @"information":NSLocalizedString(@"user_set_information", @"")
              ,@"alertPSW":NSLocalizedString(@"user_info_alertPSW", @"")

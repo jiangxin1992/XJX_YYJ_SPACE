@@ -93,7 +93,7 @@
     
     
     _imgView=[[DD_CircleDetailImgView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type,NSInteger index) {
-        _block(type,0,nil);
+        _block(type,index,nil);
     }];
     [self addSubview:_imgView];
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {

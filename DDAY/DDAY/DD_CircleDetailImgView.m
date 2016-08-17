@@ -51,7 +51,7 @@
     //    创建pageViewControler（活动图片浏览视图）
     _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     [self addSubview:_pageViewControler.view];
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(210, 300) WithType:_type WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(210, 300) WithType:_type WithIsFit:YES WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     imgvc.type=_type;
@@ -123,7 +123,7 @@
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:_type WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:_type WithIsFit:YES WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     if([_type isEqualToString:@"data"])
@@ -148,7 +148,7 @@
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:_type WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc]initWithSize:CGSizeMake(ScreenWidth, 300) WithType:_type WithIsFit:YES WithBlock:^(NSString *type, NSInteger index) {
         _block(type,index);
     }];
     if([_type isEqualToString:@"data"])

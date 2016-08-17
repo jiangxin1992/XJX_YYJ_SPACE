@@ -8,6 +8,8 @@
 
 #import "DD_DesignerCell.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_DesignerCell
 {
     UIImageView *_head;
@@ -134,12 +136,15 @@
     }
     CGFloat _x_p=14;
     for (int i=0; i<Designer.items.count; i++) {
-        NSString *imgStr=[Designer.items objectAtIndex:i];
+        DD_ImageModel *imgModel=[Designer.items objectAtIndex:i];
+        NSString *imgStr=imgModel.pic;
         UIImageView *img=[UIImageView getCustomImg];
         [_scrollview addSubview:img];
+        img.contentMode=UIViewContentModeScaleToFill;
         [img JX_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
-        img.frame=CGRectMake(_x_p, 14, 206, 206);
-        _x_p+=14+206;
+        CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*206.0f;
+        img.frame=CGRectMake(_x_p, 14, _width, 206);
+        _x_p+=14+_width;
     }
     _scrollview.contentSize=CGSizeMake(_x_p,234);
 }
