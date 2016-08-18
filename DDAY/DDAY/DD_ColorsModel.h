@@ -21,8 +21,8 @@ __array(pics);
 __array(size);
 __string(colorName);
 __string(sizeBriefPic);
-__long(sizeBriefPicHeight);
-__long(sizeBriefPicWidth);
+__string(sizeBriefPicHeight);
+__string(sizeBriefPicWidth);
 
 
 

@@ -95,12 +95,12 @@
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }else
     {
-        if([regular pswLengthVerify:_PSWTextfield.text])
+        if([regular checkPassword:_PSWTextfield.text])
         {
             [self enterRegisterAction];
         }else
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_length", @"")] animated:YES completion:nil];
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_form", @"")] animated:YES completion:nil];
         }
     }
 }

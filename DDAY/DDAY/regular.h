@@ -74,9 +74,17 @@
  */
 +(void)dismissKeyborad;
 /**
- * 密码长度验证
+ * 正则匹配用户密码6-15位数字和字母组合
  */
-+(BOOL )pswLengthVerify:(NSString *)phone;
++ (BOOL)checkPassword:(NSString *) password;
+///**
+// * 密码格式验证
+// */
+//+(BOOL )pswFormVerify:(NSString *)phone;
+///**
+// * 密码长度验证
+// */
+//+(BOOL )pswLengthVerify:(NSString *)phone;
 /**
  * 验证码格式验证
  */

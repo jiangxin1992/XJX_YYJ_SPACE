@@ -23,10 +23,11 @@
     {
         if(_ClearingOrder.discountEnable)
         {
-            _ClearingOrder.price=_ClearingOrder.originalPrice;
+            _ClearingOrder.price=_ClearingOrder.price;
+            
         }else
         {
-            _ClearingOrder.price=_ClearingOrder.price;
+            _ClearingOrder.price=_ClearingOrder.originalPrice;
         }
     }
     

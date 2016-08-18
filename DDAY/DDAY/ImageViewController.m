@@ -40,7 +40,7 @@
         }else
         {
             make.left.top.bottom.mas_equalTo(0);
-            make.right.mas_offset(IsPhone6_gt?-60:-49);
+            make.right.mas_equalTo(IsPhone6_gt?-60:-49);
         }
         
     }];

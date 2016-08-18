@@ -382,12 +382,29 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSDictionary *dict=nil;
+            if([[resultDic objectForKey:@"result"] isEqualToString:@""])
+            {
+                if([DD_UserModel getTradeOrderCode])
+                {
+                    
+                    dict=@{
+                           @"resultStatus":[resultDic objectForKey:@"resultStatus"]
+                           ,@"tradeOrderCode":[DD_UserModel getTradeOrderCode]
+                           };
+                }
+            }else
+            {
+                dict=@{
+                       @"resultStatus":[resultDic objectForKey:@"resultStatus"]
+                       ,@"tradeOrderCode":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
+                       };
+            }
             
-            NSDictionary *dict=@{
-                                 @"returnCode":[resultDic objectForKey:@"resultStatus"]
-                                 ,@"out_trade_no":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
-                                 };
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
+            if(dict)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
+            }
         }];
     }
     return YES;
@@ -399,11 +416,29 @@
         
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSDictionary *dict=@{
-                                 @"returnCode":[resultDic objectForKey:@"resultStatus"]
-                                 ,@"out_trade_no":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
-                                 };
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
+            NSDictionary *dict=nil;
+            if([[resultDic objectForKey:@"result"] isEqualToString:@""])
+            {
+                if([DD_UserModel getTradeOrderCode])
+                {
+                    
+                    dict=@{
+                           @"resultStatus":[resultDic objectForKey:@"resultStatus"]
+                           ,@"tradeOrderCode":[DD_UserModel getTradeOrderCode]
+                           };
+                }
+            }else
+            {
+                dict=@{
+                       @"resultStatus":[resultDic objectForKey:@"resultStatus"]
+                       ,@"tradeOrderCode":[self get_out_trade_no_WithResult:[resultDic objectForKey:@"result"]]
+                       };
+            }
+            
+            if(dict)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"payAction" object:dict];
+            }
         }];
     }
     return YES;

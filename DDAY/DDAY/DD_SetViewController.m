@@ -221,6 +221,7 @@
         {
             [DD_UserModel logout];
             [MobClick profileSignOff];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"logout"];
             _successblock(@"logout");
             for (id obj in self.navigationController.viewControllers) {
                 if([obj isKindOfClass:[DD_UserViewController class]])

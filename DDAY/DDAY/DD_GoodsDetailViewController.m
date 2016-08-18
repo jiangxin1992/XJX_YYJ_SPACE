@@ -12,6 +12,7 @@
 #import "DD_DesignerHomePageViewController.h"
 #import "ImageViewController.h"
 #import "DD_LoginViewController.h"
+#import "DD_ClearingDoneViewController.h"
 
 #import "DD_ColorsModel.h"
 #import "DD_ClearingModel.h"
@@ -86,6 +87,7 @@ __bool(isExpanded);
 -(void)PrepareData
 {
     _isExpanded=YES;
+    
 }
 -(void)PrepareUI
 {
@@ -567,8 +569,8 @@ __bool(isExpanded);
             _mengban_size_Height=IsPhone6_gt?228:185;
         }else
         {
-            CGFloat _imgHeight=(((CGFloat)_colorModel.sizeBriefPicHeight)/((CGFloat)_colorModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(227+_imgHeight):(284+_imgHeight);
+            CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
+            _mengban_size_Height=IsPhone6_gt?(228+_imgHeight):(185+_imgHeight);
         }
         sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{
@@ -587,14 +589,21 @@ __bool(isExpanded);
 //                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
 //                        ];
     DD_ColorsModel *clolorModel=[_DetailModel getColorsModel];
-    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorCode":clolorModel.colorCode,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice]}];
+    NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorCode":clolorModel.colorCode,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice],@"originalPrice":_DetailModel.item.originalPrice}];
+    
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
     [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             DD_ClearingModel *_ClearingModel=[DD_ClearingModel getClearingModel:data];
-            [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:^(NSString *type) {
-                
+            [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:^(NSString *type,NSDictionary *resultDic) {
+                if([type isEqualToString:@"pay_back"]&&[resultDic objectForKey:@"resultStatus"]&&[resultDic objectForKey:@"tradeOrderCode"])
+                {
+                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[resultDic objectForKey:@"tradeOrderCode"] WithType:@"clear" WithBlock:^(NSString *type) {
+                        
+                    }] animated:YES];
+                    
+                }
             }] animated:YES];
             
         }else

@@ -150,7 +150,7 @@
 -(void)setAction
 {
     [comment mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_offset(_CommentModel.commHeight);
+        make.height.mas_equalTo(_CommentModel.commHeight);
     }];
     comment.text=_CommentModel.comment;
     userName.text=_CommentModel.userName;

@@ -339,21 +339,16 @@
         [self UpdateImgView];
     }else
     {
+        //            删除已选款式
+        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index];
+        item.isSelect=NO;
+        //    删除item 对应的已选款式
+        [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
+        
         _block(@"delete_choose_item",index);
         [self UpdateImgView];
     }
     [waterflow reloadData];
-    
-//    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:index];
-////     跳转商品详情
-//    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-//    _item.g_id=_itemModel.g_id;
-//    _item.colorId=_itemModel.colorId;
-//    _item.colorCode=_itemModel.colorCode;
-//    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-//        //        if(type)
-//    }];
-//    [self.navigationController pushViewController:_GoodsDetail animated:YES];  
 
 }
 #pragma mark - SomeAction

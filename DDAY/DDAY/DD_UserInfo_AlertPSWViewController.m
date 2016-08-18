@@ -30,7 +30,7 @@
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }else
     {
-        if([regular pswLengthVerify:_oldPSWTextfield.text]&&[regular pswLengthVerify:_newpsw.text]&&[regular pswLengthVerify:_repeat_newpsw.text])
+        if([regular checkPassword:_oldPSWTextfield.text]&&[regular checkPassword:_newpsw.text]&&[regular checkPassword:_repeat_newpsw.text])
         {
             if([_newpsw.text isEqualToString:_repeat_newpsw.text])
             {
@@ -41,7 +41,7 @@
             }
         }else
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_length", @"")] animated:YES completion:nil];
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_form", @"")] animated:YES completion:nil];
         }
     }
 }

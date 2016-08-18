@@ -82,7 +82,9 @@
         }else if([type isEqualToString:@"click"])
         {
             //            跳转订单详情
-            [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:nil] animated:YES];
+            [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+                
+            }] animated:YES];
         }
     };
 }
@@ -114,11 +116,12 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
-        [self RequestData];
-    }];
-    [self.navigationController pushViewController:_DoneView animated:YES];
+    if([self isVisible]){
+        DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"resultStatus"] WithTradeOrderCode:[not.object objectForKey:@"tradeOrderCode"] WithType:@"clear" WithBlock:^(NSString *type) {
+            [self RequestData];
+        }];
+        [self.navigationController pushViewController:_DoneView animated:YES];
+    }
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -266,9 +269,11 @@
                 orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                                orderSpec, signedString, @"RSA"];
                 NSLog(@"%@",orderString);
+                [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
                 [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                     [self RequestData];
-                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:_OrderModel.tradeOrderCode WithType:@"order" WithBlock:^(NSString *type) {
+                    
+                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"order" WithBlock:^(NSString *type) {
                     }] animated:YES];
                 }];
             }
@@ -285,14 +290,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_OrderModel *_order=[_dataArr objectAtIndex:indexPath.section];
-    if(_order.orderStatus==1)
-    {
-        return 178;
-    }else
-    {
-        return 222;
-    }
+    return 222;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -358,7 +356,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    跳转订单详情
-    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:nil] animated:YES];
+    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+        
+    }] animated:YES];
 }
 //section头部间距
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -372,7 +372,9 @@
     return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithSection:section WithBlock:^(NSString *type, NSInteger section) {
         if([type isEqualToString:@"click"])
         {
-            [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:nil] animated:YES];
+            [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+                
+            }] animated:YES];
         }
     }];
 }

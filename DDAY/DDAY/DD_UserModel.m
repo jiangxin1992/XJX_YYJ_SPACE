@@ -25,6 +25,21 @@
     NSString *jsonstr_user=[_User JSONString];
     [_default setObject:jsonstr_user forKey:@"user"];
 }
++(void)setTradeOrderCode:(NSString *)tradeOrderCode
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:tradeOrderCode forKey:@"tradeOrderCode"];
+}
++(void)removeTradeOrderCode
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:nil forKey:@"tradeOrderCode"];
+}
++(NSString *)getTradeOrderCode
+{
+     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    return [_default objectForKey:@"tradeOrderCode"];
+}
 +(void)logout
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];

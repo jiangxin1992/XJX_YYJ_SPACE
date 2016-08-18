@@ -118,10 +118,10 @@
         [self addSubview:sizeBriefImg];
         [sizeBriefImg JX_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(kEdge);
-            make.right.mas_offset(-kEdge);
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.height.mas_offset(_imgHeight);
+            make.height.mas_equalTo(_imgHeight);
         }];
     }
     

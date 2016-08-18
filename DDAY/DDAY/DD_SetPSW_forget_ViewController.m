@@ -100,12 +100,12 @@
     {
         if([_repeatPSWTextfield.text isEqualToString:_PSWTextfield.text])
         {
-            if([regular pswLengthVerify:_PSWTextfield.text])
+            if([regular checkPassword:_PSWTextfield.text])
             {
                 [self enterDoneAction];
             }else
             {
-                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_length", @"")] animated:YES completion:nil];
+                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_form", @"")] animated:YES completion:nil];
             }
         }else
         {

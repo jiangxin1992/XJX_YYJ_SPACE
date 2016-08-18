@@ -207,23 +207,23 @@
     if([btn.type isEqualToString:@"cancel"])
     {
         //取消订单
-        //        _cellblock(btn.type,_indexPath);
+        _cellblock(btn.type,_indexPath);
     }else if([btn.type isEqualToString:@"confirm"])
     {
         //确认收货
-        //        _cellblock(btn.type,_indexPath);
+        _cellblock(btn.type,_indexPath);
     }else if([btn.type isEqualToString:@"delect"])
     {
         //删除订单
-        //        _cellblock(btn.type,_indexPath);
+        _cellblock(btn.type,_indexPath);
     }else if([btn.type isEqualToString:@"pay"])
     {
         //支付
-        //        _cellblock(btn.type,_indexPath);
+        _cellblock(btn.type,_indexPath);
     }else if([btn.type isEqualToString:@"logistics"])
     {
         //查看物流
-        //        _cellblock(btn.type,_indexPath);
+        _cellblock(btn.type,_indexPath);
     }
 }
 

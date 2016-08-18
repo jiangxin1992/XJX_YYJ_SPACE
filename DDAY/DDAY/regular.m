@@ -103,14 +103,27 @@ static regular *_t = nil;
 {
     return [self Verify:phone WithCode:@"[1-9]\\d{5}(?![0-9])"];
 }
-+(BOOL )pswLengthVerify:(NSString *)phone
+
++ (BOOL)checkPassword:(NSString *) password
 {
-    if(phone.length>=6&&phone.length<=15)
-    {
-        return YES;
-    }
-    return NO;
+    NSString *pattern = @"@^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,15}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"@SELF MATCHES %@", pattern];
+    BOOL isMatch = [pred evaluateWithObject:password];
+    return isMatch;
+    
 }
+//+(BOOL )pswFormVerify:(NSString *)phone
+//{
+//    return [self Verify:phone WithCode:@"^[a-zA-Z]\w{5,15}$"];
+//}
+//+(BOOL )pswLengthVerify:(NSString *)phone
+//{
+//    if(phone.length>=6&&phone.length<=15)
+//    {
+//        return YES;
+//    }
+//    return NO;
+//}
 +(BOOL)numberVerift:(NSString *)phone
 {
     return [self Verify:phone WithCode:@"^[0-9]+([.]{0,1}[0-9]+){0,1}$"];

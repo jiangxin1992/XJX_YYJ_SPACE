@@ -48,7 +48,7 @@
     [self CreateTabBar];
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block
 {
     self=[super init];
     if(self)
@@ -312,16 +312,12 @@
                 if (signedString != nil) {
                     orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                                    orderSpec, signedString, @"RSA"];
-                    NSLog(@"%@",orderString);
+                    [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
                     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                        NSData *returnData=[[resultDic objectForKey:@"result"] JSONData];
-                        NSDictionary *returnDict=[NSJSONSerialization  JSONObjectWithData:returnData options:0 error:nil];
-                        NSString *out_trade_no=[returnDict objectForKey:@"out_trade_no"];
-                        NSLog(@"returnData=%@",returnData);
-                        NSLog(@"out_trade_no=%@",out_trade_no);
-                        [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"clear" WithBlock:^(NSString *type) {
-                            
-                        }] animated:YES];
+                        
+                        NSDictionary *_resultDic=@{@"resultStatus":[resultDic objectForKey:@"resultStatus"],@"tradeOrderCode":[data objectForKey:@"tradeOrderCode"]};
+                        [self.navigationController popViewControllerAnimated:YES];
+                        _successblock(@"pay_back",_resultDic);
                     }];
                 }
                 
@@ -358,13 +354,13 @@
  */
 -(void)payAction:(NSNotification *)not
 {
-    
-//    returnCode
-//    out_trade_no
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
-        //                            if(type)
-    }];
-    [self.navigationController pushViewController:_DoneView animated:YES];
+
+    if([self isVisible])
+    {
+        NSDictionary *resultDic=@{@"resultStatus":[not.object objectForKey:@"resultStatus"],@"tradeOrderCode":[not.object objectForKey:@"tradeOrderCode"]};
+        [self.navigationController popViewControllerAnimated:YES];
+        _successblock(@"pay_back",resultDic);
+    }
 }
 
 

@@ -96,7 +96,7 @@
     [self.view addSubview:retrieveBtn];
     [retrieveBtn addTarget:self action:@selector(fogetPWD) forControlEvents:UIControlEventTouchUpInside];
     [retrieveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_PSWTextfiled.mas_bottom).with.mas_offset(5);
+        make.top.mas_equalTo(_PSWTextfiled.mas_bottom).with.offset(5);
         make.height.mas_equalTo(30);
         make.left.mas_equalTo(50);
         make.width.mas_equalTo(100);
@@ -106,7 +106,7 @@
     [self.view addSubview:registerBtn];
     [registerBtn addTarget:self action:@selector(CreateCount) forControlEvents:UIControlEventTouchUpInside];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_PSWTextfiled.mas_bottom).with.mas_offset(5);
+        make.top.mas_equalTo(_PSWTextfiled.mas_bottom).with.offset(5);
         make.height.mas_equalTo(30);
         make.right.mas_equalTo(-50);
         make.width.mas_equalTo(100);
@@ -193,12 +193,13 @@
     {
         if([regular phoneVerify:_phoneTextfiled.text])
         {
-            if([regular pswLengthVerify:_PSWTextfiled.text])
+            if([regular checkPassword:_PSWTextfiled.text])
             {
                 [self enterloginAction];
             }else
             {
-                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_length", @"")] animated:YES completion:nil];
+
+                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_form", @"")] animated:YES completion:nil];
             }
             
         }else

@@ -13,7 +13,7 @@
  * 结算页面初始化
  * _model:结算界面数据
  */
--(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block;
 /**
  * 结算界面数据
  */
@@ -21,7 +21,7 @@
 /**
  * 结算回调
  */
-@property (nonatomic,copy)void(^successblock)(NSString *type);
+@property (nonatomic,copy)void(^successblock)(NSString *type,NSDictionary *resultDic);
 @end
 
 

@@ -41,7 +41,7 @@
     [self RequestData];
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_OrderModel *)model WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithModel:(DD_OrderModel *)model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block
 {
     self=[super init];
     if(self)
@@ -205,19 +205,63 @@
         DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
         [self.navigationController pushViewController:[[DD_OrderLogisticsViewController alloc] initWithModel:_order WithBlock:nil] animated:YES];
     }
-    
 }
 /**
  * 支付回调
  */
 -(void)payAction:(NSNotification *)not
 {   
+    if([self isVisible])
+    {
+        if([self haveClearingDoneView])
+        {
+            NSDictionary *resultDic=@{@"resultStatus":[not.object objectForKey:@"resultStatus"],@"tradeOrderCode":[not.object objectForKey:@"tradeOrderCode"]};
+            [self popToClearingBeforeViewWithResultDic:resultDic];
+        }else
+        {
+            DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"resultStatus"] WithTradeOrderCode:[not.object objectForKey:@"tradeOrderCode"] WithType:@"detail_order_havenot_clearing_done" WithBlock:^(NSString *type) {
+                //                            if(type)
+            }];
+            [self.navigationController pushViewController:_DoneView animated:YES];
+        }
+    }
     
-    DD_ClearingDoneViewController *_DoneView=[[DD_ClearingDoneViewController alloc] initWithReturnCode:[not.object objectForKey:@"returnCode"] WithTradeOrderCode:[not.object objectForKey:@"out_trade_no"] WithType:@"clear" WithBlock:^(NSString *type) {
-        //                            if(type)
-    }];
-    [self.navigationController pushViewController:_DoneView animated:YES];
 }
+/**
+ * 前面是否有 DD_ClearingDoneViewController
+ */
+-(BOOL)haveClearingDoneView
+{
+    NSArray *controllers=self.navigationController.viewControllers;
+    for (int i=0; i<controllers.count; i++) {
+        id obj=controllers[i];
+        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+/**
+ * 跳转到 DD_ClearingDoneViewController的前一页
+ */
+-(void)popToClearingBeforeViewWithResultDic:(NSDictionary *)resultDic
+{
+    NSArray *controllers=self.navigationController.viewControllers;
+    for (int i=0; i<controllers.count; i++) {
+        id obj=controllers[i];
+        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+        {
+            if(i)
+            {
+                DD_BaseViewController *base=controllers[i-1];
+                [self.navigationController popToViewController:base animated:YES];
+                [base pushCleaingDoneViewWithResultDic:resultDic WithType:@"detail_order_have_clearing_done"];
+            }
+        }
+    }
+}
+
 /**
  * 删除订单
  */
@@ -290,7 +334,14 @@
             {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功取消订单" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self.navigationController popViewControllerAnimated:YES];
+                    if([self haveClearingDoneView])
+                    {
+                        [self popToClearingBeforeView];
+                    }else
+                    {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    
                 }];
                 [alertController addAction:okAction];
                 [self presentViewController:alertController animated:YES completion:nil];
@@ -303,6 +354,25 @@
         }];
     }] animated:YES completion:nil];
    
+}
+
+/**
+ * 跳转到 DD_ClearingDoneViewController的前一页
+ */
+-(void)popToClearingBeforeView
+{
+    NSArray *controllers=self.navigationController.viewControllers;
+    for (int i=0; i<controllers.count; i++) {
+        id obj=controllers[i];
+        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+        {
+            if(i)
+            {
+                DD_BaseViewController *base=controllers[i-1];
+                [self.navigationController popToViewController:base animated:YES];
+            }
+        }
+    }
 }
 
 /**
@@ -342,9 +412,17 @@
                 orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                                orderSpec, signedString, @"RSA"];
                 NSLog(@"%@",orderString);
+                [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
                 [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:tradeOrderCode WithType:@"detail_order" WithBlock:^(NSString *type) {
-                    }] animated:YES];
+                    if([self haveClearingDoneView])
+                    {
+                        NSDictionary *_resultDic=@{@"resultStatus":[resultDic objectForKey:@"resultStatus"],@"tradeOrderCode":[data objectForKey:@"tradeOrderCode"]};
+                        [self popToClearingBeforeViewWithResultDic:_resultDic];
+                    }else
+                    {
+                        [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"detail_order_havenot_clearing_done" WithBlock:^(NSString *type) {
+                        }] animated:YES];
+                    }
                 }];
             }
         }else
@@ -455,6 +533,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(_tableview)
+    {
+        [self RequestData];
+    }
     [MobClick beginLogPageView:@"DD_OrderDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

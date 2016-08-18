@@ -27,9 +27,9 @@
     [self addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(5);
-        make.left.mas_offset(kEdge);
-        make.right.mas_offset(-kEdge);
-        make.top.mas_offset(0);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(0);
     }];
     
     UIButton *buyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"购买" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];

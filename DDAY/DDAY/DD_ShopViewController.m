@@ -21,6 +21,7 @@
 #import "DD_ShopAlertNumView.h"
 #import "DD_ShopAlertSizeView.h"
 #import "DD_LoginViewController.h"
+#import "DD_ClearingDoneViewController.h"
 
 @interface DD_ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -527,7 +528,15 @@
             if(success)
             {
                 DD_ClearingModel *_ClearingModel=[DD_ClearingModel getClearingModel:data];
-                [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:nil] animated:YES];
+                [self.navigationController pushViewController:[[DD_ClearingViewController alloc] initWithModel:_ClearingModel WithBlock:^(NSString *type, NSDictionary *resultDic) {
+                    if([type isEqualToString:@"pay_back"]&&[resultDic objectForKey:@"resultStatus"]&&[resultDic objectForKey:@"tradeOrderCode"])
+                    {
+                        [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[resultDic objectForKey:@"tradeOrderCode"] WithType:@"clear" WithBlock:^(NSString *type) {
+                            
+                        }] animated:YES];
+                        
+                    }
+                }] animated:YES];
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];

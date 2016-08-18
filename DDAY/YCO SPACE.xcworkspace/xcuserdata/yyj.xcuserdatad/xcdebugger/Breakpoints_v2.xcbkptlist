@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleSearchView.m"
-            timestampString = "493120713.761843"
+            filePath = "DDAY/DD_LoginViewController.m"
+            timestampString = "493226379.802458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-CreateSearchBar"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-loginAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

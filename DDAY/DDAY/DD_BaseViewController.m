@@ -9,7 +9,7 @@
 #import "DD_BaseViewController.h"
 
 #import "DD_LoginViewController.h"
-
+#import "DD_ClearingDoneViewController.h"
 @interface DD_BaseViewController ()
 
 @end
@@ -46,6 +46,10 @@
 {
     self.navigationItem.leftBarButtonItem=nil;
 }
+-(BOOL )isVisible
+{
+    return (self.isViewLoaded && self.view.window);
+}
 /**
  * 跳转登录界面
  */
@@ -61,6 +65,12 @@
         }];
         [self.navigationController pushViewController:_login animated:YES];
     }
+}
+-(void )pushCleaingDoneViewWithResultDic:(NSDictionary *)resultDic WithType:(NSString *)type
+{
+    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[resultDic objectForKey:@"tradeOrderCode"] WithType:type WithBlock:^(NSString *type) {
+        
+    }] animated:YES];
 }
 -(void)backAction
 {

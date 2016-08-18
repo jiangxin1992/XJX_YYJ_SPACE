@@ -120,9 +120,9 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_offset(0);
-        make.height.mas_offset(ScreenHeight-kNavHeight-169);
-        make.width.mas_offset(ScreenWidth);
+        make.left.and.top.mas_equalTo(0);
+        make.height.mas_equalTo(ScreenHeight-kNavHeight-169);
+        make.width.mas_equalTo(ScreenWidth);
     }];
 }
 #pragma mark - RequestData

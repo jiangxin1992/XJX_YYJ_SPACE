@@ -129,7 +129,8 @@
  */
 -(void)checkOrderAction
 {
-    [[JX_AFNetworking alloc] GET:@"order/queryTradeOrderInfo.do" parameters:@{@"tradeOrderCode":_tradeOrderCode,@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *_parameters = @{@"tradeOrderCode":_tradeOrderCode,@"token":[DD_UserModel getToken]};
+    [[JX_AFNetworking alloc] GET:@"order/queryTradeOrderInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *getArr=[DD_OrderModel getOrderModelArr:[data objectForKey:@"orders"]];
@@ -141,7 +142,9 @@
                 }else
                 {
                     DD_OrderModel *order=[getArr objectAtIndex:0];
-                    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:nil] animated:YES];
+                    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:^(NSString *type, NSDictionary *resultDic) {
+                        
+                    }] animated:YES];
                 }
             }
         }else
@@ -168,23 +171,17 @@
  */
 -(void)backAction
 {
+    NSLog(@"type=%@",_type);
     if([_type isEqualToString:@"clear"])
     {
-        NSArray *controllers=self.navigationController.viewControllers;
-        for (int i=0; i<controllers.count; i++) {
-            id obj=controllers[i];
-            if([obj isKindOfClass:[DD_ClearingViewController class]])
-            {
-                if(i>0)
-                {
-                    [self.navigationController popToViewController:controllers[i-1] animated:YES];
-                }
-            }
-        }
+        [self.navigationController popViewControllerAnimated:YES];
     }else if([_type isEqualToString:@"order"])
     {
         [self.navigationController popViewControllerAnimated:YES];
-    }else if([_type isEqualToString:@"detail_order"])
+    }else if([_type isEqualToString:@"detail_order_have_clearing_done"])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if([_type isEqualToString:@"detail_order_havenot_clearing_done"])
     {
         NSArray *controllers=self.navigationController.viewControllers;
         for (int i=0; i<controllers.count; i++) {
@@ -193,7 +190,7 @@
             {
                 if(i>0)
                 {
-                    [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                    [self.navigationController popToViewController:controllers[i] animated:YES];
                 }
             }
         }
@@ -203,6 +200,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+//    [DD_UserModel removeTradeOrderCode];
     [MobClick beginLogPageView:@"DD_ClearingDoneViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

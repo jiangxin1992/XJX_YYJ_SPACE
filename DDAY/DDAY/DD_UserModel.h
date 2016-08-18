@@ -54,6 +54,18 @@ __string(weight);
  */
 +(void)logout;
 /**
+ * 存入订单号
+ */
++(void)setTradeOrderCode:(NSString *)tradeOrderCode;
+/**
+ * 移除订单号
+ */
++(void)removeTradeOrderCode;
+/**
+ * 获取订单号
+ */
++(NSString *)getTradeOrderCode;
+/**
  * 获取model
  */
 +(DD_UserModel *)getUserModel:(NSDictionary *)dict;

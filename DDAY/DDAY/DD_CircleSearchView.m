@@ -71,14 +71,23 @@
     _searchBar.placeholder=@"搜索款式、设计师、品牌";
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.backgroundColor=[UIColor whiteColor];
-    imageView.frame=CGRectMake(0, 0, ScreenWidth, 43);
+    imageView.frame=CGRectMake(0, 0, ScreenWidth-40, 43);
     [_searchBar insertSubview:imageView atIndex:1];
     _searchBar.searchBarStyle=UISearchBarStyleDefault;
     _searchBar.text=_queryStr;
     [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(searchView);
+        make.top.left.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(-40);
     }];
     [_searchBar becomeFirstResponder];
+    
+    UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:14.0f WithSpacing:0 WithNormalTitle:@"取消" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:nil WithSelectedColor:nil];
+    [searchView addSubview:cancelBtn];
+    [cancelBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.right.mas_equalTo(0);
+        make.left.mas_equalTo(_searchBar.mas_right).with.offset(0);
+    }];
     
     
 //    UIView *leftView=[UIView getCustomViewWithColor:_define_white_color];
@@ -157,12 +166,12 @@
 //{
 //    [_searchBar becomeFirstResponder];
 //}
-//-(void)rightAction
-//{
-//    _block(@"back",@"");
-////    _queryStr=@"";
-////    searchField.text=_queryStr;
-//}
+-(void)rightAction
+{
+    _block(@"back",@"");
+//    _queryStr=@"";
+//    searchField.text=_queryStr;
+}
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

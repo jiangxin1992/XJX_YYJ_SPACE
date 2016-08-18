@@ -143,32 +143,19 @@
     UIImageView *sizeBriefImg=nil;
     if(_ColorsModel.sizeBriefPic&&![_ColorsModel.sizeBriefPic isEqualToString:@""])
     {
-        CGFloat _imgHeight=(((CGFloat)_ColorsModel.sizeBriefPicHeight)/((CGFloat)_ColorsModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
+        CGFloat _h = [_ColorsModel.sizeBriefPicHeight floatValue];
+        CGFloat _w = [_ColorsModel.sizeBriefPicWidth floatValue];
+        CGFloat _imgHeight=(_h/_w)*(ScreenWidth-kEdge*2);
         sizeBriefImg=[UIImageView getCustomImg];
         [self addSubview:sizeBriefImg];
         [sizeBriefImg JX_loadImageUrlStr:_ColorsModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(kEdge);
-            make.right.mas_offset(-kEdge);
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.height.mas_offset(_imgHeight);
+            make.height.mas_equalTo(_imgHeight);
         }];
     }
-    
-//    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-//    [self addSubview:downLine];
-//    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(kEdge);
-//        make.right.mas_equalTo(-kEdge);
-//        make.height.mas_equalTo(1);
-//        if(sizeBriefImg)
-//        {
-//            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
-//        }else
-//        {
-//            make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
-//        }
-//    }];
     
     
     UIButton * buy=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"结   算" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -177,7 +164,6 @@
     [buy addTarget:self action:@selector(buyAction) forControlEvents:UIControlEventTouchUpInside];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-//        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
         if(sizeBriefImg)
         {
             make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(15);

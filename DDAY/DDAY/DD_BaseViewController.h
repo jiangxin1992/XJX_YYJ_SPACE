@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_BaseViewController : UIViewController
--(void)hideBackNavBtn;
--(void)pushLoginView;
+-(void )hideBackNavBtn;
+-(void )pushLoginView;
+-(BOOL )isVisible;
+-(void )pushCleaingDoneViewWithResultDic:(NSDictionary *)resultDic WithType:(NSString *)type;
+
 @end

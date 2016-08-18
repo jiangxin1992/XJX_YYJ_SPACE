@@ -57,14 +57,14 @@
 -(void)PrepareUI{
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
     //     1 管理员 2 设计师 3 普通用户 4 达人
-    if([DD_UserModel getUserType]==3)
+    NSInteger _userType=[DD_UserModel getUserType];
+    if(_userType==3)
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.rightBarButtonItem=nil;
-    }
-    if([DD_UserModel getUserType]==2||[DD_UserModel getUserType]==4||[DD_UserModel getUserType]==1)
+    }else if(_userType==2||_userType==4||_userType==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
@@ -72,6 +72,7 @@
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
     }else
     {
+        NSLog(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
@@ -477,15 +478,16 @@
  */
 -(void)RootChangeAction:(NSNotification *)not
 {
+    NSInteger _userType=[DD_UserModel getUserType];
+    NSLog(@"UserType=%ld",_userType);
     //     1 管理员 2 设计师 3 普通用户 4 达人
-    if([DD_UserModel getUserType]==3)
+    if(_userType==3)
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.rightBarButtonItem=nil;
-    }
-    if([DD_UserModel getUserType]==2||[DD_UserModel getUserType]==4||[DD_UserModel getUserType]==1)
+    }else if(_userType==2||_userType==4||_userType==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
@@ -493,6 +495,7 @@
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
     }else
     {
+         NSLog(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
