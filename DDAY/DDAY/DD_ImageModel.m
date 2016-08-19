@@ -22,4 +22,13 @@
     }
     return itemsArr;
 }
++(NSArray *)getRandomImageModelArr:(NSArray *)arr
+{
+    NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
+    int x = arc4random() % (arr.count+1);
+    for (int i=0; i<x; i++) {
+        [itemsArr addObject:[self getImageModel:[arr objectAtIndex:i]]];
+    }
+    return itemsArr;
+}
 @end

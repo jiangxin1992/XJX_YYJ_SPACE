@@ -21,6 +21,7 @@
              ,@"collection":NSLocalizedString(@"user_collection", @"")
              ,@"customer":NSLocalizedString(@"user_contact_customer", @"")
              ,@"set":NSLocalizedString(@"user_set_title", @"")
+             ,@"showroom":NSLocalizedString(@"user_showroom", @"")
              };
 }
 +(NSArray *)getUserImgListArr
@@ -35,6 +36,7 @@
                  ,@"System_Notcollection"
                  ,@"System_Order"
                  ,@"System_set_up"
+                 ,@"System_set_up"
                  ];
     }else if(_usertype==2)
     {
@@ -45,6 +47,7 @@
                  ,@"System_Conference"
                  ,@"System_Notcollection"
                  ,@"System_set_up"
+                 ,@"System_set_up"
                  ];
     }else
     {
@@ -54,6 +57,7 @@
                  ,@"System_Order"
                  ,@"System_set_up"
                  ,@"System_Notcollection"
+                 ,@"System_set_up"
                  ];
     }
 }
@@ -69,6 +73,7 @@
                  ,@"collection"
                  ,@"order"
                  ,@"set"
+                 ,@"showroom"
                  ];
     }else if(_usertype==2)
     {
@@ -79,6 +84,7 @@
                  ,@"conference"
                  ,@"collection"
                  ,@"set"
+                 ,@"showroom"
                  ];
     }else
     {
@@ -88,6 +94,7 @@
                  ,@"order"
                  ,@"set"
                  ,@"collection"
+                 ,@"showroom"
                  ];
     }
 }

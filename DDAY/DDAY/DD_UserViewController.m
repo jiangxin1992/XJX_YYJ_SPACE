@@ -18,6 +18,7 @@
 #import "DD_FansViewController.h"
 #import "DD_UserDDAYViewController.h"
 #import "DD_UserItemBtn.h"
+#import "DD_ShowRoomViewController.h"
 
 @interface DD_UserViewController ()
 
@@ -163,14 +164,24 @@
         [self PushOrderView];
     }else if([btn.type isEqualToString:@"conference"])
     {
-        [self PushConferenceView];;
+        [self PushConferenceView];
     }else if([btn.type isEqualToString:@"collection"])
     {
         [self PushCollectionView];
     }else if([btn.type isEqualToString:@"set"])
     {
         [self setAction];
+    }else if([btn.type isEqualToString:@"showroom"])
+    {
+        [self PushShowRoom];
     }
+}
+/**
+ * 跳转体验店页面
+ */
+-(void)PushShowRoom
+{
+    [self.navigationController pushViewController:[DD_ShowRoomViewController new] animated:YES];
 }
 /**
  * 跳转订单页面

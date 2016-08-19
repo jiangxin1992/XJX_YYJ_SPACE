@@ -13,6 +13,7 @@
  * 初始化方法
  */
 -(instancetype)initWithFrame:(CGRect)frame WithStartP:(CGPoint )start_point WithEndP:(CGPoint )end_point WithLineWidth:(CGFloat )width WithColorType:(NSInteger )type;
+-(instancetype)initWithStartP:(CGPoint )start_point WithEndP:(CGPoint )end_point WithLineWidth:(CGFloat )width WithColorType:(NSInteger )type;
 
 @property (nonatomic,assign) CGPoint start_point;//起始位置
 @property (nonatomic,assign) CGPoint end_point;//结束为止

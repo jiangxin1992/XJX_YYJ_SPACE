@@ -18,7 +18,7 @@
  */
 +(NSArray *)getImageModelArr:(NSArray *)arr;
 
-
++(NSArray *)getRandomImageModelArr:(NSArray *)arr;
 /**
  * 原图高
  */

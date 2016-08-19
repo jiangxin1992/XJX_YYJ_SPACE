@@ -22,6 +22,19 @@
     }
     return self;
 }
+-(instancetype)initWithStartP:(CGPoint )start_point WithEndP:(CGPoint )end_point WithLineWidth:(CGFloat )width WithColorType:(NSInteger )type
+{
+    self=[super init];
+    if(self)
+    {
+        _start_point=start_point;
+        _end_point=end_point;
+        _width=width;
+        _type=type;
+        self.backgroundColor=[UIColor clearColor];
+    }
+    return self;
+}
 
 -(void)drawRect:(CGRect)rect
 {   

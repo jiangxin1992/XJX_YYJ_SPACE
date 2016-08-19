@@ -226,6 +226,10 @@
 		3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */; };
 		3F8229021D0DA10500F95E79 /* DD_DesignerIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8229001D0DA10500F95E79 /* DD_DesignerIntroViewController.xib */; };
 		3F83EEA21D38916A0051C89E /* UILabel+DD_Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */; };
+		3F85BACA1D66AFB300820018 /* DD_ShowRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */; };
+		3F85BACD1D66D12500820018 /* DD_ShowRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */; };
+		3F85BAD11D66D1FA00820018 /* DD_ShowRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAD01D66D1FA00820018 /* DD_ShowRoomModel.m */; };
+		3F85BAD41D66ED3C00820018 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAD31D66ED3C00820018 /* MyPoint.m */; };
 		3F85E8161D5186A40077F848 /* DD_SizeAlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */; };
 		3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E8181D51930B0077F848 /* DD_NavBtn.m */; };
 		3F85E81D1D51B0990077F848 /* DD_AddNewAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E81C1D51B0990077F848 /* DD_AddNewAddressViewController.m */; };
@@ -241,6 +245,7 @@
 		3F8E76731D1BC69000722FDA /* DD_CircleShowDetailImgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8E76711D1BC69000722FDA /* DD_CircleShowDetailImgViewController.xib */; };
 		3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */; };
 		3F8E76791D1BCE4100722FDA /* DD_CircleApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8E76771D1BCE4100722FDA /* DD_CircleApplyViewController.xib */; };
+		3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */; };
 		3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */; };
 		3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8AD61CEF559C008EC460 /* DD_UserViewController.m */; };
 		3F9B8AD91CEF559C008EC460 /* DD_UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8AD71CEF559C008EC460 /* DD_UserViewController.xib */; };
@@ -787,6 +792,14 @@
 		3F8229001D0DA10500F95E79 /* DD_DesignerIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_DesignerIntroViewController.xib; sourceTree = "<group>"; };
 		3F83EEA01D38916A0051C89E /* UILabel+DD_Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+DD_Custom.h"; sourceTree = "<group>"; };
 		3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DD_Custom.m"; sourceTree = "<group>"; };
+		3F85BAC81D66AFB300820018 /* DD_ShowRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomViewController.h; sourceTree = "<group>"; };
+		3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomViewController.m; sourceTree = "<group>"; };
+		3F85BACB1D66D12500820018 /* DD_ShowRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomCell.h; sourceTree = "<group>"; };
+		3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomCell.m; sourceTree = "<group>"; };
+		3F85BACF1D66D1FA00820018 /* DD_ShowRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomModel.h; sourceTree = "<group>"; };
+		3F85BAD01D66D1FA00820018 /* DD_ShowRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomModel.m; sourceTree = "<group>"; };
+		3F85BAD21D66ED3C00820018 /* MyPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
+		3F85BAD31D66ED3C00820018 /* MyPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		3F85E8141D5186A40077F848 /* DD_SizeAlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SizeAlertModel.h; sourceTree = "<group>"; };
 		3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SizeAlertModel.m; sourceTree = "<group>"; };
 		3F85E8171D51930B0077F848 /* DD_NavBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_NavBtn.h; sourceTree = "<group>"; };
@@ -814,6 +827,8 @@
 		3F8E76751D1BCE4100722FDA /* DD_CircleApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleApplyViewController.h; sourceTree = "<group>"; };
 		3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleApplyViewController.m; sourceTree = "<group>"; };
 		3F8E76771D1BCE4100722FDA /* DD_CircleApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_CircleApplyViewController.xib; sourceTree = "<group>"; };
+		3F9291B01D66F9B300FD7EE2 /* DD_AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AboutViewController.h; sourceTree = "<group>"; };
+		3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AboutViewController.m; sourceTree = "<group>"; };
 		3F9B8ABB1CEF1E84008EC460 /* DD_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddressModel.h; sourceTree = "<group>"; };
 		3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddressModel.m; sourceTree = "<group>"; };
 		3F9B8AD51CEF559C008EC460 /* DD_UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserViewController.h; sourceTree = "<group>"; };
@@ -1461,6 +1476,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3F85BAD51D66ED4000820018 /* MyPoint */,
 				3FA6E0151D5078760038569C /* DD_NavBtn */,
 				3F60024A1D49EEB9007E395F /* drawView */,
 				3F7E58B41D40667D000FDE5F /* Waterflow */,
@@ -1928,6 +1944,7 @@
 		3F6001F71D499748007E395F /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				3F85BACE1D66D1E200820018 /* 体验店 */,
 				3F6001F81D499758007E395F /* 我的粉丝 */,
 			);
 			name = "我的";
@@ -2292,6 +2309,7 @@
 		3F8257161CF1BEFF0055DB78 /* 我的主页 */ = {
 			isa = PBXGroup;
 			children = (
+				3F85BAC71D66AED600820018 /* 体验店 */,
 				3F00D4111D5A4C1E00896ED5 /* 我的消息 */,
 				3F4553061D21310700524738 /* 我的粉丝 */,
 				3F4938A31D0EB6DB000D213B /* 我参与的发布会 */,
@@ -2317,6 +2335,35 @@
 				3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */,
 			);
 			name = "UILabel+DD_Custom";
+			sourceTree = "<group>";
+		};
+		3F85BAC71D66AED600820018 /* 体验店 */ = {
+			isa = PBXGroup;
+			children = (
+				3F85BAC81D66AFB300820018 /* DD_ShowRoomViewController.h */,
+				3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */,
+				3F85BACB1D66D12500820018 /* DD_ShowRoomCell.h */,
+				3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */,
+			);
+			name = "体验店";
+			sourceTree = "<group>";
+		};
+		3F85BACE1D66D1E200820018 /* 体验店 */ = {
+			isa = PBXGroup;
+			children = (
+				3F85BACF1D66D1FA00820018 /* DD_ShowRoomModel.h */,
+				3F85BAD01D66D1FA00820018 /* DD_ShowRoomModel.m */,
+			);
+			name = "体验店";
+			sourceTree = "<group>";
+		};
+		3F85BAD51D66ED4000820018 /* MyPoint */ = {
+			isa = PBXGroup;
+			children = (
+				3F85BAD21D66ED3C00820018 /* MyPoint.h */,
+				3F85BAD31D66ED3C00820018 /* MyPoint.m */,
+			);
+			name = MyPoint;
 			sourceTree = "<group>";
 		};
 		3F85E81A1D51AEAA0077F848 /* DD_ImageModel */ = {
@@ -2406,6 +2453,15 @@
 			name = "申请成为达人";
 			sourceTree = "<group>";
 		};
+		3F9291AF1D66F99E00FD7EE2 /* 关于 */ = {
+			isa = PBXGroup;
+			children = (
+				3F9291B01D66F9B300FD7EE2 /* DD_AboutViewController.h */,
+				3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */,
+			);
+			name = "关于";
+			sourceTree = "<group>";
+		};
 		3F9B8ABE1CEF542E008EC460 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2480,7 +2536,6 @@
 			isa = PBXGroup;
 			children = (
 				3F4552F61D21035D00524738 /* 个人主页 */,
-				3F9B8B401CF0D47A008EC460 /* 个人资料 */,
 				3F9B8B2B1CF08D00008EC460 /* 设置 */,
 				3F8257161CF1BEFF0055DB78 /* 我的主页 */,
 			);
@@ -2576,6 +2631,8 @@
 		3F9B8B2B1CF08D00008EC460 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				3F9291AF1D66F99E00FD7EE2 /* 关于 */,
+				3F9B8B401CF0D47A008EC460 /* 个人资料 */,
 				3F9B8B351CF0AD62008EC460 /* 建议 */,
 				3F9B8B341CF0AD55008EC460 /* 设置主页 */,
 			);
@@ -3222,6 +3279,7 @@
 				3F552E7A1CF1EA3C00BC5E33 /* DD_ItemCell.m in Sources */,
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,
+				3F85BAD41D66ED3C00820018 /* MyPoint.m in Sources */,
 				3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */,
 				3F7160B71D4F210A00E165D2 /* DD_GoodsCategoryModel.m in Sources */,
 				3F23A96D1CEF1A6F00579A3B /* DD_baseModel.m in Sources */,
@@ -3246,6 +3304,7 @@
 				3F2F76571D1CEFED002E22A6 /* DD_CircleApplyDesignerViewController.m in Sources */,
 				3F85E81D1D51B0990077F848 /* DD_AddNewAddressViewController.m in Sources */,
 				3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */,
+				3F85BACA1D66AFB300820018 /* DD_ShowRoomViewController.m in Sources */,
 				3F6813AD1D1A6AF600F4807A /* UIImage+RoundedImage.m in Sources */,
 				3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */,
 				3F9B8B441CF0D494008EC460 /* DD_UserInfoViewController.m in Sources */,
@@ -3309,6 +3368,7 @@
 				3F4187CA1CEEFED6001BCA3D /* DD_BaseViewController.m in Sources */,
 				3F552E711CF1E7BA00BC5E33 /* DD_ItemsModel.m in Sources */,
 				3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */,
+				3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */,
 				3F4187F21CEEFF1A001BCA3D /* DD_CityVCT.m in Sources */,
 				3F8E76611D1B7EC300722FDA /* DD_CircleComentInputView.m in Sources */,
 				3F7160AA1D4EDD5000E165D2 /* DD_GoodsListView.m in Sources */,
@@ -3342,6 +3402,7 @@
 				3F9B8B331CF0917A008EC460 /* DD_SetTool.m in Sources */,
 				3FA8367E1D051E1D006D2919 /* DD_OrderCell.m in Sources */,
 				3F4904E51D18E12E009F4CD3 /* DD_CircleListImgView.m in Sources */,
+				3F85BACD1D66D12500820018 /* DD_ShowRoomCell.m in Sources */,
 				3F4904DC1D18D4C4009F4CD3 /* DD_CircleListModel.m in Sources */,
 				3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */,
 				3F5717331D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m in Sources */,
@@ -3362,6 +3423,7 @@
 				3F3811B01CF54F7C007154F1 /* DataVerifier.m in Sources */,
 				3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */,
 				3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */,
+				3F85BAD11D66D1FA00820018 /* DD_ShowRoomModel.m in Sources */,
 				3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */,
 				3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */,
 				3F8E76661D1B926900722FDA /* DD_CircleDetailHeadView.m in Sources */,

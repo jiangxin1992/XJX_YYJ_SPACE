@@ -13,6 +13,8 @@
 #import "DD_UserViewController.h"
 #import "DD_SetCell.h"
 #import "DD_UserInfo_AlertPSWViewController.h"
+#import "DD_AboutViewController.h"
+
 @interface DD_SetViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -179,7 +181,7 @@
  */
 -(void)about
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    [self.navigationController pushViewController:[DD_AboutViewController new] animated:YES];
 }
 /**
  * 个人主页
