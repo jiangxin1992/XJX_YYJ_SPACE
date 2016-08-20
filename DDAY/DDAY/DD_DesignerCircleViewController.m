@@ -5,12 +5,10 @@
 //  Created by yyj on 16/6/12.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleListCell.h"
-#import "DD_CircleApplyViewController.h"
-#import "DD_CirclePublishViewController.h"
-#import "DD_CircleDetailViewController.h"
 
 #import "DD_DesignerCircleViewController.h"
+
+#import "DD_CircleListCell.h"
 
 @interface DD_DesignerCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 

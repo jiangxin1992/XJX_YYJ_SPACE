@@ -5,9 +5,11 @@
 //  Created by yyj on 16/6/15.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_CircleFitPersonView.h"
+
 #import "DD_CircleTagModel.h"
 #import "DD_CricleTagItemModel.h"
-#import "DD_CircleFitPersonView.h"
 
 @implementation DD_CircleFitPersonView
 {

@@ -10,9 +10,7 @@
 #import "DD_CircleApplyInfoView.h"
 
 @implementation DD_CircleApplyInfoView
-//{
-//    UILabel *_suggestTitle;
-//}
+
 #pragma mark - 初始化
 /**
  * 初始化

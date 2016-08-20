@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleCommentModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_CircleCommentModel.h"
 
 @interface DD_CircleCommentCell : UITableViewCell
 /**

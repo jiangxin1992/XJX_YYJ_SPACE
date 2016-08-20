@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define __string(__k__) @property(nonatomic,strong) NSString *__k__
+
 #import <Foundation/Foundation.h>
+
+#define __string(__k__) @property(nonatomic,strong) NSString *__k__
 
 @interface DD_UserModel : NSObject
 /**

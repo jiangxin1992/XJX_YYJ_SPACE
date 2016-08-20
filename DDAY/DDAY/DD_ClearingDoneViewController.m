@@ -11,7 +11,7 @@
 #import "DD_GoodsViewController.h"
 #import "DD_OrderDetailViewController.h"
 #import "DD_ClearingOrderViewController.h"
-#import "DD_ClearingViewController.h"
+
 #import "DD_OrderModel.h"
 
 @interface DD_ClearingDoneViewController ()

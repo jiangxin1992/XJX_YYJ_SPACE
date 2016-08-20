@@ -5,10 +5,25 @@
 //  Created by yyj on 16/6/8.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderDetailInfoModel.h"
+
 #import <UIKit/UIKit.h>
 
+#import "DD_OrderDetailInfoModel.h"
+
 @interface DD_OrderTabBar : UIView
+
+/**
+ * 查看物流 logistics
+ * 取消订单 cancel
+ * 去支付 pay
+ * 确认收货 confirm
+ * 删除订单 delect
+ * 退款申请中 applying_refund
+ * 退款处理中 dealing_refund
+ * 退款 refund
+ * 联系客服 contact
+ */
+
 /**
  * 初始化方法
  */
@@ -17,6 +32,7 @@
  * 更新状态
  */
 -(void)UIConfig;
+
 /**
  * 回调方法
  */

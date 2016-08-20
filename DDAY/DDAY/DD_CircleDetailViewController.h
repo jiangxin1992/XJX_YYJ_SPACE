@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleListModel.h"
 
 #import "DD_BaseViewController.h"
+
+#import "DD_CircleListModel.h"
 
 @interface DD_CircleDetailViewController : DD_BaseViewController
 

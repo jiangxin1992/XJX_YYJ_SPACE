@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/8.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-//#import "DD_AddressModel.h"
-#import "DD_OrderDetailModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_OrderDetailModel.h"
 
 @interface DD_OrderAddressView : UIView
 /**

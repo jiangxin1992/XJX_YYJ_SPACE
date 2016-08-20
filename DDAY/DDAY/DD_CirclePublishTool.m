@@ -8,6 +8,8 @@
 
 #import "DD_CirclePublishTool.h"
 
+#import "DD_CircleTagModel.h"
+
 @implementation DD_CirclePublishTool
 -(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height WithBlock:(void(^)(NSString *type,NSInteger index))block
 {

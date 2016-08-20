@@ -5,15 +5,17 @@
 //  Created by yyj on 16/6/13.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_UserMainCollectViewController.h"
+
+#import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
 #import "DD_GoodsDetailViewController.h"
 #import "DD_UserCollectItemViewController.h"
 #import "DD_UserCollectCircleViewController.h"
 #import "DD_CircleDetailViewController.h"
-#import "DD_DesignerHomePageViewController.h"
-#import "DD_TarentoHomePageViewController.h"
-#import "DD_OrderItemModel.h"
 
-#import "DD_UserMainCollectViewController.h"
+#import "DD_OrderItemModel.h"
 
 @interface DD_UserMainCollectViewController ()
 

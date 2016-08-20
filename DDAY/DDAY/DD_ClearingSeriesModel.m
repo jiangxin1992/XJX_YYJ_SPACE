@@ -8,6 +8,8 @@
 
 #import "DD_ClearingSeriesModel.h"
 
+#import "DD_ClearingOrderModel.h"
+
 @implementation DD_ClearingSeriesModel
 
 /**

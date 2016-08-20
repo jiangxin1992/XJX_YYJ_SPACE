@@ -8,6 +8,8 @@
 
 #import "DD_CityTool.h"
 
+#import "DD_ProvinceModel.h"
+
 @implementation DD_CityTool
 +(NSArray *)getCityModelArr
 {

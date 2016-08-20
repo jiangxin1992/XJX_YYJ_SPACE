@@ -8,6 +8,8 @@
 
 #import "DD_OrderDetailInfoModel.h"
 
+#import "DD_OrderModel.h"
+
 @implementation DD_OrderDetailInfoModel
 +(DD_OrderDetailInfoModel *)getOrderDetailInfoModel:(NSDictionary *)dict
 {

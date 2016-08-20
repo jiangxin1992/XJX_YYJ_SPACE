@@ -8,14 +8,14 @@
 
 #import "DD_UserCollectItemViewController.h"
 
-#import "DD_ItemTool.h"
-#import "DD_ItemsModel.h"
-
 #import "MJRefresh.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 
+#import "DD_ItemTool.h"
+#import "DD_ItemsModel.h"
+#import "DD_ImageModel.h"
 
 @interface DD_UserCollectItemViewController ()<WaterflowDataSource,WaterflowDelegate>
 

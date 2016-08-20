@@ -5,9 +5,10 @@
 //  Created by yyj on 16/5/30.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ShopTool.h"
-#import "DD_ShopModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_ShopModel.h"
 
 @interface DD_ShopClearingView : UIView
 -(instancetype)initWithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *type))block;

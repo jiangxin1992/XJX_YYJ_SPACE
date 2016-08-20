@@ -5,18 +5,19 @@
 //  Created by yyj on 16/6/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ItemsModel.h"
-#import "DD_CricleChooseItemModel.h"
-#import "DD_CricleCategoryModel.h"
-#import "DD_GoodsDetailViewController.h"
+
 #import "DD_CircleChooseDetailView.h"
+
+//#import "DD_GoodsDetailViewController.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
-#import "DD_CirclePublishTool.h"
 #import "DD_CircleSearchView.h"
-//#import "DD_CricleChooseCell.h"
-//#import "UIButton+WebCache.h"
+
+#import "DD_CirclePublishTool.h"
+#import "DD_CricleChooseItemModel.h"
+//#import "DD_ItemsModel.h"
+//#import "DD_CricleCategoryModel.h"
 
 @interface DD_CircleChooseDetailView ()<WaterflowDataSource,WaterflowDelegate>
 

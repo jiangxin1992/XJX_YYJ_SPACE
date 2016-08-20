@@ -5,9 +5,11 @@
 //  Created by yyj on 16/5/21.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_forgetViewController.h"
+
 #import "DD_LoginTextView.h"
 #import "DD_SetPSW_forget_ViewController.h"
-#import "DD_forgetViewController.h"
 
 @interface DD_forgetViewController ()<UITextFieldDelegate>
 

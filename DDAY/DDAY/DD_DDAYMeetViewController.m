@@ -8,14 +8,16 @@
 
 #import "DD_DDAYMeetViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_GoodsDetailViewController.h"
+
+#import "Waterflow.h"
+#import "WaterflowCell.h"
 
 #import "DD_ItemTool.h"
 #import "DD_ItemsModel.h"
-#import "MJRefresh.h"
-#import "DD_ShopViewController.h"
-#import "Waterflow.h"
-#import "WaterflowCell.h"
+#import "DD_ImageModel.h"
 
 @interface DD_DDAYMeetViewController ()<WaterflowDataSource,WaterflowDelegate>
 

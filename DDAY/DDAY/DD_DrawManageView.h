@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DrawView.h"
 
 @interface DD_DrawManageView : UIView
 

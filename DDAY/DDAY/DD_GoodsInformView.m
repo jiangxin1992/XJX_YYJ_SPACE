@@ -5,13 +5,15 @@
 //  Created by yyj on 16/5/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define ver_edge 22
 
 #import "DD_GoodsInformView.h"
 
 #import "UIButton+WebCache.h"
+
 #import "DD_ColorsModel.h"
-#import "DD_ColorBtn.h"
+
+#define ver_edge 22
+
 @implementation DD_GoodsInformView
 {
     UIView *downView;//下部视图

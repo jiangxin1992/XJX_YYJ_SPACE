@@ -5,11 +5,15 @@
 //  Created by yyj on 16/6/13.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_DDAYModel.h"
-#import "DD_UserDDAYCell.h"
+
+#import "DD_UserDDAYViewController.h"
+
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
-#import "DD_UserDDAYViewController.h"
+
+#import "DD_UserDDAYCell.h"
+
+#import "DD_DDAYModel.h"
 
 @interface DD_UserDDAYViewController ()<UITableViewDataSource,UITableViewDelegate>
 

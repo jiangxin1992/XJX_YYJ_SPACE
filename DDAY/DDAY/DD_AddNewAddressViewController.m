@@ -7,9 +7,14 @@
 //
 
 #import "DD_AddNewAddressViewController.h"
-#import "DD_AddNewAddressDefaultBtn.h"
-#import "DD_CityTool.h"
+
 #import "DD_ProvinceVCT.h"
+
+#import "DD_AddNewAddressDefaultBtn.h"
+
+#import "DD_CityTool.h"
+#import "DD_ProvinceModel.h"
+#import "DD_CityModel.h"
 
 @implementation DD_AddNewAddressViewController
 {

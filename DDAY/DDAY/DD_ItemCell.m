@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ImageModel.h"
+
 #import "DD_ItemCell.h"
+
+#import "DD_ImageModel.h"
 
 @implementation DD_ItemCell
 

@@ -5,9 +5,14 @@
 //  Created by yyj on 16/5/17.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
+
 #import "DD_ProvinceVCT.h"
+
 #import "DD_CityVCT.h"
+
 #import "DD_CityTool.h"
+#import "DD_ProvinceModel.h"
+
 @interface DD_ProvinceVCT ()<UITableViewDataSource,UITableViewDelegate>
 
 @end

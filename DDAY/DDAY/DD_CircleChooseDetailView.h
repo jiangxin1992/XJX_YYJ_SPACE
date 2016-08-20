@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleModel.h"
 
 #import "DD_BaseViewController.h"
+
+#import "DD_CircleModel.h"
 
 @interface DD_CircleChooseDetailView : DD_BaseViewController
 /**

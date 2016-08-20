@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DD_ProvinceModel.h"
+
 @interface DD_CityTool : NSObject
 +(NSArray *)getCityModelArr;
 @end

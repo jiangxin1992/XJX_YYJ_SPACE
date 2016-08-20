@@ -8,14 +8,14 @@
 
 #import "DD_DesignerHomePageViewController.h"
 
-#import "DD_DesignerModel.h"
-
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_CircleDetailViewController.h"
 #import "DD_DesignerItemViewController.h"
 #import "DD_DesignerCircleViewController.h"
 #import "DD_DesignerIntroViewController.h"
 #import "DD_GoodsDetailViewController.h"
+
+#import "DD_DesignerModel.h"
 
 @interface DD_DesignerHomePageViewController ()
 

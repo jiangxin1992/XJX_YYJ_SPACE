@@ -7,8 +7,11 @@
 //
 
 #import "DD_DesignerFollowViewController.h"
-#import "DD_DesignerModel.h"
+
 #import "DD_DesignerCell.h"
+
+#import "DD_DesignerModel.h"
+
 @interface DD_DesignerFollowViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end

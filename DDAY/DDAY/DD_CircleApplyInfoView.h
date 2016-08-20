@@ -5,16 +5,18 @@
 //  Created by yyj on 16/6/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
+
 #import "DD_CircleChooseStyleView.h"
 #import "DD_CircleInfoSuggestView.h"
 #import "DD_CircleInfoImgView.h"
 #import "DD_CirlcleApplyDesignerChooseView.h"
 #import "DD_CircleTagsView.h"
 #import "DD_CircleFitPersonView.h"
-#import "DD_CircleModel.h"
 #import "DD_CircleInfoSuggestSimpleView.h"
 
-#import <UIKit/UIKit.h>
+#import "DD_CircleModel.h"
 
 @interface DD_CircleApplyInfoView : UIView<UIWebViewDelegate>
 /**

@@ -10,6 +10,6 @@
 
 @interface DD_SetPSW_forget_ViewController : DD_BaseViewController
 
-
 __string(phone);
+
 @end

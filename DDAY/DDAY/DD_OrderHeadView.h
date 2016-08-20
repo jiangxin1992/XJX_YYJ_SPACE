@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/6.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_OrderModel.h"
 
 @interface DD_OrderHeadView : UIView
 -(instancetype)initWithFrame:(CGRect)frame WithOrderModel:(DD_OrderModel *)orderModel WithSection:(NSInteger )Section WithBlock:(void(^)(NSString *type,NSInteger Section))block;

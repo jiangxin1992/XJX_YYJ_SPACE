@@ -5,12 +5,17 @@
 //  Created by yyj on 16/6/2.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_DDAYDetailView.h"
-#import "DD_DDayDetailModel.h"
+
 #import "DD_DDAYDetailViewController.h"
+
 #import "DD_DDAYMeetViewController.h"
 #import "DD_ShopViewController.h"
+
 #import "DD_DDAYContainerView.h"
+#import "DD_DDAYDetailView.h"
+
+#import "DD_DDayDetailModel.h"
+
 @interface DD_DDAYDetailViewController ()
 
 @end

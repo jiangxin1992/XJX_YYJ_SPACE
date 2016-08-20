@@ -8,6 +8,8 @@
 
 #import "DD_ShopSeriesModel.h"
 
+#import "DD_ShopItemModel.h"
+
 @implementation DD_ShopSeriesModel
 +(DD_ShopSeriesModel *)getShopSeriesModel:(NSDictionary *)dict
 {

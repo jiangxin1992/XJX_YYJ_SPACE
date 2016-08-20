@@ -6,13 +6,7 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-//#import "DD_CircleListSuggestView.h"
-//#import "DD_CircleListImgView.h"
-//#import "DD_CircleListUserView.h"
-//#import "DD_CircleListInteractionView.h"
-
 #import "DD_CircleListCell.h"
-
 
 @implementation DD_CircleListCell
 {

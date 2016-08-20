@@ -8,6 +8,8 @@
 
 #import "DD_SizeAlertModel.h"
 
+#import "DD_SizeModel.h"
+
 @implementation DD_SizeAlertModel
 /**
  * 获取解析model

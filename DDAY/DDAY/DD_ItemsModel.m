@@ -8,6 +8,8 @@
 
 #import "DD_ItemsModel.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_ItemsModel
 +(DD_ItemsModel *)getItemsModel:(NSDictionary *)dict
 {

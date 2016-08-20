@@ -7,7 +7,6 @@
 //
 #import "DD_UserViewController.h"
 
-#import "DD_UserTool.h"
 #import "DD_LoginViewController.h"
 #import "DD_SetViewController.h"
 #import "DD_OrderViewController.h"
@@ -17,8 +16,11 @@
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_FansViewController.h"
 #import "DD_UserDDAYViewController.h"
-#import "DD_UserItemBtn.h"
 #import "DD_ShowRoomViewController.h"
+
+#import "DD_UserItemBtn.h"
+
+#import "DD_UserTool.h"
 
 @interface DD_UserViewController ()
 

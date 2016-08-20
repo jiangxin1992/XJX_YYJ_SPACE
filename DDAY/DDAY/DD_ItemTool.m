@@ -8,6 +8,8 @@
 
 #import "DD_ItemTool.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_ItemTool
 +(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
 {

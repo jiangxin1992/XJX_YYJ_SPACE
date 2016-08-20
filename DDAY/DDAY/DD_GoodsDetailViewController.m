@@ -5,6 +5,7 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
 #import "DD_GoodsDetailViewController.h"
 
 #import "DD_ShopViewController.h"
@@ -14,10 +15,6 @@
 #import "DD_LoginViewController.h"
 #import "DD_ClearingDoneViewController.h"
 
-#import "DD_ColorsModel.h"
-#import "DD_ClearingModel.h"
-#import "DD_GoodsDetailModel.h"
-
 #import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
 #import "DD_GoodsCircleView.h"
@@ -25,10 +22,14 @@
 #import "DD_GoodsSendAndReturnsView.h"
 #import "DD_GoodsK_POINTView.h"
 #import "DD_GoodsSimilarView.h"
-#import "DD_GoodsTabBar.h"
-
 #import "DD_ChooseSizeView.h"
 #import "DD_DrawManageView.h"
+#import "DD_GoodsTabBar.h"
+
+#import "DD_ColorsModel.h"
+#import "DD_ClearingModel.h"
+#import "DD_GoodsDetailModel.h"
+#import "DD_OtherItemModel.h"
 
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 

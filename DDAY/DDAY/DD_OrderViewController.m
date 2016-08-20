@@ -9,21 +9,17 @@
 #import "DD_OrderViewController.h"
 
 #import <AlipaySDK/AlipaySDK.h>
-#import "DD_ClearingViewController.h"
+#import "DataSigner.h"
+
 #import "DD_OrderDetailViewController.h"
 #import "DD_OrderLogisticsViewController.h"
 #import "DD_ClearingDoneViewController.h"
-
-#import "DataSigner.h"
 
 #import "DD_OrderHeadView.h"
 #import "DD_OrderCell.h"
 #import "DD_OrderMoreCell.h"
 
-
-#import "DD_ClearingModel.h"
 #import "DD_OrderModel.h"
-
 
 @interface DD_OrderViewController ()<UITableViewDataSource,UITableViewDelegate>
 

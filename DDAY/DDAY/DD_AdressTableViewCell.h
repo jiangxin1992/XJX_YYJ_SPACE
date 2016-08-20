@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/17.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
-#import "DD_AddressModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_AddressModel.h"
 
 @interface DD_AdressTableViewCell : UITableViewCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;

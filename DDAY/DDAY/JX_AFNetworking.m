@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "AFNetworking.h"
+
 #import "JX_AFNetworking.h"
+
+#import "AFNetworking.h"
 
 @implementation JX_AFNetworking
 

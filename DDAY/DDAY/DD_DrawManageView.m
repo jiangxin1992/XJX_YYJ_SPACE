@@ -8,6 +8,8 @@
 
 #import "DD_DrawManageView.h"
 
+#import "DrawView.h"
+
 @implementation DD_DrawManageView{
     UIView *backview;
     NSMutableArray *viewArr;

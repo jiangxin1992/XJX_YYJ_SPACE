@@ -6,9 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "DD_ShopModel.h"
 #import "DD_ShopItemModel.h"
-#import <Foundation/Foundation.h>
+#import "DD_ShopSeriesModel.h"
 
 @interface DD_ShopTool : NSObject
 /**

@@ -6,11 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#define ver_edge 22
-
 #import "DD_GoodsDesignerView.h"
 
 #import "UIButton+WebCache.h"
+
+#import "DD_OtherItemModel.h"
+
+#define ver_edge 22
 
 @implementation DD_GoodsDesignerView
 {

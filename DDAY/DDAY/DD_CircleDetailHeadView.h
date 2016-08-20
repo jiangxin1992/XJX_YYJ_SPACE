@@ -5,9 +5,11 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
+
 #import "DD_OrderItemModel.h"
 #import "DD_CircleListModel.h"
-#import <UIKit/UIKit.h>
 
 @interface DD_CircleDetailHeadView : UIView
 /**

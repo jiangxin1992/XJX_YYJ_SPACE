@@ -8,6 +8,8 @@
 
 #import "DD_ShopClearingView.h"
 
+#import "DD_ShopTool.h"
+
 @implementation DD_ShopClearingView
 {
     UIButton *selectBtn;

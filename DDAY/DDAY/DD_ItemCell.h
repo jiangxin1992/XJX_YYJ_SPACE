@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "DD_ItemsModel.h"
 
 @interface DD_ItemCell : UITableViewCell

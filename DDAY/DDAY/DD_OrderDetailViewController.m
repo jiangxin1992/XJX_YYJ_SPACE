@@ -5,21 +5,25 @@
 //  Created by yyj on 16/6/7.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderRefundViewController.h"
-#import "DD_OrderLogisticsViewController.h"
-#import "DD_OrderTabBar.h"
-#import "DD_OrderClearingView.h"
-#import "DD_ClearingOrderModel.h"
-#import "DD_ClearingTableViewCell.h"
-#import "DD_OrderDetailModel.h"
-#import "DD_ItemsModel.h"
-#import "DD_OrderTool.h"
+
 #import "DD_OrderDetailViewController.h"
-#import "DD_GoodsDetailViewController.h"
-#import "DD_OrderAddressView.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "DataSigner.h"
+
+#import "DD_OrderRefundViewController.h"
+#import "DD_OrderLogisticsViewController.h"
+#import "DD_GoodsDetailViewController.h"
 #import "DD_ClearingDoneViewController.h"
+
+#import "DD_OrderTabBar.h"
+#import "DD_OrderClearingView.h"
+#import "DD_ClearingTableViewCell.h"
+#import "DD_OrderAddressView.h"
+
+#import "DD_OrderTool.h"
+#import "DD_OrderDetailModel.h"
+#import "DD_ItemsModel.h"
 
 @interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 

@@ -8,8 +8,9 @@
 
 #import "DD_ShowRoomViewController.h"
 
-#import "DD_ShowRoomModel.h"
 #import "DD_ShowRoomCell.h"
+
+#import "DD_ShowRoomModel.h"
 
 @interface DD_ShowRoomViewController ()<UITableViewDataSource,UITableViewDelegate>
 

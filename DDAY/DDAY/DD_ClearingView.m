@@ -5,9 +5,11 @@
 //  Created by yyj on 16/5/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ClearingSeriesModel.h"
-#import "DD_ClearingTool.h"
+
 #import "DD_ClearingView.h"
+
+//#import "DD_ClearingTool.h"
+//#import "DD_ClearingSeriesModel.h"
 
 @implementation DD_ClearingView
 {

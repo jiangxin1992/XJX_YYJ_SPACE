@@ -5,7 +5,7 @@
 //  Created by yyj on 16/5/27.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ShopSeriesModel.h"
+
 #import <Foundation/Foundation.h>
 
 @interface DD_ShopModel : NSObject

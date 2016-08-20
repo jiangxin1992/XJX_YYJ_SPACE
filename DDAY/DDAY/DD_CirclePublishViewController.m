@@ -8,22 +8,23 @@
 
 #import "DD_CirclePublishViewController.h"
 
+#import "QiniuSDK.h"
+
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 
-#import "QiniuSDK.h"
-#import "DD_CirclePushlishPreViewController.h"
-#import "DD_CirclePublishTool.h"
-#import "DD_CircleModel.h"
-#import "DD_CircleChooseDetailView.h"
 #import "DD_CircleCustomTagViewController.h"
 #import "DD_CricleShowViewController.h"
-#import "DD_CircleInfoView.h"
 #import "DD_CirclePushlishPreViewController.h"
-
 //#import "DD_RemarksViewController.h"
+
+#import "DD_CircleInfoView.h"
+#import "DD_CircleChooseDetailView.h"
+
+#import "DD_CirclePublishTool.h"
+#import "DD_CircleModel.h"
 
 @interface DD_CirclePublishViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

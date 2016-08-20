@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DD_OrderItemModel.h"
 
 @interface DD_OrderModel : NSObject
 /**

@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/24.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_GoodsDetailModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_GoodsDetailModel.h"
 
 @interface DD_GoodsDesignerView : UIView
 -(instancetype)initWithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block;

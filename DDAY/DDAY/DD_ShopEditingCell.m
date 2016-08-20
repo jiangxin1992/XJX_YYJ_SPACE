@@ -8,6 +8,8 @@
 
 #import "DD_ShopEditingCell.h"
 
+#import "DD_ShopTool.h"
+
 @implementation DD_ShopEditingCell
 {
     NSInteger _cell_num;

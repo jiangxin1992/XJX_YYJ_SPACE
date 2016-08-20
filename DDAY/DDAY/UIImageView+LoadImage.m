@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "UIImage+RoundedImage.h"
+
 #import "UIImageView+LoadImage.h"
+
+#import "UIImage+RoundedImage.h"
 
 @implementation UIImageView (LoadImage)
 - (void)JX_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius {

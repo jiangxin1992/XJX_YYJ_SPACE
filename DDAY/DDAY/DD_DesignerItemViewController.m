@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 #import "DD_ShopViewController.h"
 #import "DD_DesignerItemViewController.h"
+#import "DD_ImageModel.h"
 
 @interface DD_DesignerItemViewController ()<WaterflowDataSource,WaterflowDelegate>
 

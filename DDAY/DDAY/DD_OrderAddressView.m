@@ -7,7 +7,11 @@
 //
 
 #import "DD_OrderAddressView.h"
+
+#import "DD_OrderModel.h"
+
 #define _jiange 9
+
 @implementation DD_OrderAddressView
 {
     UIView *_upView;

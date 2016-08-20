@@ -5,10 +5,12 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define yellow_color [UIColor colorWithRed:248.0f/255.0f green:210.0f/255.0f blue:82.0f/255.0f alpha:1]
+
+#import "DD_CircleDetailImgView.h"
 
 #import "ImageViewController.h"
-#import "DD_CircleDetailImgView.h"
+
+#define yellow_color [UIColor colorWithRed:248.0f/255.0f green:210.0f/255.0f blue:82.0f/255.0f alpha:1]
 
 @implementation DD_CircleDetailImgView
 {

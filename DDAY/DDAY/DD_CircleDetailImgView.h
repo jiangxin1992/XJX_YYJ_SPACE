@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleListModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_CircleListModel.h"
 
 @interface DD_CircleDetailImgView : UIView<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 /**

@@ -5,8 +5,10 @@
 //  Created by yyj on 16/8/2.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_SizeModel.h"
+
 #import "DD_ShopAlertSizeView.h"
+
+#import "DD_SizeModel.h"
 
 @implementation DD_ShopAlertSizeView
 {

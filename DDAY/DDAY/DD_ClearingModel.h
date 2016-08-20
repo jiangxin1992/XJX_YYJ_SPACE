@@ -5,11 +5,10 @@
 //  Created by yyj on 16/5/18.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
-#import "DD_AddressModel.h"
-#import "DD_ClearingOrderModel.h"
-#import "DD_ClearingSeriesModel.h"
-#import "DD_ClearingTool.h"
+
 #import <Foundation/Foundation.h>
+
+#import "DD_AddressModel.h"
 
 @interface DD_ClearingModel : NSObject
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict;

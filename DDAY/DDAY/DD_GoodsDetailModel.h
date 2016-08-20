@@ -5,10 +5,12 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
+
 #import "DD_GoodsDesignerModel.h"
 #import "DD_GoodsItemModel.h"
-#import "DD_OrderItemModel.h"
-#import <Foundation/Foundation.h>
+#import "DD_ColorsModel.h"
 
 @interface DD_GoodsDetailModel : NSObject
 

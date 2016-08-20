@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/7.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderDetailInfoModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_OrderDetailInfoModel.h"
 
 @interface DD_OrderClearingView : UIView<UIWebViewDelegate>
 /**

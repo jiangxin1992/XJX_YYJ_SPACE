@@ -7,18 +7,20 @@
 //
 #import "DD_GoodsDetailViewController.h"
 
-#import "DD_ItemTool.h"
-#import "DD_GoodsViewController.h"
-#import "DD_ItemsModel.h"
-#import "DD_GoodsCategoryModel.h"
 #import "MJRefresh.h"
+
+#import "DD_GoodsViewController.h"
 #import "DD_ShopViewController.h"
+
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 #import "DD_GoodsListView.h"
-
-#import "DD_GoodsListTableViewCell.h"
 #import "DD_GoodsListTableView.h"
+
+#import "DD_ItemTool.h"
+#import "DD_ItemsModel.h"
+#import "DD_GoodsCategoryModel.h"
+#import "DD_ImageModel.h"
 
 @interface DD_GoodsViewController ()<WaterflowDataSource,WaterflowDelegate>
 

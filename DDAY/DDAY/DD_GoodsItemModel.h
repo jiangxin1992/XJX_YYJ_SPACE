@@ -5,12 +5,12 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_SizeModel.h"
-#import "DD_GoodsItemModel.h"
-#import "DD_ColorsModel.h"
-#import "DD_GoodSeriesModel.h"
-#import "DD_OtherItemModel.h"
+
 #import <Foundation/Foundation.h>
+
+#import "DD_GoodsItemModel.h"
+#import "DD_SizeModel.h"
+#import "DD_GoodSeriesModel.h"
 
 @interface DD_GoodsItemModel : NSObject
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict;

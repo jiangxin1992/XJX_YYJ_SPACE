@@ -5,11 +5,13 @@
 //  Created by yyj on 16/5/21.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import <ShareSDK/ShareSDK.h>
+
 #import "DD_LoginViewController.h"
+
+#import <ShareSDK/ShareSDK.h>
+
 #import "DD_RegisterViewController.h"
 #import "DD_forgetViewController.h"
-
 #import "DD_LoginTextView.h"
 
 @interface DD_LoginViewController ()<UITextFieldDelegate>

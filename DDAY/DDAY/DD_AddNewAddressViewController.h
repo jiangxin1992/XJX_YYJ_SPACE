@@ -5,8 +5,10 @@
 //  Created by yyj on 16/8/3.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_AddressModel.h"
+
 #import "DD_BaseViewController.h"
+
+#import "DD_AddressModel.h"
 
 @interface DD_AddNewAddressViewController : DD_BaseViewController
 @property (nonatomic,strong)DD_AddressModel *AddressModel;

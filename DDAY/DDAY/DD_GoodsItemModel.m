@@ -8,6 +8,9 @@
 
 #import "DD_GoodsItemModel.h"
 
+#import "DD_ColorsModel.h"
+#import "DD_OtherItemModel.h"
+
 @implementation DD_GoodsItemModel
 -(NSString *)getSizeNameWithID:(NSString *)sizeID
 {

@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/27.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ShopItemModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_ShopItemModel.h"
 
 @interface DD_ShopCell : UITableViewCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;

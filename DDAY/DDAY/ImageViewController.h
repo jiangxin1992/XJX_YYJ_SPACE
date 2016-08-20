@@ -5,8 +5,10 @@
 //  Created by 谢江新 on 14-12-5.
 //  Copyright (c) 2014年 谢江新. All rights reserved.
 //
-#import "DD_BaseViewController.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_BaseViewController.h"
 
 @interface ImageViewController : DD_BaseViewController
 -(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithIsFit:(BOOL )is_fit WithBlock:(void(^)(NSString *type,NSInteger index))block;

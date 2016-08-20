@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_DesignerModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_DesignerModel.h"
 
 @interface DD_DesignerCell : UITableViewCell
 

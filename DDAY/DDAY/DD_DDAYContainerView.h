@@ -5,8 +5,10 @@
 //  Created by yyj on 16/8/8.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_DDayDetailModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_DDayDetailModel.h"
 
 @interface DD_DDAYContainerView : UIView
 

@@ -7,6 +7,9 @@
 //
 
 #import "DD_ClearingTool.h"
+
+#import "DD_ClearingSeriesModel.h"
+
 @implementation DD_ClearingTool
 
 +(NSDictionary *)getPayOrderInfoWithDataDict:(NSDictionary *)dataDict WithDataArr:(NSArray *)dataArr WithRemarks:(NSString *)remarks WithFreight:(NSString *)_freight

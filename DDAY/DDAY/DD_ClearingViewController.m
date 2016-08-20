@@ -5,18 +5,23 @@
 //  Created by yyj on 16/5/18.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
+
+#import "DD_ClearingViewController.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "DataSigner.h"
-#import "DD_ClearingSeriesModel.h"
-#import "DD_AddressViewController.h"
-#import "DD_SetAddressBtn.h"
-#import "DD_ClearingView.h"
-#import "DD_ClearingTool.h"
-#import "DD_ClearingViewController.h"
+
 #import "DD_ClearingTableViewCell.h"
 #import "DD_RemarksViewController.h"
-#import "DD_ClearingDoneViewController.h"
+#import "DD_AddressViewController.h"
+
+#import "DD_SetAddressBtn.h"
+#import "DD_ClearingView.h"
 #import "DD_ClearingTabbar.h"
+
+#import "DD_ClearingTool.h"
+#import "DD_ClearingSeriesModel.h"
+
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableDictionary *_dataDict;

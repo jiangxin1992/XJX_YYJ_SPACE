@@ -5,24 +5,27 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_CircleApplyViewController.h"
+
+#import "QiniuSDK.h"
+
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 
-#import "QiniuSDK.h"
+#import "DD_CircleCustomTagViewController.h"
+#import "DD_CircleApplyDesignerViewController.h"
+#import "DD_CricleShowViewController.h"
+#import "DD_CirclePushlishPreViewController.h"
+//#import "DD_RemarksViewController.h"
+
+#import "DD_CircleApplyInfoView.h"
+#import "DD_CircleChooseDetailView.h"
 
 #import "DD_CirclePublishTool.h"
 #import "DD_CircleModel.h"
-#import "DD_CircleCustomTagViewController.h"
-#import "DD_CircleApplyDesignerViewController.h"
-#import "DD_CircleApplyInfoView.h"
-#import "DD_RemarksViewController.h"
-#import "DD_CircleChooseDetailView.h"
-#import "DD_CricleShowViewController.h"
-
-#import "DD_CircleApplyViewController.h"
-#import "DD_CirclePushlishPreViewController.h"
 
 @interface DD_CircleApplyViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

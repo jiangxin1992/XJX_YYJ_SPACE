@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/21.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderItemModel.h"
 
 #import "DD_CircleListModel.h"
+
+#import "DD_OrderItemModel.h"
 
 @implementation DD_CircleListModel
 +(DD_CircleListModel *)getCircleListModel:(NSDictionary *)dict

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_ImageModel.h"
-
 @interface DD_ShowRoomModel : NSObject
 /**
  * 获取体验店model

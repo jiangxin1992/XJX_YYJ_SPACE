@@ -5,9 +5,11 @@
 //  Created by yyj on 16/6/6.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
+
 #import "DD_ClearingOrderModel.h"
 #import "DD_OrderItemModel.h"
-#import <Foundation/Foundation.h>
 
 @interface DD_OrderTool : NSObject
 /**

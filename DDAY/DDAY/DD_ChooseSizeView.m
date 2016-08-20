@@ -6,8 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_SizeModel.h"
 #import "DD_ChooseSizeView.h"
+
+#import "DD_SizeModel.h"
 
 @implementation DD_ChooseSizeView
 {

@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/20.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#define t_width ScreenWidth/5.0f
+
 #import "DD_TabbarItem.h"
+
+#define t_width ScreenWidth/5.0f
 
 @implementation DD_TabbarItem
 

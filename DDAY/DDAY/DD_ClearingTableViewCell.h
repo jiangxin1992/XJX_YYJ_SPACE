@@ -5,8 +5,10 @@
 //  Created by yyj on 16/5/18.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
-#import "DD_ClearingOrderModel.h"
+
 #import <UIKit/UIKit.h>
+
+#import "DD_ClearingOrderModel.h"
 
 @interface DD_ClearingTableViewCell : UITableViewCell
 /**

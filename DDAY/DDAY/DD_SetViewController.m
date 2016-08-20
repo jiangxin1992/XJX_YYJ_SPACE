@@ -6,14 +6,16 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_UserInfoViewController.h"
-#import "DD_SetTool.h"
 #import "DD_SetViewController.h"
-#import "DD_SuggestViewController.h"
+
+#import "DD_UserInfoViewController.h"
 #import "DD_UserViewController.h"
-#import "DD_SetCell.h"
 #import "DD_UserInfo_AlertPSWViewController.h"
 #import "DD_AboutViewController.h"
+
+#import "DD_SetCell.h"
+
+#import "DD_SetTool.h"
 
 @interface DD_SetViewController ()<UITableViewDataSource,UITableViewDelegate>
 

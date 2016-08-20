@@ -6,11 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_GoodsDetailViewController.h"
-#import "DD_ItemCell.h"
-#import "DD_CricleChooseItemModel.h"
-
 #import "DD_CircleItemListViewController.h"
+
+#import "DD_GoodsDetailViewController.h"
+
+#import "DD_ItemCell.h"
+
+#import "DD_CricleChooseItemModel.h"
 
 @interface DD_CircleItemListViewController ()<UITableViewDataSource,UITableViewDelegate>
 

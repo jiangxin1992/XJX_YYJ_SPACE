@@ -8,6 +8,8 @@
 
 #import "DD_DDAYCell.h"
 
+#import "DD_DDAYTool.h"
+
 @implementation DD_DDAYCell
 {
     dispatch_source_t _timer;

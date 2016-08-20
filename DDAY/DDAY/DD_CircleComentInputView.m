@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_CircleCommentSignBoard.h"
 
 #import "DD_CircleComentInputView.h"
+
+#import "DD_CircleCommentSignBoard.h"
 
 @implementation DD_CircleComentInputView
 {

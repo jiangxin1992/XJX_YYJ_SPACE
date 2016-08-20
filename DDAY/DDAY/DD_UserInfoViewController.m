@@ -5,18 +5,24 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_UserInfoTool.h"
+
+#import "DD_UserInfoViewController.h"
+
 #import "QiniuSDK.h"
-#import "DD_UserCell.h"
-#import "DD_AlertViewController.h"
+
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
+
+#import "DD_AlertViewController.h"
 #import "DD_UserInfo_AlertPSWViewController.h"
-#import "DD_UserInfoViewController.h"
 #import "DD_BodyViewController.h"
 #import "DD_AddressViewController.h"
+
+#import "DD_UserCell.h"
+
+#import "DD_UserInfoTool.h"
 
 @interface DD_UserInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

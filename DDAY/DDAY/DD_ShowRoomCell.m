@@ -8,6 +8,7 @@
 
 #import "DD_ShowRoomCell.h"
 
+#import "DD_ImageModel.h"
 #import "MyPoint.h"
 
 @implementation DD_ShowRoomCell

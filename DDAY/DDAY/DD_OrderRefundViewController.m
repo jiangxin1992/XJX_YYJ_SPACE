@@ -10,6 +10,8 @@
 
 #import "DD_OrderRefundViewController.h"
 
+#import "DD_OrderModel.h"
+
 @interface DD_OrderRefundViewController ()<UITextViewDelegate>
 
 @end

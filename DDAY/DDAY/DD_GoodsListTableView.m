@@ -6,10 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_GoodsListTableViewCell.h"
-
 #import "DD_GoodsListTableView.h"
+
+#import "DD_GoodsListTableViewCell.h"
 #import "DD_GoodsListBtn.h"
+
 #import "DD_GoodsCategoryModel.h"
 
 @implementation DD_GoodsListTableView

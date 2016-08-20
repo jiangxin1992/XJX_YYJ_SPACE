@@ -8,6 +8,8 @@
 
 #import "DD_ShowRoomModel.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_ShowRoomModel
 +(DD_ShowRoomModel *)getShowRoomModel:(NSDictionary *)dict
 {

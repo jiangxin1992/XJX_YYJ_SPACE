@@ -5,10 +5,14 @@
 //  Created by yyj on 16/6/7.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ClearingSeriesModel.h"
-#import "DD_ClearingTool.h"
+
 #import "DD_OrderClearingView.h"
+
+#import "DD_OrderModel.h"
+#import "DD_OrderItemModel.h"
+
 #define _jiange 9
+
 @implementation DD_OrderClearingView
 {
     UIView *totalView;

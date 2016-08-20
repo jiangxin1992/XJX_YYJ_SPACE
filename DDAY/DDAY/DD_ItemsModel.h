@@ -5,7 +5,7 @@
 //  Created by yyj on 16/5/22.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ImageModel.h"
+
 #import <Foundation/Foundation.h>
 
 @interface DD_ItemsModel : NSObject

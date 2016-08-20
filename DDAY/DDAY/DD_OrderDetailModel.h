@@ -5,9 +5,11 @@
 //  Created by yyj on 16/6/7.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
+
 #import "DD_OrderDetailInfoModel.h"
 #import "DD_AddressModel.h"
-#import <Foundation/Foundation.h>
 
 @interface DD_OrderDetailModel : NSObject
 /**

@@ -6,22 +6,25 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_ClearingViewController.h"
-#import "DD_ShopClearingView.h"
-#import "DD_ItemsModel.h"
-#import "DD_GoodsDetailViewController.h"
-#import "DD_ShopHeaderView.h"
 #import "DD_ShopViewController.h"
-#import "DD_ShopModel.h"
-#import "DD_ShopTool.h"
-#import "DD_ShopCell.h"
-#import "DD_ShopEditingCell.h"
-#import "DD_SizeModel.h"
-#import "DD_SizeAlertModel.h"
-#import "DD_ShopAlertNumView.h"
-#import "DD_ShopAlertSizeView.h"
+
+#import "DD_GoodsDetailViewController.h"
 #import "DD_LoginViewController.h"
 #import "DD_ClearingDoneViewController.h"
+#import "DD_ClearingViewController.h"
+
+#import "DD_ShopClearingView.h"
+#import "DD_ShopAlertNumView.h"
+#import "DD_ShopAlertSizeView.h"
+#import "DD_ShopCell.h"
+//#import "DD_ShopHeaderView.h"
+//#import "DD_ShopEditingCell.h"
+
+#import "DD_ShopTool.h"
+#import "DD_ItemsModel.h"
+#import "DD_ShopModel.h"
+#import "DD_SizeModel.h"
+#import "DD_SizeAlertModel.h"
 
 @interface DD_ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 

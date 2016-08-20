@@ -9,9 +9,6 @@
 #import "DD_CircleDetailHeadView.h"
 
 #import "DD_CircleDetailImgView.h"
-//#import "DD_CircleListSuggestView.h"
-//#import "DD_CircleListUserView.h"
-//#import "DD_CircleListInteractionView.h"
 
 @implementation DD_CircleDetailHeadView
 {

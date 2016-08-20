@@ -8,6 +8,8 @@
 
 #import "DD_ColorsModel.h"
 
+#import "DD_SizeModel.h"
+
 @implementation DD_ColorsModel
 +(DD_ColorsModel *)getColorsModel:(NSDictionary *)dict
 {

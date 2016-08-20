@@ -5,9 +5,12 @@
 //  Created by yyj on 16/6/15.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "UIButton+WebCache.h"
-#import "DD_CricleChooseItemModel.h"
+
 #import "DD_CircleChooseStyleView.h"
+
+#import "UIButton+WebCache.h"
+
+#import "DD_CricleChooseItemModel.h"
 
 @implementation DD_CircleChooseStyleView
 {

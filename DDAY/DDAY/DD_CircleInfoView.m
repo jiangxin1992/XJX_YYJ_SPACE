@@ -8,7 +8,6 @@
 
 #import "DD_CircleInfoView.h"
 
-
 @implementation DD_CircleInfoView
 
 #pragma mark - 初始化

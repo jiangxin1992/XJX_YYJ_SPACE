@@ -5,12 +5,16 @@
 //  Created by yyj on 16/6/12.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "GeTuiSdk.h"
+
 #import "DD_DesignerMainViewController.h"
+
 #import "DD_DesignerViewController.h"
 #import "DD_DesignerFollowViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+
 #import "Tools.h"
+#import "DD_DesignerModel.h"
+
 @interface DD_DesignerMainViewController ()
 
 @end

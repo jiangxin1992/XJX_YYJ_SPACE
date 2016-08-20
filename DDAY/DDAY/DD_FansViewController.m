@@ -5,9 +5,12 @@
 //  Created by yyj on 16/6/27.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_FansCell.h"
-#import "DD_FansModel.h"
+
 #import "DD_FansViewController.h"
+
+#import "DD_FansCell.h"
+
+#import "DD_FansModel.h"
 
 @interface DD_FansViewController ()<UITableViewDataSource,UITableViewDelegate>
 

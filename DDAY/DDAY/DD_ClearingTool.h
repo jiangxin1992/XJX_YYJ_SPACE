@@ -5,9 +5,8 @@
 //  Created by yyj on 16/5/19.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
-#import "DD_ClearingSeriesModel.h"
+
 #import "DD_ClearingOrderModel.h"
-#import "DD_ClearingModel.h"
 
 @interface DD_ClearingTool : NSObject
 

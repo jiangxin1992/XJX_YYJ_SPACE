@@ -8,6 +8,8 @@
 
 #import "DD_ShopHeaderView.h"
 
+#import "DD_ShopTool.h"
+
 @implementation DD_ShopHeaderView
 {
     UIButton *selectBtn;

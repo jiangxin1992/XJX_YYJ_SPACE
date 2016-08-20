@@ -5,9 +5,11 @@
 //  Created by yyj on 16/6/16.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_BaseViewController.h"
+
 #import "DD_CircleModel.h"
 #import "DD_CricleTagItemModel.h"
-#import "DD_BaseViewController.h"
 
 @interface DD_CircleCustomTagViewController : DD_BaseViewController
 /**

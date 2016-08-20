@@ -5,9 +5,11 @@
 //  Created by yyj on 16/5/21.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_SetPSWViewController.h"
+
 #import "DD_LoginTextView.h"
 #import "DD_LoginViewController.h"
-#import "DD_SetPSWViewController.h"
 
 @interface DD_SetPSWViewController ()<UITextFieldDelegate>
 

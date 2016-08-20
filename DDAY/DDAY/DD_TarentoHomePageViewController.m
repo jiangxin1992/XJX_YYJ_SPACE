@@ -8,12 +8,13 @@
 
 #import "DD_TarentoHomePageViewController.h"
 
-#import "DD_TarentoHeadView.h"
-#import "DD_CircleListCell.h"
-#import "DD_CircleListModel.h"
 #import "DD_CircleDetailViewController.h"
 #import "DD_DesignerHomePageViewController.h"
-#import "DD_TarentoHomePageViewController.h"
+
+#import "DD_TarentoHeadView.h"
+#import "DD_CircleListCell.h"
+
+#import "DD_CircleListModel.h"
 
 @interface DD_TarentoHomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
