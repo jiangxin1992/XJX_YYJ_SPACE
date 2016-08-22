@@ -70,8 +70,8 @@
         make.top.mas_equalTo(0);
     }];
     
-    _designerView=[[DD_CirlcleApplyDesignerChooseView alloc] initWithFavouriteDesignerModel:_CircleModel.designerModel WithBlock:^(NSString *type) {
-        _block(type,0);
+    _designerView=[[DD_CircleInfoSuggestSimpleView alloc] initWithPlaceHoldStr:@"*你最喜欢的独立设计师" WithBlockType:@"like_reason_remarks" WithLimitNum:50 Block:^(NSString *type, NSString *content) {
+        _CircleModel.designerModel.likeDesignerName=content;
     }];
     [self addSubview:_designerView];
     

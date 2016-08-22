@@ -7,8 +7,6 @@
 //
 #import "DD_GoodsDetailViewController.h"
 
-#import "MJRefresh.h"
-
 #import "DD_GoodsViewController.h"
 #import "DD_ShopViewController.h"
 

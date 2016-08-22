@@ -13,6 +13,6 @@
 
 @interface DD_UserCollectCircleViewController : DD_BaseViewController
 -(instancetype)initWithBlock:(void(^)(NSString *type,DD_CircleListModel *model,DD_OrderItemModel *item))block;
--(void)reloadData;
 @property(nonatomic,copy) void (^block)(NSString *type,DD_CircleListModel *model,DD_OrderItemModel *item);
+//-(void)reloadData;
 @end

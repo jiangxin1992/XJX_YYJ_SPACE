@@ -13,6 +13,7 @@
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_LoginViewController.h"
+#import "DD_CircleItemListViewController.h"
 
 #import "DD_CircleDetailHeadView.h"
 #import "DD_CircleComentInputView.h"
@@ -116,7 +117,7 @@
 }
 -(void)CreateTableView
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;
@@ -173,7 +174,7 @@
             if([type isEqualToString:@"show_item_list"])
             {
                 //            显示商品列表
-                //            [_DetailView PushItemListViewWithID:_ShareID];
+                [_DetailView PushItemListViewWithID:_ShareID];
             }else if([type isEqualToString:@"head_click"])
             {
                 //            点击用户头像
@@ -203,12 +204,22 @@
         }
         
     }];
-    _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:_ListModel]);
+    _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+    NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
     _headView.userInteractionEnabled=YES;
     [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
 
     _tableview.tableHeaderView=_headView;
     
+}
+/**
+ * 跳转搭配商品列表
+ */
+-(void)PushItemListViewWithID:(NSString *)shareId
+{
+    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
+
+    }] animated:YES];
 }
 
 #pragma mark - RequestData
@@ -289,8 +300,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_CircleCommentModel *commentModel=[_dataArr objectAtIndex:indexPath.section];
-    return 80+commentModel.commHeight;
+    CGFloat _height=[DD_CircleCommentCell heightWithModel:[_dataArr objectAtIndex:indexPath.section]];
+    return _height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -666,6 +677,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(_tableview)
+    {
+        _page=1;
+        [self RequestData];
+    }
     [MobClick beginLogPageView:@"DD_CircleDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

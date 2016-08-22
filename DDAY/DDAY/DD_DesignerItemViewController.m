@@ -5,13 +5,16 @@
 //  Created by yyj on 16/6/12.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
+
+#import "DD_DesignerItemViewController.h"
+
+#import "DD_GoodsDetailViewController.h"
+#import "DD_ShopViewController.h"
+
 #import "Waterflow.h"
 #import "WaterflowCell.h"
+
 #import "DD_ItemTool.h"
-#import "DD_GoodsDetailViewController.h"
-#import "MJRefresh.h"
-#import "DD_ShopViewController.h"
-#import "DD_DesignerItemViewController.h"
 #import "DD_ImageModel.h"
 
 @interface DD_DesignerItemViewController ()<WaterflowDataSource,WaterflowDelegate>

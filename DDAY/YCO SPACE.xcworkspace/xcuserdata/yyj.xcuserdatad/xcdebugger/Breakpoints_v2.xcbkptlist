@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_SetViewController.m"
-            timestampString = "493394813.421999"
+            filePath = "DDAY/DD_CircleDetailViewController.m"
+            timestampString = "493549200.276829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "-about"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "-CreateTableViewHead"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,29 +25,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_AboutViewController.m"
-            timestampString = "493394813.421999"
+            filePath = "DDAY/DD_CircleDetailHeadView.m"
+            timestampString = "493550050.96976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-UIConfig"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "-setState"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleApplyViewController.m"
-            timestampString = "493395128.020465"
+            filePath = "DDAY/DD_CircleDetailViewController.m"
+            timestampString = "493549241.987478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-CreateScrollView"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-CreateTableViewHead"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DDAY/DD_CircleDetailHeadView.m"
+            timestampString = "493550050.96976"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "+heightWithModel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

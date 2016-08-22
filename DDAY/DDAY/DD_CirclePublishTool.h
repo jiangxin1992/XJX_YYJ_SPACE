@@ -18,6 +18,8 @@
 -(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height WithBlock:(void(^)(NSString *type,NSInteger index))block;
 @property(nonatomic,copy) void (^block)(NSString *type,NSInteger index);
 __int(index);
+
++(WaterflowCell *)getColCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height;
 /**
  * 设置标签
  * 标签网络获取成功之后，setter值

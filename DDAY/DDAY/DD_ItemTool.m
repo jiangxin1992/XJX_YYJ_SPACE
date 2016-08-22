@@ -76,6 +76,37 @@
     }];
     return cell;
 }
++(WaterflowCell *)getColCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
+{
+    WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
+    cell.backgroundColor=[UIColor whiteColor];
+    UIImageView *imageview=nil;
+    if(item.pics&&item.pics.count)
+    {
+        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        imageview=[[UIImageView alloc] init];
+        [cell addSubview:imageview];
+        
+        [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+            //            make.left.mas_equalTo(index%2?0:10);
+            //            make.right.mas_equalTo(index%2?-10:0);
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(0);
+            make.height.mas_equalTo(_height);
+        }];
+        [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+    }
+    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
+    [imageview addSubview:price_label];
+    price_label.font=[regular getSemiboldFont:15.0f];
+    [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(11);
+        make.bottom.mas_equalTo(-11);
+    }];
+    [price_label sizeToFit];
+    return cell;
+}
+
 
 +(WaterflowCell *)getHomePageCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
 {

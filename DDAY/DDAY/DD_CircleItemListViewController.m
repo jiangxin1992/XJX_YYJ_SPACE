@@ -10,24 +10,25 @@
 
 #import "DD_GoodsDetailViewController.h"
 
+#import "Waterflow.h"
+#import "WaterflowCell.h"
 #import "DD_ItemCell.h"
 
+#import "DD_CirclePublishTool.h"
 #import "DD_CricleChooseItemModel.h"
 
-@interface DD_CircleItemListViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DD_CircleItemListViewController ()<WaterflowDataSource,WaterflowDelegate>
 
 @end
 
 @implementation DD_CircleItemListViewController
 {
-    UITableView *_tableview;
-    NSArray *_dataArr;//数据数组
+    Waterflow *mywaterflow;
+    NSMutableArray *_dataArr;//数据数组
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self SomePrepare];
-    [self UIConfig];
-    [self RequestData];
+    
 }
 #pragma mark - 初始化
 -(instancetype)initWithShareID:(NSString *)shareID WithBlock:(void (^)(NSString *))block
@@ -37,6 +38,8 @@
     {
         _shareID=shareID;
         _block=block;
+        [self SomePrepare];
+        [self UIConfig];
     }
     return self;
 }
@@ -47,31 +50,44 @@
     [self PrepareUI];
 }
 
--(void)PrepareData{}
+-(void)PrepareData
+{
+    _dataArr=[[NSMutableArray alloc] init];
+}
 -(void)PrepareUI
 {
-    self.navigationItem.titleView=[regular returnNavView:@"搭配列表" withmaxwidth:200];
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_item_list", @"") withmaxwidth:200];
 }
 
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    [self CreateTableview];
+    [self CreateWaterFlow];
+    [self MJRefresh];
 }
--(void)CreateTableview
+-(void)CreateWaterFlow
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    mywaterflow = [[Waterflow alloc] init];
     
-    [self.view addSubview:_tableview];
-    //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
-    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
-    _tableview.delegate=self;
-    _tableview.dataSource=self;
-    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    mywaterflow.dataSource = self;
+    
+    mywaterflow.delegate = self;
+    
+    [self.view addSubview:mywaterflow];
+    
+    [mywaterflow mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
+}
+#pragma mark - MJRefresh
+-(void)MJRefresh
+{
+    mywaterflow.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        [self RequestData];
     }];
     
+    [mywaterflow.header beginRefreshing];
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -80,96 +96,152 @@
     [[JX_AFNetworking alloc] GET:@"share/queryItemsByShare.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            _dataArr=[DD_CricleChooseItemModel getItemsModelArr:[data objectForKey:@"items"]];
-            [_tableview reloadData];
+            [_dataArr removeAllObjects];
+            [_dataArr addObjectsFromArray:[DD_CricleChooseItemModel getItemsModelArr:[data objectForKey:@"items"]]];
+            [mywaterflow reloadData];
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
         }
+        [mywaterflow.header endRefreshing];
+        [mywaterflow.footer endRefreshing];
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
+        [mywaterflow.header endRefreshing];
+        [mywaterflow.footer endRefreshing];
     }];
 }
-#pragma mark - UITableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+#pragma mark - WaterflowDelegate
+// cell的个数，必须实现
+- (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
+    
     return _dataArr.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    数据还未获取时候
-    if(_dataArr.count==indexPath.section)
+// 返回cell，必须实现
+- (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
+    DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index];
+    CGFloat _height=0;
+    if(choose_item.pic)
     {
-        static NSString *cellid=@"cellid";
-        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-        if(!cell)
-        {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-        }
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
+        _height=((ScreenWidth-20*2-10*2)/2)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+        
     }
-    
-    static NSString *CellIdentifier = @"cell_goods";
-    BOOL nibsRegistered = NO;
-    if (!nibsRegistered) {
-        UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_ItemCell class]) bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-        nibsRegistered = YES;
-    }
-    DD_ItemCell *cell = (DD_ItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
-    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-    _item.price=_itemModel.price;
-    _item.name=_itemModel.name;
-    _item.pics=@[_itemModel.pic];
-    _item.g_id=_itemModel.g_id;
-    _item.colorId=_itemModel.colorId;
-    cell.item=_item;
-    return cell;
+    return [DD_CirclePublishTool getColCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:choose_item WithHeight:_height];
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
-    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-    _item.g_id=_itemModel.g_id;
-    _item.colorId=_itemModel.colorId;
-    _item.colorCode=_itemModel.colorCode;
+// 这个方法可选不是必要的，默认是3列
+- (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
+    return 2;
+}
+// 返回每一个cell的高度，非必要，默认为80
+- (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
+    DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index];
+    if(choose_item.pic)
+    {
+        CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+        return _height;
+    }
+    return 0;
+}
+// 间隔，非必要，默认均为10
+- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
+    switch (type) {
+        case WaterflowMarginTypeBottom:return 20;
+        case WaterflowMarginTypeLeft:return 20;
+        case WaterflowMarginTypeRight:return 20;
+        case WaterflowMarginTypeRow:return 20;
+        case WaterflowMarginTypeColumn:return 20;
+        default:return 0;
+    }
+}
+// 非必要
+- (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
+    
+    DD_ItemsModel *_item=[_dataArr objectAtIndex:index];
     DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
         //        if(type)
     }];
     [self.navigationController pushViewController:_GoodsDetail animated:YES];
-    
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 120;
+//}
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return _dataArr.count;
+//}
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //    数据还未获取时候
+//    if(_dataArr.count==indexPath.section)
+//    {
+//        static NSString *cellid=@"cellid";
+//        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+//        if(!cell)
+//        {
+//            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+//        }
+//        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+//    
+//    static NSString *CellIdentifier = @"cell_goods";
+//    BOOL nibsRegistered = NO;
+//    if (!nibsRegistered) {
+//        UINib *nib = [UINib nibWithNibName:NSStringFromClass([DD_ItemCell class]) bundle:nil];
+//        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+//        nibsRegistered = YES;
+//    }
+//    DD_ItemCell *cell = (DD_ItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+//    _item.price=_itemModel.price;
+//    _item.name=_itemModel.name;
+//    _item.pics=@[_itemModel.pic];
+//    _item.g_id=_itemModel.g_id;
+//    _item.colorId=_itemModel.colorId;
+//    cell.item=_item;
+//    return cell;
+//}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+//    _item.g_id=_itemModel.g_id;
+//    _item.colorId=_itemModel.colorId;
+//    _item.colorCode=_itemModel.colorCode;
+//    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+//        //        if(type)
+//    }];
+//    [self.navigationController pushViewController:_GoodsDetail animated:YES];
+//    
+//}
+////section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 1;//section头部高度
+//}
+////section头部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+////section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+////section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {

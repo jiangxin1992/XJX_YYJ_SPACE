@@ -305,10 +305,10 @@
                 }else if([type isEqualToString:@"push_comment"])
                 {
                     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-                        if([type isEqualToString:@"reload"])
-                        {
-                            [ctn3 reloadData];
-                        }
+//                        if([type isEqualToString:@"reload"])
+//                        {
+//                            [ctn3 reloadData];
+//                        }
                     }] animated:YES];
                 }
                 
@@ -415,6 +415,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated

@@ -350,14 +350,14 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:[_dataArr objectAtIndex:index] WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"reload"])
-        {
-            [_tableview reloadData];
-        }else if([type isEqualToString:@"delete"])
-        {
-            [_dataArr removeObjectAtIndex:index];
-            [_tableview reloadData];
-        }
+//        if([type isEqualToString:@"reload"])
+//        {
+//            [_tableview reloadData];
+//        }else if([type isEqualToString:@"delete"])
+//        {
+//            [_dataArr removeObjectAtIndex:index];
+//            [_tableview reloadData];
+//        }
     }] animated:YES];
 }
 
@@ -433,6 +433,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(_tableview)
+    {
+        _page=1;
+        [self RequestListData];
+    }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [MobClick beginLogPageView:@"DD_TarentoHomePageViewController"];
 }

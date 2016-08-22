@@ -109,10 +109,7 @@ static regular *_t = nil;
 
 + (BOOL)checkPassword:(NSString *) password
 {
-    NSString *pattern = @"@^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,15}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"@SELF MATCHES %@", pattern];
-    BOOL isMatch = [pred evaluateWithObject:password];
-    return isMatch;
+    return [self Verify:password WithCode:@"^[A-Za-z0-9]{6,16}$"];
     
 }
 //+(BOOL )pswFormVerify:(NSString *)phone

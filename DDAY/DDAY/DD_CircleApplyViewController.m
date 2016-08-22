@@ -214,11 +214,13 @@
             //            删除已选款式
             [self deleteChooseItem:index];
             
-        }else if([type isEqualToString:@"choose_designer"])
-        {
-            //            选择最喜爱的设计师
-            [self ChooseFavouriteDesigner];
-        }else if([type isEqualToString:@"person_tag_delete"])
+        }
+//        else if([type isEqualToString:@"choose_designer"])
+//        {
+//            //            选择最喜爱的设计师
+//            [self ChooseFavouriteDesigner];
+//        }
+        else if([type isEqualToString:@"person_tag_delete"])
         {
             //            适合人群标签删除
             [DD_CirclePublishTool TagDelete:index WithType:2 WithCircleModel:_CircleModel];
@@ -286,7 +288,7 @@
     {
         [self presentViewController:[regular alertTitle_Simple:@"请先上传搭配图"] animated:YES completion:nil];
     }
-    else if([_CircleModel.designerModel.likeDesignerId isEqualToString:@""])
+    else if([_CircleModel.designerModel.likeDesignerName isEqualToString:@""])
     {
         [self presentViewController:[regular alertTitle_Simple:@"请先选择设计师"] animated:YES completion:nil];
     }else if([_CircleModel.designerModel.likeReason isEqualToString:@""])
@@ -345,17 +347,17 @@
 /**
  * 选择最喜爱的设计师
  */
--(void)ChooseFavouriteDesigner
-{
-    [self.navigationController pushViewController:[[DD_CircleApplyDesignerViewController alloc] initWithBlock:^(NSString *type,DD_CircleApplyDesignerModel *designer) {
-        if([type isEqualToString:@"choose_design"])
-        {
-            _CircleModel.designerModel.likeDesignerId=designer.designerId;
-            _CircleModel.designerModel.likeDesignerName=designer.designerName;
-            [_infoView.designerView setState];
-        }
-    }] animated:YES];
-}
+//-(void)ChooseFavouriteDesigner
+//{
+//    [self.navigationController pushViewController:[[DD_CircleApplyDesignerViewController alloc] initWithBlock:^(NSString *type,DD_CircleApplyDesignerModel *designer) {
+//        if([type isEqualToString:@"choose_design"])
+//        {
+//            _CircleModel.designerModel.likeDesignerId=designer.designerId;
+//            _CircleModel.designerModel.likeDesignerName=designer.designerName;
+//            [_infoView.designerView setState];
+//        }
+//    }] animated:YES];
+//}
 /**
  * 跳转填写备注界面
  */

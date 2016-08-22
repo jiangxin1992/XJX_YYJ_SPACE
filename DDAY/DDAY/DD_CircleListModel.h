@@ -17,6 +17,10 @@
  * 获取搭配列表model数组
  */
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr;
+
++(NSMutableArray *)getCircleListImgModelArr:(NSArray *)arr;
++(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict;
+
 /**
  * 用户职业
  */

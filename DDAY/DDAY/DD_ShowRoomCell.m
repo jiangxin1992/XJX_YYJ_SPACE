@@ -43,7 +43,7 @@
         make.left.mas_equalTo(33);
         make.top.mas_equalTo(10);
         make.width.mas_equalTo(3);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(15);
     }];
     
     
@@ -55,6 +55,8 @@
         make.right.mas_equalTo(-48);
     }];
     [_store_name sizeToFit];
+    
+    
     
     _address=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_address];
@@ -160,7 +162,7 @@
 {
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:[_showRoomModel.latitude doubleValue] longitude:[_showRoomModel.longitude doubleValue]];
     CLLocationCoordinate2D coord = [loc coordinate];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 3000, 3000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
     [_mapView setRegion:region animated:YES];
     MyPoint *myPoint = [[MyPoint alloc] initWithCoordinate:coord andTitle:_showRoomModel.address];
     //添加标注
@@ -180,7 +182,7 @@
 -(MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     MKAnnotationView *newAnnotation=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
-    newAnnotation.image = [UIImage imageNamed:@"map_单个学校"];
+    newAnnotation.image = [UIImage imageNamed:@"System_Map_pin"];
     newAnnotation.canShowCallout=YES;
     return newAnnotation;
 }

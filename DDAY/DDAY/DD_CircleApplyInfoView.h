@@ -27,7 +27,8 @@
 /**
  * 选择设计师
  */
-@property (nonatomic,strong)  DD_CirlcleApplyDesignerChooseView *designerView;
+//@property (nonatomic,strong)  DD_CirlcleApplyDesignerChooseView *designerView;
+@property (nonatomic,strong)  DD_CircleInfoSuggestSimpleView *designerView;
 /**
  * 喜欢该设计师的理由
  */

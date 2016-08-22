@@ -8,8 +8,6 @@
 
 #import "DD_CircleViewController.h"
 
-#import "MJRefresh.h"
-
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_CircleApplyViewController.h"
@@ -30,7 +28,6 @@
     NSMutableArray *_dataArr;
     NSInteger _page;
     UITableView *_tableview;
-    BOOL _getChangeNot;
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 }
 
@@ -51,8 +48,6 @@
 {
     _dataArr=[[NSMutableArray alloc] init];
     _page=1;
-    _getChangeNot=NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeNotAction) name:@"getChangeNot" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction:) name:@"rootChange" object:nil];
     
 }
@@ -201,7 +196,6 @@
     [[JX_AFNetworking alloc] GET:@"share/queryShareList.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            _getChangeNot=NO;
             NSArray *modelArr=[DD_CircleListModel getCircleListModelArr:[data objectForKey:@"shares"]];
             if(modelArr.count)
             {
@@ -342,14 +336,14 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"reload"])
-        {
-            [_tableview reloadData];
-        }else if([type isEqualToString:@"delete"])
-        {
-            [_dataArr removeObjectAtIndex:index];
-            [_tableview reloadData];
-        }
+//        if([type isEqualToString:@"reload"])
+//        {
+//            [_tableview reloadData];
+//        }else if([type isEqualToString:@"delete"])
+//        {
+//            [_dataArr removeObjectAtIndex:index];
+//            [_tableview reloadData];
+//        }
     }] animated:YES];
 }
 -(void)PushCommentViewWithShareID:(NSString *)shareId
@@ -467,14 +461,7 @@
 //        
 //    }] animated:YES];
 //}
-/**
- * 改变_getChangeNot的值
- * _getChangeNot为yes是表示该页面数据变化  需要重新加载
- */
--(void)ChangeNotAction
-{
-    _getChangeNot=YES;
-}
+
 /**
  * 用户权限变化
  */
@@ -559,9 +546,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(_getChangeNot)
+    if(_tableview)
     {
-        [_tableview.header beginRefreshing];
+        _page=1;
+        [self RequestData];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
     [MobClick beginLogPageView:@"DD_CircleViewController"];

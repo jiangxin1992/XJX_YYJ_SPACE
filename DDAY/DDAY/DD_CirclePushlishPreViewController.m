@@ -237,8 +237,8 @@
 -(void)submitApplyAction
 {
     NSDictionary *_parameters=@{@"applyInfo":[@{
-                                                @"likeDesignerId":_circleModel.designerModel.likeDesignerId
-                                                ,@"likeDesignerName":_circleModel.designerModel.likeDesignerName
+//                                                @"likeDesignerId":_circleModel.designerModel.likeDesignerId,
+                                                @"likeDesignerName":_circleModel.designerModel.likeDesignerName
                                                 ,@"likeReason":_circleModel.designerModel.likeReason
                                                 ,@"shareInfo":@{
                                                         @"shareAdvise":_circleModel.remark

@@ -15,6 +15,7 @@
  * 初始化
  */
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
++ (CGFloat)heightWithModel:(DD_CircleCommentModel *)model;
 /**
  * 搭配model
  */
@@ -27,4 +28,6 @@
  * 回调block
  */
 @property(nonatomic,copy) void (^cellBlock)(NSString *type,NSInteger index);
+
+__view(downLine);
 @end

@@ -12,19 +12,19 @@
 
 @implementation DD_CircleDetailHeadView
 {
-//    DD_CircleListSuggestView *_suggestView;
+
     DD_CircleDetailImgView *_imgView;
-//    DD_CircleListUserView *_userView;
-//    DD_CircleListInteractionView *_interactionView;
     UIImageView *userHeadImg;
     UILabel *userNameLabel;
     UILabel *userCareerLabel;
-//    UIImageView *goodImgView;
-    UILabel *conentLabel;
-    UILabel *timeLabel;
+    UILabel *_conentLabel;
+    UILabel *_timeLabel;
+    
     
     NSMutableArray *goodsImgArr;
     NSMutableArray *userBtnArr;
+    
+    UIButton *moreBtn;
 }
 
 #pragma mark - 初始化
@@ -35,6 +35,7 @@
     {
         _block=block;
         _listModel=model;
+        
         [self SomePrepare];
         [self UIConfig];
         [self setState];
@@ -59,8 +60,15 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
+    _contentView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:_contentView];
+    [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(0);
+        make.width.mas_equalTo(ScreenWidth);
+    }];
+    
     userHeadImg=[UIImageView getCustomImg];
-    [self addSubview:userHeadImg];
+    [_contentView addSubview:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,7 +78,7 @@
     }];
     
     userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:userNameLabel];
+    [_contentView addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userHeadImg);
         make.height.mas_equalTo(43/2.0f);
@@ -80,7 +88,7 @@
     
     
     userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-    [self addSubview:userCareerLabel];
+    [_contentView addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(43/2.0f);
@@ -92,7 +100,7 @@
     _imgView=[[DD_CircleDetailImgView alloc] initWithCircleListModel:_listModel WithBlock:^(NSString *type,NSInteger index) {
         _block(type,index,nil);
     }];
-    [self addSubview:_imgView];
+    [_contentView addSubview:_imgView];
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
@@ -104,7 +112,7 @@
     UIView *lastView=nil;
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
-        [self addSubview:goods];
+        [_contentView addSubview:goods];
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
@@ -131,23 +139,35 @@
             make.left.right.bottom.mas_equalTo(0);
             make.height.mas_equalTo(16);
         }];
-        
+        if(i==2)
+        {
+            moreBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_More" WithSelectedImageStr:nil];
+            [_contentView addSubview:moreBtn];
+            [moreBtn addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
+            [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(lastView.mas_top).with.offset(0);
+                make.right.mas_equalTo(lastView);
+                make.left.mas_equalTo(lastView);
+                make.top.mas_equalTo(_imgView);
+            }];
+        }
     }
     
-    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:conentLabel];
-    conentLabel.numberOfLines=0;
-    [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    [_contentView addSubview:_conentLabel];
+    _conentLabel.numberOfLines=0;
+    [_conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_imgView.mas_bottom).with.offset(19);
         make.left.mas_equalTo(IsPhone6_gt?34:15);
         make.right.mas_equalTo(-(IsPhone6_gt?34:15));
     }];
+    [_conentLabel sizeToFit];
     
-    _lastView_state=nil;
+    UIView *_lastView_state=nil;
     //    删除 评论 收藏 点赞
     for (int i=0; i<4; i++) {
         UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":i==2?@"System_Notcollection":@"System_Dustbin" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":i==2?@"System_Collection":@"System_Dustbin"];
-        [self addSubview:btn];
+        [_contentView addSubview:btn];
         btn.tag=200+i;
         
         if(i==0)
@@ -166,27 +186,28 @@
                 make.centerY.mas_equalTo(_lastView_state);
             }else
             {
-                make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+                make.right.mas_equalTo(-47);
                 make.width.mas_equalTo(22);
                 make.height.mas_equalTo(39);
-                make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8.5f);
+                make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
             }
         }];
         [userBtnArr addObject:btn];
         _lastView_state=btn;
     }
     
-    timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-    [self addSubview:timeLabel];
-    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [_contentView addSubview:_timeLabel];
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(IsPhone6_gt?34:15);
-        make.centerY.mas_equalTo(_lastView_state.mas_centerY);
+        make.centerY.mas_equalTo(_lastView_state);
+        make.width.mas_equalTo(100);
     }];
-    [timeLabel sizeToFit];
-//    [self CreateUserView];
-//    [self CreateImgView];
-//    [self CreateSuggestView];
-//    [self CreateInteractionView];
+    [_timeLabel sizeToFit];
+    
+    [_lastView_state mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-10);
+    }];
 }
 #pragma mark - setter
 -(void)setListModel:(DD_CircleListModel *)listModel
@@ -196,6 +217,10 @@
 }
 
 #pragma mark - SomeAction
+-(void)moreAction
+{
+    _block(@"show_item_list",0,nil);
+}
 /**
  * 点击头像
  */
@@ -255,12 +280,9 @@
  * 计算高度
  */
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model{
-    
     DD_CircleDetailHeadView *cell = [[DD_CircleDetailHeadView alloc] initWithCircleListModel:model WithBlock:nil];
-    cell.listModel=model;
     [cell layoutIfNeeded];
-    CGRect frame =  cell.lastView_state.frame;
-    return frame.origin.y + frame.size.height+10;
+    return cell.contentView.frame.size.height;
 }
 /**
  * 更新
@@ -270,10 +292,6 @@
     [userHeadImg JX_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_listModel.userName;
     userCareerLabel.text=_listModel.career;
-//    if(_listModel.pics.count)
-//    {
-//        [goodImgView JX_loadImageUrlStr:[_listModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
-//    }
     
     NSInteger count_index=0;
     if(_listModel.items.count>3)
@@ -297,8 +315,15 @@
             goods.hidden=YES;
         }
     }
-    conentLabel.text=_listModel.shareAdvise;
-    timeLabel.text=[regular getSpacingTime:_listModel.createTime];
+    if(_listModel.items.count>2)
+    {
+        moreBtn.hidden=NO;
+    }else
+    {
+        moreBtn.hidden=YES;
+    }
+    _conentLabel.text=_listModel.shareAdvise;
+    _timeLabel.text=[regular getSpacingTime:_listModel.createTime];
     
     UIButton *praiseBtn=[self viewWithTag:200];
     praiseBtn.selected=_listModel.isLike;

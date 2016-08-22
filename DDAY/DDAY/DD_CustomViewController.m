@@ -81,7 +81,6 @@ static DD_CustomViewController *tabbarController = nil;
     //        申请达人审核进度通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DOYENAPPLY_NOT_Action) name:@"DOYENAPPLY_NOT" object:nil];
     
-    
 }
 #pragma mark - NotificationsAction
 //        申请达人审核进度通知

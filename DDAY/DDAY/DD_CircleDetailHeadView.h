@@ -30,7 +30,8 @@
  */
 @property(nonatomic,copy) void (^block)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 
-__btn(lastView_state);
+__view(contentView);
+
 /**
  * 更新
  */

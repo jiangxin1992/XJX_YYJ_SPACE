@@ -32,6 +32,7 @@
 		3F1682D41D21724F00C35ED0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D31D21724F00C35ED0 /* AVFoundation.framework */; };
 		3F1682D61D21725400C35ED0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D51D21725400C35ED0 /* CoreLocation.framework */; };
 		3F1682D81D21726200C35ED0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D71D21726200C35ED0 /* CoreBluetooth.framework */; };
+		3F1FF5C71D6B04A900C28843 /* DD_ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */; };
 		3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */; };
 		3F21E20B1D17954800FE7ADF /* DD_CricleChooseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */; };
 		3F21E2121D17ACB500FE7ADF /* DD_CricleCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E2111D17ACB500FE7ADF /* DD_CricleCategoryModel.m */; };
@@ -328,6 +329,8 @@
 		3F1682D31D21724F00C35ED0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3F1682D51D21725400C35ED0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F1682D71D21726200C35ED0 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		3F1FF5C51D6B04A900C28843 /* DD_ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShareView.h; sourceTree = "<group>"; };
+		3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShareView.m; sourceTree = "<group>"; };
 		3F21E1FE1D177E5000FE7ADF /* DD_CircleChooseDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleChooseDetailView.h; sourceTree = "<group>"; };
 		3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleChooseDetailView.m; sourceTree = "<group>"; };
 		3F21E2091D17954800FE7ADF /* DD_CricleChooseItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CricleChooseItemModel.h; sourceTree = "<group>"; };
@@ -1018,9 +1021,9 @@
 		3F2F76451D1CC529002E22A6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
+				3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */,
 				3F5717311D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.h */,
 				3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */,
-				3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */,
 				3F2F76461D1CC55C002E22A6 /* DD_CircleApplyInfoView.h */,
 				3F2F76471D1CC55C002E22A6 /* DD_CircleApplyInfoView.m */,
 			);
@@ -1433,6 +1436,8 @@
 		3F4187CB1CEEFEDE001BCA3D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3F1FF5C51D6B04A900C28843 /* DD_ShareView.h */,
+				3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */,
 				3F9B8B031CEF6C58008EC460 /* DD_UserCell.h */,
 				3F9B8B041CEF6C58008EC460 /* DD_UserCell.m */,
 				3FA8365E1D050B73006D2919 /* 我的订单 */,
@@ -3035,6 +3040,7 @@
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,
 				3F85BAD41D66ED3C00820018 /* MyPoint.m in Sources */,
+				3F1FF5C71D6B04A900C28843 /* DD_ShareView.m in Sources */,
 				3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */,
 				3F7160B71D4F210A00E165D2 /* DD_GoodsCategoryModel.m in Sources */,
 				3F23A96D1CEF1A6F00579A3B /* DD_baseModel.m in Sources */,

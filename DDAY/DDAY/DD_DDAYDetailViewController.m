@@ -170,7 +170,7 @@
 //分享
 -(void)ShareAction
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    
 }
 //跳转购物车视图
 -(void)PushShopView

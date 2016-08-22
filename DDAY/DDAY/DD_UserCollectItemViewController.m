@@ -8,8 +8,6 @@
 
 #import "DD_UserCollectItemViewController.h"
 
-#import "MJRefresh.h"
-
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 
@@ -102,7 +100,7 @@
     mywaterflow = [[Waterflow alloc] init];
     
     
-    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-54);
+    mywaterflow.frame = CGRectMake(0, 17, ScreenWidth,ScreenHeight-36-64-17);
     
     mywaterflow.dataSource = self;
     
@@ -128,7 +126,7 @@
     [mywaterflow.header beginRefreshing];
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - WaterflowDelegate
 // cell的个数，必须实现
 - (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
     
@@ -138,8 +136,8 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     DD_ItemsModel *item=[_dataArr objectAtIndex:index];
     DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-    return [DD_ItemTool getCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
+    CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+    return [DD_ItemTool getColCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
 }
 // 这个方法可选不是必要的，默认是3列
 - (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
@@ -151,14 +149,22 @@
     if(item.pics)
     {
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height+95;
+        CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height;
     }
-    return 95;
+    return 0;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
-    return 13;
+    switch (type) {
+        case WaterflowMarginTypeTop:return 10;
+        case WaterflowMarginTypeBottom:return 10;
+        case WaterflowMarginTypeLeft:return 20;
+        case WaterflowMarginTypeRight:return 20;
+        case WaterflowMarginTypeRow:return 20;
+        case WaterflowMarginTypeColumn:return 10;
+        default:return 0;
+    }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
@@ -170,8 +176,12 @@
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
+    if(mywaterflow)
+    {
+        _page=1;
+        [self RequestData];
+    }
     [MobClick beginLogPageView:@"DD_UserCollectItemViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

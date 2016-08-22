@@ -60,7 +60,7 @@
 -(void)PrepareUI
 {
 //    System_News
-    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(26, 24) WithImgeStr:@"System_NoNews"];
+    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:@"System_NoNews"];
     [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
 }
@@ -78,7 +78,7 @@
     _headBack.layer.masksToBounds=YES;
     _headBack.layer.cornerRadius=97/2.0f;
     _headBack.layer.borderColor=[_define_black_color CGColor];
-    _headBack.layer.borderWidth=3.5f;
+    _headBack.layer.borderWidth=2.0f;
     [_headBack setEnlargeEdgeWithTop:0 right:50 bottom:60 left:50];
     
     _userHeadImg=[UIImageView getCustomImg];

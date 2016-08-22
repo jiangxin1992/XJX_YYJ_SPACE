@@ -48,51 +48,46 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    icon=[[UIImageView alloc] init];
+    icon=[UIImageView getCustomImg];
     [self.contentView addSubview:icon];
     icon.userInteractionEnabled=YES;
     [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
-        make.top.mas_equalTo(10);
-        make.width.and.height.mas_equalTo(60);
+        make.top.mas_equalTo(19);
+        make.width.and.height.mas_equalTo(44);
     }];
     
-    userName=[[UILabel alloc] init];
+    userName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:userName];
-    userName.textAlignment=0;
-    userName.textColor=[UIColor blackColor];
-    userName.font=[regular getFont:15.0f];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(icon.mas_right).with.offset(20);
+        make.left.mas_equalTo(icon.mas_right).with.offset(14);
         make.top.mas_equalTo(10);
-        make.height.mas_equalTo(40);
         make.width.mas_equalTo(80);
     }];
+    [userName sizeToFit];
     
-    createTime=[[UILabel alloc] init];
+    createTime=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:createTime];
     createTime.textAlignment=0;
     createTime.textColor=[UIColor grayColor];
     createTime.font=[regular getFont:13.0f];
     [createTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(userName.mas_bottom).with.offset(0);
-        make.height.mas_equalTo(20);
+        make.top.mas_equalTo(userName.mas_bottom).with.offset(6);
         make.width.mas_equalTo(120);
-        make.left.mas_equalTo(icon.mas_right).with.offset(20);
+        make.left.mas_equalTo(icon.mas_right).with.offset(14);
     }];
+    [createTime sizeToFit];
     
-    praiseLabel=[[UILabel alloc] init];
+    praiseLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self addSubview:praiseLabel];
-    praiseLabel.textAlignment=0;
-    praiseLabel.font=[regular getFont:11.0f];
-    praiseLabel.textColor=[UIColor lightGrayColor];
     [praiseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-22);
         make.top.mas_equalTo(10);
-        make.height.mas_equalTo(userName);
+        make.centerY.mas_equalTo(userName);
         make.width.mas_equalTo(20);
     }];
+    [praiseLabel sizeToFit];
     
     praiseBtn=[UIButton getCustomImgBtnWithImageStr:@"System_NoGood" WithSelectedImageStr:@"System_Good"];
     [self addSubview:praiseBtn];
@@ -105,24 +100,37 @@
     }];
     
     
-    comment=[[UILabel alloc] init];
+    comment=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
     [self.contentView addSubview:comment];
-    comment.textAlignment=0;
     comment.numberOfLines=0;
-    comment.font=[regular getFont:13.0f];
-    
     [comment mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(icon.mas_right).with.offset(20);
-        make.top.mas_equalTo(createTime.mas_bottom).with.offset(0);
-        make.right.mas_equalTo(-20);
+        make.left.mas_equalTo(icon.mas_right).with.offset(19);
+        make.top.mas_equalTo(createTime.mas_bottom).with.offset(6);
+        make.right.mas_equalTo(-22);
         make.height.mas_equalTo(0);
     }];
-
+    [comment sizeToFit];
+    
+    _downLine=[UIView getCustomViewWithColor:_define_black_color];
+    [self.contentView addSubview:_downLine];
+    [_downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(userName);
+        make.top.mas_equalTo(comment.mas_bottom).with.offset(6);
+        make.height.mas_equalTo(1);
+        make.right.mas_equalTo(-22);
+    }];
 }
 -(void)setCommentModel:(DD_CircleCommentModel *)CommentModel
 {
     _CommentModel=CommentModel;
     [self setAction];
+}
++ (CGFloat)heightWithModel:(DD_CircleCommentModel *)model{
+    DD_CircleCommentCell *cell = [[DD_CircleCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    [cell setCommentModel:model];
+    [cell.contentView layoutIfNeeded];
+    CGRect frame =  cell.downLine.frame;
+    return frame.origin.y + frame.size.height;
 }
 #pragma mark - SomeAction
 /**
@@ -149,6 +157,7 @@
  */
 -(void)setAction
 {
+    
     [comment mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_CommentModel.commHeight);
     }];
@@ -158,6 +167,7 @@
     createTime.text=[regular getTimeStr:_CommentModel.createTime WithFormatter:@"YYYY-MM-dd HH:mm"];
     praiseLabel.text=[[NSString alloc] initWithFormat:@"%ld",_CommentModel.likeTimes];
     praiseBtn.selected=_CommentModel.isLike;
+
 }
 #pragma mark - Other
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

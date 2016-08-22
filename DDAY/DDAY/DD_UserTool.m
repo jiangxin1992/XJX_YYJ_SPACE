@@ -37,7 +37,7 @@
         return @[@"System_Conference"
                  ,@"System_Notcollection"
                  ,@"System_Order"
-                 ,@"System_set_up"
+                 ,@"System_showroom"
                  ,@"System_set_up"
                  ];
     }else if(_usertype==2)
@@ -48,7 +48,7 @@
                  ,@"System_Order"
                  ,@"System_Conference"
                  ,@"System_Notcollection"
-                 ,@"System_set_up"
+                 ,@"System_showroom"
                  ,@"System_set_up"
                  ];
     }else
@@ -57,8 +57,8 @@
         return @[@"System_Home"
                  ,@"System_Conference"
                  ,@"System_Order"
-                 ,@"System_set_up"
                  ,@"System_Notcollection"
+                 ,@"System_showroom"
                  ,@"System_set_up"
                  ];
     }
@@ -74,19 +74,20 @@
         return @[@"conference"
                  ,@"collection"
                  ,@"order"
-                 ,@"set"
                  ,@"showroom"
+                 ,@"set"
                  ];
     }else if(_usertype==2)
     {
 //        2 设计师
+        
         return @[@"homepage"
                  ,@"fans"
                  ,@"order"
                  ,@"conference"
                  ,@"collection"
-                 ,@"set"
                  ,@"showroom"
+                 ,@"set"
                  ];
     }else
     {
@@ -94,9 +95,9 @@
         return @[@"homepage"
                  ,@"conference"
                  ,@"order"
-                 ,@"set"
                  ,@"collection"
                  ,@"showroom"
+                 ,@"set"
                  ];
     }
 }
