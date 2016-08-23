@@ -262,7 +262,7 @@
     [[JX_AFNetworking alloc] GET:@"share/queryShareDetail.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            nowListModel=[DD_CircleListModel getCircleListModel:[data objectForKey:@"shareInfo"]];
+            nowListModel=[DD_CircleListModel getCircleListImgModel:[data objectForKey:@"shareInfo"]];
 //            已创建就更新
             if(_headView)
             {

@@ -8,6 +8,8 @@
 
 #import "ImageViewController.h"
 
+#import "DD_ImageModel.h"
+
 @interface ImageViewController ()
 {
     UIImageView *_imgv;
@@ -66,9 +68,11 @@
     _imgv.hidden=NO;
     if([_type isEqualToString:@"model"])
     {
-        [_imgv JX_loadImageUrlStr:[_array objectAtIndex:_currentPage] WithSize:800 placeHolderImageName:nil radius:0];
+        DD_ImageModel *imgModel=[_array objectAtIndex:_currentPage];
+        [_imgv JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }else if([_type isEqualToString:@"data"])
     {
+        
         [_imgv setImage:[_array objectAtIndex:_currentPage]];
     }
 }

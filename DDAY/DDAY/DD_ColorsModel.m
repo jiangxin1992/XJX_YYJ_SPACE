@@ -9,12 +9,14 @@
 #import "DD_ColorsModel.h"
 
 #import "DD_SizeModel.h"
+#import "DD_ImageModel.h"
 
 @implementation DD_ColorsModel
 +(DD_ColorsModel *)getColorsModel:(NSDictionary *)dict
 {
     DD_ColorsModel *_ColorsModel=[DD_ColorsModel objectWithKeyValues:dict];
     _ColorsModel.size=[DD_SizeModel getSizeModelArr:[dict objectForKey:@"size"]];
+    _ColorsModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     return _ColorsModel;
 }
 
