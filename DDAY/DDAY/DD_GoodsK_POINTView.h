@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_ShowRoomModel.h"
+
 @interface DD_GoodsK_POINTView : UIView
 
--(instancetype)initWithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type))block;
 
+__array(showroomArr);
+__bool(is_show);
 __block_type(block, type);
 
 @end

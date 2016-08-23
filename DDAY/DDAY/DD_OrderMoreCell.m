@@ -8,7 +8,7 @@
 
 #import "DD_OrderMoreCell.h"
 
-#import "DD_OrderCellBtn.h"
+#import "DD_CustomBtn.h"
 
 @implementation DD_OrderMoreCell
 {
@@ -16,8 +16,8 @@
     UILabel *_goodNumLabel;//商品数量
     UILabel *_totalPriceLabel;//总计
     
-    DD_OrderCellBtn *_leftBtn;
-    DD_OrderCellBtn *_rightBtn;
+    DD_CustomBtn *_leftBtn;
+    DD_CustomBtn *_rightBtn;
     NSMutableArray *itemArr;
 }
 
@@ -88,7 +88,7 @@
         make.top.mas_equalTo(_totalPriceLabel);
     }];
     
-    _rightBtn=[DD_OrderCellBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _rightBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.contentView addSubview:_rightBtn];
     _rightBtn.backgroundColor=_define_black_color;
     [_rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -99,7 +99,7 @@
         make.height.mas_equalTo(35);
     }];
     
-    _leftBtn=[DD_OrderCellBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _leftBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.contentView addSubview:_leftBtn];
     _leftBtn.backgroundColor=_define_black_color;
     [_leftBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -202,7 +202,7 @@
 {
     _cellblock(@"click",_indexPath);
 }
--(void)btnAction:(DD_OrderCellBtn *)btn
+-(void)btnAction:(DD_CustomBtn *)btn
 {
     if([btn.type isEqualToString:@"cancel"])
     {

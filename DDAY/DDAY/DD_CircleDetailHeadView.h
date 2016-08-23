@@ -15,7 +15,7 @@
 /**
  * 初始化
  */
--(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *type,NSInteger index,DD_OrderItemModel *item))block;
+-(instancetype)initWithCircleListModel:(DD_CircleListModel *)model IsHomePage:(BOOL )isHomePage WithBlock:(void (^)(NSString *type,NSInteger index,DD_OrderItemModel *item))block;
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model;
 /**
  * 更新
@@ -31,7 +31,7 @@
 @property(nonatomic,copy) void (^block)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 
 __view(contentView);
-
+__bool(isHomePage);
 /**
  * 更新
  */

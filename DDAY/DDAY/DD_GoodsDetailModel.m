@@ -9,6 +9,7 @@
 #import "DD_GoodsDetailModel.h"
 
 #import "DD_OrderItemModel.h"
+#import "DD_ShowRoomModel.h"
 
 @implementation DD_GoodsDetailModel
 +(DD_GoodsDetailModel *)getGoodsDetailModel:(NSDictionary *)dict
@@ -17,6 +18,8 @@
     _GoodsDetailModel.item=[DD_GoodsItemModel getGoodsItemModel:[dict objectForKey:@"item"]];
     _GoodsDetailModel.designer=[DD_GoodsDesignerModel getGoodsDesignerModel:[dict objectForKey:@"designer"]];
     _GoodsDetailModel.similarItems=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"similarItems"]];
+    _GoodsDetailModel.circle=[DD_CircleListModel getCircleListImgModel:[dict objectForKey:@"combination"]];
+    _GoodsDetailModel.physicalStore=[DD_ShowRoomModel getShowRoomModelArr:[dict objectForKey:@"physicalStore"]];
     return _GoodsDetailModel;
 }
 -(DD_ColorsModel *)getColorsModel

@@ -36,6 +36,7 @@
 "goods_detail_fabric"="面料与洗涤";
 "goods_detail_send_return"="寄送与退换";
 "goods_detail_k_ponit"="YCO SPACE体验店";
+"goods_more_circle"="更多搭配";
 
 /**
  * 设计师
@@ -61,6 +62,7 @@
 "circle_apply_title"="申请成为达人";
 "circle_publish_preview"="预览";
 "circle_item_list"="所有单品";
+
 /**
  * 我的
  */

@@ -171,7 +171,7 @@
                 ctn2 =[[DD_UserCollectCircleViewController alloc] initWithBlock:^(NSString *type, DD_CircleListModel *model,DD_OrderItemModel *item) {
                     if([type isEqualToString:@"push_circle_detail"])
                     {
-                        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:model WithShareID:model.shareId WithBlock:^(NSString *type) {
+                        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:model WithShareID:model.shareId IsHomePage:NO  WithBlock:^(NSString *type) {
 //                            if([type isEqualToString:@"reload"])
 //                            {
 //                                [ctn2 reloadData];
@@ -273,7 +273,7 @@
 //                    ////                        }] animated:YES];
 //                    //                    }else if([type isEqualToString:@"push_circle_detail"])
 //                    //                    {
-//                    //                        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:model WithShareID:model.shareId WithBlock:^(NSString *type) {
+//                    //                        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:model WithShareID:model.shareId IsHomePage:NO  WithBlock:^(NSString *type) {
 //                    //                            if([type isEqualToString:@"reload"])
 //                    //                            {
 //                    ////                                [ctn2 reloadData];

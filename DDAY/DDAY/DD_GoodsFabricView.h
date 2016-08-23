@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_GoodsItemModel.h"
+
 @interface DD_GoodsFabricView : UIView
 
--(instancetype)initWithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithGoodsItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block;
 
 __block_type(block, type);
-
+__bool(is_show);
+@property (nonatomic,strong)DD_GoodsItemModel *item;
 @end

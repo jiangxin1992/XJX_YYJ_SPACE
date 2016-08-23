@@ -59,7 +59,11 @@
     _GoodsItemModel.otherItems=[DD_OtherItemModel getOtherItemModelArr:[dict objectForKey:@"otherItems"]];
     
     _GoodsItemModel.series=[DD_GoodSeriesModel getGoodSeriesModel:[dict objectForKey:@"series"]];
-//    [self TextData:_GoodsItemModel];
+    _GoodsItemModel.deliverDeclaration=[_GoodsItemModel.deliverDeclaration stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    _GoodsItemModel.material=[_GoodsItemModel.material stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    _GoodsItemModel.washCare=[_GoodsItemModel.washCare stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+//    [原字符串 stringByReplacingOccurrencesOfString:@"目标字符串" withString:@"要替换的字符串"]
+
     return _GoodsItemModel;
 }
 +(void)TextData:(DD_GoodsItemModel *)_GoodsItemModel

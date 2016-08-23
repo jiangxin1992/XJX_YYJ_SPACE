@@ -11,6 +11,7 @@
 #import "DD_GoodsDesignerModel.h"
 #import "DD_GoodsItemModel.h"
 #import "DD_ColorsModel.h"
+#import "DD_CircleListModel.h"
 
 @interface DD_GoodsDetailModel : NSObject
 
@@ -36,7 +37,9 @@ __bool(shoucang);
 __bool(guanzhu);
 @property (nonatomic,strong)DD_GoodsDesignerModel *designer;
 @property (nonatomic,strong)DD_GoodsItemModel *item;
+@property (nonatomic,strong)DD_CircleListModel *circle;
 
+__array(physicalStore);
 __array(similarItems);
 
 @end

@@ -15,7 +15,7 @@
 /**
  * 初始化 根据shareId
  */
--(instancetype)initWithCircleListModel:(DD_CircleListModel *)ListModel WithShareID:(NSString *)ShareID WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithCircleListModel:(DD_CircleListModel *)ListModel WithShareID:(NSString *)ShareID IsHomePage:(BOOL )isHomePage WithBlock:(void (^)(NSString *type))block;
 
 /**
  * 搭配list model
@@ -25,6 +25,10 @@
  * 搭配ID
  */
 __string(ShareID);
+/**
+ * 是否从主页进入
+ */
+__bool(isHomePage);
 /**
  * 回调block
  */

@@ -17,6 +17,7 @@
 
 #import "DD_ShareView.h"
 
+#import "DD_ShareTool.h"
 #import "DD_DesignerModel.h"
 
 @interface DD_DesignerHomePageViewController ()
@@ -74,14 +75,14 @@
         make.left.mas_equalTo(0);
     }];
     
-    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
-    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareBtn];
-    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kStatusBarHeight);
-        make.right.mas_equalTo(0);
-        make.width.height.mas_equalTo(44);
-    }];
+//    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:shareBtn];
+//    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(kStatusBarHeight);
+//        make.right.mas_equalTo(0);
+//        make.width.height.mas_equalTo(44);
+//    }];
     
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];
     if(![_designerId isEqualToString:user.u_id])
@@ -91,8 +92,10 @@
         [regular setBorder:followBtn];
         [followBtn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];
         [followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(shareBtn.mas_left).with.offset(0);
-            make.centerY.mas_equalTo(shareBtn);
+//            make.right.mas_equalTo(shareBtn.mas_left).with.offset(0);
+            make.right.mas_equalTo(-6);
+//            make.top.mas_equalTo(kStatusBarHeight);
+            make.centerY.mas_equalTo(backBtn);
             make.width.mas_equalTo(68);
             make.height.mas_equalTo(25);
         }];
@@ -231,7 +234,7 @@
 -(void)mengban_dismiss
 {
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
         mengban=nil;
@@ -253,9 +256,12 @@
         }
     }];
     [mengban addSubview:shareView];
-    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    
+    CGFloat _height=[DD_ShareTool getHeight];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
+    shareView.height=_height;
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
     }];
     
 }
@@ -336,7 +342,7 @@
                     }
                 }else if([type isEqualToString:@"push_comment"])
                 {
-                    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId WithBlock:^(NSString *type) {
+                    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId IsHomePage:YES  WithBlock:^(NSString *type) {
 //                        if([type isEqualToString:@"reload"])
 //                        {
 //                            [ctn3 reloadData];

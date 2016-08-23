@@ -46,7 +46,7 @@
     [self UIConfig];
 }
 #pragma mark - 初始化
--(instancetype)initWithCircleListModel:(DD_CircleListModel *)ListModel WithShareID:(NSString *)ShareID WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithCircleListModel:(DD_CircleListModel *)ListModel WithShareID:(NSString *)ShareID IsHomePage:(BOOL )isHomePage WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
@@ -54,6 +54,7 @@
         _block=block;
         _ShareID=ShareID;
         _ListModel=ListModel;
+        _isHomePage=isHomePage;
     }
     return self;
 }
@@ -135,7 +136,7 @@
 -(void)CreateTableViewHead
 {
     __block DD_CircleDetailViewController *_DetailView=self;
-    _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
+    _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel IsHomePage:_isHomePage WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
 //        涉及用户登录权限
         if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
         {

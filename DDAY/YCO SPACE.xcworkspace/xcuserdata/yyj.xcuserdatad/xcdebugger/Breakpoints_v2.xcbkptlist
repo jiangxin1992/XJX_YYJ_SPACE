@@ -9,30 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DDAYDetailViewController.m"
-            timestampString = "493575393.796922"
+            filePath = "DDAY/DD_MoreCircleViewController.m"
+            timestampString = "493636312.923587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-ShareAction"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-RequestData"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_DDAYDetailViewController.m"
-            timestampString = "493575405.834707"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "-ShareAction"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DD_MoreCircleViewController RequestData]"
+                  moduleName = "YCO SPACE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_MoreCircleViewController.m"
+                  timestampString = "493636313.003621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[DD_MoreCircleViewController RequestData]_block_invoke"
+                  moduleName = "YCO SPACE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_MoreCircleViewController.m"
+                  timestampString = "493636313.004484"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "89">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

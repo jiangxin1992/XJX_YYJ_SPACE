@@ -8,7 +8,7 @@
 
 #import "DD_OrderTabBar.h"
 
-#import "DD_OrderTabBarBtn.h"
+#import "DD_CustomBtn.h"
 #import "DD_OrderModel.h"
 
 @implementation DD_OrderTabBar
@@ -46,7 +46,7 @@
         if(_OrderModel.orderStatus==1)
         {
             //待发货 waiting_delivery
-            DD_OrderTabBarBtn *tabBarBtn=(DD_OrderTabBarBtn *)[DD_OrderTabBarBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
+            DD_CustomBtn *tabBarBtn=(DD_CustomBtn *)[DD_CustomBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
             [self addSubview:tabBarBtn];
             tabBarBtn.type=@"contact";
             tabBarBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
@@ -56,10 +56,10 @@
             CGFloat _width=ScreenWidth/3.0f;
             for (int i=0; i<3; i++) {
                 
-                DD_OrderTabBarBtn *tabBarBtn=nil;
+                DD_CustomBtn *tabBarBtn=nil;
                 if(i==1)
                 {
-                    tabBarBtn=[DD_OrderTabBarBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
+                    tabBarBtn=[DD_CustomBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
                     [self addSubview:tabBarBtn];
                     tabBarBtn.type=@"contact";
                     [tabBarBtn addTarget:self action:@selector(tabbarAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,7 +73,7 @@
 //                    退款申请中 applying_refund
 //                    退款处理中 dealing_refund
 //                    退款 refund
-                    tabBarBtn=[DD_OrderTabBarBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+                    tabBarBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
                     tabBarBtn.backgroundColor=_define_black_color;
                     if(_OrderModel.orderStatus==0)
                     {
@@ -119,7 +119,7 @@
     }
 }
 #pragma mark - SomeActions
--(void)tabbarAction:(DD_OrderTabBarBtn *)btn
+-(void)tabbarAction:(DD_CustomBtn *)btn
 {
 
     if([btn.type isEqualToString:@"logistics"])

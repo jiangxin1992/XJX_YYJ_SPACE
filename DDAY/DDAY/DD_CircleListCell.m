@@ -146,8 +146,8 @@
     
     _lastView_state=nil;
 //    删除 评论 收藏 点赞
-    for (int i=0; i<4; i++) {
-        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":i==2?@"System_Notcollection":@"System_Dustbin" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":i==2?@"System_Collection":@"System_Dustbin"];
+    for (int i=0; i<3; i++) {
+        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":@"System_Notcollection" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":@"System_Collection"];
         [self.contentView addSubview:btn];
         btn.tag=200+i;
         if(i==0)
@@ -186,6 +186,9 @@
     [timeLabel sizeToFit];
     
 }
+
+
+#pragma mark - SomeAction
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model{
     
     DD_CircleListCell *cell = [[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
@@ -209,7 +212,7 @@
         {
             _cellBlock(@"praise",_index,nil);
         }
-
+        
         
     }else if(_btnindex==1)
     {
@@ -226,12 +229,13 @@
         {
             _cellBlock(@"collect",_index,nil);
         }
-
-    }else if(_btnindex==3)
-    {
-        //        删除
-        _cellBlock(@"delete",_index,nil);
+        
     }
+    //    else if(_btnindex==3)
+    //    {
+    //        //        删除
+    //        _cellBlock(@"delete",_index,nil);
+    //    }
 }
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
@@ -239,8 +243,6 @@
     DD_OrderItemModel *_item=[_listModel.items objectAtIndex:ges.view.tag-100];
     _cellBlock(@"item_click",_index,_item);
 }
-
-#pragma mark - SomeAction
 /**
  * 头像点击
  */

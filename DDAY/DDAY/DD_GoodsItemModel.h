@@ -38,5 +38,17 @@ __long(saleEndTime);
 __long(saleStartTime);
 __long(signEndTime);
 __long(signStartTime);
+/**
+ * 寄送与退换
+ */
+__string(deliverDeclaration);
+/**
+ * 面料
+ */
+__string(material);
+/**
+ * 洗涤说明
+ */
+__string(washCare);
 @property (nonatomic,strong)DD_GoodSeriesModel *series;
 @end

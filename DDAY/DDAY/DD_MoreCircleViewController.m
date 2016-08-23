@@ -1,12 +1,12 @@
 //
-//  DD_CircleViewController.m
-//  DDAY
+//  DD_MoreCircleViewController.m
+//  YCO SPACE
 //
-//  Created by yyj on 16/5/20.
+//  Created by yyj on 16/8/23.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_CircleViewController.h"
+#import "DD_MoreCircleViewController.h"
 
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_DesignerHomePageViewController.h"
@@ -19,11 +19,7 @@
 
 #import "DD_CircleListModel.h"
 
-@interface DD_CircleViewController ()<UITableViewDataSource,UITableViewDelegate>
-
-@end
-
-@implementation DD_CircleViewController
+@interface DD_MoreCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *_dataArr;
     NSInteger _page;
@@ -31,15 +27,28 @@
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 }
 
+@end
+
+@implementation DD_MoreCircleViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
 }
+-(instancetype)initWithColorCode:(NSString *)colorCode WithItemId:(NSString *)itemId
+{
+    self=[super init];
+    if(self)
+    {
+        _colorCode=colorCode;
+        _itemId=itemId;
+    }
+    return self;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
-    [self hideBackNavBtn];
     [self PrepareData];
     [self PrepareUI];
     [self SomeBlock];
@@ -48,48 +57,25 @@
 {
     _dataArr=[[NSMutableArray alloc] init];
     _page=1;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RootChangeAction:) name:@"rootChange" object:nil];
     
 }
 -(void)PrepareUI{
-    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
-    //     1 管理员 2 设计师 3 普通用户 4 达人
-    NSInteger _userType=[DD_UserModel getUserType];
-    if(_userType==3)
-    {
-        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
-        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
-        self.navigationItem.rightBarButtonItem=nil;
-    }else if(_userType==2||_userType==4||_userType==1)
-    {
-        self.navigationItem.leftBarButtonItem=nil;
-        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
-    }else
-    {
-        NSLog(@"UserType=%ld",_userType);
-        self.navigationItem.leftBarButtonItem=nil;
-        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
-    }
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_more_circle", @"") withmaxwidth:200];
 }
 /**
  * cell中交互回调
  */
 -(void)SomeBlock
 {
-    __block DD_CircleViewController *_CircleView=self;
+    __block DD_MoreCircleViewController *_CircleView=self;
     __block NSMutableArray *___dataArr=_dataArr;
     cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
-
+        
         DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
         if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
         {
-//            涉及用户权限的操作
+            //            涉及用户权限的操作
             if(![DD_UserModel isLogin])
             {
                 [_CircleView presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
@@ -193,7 +179,8 @@
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"share/queryShareList.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *_parameters=@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken],@"itemId":_itemId,@"colorCode":_colorCode};
+    [[JX_AFNetworking alloc] GET:@"share/queryMoreShares.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_CircleListModel getCircleListModelArr:[data objectForKey:@"shares"]];
@@ -211,7 +198,7 @@
                 [_tableview reloadData];
             }else
             {
-
+                
             }
         }else
         {
@@ -289,7 +276,7 @@
     {
         [DD_NOTInformClass REMOVE_REPLYCOMMENT_NOT_COMMENT];
     }
-
+    
 }
 -(void)PushCircleApplyView
 {
@@ -336,66 +323,21 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId IsHomePage:NO WithBlock:^(NSString *type) {
-//        if([type isEqualToString:@"reload"])
-//        {
-//            [_tableview reloadData];
-//        }else if([type isEqualToString:@"delete"])
-//        {
-//            [_dataArr removeObjectAtIndex:index];
-//            [_tableview reloadData];
-//        }
+        //        if([type isEqualToString:@"reload"])
+        //        {
+        //            [_tableview reloadData];
+        //        }else if([type isEqualToString:@"delete"])
+        //        {
+        //            [_dataArr removeObjectAtIndex:index];
+        //            [_tableview reloadData];
+        //        }
     }] animated:YES];
 }
 -(void)PushCommentViewWithShareID:(NSString *)shareId
 {
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:nil WithShareID:shareId IsHomePage:NO  WithBlock:nil] animated:YES];
 }
-/**
- * 发布
- * 跳转发布界面
- * 过滤当前用户权限
- * 达人和设计师才有发布权限
- */
--(void)PublishAction
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        [self.navigationController pushViewController:[[DD_CirclePublishViewController alloc] initWithBlock:^(NSString *type) {
-            if([type isEqualToString:@"refresh"])
-            {
-                //            重新刷新
-                [_tableview.header beginRefreshing];
-            }
-        }] animated:YES];
-    }
-    
-}
-/**
- * 申请成为达人
- * 普通用户权限才能申请
- * 测试环境所有权限下皆开放入口
- * 申请为四个状态：还未申请（填写申请表）、提交申请（审核中）、通过审核（成功变身达人）、未通过（申请被拒）
- */
--(void)ApplyAction
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        [self.navigationController pushViewController:[[DD_CircleApplyViewController alloc] initWithBlock:^(NSString *type) {
-            
-        }] animated:YES];
-    }
-    
-}
+
 /**
  * 点赞和取消点赞
  */
@@ -458,44 +400,11 @@
 //-(void)PushItemListViewWithID:(NSString *)shareId
 //{
 //    [self.navigationController pushViewController:[[DD_CircleItemListViewController alloc] initWithShareID:shareId WithBlock:^(NSString *type) {
-//        
+//
 //    }] animated:YES];
 //}
 
-/**
- * 用户权限变化
- */
--(void)RootChangeAction:(NSNotification *)not
-{
-    NSInteger _userType=[DD_UserModel getUserType];
-    NSLog(@"UserType=%ld",_userType);
-    //     1 管理员 2 设计师 3 普通用户 4 达人
-    if(_userType==3)
-    {
-        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
-        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
-        self.navigationItem.rightBarButtonItem=nil;
-    }else if(_userType==2||_userType==4||_userType==1)
-    {
-        self.navigationItem.leftBarButtonItem=nil;
-        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
-    }else
-    {
-         NSLog(@"UserType=%ld",_userType);
-        self.navigationItem.leftBarButtonItem=nil;
-        DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
-    }
-    if([not.object isEqualToString:@"login"]||[not.object isEqualToString:@"logout"])
-    {
-        _page=1;
-        [self RequestData];
-    }
-}
+
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -552,39 +461,26 @@
         [self RequestData];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
-    [MobClick beginLogPageView:@"DD_CircleViewController"];
+    [MobClick beginLogPageView:@"DD_MoreCircleViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_CircleViewController"];
+    [MobClick endLogPageView:@"DD_MoreCircleViewController"];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 弃用代码
-//section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 1;//section头部高度
-//}
-////section头部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-////section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 1;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
 
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

@@ -15,6 +15,7 @@
 #import "DD_DDAYDetailView.h"
 #import "DD_ShareView.h"
 
+#import "DD_ShareTool.h"
 #import "DD_DDayDetailModel.h"
 
 @interface DD_DDAYDetailViewController ()
@@ -175,7 +176,7 @@
 -(void)mengban_dismiss
 {
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
         mengban=nil;
@@ -199,9 +200,12 @@
         }
     }];
     [mengban addSubview:shareView];
-    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    
+    CGFloat _height=[DD_ShareTool getHeight];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
+    shareView.height=_height;
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
     }];
 
 }

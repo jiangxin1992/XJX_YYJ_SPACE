@@ -15,4 +15,8 @@ __string(brandName);
 __string(designerId);
 __string(designerName);
 __string(head);
+/**
+ * 用户类型 2设计师 3普通用户 4达人
+ */
+__string(userType);
 @end

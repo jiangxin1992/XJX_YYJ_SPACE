@@ -15,4 +15,6 @@
 __string(content);
 __string(img);
 __string(title);
+
+__float(height);
 @end

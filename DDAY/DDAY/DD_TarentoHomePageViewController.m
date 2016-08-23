@@ -15,6 +15,7 @@
 #import "DD_CircleListCell.h"
 #import "DD_ShareView.h"
 
+#import "DD_ShareTool.h"
 #import "DD_CircleListModel.h"
 
 @interface DD_TarentoHomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -74,14 +75,14 @@
         make.left.mas_equalTo(0);
     }];
     
-    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
-    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareBtn];
-    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kStatusBarHeight);
-        make.right.mas_equalTo(0);
-        make.width.height.mas_equalTo(44);
-    }];
+//    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:shareBtn];
+//    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(kStatusBarHeight);
+//        make.right.mas_equalTo(0);
+//        make.width.height.mas_equalTo(44);
+//    }];
     
     UIView *titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:140];
     [self.view addSubview:titleView];
@@ -301,7 +302,7 @@
 -(void)mengban_dismiss
 {
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
     } completion:^(BOOL finished) {
         [mengban removeFromSuperview];
         mengban=nil;
@@ -325,9 +326,12 @@
         }
     }];
     [mengban addSubview:shareView];
-    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    
+    CGFloat _height=[DD_ShareTool getHeight];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
+    shareView.height=_height;
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
     }];
     
 }
@@ -382,7 +386,7 @@
 -(void)PushCommentViewWithIndex:(NSInteger )index
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:[_dataArr objectAtIndex:index] WithShareID:listModel.shareId WithBlock:^(NSString *type) {
+    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:[_dataArr objectAtIndex:index] WithShareID:listModel.shareId IsHomePage:YES WithBlock:^(NSString *type) {
 //        if([type isEqualToString:@"reload"])
 //        {
 //            [_tableview reloadData];

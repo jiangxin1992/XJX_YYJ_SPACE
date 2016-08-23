@@ -28,13 +28,14 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *,NSInteger index,DD_OrderItemModel *item))block
+-(instancetype)initWithCircleListModel:(DD_CircleListModel *)model IsHomePage:(BOOL )isHomePage WithBlock:(void (^)(NSString *type,NSInteger index,DD_OrderItemModel *item))block
 {
     self=[super init];
     if(self)
     {
         _block=block;
         _listModel=model;
+        _isHomePage=isHomePage;
         
         [self SomePrepare];
         [self UIConfig];
@@ -164,9 +165,20 @@
     [_conentLabel sizeToFit];
     
     UIView *_lastView_state=nil;
+    NSArray *imgArr_normal=nil;
+    NSArray *imgArr_select=nil;
+    if(_isHomePage)
+    {
+        imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection",@"System_Dustbin"];
+        imgArr_normal=@[@"System_Good",@"System_Comment",@"System_Collection",@"System_Dustbin"];
+    }else
+    {
+        imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection"];
+        imgArr_normal=@[@"System_Good",@"System_Comment",@"System_Collection"];
+    }
     //    删除 评论 收藏 点赞
-    for (int i=0; i<4; i++) {
-        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":i==2?@"System_Notcollection":@"System_Dustbin" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":i==2?@"System_Collection":@"System_Dustbin"];
+    for (int i=0; i<imgArr_normal.count; i++) {
+        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:[imgArr_normal objectAtIndex:i] WithSelectedImageStr:[imgArr_select objectAtIndex:i]];
         [_contentView addSubview:btn];
         btn.tag=200+i;
         
@@ -280,7 +292,7 @@
  * 计算高度
  */
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model{
-    DD_CircleDetailHeadView *cell = [[DD_CircleDetailHeadView alloc] initWithCircleListModel:model WithBlock:nil];
+    DD_CircleDetailHeadView *cell = [[DD_CircleDetailHeadView alloc] initWithCircleListModel:model IsHomePage:NO WithBlock:nil];
     [cell layoutIfNeeded];
     return cell.contentView.frame.size.height;
 }

@@ -8,7 +8,7 @@
 
 #import "DD_DDAYDetailView.h"
 
-#import "DD_DDAYDeatilBarBtn.h"
+#import "DD_CustomBtn.h"
 
 @implementation DD_DDAYDetailView
 {
@@ -17,8 +17,8 @@
     
     UILabel *leftLabel;
     
-    DD_DDAYDeatilBarBtn *rightBtn;
-    DD_DDAYDeatilBarBtn *backBtn;
+    DD_CustomBtn *rightBtn;
+    DD_CustomBtn *backBtn;
     UIView *upline;
     
 }
@@ -51,7 +51,7 @@
 -(void)UIConfig
 {
     
-    backBtn=[DD_DDAYDeatilBarBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
+    backBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
     [self addSubview:backBtn];
     backBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     [backBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -62,7 +62,7 @@
     leftLabel.frame=CGRectMake(0, 1, ScreenWidth/2.0f, ktabbarHeight-1);
     
     
-    rightBtn=[DD_DDAYDeatilBarBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
+    rightBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
     [backBtn addSubview:rightBtn];
     rightBtn.frame=CGRectMake(ScreenWidth/2.0f, 1, ScreenWidth/2.0f, ktabbarHeight-1);
     [rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -277,7 +277,7 @@
     rightBtn.hidden=hide;
     upline.hidden=hide;
 }
--(void)btnAction:(DD_DDAYDeatilBarBtn *)btn
+-(void)btnAction:(DD_CustomBtn *)btn
 {
     if([btn.type isEqualToString:@"apply"])
     {

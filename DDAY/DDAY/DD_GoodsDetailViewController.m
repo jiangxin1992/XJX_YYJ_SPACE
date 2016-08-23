@@ -14,6 +14,9 @@
 #import "ImageViewController.h"
 #import "DD_LoginViewController.h"
 #import "DD_ClearingDoneViewController.h"
+#import "DD_TarentoHomePageViewController.h"
+#import "DD_CircleDetailViewController.h"
+#import "DD_MoreCircleViewController.h"
 
 #import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
@@ -27,6 +30,7 @@
 #import "DD_GoodsTabBar.h"
 #import "DD_ShareView.h"
 
+#import "DD_ShareTool.h"
 #import "DD_ColorsModel.h"
 #import "DD_ClearingModel.h"
 #import "DD_GoodsDetailModel.h"
@@ -250,27 +254,74 @@ __bool(isExpanded);
 }
 -(void)CreateCircleView
 {
-    _CircleView=[[DD_GoodsCircleView alloc] initWithBlock:^(NSString *type) {
-        if([type isEqualToString:@"click"])
-        {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
-        }
-    }];
-    [container addSubview:_CircleView];
-    [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
-        make.left.and.right.mas_equalTo(0);
-    }];
+    if(_DetailModel.circle)
+    {
+        _CircleView=[[DD_GoodsCircleView alloc] initWithGoodsItem:_DetailModel.circle WithBlock:^(NSString *type,DD_OrderItemModel *item) {
+            if([type isEqualToString:@"head_click"])
+            {
+                if([_DetailModel.designer.userType integerValue]==2)
+                {
+                    //                设计师
+                    DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                    _DesignerHomePage.designerId=_DetailModel.designer.designerId;
+                    [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                }else if([_DetailModel.designer.userType integerValue]==4)
+                {
+                    //                达人
+                    [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_DetailModel.designer.designerId] animated:YES];
+                }else
+                {
+                    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+                }
+            }else if([type isEqualToString:@"item_click"])
+            {
+                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                _item.g_id=item.itemId;
+                _item.colorId=item.colorId;
+                _item.colorCode=item.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    //        if(type)
+                }];
+                [self.navigationController pushViewController:_GoodsDetail animated:YES];
+            }else if([type isEqualToString:@"enter_detail"])
+            {
+                [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:_DetailModel.circle WithShareID:_DetailModel.circle.shareId IsHomePage:NO WithBlock:^(NSString *type) {
+                    
+                }] animated:YES];
+            }else if([type isEqualToString:@"more_circle"])
+            {
+//                NSLog(@"更多搭配");
+                [self.navigationController pushViewController:[[DD_MoreCircleViewController alloc] initWithColorCode:_model.colorCode WithItemId:_model.g_id] animated:YES];
+            }
+        }];
+        [container addSubview:_CircleView];
+        [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
+            make.left.and.right.mas_equalTo(0);
+        }];
+    }else
+    {
+        _CircleView=[[DD_GoodsCircleView alloc] init];
+        [container addSubview:_CircleView];
+        [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
+            make.left.height.right.mas_equalTo(0);
+        }];
+        
+    }
+    
 }
 -(void)CreateFabricView
 {
-    _FabricView=[[DD_GoodsFabricView alloc] initWithBlock:^(NSString *type) {
+    
+    _FabricView=[[DD_GoodsFabricView alloc] initWithGoodsItem:_DetailModel.item WithBlock:^(NSString *type) {
         if([type isEqualToString:@"click"])
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+            _FabricView.is_show=!_FabricView.is_show;
         }
     }];
     [container addSubview:_FabricView];
+    _FabricView.is_show=NO;
     [_FabricView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_CircleView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
@@ -278,13 +329,14 @@ __bool(isExpanded);
 }
 -(void)CreateSendAndReturnsView
 {
-    _ReturnView=[[DD_GoodsSendAndReturnsView alloc] initWithBlock:^(NSString *type) {
+    _ReturnView=[[DD_GoodsSendAndReturnsView alloc] initWithGoodsItem:_DetailModel.item WithBlock:^(NSString *type) {
         if([type isEqualToString:@"click"])
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+            _ReturnView.is_show=!_ReturnView.is_show;
         }
     }];
     [container addSubview:_ReturnView];
+    _ReturnView.is_show=NO;
     [_ReturnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_FabricView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
@@ -292,18 +344,29 @@ __bool(isExpanded);
 }
 -(void)CreateKPOINTView
 {
-    _K_PonitView=[[DD_GoodsK_POINTView alloc] initWithBlock:^(NSString *type) {
-        if([type isEqualToString:@"click"])
-        {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
-        }
-    }];
-    [container addSubview:_K_PonitView];
-    [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
-        make.left.and.right.mas_equalTo(0);
-    }];
-    
+    if(_DetailModel.physicalStore.count)
+    {
+        _K_PonitView=[[DD_GoodsK_POINTView alloc] initWithShowRoomModelArr:_DetailModel.physicalStore WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"click"])
+            {
+                _K_PonitView.is_show=!_K_PonitView.is_show;
+            }
+        }];
+        [container addSubview:_K_PonitView];
+        _K_PonitView.is_show=NO;
+        [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
+            make.left.and.right.mas_equalTo(0);
+        }];
+    }else
+    {
+        _K_PonitView=[[DD_GoodsK_POINTView alloc] init];
+        [container addSubview:_K_PonitView];
+        [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
+            make.left.height.right.mas_equalTo(0);
+        }];
+    }
     
 }
 -(void)CreateSimilarItems
@@ -690,7 +753,7 @@ __bool(isExpanded);
 -(void)mengban_dismiss_share
 {
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
     } completion:^(BOOL finished) {
         [mengban_share removeFromSuperview];
         mengban_share=nil;
@@ -710,13 +773,16 @@ __bool(isExpanded);
     shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
-            [self mengban_dismiss];
+            [self mengban_dismiss_share];
         }
     }];
     [mengban_share addSubview:shareView];
-    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    
+    CGFloat _height=[DD_ShareTool getHeight];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
+    shareView.height=_height;
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
     }];
     
 }
