@@ -13,6 +13,7 @@
 
 #import "DD_DDAYContainerView.h"
 #import "DD_DDAYDetailView.h"
+#import "DD_ShareView.h"
 
 #import "DD_DDayDetailModel.h"
 
@@ -26,6 +27,9 @@
     DD_DDayDetailModel *_detailModel;
     UIScrollView *_scrollView;
     UIView *_container;
+    
+    DD_ShareView *shareView;
+    UIImageView *mengban;
 }
 
 - (void)viewDidLoad {
@@ -167,10 +171,39 @@
 
 }
 #pragma mark - SomeAction
+//蒙板消失
+-(void)mengban_dismiss
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    } completion:^(BOOL finished) {
+        [mengban removeFromSuperview];
+        mengban=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }];
+    
+}
 //分享
 -(void)ShareAction
 {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    mengban=[UIImageView getMaskImageView];
+    [self.view addSubview:mengban];
+    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [self mengban_dismiss];
+        }
+    }];
+    [mengban addSubview:shareView];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+    }];
+
 }
 //跳转购物车视图
 -(void)PushShopView

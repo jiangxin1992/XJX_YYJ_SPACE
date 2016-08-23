@@ -25,6 +25,7 @@
 #import "DD_ChooseSizeView.h"
 #import "DD_DrawManageView.h"
 #import "DD_GoodsTabBar.h"
+#import "DD_ShareView.h"
 
 #import "DD_ColorsModel.h"
 #import "DD_ClearingModel.h"
@@ -43,6 +44,7 @@ __bool(isExpanded);
     
     UIScrollView *_scrollview;
     UIImageView *mengban;//蒙板
+    UIImageView *mengban_share;
     DD_ChooseSizeView *sizeView;
     
     DD_GoodsInformView *_InformView;//信息视图
@@ -59,6 +61,8 @@ __bool(isExpanded);
     UIView *container;//_scrollView的view
     
     CGFloat _mengban_size_Height;
+    
+    DD_ShareView *shareView;
 }
 
 - (void)viewDidLoad {
@@ -682,10 +686,39 @@ __bool(isExpanded);
     _designer.designerId=_DetailModel.designer.designerId;
     [self.navigationController pushViewController:_designer animated:YES];
 }
+//蒙板消失
+-(void)mengban_dismiss_share
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    } completion:^(BOOL finished) {
+        [mengban_share removeFromSuperview];
+        mengban_share=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }];
+    
+}
 //分享
 -(void)ShareAction
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    mengban_share=[UIImageView getMaskImageView];
+    [self.view addSubview:mengban_share];
+    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [self mengban_dismiss];
+        }
+    }];
+    [mengban_share addSubview:shareView];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+    }];
+    
 }
 //跳转购物车视图
 -(void)PushShopView

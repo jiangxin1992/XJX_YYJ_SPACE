@@ -15,6 +15,8 @@
 #import "DD_DesignerIntroViewController.h"
 #import "DD_GoodsDetailViewController.h"
 
+#import "DD_ShareView.h"
+
 #import "DD_DesignerModel.h"
 
 @interface DD_DesignerHomePageViewController ()
@@ -39,6 +41,9 @@
     
     UIPageViewController *_pageVc;
     UIButton *followBtn;
+    
+    DD_ShareView *shareView;
+    UIImageView *mengban;
 }
 
 - (void)viewDidLoad {
@@ -222,10 +227,37 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+//蒙板消失
+-(void)mengban_dismiss
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    } completion:^(BOOL finished) {
+        [mengban removeFromSuperview];
+        mengban=nil;
+    }];
+    
+}
 //分享
 -(void)ShareAction
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    
+    mengban=[UIImageView getMaskImageView];
+    [self.view addSubview:mengban];
+    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [self mengban_dismiss];
+        }
+    }];
+    [mengban addSubview:shareView];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+    }];
+    
 }
 /**
  * 切换视图

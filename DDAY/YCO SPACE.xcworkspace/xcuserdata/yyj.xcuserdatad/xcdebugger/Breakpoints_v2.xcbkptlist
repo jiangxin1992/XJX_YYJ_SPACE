@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleDetailViewController.m"
-            timestampString = "493549200.276829"
+            filePath = "DDAY/DD_DDAYDetailViewController.m"
+            timestampString = "493575393.796922"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-CreateTableViewHead"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-ShareAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,45 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleDetailHeadView.m"
-            timestampString = "493550050.96976"
+            filePath = "DDAY/DD_DDAYDetailViewController.m"
+            timestampString = "493575405.834707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "-setState"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleDetailViewController.m"
-            timestampString = "493549241.987478"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "-CreateTableViewHead"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CircleDetailHeadView.m"
-            timestampString = "493550050.96976"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "+heightWithModel:"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-ShareAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

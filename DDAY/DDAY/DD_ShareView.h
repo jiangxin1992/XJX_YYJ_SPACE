@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_ShareView : UIView
--(instancetype)initWithContent:(NSString *)CONTENT WithImg:(NSString *)img;
+-(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithBlock:(void(^)(NSString *type))block;
+
+@property (nonatomic,copy) void (^block)(NSString *type);
+__string(content);
+__string(img);
+__string(title);
 @end

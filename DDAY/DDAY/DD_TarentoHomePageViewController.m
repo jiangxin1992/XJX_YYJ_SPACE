@@ -13,6 +13,7 @@
 
 #import "DD_TarentoHeadView.h"
 #import "DD_CircleListCell.h"
+#import "DD_ShareView.h"
 
 #import "DD_CircleListModel.h"
 
@@ -30,6 +31,9 @@
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
     
     DD_UserModel *_usermodel;
+    
+    DD_ShareView *shareView;
+    UIImageView *mengban;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -293,10 +297,39 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+//蒙板消失
+-(void)mengban_dismiss
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    } completion:^(BOOL finished) {
+        [mengban removeFromSuperview];
+        mengban=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }];
+    
+}
 //分享
 -(void)ShareAction
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    mengban=[UIImageView getMaskImageView];
+    [self.view addSubview:mengban];
+    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [self mengban_dismiss];
+        }
+    }];
+    [mengban addSubview:shareView];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, 250);
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+    }];
+    
 }
 
 -(void)MJRefresh

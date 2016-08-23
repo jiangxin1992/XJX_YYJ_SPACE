@@ -849,17 +849,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F552E681CF1C7FA00BC5E33 /* JavaScriptCore.framework in Frameworks */,
+				3F552E661CF1C7F300BC5E33 /* libstdc++.tbd in Frameworks */,
+				3F552E641CF1C7EB00BC5E33 /* libz.tbd in Frameworks */,
+				3F552E621CF1C7E100BC5E33 /* libicucore.tbd in Frameworks */,
 				3F1682D81D21726200C35ED0 /* CoreBluetooth.framework in Frameworks */,
 				3F124B511D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a in Frameworks */,
 				3F1682D61D21725400C35ED0 /* CoreLocation.framework in Frameworks */,
-				3F552E681CF1C7FA00BC5E33 /* JavaScriptCore.framework in Frameworks */,
 				3F1682D41D21724F00C35ED0 /* AVFoundation.framework in Frameworks */,
 				3F3810D11CF54664007154F1 /* CoreTelephony.framework in Frameworks */,
 				3F3810CF1CF5465D007154F1 /* SystemConfiguration.framework in Frameworks */,
 				3F124B4D1D225115002B4E87 /* MobileCoreServices.framework in Frameworks */,
 				3F1682D21D21724400C35ED0 /* Security.framework in Frameworks */,
 				3F7E58B31D40666F000FDE5F /* Waterflow.a in Frameworks */,
-				3F552E641CF1C7EB00BC5E33 /* libz.tbd in Frameworks */,
 				3F552E6C1CF1C80D00BC5E33 /* libsqlite3.tbd in Frameworks */,
 				3F3810DD1CF54932007154F1 /* CoreText.framework in Frameworks */,
 				3F3810C71CF5460B007154F1 /* Foundation.framework in Frameworks */,
@@ -874,8 +876,6 @@
 				3F3810C91CF54630007154F1 /* libc++.tbd in Frameworks */,
 				3F552E6E1CF1C83200BC5E33 /* MessageUI.framework in Frameworks */,
 				3F552E6A1CF1C80400BC5E33 /* ImageIO.framework in Frameworks */,
-				3F552E661CF1C7F300BC5E33 /* libstdc++.tbd in Frameworks */,
-				3F552E621CF1C7E100BC5E33 /* libicucore.tbd in Frameworks */,
 				F4DB50141276DD44E4BCEF24 /* Pods_YCO_SPACE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,6 +904,15 @@
 				3F00D4161D5A4CA000896ED5 /* DD_UserMessageViewController.m */,
 			);
 			name = "我的消息";
+			sourceTree = "<group>";
+		};
+		3F07DB9F1D6B4365005C8022 /* 分享 */ = {
+			isa = PBXGroup;
+			children = (
+				3F1FF5C51D6B04A900C28843 /* DD_ShareView.h */,
+				3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */,
+			);
+			name = "分享";
 			sourceTree = "<group>";
 		};
 		3F0A6DF11D11034A00CDCBC5 /* InfoView */ = {
@@ -1378,6 +1387,7 @@
 		3F4187C01CEEFE70001BCA3D /* 常用类 */ = {
 			isa = PBXGroup;
 			children = (
+				3F07DB9F1D6B4365005C8022 /* 分享 */,
 				3F85E81A1D51AEAA0077F848 /* DD_ImageModel */,
 				3F0B66D61D23BB0700A89F33 /* NotObj */,
 				3F4904F31D1910AB009F4CD3 /* Tools */,
@@ -1436,8 +1446,6 @@
 		3F4187CB1CEEFEDE001BCA3D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F1FF5C51D6B04A900C28843 /* DD_ShareView.h */,
-				3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */,
 				3F9B8B031CEF6C58008EC460 /* DD_UserCell.h */,
 				3F9B8B041CEF6C58008EC460 /* DD_UserCell.m */,
 				3FA8365E1D050B73006D2919 /* 我的订单 */,
