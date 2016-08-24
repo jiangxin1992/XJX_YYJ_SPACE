@@ -45,7 +45,11 @@ PODS:
   - ShareSDK3/ShareSDKPlatforms/QQ (3.3.0)
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.3.0)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.3.0)
+  - TTTAttributedLabel (1.13.4)
   - UMengAnalytics-NO-IDFA (4.0.3)
+  - YYKit (1.0.6):
+    - YYKit/no-arc (= 1.0.6)
+  - YYKit/no-arc (1.0.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
@@ -61,7 +65,9 @@ DEPENDENCIES:
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/WeChat
+  - TTTAttributedLabel
   - UMengAnalytics-NO-IDFA
+  - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -75,8 +81,10 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   ShareSDK3: f9c1e463e99fcd5eb5d54cf81a06c7ec3e5d9dd0
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UMengAnalytics-NO-IDFA: 173a5a2541536225f4c947935560975136f18a34
+  YYKit: a80c77ab7be226ebe539ef1495dfc25d5766d61e
 
-PODFILE CHECKSUM: d3167f389447aeed325647460b45348b741e245f
+PODFILE CHECKSUM: 0083158413959140e75c99b52415fc6356226671
 
 COCOAPODS: 1.0.0

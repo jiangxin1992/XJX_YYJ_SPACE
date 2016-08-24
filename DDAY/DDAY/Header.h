@@ -17,6 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import "ReactiveCocoa.h"
 #import "UMMobClick/MobClick.h"
+#import <YYKit/YYKit.h>
 
 /*************** Category ***************/
 #import "NSString+extra.h"
@@ -29,6 +30,7 @@
 #import "UILabel+DD_Custom.h"
 #import "UIColor+Hex.h"
 #import "UIView+Custom.h"
+#import "YYLabel+Custom.h"
 
 /*************** Custom ***************/
 #import "regular.h"

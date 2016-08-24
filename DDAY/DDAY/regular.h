@@ -12,6 +12,8 @@
 @property (nonatomic,strong)NSString *value;
 @property(nonatomic,copy) CGFloat (^getSize)(CGFloat length1,CGFloat length2,CGFloat length3);
 
++ (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
++(CGFloat )getHeightWithWidth:(CGFloat )width  WithContent:(NSString *)content;
 +(NSString *)getSpacingTime:(long)createTime;
 /**
  * 获取自定义 UIBarButtonItem

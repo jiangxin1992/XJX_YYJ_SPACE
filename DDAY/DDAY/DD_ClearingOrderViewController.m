@@ -177,8 +177,11 @@
  */
 -(void)checkLogisticsInfoWithModel:(DD_OrderModel *)_OrderModel
 {
-    //    跳转物流信息界面
-    [self.navigationController pushViewController:[[DD_OrderLogisticsViewController alloc] initWithModel:_OrderModel WithBlock:nil] animated:YES];
+    if(_OrderModel.subOrderCode)
+    {
+        //    跳转物流信息界面
+        [self.navigationController pushViewController:[[DD_OrderLogisticsViewController alloc] initWithModel:_OrderModel WithBlock:nil] animated:YES];
+    }
 }
 /**
  * 删除订单
