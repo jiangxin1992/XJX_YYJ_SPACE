@@ -30,7 +30,7 @@
 #import "UILabel+DD_Custom.h"
 #import "UIColor+Hex.h"
 #import "UIView+Custom.h"
-#import "YYLabel+Custom.h"
+#import "NSDate+Custom.h"
 
 /*************** Custom ***************/
 #import "regular.h"

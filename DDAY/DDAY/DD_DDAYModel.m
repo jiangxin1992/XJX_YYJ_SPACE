@@ -22,11 +22,13 @@
     _DDAYModel.signEndTime=_DDAYModel.signEndTime/1000;
     _DDAYModel.saleStartTime=_DDAYModel.saleStartTime/1000;
     _DDAYModel.saleEndTime=_DDAYModel.saleEndTime/1000;
+    NSLog(@"1111");
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=YES;
 //    [self testData_Q:_DDAYModel WithType:4];
     return _DDAYModel;
 }
+
 +(void)testData_Q:(DD_DDAYModel *)_DDAYModel WithType:(NSInteger )type
 {
     long nowTime=[regular date];

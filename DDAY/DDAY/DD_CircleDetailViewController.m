@@ -181,10 +181,6 @@
                 //            点击用户头像
                 [_DetailView pushUserHomePage];
                 
-            }else if([type isEqualToString:@"share"])
-            {
-                //            分享
-                [_DetailView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
             }else if([type isEqualToString:@"comment"])
             {
                 //            跳转评论页面

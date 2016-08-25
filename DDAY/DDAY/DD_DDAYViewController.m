@@ -10,6 +10,7 @@
 
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
+#import "CalendarViewController.h"
 
 #import "DD_DDAYCell.h"
 
@@ -267,7 +268,7 @@
  */
 -(void)PushCalendarView
 {
-    [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
+    [self.navigationController pushViewController:[[CalendarViewController alloc] init] animated:YES];
 }
 /**
  * 发布日详情页

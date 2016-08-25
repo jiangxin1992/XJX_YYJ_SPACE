@@ -62,4 +62,8 @@ __long(signEndTime);
  * 报名开始时间
  */
 __long(signStartTime);
+/**
+ * 系列对应颜色
+ */
+__string(seriesColor);
 @end

@@ -148,7 +148,15 @@
 		3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EA81CF214A000BC5E33 /* DD_OtherItemModel.m */; };
 		3F552EAD1CF21B2400BC5E33 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAC1CF21B2400BC5E33 /* ImageViewController.m */; };
 		3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */; };
+		3F5717241D6EAC63006E1940 /* DD_PointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717231D6EAC63006E1940 /* DD_PointModel.m */; };
+		3F5717271D6EAE84006E1940 /* DD_RGBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717261D6EAE84006E1940 /* DD_RGBModel.m */; };
+		3F57172E1D6EBD10006E1940 /* DD_MonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57172D1D6EBD10006E1940 /* DD_MonthModel.m */; };
+		3F5717311D6EBD75006E1940 /* DD_CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717301D6EBD75006E1940 /* DD_CalendarCell.m */; };
 		3F5717331D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */; };
+		3F5717341D6EC01E006E1940 /* NSDate+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717331D6EC01E006E1940 /* NSDate+Formatter.m */; };
+		3F5717371D6ED356006E1940 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717361D6ED356006E1940 /* CalendarViewController.m */; };
+		3F57173A1D6EE9DE006E1940 /* DD_CalendarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5717391D6EE9DE006E1940 /* DD_CalendarTool.m */; };
+		3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57173C1D6F0713006E1940 /* NSDate+Custom.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
 		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
@@ -179,7 +187,6 @@
 		3F73CC661D6D36D400E419B9 /* DD_OrderLogisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC651D6D36D400E419B9 /* DD_OrderLogisticsModel.m */; };
 		3F73CC691D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC681D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m */; };
 		3F73CC6C1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */; };
-		3F73CC6F1D6D702D00E419B9 /* YYLabel+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC6E1D6D702D00E419B9 /* YYLabel+Custom.m */; };
 		3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */; };
 		3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */; };
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
@@ -620,8 +627,24 @@
 		3F552EAE1CF220B700BC5E33 /* DD_GoodsInformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsInformView.h; sourceTree = "<group>"; };
 		3F552EAF1CF220B700BC5E33 /* DD_GoodsInformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsInformView.m; sourceTree = "<group>"; };
 		3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3F5717221D6EAC63006E1940 /* DD_PointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_PointModel.h; sourceTree = "<group>"; };
+		3F5717231D6EAC63006E1940 /* DD_PointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_PointModel.m; sourceTree = "<group>"; };
+		3F5717251D6EAE84006E1940 /* DD_RGBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_RGBModel.h; sourceTree = "<group>"; };
+		3F5717261D6EAE84006E1940 /* DD_RGBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_RGBModel.m; sourceTree = "<group>"; };
+		3F57172C1D6EBD10006E1940 /* DD_MonthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_MonthModel.h; sourceTree = "<group>"; };
+		3F57172D1D6EBD10006E1940 /* DD_MonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_MonthModel.m; sourceTree = "<group>"; };
+		3F57172F1D6EBD75006E1940 /* DD_CalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CalendarCell.h; sourceTree = "<group>"; };
+		3F5717301D6EBD75006E1940 /* DD_CalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CalendarCell.m; sourceTree = "<group>"; };
 		3F5717311D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleInfoSuggestSimpleView.h; sourceTree = "<group>"; };
 		3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleInfoSuggestSimpleView.m; sourceTree = "<group>"; };
+		3F5717321D6EC01E006E1940 /* NSDate+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Formatter.h"; sourceTree = "<group>"; };
+		3F5717331D6EC01E006E1940 /* NSDate+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatter.m"; sourceTree = "<group>"; };
+		3F5717351D6ED356006E1940 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		3F5717361D6ED356006E1940 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		3F5717381D6EE9DE006E1940 /* DD_CalendarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CalendarTool.h; sourceTree = "<group>"; };
+		3F5717391D6EE9DE006E1940 /* DD_CalendarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CalendarTool.m; sourceTree = "<group>"; };
+		3F57173B1D6F0713006E1940 /* NSDate+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Custom.h"; sourceTree = "<group>"; };
+		3F57173C1D6F0713006E1940 /* NSDate+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Custom.m"; sourceTree = "<group>"; };
 		3F576F281D377D4A0061602A /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
@@ -682,8 +705,6 @@
 		3F73CC681D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderLogisticsManageModel.m; sourceTree = "<group>"; };
 		3F73CC6A1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderLogisticsHeadView.h; sourceTree = "<group>"; };
 		3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderLogisticsHeadView.m; sourceTree = "<group>"; };
-		3F73CC6D1D6D702D00E419B9 /* YYLabel+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYLabel+Custom.h"; sourceTree = "<group>"; };
-		3F73CC6E1D6D702D00E419B9 /* YYLabel+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYLabel+Custom.m"; sourceTree = "<group>"; };
 		3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsDesignerView.h; sourceTree = "<group>"; };
 		3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsDesignerView.m; sourceTree = "<group>"; };
 		3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseSizeView.h; sourceTree = "<group>"; };
@@ -1417,8 +1438,8 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				3F73CC6D1D6D702D00E419B9 /* YYLabel+Custom.h */,
-				3F73CC6E1D6D702D00E419B9 /* YYLabel+Custom.m */,
+				3F57173B1D6F0713006E1940 /* NSDate+Custom.h */,
+				3F57173C1D6F0713006E1940 /* NSDate+Custom.m */,
 				3F6002041D499A88007E395F /* UIView+Custom */,
 				3F61531E1D3F284B00BB60FD /* UIColor+Hex */,
 				3F83EE9F1D38915D0051C89E /* UILabel+DD_Custom */,
@@ -1790,6 +1811,23 @@
 			name = pagecontroller;
 			sourceTree = "<group>";
 		};
+		3F5717281D6EBBC2006E1940 /* 日历 */ = {
+			isa = PBXGroup;
+			children = (
+				3F5717381D6EE9DE006E1940 /* DD_CalendarTool.h */,
+				3F5717391D6EE9DE006E1940 /* DD_CalendarTool.m */,
+				3F5717351D6ED356006E1940 /* CalendarViewController.h */,
+				3F5717361D6ED356006E1940 /* CalendarViewController.m */,
+				3F5717321D6EC01E006E1940 /* NSDate+Formatter.h */,
+				3F5717331D6EC01E006E1940 /* NSDate+Formatter.m */,
+				3F57172C1D6EBD10006E1940 /* DD_MonthModel.h */,
+				3F57172D1D6EBD10006E1940 /* DD_MonthModel.m */,
+				3F57172F1D6EBD75006E1940 /* DD_CalendarCell.h */,
+				3F5717301D6EBD75006E1940 /* DD_CalendarCell.m */,
+			);
+			name = "日历";
+			sourceTree = "<group>";
+		};
 		3F576F2E1D377E790061602A /* UIButton+EnlargeEdge */ = {
 			isa = PBXGroup;
 			children = (
@@ -1949,6 +1987,10 @@
 				3F60024C1D49EEFD007E395F /* DD_DrawManageView.m */,
 				3F6002471D49EEB5007E395F /* DrawView.h */,
 				3F6002481D49EEB5007E395F /* DrawView.m */,
+				3F5717221D6EAC63006E1940 /* DD_PointModel.h */,
+				3F5717231D6EAC63006E1940 /* DD_PointModel.m */,
+				3F5717251D6EAE84006E1940 /* DD_RGBModel.h */,
+				3F5717261D6EAE84006E1940 /* DD_RGBModel.m */,
 			);
 			name = drawView;
 			sourceTree = "<group>";
@@ -2374,6 +2416,7 @@
 		3F9B8AC01CEF5457008EC460 /* 发布日 */ = {
 			isa = PBXGroup;
 			children = (
+				3F5717281D6EBBC2006E1940 /* 日历 */,
 				3F4B81DD1D01157100B323E4 /* 发布会 */,
 				3F4B81CE1D0052A700B323E4 /* 发布日详情 */,
 				3F3C3F051CFEBCBB0056CD6B /* 发布日首页 */,
@@ -3094,6 +3137,7 @@
 				3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */,
 				3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */,
 				3F4B81D21D0052CB00B323E4 /* DD_DDAYDetailViewController.m in Sources */,
+				3F57172E1D6EBD10006E1940 /* DD_MonthModel.m in Sources */,
 				3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */,
 				3F552E7A1CF1EA3C00BC5E33 /* DD_ItemCell.m in Sources */,
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
@@ -3141,6 +3185,7 @@
 				3F552E831CF1F59E00BC5E33 /* DD_DesignerModel.m in Sources */,
 				3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */,
 				3F9B8B081CEF6D29008EC460 /* DD_UserTool.m in Sources */,
+				3F5717311D6EBD75006E1940 /* DD_CalendarCell.m in Sources */,
 				3F3C3F021CFEBCB00056CD6B /* DD_DDAYCell.m in Sources */,
 				3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */,
 				3F9B8B151CF0095C008EC460 /* DD_RegisterViewController.m in Sources */,
@@ -3155,6 +3200,7 @@
 				3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */,
 				3F9B8B0F1CF0019B008EC460 /* DD_LoginViewController.m in Sources */,
 				3F0A8CE91D07F6E8005549BE /* DD_OrderRefundViewController.m in Sources */,
+				3F57173A1D6EE9DE006E1940 /* DD_CalendarTool.m in Sources */,
 				3F73CC621D6D35B300E419B9 /* DD_OrderLogisticsCell.m in Sources */,
 				3FB342611D0FFF4E00C9A682 /* DD_CirclePublishViewController.m in Sources */,
 				3FB342661D1001DB00C9A682 /* DD_CircleInfoView.m in Sources */,
@@ -3165,6 +3211,7 @@
 				3F85E8161D5186A40077F848 /* DD_SizeAlertModel.m in Sources */,
 				3F4187FB1CEEFF35001BCA3D /* DD_ClearingModel.m in Sources */,
 				3F7160BA1D4F21AE00E165D2 /* DD_GoodsCategorySubModel.m in Sources */,
+				3F5717341D6EC01E006E1940 /* NSDate+Formatter.m in Sources */,
 				3F9B8AFB1CEF56BC008EC460 /* DD_CustomViewController.m in Sources */,
 				3F39E0321D52EC2600B31333 /* DD_AddNewAddressDefaultBtn.m in Sources */,
 				3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */,
@@ -3173,7 +3220,9 @@
 				3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */,
 				3F9B8B1B1CF01F8D008EC460 /* DD_SetPSWViewController.m in Sources */,
 				3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */,
+				3F5717241D6EAC63006E1940 /* DD_PointModel.m in Sources */,
 				3F4904F21D1910A5009F4CD3 /* Tools.m in Sources */,
+				3F5717371D6ED356006E1940 /* CalendarViewController.m in Sources */,
 				3F124B4A1D2225B8002B4E87 /* DD_FansCell.m in Sources */,
 				3F73CC6C1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m in Sources */,
 				3F9B8AF11CEF5633008EC460 /* DD_GoodsViewController.m in Sources */,
@@ -3203,7 +3252,6 @@
 				3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */,
 				3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */,
 				3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */,
-				3F73CC6F1D6D702D00E419B9 /* YYLabel+Custom.m in Sources */,
 				3F4938951D0EAEF7000D213B /* DD_UserMainCollectViewController.m in Sources */,
 				3F3811AD1CF54F7C007154F1 /* Order.m in Sources */,
 				3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */,
@@ -3261,6 +3309,7 @@
 				3F21E2121D17ACB500FE7ADF /* DD_CricleCategoryModel.m in Sources */,
 				3FD74B681CF445B400C10C32 /* DD_SetAddressBtn.m in Sources */,
 				3F552EA11CF210A000BC5E33 /* DD_SizeModel.m in Sources */,
+				3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */,
 				3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */,
 				3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */,
 				3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */,
@@ -3274,6 +3323,7 @@
 				3F14013E1CF824D40093474A /* DD_ShopSeriesModel.m in Sources */,
 				3FFC4FE31D50E1FD00FD6866 /* DD_ShopAlertNumView.m in Sources */,
 				3F0B66D91D23BB3B00A89F33 /* DD_NOTInformClass.m in Sources */,
+				3F5717271D6EAE84006E1940 /* DD_RGBModel.m in Sources */,
 				3F1401411CF825B20093474A /* DD_ShopItemModel.m in Sources */,
 				3F4187DC1CEEFF0B001BCA3D /* DD_AddressViewController.m in Sources */,
 				3F4187BB1CEEFE4B001BCA3D /* regular.m in Sources */,

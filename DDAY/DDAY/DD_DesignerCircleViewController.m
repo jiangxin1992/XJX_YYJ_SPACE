@@ -78,10 +78,6 @@
         {
             //            收藏
             [_CircleView collectActionIsCancel:NO WithIndex:index];
-        }else if([type isEqualToString:@"share"])
-        {
-            //            分享
-            [_CircleView presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"pay_attention", @"")] animated:YES completion:nil];
         }else if([type isEqualToString:@"comment"])
         {
             //            跳转评论页面
