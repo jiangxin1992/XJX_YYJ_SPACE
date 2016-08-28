@@ -9,7 +9,33 @@
 #import <Foundation/Foundation.h>
 
 #import "DD_DDAYModel.h"
+#import "DD_MonthModel.h"
 
 @interface DD_CalendarTool : NSObject
--(NSArray *)getPointArrWithType:(NSInteger )type WithColorOne:(NSString *)colorCode1 WithColorTwo:(NSString *)colorCode2;
+
+/**
+ * 获取该星期的所有系列
+ */
++(NSArray *)getWeekSeriesWithDayModel:(NSDate *)date WithWeekNum:(NSInteger )week WithSeriesArr:(NSArray *)seriesArr WithDataArr:(NSArray *)dataArr;
+/**
+ * 获取该星期的所有区域view
+ */
++(NSArray *)getWeekViewWithDayModel:(NSDate *)date WithWeekArr:(NSArray *)weekArr WithWeekNum:(NSInteger )week WithDataArr:(NSArray *)dataArr;
+/**
+ * 获取该月的所有系列
+ */
++(NSArray *)getMonthSeriesWithDayModel:(NSDate *)date WithSeriesArr:(NSArray *)seriesArr WithDataArr:(NSArray *)dataArr;
+
+/**
+ * 已弃用
+ */
++(NSArray *)getPointArrWithType:(NSInteger )type WithColorOne:(NSString *)colorCode1 WithColorTwo:(NSString *)colorCode2;
+
++(NSArray *)getCurrentSeriesWithMonthModel:(DD_MonthModel *)monthModel WithData:(NSArray *)seriesArr;
+
++(NSInteger)getTypeWithArr:(NSArray *)getArr WithMonthModel:(DD_MonthModel *)monthModel;
+/**
+ * 获取该月有几周
+ */
++(NSInteger )getWeekCountWithDayModel:(NSDate *)date;
 @end

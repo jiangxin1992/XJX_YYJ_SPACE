@@ -16,10 +16,15 @@
     
     DD_ShopSeriesModel *_ShopSeries=[DD_ShopSeriesModel objectWithKeyValues:dict];
     _ShopSeries.items=[DD_ShopItemModel getShopItemModelArr:[dict objectForKey:@"items"]];//获取item model数组
-    _ShopSeries.signStartTime=_ShopSeries.signStartTime/1000;
-    _ShopSeries.signEndTime=_ShopSeries.signEndTime/1000;
-    _ShopSeries.saleStartTime=_ShopSeries.saleStartTime/1000;
-    _ShopSeries.saleEndTime=_ShopSeries.saleEndTime/1000;
+    _ShopSeries.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;
+    _ShopSeries.signEndTime=[[dict objectForKey:@"signEndTime"] longLongValue]/1000;
+    _ShopSeries.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
+    _ShopSeries.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
+
+//    _ShopSeries.signStartTime=_ShopSeries.signStartTime/1000;
+//    _ShopSeries.signEndTime=_ShopSeries.signEndTime/1000;
+//    _ShopSeries.saleStartTime=_ShopSeries.saleStartTime/1000;
+//    _ShopSeries.saleEndTime=_ShopSeries.saleEndTime/1000;
 //    [self testDate:_ShopSeries];
     return _ShopSeries;
 }

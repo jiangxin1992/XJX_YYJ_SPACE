@@ -18,10 +18,20 @@
 {
     DD_DDAYModel *_DDAYModel=[DD_DDAYModel objectWithKeyValues:dict];
     _DDAYModel.s_id=[dict objectForKey:@"id"];
-    _DDAYModel.signStartTime=_DDAYModel.signStartTime/1000;
-    _DDAYModel.signEndTime=_DDAYModel.signEndTime/1000;
-    _DDAYModel.saleStartTime=_DDAYModel.saleStartTime/1000;
-    _DDAYModel.saleEndTime=_DDAYModel.saleEndTime/1000;
+    
+    _DDAYModel.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;
+    _DDAYModel.signEndTime=[[dict objectForKey:@"signEndTime"] longLongValue]/1000;
+    _DDAYModel.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
+    _DDAYModel.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
+    
+    _DDAYModel.signStartDate=[regular zoneChange:_DDAYModel.signStartTime];
+    _DDAYModel.signEndDate=[regular zoneChange:_DDAYModel.signEndTime];
+    _DDAYModel.saleStartDate=[regular zoneChange:_DDAYModel.saleStartTime];
+    _DDAYModel.saleEndDate=[regular zoneChange:_DDAYModel.saleEndTime];
+//    @property (nonatomic,strong) NSDate *signStartDate;
+//    @property (nonatomic,strong) NSDate *saleEndDate;
+//    @property (nonatomic,strong) NSDate *signEndDate;
+//    @property (nonatomic,strong) NSDate *saleStartDate;
     NSLog(@"1111");
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=YES;

@@ -62,6 +62,12 @@ __long(signEndTime);
  * 报名开始时间
  */
 __long(signStartTime);
+
+@property (nonatomic,strong) NSDate *signStartDate;
+@property (nonatomic,strong) NSDate *saleEndDate;
+@property (nonatomic,strong) NSDate *signEndDate;
+@property (nonatomic,strong) NSDate *saleStartDate;
+
 /**
  * 系列对应颜色
  */

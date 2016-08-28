@@ -14,10 +14,16 @@
     
     DD_ShopItemModel *_ShopItemModel=[DD_ShopItemModel objectWithKeyValues:dict];
 //    java时间戳转换
-    _ShopItemModel.signStartTime=_ShopItemModel.signStartTime/1000;
-    _ShopItemModel.signEndTime=_ShopItemModel.signEndTime/1000;
-    _ShopItemModel.saleStartTime=_ShopItemModel.saleStartTime/1000;
-    _ShopItemModel.saleEndTime=_ShopItemModel.saleEndTime/1000;
+    ;
+    _ShopItemModel.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;
+    _ShopItemModel.signEndTime=[[dict objectForKey:@"signEndTime"] longLongValue]/1000;
+    _ShopItemModel.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
+    _ShopItemModel.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
+
+//    _ShopItemModel.signStartTime=_ShopItemModel.signStartTime/1000;
+//    _ShopItemModel.signEndTime=_ShopItemModel.signEndTime/1000;
+//    _ShopItemModel.saleStartTime=_ShopItemModel.saleStartTime/1000;
+//    _ShopItemModel.saleEndTime=_ShopItemModel.saleEndTime/1000;
 //    初始化编辑状态
     _ShopItemModel.is_select=NO;
 //    [self testDate:_ShopItemModel];

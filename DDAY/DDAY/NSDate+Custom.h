@@ -33,4 +33,12 @@
  * 下个月
  */
 - (NSDate *)getNextMonth;
+/**
+ * 获取当前day的第一刻
+ */
+-(NSDate *)getFirstTime;
+/**
+ * 获取时间戳
+ */
+-(long)getTime;
 @end

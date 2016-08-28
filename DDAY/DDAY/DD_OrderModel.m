@@ -15,7 +15,8 @@
 {
     DD_OrderModel *_OrderModel=[DD_OrderModel objectWithKeyValues:dict];
     _OrderModel.itemList=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"itemList"]];
-    _OrderModel.createTime=_OrderModel.createTime/1000;
+    _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
+//    _OrderModel.createTime=_OrderModel.createTime/1000;
     return _OrderModel;
 }
 +(NSArray *)getOrderModelArr:(NSArray *)arr

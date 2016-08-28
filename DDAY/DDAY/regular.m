@@ -88,6 +88,7 @@ static regular *_t = nil;
     CGSize titleSize = [content boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[regular getFont:13.0f]} context:nil].size;
     return titleSize.height+1;
 }
+
 +(NSString *)getSpacingTime:(long)createTime
 {
     long _minute=60;

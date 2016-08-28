@@ -31,6 +31,20 @@
         return nil;
     }
 }
+-(NSDate *)getFirstTime
+{
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    BOOL ok = [calendar rangeOfUnit:NSCalendarUnitDay startDate:&beginDate interval:&interval forDate:self];
+    //分别修改为 NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        return beginDate;
+    }else {
+        return nil;
+    }
+}
 
 -(NSDate *)lastDateOfMonth
 {
@@ -78,7 +92,10 @@
     comps.month += 1;
     return [greCalendar dateFromComponents:comps];
 }
-
+-(long)getTime
+{
+    return [self timeIntervalSince1970];
+}
 
 
 

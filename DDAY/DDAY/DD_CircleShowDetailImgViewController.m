@@ -8,6 +8,8 @@
 
 #import "DD_CircleShowDetailImgViewController.h"
 
+#import "DD_ImageModel.h"
+
 @interface DD_CircleShowDetailImgViewController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -58,7 +60,8 @@
         [_pho setImage:[_picArrs objectAtIndex:_index]];
     }else if([_type isEqualToString:@"model"])
     {
-        [_pho JX_loadImageUrlStr:[_picArrs objectAtIndex:_index] WithSize:800 placeHolderImageName:nil radius:0];
+        DD_ImageModel *imgModel=[_picArrs objectAtIndex:_index];
+        [_pho JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     _pho.userInteractionEnabled=YES;
     // 旋转手势

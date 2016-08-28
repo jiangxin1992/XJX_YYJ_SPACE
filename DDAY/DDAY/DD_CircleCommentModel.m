@@ -12,7 +12,8 @@
 +(DD_CircleCommentModel *)getCircleCommentModel:(NSDictionary *)dict
 {
     DD_CircleCommentModel *_tagModel=[DD_CircleCommentModel objectWithKeyValues:dict];
-    _tagModel.createTime=_tagModel.createTime/1000;
+    _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
+//    _tagModel.createTime=_tagModel.createTime/1000;
     [_tagModel IntegrationComment];
     _tagModel.commHeight=[regular getHeightWithContent:_tagModel.comment WithWidth:ScreenWidth-120 WithFont:13.0f];
     

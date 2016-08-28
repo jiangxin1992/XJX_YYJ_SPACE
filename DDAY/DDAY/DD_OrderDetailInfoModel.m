@@ -15,7 +15,8 @@
 {
     DD_OrderDetailInfoModel *_OrderModel=[DD_OrderDetailInfoModel objectWithKeyValues:dict];
     _OrderModel.orderList=[DD_OrderModel getOrderModelArr:[dict objectForKey:@"orderList"]];
-    _OrderModel.createTime=_OrderModel.createTime/1000;
+    _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
+//    _OrderModel.createTime=_OrderModel.createTime/1000;
     return _OrderModel;
 }
 @end

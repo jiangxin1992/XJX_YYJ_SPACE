@@ -16,7 +16,7 @@
 
 -(instancetype)initWithStartP:(CGPoint )start_point WithEndP:(CGPoint )end_point WithLineWidth:(CGFloat )width WithColorType:(NSInteger )type;
 
--(instancetype)initWithPonitArr:(NSArray *)pointArr WithLineWidth:(CGFloat )width WityType:(NSInteger )type;
+//-(instancetype)initWithPonitArr:(NSArray *)pointArr WithLineWidth:(CGFloat )width WityType:(NSInteger )type;
 
 -(void)Update;
 @property (nonatomic,assign) CGPoint start_point;//起始位置
@@ -24,7 +24,7 @@
 @property (nonatomic,assign) CGFloat width;//宽度
 @property (nonatomic,assign) NSInteger type;//颜色类型
 
-__array(pointArr);
-__string(colorCode);
+//__array(pointArr);
+//__string(colorCode);
 
 @end
