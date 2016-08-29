@@ -99,7 +99,7 @@
 {
     mywaterflow = [[Waterflow alloc] init];
     
-    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-169+ktabbarHeight);
+    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-169);
     
     mywaterflow.dataSource = self;
     
@@ -138,7 +138,7 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     DD_ItemsModel *item=[_dataArr objectAtIndex:index];
     DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
     return [DD_ItemTool getHomePageCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
 }
 // 这个方法可选不是必要的，默认是3列
@@ -152,14 +152,23 @@
     if(item.pics)
     {
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height+56;
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height+25;
     }
-    return 37;
+    return 25;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
-    return 13;
+    switch (type) {
+        case WaterflowMarginTypeTop:return water_Top;
+        case WaterflowMarginTypeLeft:return water_margin;
+        case WaterflowMarginTypeRight:return water_margin;
+        case WaterflowMarginTypeRow:return water_Spacing;
+        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeBottom:return water_Bottom;
+            //        case WaterflowMarginTypeColumn:return 0;
+        default:return 0;
+    }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{

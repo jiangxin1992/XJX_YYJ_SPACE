@@ -181,8 +181,8 @@ static DD_CustomViewController *tabbarController = nil;
     for (int i = 0; i<titleArr.count; i++) {
         DD_TabbarItem *item = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
         //        设置item的frame，标题，normal和select的图片
-        item.type=i;
-        [item setTitle:titleArr[i] forState:UIControlStateNormal];
+//        item.type=i;
+//        [item setTitle:titleArr[i] forState:UIControlStateNormal];
         
         //锁定第一个视图为默认出现页面
         if (i == 0) {
@@ -217,7 +217,7 @@ static DD_CustomViewController *tabbarController = nil;
     [_tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.view).with.offset(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(IsPhone6_gt?ktabbarHeight+16:ktabbarHeight);
     }];
     
 }

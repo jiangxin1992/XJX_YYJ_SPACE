@@ -13,7 +13,8 @@
 @property(nonatomic,copy) CGFloat (^getSize)(CGFloat length1,CGFloat length2,CGFloat length3);
 
 + (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
-+(CGFloat )getHeightWithWidth:(CGFloat )width  WithContent:(NSString *)content;
++(CGFloat )getHeightWithWidth:(CGFloat )width WithContent:(NSString *)content WithFont:(UIFont *)font;
++(CGFloat )getWidthWithHeight:(CGFloat )height WithContent:(NSString *)content WithFont:(UIFont *)font;
 +(NSString *)getSpacingTime:(long)createTime;
 /**
  * 获取自定义 UIBarButtonItem
@@ -39,6 +40,8 @@
  * 添加view边框
  */
 +(void)setBorder:(UIView *)view;
++(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width;
+
 /**
  * 获取tableview section head和foot的view
  */

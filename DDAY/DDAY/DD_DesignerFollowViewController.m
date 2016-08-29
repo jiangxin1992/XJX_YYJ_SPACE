@@ -124,7 +124,8 @@
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"designer/queryCareDesigners.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *_parameters=@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]};
+    [[JX_AFNetworking alloc] GET:@"designer/queryCareDesigners.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_DesignerModel getDesignerModelArr:[data objectForKey:@"designers"]];
@@ -161,7 +162,7 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;

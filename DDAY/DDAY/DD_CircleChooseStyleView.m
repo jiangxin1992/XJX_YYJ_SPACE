@@ -95,6 +95,15 @@
         
     }];
     
+//    //            删除已选款式
+//    DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:btn.tag-150];
+//    item.isSelect=NO;
+//    //    删除item 对应的已选款式
+//    [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
+//    
+//    _block(@"delete_choose_item",btn.tag-150);
+//    [self UpdateImgView];
+//    [mywaterflow reloadData];
 }
 -(void)CreateDownView
 {

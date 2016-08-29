@@ -39,7 +39,7 @@
     _head.contentMode=UIViewContentModeScaleToFill;
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(9);
+        make.top.mas_equalTo(17);
         make.width.height.mas_equalTo(50);
     }];
     
@@ -47,7 +47,7 @@
     [self.contentView addSubview:_brand];
     _brand.contentMode=UIViewContentModeScaleToFill;
     [_brand mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_head.mas_right).with.offset(9);
+        make.left.mas_equalTo(_head.mas_right).with.offset(17);
         make.top.mas_equalTo(_head);
         make.width.height.mas_equalTo(50);
     }];
@@ -58,9 +58,9 @@
     [regular setBorder:_followBtn];
     [_followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(21);
-        make.width.mas_equalTo(68);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(70);
+        make.height.mas_equalTo(25);
+        make.centerY.mas_equalTo(_brand);
     }];
     
     _name_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
@@ -72,7 +72,7 @@
         make.height.mas_equalTo(25);
     }];
     
-    _brand_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    _brand_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_brand_label];
     [_brand_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_brand.mas_right).with.offset(9);
@@ -87,13 +87,12 @@
     _scrollview.alwaysBounceVertical=NO;
     _scrollview.showsHorizontalScrollIndicator=NO;
     _scrollview.scrollEnabled=YES;
-    [regular setBorder:_scrollview];
     [_scrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
     [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(_head.mas_bottom).with.offset(17);
-        make.height.mas_equalTo(234);
+        make.height.mas_equalTo(236);
     }];
     
 }
@@ -102,7 +101,7 @@
     cell.Designer=model;
     [cell.contentView layoutIfNeeded];
     CGRect frame =  cell.scrollview.frame;
-    return frame.origin.y + frame.size.height+10;
+    return frame.origin.y + frame.size.height+33;
 }
 -(void)setDesigner:(DD_DesignerModel *)Designer
 {
@@ -125,8 +124,8 @@
         }
     }
     
-    [_head JX_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:25];
-    [_brand JX_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:25];
+    [_head JX_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:0];
+    [_brand JX_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
     
     _name_label.text=Designer.name;
     _brand_label.text=Designer.brandName;
@@ -134,19 +133,38 @@
     for (UIView *view in _scrollview.subviews) {
         [view removeFromSuperview];
     }
-    CGFloat _x_p=14;
-    for (int i=0; i<Designer.items.count; i++) {
-        DD_ImageModel *imgModel=[Designer.items objectAtIndex:i];
-        NSString *imgStr=imgModel.pic;
-        UIImageView *img=[UIImageView getCustomImg];
-        [_scrollview addSubview:img];
-        img.contentMode=UIViewContentModeScaleToFill;
-        [img JX_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
-        CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*206.0f;
-        img.frame=CGRectMake(_x_p, 14, _width, 206);
-        _x_p+=14+_width;
+    if(Designer.items.count)
+    {
+        [_scrollview mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(236);
+        }];
+        CGFloat _x_p=0;
+        for (int i=0; i<Designer.items.count; i++) {
+            DD_ImageModel *imgModel=[Designer.items objectAtIndex:i];
+            NSString *imgStr=imgModel.pic;
+            UIImageView *img=[UIImageView getCustomImg];
+            [_scrollview addSubview:img];
+            img.contentMode=UIViewContentModeScaleToFill;
+            [img JX_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
+            CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*236;
+            img.frame=CGRectMake(_x_p, 0, _width, 236);
+            if(i<Designer.items.count-1)
+            {
+                _x_p+=17+_width;
+            }else
+            {
+                _x_p+=_width;
+            }
+        }
+        _scrollview.contentSize=CGSizeMake(_x_p,CGRectGetHeight(_scrollview.frame));
+        
+    }else
+    {
+        [_scrollview mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        _scrollview.contentSize=CGSizeMake(0,CGRectGetHeight(_scrollview.frame));
     }
-    _scrollview.contentSize=CGSizeMake(_x_p,234);
 }
 -(void)clickAction
 {

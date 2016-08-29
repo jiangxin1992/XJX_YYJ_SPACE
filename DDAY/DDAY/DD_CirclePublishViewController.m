@@ -267,7 +267,7 @@
             [_infoView.chooseStyleView updateImageView];
         }else if([type isEqualToString:@"delete_choose_item"])
         {
-            [self deleteChooseItem:index];
+            [_infoView.chooseStyleView updateImageView];
         }
         
     }] animated:YES];
@@ -277,12 +277,11 @@
  */
 -(void)deleteChooseItem:(NSInteger )index
 {
-//    //            删除已选款式
-//    DD_CricleChooseItemModel *item=[_CircleModel.chooseItem objectAtIndex:index];
-//    //    删除item 对应的已选款式
-//    item.isSelect=NO;
-//    [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_CircleModel];
-//    [_infoView.chooseStyleView updateImageView];
+    //            删除已选款式
+    DD_CricleChooseItemModel *item=[_CircleModel.chooseItem objectAtIndex:index];
+    //    删除item 对应的已选款式
+    item.isSelect=NO;
+    [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_CircleModel];
     [_infoView.chooseStyleView updateImageView];
 }
 

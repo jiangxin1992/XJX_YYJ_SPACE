@@ -244,6 +244,9 @@
         {
             //            添加自定义标签
             [self CustomTag];
+        }else if([type isEqualToString:@"delete_pic"])
+        {
+            [self DeleteImgWithIndex:index];
         }
     }];
     [container addSubview:_infoView];
@@ -273,6 +276,23 @@
     [_preView removeFromSuperview];
 }
 #pragma mark - SomeAction
+-(void)DeleteImgWithIndex:(long )index
+{
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_CircleModel.picArr objectAtIndex:index] objectForKey:@"key"]};
+    [[JX_AFNetworking alloc] GET:@"file/deleteQiNiuFile.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            [_CircleModel.picArr removeObjectAtIndex:index];
+            [_infoView.imgView setState];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+    
+}
 /**
  * 提交
  */
@@ -410,7 +430,7 @@
             [_infoView.chooseStyleView updateImageView];
         }else if([type isEqualToString:@"delete_choose_item"])
         {
-            [self deleteChooseItem:index];
+            [_infoView.chooseStyleView updateImageView];
         }
     }] animated:YES];
 }
@@ -418,7 +438,7 @@
  * 删除已选款式
  */
 -(void)deleteChooseItem:(NSInteger )index
-{
+{   
     //            删除已选款式
     DD_CricleChooseItemModel *item=[_CircleModel.chooseItem objectAtIndex:index];
     //    删除item 对应的已选款式

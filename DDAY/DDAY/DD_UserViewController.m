@@ -34,6 +34,7 @@
     DD_UserModel *_usermodel;
     
     UIImageView *_userHeadImg;
+    UILabel *_headImgLabel;
     UILabel *_userName;
     
 }
@@ -88,6 +89,12 @@
         make.center.mas_equalTo(_headBack);
     }];
     
+    _headImgLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [_userHeadImg addSubview:_headImgLabel];
+    [_headImgLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(_userHeadImg);
+    }];
+    
     _userName=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.view addSubview:_userName];
     _userName.font=[regular getSemiboldFont:15.0f];
@@ -114,6 +121,7 @@
 {
     if([DD_UserModel isLogin])
     {
+        _headImgLabel.text=@"";
         [[JX_AFNetworking alloc] GET:@"user/queryUserInfo.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -146,7 +154,8 @@
         }];
     }else
     {
-        _userName.text=@"点击登录";
+        _userName.text=@"";
+        _headImgLabel.text=@"点击登录";
     }
 }
 #pragma mark - SomeAction

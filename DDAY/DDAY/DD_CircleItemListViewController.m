@@ -123,8 +123,7 @@
     CGFloat _height=0;
     if(choose_item.pic)
     {
-        _height=((ScreenWidth-20*2-10*2)/2)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
-        
+        _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
     }
     return [DD_CirclePublishTool getColCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:choose_item WithHeight:_height];
 }
@@ -137,19 +136,21 @@
     DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index];
     if(choose_item.pic)
     {
-        CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
-        return _height;
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+        return _height+25;
     }
     return 0;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeBottom:return 20;
-        case WaterflowMarginTypeLeft:return 20;
-        case WaterflowMarginTypeRight:return 20;
-        case WaterflowMarginTypeRow:return 20;
-        case WaterflowMarginTypeColumn:return 20;
+        case WaterflowMarginTypeTop:return water_Top;
+        case WaterflowMarginTypeLeft:return water_margin;
+        case WaterflowMarginTypeRight:return water_margin;
+        case WaterflowMarginTypeRow:return water_Spacing;
+        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeBottom:return water_Bottom;
+//        case WaterflowMarginTypeColumn:return 0;
         default:return 0;
     }
 }

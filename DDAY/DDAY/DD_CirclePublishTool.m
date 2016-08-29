@@ -17,6 +17,7 @@
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
     cell.backgroundColor=[UIColor whiteColor];
     UIImageView *imageview=nil;
+    
     if(item.pic)
     {
         imageview=[[UIImageView alloc] init];
@@ -35,10 +36,18 @@
     [imageview addSubview:price_label];
     price_label.font=[regular getSemiboldFont:15.0f];
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(11);
-        make.bottom.mas_equalTo(-11);
+        make.left.mas_equalTo(8);
+        make.bottom.mas_equalTo(-8);
     }];
-    [price_label sizeToFit];
+    
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:titleLabel];
+    //    titleLabel.backgroundColor=[UIColor redColor];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+    }];
+    
     return cell;
 }
 
@@ -48,16 +57,17 @@
     _index=index;
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
     cell.userInteractionEnabled=YES;
+//    cell.backgroundColor=[UIColor yellowColor];
     
     UIView *backView=[UIView getCustomViewWithColor:nil];
     [cell addSubview:backView];
+//    backView.backgroundColor=[UIColor redColor];
     if(item.isSelect)
     {
         [regular setBorder:backView];
     }
     [backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(12);
-        make.right.mas_equalTo(-12);
+        make.left.top.right.mas_equalTo(0);
         make.height.mas_equalTo(_height);
     }];
     
@@ -78,49 +88,39 @@
         }
     }];
     
-    UILabel *priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:12.0f WithTextColor:_define_white_color WithSpacing:0];
+    UILabel *priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
     [imgView addSubview:priceLabel];
-    priceLabel.backgroundColor=_define_black_color;
+    priceLabel.font=[regular get_en_Font:15.0f];
     [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.mas_equalTo(0);
-    }];
-    [priceLabel sizeToFit];
-    
-    
-    UIButton *itemBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_No_choose" WithSelectedImageStr:@"System_Select"];
-    [cell addSubview:itemBtn];
-    [itemBtn addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
-    itemBtn.selected=item.isSelect;
-    [itemBtn setEnlargeEdge:20];
-    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.mas_equalTo(0);
-        make.width.height.mas_equalTo(20);
+        make.left.mas_equalTo(8);
+        make.bottom.mas_equalTo(-8);
     }];
     
-    UILabel *titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:item.name WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    
+//    UIButton *itemBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_No_choose" WithSelectedImageStr:@"System_Select"];
+//    [cell addSubview:itemBtn];
+//    [itemBtn addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
+//    itemBtn.selected=item.isSelect;
+//    [itemBtn setEnlargeEdge:20];
+//    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.right.mas_equalTo(0);
+//        make.width.height.mas_equalTo(20);
+//    }];
+    
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
-    titleLabel.numberOfLines=2;
+//    titleLabel.backgroundColor=[UIColor redColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        if(item.isSelect)
-        {
-            make.left.mas_equalTo(23);
-            make.right.mas_equalTo(-23);
-            
-        }else
-        {
-            make.left.mas_equalTo(12);
-            make.right.mas_equalTo(-12);
-        }
         make.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(backView.mas_bottom).with.offset(0);
+        make.left.right.mas_equalTo(0);
     }];
     
     return cell;
 }
--(void)selectAction
-{
-    _block(@"select",_index);
-}
+//-(void)selectAction
+//{
+//    _block(@"select",_index);
+//}
 /**
  * 标签网络获取成功之后，setter值
  */

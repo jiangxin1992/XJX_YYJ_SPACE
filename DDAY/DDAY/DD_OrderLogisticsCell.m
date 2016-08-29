@@ -89,7 +89,7 @@
     _downLine.hidden=isLast;
     
     [contentlabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo([regular getHeightWithWidth:ScreenWidth-54-38 WithContent:_logisticsModel.AcceptStation]);
+        make.height.mas_equalTo([regular getHeightWithWidth:ScreenWidth-54-38 WithContent:_logisticsModel.AcceptStation WithFont:[regular getFont:13.0f]]);
     }];
     
     //设置段落，文字样式

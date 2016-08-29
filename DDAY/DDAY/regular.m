@@ -83,10 +83,15 @@ static regular *_t = nil;
         return NO;
     }
 }
-+(CGFloat )getHeightWithWidth:(CGFloat )width  WithContent:(NSString *)content
++(CGFloat )getHeightWithWidth:(CGFloat )width WithContent:(NSString *)content WithFont:(UIFont *)font
 {
-    CGSize titleSize = [content boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[regular getFont:13.0f]} context:nil].size;
+    CGSize titleSize = [content boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
     return titleSize.height+1;
+}
++(CGFloat )getWidthWithHeight:(CGFloat )height WithContent:(NSString *)content WithFont:(UIFont *)font
+{
+    CGSize titleSize = [content boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+    return titleSize.width+1;
 }
 
 +(NSString *)getSpacingTime:(long)createTime
@@ -153,6 +158,13 @@ static regular *_t = nil;
     view.layer.borderColor=[[UIColor blackColor] CGColor];
     view.layer.borderWidth=1;
 }
++(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width
+{
+    view.layer.masksToBounds=YES;
+    view.layer.borderColor=[color CGColor];
+    view.layer.borderWidth=width;
+}
+
 +(void)dismissKeyborad
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -295,7 +307,7 @@ static regular *_t = nil;
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, maxwidth, 40)];
     
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
-    titleLabel.font =  [regular getSemiboldFont:17.0f];
+    titleLabel.font =  [regular getSemiboldFont:18.0f];
     titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
 //    titleLabel.text=title;

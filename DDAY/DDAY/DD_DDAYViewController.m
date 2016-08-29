@@ -66,7 +66,7 @@
 -(void)PrepareUI
 {
     
-    self.navigationItem.titleView=[regular returnNavView:@"YCO SPACE" withmaxwidth:200];
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"dday_title", @"") withmaxwidth:200];
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
@@ -75,9 +75,7 @@
     UIButton *_calendarBtn=[regular getBarCustomBtnWithImg:@"DDAY_Calendar" WithSelectImg:@"DDAY_Calendar" WithSize:CGSizeMake(25, 25)];
     [_calendarBtn addTarget:self action:@selector(PushCalendarView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:_calendarBtn];
-    
-   
-    
+     
 }
 #pragma mark - SomeBlock
 -(void)SomeBlock
@@ -87,36 +85,48 @@
     __block DD_DDAYViewController *_dayView=self;
     ddayblock=^(NSInteger index,NSString *type)
     {
-        if(![DD_UserModel isLogin])
+        if([type isEqualToString:@"cancel"]||[type isEqualToString:@"join"])
         {
-            [_dayView presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                [_dayView pushLoginView];
-            }] animated:YES completion:nil];
-        }else
-        {
-            DD_DDAYModel *dayModel=[__dataArr objectAtIndex:index];
-            NSString *url=nil;
-            if([type isEqualToString:@"cancel"])
+            if(![DD_UserModel isLogin])
             {
-                url=@"series/quitSeries.do";
-            }else if([type isEqualToString:@"join"])
+                [_dayView presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                    [_dayView pushLoginView];
+                }] animated:YES completion:nil];
+            }else
             {
-                url=@"series/joinSeries.do";
-            }
-            [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":dayModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                if(success)
+                DD_DDAYModel *dayModel=[__dataArr objectAtIndex:index];
+                NSString *url=nil;
+                if([type isEqualToString:@"cancel"])
                 {
-                    dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
-                    dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                    dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
-                    [__tableview reloadData];
-                }else
+                    url=@"series/quitSeries.do";
+                }else if([type isEqualToString:@"join"])
                 {
-                    [_dayView presentViewController:successAlert animated:YES completion:nil];
+                    url=@"series/joinSeries.do";
                 }
-            } failure:^(NSError *error, UIAlertController *failureAlert) {
-                [_dayView presentViewController:failureAlert animated:YES completion:nil];
-            }];
+                [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":dayModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
+                        dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
+                        dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                        [__tableview reloadData];
+                    }else
+                    {
+                        [_dayView presentViewController:successAlert animated:YES completion:nil];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [_dayView presentViewController:failureAlert animated:YES completion:nil];
+                }];
+            }
+        }else if([type isEqualToString:@"push_detail"])
+        {
+            DD_DDAYModel *ddaymodel=[__dataArr objectAtIndex:index];
+            [_dayView.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
+                if([type isEqualToString:@"update"])
+                {
+                    [__tableview reloadData];
+                }
+            }] animated:YES];
         }
     };
 }

@@ -18,6 +18,8 @@
     UIImageView *_backImg;
     UILabel *_timeLabel;
     UILabel *_restLabel;
+    
+    UIView *backview;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -28,23 +30,31 @@
     if(self)
     {
         _nameLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18 WithTextColor:_define_white_color WithSpacing:0];
-        _nameLabel.backgroundColor=_define_black_color;
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(IsPhone6_gt?20:8);
-            make.left.mas_equalTo(IsPhone6_gt?61:58);
-            make.right.mas_equalTo(IsPhone6_gt?-61:-58);
+            make.top.mas_equalTo(IsPhone6_gt?14:8);
+            make.left.mas_equalTo(IsPhone6_gt?44:58);
+            make.right.mas_equalTo(IsPhone6_gt?-44:-58);
             make.height.mas_equalTo(25);
         }];
         
-        _ApplyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
+        _ApplyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
         [self.contentView addSubview:_ApplyBtn];
         [_ApplyBtn addTarget:self action:@selector(applyAction) forControlEvents:UIControlEventTouchUpInside];
         [_ApplyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-32);
-            make.left.mas_equalTo(67);
-            make.right.mas_equalTo(-67);
-            make.height.mas_equalTo(46);
+            if(IsPhone6_gt)
+            {
+                make.bottom.mas_equalTo(-28);
+                make.width.mas_equalTo(183);
+                make.height.mas_equalTo(46);
+                make.centerX.mas_equalTo(self.contentView);
+            }else
+            {
+                make.bottom.mas_equalTo(-32);
+                make.left.mas_equalTo(67);
+                make.right.mas_equalTo(-67);
+                make.height.mas_equalTo(46);
+            }
         }];
         
         _restLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12 WithTextColor:nil WithSpacing:0];
@@ -65,20 +75,29 @@
             make.height.mas_equalTo(23);
         }];
         
-        UIView *backview=[UIView getCustomViewWithColor:nil];
+        backview=[UIView getCustomViewWithColor:nil];
         [self.contentView addSubview:backview];
         [backview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(28);
-            make.right.mas_equalTo(-28);
-            make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
-            make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
+            if(IsPhone6_gt)
+            {
+                make.left.mas_equalTo(kEdge);
+                make.right.mas_equalTo(-kEdge);
+                make.height.mas_equalTo(backview.mas_width);
+                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(-24);
+            }else
+            {
+                make.left.mas_equalTo(28);
+                make.right.mas_equalTo(-28);
+                make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
+                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
+            }
+            
         }];
-        [regular setBorder:backview];
         
         _backImg=[UIImageView getCustomImg];
         [backview addSubview:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(15, 15, 15, 15));
+            make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(16, 16, 16, 16));
         }];
         
     }
@@ -89,24 +108,32 @@
 -(void)BeforeSignStart
 {
     [self startTimeWithType:@"BeforeSignStart"];
-    _ApplyBtn.selected=YES;
-    [_ApplyBtn setTitle:@"报    名" forState:UIControlStateSelected];
-    _ApplyBtn.backgroundColor=_define_light_gray_color1;
+    
+    [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
+    [_ApplyBtn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+    _ApplyBtn.backgroundColor=_define_white_color;
+    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:2];
+    
     _restLabel.hidden=NO;
 }
 //报名结束前
 -(void)BeforeSignEnd
 {
     [self startTimeWithType:@"BeforeSignEnd"];
-    _ApplyBtn.selected=NO;
-    _ApplyBtn.backgroundColor=_define_black_color;
+
+    
     if(_DDAYModel.isJoin)
     {
-        [_ApplyBtn setTitle:@"已  成  功  报  名" forState:UIControlStateNormal];
+        [_ApplyBtn setTitle:@"报名已成功" forState:UIControlStateNormal];
+        [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
+        _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+        [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
     }else
     {
         [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
-        
+        [_ApplyBtn setTitleColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] forState:UIControlStateNormal];
+        _ApplyBtn.backgroundColor=_define_white_color;
+        [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
     }
     _restLabel.hidden=NO;
 }
@@ -114,27 +141,36 @@
 -(void)BeforeSaleStart
 {
     [self startTimeWithType:@"BeforeSaleStart"];
-    _ApplyBtn.selected=YES;
-    [_ApplyBtn setTitle:@"报  名  已  结  束" forState:UIControlStateSelected];
+    
+    [_ApplyBtn setTitle:@"报名已结束" forState:UIControlStateNormal];
+    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
     _ApplyBtn.backgroundColor=_define_light_gray_color1;
+    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
+    
     _restLabel.hidden=YES;
 }
 //发布会结束之前
 -(void)BeforeSaleEnd
 {
     [self startTimeWithType:@"BeforeSaleEnd"];
-    _ApplyBtn.selected=NO;
-    [_ApplyBtn setTitle:@"发  布  会  开  始  啦" forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=_define_black_color;
+
+    [_ApplyBtn setTitle:@"发布会已开始" forState:UIControlStateNormal];
+    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
+    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
+    
     _restLabel.hidden=YES;
 }
 //发布会结束之后
 -(void)AfterSaleEnd
 {
-    _ApplyBtn.selected=NO;
-    [_ApplyBtn setTitle:@"发  布  会  已  结  束" forState:UIControlStateNormal];
-    _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
+    [_ApplyBtn setTitle:@"发布会已结束" forState:UIControlStateNormal];
+    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
     _ApplyBtn.backgroundColor=_define_light_gray_color1;
+    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
+
+    
+    _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
     _restLabel.hidden=YES;
 }
 #pragma mark - GetState
@@ -143,6 +179,7 @@
  */
 -(NSString *)getState
 {
+    
     long nowTime=[regular date];
     if(nowTime<_DDAYModel.signStartTime)
     {
@@ -183,6 +220,9 @@
         {
             _ddayblock(_index,@"join");
         }
+    }else
+    {
+        _ddayblock(_index,@"push_detail");
     }
 }
 
@@ -318,6 +358,11 @@
 {
     [regular dispatch_cancel:_timer];
     _DDAYModel=DDAYModel;
+    
+    [regular setBorder:backview WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
+    
+    _nameLabel.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    
     [_backImg JX_loadImageUrlStr:_DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     _nameLabel.text=[[NSString alloc] initWithFormat:@"%@",_DDAYModel.name];
     if(_DDAYModel.isQuotaLimt)

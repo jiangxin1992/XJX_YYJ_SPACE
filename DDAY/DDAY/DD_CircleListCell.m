@@ -96,7 +96,11 @@
     
     goodImgView=[UIImageView getCustomImg];
     [self.contentView addSubview:goodImgView];
-    [regular setBorder:goodImgView];
+    goodImgView.contentMode=UIViewContentModeScaleAspectFill;
+    goodImgView.layer.masksToBounds=YES;
+    goodImgView.layer.borderColor=[[UIColor blackColor] CGColor];
+    goodImgView.layer.borderWidth=0;
+//    [regular setBorder:goodImgView];
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);

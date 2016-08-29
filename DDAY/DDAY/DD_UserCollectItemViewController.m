@@ -136,7 +136,7 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     DD_ItemsModel *item=[_dataArr objectAtIndex:index];
     DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
     return [DD_ItemTool getColCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
 }
 // 这个方法可选不是必要的，默认是3列
@@ -149,20 +149,21 @@
     if(item.pics)
     {
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-20*2-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height;
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height+25;
     }
     return 0;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeTop:return 10;
-        case WaterflowMarginTypeBottom:return 10;
-        case WaterflowMarginTypeLeft:return 20;
-        case WaterflowMarginTypeRight:return 20;
-        case WaterflowMarginTypeRow:return 20;
-        case WaterflowMarginTypeColumn:return 10;
+        case WaterflowMarginTypeTop:return water_Top;
+        case WaterflowMarginTypeLeft:return water_margin;
+        case WaterflowMarginTypeRight:return water_margin;
+        case WaterflowMarginTypeRow:return water_Spacing;
+        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeBottom:return water_Bottom;
+            //        case WaterflowMarginTypeColumn:return 0;
         default:return 0;
     }
 }

@@ -28,14 +28,11 @@
     _DDAYModel.signEndDate=[regular zoneChange:_DDAYModel.signEndTime];
     _DDAYModel.saleStartDate=[regular zoneChange:_DDAYModel.saleStartTime];
     _DDAYModel.saleEndDate=[regular zoneChange:_DDAYModel.saleEndTime];
-//    @property (nonatomic,strong) NSDate *signStartDate;
-//    @property (nonatomic,strong) NSDate *saleEndDate;
-//    @property (nonatomic,strong) NSDate *signEndDate;
-//    @property (nonatomic,strong) NSDate *saleStartDate;
-    NSLog(@"1111");
+
 //    _DDAYModel.leftQuota=12;
-//    _DDAYModel.isJoin=YES;
-//    [self testData_Q:_DDAYModel WithType:4];
+//    _DDAYModel.isJoin=NO;
+//    _DDAYModel.isQuotaLimt=YES;
+//    [self testData:_DDAYModel WithType:0];
     return _DDAYModel;
 }
 

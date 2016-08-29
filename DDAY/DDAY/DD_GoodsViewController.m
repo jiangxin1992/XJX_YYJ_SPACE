@@ -35,7 +35,7 @@
     
     DD_GoodsListTableView *listTableView;
     NSMutableArray *_categoryArr;
-    DD_GoodsListView *titleView;
+//    DD_GoodsListView *titleView;
     
 }
 - (void)viewDidLoad {
@@ -66,15 +66,21 @@
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
-
-    titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
-    [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];
     
-    [titleView setImage:[UIImage imageNamed:@"System_UpTriangle"] forState:UIControlStateSelected];
-    [titleView setTitle:@"类别" forState:UIControlStateNormal];
-    titleView.titleLabel.font=[regular getSemiboldFont:17.0f];
-    [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.titleView=titleView;
+    DD_NavBtn *listBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 17) WithImgeStr:@"Goods_list"];
+    [listBtn addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:listBtn];
+    
+//    Goods_list
+//
+//    titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
+//    [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];
+//    
+//    [titleView setImage:[UIImage imageNamed:@"System_UpTriangle"] forState:UIControlStateSelected];
+//    [titleView setTitle:@"类别" forState:UIControlStateNormal];
+//    titleView.titleLabel.font=[regular getSemiboldFont:17.0f];
+//    [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.titleView=titleView;
     
     if(_noTabbar)
     {
@@ -88,7 +94,6 @@
     if(btn.selected)
     {
         btn.selected=NO;
-//        hide
         [UIView animateWithDuration:0.5 animations:^{
             listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
         } completion:^(BOOL finished) {
@@ -103,10 +108,10 @@
             btn.selected=NO;
             if([type isEqualToString:@"click"])
             {
-                [titleView setTitle:categoryName forState:UIControlStateNormal];
+//                [titleView setTitle:categoryName forState:UIControlStateNormal];
             }else if([type isEqualToString:@"all"])
             {
-                [titleView setTitle:@"类别" forState:UIControlStateNormal];
+//                [titleView setTitle:@"类别" forState:UIControlStateNormal];
             }
             _categoryName=categoryName;
             _categoryID=categoryID;
@@ -266,7 +271,7 @@
 
     DD_ItemsModel *item=[_dataArr objectAtIndex:index];
     DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
     return [DD_ItemTool getCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
 }
 // 这个方法可选不是必要的，默认是3列
@@ -279,14 +284,23 @@
     if(item.pics)
     {
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-13*3-10*2)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height+95;
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return _height+25;
     }
-    return 95;
+    return 25;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
-    return 13;
+    switch (type) {
+        case WaterflowMarginTypeTop:return water_Top;
+        case WaterflowMarginTypeLeft:return water_margin;
+        case WaterflowMarginTypeRight:return water_margin;
+        case WaterflowMarginTypeRow:return water_Spacing;
+        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeBottom:return water_Bottom;
+            //        case WaterflowMarginTypeColumn:return 0;
+        default:return 0;
+    }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
@@ -321,5 +335,43 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - 弃用代码
+//-(void)ChooseCategoryAction:(UIButton *)btn
+//{
+//    if(btn.selected)
+//    {
+//        btn.selected=NO;
+//        //        hide
+//        [UIView animateWithDuration:0.5 animations:^{
+//            listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
+//        } completion:^(BOOL finished) {
+//            [self listTableViewHide];
+//        }];
+//        
+//    }else
+//    {
+//        btn.selected=YES;
+//        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryName,NSString *categoryID) {
+//            
+//            btn.selected=NO;
+//            if([type isEqualToString:@"click"])
+//            {
+//                [titleView setTitle:categoryName forState:UIControlStateNormal];
+//            }else if([type isEqualToString:@"all"])
+//            {
+//                [titleView setTitle:@"类别" forState:UIControlStateNormal];
+//            }
+//            _categoryName=categoryName;
+//            _categoryID=categoryID;
+//            [mywaterflow.header beginRefreshing];
+//            [self listTableViewHide];
+//            
+//        }];
+//        [self.view addSubview:listTableView];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            listTableView.frame=CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
+//        }];
+//        [self RequestListData];
+//    }
+//}
 @end

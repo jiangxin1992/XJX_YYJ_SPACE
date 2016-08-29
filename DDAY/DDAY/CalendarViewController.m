@@ -149,7 +149,8 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor clearColor];
-        
+        _collectionView.alwaysBounceVertical=NO;
+        _collectionView.alwaysBounceHorizontal=NO;
         [_collectionView registerClass:[DD_CalendarCell class] forCellWithReuseIdentifier:@"DD_CalendarCell"];
         [_collectionView registerClass:[CalendarHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CalendarHeaderView"];
         

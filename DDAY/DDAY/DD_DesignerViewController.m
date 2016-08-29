@@ -150,7 +150,8 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStyleGrouped];
+    
+    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;
@@ -179,6 +180,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //    728-34
+    //    364-17 347
     return [DD_DesignerCell heightWithModel:[_dataArr objectAtIndex:indexPath.section]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
