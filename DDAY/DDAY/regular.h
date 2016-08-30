@@ -40,6 +40,7 @@
  * 添加view边框
  */
 +(void)setBorder:(UIView *)view;
++(void)setZeroBorder:(UIView *)view;
 +(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width;
 
 /**

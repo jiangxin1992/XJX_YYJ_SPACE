@@ -47,7 +47,7 @@
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
-    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_send_return", nil) WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_send_return", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [backBtn addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -57,11 +57,11 @@
     }];
     
     NSLog(@"%@",_item.deliverDeclaration);
-    return_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.deliverDeclaration  WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    return_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.deliverDeclaration  WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:return_content];
     return_content.numberOfLines=0;
     [return_content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(label.mas_bottom).with.offset(10);
+        make.top.mas_equalTo(label.mas_bottom).with.offset(15);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];

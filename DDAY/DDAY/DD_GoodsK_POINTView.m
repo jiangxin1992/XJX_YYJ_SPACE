@@ -63,7 +63,7 @@
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
-    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_k_ponit", nil) WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_k_ponit", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [backBtn addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -84,7 +84,7 @@
                 make.top.mas_equalTo(lastView.mas_bottom).with.offset(6);
             }else
             {
-                make.top.mas_equalTo(label.mas_bottom).with.offset(10);
+                make.top.mas_equalTo(label.mas_bottom).with.offset(15);
             }
             make.left.right.mas_equalTo(0);
         }];
@@ -97,7 +97,7 @@
             make.width.height.mas_equalTo(23);
         }];
         
-        UILabel *storeName=[UILabel getLabelWithAlignment:0 WithTitle:model.storeName WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        UILabel *storeName=[UILabel getLabelWithAlignment:0 WithTitle:model.storeName WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:storeName];
         [storeName mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_head.mas_right).with.offset(10);
@@ -105,7 +105,7 @@
         }];
         [storeName sizeToFit];
         
-        UILabel *address=[UILabel getLabelWithAlignment:0 WithTitle:model.address WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        UILabel *address=[UILabel getLabelWithAlignment:0 WithTitle:model.address WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:address];
         address.numberOfLines=1;
         [address mas_makeConstraints:^(MASConstraintMaker *make) {

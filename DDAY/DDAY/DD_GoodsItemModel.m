@@ -10,6 +10,7 @@
 
 #import "DD_ColorsModel.h"
 #import "DD_OtherItemModel.h"
+#import "DD_ImageModel.h"
 
 @implementation DD_GoodsItemModel
 -(NSString *)getSizeNameWithID:(NSString *)sizeID
@@ -41,10 +42,14 @@
     for (DD_ColorsModel *_colorModel in self.colors) {
         if([_colorModel.colorId isEqualToString:self.colorId])
         {
-            return _colorModel.pics;
+            NSMutableArray *arr=[[NSMutableArray alloc] init];
+            for (DD_ImageModel *img in _colorModel.pics) {
+                [arr addObject:img.pic];
+            }
+            return arr;
         }
     }
-    return nil;
+    return @[];
 }
 
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict

@@ -66,13 +66,12 @@
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
-    UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_circle", nil) WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_circle", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [backBtn addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(0);
-        make.height.mas_offset(38);
+        make.top.mas_equalTo(13);
     }];
     
     UIButton *moreCircle=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"更多搭配" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -82,8 +81,8 @@
     [moreCircle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(label);
-        make.height.mas_equalTo(26);
-        make.width.mas_equalTo(79);
+        make.height.mas_equalTo(25);
+        make.width.mas_equalTo(80);
     }];
     
     userHeadImg=[UIImageView getCustomImg];
@@ -91,7 +90,8 @@
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
+//        make.left.mas_equalTo(IsPhone6_gt?34:15);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(label.mas_bottom).with.offset(10);
         make.width.height.mas_equalTo(43);
     }];
@@ -102,11 +102,12 @@
         make.top.mas_equalTo(userHeadImg);
         make.height.mas_equalTo(43/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+
     }];
     [userNameLabel sizeToFit];
     
     
-    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [backBtn addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
@@ -117,11 +118,12 @@
     
     goodImgView=[UIImageView getCustomImg];
     [backBtn addSubview:goodImgView];
-    [regular setBorder:goodImgView];
+    [regular setZeroBorder:goodImgView];
+    goodImgView.contentMode=UIViewContentModeScaleAspectFill;
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
-        make.width.mas_equalTo(210);
+        make.width.mas_equalTo(IsPhone6_gt?234:190);
         make.height.mas_equalTo(300);
     }];
     
@@ -129,11 +131,13 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [backBtn addSubview:goods];
+        [regular setZeroBorder:goods];
+        goods.contentMode=UIViewContentModeScaleAspectFill;
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
         [goods mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+            make.right.mas_equalTo(-kEdge);
             make.width.height.mas_equalTo(66);
             if(lastView)
             {
@@ -148,23 +152,22 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
+        pricebtn.titleLabel.font=[regular getFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
         [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(16);
+            make.height.mas_equalTo(18);
         }];
-        
     }
     
-    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:conentLabel];
     conentLabel.numberOfLines=0;
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
-        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+        make.left.mas_equalTo(kEdge);
         make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
     }];
 }

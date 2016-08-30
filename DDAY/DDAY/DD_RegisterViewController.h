@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_RegisterViewController :UIViewController
+#import "DD_BaseViewController.h"
+
+@interface DD_RegisterViewController :DD_BaseViewController
 -(instancetype)initWithBlock:(void (^)(NSString *type))successblock;
 __block_type(successblock, type);
 

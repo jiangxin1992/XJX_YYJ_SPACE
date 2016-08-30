@@ -73,9 +73,10 @@
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
         make.width.height.mas_equalTo(43);
+//        make.left.mas_equalTo(IsPhone6_gt?34:15);
     }];
     
     userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
@@ -105,7 +106,7 @@
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
-        make.width.mas_equalTo(210);
+        make.width.mas_equalTo(IsPhone6_gt?234:190);
         make.height.mas_equalTo(300);
     }];
 
@@ -114,11 +115,14 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [_contentView addSubview:goods];
+        goods.contentMode=UIViewContentModeScaleAspectFill;
+        [regular setZeroBorder:goods];
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
         [goods mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+//            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+            make.right.mas_equalTo(-kEdge);
             make.width.height.mas_equalTo(66);
             if(lastView)
             {
@@ -133,17 +137,20 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
+        pricebtn.titleLabel.font=[regular getFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
         [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(16);
+            make.height.mas_equalTo(18);
         }];
         if(i==2)
         {
             moreBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_More" WithSelectedImageStr:nil];
             [_contentView addSubview:moreBtn];
+//            25 25
+            [moreBtn setImageEdgeInsets:UIEdgeInsetsMake((300-66*3-24*2-25)/2.0f, (66-25)/2.0f, (300-66*3-24*2-25)/2.0f, (66-25)/2.0f)];
             [moreBtn addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
             [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.mas_equalTo(lastView.mas_top).with.offset(0);
@@ -154,7 +161,7 @@
         }
     }
     
-    _conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [_contentView addSubview:_conentLabel];
     _conentLabel.numberOfLines=0;
     [_conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -170,11 +177,11 @@
     if(_isHomePage)
     {
         imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection",@"System_Dustbin"];
-        imgArr_normal=@[@"System_Good",@"System_Comment",@"System_Collection",@"System_Dustbin"];
+        imgArr_select=@[@"System_Good",@"System_Comment",@"System_Collection",@"System_Dustbin"];
     }else
     {
         imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection"];
-        imgArr_normal=@[@"System_Good",@"System_Comment",@"System_Collection"];
+        imgArr_select=@[@"System_Good",@"System_Comment",@"System_Collection"];
     }
     //    删除 评论 收藏 点赞
     for (int i=0; i<imgArr_normal.count; i++) {
@@ -191,16 +198,24 @@
         }
         [btn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            25.5 23
             if(_lastView_state)
             {
                 make.right.mas_equalTo(_lastView_state.mas_left).with.offset(-20);
-                make.height.width.mas_equalTo(22);
                 make.centerY.mas_equalTo(_lastView_state);
+                if(i==2)
+                {
+                    make.width.mas_equalTo(25);
+                    make.height.mas_equalTo(23);
+                }else
+                {
+                    make.height.width.mas_equalTo(25);
+                }
             }else
             {
                 make.right.mas_equalTo(-47);
-                make.width.mas_equalTo(22);
-                make.height.mas_equalTo(39);
+                make.width.mas_equalTo(25);
+                make.height.mas_equalTo(44);
                 make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
             }
         }];
@@ -337,13 +352,13 @@
     _conentLabel.text=_listModel.shareAdvise;
     _timeLabel.text=[regular getSpacingTime:_listModel.createTime];
     
-    UIButton *praiseBtn=[self viewWithTag:200];
+    UIButton *praiseBtn=[_contentView viewWithTag:200];
     praiseBtn.selected=_listModel.isLike;
     
-    UIButton *collectBtn=[self viewWithTag:202];
+    UIButton *collectBtn=[_contentView viewWithTag:202];
     collectBtn.selected=_listModel.isCollect;
     
-    UIButton *delectBtn=[self viewWithTag:203];
+    UIButton *delectBtn=[_contentView viewWithTag:203];
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];
     if([_listModel.userId isEqualToString:user.u_id])
     {

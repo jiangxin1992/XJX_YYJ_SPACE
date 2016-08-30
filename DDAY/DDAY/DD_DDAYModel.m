@@ -28,6 +28,7 @@
     _DDAYModel.signEndDate=[regular zoneChange:_DDAYModel.signEndTime];
     _DDAYModel.saleStartDate=[regular zoneChange:_DDAYModel.saleStartTime];
     _DDAYModel.saleEndDate=[regular zoneChange:_DDAYModel.saleEndTime];
+    _DDAYModel.is_select=NO;
 
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=NO;

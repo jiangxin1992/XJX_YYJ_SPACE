@@ -92,11 +92,9 @@
         [regular setBorder:followBtn];
         [followBtn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];
         [followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.mas_equalTo(shareBtn.mas_left).with.offset(0);
-            make.right.mas_equalTo(-6);
-//            make.top.mas_equalTo(kStatusBarHeight);
+            make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(backBtn);
-            make.width.mas_equalTo(68);
+            make.width.mas_equalTo(70);
             make.height.mas_equalTo(25);
         }];
     }else
@@ -158,17 +156,18 @@
 {
     _MiddleView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_MiddleView];
+    _MiddleView.backgroundColor=[UIColor whiteColor];
     [_MiddleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_UpView.mas_bottom).with.offset(0);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(26);
+        make.height.mas_equalTo(28);
     }];
     
     UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
     [_MiddleView addSubview:upline];
     [upline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(2);
     }];
 
     
@@ -178,6 +177,8 @@
         [_MiddleView addSubview:btn];
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag=100+i;
+        btn.titleLabel.font=[regular getFont:15];
+        [btn setEnlargeEdgeWithTop:0 right:0 bottom:2 left:0];
         btn.backgroundColor=[UIColor clearColor];
         if(i==0)
         {
@@ -186,7 +187,7 @@
         }
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(0);
+            make.bottom.mas_equalTo(_MiddleView.mas_bottom).with.offset(-2);
             if(lastview)
             {
                 make.left.mas_equalTo(lastview.mas_right).with.offset(kEdge);

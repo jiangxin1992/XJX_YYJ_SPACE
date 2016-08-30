@@ -150,7 +150,7 @@ __bool(isExpanded);
         //    创建pageViewControler（活动图片浏览视图）
         _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         [container addSubview:_pageViewControler.view];
-        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
+        ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:NO WithBlock:^(NSString *type, NSInteger index) {
         }];
         imgvc.array=_colorModel.pics;
         imgvc.view.backgroundColor = [UIColor clearColor];
@@ -452,7 +452,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index ++ ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:NO WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
@@ -468,7 +468,7 @@ __bool(isExpanded);
     NSInteger index = vc.currentPage;
     index -- ;
     
-    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithBlock:^(NSString *type, NSInteger index) {
+    ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:NO WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
     imgvc.view.backgroundColor = [UIColor clearColor];
@@ -634,11 +634,13 @@ __bool(isExpanded);
         _mengban_size_Height=0;
         if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
         {
-            _mengban_size_Height=IsPhone6_gt?228:185;
+            _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight):(79+ktabbarHeight);
+            NSLog(@"111");
         }else
         {
             CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(228+_imgHeight):(185+_imgHeight);
+            _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight):(102+ktabbarHeight+_imgHeight);
+            NSLog(@"111");
         }
         sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{

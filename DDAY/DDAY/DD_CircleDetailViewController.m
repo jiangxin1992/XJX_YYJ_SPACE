@@ -18,9 +18,11 @@
 #import "DD_CircleDetailHeadView.h"
 #import "DD_CircleComentInputView.h"
 #import "DD_CircleCommentCell.h"
+#import "DD_ShareView.h"
 
 #import "DD_CircleCommentModel.h"
 #import "DD_ItemsModel.h"
+#import "DD_ShareTool.h"
 
 @interface DD_CircleDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -39,6 +41,9 @@
     
     NSString *commToId;//回复人的id
     DD_CircleListModel *nowListModel;
+    
+    UIImageView *mengban_share;
+    DD_ShareView *shareView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +80,11 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_detail_title", @"") withmaxwidth:200];
+    
+    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
+    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
 }
 
 -(void)SomeBlocks
@@ -342,6 +352,43 @@
 }
 
 #pragma mark - SomeAction
+//分享
+-(void)ShareAction
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    mengban_share=[UIImageView getMaskImageView];
+    [self.view addSubview:mengban_share];
+    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [self mengban_dismiss_share];
+        }
+    }];
+    [mengban_share addSubview:shareView];
+    
+    CGFloat _height=[DD_ShareTool getHeight];
+    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
+    shareView.height=_height;
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
+    }];
+    
+}
+//蒙板消失
+-(void)mengban_dismiss_share
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
+    } completion:^(BOOL finished) {
+        [mengban_share removeFromSuperview];
+        mengban_share=nil;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }];
+    
+}
 /**
  * touch开始时
  */

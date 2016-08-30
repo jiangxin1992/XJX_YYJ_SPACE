@@ -63,6 +63,8 @@ __long(signEndTime);
  */
 __long(signStartTime);
 
+__bool(is_select);
+
 @property (nonatomic,strong) NSDate *signStartDate;
 @property (nonatomic,strong) NSDate *saleEndDate;
 @property (nonatomic,strong) NSDate *signEndDate;

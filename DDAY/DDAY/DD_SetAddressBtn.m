@@ -55,7 +55,7 @@
 {
     CGFloat _jianju=9.0f;
     
-    _nameLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverName WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    _nameLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverName WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_nameLabel];
     [_nameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_jianju);
@@ -73,7 +73,7 @@
         make.centerY.mas_equalTo(_nameLabel);
     }];
     
-    _phoneLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverPhone WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    _phoneLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.deliverPhone WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_phoneLabel];
     [_phoneLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLabel);
@@ -82,7 +82,7 @@
     }];
     [_phoneLabel sizeToFit];
     
-    _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.detailAddress WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.detailAddress WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_addressLabel];
     _addressLabel.numberOfLines=2;
     _addressLabel.preferredMaxLayoutWidth = ScreenWidth-kEdge*2;
@@ -90,7 +90,7 @@
         make.left.mas_equalTo(_nameLabel);
         make.top.mas_equalTo(_phoneLabel.mas_bottom).with.offset(_jianju);
         make.right.mas_equalTo(-kEdge);
-        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-_jianju);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-_jianju-10);
     }];
     [_addressLabel sizeToFit];
     
@@ -101,7 +101,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-10);
     }];
 }
 -(void)noAdressView

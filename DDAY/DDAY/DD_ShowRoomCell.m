@@ -128,6 +128,7 @@
         DD_ImageModel *imgModel=[_showRoomModel.pics objectAtIndex:i];
         UIImageView *img=[UIImageView getCustomImg];
         [_img_back_view addSubview:img];
+        [regular setZeroBorder:img];
         CGFloat _height=(ScreenWidth-33*2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
         img.contentMode=UIViewContentModeScaleAspectFill;
         [img JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];

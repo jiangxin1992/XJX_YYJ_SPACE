@@ -46,11 +46,13 @@
 {
     freightTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"邮费：" WithFont:12 WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self addSubview:freightTitleLabel];
+    
     freightTitleLabel.frame=CGRectMake(kEdge, 0, 100, 30);
     
     CGFloat _Freight=_dataArr.count*[_freight floatValue];
     UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%.0lf",_Freight] WithFont:12 WithTextColor:nil WithSpacing:0];
     [self addSubview:freightLabel];
+    freightLabel.font=[regular getSemiboldFont:12];
     freightLabel.frame=CGRectMake(ScreenWidth-kEdge-100, 0, 100, 30);
     
     remarksView=[[UIView alloc] initWithFrame:CGRectMake(kEdge,CGRectGetMaxY(freightLabel.frame)+5 , ScreenWidth-kEdge*2, 1)];
@@ -80,7 +82,7 @@
         make.height.mas_equalTo(1);
     }];
     
-    UILabel *payWay=[UILabel getLabelWithAlignment:0 WithTitle:@"支付方式" WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    UILabel *payWay=[UILabel getLabelWithAlignment:0 WithTitle:@"支付方式" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [payView addSubview:payWay];
     [payWay mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(middleLine.mas_bottom).with.offset(0);
@@ -105,8 +107,7 @@
     UIButton *lastview=nil;
     for (int i=0; i<3; i++) {
         NSString *normalImg=i==0?@"System_alipay_normal":i==1?@"System_wechat_normal":@"System_unionpay_normal";
-        NSString *selectImg=i==0?@"System_alipay_select":i==1?@"System_wechat_select":@"System_unionpay_select";
-        UIButton *iconBtn=[UIButton getCustomImgBtnWithImageStr:normalImg WithSelectedImageStr:selectImg];
+        UIButton *iconBtn=[UIButton getCustomImgBtnWithImageStr:normalImg WithSelectedImageStr:nil];
         [payView addSubview:iconBtn];
         iconBtn.tag=100+i;
         iconBtn.hidden=YES;
@@ -157,15 +158,12 @@
 {
     NSInteger _selectIndex=[_payWay isEqualToString:@"alipay"]?0:[_payWay isEqualToString:@"wechat"]?1:2;
     for (int i=0; i<3; i++) {
-        UIButton *iconbtn=[self viewWithTag:100+i];
         UIButton *selectbtn=[self viewWithTag:300+i];
         if(_selectIndex==i)
         {
-            iconbtn.selected=YES;
             selectbtn.selected=YES;
         }else
         {
-            iconbtn.selected=NO;
             selectbtn.selected=NO;
         }
     }

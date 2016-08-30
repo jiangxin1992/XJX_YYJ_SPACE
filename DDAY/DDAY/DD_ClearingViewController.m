@@ -120,7 +120,7 @@
     CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
     CGFloat _countPrice=_count+_Freight;
     
-    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice] WithBlock:^(NSString *type) {
+    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计 ￥%.1lf",_countPrice] WithBlock:^(NSString *type) {
         if([type isEqualToString:@"confirm"])
         {
             [self ConfirmAction];
@@ -373,7 +373,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 143;
+    return 110;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

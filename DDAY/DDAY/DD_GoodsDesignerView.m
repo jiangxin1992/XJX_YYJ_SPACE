@@ -12,7 +12,7 @@
 
 #import "DD_OtherItemModel.h"
 
-#define ver_edge 22
+#define ver_edge 15
 
 @implementation DD_GoodsDesignerView
 {
@@ -45,7 +45,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig{
     [self CreateUpView];
-    [self CreateDownView];
+//    [self CreateDownView];
 }
 
 -(void)CreateUpView
@@ -55,6 +55,7 @@
     [upView addTarget:self action:@selector(designerAction) forControlEvents:UIControlEventTouchUpInside];
     [upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(self);
     }];
     
     UIView *view=[UIView getCustomViewWithColor:_define_black_color];
@@ -66,9 +67,11 @@
     }];
     
     
-    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:25];
+    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0];
     [upView addSubview:_headImge];
     _headImge.userInteractionEnabled=NO;
+    _headImge.contentMode=UIViewContentModeScaleAspectFill;
+    [regular setZeroBorder:_headImge];
     [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(ver_edge);
@@ -76,39 +79,43 @@
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
     }];
     
-    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:25];
+    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0];
     [upView addSubview:_brandImge];
     _brandImge.userInteractionEnabled=NO;
+    _brandImge.contentMode=UIViewContentModeScaleAspectFill;
+    [regular setZeroBorder:_brandImge];
     [_brandImge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_headImge.mas_right).with.offset(8);
         make.top.mas_equalTo(ver_edge);
         make.width.and.height.mas_equalTo(_headImge);
     }];
     
-    UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
+    UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [upView addSubview:userName];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.top.mas_equalTo(_headImge);
         make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
-        make.top.mas_equalTo(upView).with.offset(27);
     }];
     [userName sizeToFit];
     
-    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
+    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
     [upView addSubview:brandName];
     [brandName mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.bottom.mas_equalTo(_headImge);
         make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
-        make.top.mas_equalTo(userName.mas_bottom).with.offset(11);
     }];
     [brandName sizeToFit];
     
-    guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_white_color];
+    guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_white_color];
     [upView addSubview:guanzhu];
     guanzhu.backgroundColor=[UIColor blackColor];
     [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     [guanzhu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(23);
+        make.width.mas_equalTo(70);
+        make.height.mas_equalTo(25);
         make.centerY.mas_equalTo(upView);
     }];
     [self UpdateFollowBtnState];

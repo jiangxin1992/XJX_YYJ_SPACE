@@ -13,7 +13,6 @@
     UIImageView *itemImg;//图片
     
     UILabel *itemNameLabel;//商品描述
-    UILabel *typeLabel;//商品类型
     UILabel *priceLabel;//商品价格
     
     UIView *colorView;//商品颜色
@@ -52,46 +51,35 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIView *imageBack=[UIView getCustomViewWithColor:_define_white_color];
-    [self.contentView addSubview:imageBack];
-    [imageBack mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.contentView);
-        make.left.mas_equalTo(kEdge);
-        make.height.width.mas_equalTo(123);
-    }];
-    [regular setBorder:imageBack];
     
     //    款式照片
     itemImg=[UIImageView getCustomImg];
-    [imageBack addSubview:itemImg];
+    [self.contentView addSubview:itemImg];
+    itemImg.contentMode=UIViewContentModeScaleAspectFill;
+    [regular setZeroBorder:itemImg];
     [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+//        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+        make.centerY.mas_equalTo(self.contentView);
+        make.left.mas_equalTo(kEdge);
+        make.height.width.mas_equalTo(90);
     }];
     
     //    款式信息
-    itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:itemNameLabel];
     [itemNameLabel sizeToFit];
     [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
-        make.top.mas_equalTo(17);
+        make.left.mas_equalTo(itemImg.mas_right).with.offset(17);
+        make.top.mas_equalTo(itemImg);
         make.right.mas_equalTo(-kEdge);
     }];
     
-    typeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:typeLabel];
-    [typeLabel sizeToFit];
-    [typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(0);
-        make.left.mas_equalTo(itemNameLabel);
-        make.right.mas_equalTo(itemNameLabel);
-    }];
-    
-    priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:priceLabel];
     [priceLabel sizeToFit];
+    priceLabel.font=[regular getSemiboldFont:13.0f];
     [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(typeLabel.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(8);
         make.left.mas_equalTo(itemNameLabel);
         make.right.mas_equalTo(itemNameLabel);
     }];
@@ -100,29 +88,30 @@
     colorView=[UIView getCustomViewWithColor:nil];
     [self.contentView addSubview:colorView];
     [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(priceLabel.mas_bottom).with.offset(11);
+        make.top.mas_equalTo(priceLabel.mas_bottom).with.offset(8);
         make.left.mas_equalTo(itemNameLabel);
         make.width.mas_equalTo(32);
         make.height.mas_equalTo(9);
     }];
     
-    sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:sizeNameBtn];
-
+    
+    CGFloat _height = [regular getHeightWithContent:@"今天" WithWidth:80 WithFont:13.0f];
     [sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(24);
+        make.height.mas_equalTo(_height);
         make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
         make.left.mas_equalTo(itemNameLabel);
+        make.bottom.mas_equalTo(itemImg.mas_bottom);
     }];
     [sizeNameBtn setEnlargeEdge:20];
     
-    numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:13 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:numBtn];
     [numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
+        make.bottom.mas_equalTo(itemImg);
         make.right.mas_equalTo(-kEdge);
     }];
     [numBtn setEnlargeEdge:20];
@@ -138,7 +127,7 @@
     
     colorView.backgroundColor=[UIColor colorWithHexString:ClearingModel.colorCode];
     itemNameLabel.text=ClearingModel.itemName;
-    typeLabel.text=ClearingModel.categoryName;
+//    typeLabel.text=ClearingModel.categoryName;
     
     [sizeNameBtn setTitle:ClearingModel.sizeName forState:UIControlStateNormal];
     [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ClearingModel.numbers] forState:UIControlStateNormal];

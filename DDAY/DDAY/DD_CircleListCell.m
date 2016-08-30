@@ -60,7 +60,7 @@
 }
 -(void)PrepareUI
 {
-    self.contentView.backgroundColor=_define_backview_color;
+    self.contentView.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -70,7 +70,7 @@
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
         make.width.height.mas_equalTo(43);
     }];
@@ -85,7 +85,7 @@
     [userNameLabel sizeToFit];
     
     
-    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
@@ -97,14 +97,11 @@
     goodImgView=[UIImageView getCustomImg];
     [self.contentView addSubview:goodImgView];
     goodImgView.contentMode=UIViewContentModeScaleAspectFill;
-    goodImgView.layer.masksToBounds=YES;
-    goodImgView.layer.borderColor=[[UIColor blackColor] CGColor];
-    goodImgView.layer.borderWidth=0;
-//    [regular setBorder:goodImgView];
+    [regular setZeroBorder:goodImgView];
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
-        make.width.mas_equalTo(210);
+        make.width.mas_equalTo(IsPhone6_gt?234:190);
         make.height.mas_equalTo(300);
     }];
     
@@ -112,11 +109,13 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [self.contentView addSubview:goods];
+        goods.contentMode=UIViewContentModeScaleAspectFill;
+        [regular setZeroBorder:goods];
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
         [goods mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+            make.right.mas_equalTo(-kEdge);
             make.width.height.mas_equalTo(66);
             if(lastView)
             {
@@ -131,17 +130,18 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
+        pricebtn.titleLabel.font=[regular getFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
         [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(16);
+            make.height.mas_equalTo(18);
         }];
         
     }
     
-    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:conentLabel];
     conentLabel.numberOfLines=0;
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -169,13 +169,21 @@
             if(_lastView_state)
             {
                 make.right.mas_equalTo(_lastView_state.mas_left).with.offset(-20);
-                make.height.width.mas_equalTo(22);
                 make.centerY.mas_equalTo(_lastView_state);
+                if(i==2)
+                {
+                    make.width.mas_equalTo(25);
+                    make.height.mas_equalTo(23);
+                }else
+                {
+                    make.height.width.mas_equalTo(25);
+                }
+                
             }else
             {
                 make.right.mas_equalTo(-(IsPhone6_gt?34:15));
-                make.width.mas_equalTo(22);
-                make.height.mas_equalTo(39);
+                make.width.mas_equalTo(25);
+                make.height.mas_equalTo(44);
                 make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8.5f);
             }
         }];

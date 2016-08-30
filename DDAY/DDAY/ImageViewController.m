@@ -17,13 +17,14 @@
 @end
 
 @implementation ImageViewController
--(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithIsFit:(BOOL )is_fit WithBlock:(void(^)(NSString *type,NSInteger index))block{
+-(instancetype)initWithSize:(CGSize )size WithType:(NSString *)type WithIsFit:(BOOL )is_fit WithContentModeIsFill:(BOOL )is_fill WithBlock:(void(^)(NSString *type,NSInteger index))block{
     self=[super init];
     if(self)
     {
         _is_fit=is_fit;
         _type=type;
         _size=size;
+        _is_fill=is_fill;
         _block=block;
     }
     return self;
@@ -34,6 +35,14 @@
     
     _imgv = [UIImageView getCustomImg];
     _imgv.userInteractionEnabled=YES;
+    if(_is_fill)
+    {
+        _imgv.contentMode=UIViewContentModeScaleAspectFill;
+        [regular setZeroBorder:_imgv];
+    }else
+    {
+        _imgv.contentMode=UIViewContentModeScaleAspectFit;
+    }
     [self.view addSubview:_imgv];
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
         if(_is_fit)
@@ -41,8 +50,9 @@
             make.edges.mas_equalTo(self.view);
         }else
         {
-            make.left.top.bottom.mas_equalTo(0);
-            make.right.mas_equalTo(IsPhone6_gt?-60:-49);
+            make.top.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(16);
+            make.right.mas_equalTo(IsPhone6_gt?(-60-16):(-49-16));
         }
         
     }];

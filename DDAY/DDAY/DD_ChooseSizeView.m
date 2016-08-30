@@ -59,22 +59,13 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-
-    UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self addSubview:upLine];
-    [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(5);
-        make.top.mas_equalTo(IsPhone6_gt?31:18);
-    }];
-    
     
     UIView *lastView=nil;
     for (int i=0; i<_sizeArr.count; i++) {
         DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
         UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_btn];
+        _btn.titleLabel.font=[regular getFont:15.0f];
 //        42 20
         if(_sizeModel.stock)
         {
@@ -100,46 +91,17 @@
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(15);
+                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
             }else
             {
                 make.left.mas_equalTo(kEdge);
             }
-            make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.width.mas_equalTo(42);
-            make.height.mas_equalTo(20);
+            make.top.mas_equalTo(IsPhone6_gt?23:13);
+            make.width.mas_equalTo(28);
+            make.height.mas_equalTo(28);
         }];
         lastView=_btn;
     }
-    
-    UIButton *subtract=[UIButton getCustomImgBtnWithImageStr:@"System_Subtract" WithSelectedImageStr:nil];
-    [self addSubview:subtract];
-    [subtract addTarget:self action:@selector(subtractAction) forControlEvents:UIControlEventTouchUpInside];
-    [subtract mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.width.and.height.mas_equalTo(22);
-        make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
-    }];
-    
-    countBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"%ld",_count] WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:countBtn];
-    [regular setBorder:countBtn];
-    [countBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(subtract.mas_right).with.offset(10);
-        make.top.mas_equalTo(subtract);
-        make.height.mas_equalTo(subtract);
-        make.width.mas_equalTo(90);
-    }];
-    
-    UIButton *add=[UIButton getCustomImgBtnWithImageStr:@"System_Add" WithSelectedImageStr:nil];
-    [self addSubview:add];
-    [add addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
-    [add mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(countBtn.mas_right).with.offset(10);
-        make.width.and.height.mas_equalTo(22);
-        make.top.mas_equalTo(subtract);
-    }];
-
     
     UIImageView *sizeBriefImg=nil;
     if(_ColorsModel.sizeBriefPic&&![_ColorsModel.sizeBriefPic isEqualToString:@""])
@@ -153,40 +115,76 @@
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
-            make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
             make.height.mas_equalTo(_imgHeight);
         }];
     }
     
+    UIButton *subtract=[UIButton getCustomImgBtnWithImageStr:@"System_Subtract" WithSelectedImageStr:nil];
+    [self addSubview:subtract];
+    [subtract addTarget:self action:@selector(subtractAction) forControlEvents:UIControlEventTouchUpInside];
+    [subtract mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.width.and.height.mas_equalTo(20);
+        if(sizeBriefImg)
+        {
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        }else
+        {
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        }
+    }];
+    
+    countBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"%ld",_count] WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self addSubview:countBtn];
+    [regular setBorder:countBtn];
+    [countBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(subtract.mas_right).with.offset(13);
+        make.top.mas_equalTo(subtract);
+        make.height.mas_equalTo(subtract);
+        make.width.mas_equalTo(70);
+    }];
+    
+    UIButton *add=[UIButton getCustomImgBtnWithImageStr:@"System_Add" WithSelectedImageStr:nil];
+    [self addSubview:add];
+    [add addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
+    [add mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(countBtn.mas_right).with.offset(13);
+        make.width.and.height.mas_equalTo(20);
+        make.top.mas_equalTo(subtract);
+    }];
+
+    
+    
+    UIButton * shop=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"加入购物车" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    [self addSubview:shop];
+    shop.backgroundColor=_define_white_color;
+    [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
+    [shop mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(add.mas_bottom).with.offset(15);
+        make.left.mas_equalTo(0);
+        make.height.mas_equalTo(ktabbarHeight);
+        make.width.mas_equalTo(ScreenWidth/2.0f);
+    }];
+    
+    UIView *lineView=[UIView getCustomViewWithColor:_define_black_color];
+    [shop addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(1);
+        make.left.right.top.mas_equalTo(0);
+    }];
     
     UIButton * buy=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"结   算" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:buy];
     buy.backgroundColor=_define_black_color;
     [buy addTarget:self action:@selector(buyAction) forControlEvents:UIControlEventTouchUpInside];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kEdge);
-        if(sizeBriefImg)
-        {
-            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(15);
-        }else
-        {
-            make.top.mas_equalTo(subtract.mas_bottom).with.offset(15);
-        }
-        make.width.mas_equalTo(IsPhone6_gt?115:95);
-        make.height.mas_equalTo(45);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(shop);
+        make.height.mas_equalTo(shop);
+        make.width.mas_equalTo(ScreenWidth/2.0f);
     }];
     
-    
-    UIButton * shop=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"加入购物车" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:shop];
-    [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
-    shop.backgroundColor=_define_black_color;
-    [shop mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(buy.mas_left).with.offset(-(IsPhone6_gt?59:43));
-        make.top.mas_equalTo(buy);
-        make.height.mas_equalTo(buy);
-        make.left.mas_equalTo(kEdge);
-    }];
 }
 
 -(void)addAction

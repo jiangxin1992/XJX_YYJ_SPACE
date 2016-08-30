@@ -34,8 +34,11 @@
 +(NSArray *)getCurrentSeriesWithMonthModel:(DD_MonthModel *)monthModel WithData:(NSArray *)seriesArr;
 
 +(NSInteger)getTypeWithArr:(NSArray *)getArr WithMonthModel:(DD_MonthModel *)monthModel;
+
++(NSArray *)sortWithCurrentSeries:(NSArray *)currentArr WithMonthSeriesArr:(NSArray *)monthSArr;
 /**
  * 获取该月有几周
  */
 +(NSInteger )getWeekCountWithDayModel:(NSDate *)date;
++(void)SetUnSelectWithArr:(NSMutableArray *)monthArr;
 @end

@@ -12,7 +12,7 @@
 
 #import "DD_ColorsModel.h"
 
-#define ver_edge 22
+#define ver_edge 13
 
 @implementation DD_GoodsInformView
 {
@@ -103,25 +103,36 @@
     [collect_btn addTarget:self action:@selector(collectAction) forControlEvents:UIControlEventTouchUpInside];
     [collect_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(upview).with.offset(-(18+kEdge));
-        make.width.mas_equalTo(25.5);
+        make.width.mas_equalTo(25);
         make.height.mas_equalTo(23);
-        make.top.mas_equalTo(upview).with.offset(30);
+        make.top.mas_equalTo(upview).with.offset(25);
     }];
     [collect_btn setEnlargeEdge:20];
     
     NSArray *titleArr=@[_detailModel.designer.brandName,_detailModel.item.itemName,[_detailModel getPriceStr]];
     for (int i=0; i<titleArr.count; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:titleArr[i] WithFont:15.0f WithTextColor:i==2?_define_light_red_color:_define_black_color WithSpacing:0];
+        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:titleArr[i] WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [upview addSubview:label];
+        if(i==2)
+        {
+            label.font=[regular getSemiboldFont:15.0f];
+        }
         label.tag=100+i;
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
-            make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
-            make.height.mas_equalTo(ver_edge);
+            
             if(titleLastView){
-                make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(6);
+                if(i==1)
+                {
+                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(7);
+                }else
+                {
+                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(22);
+                }
+                make.right.mas_equalTo(-kEdge);
             }else{
-                make.top.mas_equalTo(upview).with.offset(12);
+                make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
+                make.centerY.mas_equalTo(collect_btn);
             }
         }];
         titleLastView=label;
@@ -145,7 +156,7 @@
         [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(20);
-            make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(kEdge);
+            make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(18);
             if(lastview){
                 make.left.mas_equalTo(lastview.mas_right).with.offset(11);
             }else{
@@ -153,16 +164,24 @@
             }
             if(i==_colorsArr.count-1)
             {
-                make.bottom.mas_equalTo(upview).with.offset(-ver_edge);
+                make.bottom.mas_equalTo(upview).with.offset(-25);
             }
         }];
-
+        
         UIView *colorView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_colorModel.colorCode]];
         colorView.userInteractionEnabled=NO;
         [backBtn addSubview:colorView];
         [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(backBtn).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
         }];
+        
+        UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+        [backBtn addSubview:downLine];
+        [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+            make.height.mas_equalTo(1);
+        }];
+        
         [_imageArr addObject:backBtn];
         lastview=backBtn;
     }
@@ -195,12 +214,9 @@
 }
 -(void)CreateDesView
 {
-    _type_label=[UILabel getLabelWithAlignment:1 WithTitle:@"款式信息" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
-    _type_label.backgroundColor=_define_black_color;
+    _type_label=[UILabel getLabelWithAlignment:0 WithTitle:@"款式信息" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [downView addSubview:_type_label];
     [_type_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(75);
-        make.height.mas_equalTo(23);
         make.top.mas_equalTo(ver_edge);
         make.left.mas_equalTo(downView).with.offset(kEdge);
     }];
@@ -209,7 +225,7 @@
 {
     UIWebView *_web=[[UIWebView alloc] init];
     _web.delegate=self;
-    NSString *font=@"12px/16px";
+    NSString *font=@"13px/17px";
     [_web loadHTMLString:[NSString stringWithFormat:@"<style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:#000000}</style><div align='justify'>%@<div>",font,_detailModel.item.itemBrief] baseURL:nil];
     _web.opaque = NO;
     _web.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -267,7 +283,6 @@
 {
     [self setSelectState:btn.tag-200];
     [self setCollectState];
-    _block(@"color_select");
 }
 /**
  * 获取颜色状态

@@ -336,18 +336,23 @@
         
         if([[[regular zoneChange:seriesModel.signStartTime] getFirstTime] getTime]<=time_inv&&[[[regular zoneChange:seriesModel.saleEndTime] getFirstTime] getTime]>=time_inv)
         {
+            seriesModel.is_select=YES;
             [arr addObject:seriesModel];
+        }else
+        {
+            seriesModel.is_select=NO;
         }
     }
     
-    NSInteger count = [arr count];
-    for (int i = 0; i < count; i++) {
-        for (int j = 0; j < count - i - 1; j++) {
-            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
-                [arr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
-            }
-        }
-    }
+    [self sortWithArr:arr];
+//    NSInteger count = [arr count];
+//    for (int i = 0; i < count; i++) {
+//        for (int j = 0; j < count - i - 1; j++) {
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//                [arr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
+//            }
+//        }
+//    }
     NSLog(@"%@",arr);
     return arr;
 }
@@ -491,14 +496,15 @@
         }
     }
 
-    NSInteger count = [weekArr count];
-    for (int i = 0; i < count; i++) {
-        for (int j = 0; j < count - i - 1; j++) {
-            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
-                [weekArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
-            }
-        }
-    }
+    [self sortWithArr:weekArr];
+//    NSInteger count = [weekArr count];
+//    for (int i = 0; i < count; i++) {
+//        for (int j = 0; j < count - i - 1; j++) {
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//                [weekArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
+//            }
+//        }
+//    }
     
     return weekArr;
 }
@@ -681,6 +687,50 @@
         
     }
     
+    [self sortWithArr:monthArr];
+//    NSInteger count = [monthArr count];
+//    for (int i = 0; i < count; i++) {
+//        for (int j = 0; j < count - i - 1; j++) {
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//                [monthArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
+//            }
+//        }
+//    }
+    
+    return monthArr;
+}
+
++(NSArray *)sortWithCurrentSeries:(NSArray *)currentArr WithMonthSeriesArr:(NSArray *)monthSArr
+{
+    if(currentArr)
+    {
+     
+        NSMutableArray *monthArr=[[NSMutableArray alloc] init];
+        [monthArr addObjectsFromArray:currentArr];
+        
+        NSMutableArray *monthSArr1=[[NSMutableArray alloc] initWithArray:monthSArr];
+        for (DD_DDAYModel *ddayModel in currentArr) {
+            [monthSArr1 removeObject:ddayModel];
+        }
+        [self sortWithArr:monthSArr1];
+        [monthArr addObjectsFromArray:monthSArr1];
+        return monthArr;
+    }else
+    {
+        NSMutableArray *monthArr=[[NSMutableArray alloc] initWithArray:monthSArr];
+        [self sortWithArr:monthArr];
+        [self SetUnSelectWithArr:monthArr];
+        return monthArr;
+    }
+}
++(void)SetUnSelectWithArr:(NSMutableArray *)monthArr
+{
+    for (DD_DDAYModel *ddayModel in monthArr) {
+        ddayModel.is_select=NO;
+    }
+}
++(void)sortWithArr:(NSMutableArray *)monthArr
+{
     NSInteger count = [monthArr count];
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count - i - 1; j++) {
@@ -689,7 +739,5 @@
             }
         }
     }
-    
-    return monthArr;
 }
 @end

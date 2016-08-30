@@ -158,6 +158,12 @@ static regular *_t = nil;
     view.layer.borderColor=[[UIColor blackColor] CGColor];
     view.layer.borderWidth=1;
 }
++(void)setZeroBorder:(UIView *)view
+{
+    view.layer.masksToBounds=YES;
+    view.layer.borderColor=[[UIColor blackColor] CGColor];
+    view.layer.borderWidth=0;
+}
 +(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width
 {
     view.layer.masksToBounds=YES;

@@ -50,7 +50,7 @@
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
-    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_fabric", nil) WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_fabric", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [backBtn addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -60,17 +60,17 @@
     }];
     
     
-    UILabel *fabric_title=[UILabel getLabelWithAlignment:0 WithTitle:@"面料" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    UILabel *fabric_title=[UILabel getLabelWithAlignment:0 WithTitle:@"面料" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:fabric_title];
     [viewArr addObject:fabric_title];
     [fabric_title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(label.mas_bottom).with.offset(10);
+        make.top.mas_equalTo(label.mas_bottom).with.offset(15);
     }];
     [fabric_title sizeToFit];
     
     
-    UILabel *fabric_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.material WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    UILabel *fabric_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.material WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:fabric_content];
     fabric_content.numberOfLines=0;
     [viewArr addObject:fabric_content];
@@ -92,7 +92,7 @@
         make.height.mas_equalTo(1);
     }];
     
-    UILabel *washing_title=[UILabel getLabelWithAlignment:0 WithTitle:@"洗涤说明" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    UILabel *washing_title=[UILabel getLabelWithAlignment:0 WithTitle:@"洗涤说明" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:washing_title];
     [viewArr addObject:washing_title];
     [washing_title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,7 +101,7 @@
     }];
     [washing_title sizeToFit];
     
-    washing_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.washCare WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    washing_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.washCare WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:washing_content];
     washing_content.numberOfLines=0;
     [viewArr addObject:washing_content];

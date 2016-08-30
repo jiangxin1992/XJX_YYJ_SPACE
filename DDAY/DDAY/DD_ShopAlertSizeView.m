@@ -57,15 +57,6 @@
 -(void)UIConfig
 {
     
-    UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self addSubview:upLine];
-    [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(5);
-        make.top.mas_equalTo(IsPhone6_gt?31:18);
-    }];
-    
     UIView *lastView=nil;
     for (int i=0; i<_SizeAlertModel.size.count; i++) {
         DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
@@ -100,14 +91,14 @@
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(15);
+                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
             }else
             {
                 make.left.mas_equalTo(kEdge);
             }
-            make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
-            make.width.mas_equalTo(42);
-            make.height.mas_equalTo(20);
+            make.top.mas_equalTo(IsPhone6_gt?23:13);
+            make.width.mas_equalTo(28);
+            make.height.mas_equalTo(28);
         }];
         lastView=_btn;
     }
@@ -127,39 +118,22 @@
         }];
     }
     
-    
-//    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-//    [self addSubview:downLine];
-//    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(kEdge);
-//        make.right.mas_equalTo(-kEdge);
-//        make.height.mas_equalTo(1);
-//        if(sizeBriefImg)
-//        {
-//            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
-//        }else
-//        {
-//            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
-//        }
-//        
-//    }];
-    
     UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:confirmBtn];
     confirmBtn.backgroundColor=_define_black_color;
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(downLine.mas_bottom).with.offset(15);
         if(sizeBriefImg)
         {
-            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(15);
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
         }else
         {
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(15);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
         }
-        make.right.mas_equalTo(-kEdge);
-        make.left.mas_equalTo(kEdge);
-        make.height.mas_equalTo(45);
+//        make.right.mas_equalTo(-kEdge);
+//        make.left.mas_equalTo(kEdge);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(ktabbarHeight);
     }];
 }
 -(void)confirmAction

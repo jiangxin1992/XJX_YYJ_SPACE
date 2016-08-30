@@ -33,8 +33,10 @@
         [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(IsPhone6_gt?14:8);
-            make.left.mas_equalTo(IsPhone6_gt?44:58);
-            make.right.mas_equalTo(IsPhone6_gt?-44:-58);
+//            make.left.mas_equalTo(IsPhone6_gt?44:58);
+//            make.right.mas_equalTo(IsPhone6_gt?-44:-58);
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
             make.height.mas_equalTo(25);
         }];
         

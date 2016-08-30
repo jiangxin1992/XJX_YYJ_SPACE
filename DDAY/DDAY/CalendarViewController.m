@@ -33,7 +33,6 @@
 @property (strong, nonatomic) UIButton *leftBtn;
 @property (strong, nonatomic) UIButton *rightBtn;
 @property (strong, nonatomic) NSDate *tempDate;
-@property (strong, nonatomic) NSArray *SeriesArr;
 @property (strong, nonatomic) UIView *upView;
 @end
 
@@ -42,7 +41,7 @@
     
     UIView *backView;
     NSMutableArray *blockArr;
-    NSMutableArray *seriesArr;
+    NSMutableArray *_SeriesArr;
     
     UIScrollView *_scrollView;
     NSMutableArray *_monthArr;
@@ -65,7 +64,7 @@
 -(void)PrepareData
 {
     blockArr=[[NSMutableArray alloc] init];
-    seriesArr=[[NSMutableArray alloc] init];
+    _SeriesArr=[[NSMutableArray alloc] init];
     
     _monthArr=[[NSMutableArray alloc] init];
     _monthSeriesViewArr=[[NSMutableArray alloc] init];
@@ -201,7 +200,7 @@
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text = day;
     [self getDataDayModel:self.tempDate];
-    
+    NSLog(@"monthArr=%@",_monthArr);
     [_leftBtn setTitle:self.tempDate.getLastMonthWithDate forState:UIControlStateNormal];
     [_rightBtn setTitle:self.tempDate.getNextMonthWithDate forState:UIControlStateNormal];
 }
@@ -214,7 +213,7 @@
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text = day;
     [self getDataDayModel:self.tempDate];
-    
+    NSLog(@"monthArr=%@",_monthArr);
     [_leftBtn setTitle:self.tempDate.getLastMonthWithDate forState:UIControlStateNormal];
     [_rightBtn setTitle:self.tempDate.getNextMonthWithDate forState:UIControlStateNormal];
 }
@@ -223,28 +222,19 @@
  */
 - (void)getDataDayModel:(NSDate *)date{
     
-    for (UIView *view in blockArr) {
-        [view removeFromSuperview];
-    }
-    [blockArr removeAllObjects];
+    [self BlockReSet];
+    [self SeriesReset];
     
-    [_monthArr removeAllObjects];
-    //    删除系列按钮
-    for (UIView *view in _monthSeriesViewArr) {
-        [view removeFromSuperview];
-    }
-    [_monthSeriesViewArr removeAllObjects];
-    
-//    NSInteger _count = [DD_CalendarTool getWeekCountWithDayModel:self.tempDate];
-//    NSLog(@"count=%ld",_count);
     NSUInteger days = [date numberOfDaysInMonth];
     NSInteger week = [date startDayOfWeek];
     self.dayModelArray = [[NSMutableArray alloc] initWithCapacity:42];
     int day = 1;
-    for (int i= 1; i<days+week; i++) {
+//    for (int i= 1; i<days+week; i++) {
+    for (int i= 1; i<43; i++) {
         if (i<week) {
             [self.dayModelArray addObject:@""];
-        }else{
+        }else if(i<days+week)
+        {
             DD_MonthModel *mon = [DD_MonthModel new];
             mon.dayValue = day;
             NSDate *dayDate = [self dateOfDay:day];
@@ -256,13 +246,38 @@
             }
             [self.dayModelArray addObject:mon];
             day++;
+        }else
+        {
+            [self.dayModelArray addObject:@""];
         }
     }
+    
+    [_monthArr removeAllObjects];
+    if(_SeriesArr.count)
+    {
+        [DD_CalendarTool SetUnSelectWithArr:_SeriesArr];
+        [_monthArr addObjectsFromArray:[DD_CalendarTool getMonthSeriesWithDayModel:date WithSeriesArr:_SeriesArr WithDataArr:_dayModelArray]];
+    }
+    
     [self.collectionView reloadData];
     
     [self resetBackView];
     [self resetMonthSeriesView];
-    
+}
+-(void)BlockReSet
+{
+    for (UIView *view in blockArr) {
+        [view removeFromSuperview];
+    }
+    [blockArr removeAllObjects];
+}
+-(void)SeriesReset
+{
+    //    删除系列按钮
+    for (UIView *view in _monthSeriesViewArr) {
+        [view removeFromSuperview];
+    }
+    [_monthSeriesViewArr removeAllObjects];
 }
 /**
  * 更新backview（系列时间view）
@@ -287,9 +302,6 @@
  */
 -(void)resetMonthSeriesView
 {
-    
-    [_monthArr addObjectsFromArray:[DD_CalendarTool getMonthSeriesWithDayModel:self.tempDate WithSeriesArr:_SeriesArr WithDataArr:_dayModelArray]];
-
     if(_monthArr.count)
     {
         UIView *lastView=nil;
@@ -310,12 +322,12 @@
                 }
             }];
             
-            UILabel *s_name=[UILabel getLabelWithAlignment:1 WithTitle:seriesModel.name WithFont:12.0f WithTextColor:nil WithSpacing:0];
+            UILabel *s_name=[UILabel getLabelWithAlignment:1 WithTitle:seriesModel.name WithFont:18.0f WithTextColor:nil WithSpacing:0];
             [_backView_s addSubview:s_name];
             
             [s_name mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(_backView_s);
-                make.top.mas_equalTo(26);
+                make.top.mas_equalTo(30);
             }];
 
             UIView *colorBlockView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:seriesModel.seriesColor]];
@@ -326,11 +338,23 @@
                 make.right.mas_equalTo(s_name.mas_left).with.offset(-6);
             }];
             
-            UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"查看详情" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+            UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"查看详情" WithNormalColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
             [_backView_s addSubview:seriesBtn];
+            if(seriesModel.is_select)
+            {
+                [regular setZeroBorder:seriesBtn];
+                seriesBtn.backgroundColor=[UIColor colorWithHexString:seriesModel.seriesColor];
+                [seriesBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
+            }else
+            {
+                [regular setBorder:seriesBtn WithColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithWidth:2];
+                seriesBtn.backgroundColor=_define_white_color;
+                [seriesBtn setTitleColor:[UIColor colorWithHexString:seriesModel.seriesColor] forState:UIControlStateNormal];
+            }
+            
             [seriesBtn addTarget:self action:@selector(seriesBtnAction:) forControlEvents:UIControlEventTouchUpInside];
             seriesBtn.tag=100+i;
-            seriesBtn.backgroundColor=[UIColor colorWithHexString:seriesModel.seriesColor];
+
             seriesBtn.frame=CGRectMake(kEdge, CGRectGetHeight(_backView_s.frame)-28, ScreenWidth-2*kEdge, 28);
             [seriesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(kEdge);
@@ -358,9 +382,12 @@
     [[JX_AFNetworking alloc] GET:@"series/querySeriesCalendar.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            _SeriesArr=[DD_DDAYModel getDDAYModelArr:[data objectForKey:@"seriesCalendar"]];
+            [_SeriesArr addObjectsFromArray:[DD_DDAYModel getDDAYModelArr:[data objectForKey:@"seriesCalendar"]]];
             [self.collectionView reloadData];
             [self resetBackView];
+            [_monthArr removeAllObjects];
+            [self SeriesReset];
+            [_monthArr addObjectsFromArray:[DD_CalendarTool getMonthSeriesWithDayModel:self.tempDate WithSeriesArr:_SeriesArr WithDataArr:_dayModelArray]];
             [self resetMonthSeriesView];
            
         }else
@@ -408,11 +435,22 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    id mon = self.dayModelArray[indexPath.row];
-//    if ([mon isKindOfClass:[MonthModel class]]) {
-//        NSString *day=[(MonthModel *)mon dateValue].yyyyMMddByLineWithDate;
-//        self.dateLabel.text = day;
-//    }
+    id mon = self.dayModelArray[indexPath.row];
+    if ([mon isKindOfClass:[DD_MonthModel class]]) {
+        DD_MonthModel *_mon=(DD_MonthModel *)mon;
+        NSArray *currentArr=[DD_CalendarTool getCurrentSeriesWithMonthModel:_mon WithData:_SeriesArr];
+        NSArray *getArr=[DD_CalendarTool sortWithCurrentSeries:currentArr WithMonthSeriesArr:_monthArr];
+        [_monthArr removeAllObjects];
+        [_monthArr addObjectsFromArray:getArr];
+    }else
+    {
+        NSArray *getArr=[DD_CalendarTool sortWithCurrentSeries:nil WithMonthSeriesArr:_monthArr];
+        [_monthArr removeAllObjects];
+        [_monthArr addObjectsFromArray:getArr];
+    }
+    
+    [self SeriesReset];
+    [self resetMonthSeriesView];
 }
 
 - (void)didReceiveMemoryWarning {

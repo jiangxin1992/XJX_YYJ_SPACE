@@ -48,53 +48,34 @@
 }
 #pragma mark - UIConfig
 -(void)UIConfig
-{
-    UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self addSubview:upLine];
-    [upLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(5);
-        make.top.mas_equalTo(IsPhone6_gt?31:18);
-    }];
-    
+{    
     UIButton *subtract=[UIButton getCustomImgBtnWithImageStr:@"System_Subtract" WithSelectedImageStr:nil];
     [self addSubview:subtract];
     [subtract addTarget:self action:@selector(subtractAction) forControlEvents:UIControlEventTouchUpInside];
     [subtract mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.width.and.height.mas_equalTo(22);
-        make.top.mas_equalTo(upLine.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        make.width.and.height.mas_equalTo(20);
+        make.top.mas_equalTo(IsPhone6_gt?23:13);
     }];
     
     countBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"%ld",_count] WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:countBtn];
     [regular setBorder:countBtn];
     [countBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(subtract.mas_right).with.offset(10);
+        make.left.mas_equalTo(subtract.mas_right).with.offset(13);
         make.top.mas_equalTo(subtract);
         make.height.mas_equalTo(subtract);
-        make.width.mas_equalTo(90);
+        make.width.mas_equalTo(70);
     }];
     
     UIButton *add=[UIButton getCustomImgBtnWithImageStr:@"System_Add" WithSelectedImageStr:nil];
     [self addSubview:add];
     [add addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
     [add mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(countBtn.mas_right).with.offset(10);
-        make.width.and.height.mas_equalTo(22);
+        make.left.mas_equalTo(countBtn.mas_right).with.offset(13);
+        make.width.and.height.mas_equalTo(20);
         make.top.mas_equalTo(subtract);
     }];
-    
-    
-//    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-//    [self addSubview:downLine];
-//    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(kEdge);
-//        make.right.mas_equalTo(-kEdge);
-//        make.height.mas_equalTo(1);
-//        make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
-//    }];
     
     
     UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -102,10 +83,11 @@
     confirmBtn.backgroundColor=_define_black_color;
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(subtract.mas_bottom).with.offset(15);
-        make.right.mas_equalTo(-kEdge);
-        make.left.mas_equalTo(kEdge);
-        make.height.mas_equalTo(45);
+        make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
+//        make.right.mas_equalTo(-kEdge);
+//        make.left.mas_equalTo(kEdge);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(ktabbarHeight);
     }];
 }
 

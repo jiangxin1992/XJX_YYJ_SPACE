@@ -497,7 +497,7 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
     CGFloat _height=[DD_CircleListCell heightWithModel:listModel];
-    return _height;
+    return _height+10;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

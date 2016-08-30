@@ -44,7 +44,7 @@
     ConfirmBtn.backgroundColor=_define_black_color;
     
     
-    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:_numStr WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:_numStr WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:numlabel];
     [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -52,8 +52,9 @@
     }];
     [numlabel sizeToFit];
     
-    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:_countStr WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:_countStr WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:countlabel];
+    countlabel.font=[regular getSemiboldFont:15.0f];
     [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
         make.left.mas_equalTo(numlabel.mas_right).with.offset(10);

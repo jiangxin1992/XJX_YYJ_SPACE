@@ -23,14 +23,11 @@
 -(void)UIConfig
 {
     self.backgroundColor=_define_white_color;
-    UILabel *SimilarTitleLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"相似款式" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+    UILabel *SimilarTitleLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"相似款式" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:SimilarTitleLabel];
-    SimilarTitleLabel.backgroundColor=_define_black_color;
     [SimilarTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(self).with.offset(22);
-        make.width.mas_equalTo(75);
-        make.height.mas_equalTo(23);
+        make.top.mas_equalTo(self).with.offset(13);
         if(!_similarArr.count)
         {
             make.bottom.mas_equalTo(self.mas_bottom).with.offset(-20);
@@ -47,6 +44,8 @@
         img.userInteractionEnabled=YES;
         [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
         [img JX_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [regular setZeroBorder:img];
+        img.contentMode=UIViewContentModeScaleAspectFill;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
