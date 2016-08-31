@@ -73,7 +73,7 @@
     }];
     [nickName sizeToFit];
     
-    _des=[UILabel getLabelWithAlignment:1 WithTitle:_usermodel.nickName WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _des=[UILabel getLabelWithAlignment:1 WithTitle:_usermodel.career WithFont:12.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_des];
     _des.numberOfLines=2;
     [_des mas_makeConstraints:^(MASConstraintMaker *make) {

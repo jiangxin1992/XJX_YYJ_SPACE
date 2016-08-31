@@ -124,10 +124,10 @@
             if(titleLastView){
                 if(i==1)
                 {
-                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(7);
+                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(10);
                 }else
                 {
-                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(22);
+                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(25);
                 }
                 make.right.mas_equalTo(-kEdge);
             }else{
@@ -164,7 +164,7 @@
             }
             if(i==_colorsArr.count-1)
             {
-                make.bottom.mas_equalTo(upview).with.offset(-25);
+                make.bottom.mas_equalTo(upview).with.offset(-28);
             }
         }];
         
@@ -387,7 +387,7 @@
 //-(void )setItemTimeStr
 //{
 //    UILabel *label=[self viewWithTag:102];
-//    long _nowTime=[regular date];
+//    long _nowTime=[NSDate nowTime];
 //    if(_nowTime>=_detailModel.item.saleEndTime)
 //    {
 ////        已经结束

@@ -173,7 +173,7 @@
     [_sizeNameBtn setTitle:ItemModel.sizeName forState:UIControlStateNormal];
     [_numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ItemModel.number] forState:UIControlStateNormal];
     
-    if(ItemModel.saleEndTime>[regular date])
+    if(ItemModel.saleEndTime>[NSDate nowTime])
     {
         _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
     }else

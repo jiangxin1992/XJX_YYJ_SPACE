@@ -53,7 +53,7 @@
 -(NSDictionary *)CategoryData
 {
     NSDictionary *_dataDict=[[NSMutableDictionary alloc] init];
-    long nowtime=[regular date];
+    long nowtime=[NSDate nowTime];
     NSArray *__orders=self.orders;
     //    过滤发布会结束的
     NSMutableArray *saleingArr=[[NSMutableArray alloc] init];
@@ -141,7 +141,7 @@
             }
             if(!_Series.status)
             {
-                long _nowtime=[regular date];
+                long _nowtime=[NSDate nowTime];
                 if(ordermodel.saleEndTime<_nowtime)
                 {
                     _Series.status=1;
@@ -212,7 +212,7 @@
                 }
                 if(!_Series.status)
                 {
-                    long _nowtime=[regular date];
+                    long _nowtime=[NSDate nowTime];
                     if(ordermodel.saleEndTime<_nowtime)
                     {
                         _Series.status=1;

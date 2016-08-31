@@ -384,7 +384,14 @@
         UIImageView *imageView=[UIImageView getCustomImg];
         [_UpView addSubview:imageView];
         imageView.contentMode=i==0?0:1;
-        [imageView JX_ScaleAspectFit_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:200 placeHolderImageName:nil radius:30];
+        if(!imageView.contentMode)
+        {
+            [imageView JX_ScaleToFill_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
+        }else
+        {
+            [imageView JX_ScaleAspectFit_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
+        }
+        
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
             {

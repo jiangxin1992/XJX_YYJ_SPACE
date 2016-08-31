@@ -183,7 +183,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, IsPhone6_gt?16:0, 0));
     }];
 }
 #pragma mark - RequestData
@@ -496,8 +496,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    CGFloat _height=[DD_CircleListCell heightWithModel:listModel];
-    return _height+10;
+    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -526,7 +525,7 @@
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
     }
     cell.listModel=[_dataArr objectAtIndex:indexPath.section];
     cell.index=indexPath.section;

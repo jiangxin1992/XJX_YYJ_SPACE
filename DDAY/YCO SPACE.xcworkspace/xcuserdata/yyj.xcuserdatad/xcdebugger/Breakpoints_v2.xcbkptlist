@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CirclePushlishPreViewController.m"
-            timestampString = "494339188.861805"
+            filePath = "DDAY/DD_DDAYCell.m"
+            timestampString = "494363794.169401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "-SetState"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-BeforeSaleStart"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

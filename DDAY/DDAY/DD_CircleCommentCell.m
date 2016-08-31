@@ -59,7 +59,7 @@
         make.width.and.height.mas_equalTo(44);
     }];
     
-    userName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    userName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:userName];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(icon.mas_right).with.offset(14);
@@ -72,11 +72,11 @@
     [self.contentView addSubview:createTime];
     createTime.textAlignment=0;
     createTime.textColor=[UIColor grayColor];
-    createTime.font=[regular getFont:13.0f];
+    createTime.font=[regular get_en_Font:12.0f];
     [createTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userName.mas_bottom).with.offset(6);
         make.width.mas_equalTo(120);
-        make.left.mas_equalTo(icon.mas_right).with.offset(14);
+        make.left.mas_equalTo(userName);
     }];
     [createTime sizeToFit];
     
@@ -90,22 +90,22 @@
     }];
     [praiseLabel sizeToFit];
     
-    praiseBtn=[UIButton getCustomImgBtnWithImageStr:@"System_NoGood" WithSelectedImageStr:@"System_Good"];
-    [self addSubview:praiseBtn];
-    [praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
-    [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(22);
-        make.right.mas_equalTo(praiseLabel.mas_left).with.offset(-5);
-        make.centerY.mas_equalTo(praiseLabel);
-        make.height.mas_equalTo(39);
-    }];
+//    praiseBtn=[UIButton getCustomImgBtnWithImageStr:@"System_NoGood" WithSelectedImageStr:@"System_Good"];
+//    [self addSubview:praiseBtn];
+//    [praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(22);
+//        make.right.mas_equalTo(praiseLabel.mas_left).with.offset(-5);
+//        make.centerY.mas_equalTo(praiseLabel);
+//        make.height.mas_equalTo(39);
+//    }];
     
     
-    comment=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_black_color WithSpacing:0];
+    comment=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:comment];
     comment.numberOfLines=0;
     [comment mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(icon.mas_right).with.offset(19);
+        make.left.mas_equalTo(userName);
         make.top.mas_equalTo(createTime.mas_bottom).with.offset(6);
         make.right.mas_equalTo(-22);
         make.height.mas_equalTo(0);

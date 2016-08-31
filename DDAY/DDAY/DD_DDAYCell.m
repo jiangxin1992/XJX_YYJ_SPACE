@@ -46,23 +46,22 @@
         [_ApplyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(IsPhone6_gt)
             {
-                make.bottom.mas_equalTo(-28);
                 make.width.mas_equalTo(183);
-                make.height.mas_equalTo(46);
                 make.centerX.mas_equalTo(self.contentView);
             }else
             {
-                make.bottom.mas_equalTo(-32);
                 make.left.mas_equalTo(67);
                 make.right.mas_equalTo(-67);
-                make.height.mas_equalTo(46);
             }
+            make.height.mas_equalTo(46);
+            make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
         }];
         
         _restLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12 WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:_restLabel];
         [_restLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(_ApplyBtn.mas_top).with.offset(IsPhone6_gt?-20:-15);
+//            make.bottom.mas_equalTo(_ApplyBtn.mas_top).with.offset(IsPhone6_gt?-20:-15);
+            make.bottom.mas_equalTo(IsPhone6_gt?(-94):(-93));
             make.left.mas_equalTo(20);
             make.right.mas_equalTo(-20);
             make.height.mas_equalTo(23);
@@ -111,6 +110,10 @@
 //报名开始前
 -(void)BeforeSignStart
 {
+    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
+    }];
+    
     [self startTimeWithType:@"BeforeSignStart"];
     
     [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
@@ -123,6 +126,10 @@
 //报名结束前
 -(void)BeforeSignEnd
 {
+    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
+    }];
+    
     [self startTimeWithType:@"BeforeSignEnd"];
 
     
@@ -144,6 +151,10 @@
 //发布会开始之前
 -(void)BeforeSaleStart
 {
+    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
+    }];
+    
     [self startTimeWithType:@"BeforeSaleStart"];
     
     [_ApplyBtn setTitle:@"报名已结束" forState:UIControlStateNormal];
@@ -156,6 +167,10 @@
 //发布会结束之前
 -(void)BeforeSaleEnd
 {
+    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
+    }];
+    
     [self startTimeWithType:@"BeforeSaleEnd"];
 
     [_ApplyBtn setTitle:@"发布会已开始" forState:UIControlStateNormal];
@@ -168,6 +183,10 @@
 //发布会结束之后
 -(void)AfterSaleEnd
 {
+    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
+    }];
+
     [_ApplyBtn setTitle:@"发布会已结束" forState:UIControlStateNormal];
     [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
     _ApplyBtn.backgroundColor=_define_light_gray_color1;
@@ -184,7 +203,7 @@
 -(NSString *)getState
 {
     
-    long nowTime=[regular date];
+    long nowTime=[NSDate nowTime];
     if(nowTime<_DDAYModel.signStartTime)
     {
         //        报名开始之前
@@ -244,19 +263,19 @@
         {
             //        报名开始之前
             [self BeforeSignEnd];
-            [self timerCountStartWithTime:_DDAYModel.signEndTime-[regular date] WithType:@"beforeSignEnd"];
+            [self timerCountStartWithTime:_DDAYModel.signEndTime-[NSDate nowTime] WithType:@"beforeSignEnd"];
             
         }else if([type isEqualToString:@"beforeSignEnd"])
         {
             //        报名结束之前
             [self BeforeSaleStart];
-            [self timerCountStartWithTime:_DDAYModel.saleStartTime-[regular date] WithType:@"beforeSaleStart"];
+            [self timerCountStartWithTime:_DDAYModel.saleStartTime-[NSDate nowTime] WithType:@"beforeSaleStart"];
             
         }else if([type isEqualToString:@"beforeSaleStart"])
         {
             //        发布会开始之前
             [self BeforeSaleEnd];
-            [self timerCountStartWithTime:_DDAYModel.saleEndTime-[regular date] WithType:@"beforeSaleEnd"];
+            [self timerCountStartWithTime:_DDAYModel.saleEndTime-[NSDate nowTime] WithType:@"beforeSaleEnd"];
             
             
         }else if([type isEqualToString:@"beforeSaleEnd"])
@@ -276,19 +295,19 @@
     NSString *prefix_str=nil;
     if([type isEqualToString:@"BeforeSignStart"])
     {
-        timeout=_DDAYModel.signStartTime-[regular date];
+        timeout=_DDAYModel.signStartTime-[NSDate nowTime];
         prefix_str=@"距报名开始  ";
     }else if([type isEqualToString:@"BeforeSignEnd"])
     {
-        timeout=_DDAYModel.signEndTime-[regular date];
+        timeout=_DDAYModel.signEndTime-[NSDate nowTime];
         prefix_str=@"距报名结束  ";
     }else if([type isEqualToString:@"BeforeSaleStart"])
     {
-        timeout=_DDAYModel.saleStartTime-[regular date];
+        timeout=_DDAYModel.saleStartTime-[NSDate nowTime];
         prefix_str=@"距发布会开始  ";
     }else
     {
-        timeout=_DDAYModel.saleEndTime-[regular date];
+        timeout=_DDAYModel.saleEndTime-[NSDate nowTime];
         prefix_str=@"距发布会结束  ";
     }
     
@@ -326,7 +345,7 @@
                 NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                 //用来得到具体的时差
                 unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
+                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[NSDate nowTime]+timeout] options:0];
                 
                 if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
                 {
@@ -381,26 +400,26 @@
     {
 //        报名开始之前
         [self BeforeSignStart];
-        [self timerCountStartWithTime:_DDAYModel.signStartTime-[regular date] WithType:@"beforeSignStart"];
+        [self timerCountStartWithTime:_DDAYModel.signStartTime-[NSDate nowTime] WithType:@"beforeSignStart"];
         
     }else if([[self getState] isEqualToString:@"beforeSignEnd"])
     {
 //        报名结束之前
         [self BeforeSignEnd];
-        [self timerCountStartWithTime:_DDAYModel.signEndTime-[regular date] WithType:@"beforeSignEnd"];
+        [self timerCountStartWithTime:_DDAYModel.signEndTime-[NSDate nowTime] WithType:@"beforeSignEnd"];
         
     }else if([[self getState] isEqualToString:@"beforeSaleStart"])
     {
 //        发布会开始之前
         [self BeforeSaleStart];
-        [self timerCountStartWithTime:_DDAYModel.saleStartTime-[regular date] WithType:@"beforeSaleStart"];
+        [self timerCountStartWithTime:_DDAYModel.saleStartTime-[NSDate nowTime] WithType:@"beforeSaleStart"];
         
     }else if([[self getState] isEqualToString:@"beforeSaleEnd"])
     {
 //         发布中
 //        距结束倒计时
         [self BeforeSaleEnd];
-        [self timerCountStartWithTime:_DDAYModel.saleEndTime-[regular date] WithType:@"beforeSaleEnd"];
+        [self timerCountStartWithTime:_DDAYModel.saleEndTime-[NSDate nowTime] WithType:@"beforeSaleEnd"];
         
     }else if([[self getState] isEqualToString:@"afterSaleEnd"])
     {

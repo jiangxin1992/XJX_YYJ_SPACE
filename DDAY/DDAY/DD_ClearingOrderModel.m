@@ -15,7 +15,7 @@
     _ClearingOrder.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
     _ClearingOrder.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
 //    将商品价格设置成当前状态的价格
-    long nowtime=[regular date];
+    long nowtime=[NSDate nowTime];
     if(nowtime<_ClearingOrder.saleEndTime)
     {
         _ClearingOrder.price=_ClearingOrder.price;

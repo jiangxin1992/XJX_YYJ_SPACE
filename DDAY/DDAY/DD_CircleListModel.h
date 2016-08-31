@@ -19,7 +19,10 @@
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr;
 
 +(NSMutableArray *)getCircleListImgModelArr:(NSArray *)arr;
+
 +(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict;
+
+
 
 /**
  * 用户职业
@@ -49,7 +52,7 @@ __string(shareId);
 /**
  * 建议高度
  */
-__float(suggestHeight);
+//__float(suggestHeight);
 /**
  * 评论数量
  */

@@ -100,7 +100,7 @@ static regular *_t = nil;
     long _hour=60*60;
     long _day=60*60*24;
     long _year=60*60*24*365;
-    long space=[regular date]-createTime;
+    long space=[NSDate nowTime]-createTime;
     if(space)
     {
         if(space<_minute)
@@ -412,7 +412,7 @@ static regular *_t = nil;
         
         //用来得到具体的时差
         unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-        NSDate *NiceNewdate=[regular zoneChange:[regular date]+time];
+        NSDate *NiceNewdate=[regular zoneChange:[NSDate nowTime]+time];
         NSDateComponents *d = [cal components:unitFlags fromDate:today toDate:NiceNewdate options:0];
         
         

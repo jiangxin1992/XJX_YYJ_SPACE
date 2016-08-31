@@ -9,7 +9,10 @@
 #import "NSDate+Formatter.h"
 
 @implementation NSDate (Formatter)
-
++(long )nowTime
+{
+    return [[self nowDate] timeIntervalSince1970];
+}
 +(NSDate *)nowDate
 {
     NSDate *date = [NSDate date];

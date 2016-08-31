@@ -88,7 +88,7 @@
         serieslabel.textColor=[UIColor lightGrayColor];
     }
     serieslabel.text=[[NSString alloc] initWithFormat:@"系列：%@",_seriesModel.seriesName];
-    if([regular date]<_seriesModel.saleEndTime&&[regular date]>=_seriesModel.saleStartTime)
+    if([NSDate nowTime]<_seriesModel.saleEndTime&&[NSDate nowTime]>=_seriesModel.saleStartTime)
     {
         [self startTime];
     }
@@ -112,7 +112,7 @@
 }
 -(void)startTime{
     DD_ShopSeriesModel *_seriesModel = [DD_ShopTool getNumberSection:_section WithModel:_shopModel];
-    __block long timeout=_seriesModel.saleEndTime-[regular date]; //倒计时时间
+    __block long timeout=_seriesModel.saleEndTime-[NSDate nowTime]; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _seriesModel.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     
@@ -134,7 +134,7 @@
                 NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                 //用来得到具体的时差
                 unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
+                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[NSDate nowTime]+timeout] options:0];
                 
                 if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
                 {

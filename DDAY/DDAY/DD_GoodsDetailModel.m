@@ -36,7 +36,7 @@
 
 -(NSString *)getPrice
 {
-    long _nowTime=[regular date];
+    long _nowTime=[NSDate nowTime];
     if(_nowTime>=self.item.saleEndTime)
     {
         //        已经结束
@@ -69,7 +69,7 @@
 -(NSString *)getPriceStr
 {
     NSString *_timestr=nil;
-    long _nowTime=[regular date];
+    long _nowTime=[NSDate nowTime];
     if(_nowTime>=self.item.saleEndTime)
     {
         //        已经结束

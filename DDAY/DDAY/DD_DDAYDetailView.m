@@ -81,26 +81,26 @@
     {
         //        报名开始之前
         [self BeforeSignStart];
-        [self timerCountStartWithTime:_detailModel.signStartTime-[regular date] WithType:@"beforeSignStart"];
+        [self timerCountStartWithTime:_detailModel.signStartTime-[NSDate nowTime] WithType:@"beforeSignStart"];
         
     }else if([[self getState] isEqualToString:@"beforeSignEnd"])
     {
         //        报名结束之前
         [self BeforeSignEnd];
-        [self timerCountStartWithTime:_detailModel.signEndTime-[regular date] WithType:@"beforeSignEnd"];
+        [self timerCountStartWithTime:_detailModel.signEndTime-[NSDate nowTime] WithType:@"beforeSignEnd"];
         
     }else if([[self getState] isEqualToString:@"beforeSaleStart"])
     {
         //        发布会开始之前
         [self BeforeSaleStart];
-        [self timerCountStartWithTime:_detailModel.saleStartTime-[regular date] WithType:@"beforeSaleStart"];
+        [self timerCountStartWithTime:_detailModel.saleStartTime-[NSDate nowTime] WithType:@"beforeSaleStart"];
         
     }else if([[self getState] isEqualToString:@"beforeSaleEnd"])
     {
         //         发布中
         //        距结束倒计时
         [self BeforeSaleEnd];
-        [self timerCountStartWithTime:_detailModel.saleEndTime-[regular date] WithType:@"beforeSaleEnd"];
+        [self timerCountStartWithTime:_detailModel.saleEndTime-[NSDate nowTime] WithType:@"beforeSaleEnd"];
         
     }else if([[self getState] isEqualToString:@"afterSaleEnd"])
     {
@@ -242,7 +242,7 @@
  */
 -(NSString *)getState
 {
-    long nowTime=[regular date];
+    long nowTime=[NSDate nowTime];
     if(nowTime<_detailModel.signStartTime)
     {
         //        报名开始之前
@@ -313,10 +313,10 @@
     __block long timeout=0; //倒计时时间
     if([type isEqualToString:@"beforeSignStart"])
     {
-        timeout=_detailModel.signStartTime-[regular date];
+        timeout=_detailModel.signStartTime-[NSDate nowTime];
     }else if([type isEqualToString:@"beforeSaleStart"])
     {
-        timeout=_detailModel.saleStartTime-[regular date];
+        timeout=_detailModel.saleStartTime-[NSDate nowTime];
     }
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -347,7 +347,7 @@
                 NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                 //用来得到具体的时差
                 unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
+                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[NSDate nowTime]+timeout] options:0];
                 
                 if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
                 {
@@ -384,19 +384,19 @@
             {
                 //        报名开始之前
                 [self BeforeSignEnd];
-                [self timerCountStartWithTime:_detailModel.signEndTime-[regular date] WithType:@"beforeSignEnd"];
+                [self timerCountStartWithTime:_detailModel.signEndTime-[NSDate nowTime] WithType:@"beforeSignEnd"];
                 
             }else if([type isEqualToString:@"beforeSignEnd"])
             {
                 //        报名结束之前
                 [self BeforeSaleStart];
-                [self timerCountStartWithTime:_detailModel.saleStartTime-[regular date] WithType:@"beforeSaleStart"];
+                [self timerCountStartWithTime:_detailModel.saleStartTime-[NSDate nowTime] WithType:@"beforeSaleStart"];
                 
             }else if([type isEqualToString:@"beforeSaleStart"])
             {
                 //        发布会开始之前
                 [self BeforeSaleEnd];
-                [self timerCountStartWithTime:_detailModel.saleEndTime-[regular date] WithType:@"beforeSaleEnd"];
+                [self timerCountStartWithTime:_detailModel.saleEndTime-[NSDate nowTime] WithType:@"beforeSaleEnd"];
                 
             }else if([type isEqualToString:@"beforeSaleEnd"])
             {

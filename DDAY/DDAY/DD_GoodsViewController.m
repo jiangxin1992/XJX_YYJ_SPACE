@@ -207,7 +207,8 @@
         mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight);
     }else
     {
-        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, IsPhone6_gt?(ScreenHeight-16):ScreenHeight);
     }
     
     

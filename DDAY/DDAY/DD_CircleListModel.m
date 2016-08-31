@@ -18,7 +18,7 @@
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
 //    _tagModel.createTime=_tagModel.createTime/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
-    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
+//    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
     return _tagModel;
 }
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr
@@ -44,8 +44,9 @@
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
 //    _tagModel.createTime=_tagModel.createTime/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
-    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
+//    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
     _tagModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     return _tagModel;
 }
+
 @end

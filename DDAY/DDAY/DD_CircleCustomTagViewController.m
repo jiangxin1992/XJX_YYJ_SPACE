@@ -58,7 +58,8 @@
     _tagTextField=[[UITextField alloc] init];
     [self.view addSubview:_tagTextField];
     _tagTextField.leftViewMode=UITextFieldViewModeAlways;
-    _tagTextField.leftView=[[DrawView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) WithStartP:CGPointMake(15.5f, 6.5f) WithEndP:CGPointMake(15.5f, 25.5f) WithLineWidth:1 WithColorType:1];
+//    _tagTextField.leftView=[[DrawView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) WithStartP:CGPointMake(15.5f, 6.5f) WithEndP:CGPointMake(15.5f, 25.5f) WithLineWidth:1 WithColorType:1];
+    _tagTextField.leftView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 32)];
     _tagTextField.clearButtonMode = UITextFieldViewModeAlways;
     _tagTextField.returnKeyType=UIReturnKeyDefault;
     _tagTextField.borderStyle= UITextBorderStyleNone;

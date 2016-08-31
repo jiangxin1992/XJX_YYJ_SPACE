@@ -39,7 +39,7 @@
 
 +(void)testData_Q:(DD_DDAYModel *)_DDAYModel WithType:(NSInteger )type
 {
-    long nowTime=[regular date];
+    long nowTime=[NSDate nowTime];
     if(type==0)
     {
         //        报名开始之前
@@ -80,7 +80,7 @@
 }
 +(void)testData:(DD_DDAYModel *)_DDAYModel WithType:(NSInteger )type
 {
-    long nowTime=[regular date];
+    long nowTime=[NSDate nowTime];
     if(type==0)
     {
         //        报名开始之前
@@ -121,7 +121,7 @@
 }
 +(void)testData1:(DD_DDAYModel *)_DDAYModel WithType:(NSInteger )type
 {
-    long nowTime=[regular date];
+    long nowTime=[NSDate nowTime];
     if(type==0)
     {
         //        报名开始之前

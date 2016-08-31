@@ -21,6 +21,8 @@
     UITableView *_tableview;
     
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
+    
+    BOOL _isUserHomePage;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +50,14 @@
 {
     _dataArr=[[NSMutableArray alloc] init];
     _page=1;
+    
+    if([_DesignerID isEqualToString:((DD_UserModel *)[DD_UserModel getLocalUserInfo]).u_id])
+    {
+        _isUserHomePage=YES;
+    }else
+    {
+        _isUserHomePage=NO;
+    }
 }
 -(void)PrepareUI{
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
@@ -106,7 +116,7 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;
@@ -155,7 +165,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    return 454+listModel.suggestHeight;
+//    return 454+listModel.suggestHeight;
+    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:_isUserHomePage];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -184,7 +195,7 @@
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:_isUserHomePage];
     }
     cell.listModel=[_dataArr objectAtIndex:indexPath.section];
     cell.index=indexPath.section;
@@ -196,26 +207,26 @@
 {
     _block(@"push_comment",[_dataArr objectAtIndex:indexPath.section]);
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
+////section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 1;//section头部高度
+//}
+////section头部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+////section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+////section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
 #pragma mark - SomeAction
 -(void)MJRefresh
 {

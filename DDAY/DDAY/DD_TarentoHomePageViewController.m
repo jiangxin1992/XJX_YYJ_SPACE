@@ -35,6 +35,8 @@
     
     DD_ShareView *shareView;
     UIImageView *mengban;
+    
+    BOOL _isUserHomePage;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,6 +66,13 @@
     _dataArr=[[NSMutableArray alloc] init];
     _page=1;
 
+    if([_userID isEqualToString:((DD_UserModel *)[DD_UserModel getLocalUserInfo]).u_id])
+    {
+        _isUserHomePage=YES;
+    }else
+    {
+        _isUserHomePage=NO;
+    }
 }
 -(void)PrepareUI{
     DD_NavBtn *backBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(11, 19) WithImgeStr:@"System_Back"];
@@ -248,7 +257,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    return 454+listModel.suggestHeight;
+    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:_isUserHomePage];
+    return _height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -277,7 +287,7 @@
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:_isUserHomePage];
     }
     cell.listModel=[_dataArr objectAtIndex:indexPath.section];
     cell.index=indexPath.section;

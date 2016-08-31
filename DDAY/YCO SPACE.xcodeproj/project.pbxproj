@@ -215,7 +215,6 @@
 		3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E765B1D1B77D600722FDA /* DD_CircleCommentSignBoard.m */; };
 		3F8E76611D1B7EC300722FDA /* DD_CircleComentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76601D1B7EC300722FDA /* DD_CircleComentInputView.m */; };
 		3F8E76661D1B926900722FDA /* DD_CircleDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76651D1B926900722FDA /* DD_CircleDetailHeadView.m */; };
-		3F8E76691D1BA46F00722FDA /* DD_CircleListSuggestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76681D1BA46F00722FDA /* DD_CircleListSuggestView.m */; };
 		3F8E766D1D1BB7BB00722FDA /* DD_CircleDetailImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E766C1D1BB7BB00722FDA /* DD_CircleDetailImgView.m */; };
 		3F8E76721D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76701D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m */; };
 		3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */; };
@@ -761,8 +760,6 @@
 		3F8E76601D1B7EC300722FDA /* DD_CircleComentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleComentInputView.m; sourceTree = "<group>"; };
 		3F8E76641D1B926900722FDA /* DD_CircleDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDetailHeadView.h; sourceTree = "<group>"; };
 		3F8E76651D1B926900722FDA /* DD_CircleDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDetailHeadView.m; sourceTree = "<group>"; };
-		3F8E76671D1BA46F00722FDA /* DD_CircleListSuggestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleListSuggestView.h; sourceTree = "<group>"; };
-		3F8E76681D1BA46F00722FDA /* DD_CircleListSuggestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleListSuggestView.m; sourceTree = "<group>"; };
 		3F8E766B1D1BB7BB00722FDA /* DD_CircleDetailImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDetailImgView.h; sourceTree = "<group>"; };
 		3F8E766C1D1BB7BB00722FDA /* DD_CircleDetailImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDetailImgView.m; sourceTree = "<group>"; };
 		3F8E766F1D1BC69000722FDA /* DD_CircleShowDetailImgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleShowDetailImgViewController.h; sourceTree = "<group>"; };
@@ -1632,8 +1629,6 @@
 				3F4904EB1D18E15F009F4CD3 /* DD_CircleListUserView.m */,
 				3F4904ED1D18E16A009F4CD3 /* DD_CircleListInteractionView.h */,
 				3F4904EE1D18E16A009F4CD3 /* DD_CircleListInteractionView.m */,
-				3F8E76671D1BA46F00722FDA /* DD_CircleListSuggestView.h */,
-				3F8E76681D1BA46F00722FDA /* DD_CircleListSuggestView.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -3147,7 +3142,6 @@
 				3F21E20B1D17954800FE7ADF /* DD_CricleChooseItemModel.m in Sources */,
 				3F5306E41D126AEE000C9EC0 /* DD_CricleTagItemModel.m in Sources */,
 				3F9B8B051CEF6C58008EC460 /* DD_UserCell.m in Sources */,
-				3F8E76691D1BA46F00722FDA /* DD_CircleListSuggestView.m in Sources */,
 				3F4188011CEEFF48001BCA3D /* DD_ClearingTableViewCell.m in Sources */,
 				3F73CC661D6D36D400E419B9 /* DD_OrderLogisticsModel.m in Sources */,
 				3FCB11551CFC33BC00FBB018 /* DD_ShopClearingView.m in Sources */,

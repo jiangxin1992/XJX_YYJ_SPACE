@@ -132,7 +132,7 @@
     [sizeNameBtn setTitle:ClearingModel.sizeName forState:UIControlStateNormal];
     [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ClearingModel.numbers] forState:UIControlStateNormal];
     
-    if(ClearingModel.saleEndTime>[regular date])
+    if(ClearingModel.saleEndTime>[NSDate nowTime])
     {
         priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
     }else

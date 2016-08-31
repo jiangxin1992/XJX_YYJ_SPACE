@@ -26,11 +26,12 @@
     [super awakeFromNib];
 }
 #pragma mark - 初始化
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier IsUserHomePage:(BOOL )isUserHomePage
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
+        _isUserHomePage=isUserHomePage;
         [self SomePrepare];
         [self UIConfig];
     }
@@ -61,47 +62,59 @@
 -(void)PrepareUI
 {
     self.contentView.backgroundColor=_define_white_color;
+//    self.contentView.backgroundColor=[UIColor colorWithRed:(arc4random() % 256)/256.0f green:(arc4random() % 256)/256.0f blue:(arc4random() % 256)/256.0f alpha:1];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    userHeadImg=[UIImageView getCustomImg];
-    [self.contentView addSubview:userHeadImg];
-    userHeadImg.contentMode=0;
-    userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
-    [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(9);
-        make.width.height.mas_equalTo(43);
-    }];
+    if(!_isUserHomePage)
+    {
+        userHeadImg=[UIImageView getCustomImg];
+        [self.contentView addSubview:userHeadImg];
+        userHeadImg.contentMode=0;
+        userHeadImg.userInteractionEnabled=YES;
+        [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+        [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(kEdge);
+            make.top.mas_equalTo(9);
+            make.width.height.mas_equalTo(43);
+        }];
+        
+        userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+        [self.contentView addSubview:userNameLabel];
+        [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(userHeadImg);
+            make.height.mas_equalTo(43/2.0f);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+        }];
+        [userNameLabel sizeToFit];
+        
+        
+        userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [self.contentView addSubview:userCareerLabel];
+        [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
+            make.height.mas_equalTo(43/2.0f);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+        }];
+        [userCareerLabel sizeToFit];
+    }
     
-    userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:userNameLabel];
-    [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(userHeadImg);
-        make.height.mas_equalTo(43/2.0f);
-        make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
-    }];
-    [userNameLabel sizeToFit];
-    
-    
-    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-    [self.contentView addSubview:userCareerLabel];
-    [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
-        make.height.mas_equalTo(43/2.0f);
-        make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
-    }];
-    [userCareerLabel sizeToFit];
     
     goodImgView=[UIImageView getCustomImg];
     [self.contentView addSubview:goodImgView];
     goodImgView.contentMode=2;
     [regular setZeroBorder:goodImgView];
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(userHeadImg);
-        make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
+        make.left.mas_equalTo(kEdge);
+        if(!_isUserHomePage)
+        {
+            make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
+        }else
+        {
+            make.top.mas_equalTo(19);
+        }
+        
         make.width.mas_equalTo(IsPhone6_gt?234:190);
         make.height.mas_equalTo(300);
     }];
@@ -147,13 +160,11 @@
     conentLabel.numberOfLines=0;
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
-//        make.left.mas_equalTo(IsPhone6_gt?34:15);
-//        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
     
-    _lastView_state=nil;
+     _lastView_state=nil;
 //    删除 评论 收藏 点赞
     for (int i=0; i<3; i++) {
         UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":@"System_Notcollection" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":@"System_Collection"];
@@ -184,7 +195,6 @@
                 
             }else
             {
-//                make.right.mas_equalTo(-(IsPhone6_gt?34:15));
                 make.right.mas_equalTo(-kEdge);
                 make.width.mas_equalTo(25);
                 make.height.mas_equalTo(44);
@@ -198,7 +208,6 @@
     timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(IsPhone6_gt?34:15);
         make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(_lastView_state.mas_centerY);
     }];
@@ -208,11 +217,10 @@
 
 
 #pragma mark - SomeAction
-+ (CGFloat)heightWithModel:(DD_CircleListModel *)model{
++ (CGFloat)heightWithModel:(DD_CircleListModel *)model IsUserHomePage:(BOOL )_isUserHomePage{
     
-    DD_CircleListCell *cell = [[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-    cell.listModel=model;
-    [cell setAction];
+    DD_CircleListCell *cell = [[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"" IsUserHomePage:_isUserHomePage];
+    [cell setListModel:model];
     [cell.contentView layoutIfNeeded];
     CGRect frame =  cell.lastView_state.frame;
     return frame.origin.y + frame.size.height+10;
@@ -274,9 +282,12 @@
  */
 -(void)setAction
 {
-    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
-    userNameLabel.text=_listModel.userName;
-    userCareerLabel.text=_listModel.career;
+    if(!_isUserHomePage)
+    {
+        [userHeadImg JX_ScaleToFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+        userNameLabel.text=_listModel.userName;
+        userCareerLabel.text=_listModel.career;
+    }
     if(_listModel.pics.count)
     {
         DD_ImageModel *imgModel=[_listModel.pics objectAtIndex:0];

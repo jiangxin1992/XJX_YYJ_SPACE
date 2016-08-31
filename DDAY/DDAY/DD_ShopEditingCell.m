@@ -121,7 +121,7 @@
         [itemImg JX_ScaleAspectFill_loadImageUrlStr:[_ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
     }
     
-    if(_ItemModel.saleEndTime>[regular date])
+    if(_ItemModel.saleEndTime>[NSDate nowTime])
     {
         priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",_ItemModel.price,_ItemModel.originalPrice];
     }else

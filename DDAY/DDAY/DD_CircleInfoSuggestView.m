@@ -126,8 +126,9 @@
     _textView.delegate=self;
     [backView addSubview:_textView];
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(11);
-        make.right.mas_equalTo(-11);
+        make.top.mas_equalTo(2);
+        make.left.mas_equalTo(6);
+        make.right.mas_equalTo(-6);
         make.bottom.mas_equalTo(_numlabel.mas_top).with.offset(0);
     }];
 }

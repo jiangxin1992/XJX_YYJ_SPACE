@@ -43,16 +43,16 @@
  */
 +(void)testDate:(DD_ShopItemModel *)_ShopItemModel
 {
-    _ShopItemModel.signStartTime=[regular date]-10;
-    _ShopItemModel.signEndTime=[regular date]-5;
-    _ShopItemModel.saleStartTime=[regular date];
-    _ShopItemModel.saleEndTime=[regular date]+5;
+    _ShopItemModel.signStartTime=[NSDate nowTime]-10;
+    _ShopItemModel.signEndTime=[NSDate nowTime]-5;
+    _ShopItemModel.saleStartTime=[NSDate nowTime];
+    _ShopItemModel.saleEndTime=[NSDate nowTime]+5;
 }
 -(CGFloat )getPrice
 {
     if(self)
     {
-        if(self.saleEndTime>[regular date])
+        if(self.saleEndTime>[NSDate nowTime])
         {
             return [self.price floatValue];
         }else
