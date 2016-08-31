@@ -37,11 +37,11 @@
     _imgv.userInteractionEnabled=YES;
     if(_is_fill)
     {
-        _imgv.contentMode=UIViewContentModeScaleAspectFill;
+        _imgv.contentMode=2;
         [regular setZeroBorder:_imgv];
     }else
     {
-        _imgv.contentMode=UIViewContentModeScaleAspectFit;
+        _imgv.contentMode=1;
     }
     [self.view addSubview:_imgv];
     [_imgv mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,7 +50,8 @@
             make.edges.mas_equalTo(self.view);
         }else
         {
-            make.top.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(16);
+            make.bottom.mas_equalTo(-16);
             make.left.mas_equalTo(16);
             make.right.mas_equalTo(IsPhone6_gt?(-60-16):(-49-16));
         }
@@ -79,7 +80,14 @@
     if([_type isEqualToString:@"model"])
     {
         DD_ImageModel *imgModel=[_array objectAtIndex:_currentPage];
-        [_imgv JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        if(_is_fill)
+        {
+            [_imgv JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        }else
+        {
+            [_imgv JX_ScaleAspectFit_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        }
+        
     }else if([_type isEqualToString:@"data"])
     {
         

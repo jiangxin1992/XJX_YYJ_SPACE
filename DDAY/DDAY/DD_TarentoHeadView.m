@@ -55,7 +55,8 @@
     
     UIImageView *headImg=[UIImageView getCustomImg];
     [headBackView addSubview:headImg];
-    [headImg JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
+    headImg.contentMode=0;
+    [headImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
     headImg.userInteractionEnabled=YES;
     [headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [headImg mas_makeConstraints:^(MASConstraintMaker *make) {

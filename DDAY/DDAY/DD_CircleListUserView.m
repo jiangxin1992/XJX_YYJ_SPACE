@@ -47,6 +47,7 @@
 {
     icon=[[UIImageView alloc] init];
     [self addSubview:icon];
+    icon.contentMode=0;
     icon.userInteractionEnabled=YES;
     [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,7 +120,7 @@
 {
     if(_detailModel)
     {
-        [icon JX_loadImageUrlStr:_detailModel.userHead WithSize:400 placeHolderImageName:nil radius:30];
+        [icon JX_ScaleToFill_loadImageUrlStr:_detailModel.userHead WithSize:400 placeHolderImageName:nil radius:30];
         
         userName.text=_detailModel.userName;
         career.text=_detailModel.career;

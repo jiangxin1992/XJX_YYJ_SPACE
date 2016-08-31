@@ -21,13 +21,14 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
+        imageview.contentMode=0;
 
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
     [imageview addSubview:price_label];
@@ -56,13 +57,14 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
+        imageview.contentMode=0;
         
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
     [imageview addSubview:price_label];
@@ -121,13 +123,14 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
+        imageview.contentMode=0;
         
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];

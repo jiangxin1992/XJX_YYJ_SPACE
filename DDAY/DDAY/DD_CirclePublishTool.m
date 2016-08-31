@@ -22,7 +22,8 @@
     {
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
-        
+        imageview.contentMode=2;
+        [regular setZeroBorder:imageview];
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             //            make.left.mas_equalTo(index%2?0:10);
             //            make.right.mas_equalTo(index%2?-10:0);
@@ -30,7 +31,7 @@
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_loadImageUrlStr:item.pic.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
     [imageview addSubview:price_label];
@@ -73,9 +74,10 @@
     
     UIImageView *imgView=[UIImageView getCustomImg];
     [backView addSubview:imgView];
-    imgView.contentMode=UIViewContentModeScaleToFill;
+    imgView.contentMode=2;
+    [regular setZeroBorder:imgView];
     imgView.userInteractionEnabled=NO;
-    [imgView JX_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+    [imgView JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(item.isSelect)
         {

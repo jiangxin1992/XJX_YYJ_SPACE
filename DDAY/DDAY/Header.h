@@ -31,7 +31,7 @@
 #import "UIColor+Hex.h"
 #import "UIView+Custom.h"
 #import "NSDate+Custom.h"
-
+#import "NSDate+Formatter.h"
 /*************** Custom ***************/
 #import "regular.h"
 #import "DD_UserModel.h"

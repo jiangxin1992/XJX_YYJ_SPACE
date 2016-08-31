@@ -70,6 +70,7 @@
     
     userHeadImg=[UIImageView getCustomImg];
     [_contentView addSubview:userHeadImg];
+    userHeadImg.contentMode=0;
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +90,7 @@
     [userNameLabel sizeToFit];
     
     
-    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [_contentView addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
@@ -115,7 +116,7 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [_contentView addSubview:goods];
-        goods.contentMode=UIViewContentModeScaleAspectFill;
+        goods.contentMode=2;
         [regular setZeroBorder:goods];
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
@@ -137,7 +138,7 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
-        pricebtn.titleLabel.font=[regular getFont:12.0f];
+        pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
@@ -166,8 +167,10 @@
     _conentLabel.numberOfLines=0;
     [_conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_imgView.mas_bottom).with.offset(19);
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
-        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+//        make.left.mas_equalTo(IsPhone6_gt?34:15);
+//        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
     }];
     [_conentLabel sizeToFit];
     
@@ -213,7 +216,8 @@
                 }
             }else
             {
-                make.right.mas_equalTo(-47);
+//                make.right.mas_equalTo(-47);
+                make.right.mas_equalTo(-kEdge);
                 make.width.mas_equalTo(25);
                 make.height.mas_equalTo(44);
                 make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
@@ -226,7 +230,8 @@
     _timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [_contentView addSubview:_timeLabel];
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
+//        make.left.mas_equalTo(IsPhone6_gt?34:15);
+        make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(_lastView_state);
         make.width.mas_equalTo(100);
     }];
@@ -316,7 +321,7 @@
  */
 -(void)setState
 {
-    [userHeadImg JX_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_listModel.userName;
     userCareerLabel.text=_listModel.career;
     
@@ -330,11 +335,12 @@
     }
     for (int i=0; i<goodsImgArr.count; i++) {
         UIImageView *goods=[goodsImgArr objectAtIndex:i];
+        
         UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
         if(i<count_index)
         {
             DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
-            [goods JX_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             goods.hidden=NO;
             [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
         }else

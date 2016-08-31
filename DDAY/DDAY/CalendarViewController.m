@@ -14,7 +14,6 @@
 #import "DD_CalendarCell.h"
 
 #import "DD_CalendarTool.h"
-#import "NSDate+Formatter.h"
 #import "DD_DDAYModel.h"
 #import "DD_MonthModel.h"
 
@@ -150,6 +149,7 @@
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.alwaysBounceVertical=NO;
         _collectionView.alwaysBounceHorizontal=NO;
+        _collectionView.scrollEnabled=NO;
         [_collectionView registerClass:[DD_CalendarCell class] forCellWithReuseIdentifier:@"DD_CalendarCell"];
         [_collectionView registerClass:[CalendarHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CalendarHeaderView"];
         
@@ -158,7 +158,7 @@
 }
 -(void)setData
 {
-    self.tempDate = [NSDate date];
+    self.tempDate = [NSDate nowDate];
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text =day;
     [self getDataDayModel:self.tempDate];
@@ -209,7 +209,7 @@
  */
 - (void)rightAction
 {
-    self.tempDate = [self.tempDate getNextMonth];
+    self.tempDate =[self.tempDate getNextMonth];
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text = day;
     [self getDataDayModel:self.tempDate];
@@ -241,7 +241,7 @@
             mon.dateValue = dayDate;
             NSInteger _week=(i-1)%7;
             mon.week=[[NSString alloc] initWithFormat:@"%ld",_week];
-            if ([dayDate.yyyyMMddByLineWithDate isEqualToString:[NSDate date].yyyyMMddByLineWithDate]) {
+            if ([dayDate.yyyyMMddByLineWithDate isEqualToString:[NSDate nowDate].yyyyMMddByLineWithDate]) {
                 mon.isSelectedDay = YES;
             }
             [self.dayModelArray addObject:mon];
@@ -315,30 +315,15 @@
                 make.width.mas_equalTo(ScreenWidth);
                 if(lastView)
                 {
-                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(0);
+                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(30);
                 }else
                 {
-                    make.top.mas_equalTo(backView.mas_bottom).with.offset(0);
+                    make.top.mas_equalTo(backView.mas_bottom).with.offset(30);
                 }
             }];
             
-            UILabel *s_name=[UILabel getLabelWithAlignment:1 WithTitle:seriesModel.name WithFont:18.0f WithTextColor:nil WithSpacing:0];
-            [_backView_s addSubview:s_name];
-            
-            [s_name mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.mas_equalTo(_backView_s);
-                make.top.mas_equalTo(30);
-            }];
-
-            UIView *colorBlockView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:seriesModel.seriesColor]];
-            [_backView_s addSubview:colorBlockView];
-            [colorBlockView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.width.mas_equalTo(14);
-                make.centerY.mas_equalTo(s_name);
-                make.right.mas_equalTo(s_name.mas_left).with.offset(-6);
-            }];
-            
-            UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"查看详情" WithNormalColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
+            DD_DDAYModel *dday=[_monthArr objectAtIndex:i];
+            UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:dday.name WithNormalColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
             [_backView_s addSubview:seriesBtn];
             if(seriesModel.is_select)
             {
@@ -355,18 +340,17 @@
             [seriesBtn addTarget:self action:@selector(seriesBtnAction:) forControlEvents:UIControlEventTouchUpInside];
             seriesBtn.tag=100+i;
 
-            seriesBtn.frame=CGRectMake(kEdge, CGRectGetHeight(_backView_s.frame)-28, ScreenWidth-2*kEdge, 28);
             [seriesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(kEdge);
                 make.right.mas_equalTo(-kEdge);
-                make.height.mas_equalTo(28);
-                make.top.mas_equalTo(s_name.mas_bottom).with.offset(10);
+                make.height.mas_equalTo(30);
+                make.top.mas_equalTo(0);
                 make.bottom.mas_equalTo(0);
             }];
             [_monthSeriesViewArr addObject:_backView_s];
             lastView=_backView_s;
         }
-        _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+88*_monthArr.count+20);
+        _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+60*_monthArr.count+20);
         
     }else
     {
@@ -412,7 +396,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DD_CalendarCell" forIndexPath:indexPath];
-    cell.dayLabel.backgroundColor = [UIColor whiteColor];
+//    cell.dayLabel.backgroundColor = [UIColor whiteColor];
     cell.dayLabel.textColor = [UIColor blackColor];
     cell.dayLabel.font=[UIFont systemFontOfSize:15.0f];
     id mon = self.dayModelArray[indexPath.row];
@@ -425,6 +409,7 @@
         cell.monthModel = (DD_MonthModel *)mon;
     }else{
         cell.dayLabel.text = @"";
+        cell.dayLabel.backgroundColor = [UIColor clearColor];
     }
     return cell;
 }

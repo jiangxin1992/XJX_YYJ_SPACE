@@ -55,7 +55,7 @@
     //    款式照片
     itemImg=[UIImageView getCustomImg];
     [self.contentView addSubview:itemImg];
-    itemImg.contentMode=UIViewContentModeScaleAspectFill;
+    itemImg.contentMode=2;
     [regular setZeroBorder:itemImg];
     [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
@@ -122,7 +122,7 @@
     _ClearingModel=ClearingModel;
     if(ClearingModel.pic)
     {
-        [itemImg JX_loadImageUrlStr:ClearingModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [itemImg JX_ScaleAspectFill_loadImageUrlStr:ClearingModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     colorView.backgroundColor=[UIColor colorWithHexString:ClearingModel.colorCode];

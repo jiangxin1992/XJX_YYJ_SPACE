@@ -36,7 +36,7 @@
 {
     _head=[UIImageView getCustomImg];
     [self.contentView addSubview:_head];
-    _head.contentMode=UIViewContentModeScaleToFill;
+    _head.contentMode=0;
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(17);
@@ -45,7 +45,6 @@
     
     _brand=[UIImageView getCustomImg];
     [self.contentView addSubview:_brand];
-    _brand.contentMode=UIViewContentModeScaleToFill;
     [_brand mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_head.mas_right).with.offset(17);
         make.top.mas_equalTo(_head);
@@ -124,8 +123,8 @@
         }
     }
     
-    [_head JX_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:0];
-    [_brand JX_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
+    [_head JX_ScaleToFill_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:0 ];
+    [_brand JX_ScaleAspectFit_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
     
     _name_label.text=Designer.name;
     _brand_label.text=Designer.brandName;
@@ -144,8 +143,8 @@
             NSString *imgStr=imgModel.pic;
             UIImageView *img=[UIImageView getCustomImg];
             [_scrollview addSubview:img];
-            img.contentMode=UIViewContentModeScaleToFill;
-            [img JX_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
+            img.contentMode=0;
+            [img JX_ScaleToFill_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
             CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*236;
             img.frame=CGRectMake(_x_p, 0, _width, 236);
             if(i<Designer.items.count-1)

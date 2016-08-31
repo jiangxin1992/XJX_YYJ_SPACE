@@ -31,6 +31,8 @@
 {
     pic=[[UIImageView alloc] init];
     [self addSubview:pic];
+    pic.contentMode=2;
+    [regular setZeroBorder:pic];
     pic.userInteractionEnabled=YES;
     pic.backgroundColor=[UIColor grayColor];
     [pic mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +65,7 @@
 {
     if(_detailModel)
     {
-        [pic JX_loadImageUrlStr:[_detailModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+        [pic JX_ScaleAspectFill_loadImageUrlStr:[_detailModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
         [itemBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_detailModel.items.count] forState:UIControlStateNormal];
     }   
 }

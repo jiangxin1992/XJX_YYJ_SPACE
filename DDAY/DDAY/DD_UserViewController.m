@@ -84,6 +84,7 @@
     
     _userHeadImg=[UIImageView getCustomImg];
     [self.view addSubview:_userHeadImg];
+    _userHeadImg.contentMode=0;
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(83);
         make.center.mas_equalTo(_headBack);
@@ -143,7 +144,7 @@
                         [regular UpdateRoot];
                     }
                     _userName.text=_usermodel.nickName;
-                    [_userHeadImg JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
+                    [_userHeadImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
                 }
             }else
             {

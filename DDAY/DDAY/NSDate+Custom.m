@@ -74,23 +74,57 @@
 }
 
 - (NSDate *)getLastMonth{
-    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    [greCalendar setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    NSDateComponents *comps = [greCalendar
-                               components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                               fromDate:self];
-    comps.month -= 1;
-    return [greCalendar dateFromComponents:comps];
+//    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    [greCalendar setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+//    NSDateComponents *comps = [greCalendar
+//                               components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+//                               fromDate:self];
+//    comps.month -= 1;
+//    return [greCalendar dateFromComponents:comps];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *comps = nil;
+    
+    comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
+    
+    NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+    
+    [adcomps setYear:0];
+    
+    [adcomps setMonth:-1];
+    
+    [adcomps setDay:0];
+    
+    NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:self options:0];
+    return newdate;
 }
 
 - (NSDate *)getNextMonth{
-    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    [greCalendar setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    NSDateComponents *comps = [greCalendar
-                               components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                               fromDate:self];
-    comps.month += 1;
-    return [greCalendar dateFromComponents:comps];
+//    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    [greCalendar setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+//    NSDateComponents *comps = [greCalendar
+//                               components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+//                               fromDate:self];
+//    comps.month += 1;
+//    NSLog(@"date=%@",self);
+//    NSLog(@"month=%@",[greCalendar dateFromComponents:comps]);
+//    return [greCalendar dateFromComponents:comps];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *comps = nil;
+    
+    comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
+    
+    NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+    
+    [adcomps setYear:0];
+    
+    [adcomps setMonth:+1];
+    
+    [adcomps setDay:0];
+    
+    NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:self options:0];
+    return newdate;
 }
 -(long)getTime
 {

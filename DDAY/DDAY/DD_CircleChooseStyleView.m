@@ -138,9 +138,11 @@
             
             UIImageView *imgView=[UIImageView getCustomImg];
             [backView addSubview:imgView];
+            imgView.contentMode=2;
+            [regular setZeroBorder:imgView];
             imgView.userInteractionEnabled=YES;
             imgView.frame=CGRectMake(0, 16, _width-16, _width-16);
-            [imgView JX_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [imgView JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
             
             UIButton *deleteBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Delete" WithSelectedImageStr:nil];
             [backView addSubview:deleteBtn];

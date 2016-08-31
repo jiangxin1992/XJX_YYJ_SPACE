@@ -140,8 +140,8 @@
         DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
         UIImageView *img=[UIImageView getCustomImg];
         [cell addSubview:img];
-        [img JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-        img.contentMode=UIViewContentModeScaleAspectFill;
+        img.contentMode=0;
+        [img JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(cell);
         }];

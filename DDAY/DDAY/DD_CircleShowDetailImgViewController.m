@@ -61,7 +61,7 @@
     }else if([_type isEqualToString:@"model"])
     {
         DD_ImageModel *imgModel=[_picArrs objectAtIndex:_index];
-        [_pho JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [_pho JX_ScaleAspectFit_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     _pho.userInteractionEnabled=YES;
     // 旋转手势

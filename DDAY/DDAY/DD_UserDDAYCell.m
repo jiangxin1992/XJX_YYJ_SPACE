@@ -42,6 +42,8 @@
         
         imageView=[UIImageView getCustomImg];
         [self.contentView addSubview:imageView];
+        imageView.contentMode=2;
+        [regular setZeroBorder:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(backimg);
             make.width.height.mas_equalTo(109);
@@ -90,7 +92,7 @@
 -(void)setDDAYModel:(DD_DDAYModel *)DDAYModel
 {
     _DDAYModel=DDAYModel;
-    [imageView JX_loadImageUrlStr:DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+    [imageView JX_ScaleAspectFill_loadImageUrlStr:DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     titlelabel.text=DDAYModel.name;
     NSLog(@"start=%@,end=%@",[regular getTimeStr:DDAYModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"],[regular getTimeStr:DDAYModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"]);
     startLabel.text=[regular getTimeStr:DDAYModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"];

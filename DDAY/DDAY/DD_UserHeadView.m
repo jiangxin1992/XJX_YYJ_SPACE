@@ -93,8 +93,9 @@
     //        刷新用户信息
     head=[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
     [self addSubview:head];
+    head.contentMode=0;
     
-    [head JX_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:CGRectGetWidth(head.frame)/2.0f];
+    [head JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:CGRectGetWidth(head.frame)/2.0f];
     nickname=[[UILabel alloc] initWithFrame:CGRectMake(100, 10, 150, 80)];
     [self addSubview:nickname];
     nickname.font=[regular getFont:17.0f];

@@ -69,6 +69,8 @@
     //    款式照片
     _itemImg=[UIImageView getCustomImg];
     [imageBack addSubview:_itemImg];
+    _itemImg.contentMode=2;
+    [regular setZeroBorder:_itemImg];
     [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
     }];
@@ -180,7 +182,7 @@
     if(_OrderModel.itemList.count)
     {
         DD_OrderItemModel *_itemModel=[_OrderModel.itemList objectAtIndex:0];
-        [_itemImg JX_loadImageUrlStr:_itemModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         _colorView.backgroundColor=[UIColor colorWithHexString:_itemModel.colorCode];
         _itemNameLabel.text=_itemModel.itemName;
         [_sizeNameBtn setTitle:_itemModel.sizeName forState:UIControlStateNormal];

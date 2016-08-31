@@ -87,6 +87,7 @@
     
     userHeadImg=[UIImageView getCustomImg];
     [backBtn addSubview:userHeadImg];
+    userHeadImg.contentMode=0;
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,8 +119,8 @@
     
     goodImgView=[UIImageView getCustomImg];
     [backBtn addSubview:goodImgView];
+    goodImgView.contentMode=2;
     [regular setZeroBorder:goodImgView];
-    goodImgView.contentMode=UIViewContentModeScaleAspectFill;
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
@@ -131,8 +132,8 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [backBtn addSubview:goods];
+        goods.contentMode=2;
         [regular setZeroBorder:goods];
-        goods.contentMode=UIViewContentModeScaleAspectFill;
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
@@ -152,7 +153,7 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
-        pricebtn.titleLabel.font=[regular getFont:12.0f];
+        pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
@@ -168,6 +169,7 @@
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
         make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
     }];
 }
@@ -177,13 +179,13 @@
  */
 -(void)setAction
 {
-    [userHeadImg JX_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_circle.userName;
     userCareerLabel.text=_circle.career;
     if(_circle.pics.count)
     {
         DD_ImageModel *imgModel=[_circle.pics objectAtIndex:0];
-        [goodImgView JX_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [goodImgView JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     NSInteger count_index=0;
@@ -200,7 +202,7 @@
         if(i<count_index)
         {
             DD_OrderItemModel *_order=[_circle.items objectAtIndex:i];
-            [goods JX_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             goods.hidden=NO;
             [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
         }else

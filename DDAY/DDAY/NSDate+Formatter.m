@@ -10,6 +10,15 @@
 
 @implementation NSDate (Formatter)
 
++(NSDate *)nowDate
+{
+    NSDate *date = [NSDate date];
+    
+    NSTimeInterval  timeZoneOffset=[[NSTimeZone systemTimeZone] secondsFromGMT];
+    
+    date = [date dateByAddingTimeInterval:timeZoneOffset];
+    return date;
+}
 + (NSDate *)yesterday{
     return  [NSDate dateWithTimeIntervalSinceNow:-(24*60*60)];
 }
@@ -117,14 +126,14 @@
 #pragma mark Formatter  date
 + (NSString *)currentDateStringWithFormat:(NSString *)format
 {
-    NSDate *chosenDate = [NSDate date];
+    NSDate *chosenDate = [NSDate nowDate];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];
     NSString *date = [formatter stringFromDate:chosenDate];
     return date;
 }
 + (NSDate *)dateWithSecondsFromNow:(NSInteger)seconds {
-    NSDate *date = [NSDate date];
+    NSDate *date = [NSDate nowDate];
     NSDateComponents *components = [NSDateComponents new];
     [components setSecond:seconds];
     NSCalendar *calendar = [NSCalendar currentCalendar];

@@ -36,7 +36,9 @@
     
     UIImageView *seriesImg=[UIImageView getCustomImg];
     [imgBackView addSubview:seriesImg];
-    [seriesImg JX_loadImageUrlStr:_detailModel.seriesFrontPic.pic WithSize:800 placeHolderImageName:nil radius:0];
+    seriesImg.contentMode=2;
+    [regular setZeroBorder:seriesImg];
+    [seriesImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.seriesFrontPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [seriesImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(imgBackView).with.insets(UIEdgeInsetsMake(15, 15, 15, 15));
     }];
@@ -97,7 +99,8 @@
     
     UIImageView *brandPicImg=[UIImageView getCustomImg];
     [self addSubview:brandPicImg];
-    [brandPicImg JX_loadImageUrlStr:_detailModel.brandPic.pic WithSize:800 placeHolderImageName:nil radius:0];
+    brandPicImg.contentMode=0;
+    [brandPicImg JX_ScaleToFill_loadImageUrlStr:_detailModel.brandPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [brandPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(upline.mas_bottom).with.offset(30);
         make.left.mas_equalTo(50);
@@ -147,7 +150,8 @@
     
     UIImageView *seriesBannerPicImg=[UIImageView getCustomImg];
     [self addSubview:seriesBannerPicImg];
-    [seriesBannerPicImg JX_loadImageUrlStr:_detailModel.seriesBannerPic.pic WithSize:800 placeHolderImageName:nil radius:0];
+    seriesBannerPicImg.contentMode=0;
+    [seriesBannerPicImg JX_ScaleToFill_loadImageUrlStr:_detailModel.seriesBannerPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [seriesBannerPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(kEdge);

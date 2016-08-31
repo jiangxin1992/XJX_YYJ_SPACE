@@ -98,6 +98,8 @@
         
         _backImg=[UIImageView getCustomImg];
         [backview addSubview:_backImg];
+        _backImg.contentMode=2;
+        [regular setZeroBorder:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(16, 16, 16, 16));
         }];
@@ -324,7 +326,7 @@
                 NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                 //用来得到具体的时差
                 unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
+                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
                 
                 if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
                 {
@@ -365,7 +367,7 @@
     
     _nameLabel.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
     
-    [_backImg JX_loadImageUrlStr:_DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+    [_backImg JX_ScaleAspectFill_loadImageUrlStr:_DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     _nameLabel.text=[[NSString alloc] initWithFormat:@"%@",_DDAYModel.name];
     if(_DDAYModel.isQuotaLimt)
     {

@@ -134,7 +134,7 @@
                 NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                 //用来得到具体的时差
                 unsigned int unitFlags =  NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
+                NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[regular date]+timeout] options:0];
                 
                 if([d day]<0||[d hour]<0||[d minute]<0||[d second]<0)
                 {

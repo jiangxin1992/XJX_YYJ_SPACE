@@ -66,6 +66,8 @@
     //    款式照片
     itemImg=[[UIImageView alloc] initWithFrame:CGRectMake(80, 9, 120, 120)];
     [backView addSubview:itemImg];
+    itemImg.contentMode=2;
+    [regular setZeroBorder:itemImg];
     
     sizeNameBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [backView addSubview:sizeNameBtn];
@@ -116,7 +118,7 @@
     
     if(_ItemModel.pics.count)
     {
-        [itemImg JX_loadImageUrlStr:[_ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+        [itemImg JX_ScaleAspectFill_loadImageUrlStr:[_ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     if(_ItemModel.saleEndTime>[regular date])

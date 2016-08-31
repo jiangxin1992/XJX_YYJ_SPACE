@@ -206,9 +206,11 @@
             
             UIImageView *imgView=[UIImageView getCustomImg];
             [backView addSubview:imgView];
+            imgView.contentMode=2;
+            [regular setZeroBorder:imgView];
             imgView.userInteractionEnabled=YES;
             imgView.frame=CGRectMake(0, 16, _width-16, _width-16);
-            [imgView JX_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [imgView JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
 
             CGFloat _p_w=[regular getWidthWithHeight:40 WithContent:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:[regular getSemiboldFont:12.0f]];
             UILabel *priceLabel=[UILabel getLabelWithAlignment:1 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:12.0f WithTextColor:_define_white_color WithSpacing:0];

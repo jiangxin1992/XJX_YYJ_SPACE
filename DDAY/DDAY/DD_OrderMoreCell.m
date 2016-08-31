@@ -143,11 +143,13 @@
             //    款式照片
             UIImageView *_itemImg=[UIImageView getCustomImg];
             [imageBack addSubview:_itemImg];
+            _itemImg.contentMode=2;
+            [regular setZeroBorder:_itemImg];
             _itemImg.userInteractionEnabled=NO;
             [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
             }];
-            [_itemImg JX_loadImageUrlStr:_itemModel.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:400 placeHolderImageName:nil radius:0];
             lastView=imageBack;
             [itemArr addObject:imageBack];
         }

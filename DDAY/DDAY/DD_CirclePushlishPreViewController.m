@@ -36,6 +36,8 @@
     DD_UserModel *_usermodel;
     UIScrollView *_scrollView;
     UIView *container;
+    
+    UIButton *submit;
 }
 
 - (void)viewDidLoad {
@@ -100,8 +102,28 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
+    [self CreateSubmitView];
     [self CreateScrollView];
     [self CreateContentView];
+    
+}
+-(void)CreateSubmitView
+{
+    submit=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:@"发布搭配" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self.view addSubview:submit];
+    submit.backgroundColor=_define_black_color;
+    if([_type isEqualToString:@"apply"])
+    {
+        [submit addTarget:self action:@selector(submitApplyAction) forControlEvents:UIControlEventTouchUpInside];
+    }else if([_type isEqualToString:@"publish"])
+    {
+        [submit addTarget:self action:@selector(submitPublishAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [submit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(40);
+    }];
 }
 -(void)CreateScrollView
 {
@@ -118,10 +140,11 @@
 {
     userHeadImg=[UIImageView getCustomImg];
     [container addSubview:userHeadImg];
+    userHeadImg.contentMode=0;
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
         make.width.height.mas_equalTo(43);
     }];
@@ -136,7 +159,7 @@
     [userNameLabel sizeToFit];
     
     
-    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [container addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
@@ -160,7 +183,7 @@
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
-        make.width.mas_equalTo(210);
+        make.width.mas_equalTo(IsPhone6_gt?234:190);
         make.height.mas_equalTo(300);
     }];
     
@@ -169,11 +192,14 @@
     for (int i=0; i<3; i++) {
         UIImageView *goods=[UIImageView getCustomImg];
         [container addSubview:goods];
+        goods.contentMode=2;
+        [regular setZeroBorder:goods];
         goods.userInteractionEnabled=YES;
         goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
         [goods mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+//            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
+            make.right.mas_equalTo(-kEdge);
             make.width.height.mas_equalTo(66);
             if(lastView)
             {
@@ -188,7 +214,7 @@
         
         UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
         [goods addSubview:pricebtn];
-        pricebtn.titleLabel.font=[regular getFont:12.0f];
+        pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
         pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
@@ -199,39 +225,24 @@
         
     }
     
-    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [container addSubview:conentLabel];
     conentLabel.numberOfLines=0;
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_imgView.mas_bottom).with.offset(19);
-        make.left.mas_equalTo(IsPhone6_gt?34:15);
-        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
-    }];
-    
-    UIButton *submit=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:@"发布搭配" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [container addSubview:submit];
-    submit.backgroundColor=_define_black_color;
-    if([_type isEqualToString:@"apply"])
-    {
-        [submit addTarget:self action:@selector(submitApplyAction) forControlEvents:UIControlEventTouchUpInside];
-    }else if([_type isEqualToString:@"publish"])
-    {
-        [submit addTarget:self action:@selector(submitPublishAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    [submit mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(IsPhone6_gt?34:15);
+//        make.right.mas_equalTo(-(IsPhone6_gt?34:15));
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(20);
-        make.height.mas_equalTo(40);
     }];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.mas_equalTo(self.view);
-        make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(kNavHeight);
+        make.bottom.mas_equalTo(submit.mas_top).with.offset(0);
         // 让scrollview的contentSize随着内容的增多而变化
-        make.bottom.mas_equalTo(submit.mas_bottom).with.offset(20);
+        make.bottom.mas_equalTo(conentLabel.mas_bottom).with.offset(20);
     }];
 }
 #pragma mark - SomeAction
@@ -299,7 +310,8 @@
 }
 -(void)SetState
 {
-    [userHeadImg JX_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    NSLog(@"contentMode=%ld",userHeadImg.contentMode);
+    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_usermodel.nickName;
     userCareerLabel.text=_usermodel.career;
     
@@ -318,7 +330,7 @@
         if(i<count_index)
         {
             DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
-            [goods JX_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+            [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
             goods.hidden=NO;
             [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
         }else

@@ -41,6 +41,7 @@
     
     head=[UIImageView getCustomImg];
     [self.contentView addSubview:head];
+    head.contentMode=0;
     [head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(kEdge);
@@ -68,7 +69,7 @@
 {
     _fansModel=fansModel;
     username.text=_fansModel.userName;
-    [head JX_loadImageUrlStr:_fansModel.userHead WithSize:200 placeHolderImageName:nil radius:20];
+    [head JX_ScaleToFill_loadImageUrlStr:_fansModel.userHead WithSize:200 placeHolderImageName:nil radius:20];
 //    isNew.hidden=!_fansModel.isNew;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -69,7 +69,7 @@
 
 -(void)setState
 {
-    [_head JX_loadImageUrlStr:_LogisticsManageModel.logo WithSize:400 placeHolderImageName:nil radius:0];
+    [_head JX_ScaleAspectFit_loadImageUrlStr:_LogisticsManageModel.logo WithSize:400 placeHolderImageName:nil radius:0];
     log_name.text=_LogisticsManageModel.deliver;
     log_order.text=[[NSString alloc] initWithFormat:@"物流号：%@",_LogisticsManageModel.LogisticCode];
     state.text=_LogisticsManageModel.State_Str;

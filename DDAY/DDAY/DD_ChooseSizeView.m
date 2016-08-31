@@ -111,7 +111,8 @@
         CGFloat _imgHeight=(_h/_w)*(ScreenWidth-kEdge*2);
         sizeBriefImg=[UIImageView getCustomImg];
         [self addSubview:sizeBriefImg];
-        [sizeBriefImg JX_loadImageUrlStr:_ColorsModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
+        sizeBriefImg.contentMode=0;
+        [sizeBriefImg JX_ScaleToFill_loadImageUrlStr:_ColorsModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);

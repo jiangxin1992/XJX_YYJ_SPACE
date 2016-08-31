@@ -23,12 +23,22 @@
     return imageview;
 }
 
-+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius
++(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel
 {
     UIImageView *imageview=[[UIImageView alloc] init];
     imageview.userInteractionEnabled=YES;
-    [imageview JX_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius];
-    imageview.contentMode=UIViewContentModeScaleAspectFit;
+    imageview.contentMode=contentModel;
+    if(contentModel==0)
+    {
+        [imageview JX_ScaleToFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius];
+    }else if(contentModel==1)
+    {
+        [imageview JX_ScaleAspectFit_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
+    }else
+    {
+        [imageview JX_ScaleAspectFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
+    }
+    
     return imageview;
 }
 
@@ -42,7 +52,7 @@
 +(UIImageView *)getCustomImg
 {
     UIImageView *img=[[UIImageView alloc] init];
-    img.contentMode=UIViewContentModeScaleAspectFit;
+    img.contentMode=1;
     return img;
 }
 @end

@@ -10,6 +10,7 @@
 
 @interface NSDate (Formatter)
 
++(NSDate *)nowDate;
 +(NSDate *)yesterday;
 
 +(NSDateFormatter *)formatter;

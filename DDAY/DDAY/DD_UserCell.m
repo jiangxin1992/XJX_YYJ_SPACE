@@ -37,6 +37,7 @@
         
         _head_img=[[UIImageView alloc] init];
         [self.contentView addSubview:_head_img];
+        _head_img.contentMode=0;
         [_head_img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.and.height.mas_equalTo(60);
             make.top.mas_equalTo(10);
@@ -134,7 +135,7 @@
 }
 -(void)setImage:(NSString *)image
 {
-    [_head_img JX_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_head_img.frame)/2.0f];
+    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_head_img.frame)/2.0f] ;
 }
 -(void)setF_title:(NSString *)f_title
 {

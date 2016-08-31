@@ -67,10 +67,10 @@
     }];
     
     
-    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0];
+    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0 WithContentMode:0];
     [upView addSubview:_headImge];
     _headImge.userInteractionEnabled=NO;
-    _headImge.contentMode=UIViewContentModeScaleAspectFill;
+    _headImge.contentMode=0;
     [regular setZeroBorder:_headImge];
     [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -79,10 +79,10 @@
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
     }];
     
-    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0];
+    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0 WithContentMode:1];
     [upView addSubview:_brandImge];
     _brandImge.userInteractionEnabled=NO;
-    _brandImge.contentMode=UIViewContentModeScaleAspectFill;
+    _brandImge.contentMode=1;
     [regular setZeroBorder:_brandImge];
     [_brandImge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_headImge.mas_right).with.offset(8);

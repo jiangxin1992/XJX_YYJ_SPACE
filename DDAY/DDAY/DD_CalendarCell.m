@@ -31,8 +31,7 @@
 -(void)setMonthModel:(DD_MonthModel *)monthModel
 {
     _monthModel=monthModel;
-    NSString *dasdads=[NSString stringWithFormat:@"%02ld",monthModel.dayValue];
-    self.dayLabel.text = dasdads;
+    self.dayLabel.text = [NSString stringWithFormat:@"%02ld",monthModel.dayValue];
     if (monthModel.isSelectedDay) {
         self.dayLabel.backgroundColor = [UIColor blackColor];
         self.dayLabel.textColor = [UIColor whiteColor];
