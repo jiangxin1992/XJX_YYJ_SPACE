@@ -61,16 +61,15 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.and.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
 }
 #pragma mark - RequestData
@@ -142,26 +141,6 @@
     return cell;
 }
 
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
 
 #pragma mark - SomeAction
 -(void)MJRefresh

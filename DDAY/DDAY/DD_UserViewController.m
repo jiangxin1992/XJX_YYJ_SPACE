@@ -106,12 +106,13 @@
         make.width.mas_equalTo(200);
     }];
     
-    CGFloat _y_p=IsPhone6_gt?320:kIPhone5s?250:230;
+    CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
     CGFloat _offset=kIiPhone6?25:15;
     CGFloat _bianju=kIiPhone6?43:33;
     CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
+    CGFloat _height=IsPhone5_gt?60:50;
     for (int i=0; i<_dataArr.count; i++) {
-        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+60*(i/2), i%2?_width-_offset:_width, 60) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
+        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
         [self.view addSubview:item];
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];

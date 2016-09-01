@@ -232,13 +232,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
-    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"update"])
-        {
-            [_tableview reloadData];
-        }
-    }] animated:YES];
+//    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
+//    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"update"])
+//        {
+//            [_tableview reloadData];
+//        }
+//    }] animated:YES];
 }
 ////section头部间距
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

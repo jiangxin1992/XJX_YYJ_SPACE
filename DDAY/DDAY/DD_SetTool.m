@@ -30,12 +30,14 @@
                  ,@"logout"
                  ,@"about"
                  ,@"clean"
+                 
                  ];
     }
     return @[@"information"
              ,@"alertPSW"
              ,@"about"
              ,@"clean"
+             
              ];
 }
 @end

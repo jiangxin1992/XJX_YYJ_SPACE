@@ -59,18 +59,16 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     
     [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-    
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+    }];   
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -165,26 +163,7 @@
     _block(@"choose_design",[_dataArr objectAtIndex:indexPath.section]);
     [self.navigationController popViewControllerAnimated:YES];
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
+
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {

@@ -10,6 +10,7 @@
 
 #import "UIImage+RoundedImage.h"
 
+#import <YYKit/YYKit.h>
 @implementation UIImageView (LoadImage)
 
 - (void)JX_ScaleToFill_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius

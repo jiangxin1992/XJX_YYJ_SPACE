@@ -187,26 +187,6 @@
         }
     }] animated:YES];
 }
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
 
 #pragma mark - SomeAction
 //跳转购物车

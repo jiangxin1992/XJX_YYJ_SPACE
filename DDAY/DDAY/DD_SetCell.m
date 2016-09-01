@@ -17,7 +17,7 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+        titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:titlelabel];
         [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);

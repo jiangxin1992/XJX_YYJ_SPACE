@@ -17,7 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import "ReactiveCocoa.h"
 #import "UMMobClick/MobClick.h"
-#import <YYKit/YYKit.h>
+
 
 /*************** Category ***************/
 #import "NSString+extra.h"
@@ -32,7 +32,10 @@
 #import "UIView+Custom.h"
 #import "NSDate+Custom.h"
 #import "NSDate+Formatter.h"
+
 /*************** Custom ***************/
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "regular.h"
 #import "DD_UserModel.h"
 #import "DD_CustomViewController.h"

@@ -6,11 +6,11 @@ pod 'AFNetworking', '~> 2.5.4'
 pod 'YYKit'
 pod 'TTTAttributedLabel'
 pod 'ReactiveCocoa','~>2.5’
-pod 'Masonry','~>0.6.1’
 pod 'SDWebImage','~>3.7.2’
 pod 'MJRefresh','~>2.2.0’
 pod 'MJExtension','~>2.3.7'
 pod 'JSONModel','~>1.2.0’
+pod 'Masonry','~>0.6.1’
 # 无IDFA版SDK（请根据需要选择其中一个）
 pod 'UMengAnalytics-NO-IDFA'
 pod 'Qiniu', '~> 7.0'

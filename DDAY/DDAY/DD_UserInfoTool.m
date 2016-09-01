@@ -19,7 +19,6 @@
              ,@"career":NSLocalizedString(@"user_info_career", @"")
              ,@"body":NSLocalizedString(@"user_info_body", @"")
              ,@"address":NSLocalizedString(@"user_info_address", @"")
-             ,@"alertPSW":NSLocalizedString(@"user_info_alertPSW", @"")
              };
     
 }
@@ -31,7 +30,6 @@
              ,@"career"
              ,@"body"
              ,@"address"
-             ,@"alertPSW"
              ];
 }
 @end

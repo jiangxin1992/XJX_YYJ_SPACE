@@ -31,6 +31,7 @@
 #pragma mark - 初始化
 -(instancetype)initWithBlock:(void(^)(NSString *p_id,NSString *c_id))block
 {
+    
     self=[super init];
     if(self)
     {
@@ -55,14 +56,16 @@
 }
 -(void)CreateTableView
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
-    [self.view addSubview:_tableview];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     
+    [self.view addSubview:_tableview];
     //    消除分割线
-    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
-    
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+    }];
 }
 
 #pragma mark - TableViewDelegate
@@ -104,26 +107,6 @@
     DD_CityModel *_c_model=_dataArr[indexPath.section];
     cell.textLabel.text=_c_model.name;
     return cell;
-}
-//section头部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 1;//section头部高度
-}
-//section头部视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
-}
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-//section底部视图
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [regular getViewForSection];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

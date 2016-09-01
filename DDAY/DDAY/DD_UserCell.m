@@ -24,24 +24,20 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        _title_label=[[UILabel alloc] init];
+        _title_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:_title_label];
-        _title_label.textAlignment=0;
-        _title_label.textColor=[UIColor blackColor];
         [_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(0);
-            make.width.mas_equalTo(200);
-            make.height.mas_equalTo(80);
+            make.left.mas_equalTo(kEdge);
+            make.centerY.mas_equalTo(self.contentView);
         }];
         
-        _head_img=[[UIImageView alloc] init];
+        _head_img=[UIImageView getCustomImg];
         [self.contentView addSubview:_head_img];
         _head_img.contentMode=0;
         [_head_img mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.and.height.mas_equalTo(60);
-            make.top.mas_equalTo(10);
-            make.left.mas_equalTo(_title_label.mas_right).with.offset(60);
+            make.width.and.height.mas_equalTo(40);
+            make.centerY.mas_equalTo(self.contentView);
+            make.right.mas_equalTo(-kEdge);
         }];
     }
     return self;
@@ -51,26 +47,18 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        _title_label=[[UILabel alloc] init];
+        _title_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:_title_label];
-        _title_label.textAlignment=0;
-        _title_label.textColor=[UIColor blackColor];
         [_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(0);
-            make.width.mas_equalTo(200);
-            make.height.mas_equalTo(80);
+            make.left.mas_equalTo(kEdge);
+            make.centerY.mas_equalTo(self.contentView);
         }];
         
-        _f_title_label=[[UILabel alloc] init];
+        _f_title_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
         [self.contentView addSubview:_f_title_label];
-        _f_title_label.textAlignment=2;
-        _f_title_label.textColor=[UIColor blackColor];
         [_f_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_title_label.mas_right).with.offset(20);
-            make.top.mas_equalTo(0);
-            make.width.mas_equalTo(100);
-            make.height.mas_equalTo(_title_label);
+            make.right.mas_equalTo(-kEdge);
+            make.centerY.mas_equalTo(self.contentView);
         }];
     }
     return self;
@@ -135,7 +123,7 @@
 }
 -(void)setImage:(NSString *)image
 {
-    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_head_img.frame)/2.0f] ;
+    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:20] ;
 }
 -(void)setF_title:(NSString *)f_title
 {
