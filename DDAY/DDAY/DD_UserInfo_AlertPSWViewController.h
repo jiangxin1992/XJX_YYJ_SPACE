@@ -9,10 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_UserInfo_AlertPSWViewController : DD_BaseViewController
-@property (weak, nonatomic) IBOutlet UITextField *oldPSWTextfield;
 
-@property (weak, nonatomic) IBOutlet UITextField *newpsw;
-@property (weak, nonatomic) IBOutlet UITextField *repeat_newpsw;
 
 
 @end

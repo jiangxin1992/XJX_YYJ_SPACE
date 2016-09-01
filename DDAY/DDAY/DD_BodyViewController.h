@@ -9,8 +9,6 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_BodyViewController : DD_BaseViewController
-@property (weak, nonatomic) IBOutlet UITextField *heightTextfield;
-@property (weak, nonatomic) IBOutlet UITextField *weightTextfield;
 -(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block;
 @property (nonatomic,strong) DD_UserModel*usermodel;
 @property (nonatomic,copy) void (^block)(DD_UserModel *usermodel);

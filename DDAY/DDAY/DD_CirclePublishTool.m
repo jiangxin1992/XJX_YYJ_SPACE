@@ -134,7 +134,7 @@
     tagModel.CategoryName=@"自定义标签";
     tagModel.parameterName=@"customTags";
     tagModel.tags=[[NSMutableArray alloc] init];
-    [CircleModel.shareTags addObject:tagModel];
+    [CircleModel.shareTags insertObject:tagModel atIndex:0];
     
     CircleModel.personTags=[DD_CircleTagModel getCircleTagModelArr:[dict objectForKey:@"personTags"]];
     [self setTapMapWithCircleModel:CircleModel];
@@ -257,6 +257,16 @@
     for (DD_CircleTagModel *tm in CircleModel.shareTags) {
         if([tm.parameterName isEqualToString:@"customTags"])
         {
+            for (DD_CricleTagItemModel *ttm in tm.tags) {
+                ttm.is_select=NO;
+            }
+        }
+    }
+    
+    for (DD_CircleTagModel *tm in CircleModel.shareTags) {
+        if([tm.parameterName isEqualToString:@"customTags"])
+        {
+            tagModel.is_select=YES;
             [tm.tags addObject:tagModel];
             break;
         }

@@ -78,20 +78,11 @@
     [[JX_AFNetworking alloc] GET:@"physicalStore/queryPhysicalStores.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-//            NSArray *modelArr=[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]];
-//            if(modelArr.count)
-//            {
-                [_dataArr removeAllObjects];//删除所有数据
-//                [_dataArr addObjectsFromArray:modelArr];
-                [_dataArr addObjectsFromArray:[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]]];
-                [_dataArr addObjectsFromArray:[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]]];
-                [_dataArr addObjectsFromArray:[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]]];
-                [_dataArr addObjectsFromArray:[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]]];
-                [_tableview reloadData];
-//            }else
-//            {
-//                
-//            }
+
+            [_dataArr removeAllObjects];//删除所有数据
+            [_dataArr addObjectsFromArray:[DD_ShowRoomModel getShowRoomModelArr:[data objectForKey:@"stores"]]];
+            [_tableview reloadData];
+
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

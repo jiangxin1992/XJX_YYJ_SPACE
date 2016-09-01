@@ -53,7 +53,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(0);
-        make.height.mas_equalTo(38);
+        make.height.mas_equalTo(48);
     }];
     
     NSLog(@"%@",_item.deliverDeclaration);
@@ -61,7 +61,7 @@
     [backBtn addSubview:return_content];
     return_content.numberOfLines=0;
     [return_content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(label.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(label.mas_bottom).with.offset(5);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
@@ -76,13 +76,13 @@
     {
         [_hide uninstall];
         [return_content mas_updateConstraints:^(MASConstraintMaker *make) {
-            _show=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
+            _show=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-20);
         }];
     }else
     {
         [_show uninstall];
         [label mas_updateConstraints:^(MASConstraintMaker *make) {
-            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(0);
+            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-1);
         }];
     }
 }

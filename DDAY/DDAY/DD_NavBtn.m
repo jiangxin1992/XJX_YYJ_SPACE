@@ -14,7 +14,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
     {
-        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        shopBtn.frame=CGRectMake(0, 0, 30, 44);
         [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
         [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateSelected];
         shopBtn.isLeft=isLeft;
@@ -40,7 +40,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
     {
-        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        shopBtn.frame=CGRectMake(0, 0, 30, 44);
         [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
         [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateSelected];
         shopBtn.size=size;
@@ -54,7 +54,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
     {
-        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        shopBtn.frame=CGRectMake(0, 0, 30, 44);
         [shopBtn setImage:[UIImage imageNamed:@"System_Buy"] forState:UIControlStateNormal];
         [shopBtn setImage:[UIImage imageNamed:@"System_Buy"] forState:UIControlStateSelected];
         shopBtn.isLeft=NO;
@@ -67,7 +67,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
     {
-        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        shopBtn.frame=CGRectMake(0, 0, 30, 44);
         [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateNormal];
         [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateSelected];
         shopBtn.isLeft=YES;
@@ -80,7 +80,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
     {
-        shopBtn.frame=CGRectMake(0, 0, 44, 44);
+        shopBtn.frame=CGRectMake(0, 0, 30, 44);
         [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateNormal];
         [shopBtn setImage:[UIImage imageNamed:@"System_Back"] forState:UIControlStateSelected];
         shopBtn.isNormal=YES;
@@ -96,7 +96,7 @@
         
     }else
     {
-        CGFloat _Offset=((44-_size.width)/2.0f)-16;
+        CGFloat _Offset=((30-_size.width)/2.0f)-9;
         if(_isLeft)
         {
 //            [self setEnlargeEdgeWithTop:0 right:-_Offset bottom:0 left:((44-_size.width)/2.0f)-16+_Offset];
@@ -105,7 +105,7 @@
         }else
         {
 //            [self setEnlargeEdgeWithTop:0 right:+_Offset bottom:0 left:((44-_size.width)/2.0f)-16-_Offset];
-            return CGRectMake(16+((44-_size.width)/2.0f),(44-_size.height)/2.0f , _size.width, _size.height);
+            return CGRectMake(9+((30-_size.width)/2.0f),(44-_size.height)/2.0f , _size.width, _size.height);
         }
     }
     

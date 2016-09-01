@@ -114,7 +114,7 @@
 "user_info_sex"="性别";
 "user_info_career"="职业";
 "user_info_body"="身材信息";
-"user_info_address"="收货地址";
+"user_info_address"="收件地址";
 "user_info_alertPSW"="修改登录密码";
 /**
  * 登录

@@ -189,6 +189,7 @@
 		3F73CC661D6D36D400E419B9 /* DD_OrderLogisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC651D6D36D400E419B9 /* DD_OrderLogisticsModel.m */; };
 		3F73CC691D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC681D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m */; };
 		3F73CC6C1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */; };
+		3F7647C41D77D17B00843F43 /* DD_SexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7647C31D77D17B00843F43 /* DD_SexViewController.m */; };
 		3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */; };
 		3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */; };
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
@@ -241,11 +242,8 @@
 		3F9B8B441CF0D494008EC460 /* DD_UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B421CF0D494008EC460 /* DD_UserInfoViewController.m */; };
 		3F9B8B481CF160BC008EC460 /* DD_UserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B471CF160BC008EC460 /* DD_UserInfoTool.m */; };
 		3F9B8B4C1CF1A652008EC460 /* DD_AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4A1CF1A652008EC460 /* DD_AlertViewController.m */; };
-		3F9B8B4D1CF1A652008EC460 /* DD_AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4B1CF1A652008EC460 /* DD_AlertViewController.xib */; };
 		3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */; };
-		3F9B8B521CF1AE08008EC460 /* DD_BodyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B501CF1AE08008EC460 /* DD_BodyViewController.xib */; };
 		3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */; };
-		3F9B8B5B1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */; };
 		3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */; };
 		3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */; };
 		3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */; };
@@ -708,6 +706,8 @@
 		3F73CC681D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderLogisticsManageModel.m; sourceTree = "<group>"; };
 		3F73CC6A1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderLogisticsHeadView.h; sourceTree = "<group>"; };
 		3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderLogisticsHeadView.m; sourceTree = "<group>"; };
+		3F7647C21D77D17B00843F43 /* DD_SexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SexViewController.h; sourceTree = "<group>"; };
+		3F7647C31D77D17B00843F43 /* DD_SexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SexViewController.m; sourceTree = "<group>"; };
 		3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsDesignerView.h; sourceTree = "<group>"; };
 		3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsDesignerView.m; sourceTree = "<group>"; };
 		3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseSizeView.h; sourceTree = "<group>"; };
@@ -814,13 +814,10 @@
 		3F9B8B471CF160BC008EC460 /* DD_UserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfoTool.m; sourceTree = "<group>"; };
 		3F9B8B491CF1A652008EC460 /* DD_AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AlertViewController.h; sourceTree = "<group>"; };
 		3F9B8B4A1CF1A652008EC460 /* DD_AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AlertViewController.m; sourceTree = "<group>"; };
-		3F9B8B4B1CF1A652008EC460 /* DD_AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_AlertViewController.xib; sourceTree = "<group>"; };
 		3F9B8B4E1CF1AE08008EC460 /* DD_BodyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BodyViewController.h; sourceTree = "<group>"; };
 		3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BodyViewController.m; sourceTree = "<group>"; };
-		3F9B8B501CF1AE08008EC460 /* DD_BodyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_BodyViewController.xib; sourceTree = "<group>"; };
 		3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserInfo_AlertPSWViewController.h; sourceTree = "<group>"; };
 		3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfo_AlertPSWViewController.m; sourceTree = "<group>"; };
-		3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_UserInfo_AlertPSWViewController.xib; sourceTree = "<group>"; };
 		3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingOrderViewController.h; sourceTree = "<group>"; };
 		3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingOrderViewController.m; sourceTree = "<group>"; };
 		3FA5510C1D4CAEC400528B5F /* DD_GoodsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCircleView.h; sourceTree = "<group>"; };
@@ -2147,6 +2144,15 @@
 			name = "物流信息";
 			sourceTree = "<group>";
 		};
+		3F7647C11D77D16200843F43 /* 性别修改 */ = {
+			isa = PBXGroup;
+			children = (
+				3F7647C21D77D17B00843F43 /* DD_SexViewController.h */,
+				3F7647C31D77D17B00843F43 /* DD_SexViewController.m */,
+			);
+			name = "性别修改";
+			sourceTree = "<group>";
+		};
 		3F7729251D1151BD008A184F /* 款式选择 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2593,8 +2599,9 @@
 		3F9B8B401CF0D47A008EC460 /* 个人资料 */ = {
 			isa = PBXGroup;
 			children = (
+				3F7647C11D77D16200843F43 /* 性别修改 */,
+				3F9B8B551CF1B712008EC460 /* 昵称职业修改 */,
 				3F9B8B561CF1B722008EC460 /* 修改登录密码 */,
-				3F9B8B551CF1B712008EC460 /* 昵称性别职业修改 */,
 				3F9B8B541CF1B702008EC460 /* 身材信息修改 */,
 				3F9B8B531CF1B6F7008EC460 /* 个人资料 */,
 			);
@@ -2617,19 +2624,17 @@
 			children = (
 				3F9B8B4E1CF1AE08008EC460 /* DD_BodyViewController.h */,
 				3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */,
-				3F9B8B501CF1AE08008EC460 /* DD_BodyViewController.xib */,
 			);
 			name = "身材信息修改";
 			sourceTree = "<group>";
 		};
-		3F9B8B551CF1B712008EC460 /* 昵称性别职业修改 */ = {
+		3F9B8B551CF1B712008EC460 /* 昵称职业修改 */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B491CF1A652008EC460 /* DD_AlertViewController.h */,
 				3F9B8B4A1CF1A652008EC460 /* DD_AlertViewController.m */,
-				3F9B8B4B1CF1A652008EC460 /* DD_AlertViewController.xib */,
 			);
-			name = "昵称性别职业修改";
+			name = "昵称职业修改";
 			sourceTree = "<group>";
 		};
 		3F9B8B561CF1B722008EC460 /* 修改登录密码 */ = {
@@ -2637,7 +2642,6 @@
 			children = (
 				3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */,
 				3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */,
-				3F9B8B591CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib */,
 			);
 			name = "修改登录密码";
 			sourceTree = "<group>";
@@ -3045,14 +3049,11 @@
 			files = (
 				3F4187831CEEFB24001BCA3D /* LaunchScreen.storyboard in Resources */,
 				3F4187A81CEEFBF0001BCA3D /* Localizable.strings in Resources */,
-				3F9B8B5B1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.xib in Resources */,
-				3F9B8B4D1CF1A652008EC460 /* DD_AlertViewController.xib in Resources */,
 				3F4187AE1CEEFD02001BCA3D /* area.json in Resources */,
 				3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */,
 				3F4187801CEEFB24001BCA3D /* Assets.xcassets in Resources */,
 				3FA8367F1D051E1D006D2919 /* DD_OrderCell.xib in Resources */,
 				3F4C2F2D1D76E1BD00C954C4 /* loading@2x.gif in Resources */,
-				3F9B8B521CF1AE08008EC460 /* DD_BodyViewController.xib in Resources */,
 				3F552E7B1CF1EA3C00BC5E33 /* DD_ItemCell.xib in Resources */,
 				3FA836841D054656006D2919 /* DD_OrderMoreCell.xib in Resources */,
 				3F4C2F2C1D76E1BD00C954C4 /* loading.gif in Resources */,
@@ -3242,6 +3243,7 @@
 				3F39E0321D52EC2600B31333 /* DD_AddNewAddressDefaultBtn.m in Sources */,
 				3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */,
 				3F5306E91D129D82000C9EC0 /* DD_CircleCustomTagViewController.m in Sources */,
+				3F7647C41D77D17B00843F43 /* DD_SexViewController.m in Sources */,
 				3F6002491D49EEB5007E395F /* DrawView.m in Sources */,
 				3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */,
 				3F9B8B1B1CF01F8D008EC460 /* DD_SetPSWViewController.m in Sources */,

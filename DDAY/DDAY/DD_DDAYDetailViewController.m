@@ -68,7 +68,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:140];
+    self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:180];
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     

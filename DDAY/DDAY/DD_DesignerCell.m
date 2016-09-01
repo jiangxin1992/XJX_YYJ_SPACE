@@ -36,7 +36,8 @@
 {
     _head=[UIImageView getCustomImg];
     [self.contentView addSubview:_head];
-    _head.contentMode=0;
+    _head.contentMode=2;
+    [regular setZeroBorder:_head];
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(17);
@@ -123,7 +124,7 @@
         }
     }
     
-    [_head JX_ScaleToFill_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:0 ];
+    [_head JX_ScaleAspectFill_loadImageUrlStr:Designer.head WithSize:400 placeHolderImageName:nil radius:0 ];
     [_brand JX_ScaleAspectFit_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
     
     _name_label.text=Designer.name;

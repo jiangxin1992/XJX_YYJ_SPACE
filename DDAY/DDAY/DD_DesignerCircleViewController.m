@@ -21,8 +21,6 @@
     UITableView *_tableview;
     
     void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
-    
-    BOOL _isUserHomePage;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,14 +48,6 @@
 {
     _dataArr=[[NSMutableArray alloc] init];
     _page=1;
-    
-    if([_DesignerID isEqualToString:((DD_UserModel *)[DD_UserModel getLocalUserInfo]).u_id])
-    {
-        _isUserHomePage=YES;
-    }else
-    {
-        _isUserHomePage=NO;
-    }
 }
 -(void)PrepareUI{
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_title", @"") withmaxwidth:200];
@@ -166,7 +156,7 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
 //    return 454+listModel.suggestHeight;
-    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:_isUserHomePage];
+    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -195,7 +185,7 @@
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:_isUserHomePage];
+        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:YES];
     }
     cell.listModel=[_dataArr objectAtIndex:indexPath.section];
     cell.index=indexPath.section;

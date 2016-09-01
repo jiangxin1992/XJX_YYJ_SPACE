@@ -71,8 +71,7 @@
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
-    
-    UIButton *_calendarBtn=[regular getBarCustomBtnWithImg:@"DDAY_Calendar" WithSelectImg:@"DDAY_Calendar" WithSize:CGSizeMake(25, 25)];
+    UIButton *_calendarBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 25) WithImgeStr:@"DDAY_Calendar"];
     [_calendarBtn addTarget:self action:@selector(PushCalendarView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:_calendarBtn];
      

@@ -122,12 +122,7 @@ static regular *_t = nil;
     }
     return @"";
 }
-+(UIButton *)getBarCustomBtnWithImg:(NSString *)_img WithSelectImg:(NSString *)_select_img WithSize:(CGSize )_size
-{
-    UIButton *_btn=[UIButton getCustomBackImgBtnWithImageStr:_img WithSelectedImageStr:_select_img];
-    _btn.frame=CGRectMake(0, 0, _size.width, _size.height);
-    return _btn;
-}
+
 +(void)updateProfileSignInWithPUID
 {
     if(![[DD_UserModel getToken] isEqualToString:@""])
@@ -310,10 +305,10 @@ static regular *_t = nil;
 }
 +(UIView *)returnNavView:(NSString *)title withmaxwidth:(CGFloat )maxwidth
 {
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, maxwidth, 40)];
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, IsPhone6_gt?180:130, 40)];
     
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
-    titleLabel.font =  [regular getSemiboldFont:18.0f];
+    titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
     titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
 //    titleLabel.text=title;

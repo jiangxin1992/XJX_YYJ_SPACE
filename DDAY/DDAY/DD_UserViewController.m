@@ -17,6 +17,7 @@
 #import "DD_FansViewController.h"
 #import "DD_UserDDAYViewController.h"
 #import "DD_ShowRoomViewController.h"
+#import "DD_UserInfoViewController.h"
 
 #import "DD_UserItemBtn.h"
 
@@ -84,6 +85,8 @@
     
     _userHeadImg=[UIImageView getCustomImg];
     [self.view addSubview:_userHeadImg];
+    _userHeadImg.userInteractionEnabled=YES;
+    [_userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserInfo)]];
     _userHeadImg.contentMode=0;
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(83);
@@ -161,6 +164,25 @@
     }
 }
 #pragma mark - SomeAction
+-(void)pushUserInfo
+{
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        [self.navigationController pushViewController:[[DD_UserInfoViewController alloc] initWithBlock:^(NSString *type ,DD_UserModel *model) {
+            if([type isEqualToString:@"info_update"])
+            {
+                //                我的主页  viewwillapp的时候会重新获取用户信息
+                //                所以这边不做处理
+            }
+        }] animated:YES];
+    }
+
+}
 /**
  * 点击事件
  */

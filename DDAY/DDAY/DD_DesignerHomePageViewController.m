@@ -383,10 +383,10 @@
 
         UIImageView *imageView=[UIImageView getCustomImg];
         [_UpView addSubview:imageView];
-        imageView.contentMode=i==0?0:1;
-        if(!imageView.contentMode)
+        imageView.contentMode=i==0?2:1;
+        if(i==0)
         {
-            [imageView JX_ScaleToFill_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
+            [imageView JX_ScaleAspectFill_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
         }else
         {
             [imageView JX_ScaleAspectFit_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];

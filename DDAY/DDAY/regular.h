@@ -16,10 +16,7 @@
 +(CGFloat )getHeightWithWidth:(CGFloat )width WithContent:(NSString *)content WithFont:(UIFont *)font;
 +(CGFloat )getWidthWithHeight:(CGFloat )height WithContent:(NSString *)content WithFont:(UIFont *)font;
 +(NSString *)getSpacingTime:(long)createTime;
-/**
- * 获取自定义 UIBarButtonItem
- */
-+(UIButton *)getBarCustomBtnWithImg:(NSString *)_img WithSelectImg:(NSString *)_select_img WithSize:(CGSize )_size;
+
 /**
  * 更新用户权限
  */

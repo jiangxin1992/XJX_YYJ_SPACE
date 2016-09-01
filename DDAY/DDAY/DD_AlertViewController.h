@@ -9,8 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_AlertViewController : DD_BaseViewController
-@property (weak, nonatomic) IBOutlet UITextField *inputTextfield;
--(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block;
+-(instancetype)initWithModel:(DD_UserModel *)usermodel WithKey:(NSString *)key WithContent:(NSString *)content WithBlock:(void (^)(DD_UserModel *model))block;
 __string(key);
 __string(content);
 @property (nonatomic,strong) DD_UserModel*usermodel;

@@ -26,8 +26,8 @@
 {
     UIView *_UpView;
     
-    UIView *dibu_left;
-    UIView *dibu_right;
+//    UIView *dibu_left;
+//    UIView *dibu_right;
     
     NSInteger currentPage;
     
@@ -108,24 +108,24 @@
         if(i==0)
         {
             btn.selected=YES;
-            dibu_left=[UIView getCustomViewWithColor:_define_black_color];
-            [btn addSubview:dibu_left];
-            [dibu_left mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(37);
-                make.bottom.mas_equalTo(0);
-                make.right.mas_equalTo(-20);
-                make.height.mas_equalTo(3);
-            }];
+//            dibu_left=[UIView getCustomViewWithColor:_define_black_color];
+//            [btn addSubview:dibu_left];
+//            [dibu_left mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(37);
+//                make.bottom.mas_equalTo(0);
+//                make.right.mas_equalTo(-20);
+//                make.height.mas_equalTo(3);
+//            }];
         }else
         {
-            dibu_right=[UIView getCustomViewWithColor:_define_light_gray_color1];
-            [btn addSubview:dibu_right];
-            [dibu_right mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(20);
-                make.bottom.mas_equalTo(0);
-                make.right.mas_equalTo(-37);
-                make.height.mas_equalTo(3);
-            }];
+//            dibu_right=[UIView getCustomViewWithColor:_define_light_gray_color1];
+//            [btn addSubview:dibu_right];
+//            [dibu_right mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(20);
+//                make.bottom.mas_equalTo(0);
+//                make.right.mas_equalTo(-37);
+//                make.height.mas_equalTo(3);
+//            }];
         }
         [btnarr addObject:btn];
     }
@@ -155,7 +155,7 @@
             [_pageVc setViewControllers:@[ctn1] direction:0 animated:YES completion:nil];
             
         }
-        [self SetBtnStateWithBtnTag:btn.tag];
+//        [self SetBtnStateWithBtnTag:btn.tag];
     }else if(btn.tag-100==1)
     {
         
@@ -184,34 +184,34 @@
             {
                 [_pageVc setViewControllers:@[ctn2] direction:1 animated:YES completion:nil];
             }
-            [self SetBtnStateWithBtnTag:btn.tag];
+//            [self SetBtnStateWithBtnTag:btn.tag];
         }
     }
 }
--(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
-{
-    for (int i=0; i<btnarr.count; i++) {
-        UIButton *_btn=[btnarr objectAtIndex:i];
-        if(_btn.tag==btnTag)
-        {
-            _btn.selected=YES;
-            currentPage=_btn.tag-100;
-            if(i==0)
-            {
-                dibu_left.backgroundColor=_define_black_color;
-                dibu_right.backgroundColor=_define_light_gray_color1;
-            }else if(i==1)
-            {
-                dibu_left.backgroundColor=_define_light_gray_color1;
-                dibu_right.backgroundColor=_define_black_color;
-            }
-        }else
-        {
-            _btn.selected=NO;
-        }
-        
-    }
-}
+//-(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
+//{
+//    for (int i=0; i<btnarr.count; i++) {
+//        UIButton *_btn=[btnarr objectAtIndex:i];
+//        if(_btn.tag==btnTag)
+//        {
+//            _btn.selected=YES;
+//            currentPage=_btn.tag-100;
+//            if(i==0)
+//            {
+//                dibu_left.backgroundColor=_define_black_color;
+//                dibu_right.backgroundColor=_define_light_gray_color1;
+//            }else if(i==1)
+//            {
+//                dibu_left.backgroundColor=_define_light_gray_color1;
+//                dibu_right.backgroundColor=_define_black_color;
+//            }
+//        }else
+//        {
+//            _btn.selected=NO;
+//        }
+//        
+//    }
+//}
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated
 {

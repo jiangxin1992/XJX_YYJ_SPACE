@@ -18,7 +18,6 @@
              ,@"sex":NSLocalizedString(@"user_info_sex", @"")
              ,@"career":NSLocalizedString(@"user_info_career", @"")
              ,@"body":NSLocalizedString(@"user_info_body", @"")
-             ,@"address":NSLocalizedString(@"user_info_address", @"")
              };
     
 }
@@ -29,7 +28,6 @@
              ,@"sex"
              ,@"career"
              ,@"body"
-             ,@"address"
              ];
 }
 @end

@@ -56,7 +56,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(0);
-        make.height.mas_equalTo(38);
+        make.height.mas_equalTo(48);
     }];
     
     
@@ -65,7 +65,7 @@
     [viewArr addObject:fabric_title];
     [fabric_title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(label.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(label.mas_bottom).with.offset(5);
     }];
     [fabric_title sizeToFit];
     
@@ -81,23 +81,14 @@
     }];
     [fabric_content sizeToFit];
     
-    
-    UIView *middleLine=[UIView getCustomViewWithColor:_define_black_color];
-    [backBtn addSubview:middleLine];
-    [viewArr addObject:middleLine];
-    [middleLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(fabric_content.mas_bottom).with.offset(6);
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(1);
-    }];
+
     
     UILabel *washing_title=[UILabel getLabelWithAlignment:0 WithTitle:@"洗涤说明" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:washing_title];
     [viewArr addObject:washing_title];
     [washing_title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(middleLine.mas_bottom).with.offset(6);
+        make.top.mas_equalTo(fabric_content.mas_bottom).with.offset(6);
     }];
     [washing_title sizeToFit];
     
@@ -125,13 +116,13 @@
     {
         [_hide uninstall];
         [washing_content mas_updateConstraints:^(MASConstraintMaker *make) {
-            _show=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
+            _show=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-20);
         }];
     }else
     {
         [_show uninstall];
         [label mas_updateConstraints:^(MASConstraintMaker *make) {
-            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(0);
+            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-1);
         }];
     }
 }

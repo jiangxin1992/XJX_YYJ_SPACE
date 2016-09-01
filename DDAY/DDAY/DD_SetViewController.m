@@ -12,6 +12,7 @@
 #import "DD_UserViewController.h"
 #import "DD_UserInfo_AlertPSWViewController.h"
 #import "DD_AboutViewController.h"
+#import "DD_AddressViewController.h"
 
 #import "DD_SetCell.h"
 
@@ -123,7 +124,7 @@
 
     NSInteger _index=indexPath.section;
     NSString *_key_str=[_dataArr objectAtIndex:_index];
-    if([_key_str isEqualToString:@"information"]||[_key_str isEqualToString:@"alertPSW"])
+    if([_key_str isEqualToString:@"information"]||[_key_str isEqualToString:@"alertPSW"]||[_key_str isEqualToString:@"address"])
     {
         
         if(![DD_UserModel isLogin])
@@ -140,13 +141,21 @@
             }else if([_key_str isEqualToString:@"alertPSW"])
             {
                 //        修改密码
-                [self alertPSW];
+                [self alertPSWWithTitle:[_datadict objectForKey:@"alertPSW"]];
+            }else if([_key_str isEqualToString:@"address"])
+            {
+                //         收货地址
+                [self pushAddressView];
+                
             }
         }
         
     }else if([_key_str isEqualToString:@"logout"])
     {
         //        退出当前账号
+        [self presentViewController:[regular alertTitleCancel_Simple:@"确定退出？" WithBlock:^{
+            [self logout];
+        }] animated:YES completion:nil];
         [self logout];
     }else if([_key_str isEqualToString:@"about"])
     {
@@ -161,6 +170,15 @@
 }
 
 #pragma mark - SomeAction
+/**
+ * 跳转地址管理界面
+ */
+-(void)pushAddressView
+{
+    [self.navigationController pushViewController:[[DD_AddressViewController alloc] initWithType:@"normal" WithBlock:^(NSString *type, DD_AddressModel *addressModel) {
+        
+    }] animated:YES];
+}
 /**
  * 关于
  */
@@ -228,10 +246,10 @@
 /**
  * 跳转修改密码界面
  */
--(void)alertPSW
+-(void)alertPSWWithTitle:(NSString *)title
 {
     DD_UserInfo_AlertPSWViewController *_AlertPSW=[[DD_UserInfo_AlertPSWViewController alloc] init];
-    _AlertPSW.title=[_datadict objectForKey:@"alertPSW"];
+    _AlertPSW.title=title;
     [self.navigationController pushViewController:_AlertPSW animated:YES ];
 }
 #pragma mark - Other

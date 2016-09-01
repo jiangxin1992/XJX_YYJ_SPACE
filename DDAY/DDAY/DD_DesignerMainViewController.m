@@ -51,34 +51,48 @@
 }
 -(void)PrepareUI
 {
-    UIView *navview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-2*kEdge, kNavigationBarHeight)];
-    CGFloat _width=[regular getWidthWithHeight:40 WithContent:@"全部" WithFont:[regular getSemiboldFont:18.0f]];
-    for (int i=0; i<2; i++) {
-        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:i==0?1:2 WithFont:18.0f WithSpacing:0 WithNormalTitle:i==0?@"全部":@"关注" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:i==0?@"全部":@"关注" WithSelectedColor:nil];
-        [navview addSubview:btn];
-        btn.titleLabel.font=[regular getSemiboldFont:18.0f];
-        [btn setEnlargeEdge:20];
-        btn.frame=CGRectMake((CGRectGetWidth(navview.frame)-_width)*i, 0, _width, kNavigationBarHeight-4);
-        [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag=100+i;
-        if(i==0)
-        {
-            btn.selected=YES;
-            [btn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:kEdge];
-        }else
-        {
-            [btn setEnlargeEdgeWithTop:0 right:kEdge bottom:0 left:0];
-        }
-        [btnarr addObject:btn];
-    }
-    UIView *titleView = [regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:130];
-    [navview addSubview:titleView];
-    titleView.frame=CGRectMake((CGRectGetWidth(navview.frame)-130)/2.0f, 0, 130, kNavigationBarHeight);
+//    UIView *navview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth-2*kEdge, kNavigationBarHeight)];
+//    CGFloat _width=[regular getWidthWithHeight:40 WithContent:@"全部" WithFont:[regular getSemiboldFont:18.0f]];
+//    for (int i=0; i<2; i++) {
+//        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:i==0?1:2 WithFont:18.0f WithSpacing:0 WithNormalTitle:i==0?@"全部":@"关注" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:i==0?@"全部":@"关注" WithSelectedColor:nil];
+//        [navview addSubview:btn];
+//        btn.titleLabel.font=[regular getSemiboldFont:18.0f];
+//        [btn setEnlargeEdge:20];
+//        btn.frame=CGRectMake((CGRectGetWidth(navview.frame)-_width)*i, 0, _width, kNavigationBarHeight-4);
+//        [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
+//        btn.tag=100+i;
+//        if(i==0)
+//        {
+//            btn.selected=YES;
+//            [btn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:kEdge];
+//        }else
+//        {
+//            [btn setEnlargeEdgeWithTop:0 right:kEdge bottom:0 left:0];
+//        }
+//        [btnarr addObject:btn];
+//    }
+//    UIView *titleView = [regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:130];
+//    [navview addSubview:titleView];
+//    titleView.frame=CGRectMake((CGRectGetWidth(navview.frame)-130)/2.0f, 0, 130, kNavigationBarHeight);
+//    
+//    self.navigationItem.titleView=navview;
+//    dibu=[[UIView alloc] initWithFrame:_rect_left];
+//    dibu.backgroundColor=[UIColor blackColor];
+//    [navview addSubview:dibu];
     
-    self.navigationItem.titleView=navview;
-    dibu=[[UIView alloc] initWithFrame:_rect_left];
-    dibu.backgroundColor=[UIColor blackColor];
-    [navview addSubview:dibu];
+    self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
+    
+    DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 17) WithImgeStr:@"Goods_list"];
+    [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
+    allBtn.tag=100;
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:allBtn];
+    [btnarr addObject:allBtn];
+    
+    DD_NavBtn *followBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 17) WithImgeStr:@"Goods_list"];
+    [followBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
+    followBtn.tag=101;
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:followBtn];
+    [btnarr addObject:followBtn];
     
 }
 #pragma mark - UIConfig

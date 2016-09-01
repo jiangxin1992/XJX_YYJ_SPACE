@@ -9,24 +9,30 @@
 
 #import "DD_AlertViewController.h"
 
-@interface DD_AlertViewController ()
+@interface DD_AlertViewController ()<UITextFieldDelegate>
 
 @end
 
 @implementation DD_AlertViewController
+{
+    UITextField *_inputTextfield;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self SomePrepare]; 
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_UserModel *)usermodel WithBlock:(void (^)(DD_UserModel *model))block
+-(instancetype)initWithModel:(DD_UserModel *)usermodel WithKey:(NSString *)key WithContent:(NSString *)content WithBlock:(void (^)(DD_UserModel *model))block
 {
     self=[super init];
     if(self)
     {
         _block=block;
+        _key=key;
+        _content=content;
         _usermodel=usermodel;
+        [self SomePrepare];
+        [self UIConfig];
     }
     return self;
 }
@@ -37,14 +43,62 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI{}
+-(void)PrepareUI
+{
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(27, 27) WithImgeStr:@"System_Confirm"];
+    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
+}
+#pragma mark - UIConfig
+-(void)UIConfig
+{
+    _inputTextfield=[[UITextField alloc] init];
+    [self.view addSubview:_inputTextfield];
+    _inputTextfield.textColor=[UIColor blackColor];
 
+    if([_key isEqualToString:@"nickname"])
+    {
+        _inputTextfield.placeholder=@"快来填写昵称吧";
+    }else if([_key isEqualToString:@"career"])
+    {
+        _inputTextfield.placeholder=@"快来填写职业吧";
+    }
+    _inputTextfield.font=[regular getFont:13.0f];
+    _inputTextfield.textAlignment=0;
+    _inputTextfield.delegate=self;
+    _inputTextfield.returnKeyType=UIReturnKeyDone;
+    _inputTextfield.clearButtonMode=UITextFieldViewModeAlways;
+    [regular setBorder:_inputTextfield];
+    _inputTextfield.text=_content;
+    
+    _inputTextfield.leftViewMode=UITextFieldViewModeAlways;
+    _inputTextfield.leftView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 11, 32)];
+    [_inputTextfield becomeFirstResponder];
+    
+    [_inputTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(kNavHeight+15);
+        make.height.mas_equalTo(32);
+    }];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self DoneAction];
+    return YES;
+}
 #pragma mark - SomeAction
+-(void)setTitle:(NSString *)title
+{
+    self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:180];
+}
+
 /**
  * 保存
  */
-- (IBAction)SaveAction:(id)sender {
-
+-(void)DoneAction
+{
     if([NSString isNilOrEmpty:_inputTextfield.text])
     {
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
@@ -83,11 +137,7 @@
         }];
     }
 }
--(void)setContent:(NSString *)content
-{
-    _content=content;
-    _inputTextfield.text=_content;
-}
+
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

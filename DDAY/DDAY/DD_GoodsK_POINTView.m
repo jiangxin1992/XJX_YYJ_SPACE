@@ -69,7 +69,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(0);
-        make.height.mas_equalTo(38);
+        make.height.mas_equalTo(48);
     }];
     
 //    DD_ShowRoomModel.h
@@ -81,10 +81,10 @@
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
-                make.top.mas_equalTo(lastView.mas_bottom).with.offset(6);
+                make.top.mas_equalTo(lastView.mas_bottom).with.offset(12);
             }else
             {
-                make.top.mas_equalTo(label.mas_bottom).with.offset(15);
+                make.top.mas_equalTo(label.mas_bottom).with.offset(5);
             }
             make.left.right.mas_equalTo(0);
         }];
@@ -112,7 +112,7 @@
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
-            make.bottom.mas_equalTo(backView.mas_bottom).with.offset(-6);
+            make.bottom.mas_equalTo(backView.mas_bottom).with.offset(0);
         }];
         [address sizeToFit];
         
@@ -131,13 +131,13 @@
     {
         [_hide uninstall];
         [lastView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
+            make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-20);
         }];
     }else
     {
         [_show uninstall];
         [label mas_updateConstraints:^(MASConstraintMaker *make) {
-            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(0);
+            _hide=make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-1);
         }];
     }
 }

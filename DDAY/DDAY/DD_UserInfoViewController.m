@@ -16,9 +16,10 @@
 #import <AVFoundation/AVMediaFormat.h>
 
 #import "DD_AlertViewController.h"
+#import "DD_SexViewController.h"
 #import "DD_UserInfo_AlertPSWViewController.h"
 #import "DD_BodyViewController.h"
-#import "DD_AddressViewController.h"
+//#import "DD_AddressViewController.h"
 
 #import "DD_UserCell.h"
 
@@ -113,12 +114,12 @@
 /**
  * 跳转地址管理界面
  */
--(void)pushAddressView
-{
-    [self.navigationController pushViewController:[[DD_AddressViewController alloc] initWithType:@"normal" WithBlock:^(NSString *type, DD_AddressModel *addressModel) {
-        
-    }] animated:YES];
-}
+//-(void)pushAddressView
+//{
+//    [self.navigationController pushViewController:[[DD_AddressViewController alloc] initWithType:@"normal" WithBlock:^(NSString *type, DD_AddressModel *addressModel) {
+//        
+//    }] animated:YES];
+//}
 /**
  * 跳转修改密码界面
  */
@@ -133,26 +134,39 @@
  */
 -(void)pushAlertViewWithContent:(NSString *)content WithTitle:(NSString *)title WithKey:(NSString *)key
 {
-    DD_AlertViewController *_AlertView=[[DD_AlertViewController alloc] initWithModel:_usermodel WithBlock:^(DD_UserModel *model) {
-        _usermodel=model;
-        _block(@"info_update",_usermodel);
-        [_tableview reloadData];
-    }];
-    _AlertView.content=content;
-    _AlertView.key=key;
-    _AlertView.title=title;
-    [self.navigationController pushViewController:_AlertView animated:YES];
+    if([key isEqualToString:@"gender"])
+    {
+        DD_SexViewController *sexView=[[DD_SexViewController alloc] initWithModel:_usermodel WithSex:_usermodel.sex WithBlock:^(DD_UserModel *model) {
+            _usermodel=model;
+            _block(@"info_update",_usermodel);
+            [_tableview reloadData];
+        }];
+        sexView.title=title;
+        [self.navigationController pushViewController:sexView animated:YES];
+    }else
+    {
+        DD_AlertViewController *_AlertView=[[DD_AlertViewController alloc] initWithModel:_usermodel WithKey:key WithContent:content WithBlock:^(DD_UserModel *model) {
+            _usermodel=model;
+            _block(@"info_update",_usermodel);
+            [_tableview reloadData];
+        }];
+        _AlertView.title=title;
+        [self.navigationController pushViewController:_AlertView animated:YES];
+
+    }
 }
 /**
  * 跳转身材信息修改界面
  */
--(void)pushBodyView
+-(void)pushBodyViewWithTitle:(NSString *)title
 {
-    [self.navigationController pushViewController:[[DD_BodyViewController alloc] initWithModel:_usermodel WithBlock:^(DD_UserModel *model) {
+    DD_BodyViewController *bodyView=[[DD_BodyViewController alloc] initWithModel:_usermodel WithBlock:^(DD_UserModel *model) {
         _usermodel=model;
         _block(@"info_update",_usermodel);
         [_tableview reloadData];
-    }] animated:YES];
+    }];
+    bodyView.title=title;
+    [self.navigationController pushViewController:bodyView animated:YES];
 }
 #pragma mark - 更换头像
 /**
@@ -413,7 +427,7 @@
         
         if([_usermodel.height integerValue]!=0&&[_usermodel.weight integerValue]!=0)
         {
-            _f_title=[[NSString alloc] initWithFormat:@"%@cm %@kg",_usermodel.height,_usermodel.weight];
+            _f_title=[[NSString alloc] initWithFormat:@"%@/%@",_usermodel.height,_usermodel.weight];
         }else
         {
             _f_title=@"";
@@ -448,6 +462,7 @@
         //        更改性别
         [self pushAlertViewWithContent:[_usermodel getSexStr] WithTitle:[_datadict objectForKey:@"sex"] WithKey:@"gender"];
         
+        
     }else if([_key isEqualToString:@"career"])
     {
         //        更改职业
@@ -456,13 +471,14 @@
     }else if([_key isEqualToString:@"body"])
     {
         //        更改身材信息
-        [self pushBodyView];
+        [self pushBodyViewWithTitle:[_datadict objectForKey:@"body"]];
         
-    }else if([_key isEqualToString:@"address"])
-    {
-        //        跳转收获地址管理界面
-        [self pushAddressView];
     }
+//    else if([_key isEqualToString:@"address"])
+//    {
+//        //        跳转收获地址管理界面
+//        [self pushAddressView];
+//    }
 }
 
 

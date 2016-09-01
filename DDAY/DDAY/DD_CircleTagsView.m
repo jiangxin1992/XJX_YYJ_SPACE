@@ -221,7 +221,6 @@
         {
             [_tagModel updateLastSelect];
         }
-        
         _block(@"circle_tag_delete",btn.tag);
     }else
     {
@@ -230,7 +229,6 @@
             for (DD_CricleTagItemModel *__item in _tagModel.tags) {
                 __item.is_select=NO;
             }
-            
         }else
         {
             if(!_tagModel.lastItem)

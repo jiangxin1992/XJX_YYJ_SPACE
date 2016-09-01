@@ -35,7 +35,7 @@
         [self.contentView addSubview:_head_img];
         _head_img.contentMode=0;
         [_head_img mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.and.height.mas_equalTo(40);
+            make.width.and.height.mas_equalTo(44);
             make.centerY.mas_equalTo(self.contentView);
             make.right.mas_equalTo(-kEdge);
         }];
@@ -54,7 +54,7 @@
             make.centerY.mas_equalTo(self.contentView);
         }];
         
-        _f_title_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        _f_title_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
         [self.contentView addSubview:_f_title_label];
         [_f_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-kEdge);
@@ -123,7 +123,7 @@
 }
 -(void)setImage:(NSString *)image
 {
-    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:20] ;
+    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:22] ;
 }
 -(void)setF_title:(NSString *)f_title
 {

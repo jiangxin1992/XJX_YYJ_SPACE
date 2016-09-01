@@ -12,7 +12,8 @@
 
 #import "DD_CirclePublishTool.h"
 
-@interface DD_CircleCustomTagViewController ()
+@interface DD_CircleCustomTagViewController ()<UITextFieldDelegate>
+
 
 @end
 
@@ -47,10 +48,11 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    UIButton *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(40, 25) WithImgeStr:@"Share_Label" WithWidth:55];
-    [shareBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
     self.navigationItem.titleView=[regular returnNavView:@"添加标签" withmaxwidth:200];
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(27, 27) WithImgeStr:@"System_Confirm"];
+    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
+    
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -58,24 +60,31 @@
     _tagTextField=[[UITextField alloc] init];
     [self.view addSubview:_tagTextField];
     _tagTextField.leftViewMode=UITextFieldViewModeAlways;
-//    _tagTextField.leftView=[[DrawView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) WithStartP:CGPointMake(15.5f, 6.5f) WithEndP:CGPointMake(15.5f, 25.5f) WithLineWidth:1 WithColorType:1];
-    _tagTextField.leftView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 32)];
+    _tagTextField.leftView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 11, 32)];
     _tagTextField.clearButtonMode = UITextFieldViewModeAlways;
-    _tagTextField.returnKeyType=UIReturnKeyDefault;
+    _tagTextField.returnKeyType=UIReturnKeyDone;
     _tagTextField.borderStyle= UITextBorderStyleNone;
+    _tagTextField.delegate=self;
     _tagTextField.placeholder=@"添加标签";
     _tagTextField.textColor=_define_black_color;
-    _tagTextField.font=[regular getFont:12.0f];
+    _tagTextField.font=[regular getFont:13.0f];
     [regular setBorder:_tagTextField];
+    [_tagTextField becomeFirstResponder];
     [_tagTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44+kNavHeight);
-        make.centerX.mas_equalTo(self.view);
-        make.width.mas_equalTo(250);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(kNavHeight+15);
         make.height.mas_equalTo(32);
     }];
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self DoneAction];
+    return YES;
+}
 #pragma mark - doneAction
--(void)doneAction
+-(void)DoneAction
 {
     if([NSString isNilOrEmpty:_tagTextField.text])
     {
