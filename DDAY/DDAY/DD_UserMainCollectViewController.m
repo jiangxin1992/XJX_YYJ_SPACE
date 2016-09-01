@@ -155,7 +155,7 @@
             [_pageVc setViewControllers:@[ctn1] direction:0 animated:YES completion:nil];
             
         }
-//        [self SetBtnStateWithBtnTag:btn.tag];
+        [self SetBtnStateWithBtnTag:btn.tag];
     }else if(btn.tag-100==1)
     {
         
@@ -184,18 +184,18 @@
             {
                 [_pageVc setViewControllers:@[ctn2] direction:1 animated:YES completion:nil];
             }
-//            [self SetBtnStateWithBtnTag:btn.tag];
+            [self SetBtnStateWithBtnTag:btn.tag];
         }
     }
 }
-//-(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
-//{
-//    for (int i=0; i<btnarr.count; i++) {
-//        UIButton *_btn=[btnarr objectAtIndex:i];
-//        if(_btn.tag==btnTag)
-//        {
-//            _btn.selected=YES;
-//            currentPage=_btn.tag-100;
+-(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
+{
+    for (int i=0; i<btnarr.count; i++) {
+        UIButton *_btn=[btnarr objectAtIndex:i];
+        if(_btn.tag==btnTag)
+        {
+            _btn.selected=YES;
+            currentPage=_btn.tag-100;
 //            if(i==0)
 //            {
 //                dibu_left.backgroundColor=_define_black_color;
@@ -205,13 +205,13 @@
 //                dibu_left.backgroundColor=_define_light_gray_color1;
 //                dibu_right.backgroundColor=_define_black_color;
 //            }
-//        }else
-//        {
-//            _btn.selected=NO;
-//        }
-//        
-//    }
-//}
+        }else
+        {
+            _btn.selected=NO;
+        }
+        
+    }
+}
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated
 {

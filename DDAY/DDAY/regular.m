@@ -312,7 +312,8 @@ static regular *_t = nil;
     titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
 //    titleLabel.text=title;
-    [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(1.0f)]];
+    titleLabel.text=title;
+//    [titleLabel setAttributedText:[regular createAttributeString:title andFloat:@(1.0f)]];
     [view addSubview:titleLabel];
     return view;
     

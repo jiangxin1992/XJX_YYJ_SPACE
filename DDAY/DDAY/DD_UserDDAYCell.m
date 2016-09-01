@@ -25,27 +25,27 @@
         UIView *line=[UIView getCustomViewWithColor:_define_black_color];
         [self.contentView addSubview:line];
         [line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(37);
+            make.left.mas_equalTo(kEdge);
             make.top.mas_equalTo(11);
             make.bottom.mas_equalTo(-11);
             make.width.mas_equalTo(3);
         }];
         
-        UIView *backimg=[UIView getCustomViewWithColor:nil];
-        [self.contentView addSubview:backimg];
-        [regular setBorder:backimg];
-        [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(line.mas_right).with.offset(29);
-            make.centerY.mas_equalTo(self.contentView);
-            make.height.width.mas_equalTo(122);
-        }];
+//        UIView *backimg=[UIView getCustomViewWithColor:nil];
+//        [self.contentView addSubview:backimg];
+//        [regular setBorder:backimg];
+//        [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(line.mas_right).with.offset(29);
+//            make.centerY.mas_equalTo(self.contentView);
+//            make.height.width.mas_equalTo(110);
+//        }];
         
         imageView=[UIImageView getCustomImg];
         [self.contentView addSubview:imageView];
         imageView.contentMode=2;
         [regular setZeroBorder:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(backimg);
+            make.center.mas_equalTo(self.contentView);
             make.width.height.mas_equalTo(109);
         }];
 //        12 6 6

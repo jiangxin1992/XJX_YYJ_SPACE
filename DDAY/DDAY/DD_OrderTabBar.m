@@ -73,6 +73,16 @@
 //                    退款申请中 applying_refund
 //                    退款处理中 dealing_refund
 //                    退款 refund
+                    /**
+                     * public static Integer ORDER_STATUS_DFK = 0; //待付款
+                     * public static Integer ORDER_STATUS_DFH = 1; //待发货
+                     * public static Integer ORDER_STATUS_DSH = 2; //待收货
+                     * public static Integer ORDER_STATUS_JYCG = 3; //交易成功
+                     * public static Integer ORDER_STATUS_SQTK = 4; //申请退款
+                     * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
+                     * public static Integer ORDER_STATUS_YTK = 6; //已退款
+                     * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
+                     */
                     tabBarBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
                     tabBarBtn.backgroundColor=_define_black_color;
                     if(_OrderModel.orderStatus==0)

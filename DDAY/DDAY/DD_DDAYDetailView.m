@@ -56,7 +56,7 @@
     backBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     [backBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    leftLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18.0f WithTextColor:nil WithSpacing:0];
+    leftLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18.0f WithTextColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithSpacing:0];
     [backBtn addSubview:leftLabel];
     leftLabel.backgroundColor=_define_white_color;
     leftLabel.frame=CGRectMake(0, 1, ScreenWidth/2.0f, ktabbarHeight-1);
@@ -67,7 +67,7 @@
     rightBtn.frame=CGRectMake(ScreenWidth/2.0f, 1, ScreenWidth/2.0f, ktabbarHeight-1);
     [rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    upline=[UIView getCustomViewWithColor:_define_black_color];
+    upline=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [backBtn addSubview:upline];
     upline.frame=CGRectMake(0, 0, CGRectGetWidth(backBtn.frame), 1);
     
@@ -116,12 +116,12 @@
     
     [self backBtnSubViewHide:NO];
     
-    leftLabel.textColor=_define_light_gray_color1;
+    leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
     
     rightBtn.selected=YES;
     [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateSelected];
     rightBtn.type=@"";
-    rightBtn.backgroundColor=_define_light_gray_color1;
+    rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
     
     [self startTimeWithType:@"beforeSignStart"];
 }
@@ -133,25 +133,26 @@
         [self backBtnSubViewHide:NO];
         if(_detailModel.isJoin)
         {
-            leftLabel.textColor=_define_black_color;
+            
+            leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
             rightBtn.selected=NO;
-            rightBtn.backgroundColor=_define_black_color;
+            rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
             rightBtn.type=@"cancel";
             [rightBtn setTitle:@"取消报名" forState:UIControlStateNormal];
         }else
         {
             if(_detailModel.leftQuota)
             {
-                leftLabel.textColor=_define_black_color;
+                leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
                 rightBtn.selected=NO;
-                rightBtn.backgroundColor=_define_black_color;
+                rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
                 rightBtn.type=@"apply";
                 [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateNormal];
             }else
             {
-                leftLabel.textColor=_define_light_gray_color1;
+                leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
                 rightBtn.selected=YES;
-                rightBtn.backgroundColor=_define_light_gray_color1;
+                rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
                 rightBtn.type=@"";
                 [rightBtn setTitle:@"报名线上发布会" forState:UIControlStateSelected];
             }
@@ -174,7 +175,7 @@
             type_str=@"apply";
         }
         backBtn.selected=NO;
-        backBtn.backgroundColor=_define_black_color;
+        backBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         backBtn.type=type_str;
         [backBtn setTitle:title forState:UIControlStateNormal];
     }
@@ -187,11 +188,11 @@
     if(_detailModel.isJoin)
     {
         [self backBtnSubViewHide:NO];
-        leftLabel.textColor=_define_light_gray_color1;
+        leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         
         rightBtn.selected=YES;
         rightBtn.type=@"";
-        rightBtn.backgroundColor=_define_light_gray_color1;
+        rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         [rightBtn setTitle:@"已报名" forState:UIControlStateSelected];
         [self startTimeWithType:@"beforeSaleStart"];
     }else
@@ -199,7 +200,7 @@
         [self backBtnSubViewHide:YES];
         backBtn.selected=YES;
         backBtn.type=@"";
-        backBtn.backgroundColor=_define_light_gray_color1;
+        backBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         [backBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
     }
 }
@@ -212,13 +213,13 @@
     {   
         backBtn.selected=NO;
         backBtn.type=@"enter_meet";
-        backBtn.backgroundColor=_define_black_color;
+        backBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         [backBtn setTitle:@"进入发布会" forState:UIControlStateNormal];
     }else
     {
         backBtn.selected=YES;
         backBtn.type=@"";
-        backBtn.backgroundColor=_define_light_gray_color1;
+        backBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
         [backBtn setTitle:@"啊哦，错过了报名" forState:UIControlStateSelected];
         NSLog(@"111");
     }
@@ -228,12 +229,13 @@
 {
     [self backBtnSubViewHide:NO];
     
-    leftLabel.textColor=_define_black_color;
+    leftLabel.textColor=[UIColor colorWithHexString:_detailModel.seriesColor];
     leftLabel.text=@"发布会已结束";
     
     [rightBtn setTitle:@"查看发布品" forState:UIControlStateNormal];
     rightBtn.selected=NO;
-    rightBtn.backgroundColor=_define_black_color;
+    
+    rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
     rightBtn.type=@"check_good";
 }
 #pragma mark - getState

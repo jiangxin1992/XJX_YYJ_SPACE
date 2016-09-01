@@ -40,7 +40,7 @@
     UIView *rightLine=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:rightLine];
     [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(33);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(10);
         make.width.mas_equalTo(3);
         make.height.mas_equalTo(15);
@@ -58,7 +58,7 @@
     
     
     
-    _address=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    _address=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_address];
     _address.numberOfLines=2;
     [_address mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,7 +92,7 @@
     [_mapView setShowsUserLocation:YES];
     _mapView.delegate = self;
     [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_img_back_view.mas_bottom).with.offset(20);
+        make.top.mas_equalTo(_img_back_view.mas_bottom).with.offset(24);
         make.left.mas_equalTo(33);
         make.height.mas_equalTo(IsPhone6_gt?200:180);
         make.right.mas_equalTo(-33);

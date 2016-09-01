@@ -78,6 +78,8 @@
         
         backview=[UIView getCustomViewWithColor:nil];
         [self.contentView addSubview:backview];
+        backview.userInteractionEnabled=YES;
+        [backview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(push_dday_detail)]];
         [backview mas_makeConstraints:^(MASConstraintMaker *make) {
             if(IsPhone6_gt)
             {
@@ -97,6 +99,7 @@
         
         _backImg=[UIImageView getCustomImg];
         [backview addSubview:_backImg];
+        _backImg.userInteractionEnabled=NO;
         _backImg.contentMode=2;
         [regular setZeroBorder:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -117,9 +120,9 @@
     [self startTimeWithType:@"BeforeSignStart"];
     
     [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
-    [_ApplyBtn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+    [_ApplyBtn setTitleColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] forState:UIControlStateNormal];
     _ApplyBtn.backgroundColor=_define_white_color;
-    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:2];
+    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
     
     _restLabel.hidden=NO;
 }
@@ -138,9 +141,10 @@
         [_ApplyBtn setTitle:@"报名已成功" forState:UIControlStateNormal];
         [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
         _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
-        [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
+        [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
     }else
     {
+        
         [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
         [_ApplyBtn setTitleColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] forState:UIControlStateNormal];
         _ApplyBtn.backgroundColor=_define_white_color;
@@ -159,8 +163,8 @@
     
     [_ApplyBtn setTitle:@"报名已结束" forState:UIControlStateNormal];
     [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=_define_light_gray_color1;
-    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
+    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
     
     _restLabel.hidden=YES;
 }
@@ -189,8 +193,8 @@
 
     [_ApplyBtn setTitle:@"发布会已结束" forState:UIControlStateNormal];
     [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=_define_light_gray_color1;
-    [regular setBorder:_ApplyBtn WithColor:_define_light_gray_color1 WithWidth:0];
+    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
 
     
     _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
@@ -243,12 +247,12 @@
         {
             _ddayblock(_index,@"join");
         }
-    }else
-    {
-        _ddayblock(_index,@"push_detail");
     }
 }
-
+-(void)push_dday_detail
+{
+    _ddayblock(_index,@"push_detail");
+}
 /**
  * 定时器,1s触发一次
  */

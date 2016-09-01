@@ -25,7 +25,7 @@
 //    UIImageView
     UIView *imgBackView=[UIView getCustomViewWithColor:nil];
     [self addSubview:imgBackView];
-    [regular setBorder:imgBackView];
+    [regular setBorder:imgBackView WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:2];
     [imgBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
@@ -45,30 +45,29 @@
     
     UIView *timeBackView=[UIView getCustomViewWithColor:nil];
     [self addSubview:timeBackView];
-    [regular setBorder:timeBackView];
     [timeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(imgBackView.mas_bottom).with.offset(36);
-        make.height.mas_equalTo(30);
+        make.top.mas_equalTo(imgBackView.mas_bottom).with.offset(34);
     }];
     
     for (int i=0; i<2; i++) {
-        UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"] WithFont:14.0f WithTextColor:nil WithSpacing:0];
+        UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"] WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [timeBackView addSubview:timelabel];
         [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
             {
-                make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-22);
+                make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-10);
                 make.top.bottom.mas_equalTo(0);
-                make.left.mas_equalTo(10);
+                make.left.mas_equalTo(0);
             }else
             {
-                make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(22);
+                make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(10);
                 make.top.bottom.mas_equalTo(0);
-                make.right.mas_equalTo(-10);
+                make.right.mas_equalTo(0);
             }
         }];
+        [timelabel sizeToFit];
     }
     
     UIView *timeMiddleLine=[UIView getCustomViewWithColor:_define_black_color];
@@ -88,10 +87,10 @@
     }];
     [seriesTipsLabel sizeToFit];
     
-    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
+    UIView *upline=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [self addSubview:upline];
     [upline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(seriesTipsLabel.mas_bottom).with.offset(27);
+        make.top.mas_equalTo(seriesTipsLabel.mas_bottom).with.offset(28);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(1);
 
@@ -103,9 +102,9 @@
     [brandPicImg JX_ScaleToFill_loadImageUrlStr:_detailModel.brandPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [brandPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(upline.mas_bottom).with.offset(30);
-        make.left.mas_equalTo(50);
-        make.right.mas_equalTo(-50);
-        make.height.mas_equalTo(([_detailModel.brandPic.height floatValue]/[_detailModel.brandPic.width floatValue])*(ScreenWidth-100));
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(([_detailModel.brandPic.height floatValue]/[_detailModel.brandPic.width floatValue])*(ScreenWidth-kEdge*2));
     }];
     
 //    60 90
@@ -121,7 +120,7 @@
                 make.top.mas_equalTo(lastView.mas_bottom).with.offset(0);
             }else
             {
-                make.top.mas_equalTo(brandPicImg.mas_bottom).with.offset(30);
+                make.top.mas_equalTo(brandPicImg.mas_bottom).with.offset(28);
             }
             
         }];
@@ -129,21 +128,28 @@
         lastView=label;
     }
     
-    UILabel *brandBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.brandBrief WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    UILabel *brandBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.brandBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:brandBriefLabel];
     brandBriefLabel.numberOfLines=0;
     [brandBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(lastView.mas_bottom).with.offset(30);
-        make.width.mas_equalTo(250);
+        make.left.mas_offset(kEdge);
+        make.top.mas_equalTo(lastView.mas_bottom).with.offset(27);
     }];
     [brandBriefLabel sizeToFit];
     
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+    UIView *downLine=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [self addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(brandBriefLabel.mas_bottom).with.offset(27);
+        if([NSString isNilOrEmpty:_detailModel.brandBrief])
+        {
+            make.top.mas_equalTo(brandBriefLabel.mas_bottom).with.offset(0);
+        }else
+        {
+            make.top.mas_equalTo(brandBriefLabel.mas_bottom).with.offset(27);
+        }
+        
         make.height.mas_equalTo(1);
     }];
     
@@ -154,9 +160,9 @@
     [seriesBannerPicImg JX_ScaleToFill_loadImageUrlStr:_detailModel.seriesBannerPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [seriesBannerPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(downLine.mas_bottom).with.offset(kEdge);
-        make.width.mas_equalTo(205);
-        make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(205));
+        make.top.mas_equalTo(downLine.mas_bottom).with.offset(30);
+        make.right.mas_offset(-kEdge);
+        make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(250));
     }];
     UIView *lastViewSeries=nil;
     for (int i=0; i<2; i++) {
@@ -176,14 +182,21 @@
         lastViewSeries=label;
     }
 
-    UILabel *seriesBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesBrief WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    UILabel *seriesBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:seriesBriefLabel];
     seriesBriefLabel.numberOfLines=0;
     [seriesBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(30);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_offset(-kEdge);
+        if([NSString isNilOrEmpty:_detailModel.seriesBrief])
+        {
+            make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(0);
+        }else
+        {
+            make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(28);
+        }
         make.width.mas_equalTo(250);
-        make.bottom.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-28);
     }];
     [seriesBriefLabel sizeToFit];
     

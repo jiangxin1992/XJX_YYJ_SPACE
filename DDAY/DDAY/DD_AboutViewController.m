@@ -71,17 +71,17 @@
     headIcon.contentMode=0;
     [headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(85);
-        make.width.mas_equalTo(74);
+        make.width.mas_equalTo(80);
         make.centerX.mas_equalTo(container);
         make.height.mas_equalTo(0);
     }];
     
-    brief=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12 WithTextColor:nil WithSpacing:0];
+    brief=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
     [container addSubview:brief];
     brief.numberOfLines=0;
     [brief mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
+        make.left.mas_equalTo(IsPhone6_gt?55:35);
+        make.right.mas_equalTo(IsPhone6_gt?-55:-35);
         make.top.mas_equalTo(headIcon.mas_bottom).with.offset(60);
     }];
     [brief sizeToFit];
@@ -134,7 +134,7 @@
 -(void)setData
 {
     DD_ImageModel *imgModel=[DD_ImageModel getImageModel:[_data_dict objectForKey:@"pic"]];
-    CGFloat _height=([imgModel.height floatValue]/[imgModel.width floatValue])*74;
+    CGFloat _height=([imgModel.height floatValue]/[imgModel.width floatValue])*80;
     [headIcon mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_height);
     }];

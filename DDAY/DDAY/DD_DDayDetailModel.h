@@ -66,6 +66,10 @@ __string(seriesBrief);
  */
 __string(name);
 /**
+ * 系列颜色
+ */
+__string(seriesColor);
+/**
  * 系列id
  */
 __string(s_id);
