@@ -24,7 +24,7 @@
     [self setTitleColor:_define_black_color forState:UIControlStateSelected];
     [self setTitle:_categoryMode.catOneName forState:UIControlStateNormal];
     [self setTitle:_categoryMode.catOneName forState:UIControlStateSelected];
-    self.titleLabel.font=[regular getFont:13.0f];
+    self.titleLabel.font=[regular getFont:15.0f];
     self.titleLabel.textAlignment = 0;
     [self addTarget:self action:@selector(BtnClick) forControlEvents:UIControlEventTouchUpInside];
     

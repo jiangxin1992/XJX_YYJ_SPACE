@@ -31,6 +31,6 @@ __bool(isUserHomePage);
  * 回调block
  */
 @property(nonatomic,copy) void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
-__btn(lastView_state);
+__view(last_count_view);
 @end
 

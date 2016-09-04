@@ -23,7 +23,7 @@
 }
 -(void)UIConfig
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
     
     UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:upline];

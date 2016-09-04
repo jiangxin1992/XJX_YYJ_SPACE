@@ -45,37 +45,43 @@
 -(void)PrepareUI
 {
     
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"cancel", @"") style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction)];
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
+    [confirmBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"done", @"") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
+    
     self.navigationItem.titleView=[regular returnNavView:_v_title withmaxwidth:180];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(10,74, ScreenWidth-20, 200)] ; //初始化大小并自动释放
-    textView.contentSize=CGSizeMake( ScreenWidth-20, 200);
-    textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色
+    textView = [[UITextView alloc] init] ; //初始化大小并自动释放
+    [self.view addSubview: textView];//加入到整个页面中
+    textView.textColor = _define_black_color;//设置textview里面的字体颜色
     
-    textView.font = [regular getFont:14.0f];//设置字体名字和字体大小
+    textView.font = [regular getFont:13.0f];//设置字体名字和字体大小
     
     textView.delegate = self;//设置它的委托方法
     textView.textAlignment=0;
-    textView.backgroundColor = [UIColor clearColor];//设置它的背景颜色
-    
-    //    self.textView.text = @"Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.";//设置它显示的内容
+    textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
     
     textView.returnKeyType = UIReturnKeyDefault;//返回键的类型
     
     textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
+    textView.text = nil;
     textView.text=_Remarks;
-    //    textView.scrollEnabled = YES;//是否可以拖动
+    [regular setBorder:textView];
     
-    //    textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
-    
-    [self.view addSubview: textView];//加入到整个页面中
     [textView becomeFirstResponder];
-    
+ 
+    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(kNavHeight+15);
+        make.height.mas_equalTo(100);
+    }];
 }
 #pragma mark - SomeAction
 /**
@@ -106,13 +112,6 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-}
-/**
- * 取消/返回
- */
--(void)cancelAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 /**
  * 键盘消失

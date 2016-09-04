@@ -49,7 +49,7 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:@"添加标签" withmaxwidth:200];
-    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(27, 27) WithImgeStr:@"System_Confirm"];
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
     [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
     

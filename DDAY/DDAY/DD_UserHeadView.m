@@ -35,7 +35,7 @@
     {
         self.backgroundColor=_define_backview_color;
         //设置normal状态下 title的颜色
-        [self setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self setTitleColor:_define_black_color forState:UIControlStateNormal];
         //设置字体大小
         self.titleLabel.font=[regular getFont:17.0f];
         //设置居中
@@ -88,6 +88,7 @@
  */
 -(void)loginState
 {
+    
     //        登录
     [self setTitle:@"" forState:UIControlStateNormal];
     //        刷新用户信息
@@ -99,14 +100,14 @@
     nickname=[[UILabel alloc] initWithFrame:CGRectMake(100, 10, 150, 80)];
     [self addSubview:nickname];
     nickname.font=[regular getFont:17.0f];
-    nickname.textColor=[UIColor blackColor];
+    nickname.textColor=_define_black_color;
     nickname.textAlignment=0;
     nickname.text=_usermodel.nickName;
     
     integral=[[UILabel alloc] initWithFrame:CGRectMake(260, 10, 100, 80)];
     [self addSubview:integral];
     integral.font=[regular getFont:17.0f];
-    integral.textColor=[UIColor blackColor];
+    integral.textColor=_define_black_color;
     integral.textAlignment=2;
     integral.text=@"积分 3000分";
 }

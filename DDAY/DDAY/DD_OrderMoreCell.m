@@ -52,7 +52,7 @@
 -(void)UIConfig
 {
     
-    _scrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(kEdge, 0, ScreenWidth-2*kEdge, 147)];
+    _scrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(kEdge, 0, ScreenWidth-2*kEdge, 130)];
     [self.contentView addSubview:_scrollview];
     _scrollview.alwaysBounceHorizontal=YES;
     _scrollview.alwaysBounceVertical=NO;
@@ -64,13 +64,13 @@
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(147);
+        make.top.mas_equalTo(130);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
     }];
     
-    _totalPriceLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _totalPriceLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_totalPriceLabel];
     [_totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
@@ -79,10 +79,10 @@
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(0);
     }];
     
-    _goodNumLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _goodNumLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_goodNumLabel];
     [_goodNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(_totalPriceLabel.mas_left).with.offset(0);
+        make.right.mas_equalTo(_totalPriceLabel.mas_left).with.offset(-15);
         make.width.mas_equalTo(_totalPriceLabel);
         make.height.mas_equalTo(_totalPriceLabel);
         make.top.mas_equalTo(_totalPriceLabel);
@@ -123,39 +123,20 @@
         UIView *lastView=nil;
         for (int i=0; i<_OrderModel.itemList.count; i++) {
             DD_OrderItemModel *_itemModel=[_OrderModel.itemList objectAtIndex:i];
-            UIView *imageBack=[UIView getCustomViewWithColor:_define_white_color];
-            [_scrollview addSubview:imageBack];
-            imageBack.userInteractionEnabled=NO;
-            [imageBack mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(15);
-                make.bottom.mas_equalTo(-9);
-                if(lastView)
-                {
-                    make.left.mas_equalTo(lastView.mas_right).with.offset(15);
-                }else
-                {
-                    make.left.mas_equalTo(0);
-                }
-                make.height.width.mas_equalTo(123);
-            }];
-            [regular setBorder:imageBack];
-            
             //    款式照片
             UIImageView *_itemImg=[UIImageView getCustomImg];
-            [imageBack addSubview:_itemImg];
+            [_scrollview addSubview:_itemImg];
             _itemImg.contentMode=2;
             [regular setZeroBorder:_itemImg];
             _itemImg.userInteractionEnabled=NO;
-            [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
-            }];
+            _itemImg.frame=CGRectMake(i*(15+90), 20, 90, 90);
             [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:400 placeHolderImageName:nil radius:0];
-            lastView=imageBack;
-            [itemArr addObject:imageBack];
+            lastView=_itemImg;
+            [itemArr addObject:_itemImg];
         }
         NSInteger _count=_OrderModel.itemList.count;
-        CGFloat __w=123*_count+15*(_count-1);
-        _scrollview.contentSize=CGSizeMake(__w, 147);
+        CGFloat __w=90*_count+15*(_count-1);
+        _scrollview.contentSize=CGSizeMake(__w, 130);
         
         if(_OrderModel.orderStatus==0)
         {

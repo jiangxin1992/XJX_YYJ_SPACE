@@ -164,7 +164,8 @@
         make.right.mas_equalTo(-kEdge);
     }];
     
-     _lastView_state=nil;
+    UIButton *_lastView_state=nil;
+    _last_count_view=nil;
 //    删除 评论 收藏 点赞
     for (int i=0; i<3; i++) {
         UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":@"System_Notcollection" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":@"System_Collection"];
@@ -202,7 +203,23 @@
             }
         }];
         [userBtnArr addObject:btn];
+        
+        
+        UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [self.contentView addSubview:label];
+        label.tag=300+i;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(btn);
+            if(_last_count_view)
+            {
+                make.top.mas_equalTo(_last_count_view);
+            }else
+            {
+                make.top.mas_equalTo(btn.mas_bottom).with.offset(0);
+            }
+        }];
         _lastView_state=btn;
+        _last_count_view=label;
     }
     
     timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
@@ -222,8 +239,8 @@
     DD_CircleListCell *cell = [[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"" IsUserHomePage:_isUserHomePage];
     [cell setListModel:model];
     [cell.contentView layoutIfNeeded];
-    CGRect frame =  cell.lastView_state.frame;
-    return frame.origin.y + frame.size.height+10;
+    CGRect frame =  cell.last_count_view.frame;
+    return frame.origin.y + frame.size.height+30;
 }
 
 
@@ -321,9 +338,16 @@
 
     UIButton *praiseBtn=[self viewWithTag:200];
     praiseBtn.selected=_listModel.isLike;
+    UILabel *praiseLabel=[self viewWithTag:300];
+    praiseLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.likeTimes];
+    
+    UILabel *commentLabel=[self viewWithTag:301];
+    commentLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.commentTimes];
     
     UIButton *collectBtn=[self viewWithTag:202];
     collectBtn.selected=_listModel.isCollect;
+    UILabel *collectLabel=[self viewWithTag:302];
+    collectLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.collectTimes];
     
     UIButton *delectBtn=[self viewWithTag:203];
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];

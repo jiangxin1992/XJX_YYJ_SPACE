@@ -54,7 +54,7 @@
             make.centerY.mas_equalTo(self.contentView);
         }];
         
-        _f_title_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        _f_title_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
         [self.contentView addSubview:_f_title_label];
         [_f_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-kEdge);
@@ -71,7 +71,7 @@
         _title_label=[[UILabel alloc] init];
         [self.contentView addSubview:_title_label];
         _title_label.textAlignment=0;
-        _title_label.textColor=[UIColor blackColor];
+        _title_label.textColor=_define_black_color;
         [_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(10);
             make.top.mas_equalTo(0);
@@ -81,7 +81,7 @@
         
         _not_img=[[UIImageView alloc] init];
         [self.contentView addSubview:_not_img];
-        _not_img.backgroundColor=[UIColor redColor];
+        _not_img.backgroundColor=_define_light_red_color;
         _not_img.hidden=YES;
         [_not_img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_title_label.mas_right);
@@ -92,7 +92,7 @@
         _f_title_label=[[UILabel alloc] init];
         [self.contentView addSubview:_f_title_label];
         _f_title_label.textAlignment=2;
-        _f_title_label.textColor=[UIColor blackColor];
+        _f_title_label.textColor=_define_black_color;
         [_f_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_title_label.mas_right).with.offset(20);
             make.top.mas_equalTo(0);
@@ -111,7 +111,7 @@
         _title_label=[[UILabel alloc] init];
         [self.contentView addSubview:_title_label];
         _title_label.textAlignment=0;
-        _title_label.textColor=[UIColor blackColor];
+        _title_label.textColor=_define_black_color;
         [_title_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(10);
             make.top.mas_equalTo(0);

@@ -250,7 +250,7 @@
         }else
         {
             CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(97+ktabbarHeight+_imgHeight):(77+ktabbarHeight+_imgHeight);
+            _mengban_size_Height=IsPhone6_gt?(97+6+ktabbarHeight+_imgHeight):(77+6+ktabbarHeight+_imgHeight);
         }
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{
@@ -356,7 +356,7 @@
         
         _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?161:138);
         [UIView animateWithDuration:0.3 animations:^{
-            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?(66+ktabbarHeight):(46+ktabbarHeight)), ScreenWidth, IsPhone6_gt?(66+ktabbarHeight):(46+ktabbarHeight));
+            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?(66+4+ktabbarHeight):(46+4+ktabbarHeight)), ScreenWidth, IsPhone6_gt?(66+ktabbarHeight):(46+ktabbarHeight));
         }];
     }
    

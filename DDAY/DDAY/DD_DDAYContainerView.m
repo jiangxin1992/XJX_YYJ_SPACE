@@ -22,25 +22,29 @@
 }
 -(void)UIConfig
 {
-//    UIImageView
-    UIView *imgBackView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:imgBackView];
-    [regular setBorder:imgBackView WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:2];
-    [imgBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(7);
-        make.height.width.mas_equalTo(imgBackView.mas_width);
-        
-    }];
+//[NSDate ise]
+//    UIView *imgBackView=[UIView getCustomViewWithColor:nil];
+//    [self addSubview:imgBackView];
+//    [regular setBorder:imgBackView WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:2];
+//    [imgBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_equalTo(-kEdge);
+//        make.top.mas_equalTo(7);
+//        make.height.width.mas_equalTo(imgBackView.mas_width);
+//        
+//    }];
     
     UIImageView *seriesImg=[UIImageView getCustomImg];
-    [imgBackView addSubview:seriesImg];
+    [self addSubview:seriesImg];
     seriesImg.contentMode=2;
     [regular setZeroBorder:seriesImg];
+    
     [seriesImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.seriesFrontPic.pic WithSize:800 placeHolderImageName:nil radius:0];
+    CGFloat _height_s_img=([_detailModel.seriesFrontPic.height floatValue]/[_detailModel.seriesFrontPic.width floatValue])*ScreenWidth;
     [seriesImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(imgBackView).with.insets(UIEdgeInsetsMake(15, 15, 15, 15));
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(7);
+        make.height.mas_equalTo(_height_s_img);
     }];
     
     UIView *timeBackView=[UIView getCustomViewWithColor:nil];
@@ -48,32 +52,114 @@
     [timeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(imgBackView.mas_bottom).with.offset(34);
+        make.top.mas_equalTo(seriesImg.mas_bottom).with.offset(0);
     }];
     
+//            _detailModel.saleStartTime=[regular getTimeWithTimeStr:@"2015-2-1 10:00"];
+//            _detailModel.saleEndTime=[regular getTimeWithTimeStr:@"2015-10-1 10:00"];
+    //
+//    _detailModel.saleStartTime=[regular getTimeWithTimeStr:@"2015-2-1 10:00"];
+//    _detailModel.saleEndTime=[regular getTimeWithTimeStr:@"2016-4-1 10:00"];
+//    NSInteger _now_year=[[regular getTimeStr:[NSDate nowTime] WithFormatter:@"YYYY"] integerValue];
+    NSString *_s_year=[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY"];
+    NSString *_e_year=[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY"];
+//    NSInteger _s_start_year=[_s_year integerValue];
+//    NSInteger _e_start_year=[_e_year integerValue];
     for (int i=0; i<2; i++) {
-        UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"] WithFont:15.0f WithTextColor:nil WithSpacing:0];
+//        YYYY
+        UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"HH : mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"MM . dd"] WithFont:i==0?15:18 WithTextColor:nil WithSpacing:0];
         [timeBackView addSubview:timelabel];
+        timelabel.font=[regular get_en_Font:i==0?15:18];
+        CGFloat _width=[regular getWidthWithHeight:34 WithContent:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"HH : mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"MM . dd"] WithFont:[regular get_en_Font:18.0f]];
         [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(60);
             if(i==0)
             {
-                make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-10);
-                make.top.bottom.mas_equalTo(0);
-                make.left.mas_equalTo(0);
+                make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-28);
+                make.bottom.mas_equalTo(0);
+                
             }else
             {
-                make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(10);
-                make.top.bottom.mas_equalTo(0);
-                make.right.mas_equalTo(0);
+                make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(28);
+                make.bottom.mas_equalTo(0);
             }
+            make.width.mas_equalTo(_width);
+            
         }];
         [timelabel sizeToFit];
+        
+        
+        UILabel *daylabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"MM . dd"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"HH : mm"] WithFont:i==0?18:15 WithTextColor:nil WithSpacing:0];
+        [timeBackView addSubview:daylabel];
+        daylabel.font=[regular get_en_Font:i==0?18:15];
+        [daylabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(60);
+            if(i==0)
+            {
+                make.right.mas_equalTo(timelabel.mas_left).with.offset(-10);
+                make.bottom.mas_equalTo(0);
+            }else
+            {
+                make.left.mas_equalTo(timelabel.mas_right).with.offset(10);
+                make.bottom.mas_equalTo(0);
+            }
+        }];
+        [daylabel sizeToFit];
+        
+        //        今年
+        //        横跨两个年
+        //        没横跨 但是不是今年
+//        if(_s_start_year!=_e_start_year)
+//        {
+            //            横跨
+            NSString *_year=i==0?_s_year:_e_year;
+            UILabel *yearLabel=[UILabel getLabelWithAlignment:1 WithTitle:_year WithFont:18.0f WithTextColor:nil WithSpacing:0];
+            [timeBackView addSubview:yearLabel];
+            yearLabel.font=[regular get_en_Font:14.0f];
+            [yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                if(i==0)
+                {
+                    make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-28);
+                }else
+                {
+                    make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(28);
+                }
+                make.top.mas_equalTo(2);
+                make.height.mas_equalTo(58);
+            }];
+            
+//        }else
+//        {
+//            if(_s_start_year==_now_year)
+//            {
+//                //                今年
+//                
+//            }else
+//            {
+//                if(i==0)
+//                {
+//                    //                没横跨 但是不是今年
+//                    UILabel *yearLabel=[UILabel getLabelWithAlignment:1 WithTitle:_s_year WithFont:18.0f WithTextColor:nil WithSpacing:0];
+//                    [timeBackView addSubview:yearLabel];
+//                    yearLabel.font=[regular get_en_Font:18.0f];
+//                    [yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.centerX.mas_equalTo(timeBackView);
+//                        make.top.mas_equalTo(0);
+//                        make.height.mas_equalTo(34);
+//                    }];
+//                }
+//                
+//            }
+//        }
+        
     }
+    
     
     UIView *timeMiddleLine=[UIView getCustomViewWithColor:_define_black_color];
     [timeBackView addSubview:timeMiddleLine];
     [timeMiddleLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(timeBackView);
+        make.centerY.mas_equalTo(timeBackView.mas_centerY).with.offset(30);
+        make.centerX.mas_equalTo(timeBackView);
         make.height.mas_equalTo(5);
         make.width.mas_equalTo(16);
     }];
@@ -83,7 +169,14 @@
     [seriesTipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(timeBackView.mas_bottom).with.offset(19);
+        if([NSString isNilOrEmpty:_detailModel.seriesTips])
+        {
+            make.top.mas_equalTo(timeBackView.mas_bottom).with.offset(0);
+        }else
+        {
+            make.top.mas_equalTo(timeBackView.mas_bottom).with.offset(19);
+        }
+        
     }];
     [seriesTipsLabel sizeToFit];
     
@@ -162,7 +255,7 @@
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(30);
         make.right.mas_offset(-kEdge);
-        make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(250));
+        make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(ScreenWidth-2*kEdge));
     }];
     UIView *lastViewSeries=nil;
     for (int i=0; i<2; i++) {

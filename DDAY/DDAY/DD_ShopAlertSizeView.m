@@ -65,24 +65,24 @@
         
         if(_sizeModel.stock)
         {
-            [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            _btn.backgroundColor=[UIColor whiteColor];
+            [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
+            _btn.backgroundColor=_define_white_color;
             _btn.userInteractionEnabled=YES;
             [regular setBorder:_btn];
             if([_sizeModel.sizeId isEqualToString:_ItemModel.sizeId])
             {
                 _btn.selected=YES;
-                [_btn setBackgroundColor:[UIColor blackColor]];
+                [_btn setBackgroundColor:_define_black_color];
                 
             }else
             {
                 _btn.selected=NO;
-                [_btn setBackgroundColor:[UIColor whiteColor]];
+                [_btn setBackgroundColor:_define_white_color];
             }
         }else
         {
-            [_btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-            _btn.backgroundColor=_define_light_gray_color2;
+            [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+            _btn.backgroundColor=_define_black_color;
             _btn.userInteractionEnabled=NO;
         }
         [_sizeBtnArr addObject:_btn];
@@ -96,7 +96,7 @@
             {
                 make.left.mas_equalTo(kEdge);
             }
-            make.top.mas_equalTo(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(IsPhone6_gt?25:15);
             make.width.mas_equalTo(28);
             make.height.mas_equalTo(28);
         }];
@@ -114,7 +114,7 @@
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?25:15);
             make.height.mas_equalTo(_imgHeight);
         }];
     }
@@ -126,10 +126,10 @@
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         if(sizeBriefImg)
         {
-            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?25:15);
         }else
         {
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?25:15);
         }
 //        make.right.mas_equalTo(-kEdge);
 //        make.left.mas_equalTo(kEdge);
@@ -177,13 +177,13 @@
                 _sizeID=@"";
                 _sizeName=@"";
                 _count=0;
-                [_btn setBackgroundColor:[UIColor whiteColor]];
+                [_btn setBackgroundColor:_define_white_color];
             }else
             {
                 _btn.selected=YES;
                 _sizeID=_sizeModel.sizeId;
                 _sizeName=_sizeModel.sizeName;
-                [_btn setBackgroundColor:[UIColor blackColor]];
+                [_btn setBackgroundColor:_define_black_color];
                 if(_count>_sizeModel.stock)
                 {
                     _count=_sizeModel.stock;
@@ -193,7 +193,7 @@
         }else
         {
             _btn.selected=NO;
-            [_btn setBackgroundColor:[UIColor whiteColor]];
+            [_btn setBackgroundColor:_define_white_color];
         }
     }
 }

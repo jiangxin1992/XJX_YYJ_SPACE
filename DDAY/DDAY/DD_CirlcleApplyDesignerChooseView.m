@@ -35,15 +35,15 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
 {
     _designerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:_designerBtn];
-    [_designerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_designerBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
+    [_designerBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
+    [_designerBtn setTitleColor:_define_light_gray_color1 forState:UIControlStateSelected];
     [_designerBtn setTitle:@"*你最喜欢的独立设计师" forState:UIControlStateSelected];
     
     _designerBtn.titleLabel.font=[regular getFont:14.0f];

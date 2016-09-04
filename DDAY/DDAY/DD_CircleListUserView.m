@@ -40,7 +40,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -60,13 +60,13 @@
     userName=[[UILabel alloc] init];
     [self addSubview:userName];
     userName.textAlignment=0;
-    userName.textColor=[UIColor grayColor];
+    userName.textColor=_define_black_color;
     userName.font=[regular getFont:13.0f];
     
     career=[[UILabel alloc] init];
     [self addSubview:career];
     career.textAlignment=0;
-    career.textColor=[UIColor lightGrayColor];
+    career.textColor=_define_light_gray_color1;
     career.font=[regular getFont:12.0f];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(icon.mas_right).with.offset(10);
@@ -84,7 +84,7 @@
     deleteBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:deleteBtn];
     [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-    [deleteBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [deleteBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     [deleteBtn addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     deleteBtn.hidden=YES;
     deleteBtn.titleLabel.font=[regular getFont:13.0f];
@@ -99,7 +99,7 @@
     createTime=[[UILabel alloc] init];
     [self addSubview:createTime];
     createTime.textAlignment=2;
-    createTime.textColor=[UIColor lightGrayColor];
+    createTime.textColor=_define_light_gray_color1;
     createTime.font=[regular getFont:12.0f];
     [createTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(userName);

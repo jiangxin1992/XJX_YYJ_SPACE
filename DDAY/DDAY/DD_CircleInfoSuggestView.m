@@ -49,7 +49,7 @@
 }
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
     self.userInteractionEnabled=YES;
 //    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
 }

@@ -156,7 +156,7 @@
 {
     _MiddleView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_MiddleView];
-    _MiddleView.backgroundColor=[UIColor whiteColor];
+    _MiddleView.backgroundColor=_define_white_color;
     [_MiddleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_UpView.mas_bottom).with.offset(0);
         make.left.right.mas_equalTo(0);
@@ -179,7 +179,7 @@
         btn.tag=100+i;
         btn.titleLabel.font=[regular getFont:15];
         [btn setEnlargeEdgeWithTop:0 right:0 bottom:2 left:0];
-        btn.backgroundColor=[UIColor clearColor];
+        btn.backgroundColor= _define_clear_color;
         if(i==0)
         {
             btn.selected=YES;
@@ -344,10 +344,10 @@
                 }else if([type isEqualToString:@"push_comment"])
                 {
                     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId IsHomePage:YES  WithBlock:^(NSString *type) {
-//                        if([type isEqualToString:@"reload"])
-//                        {
-//                            [ctn3 reloadData];
-//                        }
+                        if([type isEqualToString:@"reload"])
+                        {
+                            [ctn3 reloadData];
+                        }
                     }] animated:YES];
                 }
                 
@@ -369,7 +369,7 @@
         }else
         {
             _btn.selected=NO;
-            _btn.backgroundColor=[UIColor clearColor];
+            _btn.backgroundColor= _define_clear_color;
         }
     }
     

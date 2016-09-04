@@ -62,6 +62,10 @@
  */
 +(NSString *)getTimeStr:(long)time WithFormatter:(NSString *)_formatter;
 /**
+ * 获取时间戳
+ */
++(long )getTimeWithTimeStr:(NSString *)time;
+/**
  * 获取当前时间戳
  */
 +(long)date;

@@ -58,7 +58,7 @@
 -(void)PrepareUI
 {
     self.userInteractionEnabled=YES;
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -73,7 +73,7 @@
     [_upView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseStyle)]];
     [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.right.left.mas_equalTo(0);
-        make.height.mas_equalTo(@40);
+        make.height.mas_equalTo(40);
     }];
     
     UILabel *leftLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"款式选择" WithFont:13.0f WithTextColor:nil WithSpacing:0];

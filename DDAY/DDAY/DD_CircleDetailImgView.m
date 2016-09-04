@@ -10,8 +10,6 @@
 
 #import "ImageViewController.h"
 
-#define yellow_color [UIColor colorWithRed:248.0f/255.0f green:210.0f/255.0f blue:82.0f/255.0f alpha:1]
-
 @implementation DD_CircleDetailImgView
 {
     UIPageViewController *_pageViewControler;
@@ -66,7 +64,7 @@
         imgvc.array=_detailModel.pics;
     }
     
-    imgvc.view.backgroundColor = [UIColor clearColor];
+    imgvc.view.backgroundColor =  _define_clear_color;
     imgvc.currentPage = 0;
     [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     _pageViewControler.delegate = self;
@@ -87,8 +85,8 @@
         _pageControl.numberOfPages = _detailModel.pics.count;
     }
     
-    _pageControl.currentPageIndicatorTintColor = yellow_color;
-    _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1];
+    _pageControl.currentPageIndicatorTintColor = _define_black_color;
+    _pageControl.pageIndicatorTintColor = _define_white_color;
     [_pageControl mas_makeConstraints:^(MASConstraintMaker * make){
         make.bottom.equalTo(self.mas_bottom).with.offset(-10);
         make.centerX.equalTo(self.mas_centerX);
@@ -97,10 +95,10 @@
 //    itemBtn=[UIButton buttonWithType:UIButtonTypeCustom];
 //    [self addSubview:itemBtn];
 //    itemBtn.alpha=0.7;
-//    [itemBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [itemBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
 //    itemBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
 //    itemBtn.titleLabel.font=[regular get_en_Font:20.0f];
-//    itemBtn.backgroundColor=[UIColor whiteColor];
+//    itemBtn.backgroundColor=_define_white_color;
 //    [itemBtn addTarget:self action:@selector(showItemListAction) forControlEvents:UIControlEventTouchUpInside];
 //    [itemBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_detailModel.items.count] forState:UIControlStateNormal];
 //    [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -137,7 +135,7 @@
         imgvc.array=_detailModel.pics;
         imgvc.maxPage = _detailModel.pics.count-1;
     }
-    imgvc.view.backgroundColor = [UIColor clearColor];
+    imgvc.view.backgroundColor =  _define_clear_color;
     imgvc.currentPage = index;
     return imgvc;
     
@@ -162,7 +160,7 @@
         imgvc.array=_detailModel.pics;
         imgvc.maxPage = _detailModel.pics.count-1;
     }
-    imgvc.view.backgroundColor = [UIColor clearColor];
+    imgvc.view.backgroundColor =  _define_clear_color;
     imgvc.currentPage = index;
     
     return imgvc;

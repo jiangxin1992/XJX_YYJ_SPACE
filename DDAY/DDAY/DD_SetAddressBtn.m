@@ -24,7 +24,6 @@
     {
         
         btn.touchBlock=block;
-        btn.backgroundColor=[UIColor redColor];
         btn.AddressModel=AddressModel;
         [btn SomePrepare];
         [btn SetState];
@@ -41,9 +40,9 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
     [self addTarget:self action:@selector(touchAction) forControlEvents:UIControlEventTouchUpInside];
-    [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self setTitleColor:_define_black_color forState:UIControlStateNormal];
 }
 #pragma mark - SomeActions
 -(void)touchAction
@@ -65,6 +64,7 @@
     
     addressImg=[UIImageView getImgWithImageStr:@"System_address"];
     [self addSubview:addressImg];
+    addressImg.userInteractionEnabled=NO;
     [addressImg mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLabel.mas_right).with.offset(20);
         make.right.mas_equalTo(-kEdge);

@@ -97,7 +97,7 @@
 {
     _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:_preView];
-    _preView.backgroundColor=[UIColor blackColor];
+    _preView.backgroundColor=_define_black_color;
     [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
 
     [_preView mas_makeConstraints:^(MASConstraintMaker *make) {

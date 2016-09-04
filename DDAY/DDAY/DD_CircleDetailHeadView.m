@@ -175,6 +175,7 @@
     [_conentLabel sizeToFit];
     
     UIView *_lastView_state=nil;
+    UIView *_last_count_view=nil;
     NSArray *imgArr_normal=nil;
     NSArray *imgArr_select=nil;
     if(_isHomePage)
@@ -224,6 +225,22 @@
             }
         }];
         [userBtnArr addObject:btn];
+        
+        UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [self.contentView addSubview:label];
+        label.tag=300+i;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(btn);
+            if(_last_count_view)
+            {
+                make.top.mas_equalTo(_last_count_view);
+            }else
+            {
+                make.top.mas_equalTo(btn.mas_bottom).with.offset(0);
+            }
+        }];
+        
+        _last_count_view=label;
         _lastView_state=btn;
     }
     
@@ -237,8 +254,8 @@
     }];
     [_timeLabel sizeToFit];
     
-    [_lastView_state mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-10);
+    [_last_count_view mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-30);
     }];
 }
 #pragma mark - setter
@@ -360,9 +377,16 @@
     
     UIButton *praiseBtn=[_contentView viewWithTag:200];
     praiseBtn.selected=_listModel.isLike;
+    UILabel *praiseLabel=[self viewWithTag:300];
+    praiseLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.likeTimes];
+    UILabel *commentLabel=[self viewWithTag:301];
+    commentLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.commentTimes];
+   
     
     UIButton *collectBtn=[_contentView viewWithTag:202];
     collectBtn.selected=_listModel.isCollect;
+    UILabel *collectLabel=[self viewWithTag:302];
+    collectLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.collectTimes];
     
     UIButton *delectBtn=[_contentView viewWithTag:203];
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];

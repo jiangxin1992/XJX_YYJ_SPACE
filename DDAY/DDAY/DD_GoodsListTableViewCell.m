@@ -35,7 +35,7 @@
         make.centerY.mas_equalTo(self.contentView);
     }];
     
-    label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12 WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:14 WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(view.mas_right).with.offset(22);

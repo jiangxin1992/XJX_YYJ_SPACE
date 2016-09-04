@@ -64,7 +64,7 @@
     _yanzhengBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"验证" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     [_yanzheng addSubview:_yanzhengBtn];
     _yanzhengBtn.layer.masksToBounds=YES;
-    _yanzhengBtn.layer.borderColor=[[UIColor blackColor] CGColor];
+    _yanzhengBtn.layer.borderColor=[_define_black_color CGColor];
     _yanzhengBtn.layer.borderWidth=1;
     [_yanzhengBtn addTarget:self action:@selector(getCodeAction) forControlEvents:UIControlEventTouchUpInside];
     [_yanzhengBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +73,7 @@
         make.right.and.left.mas_equalTo(0);
     }];
     
-    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:13.0f WithTextColor:_define_light_gray_color WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:_yanzheng WithSecureTextEntry:NO];
+    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:_yanzheng WithSecureTextEntry:NO];
     [self.view addSubview:_codeTextfield];
     _codeTextfield.returnKeyType=UIReturnKeyNext;
     _codeTextfield.delegate=self;
@@ -85,7 +85,7 @@
     }];
     
     UIButton *registerBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:20.0f WithNormalTitle:@"验    证" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    registerBtn.backgroundColor=[UIColor blackColor];
+    registerBtn.backgroundColor=_define_black_color;
     [self.view addSubview:registerBtn];
     [registerBtn addTarget:self action:@selector(verifyAction) forControlEvents:UIControlEventTouchUpInside];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {

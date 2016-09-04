@@ -104,7 +104,7 @@
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(100, (ScreenHeight-100)/2.0f, ScreenWidth-200, 50)];
     [self.view addSubview:label];
     label.textAlignment=1;
-    label.textColor=[UIColor blackColor];
+    label.textColor=_define_black_color;
     label.text=_status==4?@"申请退款":_status==5?@"退款处理中":_status==6?@"已退款":@"拒绝退款";
     
 }
@@ -114,13 +114,13 @@
     
     textView = [[UITextView alloc] initWithFrame:CGRectMake(10,74, ScreenWidth-20, 200)] ; //初始化大小并自动释放
     textView.contentSize=CGSizeMake( ScreenWidth-20, 200);
-    textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色
+    textView.textColor = _define_black_color;//设置textview里面的字体颜色
     
     textView.font = [regular getFont:14.0f];//设置字体名字和字体大小
     
     textView.delegate = self;//设置它的委托方法
     textView.textAlignment=0;
-    textView.backgroundColor = [UIColor clearColor];//设置它的背景颜色
+    textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
     
     textView.returnKeyType = UIReturnKeyDefault;//返回键的类型
     

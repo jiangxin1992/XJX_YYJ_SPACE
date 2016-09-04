@@ -55,7 +55,7 @@
     [subtract mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.width.and.height.mas_equalTo(20);
-        make.top.mas_equalTo(IsPhone6_gt?23:13);
+        make.top.mas_equalTo(IsPhone6_gt?25:15);
     }];
     
     countBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"%ld",_count] WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -83,7 +83,7 @@
     confirmBtn.backgroundColor=_define_black_color;
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?23:13);
+        make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?25:15);
 //        make.right.mas_equalTo(-kEdge);
 //        make.left.mas_equalTo(kEdge);
         make.left.right.mas_equalTo(0);

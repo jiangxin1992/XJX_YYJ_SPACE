@@ -57,53 +57,45 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIView *imageBack=[UIView getCustomViewWithColor:_define_white_color];
-    [self.contentView addSubview:imageBack];
-    [imageBack mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(15);
-        make.left.mas_equalTo(kEdge);
-        make.height.width.mas_equalTo(123);
-    }];
-    [regular setBorder:imageBack];
-    
     //    款式照片
     _itemImg=[UIImageView getCustomImg];
-    [imageBack addSubview:_itemImg];
+    [self.contentView addSubview:_itemImg];
     _itemImg.contentMode=2;
     [regular setZeroBorder:_itemImg];
     [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+        make.top.mas_equalTo(20);
+        make.left.mas_equalTo(kEdge);
+        make.height.width.mas_equalTo(90);
     }];
     
     //    款式信息
-    _itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_itemNameLabel];
-    _itemNameLabel.numberOfLines=2;
     [_itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
+        make.left.mas_equalTo(_itemImg.mas_right).with.offset(18);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(17);
     }];
     [_itemNameLabel sizeToFit];
     
-    _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
     _sizeNameBtn.userInteractionEnabled=NO;
     [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
+        make.bottom.mas_equalTo(_itemImg);
         make.left.mas_equalTo(_itemNameLabel);
     }];
     [_sizeNameBtn setEnlargeEdge:20];
     
-    _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+    _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_numBtn];
     _numBtn.userInteractionEnabled=NO;
     [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(80);
-        make.bottom.mas_equalTo(imageBack);
+        make.bottom.mas_equalTo(_itemImg);
         make.right.mas_equalTo(-kEdge);
     }];
     [_numBtn setEnlargeEdge:20];
@@ -117,8 +109,9 @@
         make.height.mas_equalTo(9);
     }];
     
-    _priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    _priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_priceLabel];
+    _priceLabel.font=[regular get_en_Font:13.0f];
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_colorView.mas_top).with.offset(-11);
         make.left.mas_equalTo(_itemNameLabel);
@@ -128,25 +121,25 @@
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(imageBack.mas_bottom).with.offset(9);
+        make.top.mas_equalTo(_itemImg.mas_bottom).with.offset(20);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
     }];
     
-    _totalPriceLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _totalPriceLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_totalPriceLabel];
     [_totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
         make.width.mas_equalTo(100);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(40);
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(0);
     }];
     
-    _goodNumLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _goodNumLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_goodNumLabel];
     [_goodNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(_totalPriceLabel.mas_left).with.offset(0);
+        make.right.mas_equalTo(_totalPriceLabel.mas_left).with.offset(-15);
         make.width.mas_equalTo(_totalPriceLabel);
         make.height.mas_equalTo(_totalPriceLabel);
         make.top.mas_equalTo(_totalPriceLabel);

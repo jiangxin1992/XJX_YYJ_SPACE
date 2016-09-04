@@ -47,10 +47,10 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor =  _define_clear_color;
     UIView *backview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 38)];
     [self addSubview:backview];
-    backview.backgroundColor=[UIColor whiteColor];
+    backview.backgroundColor=_define_white_color;
     
     serieslabel=[[UILabel alloc] initWithFrame:CGRectMake(80,0, (ScreenWidth-80)/2.0f, 38)];
     [backview addSubview:serieslabel];
@@ -59,7 +59,7 @@
     timeLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(serieslabel.frame),0, (ScreenWidth-80)/2.0f, 38)];
     [backview addSubview:timeLabel];
     timeLabel.textAlignment=0;
-    timeLabel.textColor=[UIColor blueColor];
+    timeLabel.textColor=_define_light_gray_color1;
     timeLabel.font=[regular get_en_Font:11.f];
     
     selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,12 +69,13 @@
     selectBtn.titleLabel.font=[regular getFont:13.0f];
     [selectBtn setTitle:@"全选" forState:UIControlStateNormal];
     [selectBtn setTitle:@"取消全选" forState:UIControlStateSelected];
-    [selectBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [selectBtn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+    [selectBtn setTitleColor:_define_black_color forState:UIControlStateSelected];
 }
 #pragma mark - SetState
 -(void)SetState
 {
+    
     DD_ShopSeriesModel *_seriesModel = [DD_ShopTool getNumberSection:_section WithModel:_shopModel];
     [regular dispatch_cancel:_seriesModel.timer];
     BOOL _isselect=[DD_ShopTool selectAllWithModel:_shopModel WithSection:_section];
@@ -82,10 +83,10 @@
     
     if(![DD_ShopTool isInvalidWithSection:_section WithModel:_shopModel])
     {
-        serieslabel.textColor=[UIColor blackColor];
+        serieslabel.textColor=_define_black_color;
     }else
     {
-        serieslabel.textColor=[UIColor lightGrayColor];
+        serieslabel.textColor=_define_light_gray_color1;
     }
     serieslabel.text=[[NSString alloc] initWithFormat:@"系列：%@",_seriesModel.seriesName];
     if([NSDate nowTime]<_seriesModel.saleEndTime&&[NSDate nowTime]>=_seriesModel.saleStartTime)

@@ -43,7 +43,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 
@@ -53,9 +53,9 @@
     [self addSubview:collectBtn];
     [collectBtn addTarget:self action:@selector(collectAction:) forControlEvents:UIControlEventTouchUpInside];
     [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-    [collectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [collectBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     [collectBtn setTitle:@"取消收藏" forState:UIControlStateSelected];
-    [collectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [collectBtn setTitleColor:_define_black_color forState:UIControlStateSelected];
     collectBtn.titleLabel.font=[regular getFont:13.0f];
     [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(5);
@@ -70,36 +70,36 @@
     [self addSubview:shareBtn];
     [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     [shareBtn setTitle:@"分享" forState:UIControlStateNormal];
-    [shareBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [shareBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     shareBtn.titleLabel.font=[regular getFont:13.0f];
     
     commentBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:commentBtn];
     [commentBtn addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
     [commentBtn setTitle:@"评论" forState:UIControlStateNormal];
-    [commentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [commentBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     commentBtn.titleLabel.font=[regular getFont:13.0f];
 
     commentLabel=[[UILabel alloc] init];
     [self addSubview:commentLabel];
     commentLabel.textAlignment=0;
     commentLabel.font=[regular getFont:11.0f];
-    commentLabel.textColor=[UIColor lightGrayColor];
+    commentLabel.textColor=_define_light_gray_color1;
     
     praiseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:praiseBtn];
     [praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
     [praiseBtn setTitle:@"点赞" forState:UIControlStateNormal];
-    [praiseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [praiseBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     [praiseBtn setTitle:@"取消点赞" forState:UIControlStateSelected];
-    [praiseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [praiseBtn setTitleColor:_define_black_color forState:UIControlStateSelected];
     praiseBtn.titleLabel.font=[regular getFont:13.0f];
     
     praiseLabel=[[UILabel alloc] init];
     [self addSubview:praiseLabel];
     praiseLabel.textAlignment=0;
     praiseLabel.font=[regular getFont:11.0f];
-    praiseLabel.textColor=[UIColor lightGrayColor];
+    praiseLabel.textColor=_define_light_gray_color1;
     
 //    循环约束
     NSArray *viewArr=@[praiseLabel,praiseBtn,commentLabel,commentBtn,shareBtn];

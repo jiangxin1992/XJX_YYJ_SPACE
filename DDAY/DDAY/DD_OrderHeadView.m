@@ -52,7 +52,7 @@
         make.width.mas_equalTo(3);
     }];
     
-    orderIDLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    orderIDLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:orderIDLabel];
     [orderIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(leftLine.mas_right).with.offset(5);
@@ -61,7 +61,7 @@
     [orderIDLabel sizeToFit];
 
     
-    stateLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    stateLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:stateLabel];
     [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);

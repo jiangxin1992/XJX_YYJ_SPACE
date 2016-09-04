@@ -15,7 +15,7 @@
 +(WaterflowCell *)getColCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_CricleChooseItemModel *)item WithHeight:(CGFloat )_height
 {
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
-    cell.backgroundColor=[UIColor whiteColor];
+    cell.backgroundColor=_define_white_color;
     UIImageView *imageview=nil;
     
     if(item.pic)
@@ -43,7 +43,7 @@
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
-    //    titleLabel.backgroundColor=[UIColor redColor];
+
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
@@ -58,11 +58,9 @@
     _index=index;
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
     cell.userInteractionEnabled=YES;
-//    cell.backgroundColor=[UIColor yellowColor];
     
     UIView *backView=[UIView getCustomViewWithColor:nil];
     [cell addSubview:backView];
-//    backView.backgroundColor=[UIColor redColor];
     if(item.isSelect)
     {
         [regular setBorder:backView];
@@ -90,14 +88,16 @@
         }
     }];
     
-    UILabel *priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
-    [imgView addSubview:priceLabel];
-    priceLabel.font=[regular get_en_Font:15.0f];
-    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(8);
-        make.bottom.mas_equalTo(-8);
+    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [imgView addSubview:price_label];
+    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    price_label.titleLabel.font=[regular getSemiboldFont:15.0f];
+    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
+    [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(25);
     }];
-    
     
 //    UIButton *itemBtn=[UIButton getCustomImgBtnWithImageStr:@"Circle_No_choose" WithSelectedImageStr:@"System_Select"];
 //    [cell addSubview:itemBtn];
@@ -111,7 +111,6 @@
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
-//    titleLabel.backgroundColor=[UIColor redColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(0);
         make.left.right.mas_equalTo(0);

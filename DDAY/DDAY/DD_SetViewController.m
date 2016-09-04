@@ -156,7 +156,6 @@
         [self presentViewController:[regular alertTitleCancel_Simple:@"确定退出？" WithBlock:^{
             [self logout];
         }] animated:YES completion:nil];
-        [self logout];
     }else if([_key_str isEqualToString:@"about"])
     {
         //        关于dday

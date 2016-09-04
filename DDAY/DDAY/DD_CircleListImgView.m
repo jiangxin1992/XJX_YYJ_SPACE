@@ -34,7 +34,6 @@
     pic.contentMode=2;
     [regular setZeroBorder:pic];
     pic.userInteractionEnabled=YES;
-    pic.backgroundColor=[UIColor grayColor];
     [pic mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.and.right.mas_equalTo(0);
         make.height.mas_equalTo(@300);
@@ -45,10 +44,10 @@
     itemBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [pic addSubview:itemBtn];
     itemBtn.alpha=0.7;
-    [itemBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [itemBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     itemBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     itemBtn.titleLabel.font=[regular get_en_Font:20.0f];
-    itemBtn.backgroundColor=[UIColor whiteColor];
+    itemBtn.backgroundColor=_define_white_color;
     [itemBtn addTarget:self action:@selector(showItemListAction) forControlEvents:UIControlEventTouchUpInside];
     [itemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.mas_equalTo(@80);

@@ -69,22 +69,22 @@
 //        42 20
         if(_sizeModel.stock)
         {
-            [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            _btn.backgroundColor=[UIColor whiteColor];
+            [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
+            _btn.backgroundColor=_define_white_color;
             _btn.userInteractionEnabled=YES;
             _btn.layer.masksToBounds=YES;
-            _btn.layer.borderColor=[[UIColor blackColor] CGColor];
+            _btn.layer.borderColor=[_define_black_color CGColor];
             _btn.layer.borderWidth=1;
         }else
         {
             
-            [_btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-            _btn.backgroundColor=[UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1];
+            [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+            _btn.backgroundColor=_define_white_color;
             _btn.userInteractionEnabled=NO;
         }
         [_btn setTitle:_sizeModel.sizeName forState:UIControlStateNormal];
         [_btn setTitle:_sizeModel.sizeName forState:UIControlStateSelected];
-        [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [_btn setTitleColor:_define_white_color forState:UIControlStateSelected];
         [_sizeBtnArr addObject:_btn];
         _btn.tag=100+i;
         [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -96,7 +96,7 @@
             {
                 make.left.mas_equalTo(kEdge);
             }
-            make.top.mas_equalTo(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(IsPhone6_gt?25:15);
             make.width.mas_equalTo(28);
             make.height.mas_equalTo(28);
         }];
@@ -116,7 +116,7 @@
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?25:15);
             make.height.mas_equalTo(_imgHeight);
         }];
     }
@@ -129,10 +129,10 @@
         make.width.and.height.mas_equalTo(20);
         if(sizeBriefImg)
         {
-            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?25:15);
         }else
         {
-            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?23:13);
+            make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?25:15);
         }
     }];
     
@@ -162,7 +162,7 @@
     shop.backgroundColor=_define_white_color;
     [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
     [shop mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(add.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(add.mas_bottom).with.offset(25);
         make.left.mas_equalTo(0);
         make.height.mas_equalTo(ktabbarHeight);
         make.width.mas_equalTo(ScreenWidth/2.0f);
@@ -251,12 +251,12 @@
             {
                 _btn.selected=NO;
                 _sizeID=@"";
-                [_btn setBackgroundColor:[UIColor whiteColor]];
+                [_btn setBackgroundColor:_define_white_color];
             }else
             {
                 _btn.selected=YES;
                 _sizeID=_sizeModel.sizeId;
-                [_btn setBackgroundColor:[UIColor blackColor]];
+                [_btn setBackgroundColor:_define_black_color];
                 if(_count>_sizeModel.stock)
                 {
                     _count=_sizeModel.stock;
@@ -267,7 +267,7 @@
         }else
         {
             _btn.selected=NO;
-            [_btn setBackgroundColor:[UIColor whiteColor]];
+            [_btn setBackgroundColor:_define_white_color];
         }
     }
 }
@@ -278,7 +278,7 @@
 //    UIButton *buyBtn=[UIButton buttonWithType:UIButtonTypeCustom];
 //    [self addSubview:buyBtn];
 //    buyBtn.frame=CGRectMake(0, 360, 300, 40);
-//    [buyBtn setBackgroundColor:[UIColor blackColor]];
+//    [buyBtn setBackgroundColor:_define_black_color];
 //    NSString *_title=nil;
 //    if([_type isEqualToString:@"shop"])
 //    {
@@ -291,7 +291,7 @@
 //        _title=@"确定";
 //    }
 //    [buyBtn setTitle:_title forState:UIControlStateNormal];
-//    [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [buyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
 //    [buyBtn addTarget:self action:@selector(shop_buy_action) forControlEvents:UIControlEventTouchUpInside];
 //    
 //}

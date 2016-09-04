@@ -69,7 +69,7 @@
     }];
     
     UIButton *registerBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:20.0f WithNormalTitle:@"完    成" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    registerBtn.backgroundColor=[UIColor blackColor];
+    registerBtn.backgroundColor=_define_black_color;
     [self.view addSubview:registerBtn];
     [registerBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -153,7 +153,7 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.textLabel.tintColor=[UIColor blackColor];
+    cell.textLabel.tintColor=_define_black_color;
     DD_CircleApplyDesignerModel *model=[_dataArr objectAtIndex:indexPath.section];
     cell.textLabel.text=model.designerName;
     return cell;

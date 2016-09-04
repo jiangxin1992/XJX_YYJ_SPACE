@@ -67,7 +67,6 @@
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
     _pageVc.view.frame = CGRectMake(0, CGRectGetMaxY(_UpView.frame), 1000, 1000);
-    _pageVc.view.backgroundColor = [UIColor yellowColor];
     if(ctn1==nil)
     {
         ctn1=[[DD_UserCollectItemViewController alloc] initWithBlock:^(NSString *type, DD_ItemsModel *model) {
@@ -89,7 +88,7 @@
 {
     _UpView=[[UIView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, 36)];
     [self.view addSubview:_UpView];
-    _UpView.backgroundColor=[UIColor whiteColor];
+    _UpView.backgroundColor=_define_white_color;
     
     for (int i=0; i<2; i++) {
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];

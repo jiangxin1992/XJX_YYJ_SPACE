@@ -129,7 +129,7 @@
 //{
 //    UIButton *_submitBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
 //    [self addSubview:_submitBtn];
-//    _submitBtn.backgroundColor=[UIColor blackColor];
+//    _submitBtn.backgroundColor=_define_black_color;
 //    [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
 //    
 //    [_submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {

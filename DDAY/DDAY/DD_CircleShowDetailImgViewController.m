@@ -46,7 +46,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.view.backgroundColor=[UIColor blackColor];
+    self.view.backgroundColor=_define_black_color;
     self.navigationItem.titleView=[regular returnNavView:[[NSString alloc] initWithFormat:@"%ld/%ld",_index+1,_picArrs.count] withmaxwidth:200];
 }
 #pragma mark - UIConfig

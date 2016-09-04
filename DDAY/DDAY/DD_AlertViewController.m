@@ -45,7 +45,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(27, 27) WithImgeStr:@"System_Confirm"];
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
     [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
 }
@@ -54,7 +54,7 @@
 {
     _inputTextfield=[[UITextField alloc] init];
     [self.view addSubview:_inputTextfield];
-    _inputTextfield.textColor=[UIColor blackColor];
+    _inputTextfield.textColor=_define_black_color;
 
     if([_key isEqualToString:@"nickname"])
     {

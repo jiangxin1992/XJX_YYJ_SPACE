@@ -119,7 +119,7 @@
     }];
     UIView *lastView=nil;
     for (int i=0; i<2; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?@"支付方式":@"支付宝" WithFont:12.0f WithTextColor:i==0?_define_black_color:_define_light_gray_color WithSpacing:0];
+        UILabel *label=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?@"支付方式":@"支付宝" WithFont:12.0f WithTextColor:i==0?_define_black_color:_define_light_gray_color1 WithSpacing:0];
         [payView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
@@ -240,9 +240,9 @@
 //    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
 //    [self addSubview:btn];
 //    btn.frame=CGRectMake(10, CGRectGetMaxY(remarksView.frame)+5, ScreenWidth-20, 40);
-//    btn.backgroundColor=[UIColor whiteColor];
+//    btn.backgroundColor=_define_white_color;
 //    [btn setTitle:@"联系客服" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [btn setTitleColor:_define_black_color forState:UIControlStateNormal];
 //    [btn addTarget:self action:@selector(contactAction) forControlEvents:UIControlEventTouchUpInside];
 //    //    self
 //}

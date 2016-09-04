@@ -30,20 +30,21 @@
 }
 -(void)setMonthModel:(DD_MonthModel *)monthModel
 {
+    
     _monthModel=monthModel;
     self.dayLabel.text = [NSString stringWithFormat:@"%02ld",monthModel.dayValue];
     if (monthModel.isSelectedDay) {
-        self.dayLabel.backgroundColor = [UIColor blackColor];
-        self.dayLabel.textColor = [UIColor whiteColor];
+        self.dayLabel.backgroundColor = _define_black_color;
+        self.dayLabel.textColor = _define_white_color;
     }else
     {
-        self.dayLabel.backgroundColor = [UIColor clearColor];
+        self.dayLabel.backgroundColor =  _define_clear_color;
         if([monthModel.week integerValue]%7==0||[monthModel.week integerValue]%6==0)
         {
-            self.dayLabel.textColor = [UIColor lightGrayColor];
+            self.dayLabel.textColor = _define_light_gray_color1;
         }else
         {
-            self.dayLabel.textColor = [UIColor blackColor];
+            self.dayLabel.textColor = _define_black_color;
         }
     }
     

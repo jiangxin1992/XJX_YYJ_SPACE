@@ -253,7 +253,7 @@
 //-(void)CreateTotalView
 //{
 //    totalView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 150)];
-//    totalView.backgroundColor=[UIColor whiteColor];
+//    totalView.backgroundColor=_define_white_color;
 //    [self addSubview:totalView];
 //    
 //    CGFloat _Freight=_dataArr.count*[_freight floatValue];
@@ -296,7 +296,7 @@
 //        }
 //        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(_x_p, _y_p,_width , 30)];
 //        [totalView addSubview:label];
-//        label.textColor=[UIColor blackColor];
+//        label.textColor=_define_black_color;
 //        label.textAlignment=_algin;
 //        label.text=content[i];
 //    }
@@ -307,14 +307,14 @@
 //-(void)CreatePayView
 //{
 //    payView=[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(totalView.frame)+2, ScreenWidth, 40)];
-//    payView.backgroundColor=[UIColor whiteColor];
+//    payView.backgroundColor=_define_white_color;
 //    [self addSubview:payView];
 //    
 //    for (int i=0; i<2; i++) {
 //        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20+200*i, 5, i==0?170:90, 30)];
 //        [payView addSubview:label];
 //        label.textAlignment=i==0?0:2;
-//        label.textColor=i==0?[UIColor blackColor]:[UIColor lightGrayColor];
+//        label.textColor=i==0?_define_black_color:_define_light_gray_color1;
 //        label.text=i==0?@"支付方式":@"支付宝";
 //    }
 //}

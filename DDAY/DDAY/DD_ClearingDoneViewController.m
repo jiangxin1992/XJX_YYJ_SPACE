@@ -91,7 +91,7 @@
         make.height.width.mas_equalTo(72);
     }];
     
-    UILabel *titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:title WithFont:17.0f WithTextColor:nil WithSpacing:0];
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:title WithFont:18.0f WithTextColor:nil WithSpacing:0];
     [self.view addSubview:titleLabel];
     titleLabel.font=[regular getSemiboldFont:17.0f];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,7 +118,7 @@
             }
             make.width.mas_equalTo(121);
             make.height.mas_equalTo(40);
-            make.top.mas_equalTo(titleLabel.mas_bottom).with.offset(47);
+            make.top.mas_equalTo(titleLabel.mas_bottom).with.offset(IsPhone6_gt?94:47);
         }];
     }
     

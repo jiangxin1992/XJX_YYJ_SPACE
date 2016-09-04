@@ -275,7 +275,7 @@
         return cell;
     }
     //获取到数据以后
-    static NSString *cellid=@"cell_title";
+    static NSString *cellid=@"cell_circle_list";
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
@@ -385,10 +385,11 @@
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:[_dataArr objectAtIndex:index] WithShareID:listModel.shareId IsHomePage:YES WithBlock:^(NSString *type) {
-//        if([type isEqualToString:@"reload"])
-//        {
-//            [_tableview reloadData];
-//        }else if([type isEqualToString:@"delete"])
+        if([type isEqualToString:@"reload"])
+        {
+            [_tableview reloadData];
+        }
+//        else if([type isEqualToString:@"delete"])
 //        {
 //            [_dataArr removeObjectAtIndex:index];
 //            [_tableview reloadData];

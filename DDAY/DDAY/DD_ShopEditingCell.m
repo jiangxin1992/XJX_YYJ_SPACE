@@ -50,7 +50,7 @@
     
     backView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 138)];
     [self.contentView addSubview:backView];
-    backView.backgroundColor=[UIColor whiteColor];
+    backView.backgroundColor=_define_white_color;
     
     //    勾选框
     selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -60,8 +60,8 @@
     selectBtn.titleLabel.font=[regular getFont:14.0f];
     [selectBtn setTitle:@"未选中" forState:UIControlStateNormal];
     [selectBtn setTitle:@"选中" forState:UIControlStateSelected];
-    [selectBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [selectBtn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+    [selectBtn setTitleColor:_define_black_color forState:UIControlStateSelected];
     
     //    款式照片
     itemImg=[[UIImageView alloc] initWithFrame:CGRectMake(80, 9, 120, 120)];
@@ -73,7 +73,7 @@
     [backView addSubview:sizeNameBtn];
     [sizeNameBtn addTarget:self action:@selector(chooseSize) forControlEvents:UIControlEventTouchUpInside];
     sizeNameBtn.frame=CGRectMake(210, 9, ScreenWidth-220, 30);
-    [sizeNameBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sizeNameBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
     sizeNameBtn.backgroundColor=_define_backview_color;
     [regular setBorder:sizeNameBtn];
     
@@ -82,11 +82,11 @@
         CGFloat _width=i==1?CGRectGetWidth(sizeNameBtn.frame)-30*2-10:30;
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame=CGRectMake(_x_p, CGRectGetMaxY(sizeNameBtn.frame)+15, _width, 30);
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:_define_black_color forState:UIControlStateNormal];
         _x_p+=_width+5;
         if(i==1)
         {
-            btn.backgroundColor=[UIColor whiteColor];
+            btn.backgroundColor=_define_white_color;
             [regular setBorder:btn];
             btn.tag=100;
         }else
@@ -107,7 +107,7 @@
     priceLabel=[[UILabel alloc] initWithFrame:CGRectMake(210, 9+30*2+15*2, ScreenWidth-220, 30)];
     [backView addSubview:priceLabel];
     priceLabel.textAlignment=0;
-    priceLabel.textColor=[UIColor blackColor];
+    priceLabel.textColor=_define_black_color;
 }
 #pragma mark - setter
 -(void)setItemModel:(DD_ShopItemModel *)ItemModel

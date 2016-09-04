@@ -110,7 +110,7 @@
     
     guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_white_color];
     [upView addSubview:guanzhu];
-    guanzhu.backgroundColor=[UIColor blackColor];
+    guanzhu.backgroundColor=_define_black_color;
     [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     [guanzhu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
@@ -141,7 +141,7 @@
     
     UILabel *_series_label=[UILabel getLabelWithAlignment:1 WithTitle:_detailModel.item.series.name WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
     [downView addSubview:_series_label];
-    _series_label.backgroundColor=[UIColor blackColor];
+    _series_label.backgroundColor=_define_black_color;
     [_series_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(downView).with.offset(ver_edge);

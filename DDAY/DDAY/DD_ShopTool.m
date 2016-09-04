@@ -302,14 +302,14 @@
 +(UIView *)getViewFooter
 {
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor =  _define_clear_color;
     UIView *backview=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 38)];
     [view addSubview:backview];
-    backview.backgroundColor=[UIColor clearColor];
+    backview.backgroundColor= _define_clear_color;
     
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20,0, ScreenWidth-40, 38)];
     [backview addSubview:label];
-    label.textColor=[UIColor blackColor];
+    label.textColor=_define_black_color;
     label.textAlignment=1;
     
     label.text=@"失效款式";

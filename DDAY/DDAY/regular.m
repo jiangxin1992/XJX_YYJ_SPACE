@@ -432,6 +432,13 @@ static regular *_t = nil;
     NSString *nowtimeStr = [formatter stringFromDate:confromTimesp];//----------将nsdate按formatter格式转成nsstring
     return nowtimeStr;
 }
++(long )getTimeWithTimeStr:(NSString *)time
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    NSDate* date = [formatter dateFromString:time];
+    return [date timeIntervalSince1970];
+}
 +(void)dispatch_cancel:(dispatch_source_t )_timer
 {
     if(_timer)

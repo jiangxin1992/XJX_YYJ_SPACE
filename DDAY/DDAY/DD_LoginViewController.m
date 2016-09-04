@@ -116,7 +116,7 @@
     
     UIButton *login=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"登    录" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     
-    login.backgroundColor=[UIColor blackColor];
+    login.backgroundColor=_define_black_color;
     [self.view addSubview:login];
     [login addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     [login mas_makeConstraints:^(MASConstraintMaker *make) {

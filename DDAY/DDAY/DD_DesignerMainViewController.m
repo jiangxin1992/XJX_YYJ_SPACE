@@ -77,7 +77,7 @@
 //    
 //    self.navigationItem.titleView=navview;
 //    dibu=[[UIView alloc] initWithFrame:_rect_left];
-//    dibu.backgroundColor=[UIColor blackColor];
+//    dibu.backgroundColor=_define_black_color;
 //    [navview addSubview:dibu];
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
@@ -101,7 +101,7 @@
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
     _pageVc.view.frame = CGRectMake(0, 0, 1000 , 1000 );
-    _pageVc.view.backgroundColor=[UIColor whiteColor];
+    _pageVc.view.backgroundColor=_define_white_color;
     if(left==nil)
     {
         left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {

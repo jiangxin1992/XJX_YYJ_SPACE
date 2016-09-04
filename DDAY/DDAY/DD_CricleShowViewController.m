@@ -43,7 +43,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.view.backgroundColor=[UIColor blackColor];
+    self.view.backgroundColor=_define_black_color;
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(deleteAction)];
     self.navigationItem.titleView=[regular returnNavView:[[NSString alloc] initWithFormat:@"%ld/%ld",_index+1,_circleModel.picArr.count] withmaxwidth:200];
 }

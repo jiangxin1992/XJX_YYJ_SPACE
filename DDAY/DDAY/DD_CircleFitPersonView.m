@@ -50,7 +50,7 @@
 }
 -(void)PrepareUI
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -140,11 +140,11 @@
             if(item.is_select)
             {
                 btn.selected=item.is_select;
-                btn.backgroundColor=[UIColor blackColor];
+                btn.backgroundColor=_define_black_color;
             }else
             {
                 btn.selected=item.is_select;
-                btn.backgroundColor=[UIColor whiteColor];
+                btn.backgroundColor=_define_white_color;
             }
             
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -168,10 +168,10 @@
                 // 4. 判断是否为第一列
                 if (j / num == 0) {
                     // 第一列添加顶部约束
-                    make.top.mas_equalTo(btn.superview).offset(30);
+                    make.top.mas_equalTo(btn.superview).offset(40);
                 } else {
                     // 其余添加顶部约束 intes*10 是我留出的距顶部高度
-                    make.top.mas_equalTo(30 + ( j / num )* (25 + intes));
+                    make.top.mas_equalTo(40 + ( j / num )* (25 + intes));
                 }
             }];
             // 每次循环结束 此次的View为下次约束的基准
@@ -180,7 +180,7 @@
         if(lastBtn)
         {
             [lastBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(0);
+                make.bottom.mas_equalTo(-10);
             }];
         }else
         {
@@ -194,7 +194,7 @@
     if(lastView)
     {
         [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-10);
+            make.bottom.mas_equalTo(0);
         }];
     }else
     {

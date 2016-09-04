@@ -505,9 +505,11 @@
         [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
+                nowListModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
                 nowListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 if(_ListModel)
                 {
+                    _ListModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
                     _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 }
                 [_headView setState];

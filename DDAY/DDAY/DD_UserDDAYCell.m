@@ -31,35 +31,30 @@
             make.width.mas_equalTo(3);
         }];
         
-//        UIView *backimg=[UIView getCustomViewWithColor:nil];
-//        [self.contentView addSubview:backimg];
-//        [regular setBorder:backimg];
-//        [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(line.mas_right).with.offset(29);
-//            make.centerY.mas_equalTo(self.contentView);
-//            make.height.width.mas_equalTo(110);
-//        }];
-        
         imageView=[UIImageView getCustomImg];
         [self.contentView addSubview:imageView];
         imageView.contentMode=2;
         [regular setZeroBorder:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(self.contentView);
-            make.width.height.mas_equalTo(109);
+            make.top.mas_equalTo(line);
+            make.height.mas_equalTo(line);
+            make.width.mas_equalTo(110);
+            make.left.mas_equalTo(line.mas_right).with.offset(IsPhone6_gt?41:18);
         }];
+        
+        
 //        12 6 6
         titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:18.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:titlelabel];
         titlelabel.numberOfLines=2;
         [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(backimg.mas_right).with.offset(29);
+            make.left.mas_equalTo(imageView.mas_right).with.offset(IsPhone6_gt?41:18);
             make.right.mas_equalTo(-kEdge);
-            make.top.mas_equalTo(11);
+            make.top.mas_equalTo(line);
         }];
         [titlelabel sizeToFit];
         
-        startLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        startLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:startLabel];
         [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(titlelabel);
@@ -77,7 +72,7 @@
             make.width.mas_equalTo(16);
         }];
         
-        endLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+        endLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:endLabel];
         [endLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(titlelabel);

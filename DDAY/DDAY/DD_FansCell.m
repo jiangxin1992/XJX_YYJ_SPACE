@@ -32,7 +32,6 @@
 {
     //        isNew=[[UIImageView alloc] init];
     //        [self.contentView addSubview:isNew];
-    //        isNew.backgroundColor=[UIColor redColor];
     //        [isNew mas_makeConstraints:^(MASConstraintMaker *make) {
     //            make.height.and.width.mas_equalTo(2);
     //            make.left.mas_equalTo(head.mas_right);
@@ -45,14 +44,14 @@
     [head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(kEdge);
-        make.height.width.mas_equalTo(40);
+        make.height.width.mas_equalTo(50);
     }];
     
-    username=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    username=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:username];
     [username mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);
-        make.left.mas_equalTo(head.mas_right).with.offset(14);
+        make.left.mas_equalTo(head.mas_right).with.offset(12);
     }];
     [username sizeToFit];
     

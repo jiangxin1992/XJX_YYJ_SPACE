@@ -47,7 +47,7 @@
 }
 -(void)PrepareUI
 {
-    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(27, 27) WithImgeStr:@"System_Confirm"];
+    DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
     [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
 }
@@ -73,7 +73,7 @@
         
         UITextField *textfield=i==0?_heightTextfield:_weightTextfield;
         [self.view addSubview:textfield];
-        textfield.textColor=[UIColor blackColor];
+        textfield.textColor=_define_black_color;
         textfield.placeholder=i==0?@"快来填写身高(cm)吧":@"快来填写体重(kg)吧";
         textfield.font=[regular getFont:13.0f];
         textfield.textAlignment=0;

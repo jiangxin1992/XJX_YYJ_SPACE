@@ -70,7 +70,7 @@
     _searchBar.delegate=self;
     _searchBar.placeholder=@"搜索款式、设计师、品牌";
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.backgroundColor=[UIColor whiteColor];
+    imageView.backgroundColor=_define_white_color;
     imageView.frame=CGRectMake(0, 0, ScreenWidth-40, 43);
     [_searchBar insertSubview:imageView atIndex:1];
     _searchBar.searchBarStyle=UISearchBarStyleDefault;

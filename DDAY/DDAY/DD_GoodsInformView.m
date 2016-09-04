@@ -201,21 +201,22 @@
     [downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
         make.top.mas_equalTo(upview.mas_bottom).with.offset(0);
-        make.bottom.mas_equalTo(self).with.offset(0);
+        make.bottom.mas_equalTo(self).with.offset(-1);
     }];
     
     UIView *view=[UIView getCustomViewWithColor:_define_black_color];
     [downView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
-        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.left.and.right.mas_equalTo(self).with.offset(0);
+        make.bottom.mas_equalTo(self).with.offset(0);
     }];
 }
 -(void)CreateDesView
 {
     _type_label=[UILabel getLabelWithAlignment:0 WithTitle:@"款式信息" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [downView addSubview:_type_label];
+//    _type_label.backgroundColor=[UIColor redColor];
     [_type_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(ver_edge);
         make.left.mas_equalTo(downView).with.offset(kEdge);
@@ -226,6 +227,7 @@
     UIWebView *_web=[[UIWebView alloc] init];
     _web.delegate=self;
     NSString *font=@"13px/17px";
+    
     [_web loadHTMLString:[NSString stringWithFormat:@"<style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:#000000}</style><div align='justify'>%@<div>",font,_detailModel.item.itemBrief] baseURL:nil];
     _web.opaque = NO;
     _web.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -238,7 +240,7 @@
         make.height.mas_equalTo(10);
         make.bottom.mas_equalTo(downView.mas_bottom).with.offset(-ver_edge);
     }];
-    _web.backgroundColor=[UIColor clearColor];
+    _web.backgroundColor= _define_clear_color;
 }
 
 #pragma mark - UIWebViewDelegate
@@ -321,7 +323,7 @@
         }else
         {
             imageBtn.selected=NO;
-            imageBtn.layer.borderColor=[[UIColor clearColor] CGColor];
+            imageBtn.layer.borderColor=[ _define_clear_color CGColor];
             imageBtn.layer.borderWidth=0;
         }
     }
@@ -347,7 +349,7 @@
 //            [btn addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
 //        }
 //        btn.frame=CGRectMake(10, 280+60*i, ScreenWidth-20, 50);
-//        btn.backgroundColor=[UIColor blackColor];
+//        btn.backgroundColor=_define_black_color;
 //        [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
 //    }
 //    upview.frame=CGRectMake(0,0,ScreenWidth, 410);

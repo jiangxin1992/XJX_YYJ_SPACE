@@ -62,9 +62,14 @@ __long(commentTimes);
  */
 __long(likeTimes);
 /**
+ * 收藏数量
+ */
+__long(collectTimes);
+/**
  * 该搭配创建时间
  */
 __long(createTime);
+
 /**
  * 搭配建议
  */

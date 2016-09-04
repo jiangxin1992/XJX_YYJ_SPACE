@@ -159,7 +159,7 @@
 {
     _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:_preView];
-    _preView.backgroundColor=[UIColor blackColor];
+    _preView.backgroundColor=_define_black_color;
     [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
     
     [_preView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -265,7 +265,7 @@
     statusLabel.text=str;
     statusLabel.textAlignment=1;
     statusLabel.font=[regular getFont:25];
-    statusLabel.textColor=[UIColor lightGrayColor];
+    statusLabel.textColor=_define_light_gray_color1;
     
     [statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(self.view);

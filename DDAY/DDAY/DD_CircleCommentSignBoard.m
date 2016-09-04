@@ -38,7 +38,7 @@
 {
     UIView *view_qufen=[[UIView alloc] init];
     [self addSubview:view_qufen];
-    view_qufen.backgroundColor=[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1];
+    view_qufen.backgroundColor=_define_black_color;
     [view_qufen mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.and.right.mas_equalTo(0);
         make.height.mas_equalTo(0.5);
@@ -48,7 +48,7 @@
     [self addSubview:cancel];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     cancel.titleLabel.font=[regular getFont:13.0f];
-    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancel setTitleColor:_define_black_color forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [cancel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(view_qufen.mas_bottom).with.offset(0);
@@ -62,7 +62,7 @@
     [self addSubview:send];
     [send setTitle:@"发送" forState:UIControlStateNormal];
     send.titleLabel.font=[regular getFont:13.0f];
-    [send setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [send setTitleColor:_define_black_color forState:UIControlStateNormal];
     [send addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
     [send mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(view_qufen.mas_bottom).with.offset(0);
@@ -76,7 +76,7 @@
     _commentField.returnKeyType=UIReturnKeyDefault;
     _commentField.delegate=self;
     _commentField.font=[regular getFont:14.0f];
-    _commentField.textColor=[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1];
+    _commentField.textColor=_define_black_color;
     [_commentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(7);
         make.right.mas_equalTo(-7);

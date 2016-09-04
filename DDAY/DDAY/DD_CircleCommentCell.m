@@ -43,7 +43,7 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.contentView.backgroundColor=[UIColor whiteColor];
+    self.contentView.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -71,7 +71,7 @@
     createTime=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:createTime];
     createTime.textAlignment=0;
-    createTime.textColor=[UIColor grayColor];
+    createTime.textColor=_define_light_gray_color1;
     createTime.font=[regular get_en_Font:12.0f];
     [createTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userName.mas_bottom).with.offset(6);

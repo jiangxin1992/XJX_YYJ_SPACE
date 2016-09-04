@@ -69,11 +69,12 @@
         make.top.mas_equalTo(self.view).with.offset((IsPhone6_gt?204:kIPhone5s?150:126)+kStatusBarHeight);
     }];
 
+    
     UIView *_yanzheng=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 55, 50)];
     _yanzhengBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"验证" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
     [_yanzheng addSubview:_yanzhengBtn];
     _yanzhengBtn.layer.masksToBounds=YES;
-    _yanzhengBtn.layer.borderColor=[[UIColor blackColor] CGColor];
+    _yanzhengBtn.layer.borderColor=[_define_black_color CGColor];
     _yanzhengBtn.layer.borderWidth=1;
     [_yanzhengBtn addTarget:self action:@selector(getCodeAction) forControlEvents:UIControlEventTouchUpInside];
     [_yanzhengBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,7 +96,7 @@
     }];
 
     UIButton *registerBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:20.0f WithNormalTitle:@"验    证" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    registerBtn.backgroundColor=[UIColor blackColor];
+    registerBtn.backgroundColor=_define_black_color;
     [self.view addSubview:registerBtn];
     [registerBtn addTarget:self action:@selector(verifyAction) forControlEvents:UIControlEventTouchUpInside];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +123,7 @@
                 //设置界面的按钮显示 根据自己需求设置
                 [_yanzhengBtn setTitle:@"验证" forState:UIControlStateNormal];
                 _yanzhengBtn.userInteractionEnabled = YES;
-                [_yanzhengBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_yanzhengBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
             });
         }else{
             //            int minutes = timeout / 60;
@@ -133,7 +134,7 @@
                 NSLog(@"____%@",strTime);
                 [_yanzhengBtn setTitle:[NSString stringWithFormat:@"%@s",strTime] forState:UIControlStateNormal];
                 _yanzhengBtn.userInteractionEnabled = NO;
-                [_yanzhengBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                [_yanzhengBtn setTitleColor:_define_light_gray_color forState:UIControlStateNormal];
                 timeout--;
             });
         }

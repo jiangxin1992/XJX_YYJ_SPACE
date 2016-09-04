@@ -175,7 +175,7 @@
 //{
 //    UIButton *_submitBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
 //    [self addSubview:_submitBtn];
-//    _submitBtn.backgroundColor=[UIColor blackColor];
+//    _submitBtn.backgroundColor=_define_black_color;
 //    [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
 //    
 //    [_submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -192,7 +192,7 @@
 //{
 //    _suggestTitle=[[UILabel alloc] init];
 //    [self addSubview:_suggestTitle];
-//    _suggestTitle.textColor=[UIColor lightGrayColor];
+//    _suggestTitle.textColor=_define_light_gray_color1;
 //    _suggestTitle.textAlignment=0;
 //    _suggestTitle.font=[regular getFont:15.0f];
 //    _suggestTitle.text=@"填写一份搭配建议";
@@ -283,8 +283,8 @@
 //{
 //    UIButton *_submitBtn=[UIButton buttonWithType:UIButtonTypeCustom];
 //    [self addSubview:_submitBtn];
-//    _submitBtn.backgroundColor=[UIColor blackColor];
-//    [_submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    _submitBtn.backgroundColor=_define_black_color;
+//    [_submitBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
 //    [_submitBtn setTitle:@"提交" forState:UIControlStateNormal];
 //    [_submitBtn addTarget:self action:@selector(sumbitAction) forControlEvents:UIControlEventTouchUpInside];
 //    

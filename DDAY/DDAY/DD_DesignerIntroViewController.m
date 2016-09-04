@@ -60,7 +60,7 @@
     _webView=[[UIWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kNavHeight-169+ktabbarHeight)];
     [_scrollView addSubview:_webView];
     _webView.userInteractionEnabled=YES;
-    _webView.backgroundColor = [UIColor clearColor];
+    _webView.backgroundColor =  _define_clear_color;
     _webView.delegate=self;
     _webView.opaque = NO;
     _webView.dataDetectorTypes = UIDataDetectorTypeNone;

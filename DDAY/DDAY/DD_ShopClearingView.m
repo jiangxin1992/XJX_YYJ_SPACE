@@ -41,7 +41,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    self.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=_define_white_color;
     
     UIView *upLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:upLine];
@@ -72,7 +72,7 @@
     ConfirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"结算" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:ConfirmBtn];
     [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-    ConfirmBtn.backgroundColor=[UIColor blackColor];
+    ConfirmBtn.backgroundColor=_define_black_color;
     [ConfirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self);
         make.right.mas_equalTo(0);

@@ -15,15 +15,18 @@
 //#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
 
 /*************** Color ***************/
-//[UIColor whiteColor]
-//#define _define_backview_color [UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1]
 #define _define_backview_color [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+
 #define _define_black_color [UIColor colorWithHexString:@"#000000"]
 #define _define_white_color [UIColor colorWithHexString:@"#FFFFFF"]
-#define _define_light_gray_color [UIColor colorWithHexString:@"#7C7B7B"]
-#define _define_light_gray_color1 [UIColor colorWithHexString:@"#A8A7A7"]
+#define _define_clear_color [UIColor clearColor]
+
+#define _define_light_gray_color [UIColor colorWithHexString:@"#7C7B7B"]//最深
+#define _define_light_gray_color1 [UIColor colorWithHexString:@"#A8A7A7"]//最深-1
+//#define _define_light_gray_color2 [UIColor colorWithHexString:@"#EAEAEA"]//最深-2
+
 #define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]
-#define _define_light_gray_color2 [UIColor colorWithHexString:@"EAEAEA"]
+
 /*************** SIZE ***************/
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 #define kEdge 26 //统一边距样式

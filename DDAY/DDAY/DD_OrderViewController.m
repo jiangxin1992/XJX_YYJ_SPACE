@@ -297,7 +297,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 222;
+    return 240;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -395,11 +395,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(_tableview)
-    {
-        _page=1;
-        [self RequestData];
-    }
     [MobClick beginLogPageView:@"DD_OrderViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated

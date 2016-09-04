@@ -118,10 +118,8 @@
     
     backView=[UIView getCustomViewWithColor:nil];
     [_scrollView addSubview:backView];
-    backView.backgroundColor=[UIColor whiteColor];
-    backView.layer.masksToBounds=YES;
-    backView.layer.borderWidth=1;
-    backView.layer.borderColor=[[UIColor blackColor] CGColor];
+    backView.backgroundColor=_define_white_color;
+    [regular setBorder:backView];
     CGFloat _bianju=(ScreenWidth-cellWH*7)/2.0f-6;
     backView.frame=CGRectMake(_bianju, CGRectGetMaxY(_rightBtn.frame)+25, cellWH * 7+12, cellWH * 7+12);
     
@@ -146,7 +144,7 @@
          _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake((ScreenWidth-cellWH*7)/2.0f, 25+38+6, cellWH * 7, cellWH * 7) collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.backgroundColor =  _define_clear_color;
         _collectionView.alwaysBounceVertical=NO;
         _collectionView.alwaysBounceHorizontal=NO;
         _collectionView.scrollEnabled=NO;
@@ -396,20 +394,19 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DD_CalendarCell" forIndexPath:indexPath];
-//    cell.dayLabel.backgroundColor = [UIColor whiteColor];
-    cell.dayLabel.textColor = [UIColor blackColor];
+    cell.dayLabel.textColor = _define_black_color;
     cell.dayLabel.font=[UIFont systemFontOfSize:15.0f];
     id mon = self.dayModelArray[indexPath.row];
     if(indexPath.row<7)
     {
-        cell.backgroundColor=[UIColor clearColor];
+        cell.backgroundColor= _define_clear_color;
         cell.alpha=0.7;
     }
     if ([mon isKindOfClass:[DD_MonthModel class]]) {
         cell.monthModel = (DD_MonthModel *)mon;
     }else{
         cell.dayLabel.text = @"";
-        cell.dayLabel.backgroundColor = [UIColor clearColor];
+        cell.dayLabel.backgroundColor =  _define_clear_color;
     }
     return cell;
 }
@@ -459,17 +456,17 @@
 @implementation CalendarHeaderView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor=[UIColor clearColor];
+        self.backgroundColor= _define_clear_color;
         NSArray *weekArray = [[NSArray alloc] initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
         for (int i=0; i<weekArray.count; i++) {
             UILabel *weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(i*cellWH, 0, cellWH, HeaderViewHeight)];
             weekLabel.textAlignment = NSTextAlignmentCenter;
             if(i==0||i==6)
             {
-                weekLabel.textColor = [UIColor grayColor];
+                weekLabel.textColor = _define_light_gray_color1;
             }else
             {
-                weekLabel.textColor = [UIColor blackColor];
+                weekLabel.textColor = _define_black_color;
             }
             weekLabel.font = [UIFont systemFontOfSize:13.0f];
             weekLabel.text = weekArray[i];

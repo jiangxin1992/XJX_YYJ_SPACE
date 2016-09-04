@@ -176,7 +176,7 @@
         }
         
     }];
-    _tabBar.backgroundColor=[UIColor whiteColor];
+    _tabBar.backgroundColor=_define_white_color;
     [self.view addSubview:_tabBar];
 }
 #pragma mark - SomeActions

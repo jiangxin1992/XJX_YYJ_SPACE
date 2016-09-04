@@ -98,7 +98,7 @@
     NSDictionary *paragraphDic = @{NSFontAttributeName:[regular getFont:13.0f],NSParagraphStyleAttributeName:paragraphstyle};
     NSMutableAttributedString *tempStr = [[NSMutableAttributedString alloc] initWithString:_logisticsModel.AcceptStation  attributes:paragraphDic];
     
-    [tempStr addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, _logisticsModel.AcceptStation.length)];
+    [tempStr addAttribute:NSForegroundColorAttributeName value:_define_black_color range:NSMakeRange(0, _logisticsModel.AcceptStation.length)];
     
     contentlabel.text = tempStr;
 

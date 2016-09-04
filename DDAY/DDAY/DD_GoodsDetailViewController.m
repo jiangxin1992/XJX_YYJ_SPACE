@@ -153,7 +153,7 @@ __bool(isExpanded);
         ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-kEdge*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:YES WithBlock:^(NSString *type, NSInteger index) {
         }];
         imgvc.array=_colorModel.pics;
-        imgvc.view.backgroundColor = [UIColor clearColor];
+        imgvc.view.backgroundColor =  _define_clear_color;
         [regular setBorder:_pageViewControler.view];
         imgvc.currentPage = 0;
         [_pageViewControler setViewControllers:@[imgvc] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -455,7 +455,7 @@ __bool(isExpanded);
     ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:YES WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
-    imgvc.view.backgroundColor = [UIColor clearColor];
+    imgvc.view.backgroundColor =  _define_clear_color;
     imgvc.maxPage = _colorModel.pics.count-1;
     imgvc.currentPage = index;
     return imgvc;
@@ -471,7 +471,7 @@ __bool(isExpanded);
     ImageViewController *imgvc = [[ImageViewController alloc] initWithSize:CGSizeMake(ScreenWidth-(IsPhone6_gt?60:49)-30*2, IsPhone6_gt?363:301) WithType:@"model" WithIsFit:NO WithContentModeIsFill:YES WithBlock:^(NSString *type, NSInteger index) {
     }];
     imgvc.array=_colorModel.pics;
-    imgvc.view.backgroundColor = [UIColor clearColor];
+    imgvc.view.backgroundColor =  _define_clear_color;
     imgvc.maxPage =_colorModel.pics.count-1;
     imgvc.currentPage = index;
     return imgvc;
@@ -634,12 +634,12 @@ __bool(isExpanded);
         _mengban_size_Height=0;
         if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
         {
-            _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight):(79+ktabbarHeight);
+            _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight+14):(79+ktabbarHeight+14);
             NSLog(@"111");
         }else
         {
             CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight):(102+ktabbarHeight+_imgHeight);
+            _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight+16):(102+ktabbarHeight+_imgHeight+16);
             NSLog(@"111");
         }
         sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);

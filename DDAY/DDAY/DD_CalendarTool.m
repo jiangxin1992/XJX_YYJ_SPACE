@@ -624,7 +624,7 @@
                 UIView *view=[[UIView alloc] initWithFrame:CGRectMake(6+_left_s_index*cellWH, 40+(week-1)*cellWH+0.1*cellWH+6 , (_right_s_index-_left_s_index+1)*cellWH, cellWH-0.2*cellWH)];
                 view.layer.masksToBounds=YES;
                 view.layer.borderWidth=2;
-                view.backgroundColor=[UIColor whiteColor];
+                view.backgroundColor=_define_white_color;
                 DD_RGBModel *RGBModel=[DD_RGBModel initWithColorCode:seriesModel.seriesColor];
                 view.layer.borderColor=[[UIColor colorWithRed:RGBModel.R/255.0 green:RGBModel.G/255.0 blue:RGBModel.B/255.0 alpha:1] CGColor];
                 [viewArr addObject:view];
@@ -632,7 +632,7 @@
             }else if(weekArr.count>1)
             {
                 UIView *view=[[UIView alloc] init];
-                view.backgroundColor=[UIColor whiteColor];
+                view.backgroundColor=_define_white_color;
                 view.layer.masksToBounds=YES;
                 view.layer.borderWidth=2;
                 DD_RGBModel *RGBModel=[DD_RGBModel initWithColorCode:seriesModel.seriesColor];
