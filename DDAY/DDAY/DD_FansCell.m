@@ -38,9 +38,10 @@
     //            make.top.mas_equalTo(5);
     //        }];
     
-    head=[UIImageView getCustomImg];
+    head=[UIImageView getCornerRadiusImg];
     [self.contentView addSubview:head];
-    head.contentMode=0;
+    head.contentMode=2;
+    [regular setZeroBorder:head];
     [head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(kEdge);
@@ -68,7 +69,7 @@
 {
     _fansModel=fansModel;
     username.text=_fansModel.userName;
-    [head JX_ScaleToFill_loadImageUrlStr:_fansModel.userHead WithSize:200 placeHolderImageName:nil radius:20];
+    [head JX_ScaleAspectFill_loadImageUrlStr:_fansModel.userHead WithSize:400 placeHolderImageName:nil radius:20];
 //    isNew.hidden=!_fansModel.isNew;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

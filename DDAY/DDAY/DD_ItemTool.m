@@ -21,14 +21,14 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
-        imageview.contentMode=0;
-
+        imageview.contentMode=2;
+        [regular setZeroBorder:imageview];
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
@@ -61,14 +61,14 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
-        imageview.contentMode=0;
-        
+        imageview.contentMode=2;
+        [regular setZeroBorder:imageview];
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [imageview addSubview:price_label];
@@ -130,14 +130,15 @@
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
-        imageview.contentMode=0;
-        
+        imageview.contentMode=2;
+        [regular setZeroBorder:imageview];
+
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(_height);
         }];
-        [imageview JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];

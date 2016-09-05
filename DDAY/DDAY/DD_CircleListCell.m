@@ -69,9 +69,10 @@
 {
     if(!_isUserHomePage)
     {
-        userHeadImg=[UIImageView getCustomImg];
+        userHeadImg=[UIImageView getCornerRadiusImg];
         [self.contentView addSubview:userHeadImg];
-        userHeadImg.contentMode=0;
+        userHeadImg.contentMode=2;
+        [regular setZeroBorder:userHeadImg];
         userHeadImg.userInteractionEnabled=YES;
         [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
         [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -301,7 +302,7 @@
 {
     if(!_isUserHomePage)
     {
-        [userHeadImg JX_ScaleToFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+        [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
         userNameLabel.text=_listModel.userName;
         userCareerLabel.text=_listModel.career;
     }

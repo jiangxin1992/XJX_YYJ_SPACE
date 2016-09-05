@@ -54,10 +54,11 @@
         make.centerX.mas_equalTo(self);
     }];
     
-    UIImageView *headImg=[UIImageView getCustomImg];
+    UIImageView *headImg=[UIImageView getCornerRadiusImg];
     [headBackView addSubview:headImg];
-    headImg.contentMode=0;
-    [headImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
+    headImg.contentMode=2;
+    [regular setZeroBorder:headImg];
+    [headImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
     headImg.userInteractionEnabled=YES;
     [headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [headImg mas_makeConstraints:^(MASConstraintMaker *make) {

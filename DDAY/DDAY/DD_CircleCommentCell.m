@@ -48,9 +48,10 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    icon=[UIImageView getCustomImg];
+    icon=[UIImageView getCornerRadiusImg];
     [self.contentView addSubview:icon];
-    icon.contentMode=0;
+    icon.contentMode=2;
+    [regular setZeroBorder:icon];
     icon.userInteractionEnabled=YES;
     [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -163,7 +164,7 @@
     }];
     comment.text=_CommentModel.comment;
     userName.text=_CommentModel.userName;
-    [icon JX_ScaleToFill_loadImageUrlStr:_CommentModel.userHead WithSize:400 placeHolderImageName:nil radius:30];
+    [icon JX_ScaleAspectFill_loadImageUrlStr:_CommentModel.userHead WithSize:400 placeHolderImageName:nil radius:30];
     createTime.text=[regular getTimeStr:_CommentModel.createTime WithFormatter:@"YYYY-MM-dd HH:mm"];
 //    praiseLabel.text=[[NSString alloc] initWithFormat:@"%ld",_CommentModel.likeTimes];
     praiseBtn.selected=_CommentModel.isLike;

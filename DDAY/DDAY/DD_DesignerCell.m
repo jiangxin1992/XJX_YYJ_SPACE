@@ -144,8 +144,9 @@
             NSString *imgStr=imgModel.pic;
             UIImageView *img=[UIImageView getCustomImg];
             [_scrollview addSubview:img];
-            img.contentMode=0;
-            [img JX_ScaleToFill_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
+            img.contentMode=2;
+            [regular setZeroBorder:img];
+            [img JX_ScaleAspectFill_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
             CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*236;
             img.frame=CGRectMake(_x_p, 0, _width, 236);
             if(i<Designer.items.count-1)

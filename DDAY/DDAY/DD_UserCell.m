@@ -31,9 +31,10 @@
             make.centerY.mas_equalTo(self.contentView);
         }];
         
-        _head_img=[UIImageView getCustomImg];
+        _head_img=[UIImageView getCornerRadiusImg];
         [self.contentView addSubview:_head_img];
-        _head_img.contentMode=0;
+        _head_img.contentMode=2;
+        [regular setZeroBorder:_head_img];
         [_head_img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.and.height.mas_equalTo(44);
             make.centerY.mas_equalTo(self.contentView);
@@ -123,7 +124,7 @@
 }
 -(void)setImage:(NSString *)image
 {
-    [_head_img JX_ScaleToFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:22] ;
+    [_head_img JX_ScaleAspectFill_loadImageUrlStr:image WithSize:200 placeHolderImageName:nil radius:22] ;
 }
 -(void)setF_title:(NSString *)f_title
 {

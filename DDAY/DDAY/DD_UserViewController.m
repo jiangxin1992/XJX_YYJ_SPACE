@@ -83,11 +83,12 @@
     _headBack.layer.borderWidth=2.0f;
     [_headBack setEnlargeEdgeWithTop:0 right:50 bottom:60 left:50];
     
-    _userHeadImg=[UIImageView getCustomImg];
+    _userHeadImg=[UIImageView getCornerRadiusImg];
     [self.view addSubview:_userHeadImg];
     _userHeadImg.userInteractionEnabled=YES;
     [_userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserInfo)]];
-    _userHeadImg.contentMode=0;
+    _userHeadImg.contentMode=2;
+    [regular setZeroBorder:_userHeadImg];
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(83);
         make.center.mas_equalTo(_headBack);
@@ -148,7 +149,7 @@
                         [regular UpdateRoot];
                     }
                     _userName.text=_usermodel.nickName;
-                    [_userHeadImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
+                    [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
                 }
             }else
             {

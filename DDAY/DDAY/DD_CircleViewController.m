@@ -59,14 +59,15 @@
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
-        self.navigationItem.rightBarButtonItem=nil;
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }else if(_userType==2||_userType==4||_userType==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }else
     {
         NSLog(@"UserType=%ld",_userType);
@@ -74,6 +75,7 @@
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }
 }
 /**
@@ -476,14 +478,15 @@
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
-        self.navigationItem.rightBarButtonItem=nil;
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }else if(_userType==2||_userType==4||_userType==1)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }else
     {
          NSLog(@"UserType=%ld",_userType);
@@ -491,6 +494,7 @@
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        self.navigationItem.leftBarButtonItem=nil;
     }
     if([not.object isEqualToString:@"login"]||[not.object isEqualToString:@"logout"])
     {

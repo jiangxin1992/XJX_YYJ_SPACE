@@ -28,6 +28,8 @@
 {
     _head=[UIImageView getCustomImg];
     [self addSubview:_head];
+    _head.contentMode=2;
+    [regular setZeroBorder:_head];
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(8);
         make.left.mas_equalTo(20);
@@ -71,7 +73,7 @@
 
 -(void)setState
 {
-    [_head JX_ScaleAspectFit_loadImageUrlStr:_LogisticsManageModel.logo WithSize:400 placeHolderImageName:nil radius:0];
+    [_head JX_ScaleAspectFill_loadImageUrlStr:_LogisticsManageModel.logo WithSize:400 placeHolderImageName:nil radius:0];
     log_name.text=_LogisticsManageModel.deliver;
     log_order.text=[[NSString alloc] initWithFormat:@"物流号：%@",_LogisticsManageModel.LogisticCode];
     state.text=_LogisticsManageModel.State_Str;

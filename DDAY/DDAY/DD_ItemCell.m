@@ -23,7 +23,7 @@
     if(item.pics&&item.pics.count)
     {
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        [_item_img JX_ScaleAspectFit_loadImageUrlStr:imgModel.pic WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_item_img.frame)/2.0f];
+        [_item_img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:200 placeHolderImageName:nil radius:CGRectGetWidth(_item_img.frame)/2.0f];
     }
     
 }

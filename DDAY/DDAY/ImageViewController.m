@@ -85,7 +85,7 @@
             [_imgv JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         }else
         {
-            [_imgv JX_ScaleAspectFit_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+            [_imgv JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         }
         
     }else if([_type isEqualToString:@"data"])

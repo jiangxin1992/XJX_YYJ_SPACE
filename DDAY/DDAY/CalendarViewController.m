@@ -325,7 +325,6 @@
             [_backView_s addSubview:seriesBtn];
             if(seriesModel.is_select)
             {
-                [regular setZeroBorder:seriesBtn];
                 seriesBtn.backgroundColor=[UIColor colorWithHexString:seriesModel.seriesColor];
                 [seriesBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
             }else

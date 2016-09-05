@@ -23,24 +23,7 @@
     return imageview;
 }
 
-+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel
-{
-    UIImageView *imageview=[[UIImageView alloc] init];
-    imageview.userInteractionEnabled=YES;
-    imageview.contentMode=contentModel;
-    if(contentModel==0)
-    {
-        [imageview JX_ScaleToFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius];
-    }else if(contentModel==1)
-    {
-        [imageview JX_ScaleAspectFit_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
-    }else
-    {
-        [imageview JX_ScaleAspectFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
-    }
-    
-    return imageview;
-}
+
 
 +(UIImageView *)getMaskImageView
 {
@@ -55,4 +38,28 @@
     img.contentMode=1;
     return img;
 }
++(UIImageView *)getCornerRadiusImg
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithRoundingRectImageView];
+    imageView.contentMode=1;
+    return imageView;
+}
+//+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel
+//{
+//    UIImageView *imageview=[UIImageView getCornerRadiusImg];
+//    imageview.userInteractionEnabled=YES;
+//    imageview.contentMode=contentModel;
+//    if(contentModel==0)
+//    {
+//        [imageview JX_ScaleToFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius];
+//    }else if(contentModel==1)
+//    {
+//        [imageview JX_ScaleAspectFit_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
+//    }else
+//    {
+//        [imageview JX_ScaleAspectFill_loadImageUrlStr:_urlStr WithSize:size placeHolderImageName:placeHolderStr radius:radius ];
+//    }
+//
+//    return imageview;
+//}
 @end

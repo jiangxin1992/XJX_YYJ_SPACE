@@ -67,10 +67,10 @@
     }];
     
     
-    UIImageView *_headImge=[UIImageView getloadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0 WithContentMode:0];
+    UIImageView *_headImge=[UIImageView getCustomImg];
     [upView addSubview:_headImge];
     _headImge.userInteractionEnabled=NO;
-    _headImge.contentMode=0;
+    _headImge.contentMode=2;
     [regular setZeroBorder:_headImge];
     [_headImge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -78,8 +78,9 @@
         make.width.and.height.mas_equalTo(50);
         make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
     }];
+    [_headImge JX_ScaleAspectFill_loadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0];
     
-    UIImageView *_brandImge=[UIImageView getloadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0 WithContentMode:1];
+    UIImageView *_brandImge=[UIImageView getCustomImg];
     [upView addSubview:_brandImge];
     _brandImge.userInteractionEnabled=NO;
     _brandImge.contentMode=1;
@@ -89,6 +90,7 @@
         make.top.mas_equalTo(ver_edge);
         make.width.and.height.mas_equalTo(_headImge);
     }];
+    [_brandImge JX_ScaleAspectFit_loadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0];
     
     UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [upView addSubview:userName];

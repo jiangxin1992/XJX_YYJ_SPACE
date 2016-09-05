@@ -381,7 +381,7 @@
 {
     for (int i=0; i<2; i++) {
 
-        UIImageView *imageView=[UIImageView getCustomImg];
+        UIImageView *imageView=[UIImageView getCornerRadiusImg];
         [_UpView addSubview:imageView];
         imageView.contentMode=i==0?2:1;
         if(i==0)

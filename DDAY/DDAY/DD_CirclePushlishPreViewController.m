@@ -140,9 +140,10 @@
 }
 -(void)CreateContentView
 {
-    userHeadImg=[UIImageView getCustomImg];
+    userHeadImg=[UIImageView getCornerRadiusImg];
     [container addSubview:userHeadImg];
-    userHeadImg.contentMode=0;
+    userHeadImg.contentMode=2;
+    [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -323,7 +324,7 @@
 -(void)SetState
 {
     NSLog(@"contentMode=%ld",userHeadImg.contentMode);
-    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_usermodel.nickName;
     userCareerLabel.text=_usermodel.career;
     

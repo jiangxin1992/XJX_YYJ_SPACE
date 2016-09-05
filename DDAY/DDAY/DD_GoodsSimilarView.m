@@ -40,14 +40,12 @@
         DD_OrderItemModel *model=[_similarArr objectAtIndex:i];
         UIImageView *img=[UIImageView getCustomImg];
         [self addSubview:img];
-        img.contentMode=2;
-        [regular setZeroBorder:img];
         img.tag=100+i;
         img.userInteractionEnabled=YES;
         [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
         [img JX_ScaleAspectFill_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
-        [regular setZeroBorder:img];
         img.contentMode=2;
+        [regular setZeroBorder:img];
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {

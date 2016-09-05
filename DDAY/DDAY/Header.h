@@ -20,6 +20,7 @@
 
 
 /*************** Category ***************/
+#import "UIImageView+CornerRadius.h"
 #import "NSString+extra.h"
 #import "UIView+Frame.h"
 #import "UIImageView+LoadImage.h"

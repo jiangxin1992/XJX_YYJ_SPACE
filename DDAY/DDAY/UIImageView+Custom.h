@@ -13,10 +13,7 @@
  * 创建imageview 带image
  */
 +(UIImageView *)getImgWithImageStr:(NSString *)_imageStr;
-/**
- * 获取imageview 网络加载的
- */
-+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel;
+
 /**
  * 创建蒙板
  */
@@ -25,4 +22,9 @@
  * 创建自定义 image
  */
 +(UIImageView *)getCustomImg;
++(UIImageView *)getCornerRadiusImg;
+/**
+ * 获取imageview 网络加载的
+ */
+//+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel;
 @end

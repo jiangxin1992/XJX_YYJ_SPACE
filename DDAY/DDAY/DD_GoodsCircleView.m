@@ -85,9 +85,10 @@
         make.width.mas_equalTo(80);
     }];
     
-    userHeadImg=[UIImageView getCustomImg];
+    userHeadImg=[UIImageView getCornerRadiusImg];
     [backBtn addSubview:userHeadImg];
-    userHeadImg.contentMode=0;
+    userHeadImg.contentMode=2;
+    [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
     [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,7 +180,7 @@
  */
 -(void)setAction
 {
-    [userHeadImg JX_ScaleToFill_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_circle.userName;
     userCareerLabel.text=_circle.career;
     if(_circle.pics.count)

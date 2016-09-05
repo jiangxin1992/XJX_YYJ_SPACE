@@ -274,6 +274,7 @@
 		3FFCCF5A1D61E9F700E1DC7C /* DD_CircleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCF591D61E9F700E1DC7C /* DD_CircleSearchView.m */; };
 		3FFCCF5E1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */; };
 		3FFE38B51D7D090400B46768 /* DD_CircleTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE38B41D7D090400B46768 /* DD_CircleTagView.m */; };
+		3FFE38B81D7D6D9400B46768 /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */; };
 		3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */; };
 		F4DB50141276DD44E4BCEF24 /* Pods_YCO_SPACE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26B9372E7FA886611FAF22A /* Pods_YCO_SPACE.framework */; };
 /* End PBXBuildFile section */
@@ -878,6 +879,8 @@
 		3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePushlishPreViewController.m; sourceTree = "<group>"; };
 		3FFE38B31D7D090400B46768 /* DD_CircleTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleTagView.h; sourceTree = "<group>"; };
 		3FFE38B41D7D090400B46768 /* DD_CircleTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleTagView.m; sourceTree = "<group>"; };
+		3FFE38B61D7D6D9400B46768 /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
+		3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingTabbar.h; sourceTree = "<group>"; };
 		3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingTabbar.m; sourceTree = "<group>"; };
 		CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.release.xcconfig"; sourceTree = "<group>"; };
@@ -1446,6 +1449,7 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */,
 				3F4C2F231D76833400C954C4 /* NSDate+Custom */,
 				3F6002041D499A88007E395F /* UIView+Custom */,
 				3F61531E1D3F284B00BB60FD /* UIColor+Hex */,
@@ -2904,6 +2908,15 @@
 			name = "预览";
 			sourceTree = "<group>";
 		};
+		3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */ = {
+			isa = PBXGroup;
+			children = (
+				3FFE38B61D7D6D9400B46768 /* UIImageView+CornerRadius.h */,
+				3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */,
+			);
+			name = CornerRadiusCategory;
+			sourceTree = "<group>";
+		};
 		8A062CCCA9A13B7A299C92D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3338,6 +3351,7 @@
 				3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */,
 				3F8E76661D1B926900722FDA /* DD_CircleDetailHeadView.m in Sources */,
 				3F4187FC1CEEFF35001BCA3D /* DD_ClearingOrderModel.m in Sources */,
+				3FFE38B81D7D6D9400B46768 /* UIImageView+CornerRadius.m in Sources */,
 				3F41880B1CEEFF5A001BCA3D /* DD_ClearingViewController.m in Sources */,
 				3F9B8AFF1CEF56E8008EC460 /* DD_TabbarItem.m in Sources */,
 				3F4904E01D18DA0A009F4CD3 /* DD_CircleListCell.m in Sources */,

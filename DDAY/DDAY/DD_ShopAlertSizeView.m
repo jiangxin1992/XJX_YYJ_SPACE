@@ -109,8 +109,9 @@
         CGFloat _imgHeight=(((CGFloat)_SizeAlertModel.sizeBriefPicHeight)/((CGFloat)_SizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
         sizeBriefImg=[UIImageView getCustomImg];
         [self addSubview:sizeBriefImg];
-        sizeBriefImg.contentMode=0;
-        [sizeBriefImg JX_ScaleToFill_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
+        sizeBriefImg.contentMode=2;
+        [regular setZeroBorder:sizeBriefImg];
+        [sizeBriefImg JX_ScaleAspectFill_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);

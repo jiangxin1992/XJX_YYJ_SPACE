@@ -13,6 +13,7 @@
 #import <YYKit/YYKit.h>
 @implementation UIImageView (LoadImage)
 
+
 - (void)JX_ScaleToFill_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius
 {
     NSString *urlStr=[regular getImgUrl:_urlStr WithSize:size];
@@ -44,42 +45,31 @@
         NSData *_defaultImage = [NSData dataWithContentsOfFile:filePath];
         placeImg=[UIImage imageWithSmallGIFData:_defaultImage scale:10];
     }
-    //头像需要手动缓存处理成圆角的图片
-    NSString *cacheurlStr = nil;
-    if(radius)
-    {
-        cacheurlStr=[urlStr stringByAppendingString:[[NSString alloc] initWithFormat:@"-radiusCache-%.1lf",radius]];
-    }else
-    {
-        cacheurlStr=[urlStr stringByAppendingString:@"-radiusCache"];
-    }
-    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheurlStr];
-    if (cacheImage) {
-        self.contentMode=UIViewContentModeScaleToFill;
-        self.image = cacheImage;
-    }else {
-        self.contentMode = UIViewContentModeCenter;
-        [self sd_setImageWithURL:url placeholderImage:placeImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                self.contentMode=UIViewContentModeScaleToFill;
-                if(radius)
-                {
-                    UIImage *radiusImage = [UIImage createRoundedRectImage:image size:self.frame.size radius:radius];
-                    self.image = radiusImage;
-                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
-                }else
-                {
-                    self.image = image;
-                    [[SDImageCache sharedImageCache] storeImage:image forKey:cacheurlStr];
-                }
-                //清除原有非圆角图片缓存
-                [[SDImageCache sharedImageCache] removeImageForKey:urlStr];
-            }else
-            {
-                self.contentMode=UIViewContentModeCenter;
-            }
-        }];
-    }
+    
+    
+//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+//    if (cacheImage) {
+////        self.contentMode=UIViewContentModeScaleToFill;
+//        self.image = cacheImage;
+//    }else {
+//        UIImageView *placeHolder=[UIImageView getCustomImg];
+//        [self addSubview:placeHolder];
+//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+//        placeHolder.image=placeImg;
+//        placeHolder.contentMode=UIViewContentModeCenter;
+//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            if (error){
+////                self.contentMode=UIViewContentModeScaleToFill;
+//            }else
+//            {
+//                self.image = image;
+//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+//                placeHolder.hidden=YES;
+////                self.contentMode=UIViewContentModeScaleToFill;
+//            }
+//        }];
+//    }
+    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 
@@ -114,42 +104,31 @@
         NSData *_defaultImage = [NSData dataWithContentsOfFile:filePath];
         placeImg=[UIImage imageWithSmallGIFData:_defaultImage scale:10];
     }
-    //头像需要手动缓存处理成圆角的图片
-    NSString *cacheurlStr = nil;
-    if(radius)
-    {
-        cacheurlStr=[urlStr stringByAppendingString:[[NSString alloc] initWithFormat:@"-radiusCache-%.1lf",radius]];
-    }else
-    {
-        cacheurlStr=[urlStr stringByAppendingString:@"-radiusCache"];
-    }
-    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheurlStr];
-    if (cacheImage) {
-        self.contentMode=UIViewContentModeScaleAspectFit;
-        self.image = cacheImage;
-    }else {
-        self.contentMode = UIViewContentModeCenter;
-        [self sd_setImageWithURL:url placeholderImage:placeImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                self.contentMode=UIViewContentModeScaleAspectFit;
-                if(radius)
-                {
-                    UIImage *radiusImage = [UIImage createRoundedRectImage:image size:self.frame.size radius:radius];
-                    self.image = radiusImage;
-                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
-                }else
-                {
-                    self.image = image;
-                    [[SDImageCache sharedImageCache] storeImage:image forKey:cacheurlStr];
-                }
-                //清除原有非圆角图片缓存
-                [[SDImageCache sharedImageCache] removeImageForKey:urlStr];
-            }else
-            {
-                self.contentMode=UIViewContentModeCenter;
-            }
-        }];
-    }
+    
+//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+//    if (cacheImage) {
+////        self.contentMode=UIViewContentModeScaleAspectFit;
+//        self.image = cacheImage;
+//    }else {
+////        self.contentMode = UIViewContentModeCenter;
+//        UIImageView *placeHolder=[UIImageView getCustomImg];
+//        [self addSubview:placeHolder];
+//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+//        placeHolder.image=placeImg;
+//        placeHolder.contentMode=UIViewContentModeCenter;
+//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            if (error){
+////                self.contentMode=UIViewContentModeScaleAspectFit;
+//            }else
+//            {
+//                self.image = image;
+//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+////                self.contentMode=UIViewContentModeScaleAspectFit;
+//                placeHolder.hidden=YES;
+//            }
+//        }];
+//    }
+    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 
@@ -161,6 +140,11 @@
     //...
     
     NSURL *url;
+    
+    //这里传CGFLOAT_MIN，就是默认以图片宽度的一半为圆角
+    //    if (radius == CGFLOAT_MIN) {
+    //        radius = self.frame.size.width/2.0;
+    //    }
     
     url = [NSURL URLWithString:urlStr];
     UIImage *placeImg=nil;
@@ -179,43 +163,31 @@
         NSData *_defaultImage = [NSData dataWithContentsOfFile:filePath];
         placeImg=[UIImage imageWithSmallGIFData:_defaultImage scale:10];
     }
-
-    //头像需要手动缓存处理成圆角的图片
-    NSString *cacheurlStr = nil;
-    if(radius)
-    {
-        cacheurlStr=[urlStr stringByAppendingString:[[NSString alloc] initWithFormat:@"-radiusCache-%.1lf",radius]];
-    }else
-    {
-        cacheurlStr=[urlStr stringByAppendingString:@"-radiusCache"];
-    }
-    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheurlStr];
-    if (cacheImage) {
-        self.contentMode=UIViewContentModeScaleAspectFill;
-        self.image = cacheImage;
-    }else {
-        self.contentMode = UIViewContentModeCenter;
-        [self sd_setImageWithURL:url placeholderImage:placeImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!error) {
-                self.contentMode=UIViewContentModeScaleAspectFill;
-                if(radius)
-                {
-                    UIImage *radiusImage = [UIImage createRoundedRectImage:image size:self.frame.size radius:radius];
-                    self.image = radiusImage;
-                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
-                }else
-                {
-                    self.image = image;
-                    [[SDImageCache sharedImageCache] storeImage:image forKey:cacheurlStr];
-                }
-                //清除原有非圆角图片缓存
-                [[SDImageCache sharedImageCache] removeImageForKey:urlStr];
-            }else
-            {
-                self.contentMode=UIViewContentModeCenter;
-            }
-        }];
-    }
+    
+//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+//    if (cacheImage) {
+////        self.contentMode=UIViewContentModeScaleAspectFill;
+//        self.image = cacheImage;
+//    }else {
+//        UIImageView *placeHolder=[UIImageView getCustomImg];
+//        [self addSubview:placeHolder];
+//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+//        placeHolder.image=placeImg;
+//        placeHolder.contentMode=UIViewContentModeCenter;
+////        self.contentMode = UIViewContentModeCenter;
+//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            if (error){
+////                self.contentMode=UIViewContentModeScaleAspectFill;
+//            }else
+//            {
+//                self.image = image;
+//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+////                self.contentMode=UIViewContentModeScaleAspectFill;
+//                placeHolder.hidden=YES;
+//            }
+//        }];
+//    }
+    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 

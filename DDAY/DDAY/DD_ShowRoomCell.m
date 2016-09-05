@@ -128,9 +128,10 @@
         DD_ImageModel *imgModel=[_showRoomModel.pics objectAtIndex:i];
         UIImageView *img=[UIImageView getCustomImg];
         [_img_back_view addSubview:img];
-        img.contentMode=0;
+        img.contentMode=2;
+        [regular setZeroBorder:img];
         CGFloat _height=(ScreenWidth-33*2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        [img JX_ScaleToFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
             if(lastView)
