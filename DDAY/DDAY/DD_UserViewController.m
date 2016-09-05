@@ -90,7 +90,7 @@
     _userHeadImg.contentMode=2;
     [regular setZeroBorder:_userHeadImg];
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(83);
+        make.height.width.mas_equalTo(93);
         make.center.mas_equalTo(_headBack);
     }];
     

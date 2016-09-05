@@ -81,12 +81,12 @@
             make.width.height.mas_equalTo(43);
         }];
         
-        userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+        userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:userNameLabel];
         [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(userHeadImg);
             make.height.mas_equalTo(43/2.0f);
-            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(9);
         }];
         [userNameLabel sizeToFit];
         

@@ -47,29 +47,32 @@
     }
     
     
-//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
-//    if (cacheImage) {
-////        self.contentMode=UIViewContentModeScaleToFill;
-//        self.image = cacheImage;
-//    }else {
-//        UIImageView *placeHolder=[UIImageView getCustomImg];
-//        [self addSubview:placeHolder];
-//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-//        placeHolder.image=placeImg;
-//        placeHolder.contentMode=UIViewContentModeCenter;
-//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            if (error){
-////                self.contentMode=UIViewContentModeScaleToFill;
-//            }else
-//            {
-//                self.image = image;
-//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
-//                placeHolder.hidden=YES;
-////                self.contentMode=UIViewContentModeScaleToFill;
-//            }
-//        }];
-//    }
-    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
+    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+    if (cacheImage) {
+//        self.contentMode=UIViewContentModeScaleToFill;
+        self.image = cacheImage;
+    }else {
+        UIImageView *placeHolder=[UIImageView getCustomImg];
+        [self addSubview:placeHolder];
+        placeHolder.image=placeImg;
+        placeHolder.contentMode=UIViewContentModeCenter;
+        [placeHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self);
+        }];
+        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error){
+//                self.contentMode=UIViewContentModeScaleToFill;
+            }else
+            {
+                self.image = image;
+                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+                placeHolder.hidden=YES;
+//                self.contentMode=UIViewContentModeScaleToFill;
+            }
+        }];
+    }
+    
+//    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 
@@ -105,30 +108,32 @@
         placeImg=[UIImage imageWithSmallGIFData:_defaultImage scale:10];
     }
     
-//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
-//    if (cacheImage) {
-////        self.contentMode=UIViewContentModeScaleAspectFit;
-//        self.image = cacheImage;
-//    }else {
-////        self.contentMode = UIViewContentModeCenter;
-//        UIImageView *placeHolder=[UIImageView getCustomImg];
-//        [self addSubview:placeHolder];
-//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-//        placeHolder.image=placeImg;
-//        placeHolder.contentMode=UIViewContentModeCenter;
-//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            if (error){
-////                self.contentMode=UIViewContentModeScaleAspectFit;
-//            }else
-//            {
-//                self.image = image;
-//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
-////                self.contentMode=UIViewContentModeScaleAspectFit;
-//                placeHolder.hidden=YES;
-//            }
-//        }];
-//    }
-    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
+    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+    if (cacheImage) {
+//        self.contentMode=UIViewContentModeScaleAspectFit;
+        self.image = cacheImage;
+    }else {
+//        self.contentMode = UIViewContentModeCenter;
+        UIImageView *placeHolder=[UIImageView getCustomImg];
+        [self addSubview:placeHolder];
+        placeHolder.image=placeImg;
+        placeHolder.contentMode=UIViewContentModeCenter;
+        [placeHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self);
+        }];
+        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error){
+//                self.contentMode=UIViewContentModeScaleAspectFit;
+            }else
+            {
+                self.image = image;
+                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+//                self.contentMode=UIViewContentModeScaleAspectFit;
+                placeHolder.hidden=YES;
+            }
+        }];
+    }
+//    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 
@@ -164,30 +169,32 @@
         placeImg=[UIImage imageWithSmallGIFData:_defaultImage scale:10];
     }
     
-//    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
-//    if (cacheImage) {
-////        self.contentMode=UIViewContentModeScaleAspectFill;
-//        self.image = cacheImage;
-//    }else {
-//        UIImageView *placeHolder=[UIImageView getCustomImg];
-//        [self addSubview:placeHolder];
-//        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-//        placeHolder.image=placeImg;
-//        placeHolder.contentMode=UIViewContentModeCenter;
-////        self.contentMode = UIViewContentModeCenter;
-//        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            if (error){
-////                self.contentMode=UIViewContentModeScaleAspectFill;
-//            }else
-//            {
-//                self.image = image;
-//                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
-////                self.contentMode=UIViewContentModeScaleAspectFill;
-//                placeHolder.hidden=YES;
-//            }
-//        }];
-//    }
-    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
+    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:urlStr];
+    if (cacheImage) {
+//        self.contentMode=UIViewContentModeScaleAspectFill;
+        self.image = cacheImage;
+    }else {
+        UIImageView *placeHolder=[UIImageView getCustomImg];
+        [self addSubview:placeHolder];
+        placeHolder.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        placeHolder.image=placeImg;
+        placeHolder.contentMode=UIViewContentModeCenter;
+        [placeHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self);
+        }];
+        [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error){
+//                self.contentMode=UIViewContentModeScaleAspectFill;
+            }else
+            {
+                self.image = image;
+                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
+//                self.contentMode=UIViewContentModeScaleAspectFill;
+                placeHolder.hidden=YES;
+            }
+        }];
+    }
+//    [self sd_setImageWithURL:url placeholderImage:placeImg completed:nil];
 
 }
 

@@ -41,15 +41,15 @@
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(17);
-        make.width.height.mas_equalTo(50);
+        make.width.height.mas_equalTo(IsPhone6_gt?50:40);
     }];
     
     _brand=[UIImageView getCustomImg];
     [self.contentView addSubview:_brand];
     [_brand mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_head.mas_right).with.offset(17);
+        make.left.mas_equalTo(_head.mas_right).with.offset(IsPhone6_gt?17:10);
         make.top.mas_equalTo(_head);
-        make.width.height.mas_equalTo(50);
+        make.width.height.mas_equalTo(IsPhone6_gt?50:40);
     }];
     
     _followBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_black_color];
@@ -63,13 +63,13 @@
         make.centerY.mas_equalTo(_brand);
     }];
     
-    _name_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    _name_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_name_label];
     [_name_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_brand.mas_right).with.offset(9);
         make.top.mas_equalTo(_head);
         make.right.mas_equalTo(_followBtn.mas_left).with.offset(-9);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(IsPhone6_gt?25:20);
     }];
     
     _brand_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -78,7 +78,7 @@
         make.left.mas_equalTo(_brand.mas_right).with.offset(9);
         make.top.mas_equalTo(_name_label.mas_bottom).with.offset(0);
         make.right.mas_equalTo(_followBtn.mas_left).with.offset(-9);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(IsPhone6_gt?25:20);
     }];
     
     _scrollview=[[UIScrollView alloc] init];

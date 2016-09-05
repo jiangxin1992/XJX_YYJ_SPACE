@@ -82,7 +82,7 @@
 //        make.left.mas_equalTo(IsPhone6_gt?34:15);
     }];
     
-    userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
     [_contentView addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userHeadImg);
