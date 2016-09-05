@@ -28,17 +28,13 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(19+kStatusBarHeight);
-        make.width.mas_equalTo(11);
-        make.height.mas_equalTo(19);
-    }];
+    backBtn.frame=CGRectMake(10, kStatusBarHeight, CGRectGetWidth(backBtn.frame), CGRectGetHeight(backBtn.frame));
     [backBtn setEnlargeEdge:20];
     
-    UILabel *title=[UILabel getLabelWithAlignment:1 WithTitle:@"密码找回" WithFont:17.0f WithTextColor:nil WithSpacing:0];
+    UILabel *title=[UILabel getLabelWithAlignment:1 WithTitle:@"密码找回" WithFont:IsPhone6_gt?18.0f:15.0f WithTextColor:nil WithSpacing:0];
     title.font=[regular getSemiboldFont:17.0f];
     [self.view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -48,7 +44,7 @@
         make.centerX.mas_equalTo(self.view);
     }];
     
-    _PSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"设置新密码" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _PSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"设置新密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_PSWTextfield];
     [_PSWTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -57,7 +53,7 @@
         make.top.mas_equalTo(self.view).with.offset(IsPhone6_gt?204:kIPhone5s?150:126);
     }];
     
-    _repeatPSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"再次输入密码" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _repeatPSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"再次输入密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_repeatPSWTextfield];
     _repeatPSWTextfield.returnKeyType=UIReturnKeyDone;
     _repeatPSWTextfield.delegate=self;

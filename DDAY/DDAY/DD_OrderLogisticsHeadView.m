@@ -36,15 +36,17 @@
     
     log_name=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:log_name];
+//    log_name.backgroundColor=[UIColor redColor];
     [log_name mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_head.mas_centerY).with.offset(0);
+        make.bottom.mas_equalTo(_head.mas_centerY).with.offset(-2);
         make.left.mas_equalTo(_head.mas_right).with.offset(10);
     }];
     
     log_order=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:log_order];
+//    log_order.backgroundColor=[UIColor redColor];
     [log_order mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_head.mas_centerY).with.offset(0);
+        make.top.mas_equalTo(_head.mas_centerY).with.offset(2);
         make.left.mas_equalTo(_head.mas_right).with.offset(10);
     }];
     

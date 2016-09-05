@@ -63,7 +63,7 @@
     [_downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
-    UILabel *imgTitle=[UILabel getLabelWithAlignment:0 WithTitle:@"添加搭配图" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    UILabel *imgTitle=[UILabel getLabelWithAlignment:0 WithTitle:@"添加搭配图" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [_downView addSubview:imgTitle];
     [imgTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);

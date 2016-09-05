@@ -15,6 +15,7 @@
  * 获取初始化model
  */
 +(DD_CircleModel *)getCircleModel;
+-(NSMutableArray *)getTagArr;
 /**
  * 搭配建议
  */

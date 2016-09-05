@@ -9,6 +9,7 @@
 #import "DD_CircleDetailHeadView.h"
 
 #import "DD_CircleDetailImgView.h"
+#import "DD_CircleTagView.h"
 
 @implementation DD_CircleDetailHeadView
 {
@@ -174,6 +175,16 @@
     }];
     [_conentLabel sizeToFit];
     
+    DD_CircleTagView *_CircleTagView=[[DD_CircleTagView alloc] initWithTagArr:[_listModel getTagArr]];
+    [_contentView addSubview:_CircleTagView];
+    [_CircleTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
+        make.height.mas_equalTo(_CircleTagView.height);
+    }];
+    
+    
     UIView *_lastView_state=nil;
     UIView *_last_count_view=nil;
     NSArray *imgArr_normal=nil;
@@ -221,7 +232,14 @@
                 make.right.mas_equalTo(-kEdge);
                 make.width.mas_equalTo(25);
                 make.height.mas_equalTo(44);
-                make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
+                if([_listModel getTagArr].count)
+                {
+                    make.top.mas_equalTo(_CircleTagView.mas_bottom).with.offset(8.5f);
+                }else
+                {
+                    make.top.mas_equalTo(_CircleTagView.mas_bottom).with.offset(0);
+                }
+                
             }
         }];
         [userBtnArr addObject:btn];
@@ -257,6 +275,11 @@
     [_last_count_view mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(-30);
     }];
+    
+    NSLog(@"%@",_listModel);
+    NSLog(@"111");
+    
+    
 }
 #pragma mark - setter
 -(void)setListModel:(DD_CircleListModel *)listModel
@@ -365,7 +388,7 @@
             goods.hidden=YES;
         }
     }
-    if(_listModel.items.count>2)
+    if(_listModel.items.count>3)
     {
         moreBtn.hidden=NO;
     }else

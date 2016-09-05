@@ -118,6 +118,11 @@
         {
             //            发送
             [self sendActionWithContent:content];
+        }else
+        {
+//            [self return_KeyBoard];
+//            [regular dismissKeyborad];
+//            _commentview.resignFirstResponder
         }
     }];
     [self.view addSubview:_commentview];

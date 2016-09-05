@@ -109,9 +109,13 @@
             if([type isEqualToString:@"click"])
             {
 //                [titleView setTitle:categoryName forState:UIControlStateNormal];
+                self.navigationItem.titleView=[regular returnNavView:categoryName withmaxwidth:200];
+
             }else if([type isEqualToString:@"all"])
             {
 //                [titleView setTitle:@"类别" forState:UIControlStateNormal];
+                self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
+
             }
             _categoryName=categoryName;
             _categoryID=categoryID;

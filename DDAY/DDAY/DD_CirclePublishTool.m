@@ -33,12 +33,22 @@
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
-    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
+//    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
+//    [imageview addSubview:price_label];
+//    price_label.font=[regular getSemiboldFont:15.0f];
+//    [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(8);
+//        make.bottom.mas_equalTo(-8);
+//    }];
+    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [imageview addSubview:price_label];
-    price_label.font=[regular getSemiboldFont:15.0f];
+    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    price_label.titleLabel.font=[regular getSemiboldFont:15.0f];
+    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(8);
-        make.bottom.mas_equalTo(-8);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(25);
     }];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];

@@ -15,10 +15,12 @@
  * 获取标签组model
  */
 +(DD_CircleTagModel *)getCircleTagModel:(NSDictionary *)dict;
+//+(DD_CircleTagModel *)getCircleTagModel_no:(NSDictionary *)dict;
 /**
  * 获取标签组model数组
  */
 +(NSMutableArray *)getCircleTagModelArr:(NSArray *)arr;
+//+(NSMutableArray *)getCircleTagModelArr_no:(NSArray *)arr;
 /**
  * 更新当前状态下的lastItem
  */

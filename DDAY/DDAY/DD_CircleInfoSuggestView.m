@@ -92,7 +92,7 @@
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(0);
     }];
     
-    _numlabel=[UILabel getLabelWithAlignment:2 WithTitle:[self getlength] WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    _numlabel=[UILabel getLabelWithAlignment:2 WithTitle:[self getlength] WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [backView addSubview:_numlabel];
     [_numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.right.mas_equalTo(-11);
@@ -120,7 +120,7 @@
     _textView=[[UITextView alloc] init];
     _textView.inputAccessoryView = _SignBoard;
     _textView.returnKeyType=UIReturnKeyDefault;
-    _textView.font=[regular getFont:10.5f];
+    _textView.font=[regular getFont:13.0f];
     _textView.text=_holdStr;
     _textView.textColor=_define_light_gray_color1;
     _textView.delegate=self;

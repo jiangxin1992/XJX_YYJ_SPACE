@@ -12,12 +12,12 @@
 /**
  * 初始化
  */
--(instancetype)initWithBlock:(void (^)(NSString *type,NSString *content))block;
+-(instancetype)initWithBlock:(void (^)(NSString *type, NSString *content,CGFloat height))block;
 
 /**
  * 回调block
  */
-@property(nonatomic,copy) void (^block)(NSString *type,NSString *content);
+@property(nonatomic,copy) void (^block)(NSString *type, NSString *content,CGFloat height);
 /**
  * 输入框 用于外部调用文本框内容
  */

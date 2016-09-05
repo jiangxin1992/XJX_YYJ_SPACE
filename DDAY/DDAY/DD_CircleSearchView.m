@@ -10,6 +10,8 @@
 
 #import "DD_CricleChooseItemModel.h"
 
+#import "DD_CircleSearchCell.h"
+
 @implementation DD_CircleSearchView
 {
     UISearchBar *_searchBar;
@@ -121,7 +123,7 @@
     
     [self addSubview:_tableview];
     //    消除分割线
-//    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
+    _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -203,13 +205,13 @@
     }
     //获取到数据以后
     static NSString *cellid=@"cellid";
-    UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    DD_CircleSearchCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_CircleSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.textLabel.text=item.name;
+    cell.content=item.name;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

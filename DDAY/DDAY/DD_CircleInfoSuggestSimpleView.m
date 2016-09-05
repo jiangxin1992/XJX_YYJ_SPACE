@@ -106,7 +106,7 @@
     _textfield.placeholder=_holdStr;
     _textfield.inputAccessoryView = _SignBoard;
     _textfield.returnKeyType=UIReturnKeyDefault;
-    _textfield.font=[regular getFont:12.0f];
+    _textfield.font=[regular getFont:13.0f];
     
     [_textfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);

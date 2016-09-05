@@ -30,13 +30,14 @@
 //    [self SetData];
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock
+-(instancetype)initWithModel:(DD_AddressModel *)AddressModel isDefault:(BOOL )isDefault WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock
 {
     self=[super init];
     if(self)
     {
         _AddressModel=AddressModel;
         _saveblock=saveblock;
+        _is_default=isDefault;
         if(_AddressModel)
         {
             _p_id=AddressModel.provinceId;
@@ -60,6 +61,10 @@
 -(void)setTitle:(NSString *)title
 {
     self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:200];
+}
+-(void)setIs_default:(BOOL)is_default
+{
+    _Default_btn.selected=is_default;
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -87,7 +92,7 @@
             make.height.mas_equalTo(41);
         }];
         
-        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:titlearr[i] WithFont:14.0f WithTextColor:nil WithSpacing:0];
+        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:titlearr[i] WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [cellview addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(cellview);
@@ -95,15 +100,15 @@
             make.width.mas_equalTo([self getWeight:titlearr[i]]);
         }];
         
-        UIButton *editBtn=[UIButton getCustomImgBtnWithImageStr:@"System_diagonal" WithSelectedImageStr:@"System_diagonal"];
-        [cellview addSubview:editBtn];
-        editBtn.tag=200+i;
-        [editBtn setEnlargeEdge:10];
-        [editBtn addTarget:self action:@selector(editBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        editBtn.frame=CGRectMake(ScreenWidth-11-kEdge, (41-11)/2.0f, 11, 11);
+//        UIButton *editBtn=[UIButton getCustomImgBtnWithImageStr:@"System_diagonal" WithSelectedImageStr:@"System_diagonal"];
+//        [cellview addSubview:editBtn];
+//        editBtn.tag=200+i;
+//        [editBtn setEnlargeEdge:10];
+//        [editBtn addTarget:self action:@selector(editBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//        editBtn.frame=CGRectMake(ScreenWidth-11-kEdge, (41-11)/2.0f, 11, 11);
         
         
-        CGFloat _width=ScreenWidth-5-11-kEdge-15-kEdge-[self getWeight:titlearr[i]];
+        CGFloat _width=ScreenWidth-5-kEdge-15-kEdge-[self getWeight:titlearr[i]];
         UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
         upline.frame=CGRectMake(0, 41-((41-[self getHeight:titlearr[i]])/2.0f), _width, 1);
         if(i==3)
@@ -140,6 +145,7 @@
     _Default_btn=[DD_AddNewAddressDefaultBtn getBtn];
     [self.view addSubview:_Default_btn];
     [_Default_btn addTarget:self action:@selector(DefaultAddress:) forControlEvents:UIControlEventTouchUpInside];
+    _Default_btn.selected=_is_default;
     [_Default_btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lastview.mas_bottom).with.offset(0);
         make.left.mas_equalTo(kEdge);
@@ -181,7 +187,7 @@
 }
 -(CGFloat )getWeight:(NSString *)str
 {
-    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:str WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:str WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [titleLabel sizeToFit];
     return titleLabel.frame.size.width;
 }

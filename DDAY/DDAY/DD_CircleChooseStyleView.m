@@ -76,7 +76,7 @@
         make.height.mas_equalTo(40);
     }];
     
-    UILabel *leftLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"款式选择" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    UILabel *leftLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"款式选择" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [_upView addSubview:leftLabel];
     [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);

@@ -27,7 +27,7 @@
 -(void)UIConfig
 {
     CGFloat _jiange=9;
-    _addressName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    _addressName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_addressName];
     [_addressName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_jiange);
@@ -46,7 +46,7 @@
     }];
     [_alertBtn setEnlargeEdge:10];
     
-    _phoneNum=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:14.0f WithTextColor:nil WithSpacing:0];
+    _phoneNum=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_phoneNum];
     [_phoneNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_addressName);
@@ -55,7 +55,7 @@
     }];
     [_phoneNum sizeToFit];
     
-    _detailAddress=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:nil WithSpacing:0];
+    _detailAddress=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_detailAddress];
     _detailAddress.numberOfLines=2;
     [_detailAddress mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -53,14 +53,10 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(35);
-        make.width.mas_equalTo(11);
-        make.height.mas_equalTo(19);
-    }];
+    backBtn.frame=CGRectMake(10, kStatusBarHeight, CGRectGetWidth(backBtn.frame), CGRectGetHeight(backBtn.frame));
     [backBtn setEnlargeEdge:20];
     
     UIImageView *Logo=[UIImageView getImgWithImageStr:@"Login_Space_Logo"];
@@ -70,7 +66,7 @@
         make.centerX.mas_equalTo(self.view);
         make.width.and.height.mas_equalTo(72);
     }];
-    _phoneTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _phoneTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfiled];
     [_phoneTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -78,7 +74,7 @@
         make.height.mas_equalTo(50);
         make.top.mas_equalTo(Logo.mas_bottom).with.offset(IsPhone5_gt?28:22);
     }];
-    _PSWTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入密码" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Eye" WithSize:CGSizeMake(21, 14) isLeft:NO WithBlock:^(NSString *type) {
+    _PSWTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Eye" WithSize:CGSizeMake(21, 14) isLeft:NO WithBlock:^(NSString *type) {
         if([type isEqualToString:@"click"])
         {
             _PSWTextfiled.secureTextEntry=!_PSWTextfiled.isSecureTextEntry;
@@ -94,7 +90,7 @@
         make.top.mas_equalTo(_phoneTextfiled.mas_bottom).with.offset(IsPhone5_gt?18:11);
     }];
     
-    UIButton *retrieveBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"忘记密码" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *retrieveBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"忘记密码" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:retrieveBtn];
     [retrieveBtn addTarget:self action:@selector(fogetPWD) forControlEvents:UIControlEventTouchUpInside];
     [retrieveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -104,7 +100,7 @@
         make.width.mas_equalTo(100);
     }];
     
-    UIButton *registerBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"还没有账号" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *registerBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"还没有账号" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:registerBtn];
     [registerBtn addTarget:self action:@selector(CreateCount) forControlEvents:UIControlEventTouchUpInside];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {

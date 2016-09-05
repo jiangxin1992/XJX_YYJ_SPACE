@@ -10,15 +10,15 @@
 
 #import "DD_ImageModel.h"
 #import "DD_OrderItemModel.h"
+#import "DD_CircleTagModel.h"
 
 @implementation DD_CircleListModel
 +(DD_CircleListModel *)getCircleListModel:(NSDictionary *)dict
 {
     DD_CircleListModel *_tagModel=[DD_CircleListModel objectWithKeyValues:dict];
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
-//    _tagModel.createTime=_tagModel.createTime/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
-//    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
+    //    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
     return _tagModel;
 }
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr
@@ -42,11 +42,17 @@
 {
     DD_CircleListModel *_tagModel=[DD_CircleListModel objectWithKeyValues:dict];
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
-//    _tagModel.createTime=_tagModel.createTime/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
-//    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
+    _tagModel.tags=[DD_CircleTagModel getCircleTagModelArr:[dict objectForKey:@"personTags"]];
     _tagModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     return _tagModel;
 }
-
+-(NSMutableArray *)getTagArr
+{
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+    for (DD_CircleTagModel *tag in self.tags) {
+        [arr addObjectsFromArray:tag.tags];
+    }
+    return arr;
+}
 @end

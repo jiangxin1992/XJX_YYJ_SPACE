@@ -8,6 +8,9 @@
 
 #import "DD_CircleModel.h"
 
+#import "DD_CircleTagModel.h"
+#import "DD_CricleTagItemModel.h"
+
 @implementation DD_CircleModel
 +(DD_CircleModel *)getCircleModel;
 {
@@ -18,5 +21,27 @@
     model.remark=@"";
     model.designerModel=[DD_CircleFavouriteDesignerModel initDesignerModel];
     return model;
+}
+-(NSMutableArray *)getTagArr
+{
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+
+    for (DD_CircleTagModel *tagModel in self.shareTags) {
+        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+            if(tagItemModel.is_select)
+            {
+                [arr addObject:tagItemModel];
+            }
+        }
+    }
+    for (DD_CircleTagModel *tagModel in self.personTags) {
+        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+            if(tagItemModel.is_select)
+            {
+                [arr addObject:tagItemModel];
+            }
+        }
+    }
+    return arr;
 }
 @end

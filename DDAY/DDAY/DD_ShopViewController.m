@@ -246,7 +246,7 @@
         _mengban_size_Height=0;
         if(!sizeAlertModel.sizeBriefPic||[sizeAlertModel.sizeBriefPic isEqualToString:@""])
         {
-            _mengban_size_Height=IsPhone6_gt?(97+ktabbarHeight):(77+ktabbarHeight);
+            _mengban_size_Height=IsPhone6_gt?(78+ktabbarHeight):(58+ktabbarHeight);
         }else
         {
             CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);

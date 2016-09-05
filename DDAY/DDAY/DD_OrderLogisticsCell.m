@@ -75,7 +75,7 @@
     [_downLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(timeLabel.mas_bottom).with.offset(10);
         make.left.mas_equalTo(54);
-        make.right.mas_equalTo(-38);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
     }];
 }

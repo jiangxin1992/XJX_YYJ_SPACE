@@ -12,6 +12,7 @@
 
 @interface DD_AddNewAddressViewController : DD_BaseViewController
 @property (nonatomic,strong)DD_AddressModel *AddressModel;
--(instancetype)initWithModel:(DD_AddressModel *)AddressModel WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock;
+-(instancetype)initWithModel:(DD_AddressModel *)AddressModel isDefault:(BOOL )isDefault WithBlock:(void(^)(NSString *type,DD_AddressModel *model,NSString *defaultID))saveblock;
 @property (nonatomic,copy) void (^saveblock)(NSString *type,DD_AddressModel *model,NSString *defaultID);
+__bool(is_default);
 @end

@@ -76,7 +76,7 @@
         make.top.mas_equalTo(10);
     }];
     
-    UILabel *title=[UILabel getLabelWithAlignment:0 WithTitle:@"添加标签" WithFont:14.0f WithTextColor:_define_black_color WithSpacing:0];
+    UILabel *title=[UILabel getLabelWithAlignment:0 WithTitle:@"添加标签" WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
     [_downView addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_addBtn);
@@ -115,7 +115,7 @@
                 make.left.mas_equalTo(kEdge);
                 make.right.mas_equalTo(-kEdge);
             }];
-            UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:_tagModel.CategoryName WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+            UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:_tagModel.CategoryName WithFont:14.0f WithTextColor:_define_black_color WithSpacing:0];
             [backView addSubview:titleLabel];
             [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.and.right.mas_equalTo(0);
@@ -126,13 +126,13 @@
             // 间距为10
             int intes = 10;
             // 每行4个
-            int num = 4;
-            CGFloat width=(ScreenWidth-40-30)/4.0f;
+            int num = 0;
+            CGFloat _x_p=0;
             // 循环创建view
             for (int j=0; j<_tagModel.tags.count; j++) {
                 DD_CricleTagItemModel *item=[_tagModel.tags objectAtIndex:j];
 //                25
-                UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:item.tagName WithNormalColor:_define_black_color WithSelectedTitle:item.tagName WithSelectedColor:_define_white_color];
+                UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:item.tagName WithNormalColor:_define_black_color WithSelectedTitle:item.tagName WithSelectedColor:_define_white_color];
                 [backView addSubview:btn];
                 btn.tag=100*i+j;
                 [regular setBorder:btn];
@@ -146,32 +146,30 @@
                     btn.backgroundColor=_define_white_color;
                 }
                 [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+                CGFloat __width=[regular getWidthWithHeight:25 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+10;
+                
+                
+                if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
+                {
+                    num++;
+                    _x_p=0;
+                }
                 
                 [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    // 给个高度约束
-                    make.width.mas_equalTo(width);
+                    make.top.mas_equalTo(btn.superview).offset(40+35*num);
+
+                    make.left.mas_equalTo(_x_p);
+                    make.width.mas_equalTo(__width);
                     make.height.mas_equalTo(25);
-                    // 2. 判断是否是第一列
-                    if (j % num == 0) {
-                        // 一：是第一列时 添加左侧与父视图左侧约束
-                        make.left.mas_equalTo(btn.superview).offset(0);
-                    } else {
-                        // 二： 不是第一列时 添加左侧与上个view左侧约束
-                        make.left.mas_equalTo(lastBtn.mas_right).offset(intes);
-                    }
-                    // 3. 判断是否是最后一列 给最后一列添加与父视图右边约束
-                    if (j % num == (num - 1)) {
-                        make.right.mas_equalTo(btn.superview).offset(0);
-                    }
-                    // 4. 判断是否为第一列
-                    if (j / num == 0) {
-                        // 第一列添加顶部约束
-                        make.top.mas_equalTo(btn.superview).offset(40);
-                    } else {
-                        // 其余添加顶部约束 intes*10 是我留出的距顶部高度
-                        make.top.mas_equalTo(40 + ( j / num )* (25 + intes));
-                    }
                 }];
+                if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
+                {
+                }else
+                {
+                    _x_p+=__width+intes;
+                }
+                
+                
                 // 每次循环结束 此次的View为下次约束的基准
                 lastBtn = btn;
             }

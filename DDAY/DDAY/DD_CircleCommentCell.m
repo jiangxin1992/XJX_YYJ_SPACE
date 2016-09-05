@@ -54,7 +54,7 @@
     icon.userInteractionEnabled=YES;
     [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(19);
         make.width.and.height.mas_equalTo(44);
     }];
@@ -64,7 +64,6 @@
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(icon.mas_right).with.offset(14);
         make.top.mas_equalTo(10);
-        make.width.mas_equalTo(80);
     }];
     [userName sizeToFit];
     

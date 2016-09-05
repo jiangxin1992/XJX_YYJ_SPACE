@@ -22,7 +22,7 @@
 
 +(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict;
 
-
+-(NSMutableArray *)getTagArr;
 
 /**
  * 用户职业

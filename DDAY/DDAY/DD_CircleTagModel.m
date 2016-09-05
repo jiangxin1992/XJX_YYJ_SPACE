@@ -16,7 +16,22 @@
     _tagModel.CategoryName=[dict objectForKey:@"name"];
     return _tagModel;
 }
+//+(DD_CircleTagModel *)getCircleTagModel_no:(NSDictionary *)dict
+//{
+//    DD_CircleTagModel *_tagModel=[DD_CircleTagModel objectWithKeyValues:dict];
+//    _tagModel.tags=[dict objectForKey:@"tags"];
+//    _tagModel.CategoryName=[dict objectForKey:@"name"];
+//    return _tagModel;
+//}
 
+//+(NSMutableArray *)getCircleTagModelArr_no:(NSArray *)arr
+//{
+//    NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getCircleTagModel_no:dict]];
+//    }
+//    return TagsArr;
+//}
 +(NSMutableArray *)getCircleTagModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];

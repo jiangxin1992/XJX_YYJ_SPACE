@@ -15,6 +15,7 @@
 #import "DD_CircleViewController.h"
 
 #import "DD_CircleDetailImgView.h"
+#import "DD_CircleTagView.h"
 
 #import "DD_CirclePublishTool.h"
 #import "DD_CircleListModel.h"
@@ -36,6 +37,7 @@
     DD_UserModel *_usermodel;
     UIScrollView *_scrollView;
     UIView *container;
+    DD_CircleTagView *_CircleTagView;
     
     UIButton *submit;
 }
@@ -236,13 +238,23 @@
         make.right.mas_equalTo(-kEdge);
     }];
     
+    _CircleTagView=[[DD_CircleTagView alloc] initWithTagArr:nil];
+    [container addSubview:_CircleTagView];
+    [_CircleTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8.5f);
+        make.height.mas_equalTo(_CircleTagView.height);
+    }];
+    
+    
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.mas_equalTo(self.view);
         make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(kNavHeight);
         make.bottom.mas_equalTo(submit.mas_top).with.offset(0);
         // 让scrollview的contentSize随着内容的增多而变化
-        make.bottom.mas_equalTo(conentLabel.mas_bottom).with.offset(20);
+        make.bottom.mas_equalTo(_CircleTagView.mas_bottom).with.offset(20);
     }];
 }
 #pragma mark - SomeAction
@@ -314,6 +326,12 @@
     [userHeadImg JX_ScaleToFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
     userNameLabel.text=_usermodel.nickName;
     userCareerLabel.text=_usermodel.career;
+    
+    _CircleTagView.tagArr=[_circleModel getTagArr];
+    [_CircleTagView setState];
+    [_CircleTagView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(_CircleTagView.height);
+    }];
     
     NSArray *items=[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel];
     NSInteger count_index=0;

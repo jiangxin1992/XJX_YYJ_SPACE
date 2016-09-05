@@ -259,16 +259,16 @@ __bool(isExpanded);
         _CircleView=[[DD_GoodsCircleView alloc] initWithGoodsItem:_DetailModel.circle WithBlock:^(NSString *type,DD_OrderItemModel *item) {
             if([type isEqualToString:@"head_click"])
             {
-                if([_DetailModel.designer.userType integerValue]==2)
+                if([_DetailModel.circle.userType integerValue]==2)
                 {
                     //                设计师
                     DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-                    _DesignerHomePage.designerId=_DetailModel.designer.designerId;
+                    _DesignerHomePage.designerId=_DetailModel.circle.userId;
                     [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-                }else if([_DetailModel.designer.userType integerValue]==4)
+                }else if([_DetailModel.circle.userType integerValue]==4)
                 {
                     //                达人
-                    [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_DetailModel.designer.designerId] animated:YES];
+                    [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_DetailModel.circle.userId] animated:YES];
                 }else
                 {
                     [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];

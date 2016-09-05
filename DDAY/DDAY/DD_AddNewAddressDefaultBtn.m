@@ -23,7 +23,7 @@
         [btn setTitle:@"设为默认地址" forState:UIControlStateNormal];
         [btn setTitle:@"设为默认地址" forState:UIControlStateSelected];
         //设置字体大小
-        btn.titleLabel.font=[regular getFont:14.0f];
+        btn.titleLabel.font=[regular getFont:15.0f];
         //设置居中
         btn.titleLabel.textAlignment = 1;
     }
@@ -37,7 +37,7 @@
 }
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    return CGRectMake(0, (57-15)/2.0f, 15, 15);
+    return CGRectMake(5, (57-15)/2.0f, 15, 15);
 }
 
 @end

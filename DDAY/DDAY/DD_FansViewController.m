@@ -8,6 +8,9 @@
 
 #import "DD_FansViewController.h"
 
+#import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
+
 #import "DD_FansCell.h"
 
 #import "DD_FansModel.h"
@@ -141,7 +144,26 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DD_FansModel *fanModel=[_dataArr objectAtIndex:indexPath.section];
+    
+    if([fanModel.userType integerValue]==2)
+    {
+        //                设计师
+        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+        _DesignerHomePage.designerId=fanModel.userId;
+        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+    }else if([fanModel.userType integerValue]==4)
+    {
+        //                达人
+        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:fanModel.userId] animated:YES];
+    }else
+    {
+        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+    }
+    
+}
 #pragma mark - SomeAction
 -(void)MJRefresh
 {

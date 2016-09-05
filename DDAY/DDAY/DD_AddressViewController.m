@@ -183,8 +183,9 @@
 }
 -(void)alertActionWithNum:(NSInteger )_num
 {
+    DD_AddressModel *addressModel=_dataArr[_num];
 //    跳转修改界面
-    DD_AddNewAddressViewController *AddNewAddress=[[DD_AddNewAddressViewController alloc] initWithModel:_dataArr[_num] WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
+    DD_AddNewAddressViewController *AddNewAddress=[[DD_AddNewAddressViewController alloc] initWithModel:addressModel isDefault:addressModel.isDefault WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
         if([type isEqualToString:@"modify"])
         {
             //            修改地址
@@ -198,7 +199,12 @@
 }
 -(void)pushNewAddress
 {
-    DD_AddNewAddressViewController *_newAddress=[[DD_AddNewAddressViewController alloc] initWithModel:nil WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
+    BOOL _isDefault=NO;
+    if(!_dataArr.count)
+    {
+        _isDefault=YES;
+    }
+    DD_AddNewAddressViewController *_newAddress=[[DD_AddNewAddressViewController alloc] initWithModel:nil isDefault:_isDefault WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
         if([type isEqualToString:@"add"])
         {
             //            新增地址

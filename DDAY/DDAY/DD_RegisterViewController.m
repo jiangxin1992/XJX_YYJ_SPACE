@@ -39,19 +39,14 @@
 }
 -(void)UIConfig
 {
-    
-    UIButton *backBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Back" WithSelectedImageStr:nil];
+    DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(19+kStatusBarHeight);
-        make.width.mas_equalTo(11);
-        make.height.mas_equalTo(19);
-    }];
+    backBtn.frame=CGRectMake(10, kStatusBarHeight, CGRectGetWidth(backBtn.frame), CGRectGetHeight(backBtn.frame));
     [backBtn setEnlargeEdge:20];
     
-    UILabel *title=[UILabel getLabelWithAlignment:1 WithTitle:@"注册账号" WithFont:17.0f WithTextColor:nil WithSpacing:0];
-    title.font=[regular getSemiboldFont:17.0f];
+    UILabel *title=[UILabel getLabelWithAlignment:1 WithTitle:@"注册账号" WithFont:IsPhone6_gt?18.0f:15.0f WithTextColor:nil WithSpacing:0];
+    title.font=[regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
     [self.view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(19+kStatusBarHeight);
@@ -60,7 +55,7 @@
         make.centerX.mas_equalTo(self.view);
     }];
     
-    _phoneTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _phoneTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfield];
     [_phoneTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -84,7 +79,7 @@
     }];
     
     
-    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:13.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:_yanzheng WithSecureTextEntry:NO];
+    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:_yanzheng WithSecureTextEntry:NO];
     [self.view addSubview:_codeTextfield];
     _codeTextfield.returnKeyType=UIReturnKeyNext;
     _codeTextfield.delegate=self;
