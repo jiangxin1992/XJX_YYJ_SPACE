@@ -42,6 +42,8 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
+    NSLog(@"%d",kEdge);
+    NSLog(@"111");
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare

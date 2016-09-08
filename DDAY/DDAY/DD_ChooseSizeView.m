@@ -165,7 +165,7 @@
     shop.backgroundColor=_define_white_color;
     [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
     [shop mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(add.mas_bottom).with.offset(25);
+        make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?25:15);
         make.left.mas_equalTo(0);
         make.height.mas_equalTo(ktabbarHeight);
         make.width.mas_equalTo(ScreenWidth/2.0f);

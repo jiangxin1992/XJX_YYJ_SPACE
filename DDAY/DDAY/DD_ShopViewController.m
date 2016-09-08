@@ -251,7 +251,7 @@
         }else
         {
             CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(97+6+ktabbarHeight+_imgHeight):(77+6+ktabbarHeight+_imgHeight);
+            _mengban_size_Height=IsPhone6_gt?(103+ktabbarHeight+_imgHeight):(73+ktabbarHeight+_imgHeight);
         }
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{

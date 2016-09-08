@@ -10,19 +10,32 @@
 @interface DD_AddressModel : NSObject
 +(NSArray *)getAddressModelArray:(NSArray *)arrdata;
 +(DD_AddressModel *)getAddressModel:(NSDictionary *)dict;
-
 /**
- * 城市ID
+ * 国家ID
  */
-__string(cityId);
+__string(countryId);
+/**
+ * 国家名
+ */
+__string(countryName);
 /**
  * 省ID
  */
 __string(provinceId);
 /**
- * 国家ID
+ * 省名
  */
-__string(countryId);
+__string(provinceName);
+/**
+ * 城市ID
+ */
+__string(cityId);
+/**
+ * 城市名
+ */
+__string(cityName);
+
+
 /**
  * 收货人
  */

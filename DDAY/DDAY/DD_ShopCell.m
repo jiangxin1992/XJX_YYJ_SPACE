@@ -97,22 +97,22 @@
     [_sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
     [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(30);
         make.bottom.mas_equalTo(imageBack);
         make.left.mas_equalTo(_itemNameLabel);
     }];
-    [_sizeNameBtn setEnlargeEdge:20];
+    [_sizeNameBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:20];
     
     _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_numBtn];
     [_numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
     [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(30);
         make.bottom.mas_equalTo(imageBack);
         make.right.mas_equalTo(-kEdge);
     }];
-    [_numBtn setEnlargeEdge:20];
+    [_numBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:20];
     
     _colorView=[UIView getCustomViewWithColor:nil];
     [self.contentView addSubview:_colorView];

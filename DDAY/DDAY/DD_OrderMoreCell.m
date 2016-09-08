@@ -75,7 +75,7 @@
     [_totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
         make.width.mas_equalTo(100);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(40);
         make.top.mas_equalTo(downLine.mas_bottom).with.offset(0);
     }];
     

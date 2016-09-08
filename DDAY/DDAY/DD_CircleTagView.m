@@ -39,12 +39,12 @@
             UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:item.tagName WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
             [self addSubview:label];
             label.backgroundColor=_define_black_color;
-            CGFloat _width=[regular getWidthWithHeight:25 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+10;
-            label.frame=CGRectMake(_x_p, _y_p, _width, 25);
+            CGFloat _width=[regular getWidthWithHeight:28 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+25;
+            label.frame=CGRectMake(_x_p, _y_p, _width, 28);
             if((_x_p+_width+10)>ScreenWidth-2*kEdge)
             {
                 _x_p=0;
-                _y_p+=25+10;
+                _y_p+=28+10;
             }else
             {
                 _x_p+=_width+10;
@@ -52,7 +52,7 @@
             lastView=label;
         }
         
-        _height=_y_p+25;
+        _height=_y_p+28;
     }
 }
 @end

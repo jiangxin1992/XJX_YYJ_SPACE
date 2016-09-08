@@ -78,19 +78,16 @@
         make.top.mas_equalTo(13+64);
     }];
     _headBack.layer.masksToBounds=YES;
-    _headBack.layer.cornerRadius=98/2.0f;
+    _headBack.layer.cornerRadius=97/2.0f;
     _headBack.layer.borderColor=[_define_black_color CGColor];
-    _headBack.layer.borderWidth=3.0f;
+    _headBack.layer.borderWidth=2.0f;
     [_headBack setEnlargeEdgeWithTop:0 right:50 bottom:60 left:50];
     
     _userHeadImg=[UIImageView getCornerRadiusImg];
     [self.view addSubview:_userHeadImg];
-    _userHeadImg.userInteractionEnabled=YES;
-    [_userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushUserInfo)]];
-    _userHeadImg.contentMode=2;
-    [regular setZeroBorder:_userHeadImg];
+    _userHeadImg.contentMode=0;
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(94);
+        make.height.width.mas_equalTo(84);
         make.center.mas_equalTo(_headBack);
     }];
     

@@ -146,7 +146,7 @@
                     btn.backgroundColor=_define_white_color;
                 }
                 [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-                CGFloat __width=[regular getWidthWithHeight:25 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+10;
+                CGFloat __width=[regular getWidthWithHeight:28 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+25;
                 
                 
                 if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
@@ -160,7 +160,7 @@
 
                     make.left.mas_equalTo(_x_p);
                     make.width.mas_equalTo(__width);
-                    make.height.mas_equalTo(25);
+                    make.height.mas_equalTo(28);
                 }];
                 if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
                 {

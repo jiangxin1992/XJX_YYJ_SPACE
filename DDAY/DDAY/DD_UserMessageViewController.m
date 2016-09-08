@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
+    [self RequestData];
 }
 
 #pragma mark - SomePrepare
@@ -33,6 +34,21 @@
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"user_message_title", @"") withmaxwidth:200];
+}
+#pragma mark - RequestData
+-(void)RequestData
+{
+    [[JX_AFNetworking alloc] GET:@"user/queryMessage.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
 }
 #pragma mark - UIConfig
 -(void)UIConfig

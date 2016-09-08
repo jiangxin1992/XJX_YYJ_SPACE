@@ -21,6 +21,7 @@
 
 #import "DD_ClearingTool.h"
 #import "DD_ClearingSeriesModel.h"
+#import "DD_CityTool.h"
 
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -191,7 +192,16 @@
                     _Clearingmodel.address=addressModel;
                     if(addressModel)
                     {
-                        [_dataDict setObject:@{@"addressId":addressModel.udaId,@"deliverName":addressModel.deliverName,@"deliverPhone":addressModel.deliverPhone,@"detailAddress":addressModel.detailAddress} forKey:@"address"];
+                        [_dataDict setObject:@{
+                                               @"deliverName":addressModel.deliverName
+                                               ,@"deliverPhone":addressModel.deliverPhone
+                                               ,@"detailAddress":addressModel.detailAddress
+                                               ,@"addressId":addressModel.udaId
+                                               ,@"countryName":addressModel.countryName
+                                               ,@"provinceName":addressModel.provinceName
+                                               ,@"cityName":addressModel.cityName
+                                               } forKey:@"address"];
+                        
                     }else
                     {
                         [_dataDict removeObjectForKey:@"address"];

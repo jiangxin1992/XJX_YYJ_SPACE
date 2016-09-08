@@ -112,7 +112,14 @@
 -(NSDictionary *)getAddressDict
 {
     DD_AddressModel *__address=self.address;
-    return  @{@"addressId":__address.udaId,@"deliverName":__address.deliverName,@"deliverPhone":__address.deliverPhone,@"detailAddress":__address.detailAddress};
+    return  @{
+              @"addressId":__address.udaId
+              ,@"deliverName":__address.deliverName
+              ,@"deliverPhone":__address.deliverPhone
+              ,@"detailAddress":__address.detailAddress
+              ,@"countryName":__address.countryName
+              ,@"provinceName":__address.provinceName
+              ,@"cityName":__address.cityName};
 }
 -(NSDictionary *)getEndDict:(NSDictionary *)dataDict
 {

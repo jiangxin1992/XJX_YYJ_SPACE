@@ -80,7 +80,8 @@
         make.right.mas_equalTo(_followBtn.mas_left).with.offset(-9);
         make.height.mas_equalTo(IsPhone6_gt?25:20);
     }];
-    
+    NSLog(@"%d",-kEdge);
+    NSLog(@"111");
     _scrollview=[[UIScrollView alloc] init];
     [self.contentView addSubview:_scrollview];
     _scrollview.alwaysBounceHorizontal=YES;
