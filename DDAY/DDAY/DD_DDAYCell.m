@@ -13,13 +13,14 @@
 @implementation DD_DDAYCell
 {
     dispatch_source_t _timer;
-    UILabel *_nameLabel;
-    UIButton *_ApplyBtn;
-    UIImageView *_backImg;
-    UILabel *_timeLabel;
-    UILabel *_restLabel;
     
+    UIImageView *_backImg;
     UIView *backview;
+    UILabel *_nameLabel;
+    UILabel *_timeLabel;
+    
+    UIImageView *icon;
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -29,81 +30,48 @@
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        _nameLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18 WithTextColor:_define_white_color WithSpacing:0];
-        [self.contentView addSubview:_nameLabel];
-        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(IsPhone6_gt?14:8);
-//            make.left.mas_equalTo(IsPhone6_gt?44:58);
-//            make.right.mas_equalTo(IsPhone6_gt?-44:-58);
-            make.left.mas_equalTo(kEdge);
-            make.right.mas_equalTo(-kEdge);
-            make.height.mas_equalTo(25);
-        }];
-        
-        _ApplyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
-        [self.contentView addSubview:_ApplyBtn];
-        [_ApplyBtn addTarget:self action:@selector(applyAction) forControlEvents:UIControlEventTouchUpInside];
-        [_ApplyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(IsPhone6_gt)
-            {
-                make.width.mas_equalTo(183);
-                make.centerX.mas_equalTo(self.contentView);
-            }else
-            {
-                make.left.mas_equalTo(67);
-                make.right.mas_equalTo(-67);
-            }
-            make.height.mas_equalTo(46);
-            make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
-        }];
-        
-        _restLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12 WithTextColor:nil WithSpacing:0];
-        [self.contentView addSubview:_restLabel];
-        [_restLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.mas_equalTo(_ApplyBtn.mas_top).with.offset(IsPhone6_gt?-20:-15);
-            make.bottom.mas_equalTo(IsPhone6_gt?(-94):(-93));
-            make.left.mas_equalTo(20);
-            make.right.mas_equalTo(-20);
-            make.height.mas_equalTo(23);
-        }];
-        
-        _timeLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15 WithTextColor:nil WithSpacing:0];
-        [self.contentView addSubview:_timeLabel];
-        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(_restLabel.mas_top).with.offset(0);
-            make.left.mas_equalTo(20);
-            make.right.mas_equalTo(-20);
-            make.height.mas_equalTo(23);
-        }];
-        
-        backview=[UIView getCustomViewWithColor:nil];
-        [self.contentView addSubview:backview];
-        backview.userInteractionEnabled=YES;
-        [backview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(push_dday_detail)]];
-        [backview mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(IsPhone6_gt)
-            {
-                make.left.mas_equalTo(kEdge);
-                make.right.mas_equalTo(-kEdge);
-                make.height.mas_equalTo(backview.mas_width);
-                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(-24);
-            }else
-            {
-                make.left.mas_equalTo(28);
-                make.right.mas_equalTo(-28);
-                make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
-                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
-            }
-            
-        }];
-        
         _backImg=[UIImageView getCustomImg];
-        [backview addSubview:_backImg];
+        [self.contentView addSubview:_backImg];
         _backImg.userInteractionEnabled=NO;
         _backImg.contentMode=2;
         [regular setZeroBorder:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(16, 16, 16, 16));
+            make.edges.equalTo(self.contentView);
+        }];
+        
+        backview=[UIView getCustomViewWithColor:nil];
+        [_backImg addSubview:backview];
+        backview.backgroundColor=_define_white_color;
+        backview.alpha=0.9;
+        [backview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(IsPhone6_gt?37:kEdge);
+            make.right.mas_equalTo(IsPhone6_gt?-37:-kEdge);
+            make.height.mas_equalTo(65);
+            make.bottom.mas_equalTo(-50);
+        }];
+        
+        _nameLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18 WithTextColor:_define_white_color WithSpacing:0];
+        [backview addSubview:_nameLabel];
+        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(0);
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(37);
+        }];
+        
+        _timeLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15 WithTextColor:nil WithSpacing:0];
+        [backview addSubview:_timeLabel];
+        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(backview);
+            make.centerY.mas_equalTo(backview.mas_bottom).with.offset(-14);
+        }];
+        
+        
+        icon=[UIImageView getImgWithImageStr:@"DDAY_Clock"];
+        [backview addSubview:icon];
+        [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_timeLabel.mas_left).with.offset(-2);
+            make.width.height.mas_equalTo(16);
+            make.centerY.mas_equalTo(_timeLabel);
         }];
         
     }
@@ -113,92 +81,33 @@
 //报名开始前
 -(void)BeforeSignStart
 {
-    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
-    }];
-    
+    icon.hidden=NO;
     [self startTimeWithType:@"BeforeSignStart"];
-    
-    [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
-    [_ApplyBtn setTitleColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=_define_white_color;
-    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
-    
-    _restLabel.hidden=NO;
 }
 //报名结束前
 -(void)BeforeSignEnd
 {
-    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
-    }];
-    
+    icon.hidden=NO;
     [self startTimeWithType:@"BeforeSignEnd"];
-
-    
-    if(_DDAYModel.isJoin)
-    {
-        [_ApplyBtn setTitle:@"报名已成功" forState:UIControlStateNormal];
-        [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-        _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
-        [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
-    }else
-    {
-        
-        [_ApplyBtn setTitle:@"报    名" forState:UIControlStateNormal];
-        [_ApplyBtn setTitleColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] forState:UIControlStateNormal];
-        _ApplyBtn.backgroundColor=_define_white_color;
-        [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
-    }
-    _restLabel.hidden=NO;
 }
 //发布会开始之前
 -(void)BeforeSaleStart
 {
-    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
-    }];
-    
+    icon.hidden=NO;
     [self startTimeWithType:@"BeforeSaleStart"];
-    
-    [_ApplyBtn setTitle:@"报名已结束" forState:UIControlStateNormal];
-    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
-    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
-    
-    _restLabel.hidden=YES;
 }
 //发布会结束之前
 -(void)BeforeSaleEnd
 {
-    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
-    }];
-    
+    icon.hidden=NO;
     [self startTimeWithType:@"BeforeSaleEnd"];
-
-    [_ApplyBtn setTitle:@"发布会已开始" forState:UIControlStateNormal];
-    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
-    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
-    
-    _restLabel.hidden=YES;
 }
 //发布会结束之后
 -(void)AfterSaleEnd
 {
-    [_ApplyBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(IsPhone6_gt?(-28-20):(-32-15));
-    }];
-
-    [_ApplyBtn setTitle:@"发布会已结束" forState:UIControlStateNormal];
-    [_ApplyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-    _ApplyBtn.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
-    [regular setBorder:_ApplyBtn WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:0];
-
-    
-    _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
-    _restLabel.hidden=YES;
+    icon.hidden=YES;
+//    _timeLabel.text=[DD_DDAYTool getTimeStrWithTime:_DDAYModel.saleStartTime];
+    _timeLabel.text=@"发布会已结束";
 }
 #pragma mark - GetState
 /**
@@ -369,8 +278,9 @@
                     }
                 }else
                 {
-                    NSString *time_str=[[NSString alloc] initWithFormat:@"%ld天%ld时%ld分%ld秒",[d day],[d hour],[d minute],[d second]];
+                    NSString *time_str=[[NSString alloc] initWithFormat:@"%ld天%ld时%ld分%ld秒",[d day],[d hour],[d minute],[d second]];;
                     _timeLabel.text=[[NSString alloc] initWithFormat:@"%@%@",prefix_str,time_str];
+                    
                 }
                 timeout--;
             });
@@ -386,19 +296,12 @@
     [regular dispatch_cancel:_timer];
     _DDAYModel=DDAYModel;
     
-    [regular setBorder:backview WithColor:[UIColor colorWithHexString:_DDAYModel.seriesColor] WithWidth:2];
-    
+    icon.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    _timeLabel.textColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
     _nameLabel.backgroundColor=[UIColor colorWithHexString:_DDAYModel.seriesColor];
+    _nameLabel.text=[[NSString alloc] initWithFormat:@"%@",_DDAYModel.name];
     
     [_backImg JX_ScaleAspectFill_loadImageUrlStr:_DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-    _nameLabel.text=[[NSString alloc] initWithFormat:@"%@",_DDAYModel.name];
-    if(_DDAYModel.isQuotaLimt)
-    {
-        _restLabel.text=[[NSString alloc] initWithFormat:@"剩余%ld个名额",_DDAYModel.leftQuota];
-    }else
-    {
-        _restLabel.text=@"没有名额限制";
-    }
     
     if([[self getState] isEqualToString:@"beforeSignStart"])
     {
@@ -437,5 +340,90 @@
     [super setSelected:selected animated:animated];
 
 }
+//-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    if(self)
+//    {
+//        _nameLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18 WithTextColor:_define_white_color WithSpacing:0];
+//        [self.contentView addSubview:_nameLabel];
+//        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(IsPhone6_gt?14:8);
+//            //            make.left.mas_equalTo(IsPhone6_gt?44:58);
+//            //            make.right.mas_equalTo(IsPhone6_gt?-44:-58);
+//            make.left.mas_equalTo(kEdge);
+//            make.right.mas_equalTo(-kEdge);
+//            make.height.mas_equalTo(25);
+//        }];
+//        
+//        _ApplyBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18 WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+//        [self.contentView addSubview:_ApplyBtn];
+//        [_ApplyBtn addTarget:self action:@selector(applyAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_ApplyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(IsPhone6_gt)
+//            {
+//                make.width.mas_equalTo(183);
+//                make.centerX.mas_equalTo(self.contentView);
+//            }else
+//            {
+//                make.left.mas_equalTo(67);
+//                make.right.mas_equalTo(-67);
+//            }
+//            make.height.mas_equalTo(46);
+//            make.bottom.mas_equalTo(IsPhone6_gt?-28:-32);
+//        }];
+//        
+//        _restLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12 WithTextColor:nil WithSpacing:0];
+//        [self.contentView addSubview:_restLabel];
+//        [_restLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            //            make.bottom.mas_equalTo(_ApplyBtn.mas_top).with.offset(IsPhone6_gt?-20:-15);
+//            make.bottom.mas_equalTo(IsPhone6_gt?(-94):(-93));
+//            make.left.mas_equalTo(20);
+//            make.right.mas_equalTo(-20);
+//            make.height.mas_equalTo(23);
+//        }];
+//        
+//        _timeLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15 WithTextColor:nil WithSpacing:0];
+//        [self.contentView addSubview:_timeLabel];
+//        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.mas_equalTo(_restLabel.mas_top).with.offset(0);
+//            make.left.mas_equalTo(20);
+//            make.right.mas_equalTo(-20);
+//            make.height.mas_equalTo(23);
+//        }];
+//        
+//        backview=[UIView getCustomViewWithColor:nil];
+//        [self.contentView addSubview:backview];
+//        backview.userInteractionEnabled=YES;
+//        [backview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(push_dday_detail)]];
+//        [backview mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(IsPhone6_gt)
+//            {
+//                make.left.mas_equalTo(kEdge);
+//                make.right.mas_equalTo(-kEdge);
+//                make.height.mas_equalTo(backview.mas_width);
+//                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(-24);
+//            }else
+//            {
+//                make.left.mas_equalTo(28);
+//                make.right.mas_equalTo(-28);
+//                make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(IsPhone6_gt?25:18);
+//                make.bottom.mas_equalTo(_timeLabel.mas_top).with.offset(IsPhone6_gt?-20:-15);
+//            }
+//            
+//        }];
+//        
+//        _backImg=[UIImageView getCustomImg];
+//        [backview addSubview:_backImg];
+//        _backImg.userInteractionEnabled=NO;
+//        _backImg.contentMode=2;
+//        [regular setZeroBorder:_backImg];
+//        [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(backview).with.insets(UIEdgeInsetsMake(16, 16, 16, 16));
+//        }];
+//        
+//    }
+//    return self;
+//}
 
 @end

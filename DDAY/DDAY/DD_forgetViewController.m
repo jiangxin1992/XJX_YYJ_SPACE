@@ -47,7 +47,9 @@
         make.centerX.mas_equalTo(self.view);
     }];
     
-    _phoneTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _phoneTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+        
+    }] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfield];
     [_phoneTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -69,7 +71,9 @@
         make.right.and.left.mas_equalTo(0);
     }];
     
-    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:_yanzheng WithSecureTextEntry:NO];
+    _codeTextfield=[UITextField getTextFieldWithPlaceHolder:@"输入验证码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_CAPTCHA" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+        
+    }] WithRightView:_yanzheng WithSecureTextEntry:NO];
     [self.view addSubview:_codeTextfield];
     _codeTextfield.returnKeyType=UIReturnKeyNext;
     _codeTextfield.delegate=self;
@@ -97,7 +101,7 @@
  * 计时
  */
 -(void)startTime{
-    __block int timeout=30; //倒计时时间
+    __block int timeout=59; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     

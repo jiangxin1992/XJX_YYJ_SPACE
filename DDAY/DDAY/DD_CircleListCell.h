@@ -16,7 +16,9 @@
  * 初始化
  */
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier IsUserHomePage:(BOOL )isUserHomePage;
+
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model IsUserHomePage:(BOOL )_isUserHomePage;
+
 -(void)setAction;
 /**
  * 搭配model

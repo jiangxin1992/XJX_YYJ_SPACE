@@ -19,12 +19,13 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block
+-(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithSizeAlertModel:(DD_SizeAlertModel *)sizeAlertModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block
 {
     
     self=[super init];
     if(self)
     {
+        _SizeAlertModel=sizeAlertModel;
         _sizeArr=colorModel.size;
         _sizeID=colorModel.colorId;
         _block=block;
@@ -104,16 +105,17 @@
     }
     
     UIImageView *sizeBriefImg=nil;
-    if(_ColorsModel.sizeBriefPic&&![_ColorsModel.sizeBriefPic isEqualToString:@""])
+    
+    if(_SizeAlertModel.sizeBriefPic&&![_SizeAlertModel.sizeBriefPic isEqualToString:@""])
     {
-        CGFloat _h = [_ColorsModel.sizeBriefPicHeight floatValue];
-        CGFloat _w = [_ColorsModel.sizeBriefPicWidth floatValue];
+        CGFloat _h = _SizeAlertModel.sizeBriefPicHeight;
+        CGFloat _w = _SizeAlertModel.sizeBriefPicWidth;
         CGFloat _imgHeight=(_h/_w)*(ScreenWidth-kEdge*2);
         sizeBriefImg=[UIImageView getCustomImg];
         [self addSubview:sizeBriefImg];
         sizeBriefImg.contentMode=2;
         [regular setZeroBorder:sizeBriefImg];
-        [sizeBriefImg JX_ScaleAspectFill_loadImageUrlStr:_ColorsModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
+        [sizeBriefImg JX_ScaleAspectFill_loadImageUrlStr:_SizeAlertModel.sizeBriefPic WithSize:800 placeHolderImageName:nil radius:0];
         [sizeBriefImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);

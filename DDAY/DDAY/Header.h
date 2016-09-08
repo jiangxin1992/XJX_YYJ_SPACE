@@ -17,10 +17,11 @@
 #import "UIImageView+WebCache.h"
 #import "ReactiveCocoa.h"
 #import "UMMobClick/MobClick.h"
-
+#import <YYKit/YYKit.h>
 
 /*************** Category ***************/
 #import "UIImageView+CornerRadius.h"
+#import "YYAnimatedImageView+LoadImage.h"
 #import "NSString+extra.h"
 #import "UIView+Frame.h"
 #import "UIImageView+LoadImage.h"

@@ -149,14 +149,14 @@
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
-        make.width.height.mas_equalTo(43);
+        make.width.height.mas_equalTo(44);
     }];
     
     userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
     [container addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userHeadImg);
-        make.height.mas_equalTo(43/2.0f);
+        make.height.mas_equalTo(44/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
     }];
     [userNameLabel sizeToFit];
@@ -166,7 +166,7 @@
     [container addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
-        make.height.mas_equalTo(43/2.0f);
+        make.height.mas_equalTo(44/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
     }];
     [userCareerLabel sizeToFit];
@@ -324,9 +324,15 @@
 -(void)SetState
 {
     NSLog(@"contentMode=%ld",userHeadImg.contentMode);
-    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:44/2.0f];
     userNameLabel.text=_usermodel.nickName;
-    userCareerLabel.text=_usermodel.career;
+    if([NSString isNilOrEmpty:_usermodel.career])
+    {
+        userCareerLabel.text=@"貌似来自火星";
+    }else
+    {
+        userCareerLabel.text=_usermodel.career;
+    }
     
     _CircleTagView.tagArr=[_circleModel getTagArr];
     [_CircleTagView setState];

@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "DD_ColorsModel.h"
+#import "DD_SizeAlertModel.h"
 
 @interface DD_ChooseSizeView : UIView
--(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block;
+-(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithSizeAlertModel:(DD_SizeAlertModel *)sizeAlertModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block;
 @property (nonatomic,copy) void (^block)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count);
 __array(sizeArr);
 __string(colorid);
+@property(nonatomic,strong)DD_SizeAlertModel *SizeAlertModel;
 @property(nonatomic,strong)DD_ColorsModel *ColorsModel;
 @end

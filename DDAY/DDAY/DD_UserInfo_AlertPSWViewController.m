@@ -37,7 +37,9 @@
 {
     UIView *lastView=nil;
     for (int i=0; i<3; i++) {
-        UITextField *_textFiled=[UITextField getTextFieldWithPlaceHolder:i==0?@"输入当前密码":i==1?@"输入新密码":@"重新输入新密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:YES];
+        UITextField *_textFiled=[UITextField getTextFieldWithPlaceHolder:i==0?@"输入当前密码":i==1?@"输入新密码":@"重新输入新密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+            
+        }] WithRightView:nil WithSecureTextEntry:YES];
         [self.view addSubview:_textFiled];
         _textFiled.tag=100+i;
         _textFiled.returnKeyType=UIReturnKeyDone;

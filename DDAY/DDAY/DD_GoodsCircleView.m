@@ -74,9 +74,8 @@
         make.top.mas_equalTo(13);
     }];
     
-    UIButton *moreCircle=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"更多搭配" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *moreCircle=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"更多搭配" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     [backBtn addSubview:moreCircle];
-    moreCircle.backgroundColor=_define_black_color;
     [moreCircle addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
     [moreCircle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
@@ -84,6 +83,18 @@
         make.height.mas_equalTo(25);
         make.width.mas_equalTo(80);
     }];
+    
+    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+    [moreCircle addSubview:downLine];
+    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(moreCircle);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(2);
+        make.width.mas_equalTo([regular getWidthWithHeight:25 WithContent:@"更多搭配" WithFont:[regular getFont:15.0f]]+1);
+    }];
+
+    
+    
     
     userHeadImg=[UIImageView getCornerRadiusImg];
     [backBtn addSubview:userHeadImg];
@@ -95,14 +106,14 @@
 //        make.left.mas_equalTo(IsPhone6_gt?34:15);
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(label.mas_bottom).with.offset(10);
-        make.width.height.mas_equalTo(43);
+        make.width.height.mas_equalTo(44);
     }];
     
     userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userHeadImg);
-        make.height.mas_equalTo(43/2.0f);
+        make.height.mas_equalTo(44/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
 
     }];
@@ -113,7 +124,7 @@
     [backBtn addSubview:userCareerLabel];
     [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
-        make.height.mas_equalTo(43/2.0f);
+        make.height.mas_equalTo(44/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
     }];
     [userCareerLabel sizeToFit];
@@ -180,9 +191,15 @@
  */
 -(void)setAction
 {
-    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+    [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_circle.userHead WithSize:400 placeHolderImageName:nil radius:44/2.0f];
     userNameLabel.text=_circle.userName;
-    userCareerLabel.text=_circle.career;
+    if([NSString isNilOrEmpty:_circle.career])
+    {
+        userCareerLabel.text=@"貌似来自火星";
+    }else
+    {
+        userCareerLabel.text=_circle.career;
+    }
     if(_circle.pics.count)
     {
         DD_ImageModel *imgModel=[_circle.pics objectAtIndex:0];

@@ -181,7 +181,8 @@ static regular *_t = nil;
 }
 +(BOOL )PostCodeVerify:(NSString *)phone
 {
-    return [self Verify:phone WithCode:@"[1-9]\\d{5}(?![0-9])"];
+    
+    return [self Verify:phone WithCode:@"^[1-9][0-9]{5}$"];
 }
 
 + (BOOL)checkPassword:(NSString *) password

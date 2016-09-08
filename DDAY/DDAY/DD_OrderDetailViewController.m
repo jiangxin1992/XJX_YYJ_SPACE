@@ -312,6 +312,9 @@
                 {
                     _OrderModel.orderStatus=3;
                     [_tableview reloadData];
+                    DD_OrderModel *__OrderModel=[_tabBar.orderInfo.orderList objectAtIndex:0];
+                    __OrderModel.orderStatus=3;
+                    [_tabBar UIConfig];
                 }else
                 {
                     [self presentViewController:successAlert animated:YES completion:nil];

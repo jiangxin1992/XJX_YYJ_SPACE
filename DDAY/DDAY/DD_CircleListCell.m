@@ -19,8 +19,21 @@
     UILabel *conentLabel;
     UILabel *timeLabel;
     
-    NSMutableArray *goodsImgArr;
-    NSMutableArray *userBtnArr;
+    UIImageView *goods1;
+    UIImageView *goods2;
+    UIImageView *goods3;
+    UIButton *pricebtn1;
+    UIButton *pricebtn2;
+    UIButton *pricebtn3;
+    
+    UIButton *praiseBtn;
+    UIButton *commentBtn;
+    UIButton *collectBtn;
+    
+    UILabel *praiseLabel;
+    UILabel *commentLabel;
+    UILabel *collectLabel;
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -45,7 +58,6 @@
     _listModel=listModel;
     //        更新cell
     [self setAction];
-    
 }
 
 #pragma mark - SomePrepare
@@ -56,13 +68,26 @@
 }
 -(void)PrepareData
 {
-    goodsImgArr=[[NSMutableArray alloc] init];
-    userBtnArr=[[NSMutableArray alloc] init];
+    
+    goods1=[UIImageView getCustomImg];
+    goods2=[UIImageView getCustomImg];
+    goods3=[UIImageView getCustomImg];
+    
+    pricebtn1=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
+    pricebtn2=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
+    pricebtn3=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
+    
+    praiseBtn=[UIButton getCustomBtn];
+    commentBtn=[UIButton getCustomBtn];
+    collectBtn=[UIButton getCustomBtn];
+    
+    praiseLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    commentLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    collectLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
 }
 -(void)PrepareUI
 {
     self.contentView.backgroundColor=_define_white_color;
-//    self.contentView.backgroundColor=[UIColor colorWithRed:(arc4random() % 256)/256.0f green:(arc4random() % 256)/256.0f blue:(arc4random() % 256)/256.0f alpha:1];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -75,27 +100,30 @@
         [regular setZeroBorder:userHeadImg];
         userHeadImg.userInteractionEnabled=YES;
         [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//        userHeadImg.frame=CGRectMake(kEdge, 9, 44, 44);
         [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.top.mas_equalTo(9);
-            make.width.height.mas_equalTo(43);
+            make.width.height.mas_equalTo(44);
         }];
         
         userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:userNameLabel];
+//        userNameLabel.frame=CGRectMake(CGRectGetMaxX(userHeadImg.frame)+6, CGRectGetMinY(userHeadImg.frame), 100, 22);
+//        userNameLabel.backgroundColor=[UIColor redColor];
         [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(userHeadImg);
-            make.height.mas_equalTo(43/2.0f);
-            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(9);
+            make.height.mas_equalTo(44/2.0f);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
         }];
         [userNameLabel sizeToFit];
         
         
         userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
         [self.contentView addSubview:userCareerLabel];
+//        userCareerLabel.frame=CGRectMake(CGRectGetMaxX(userHeadImg.frame)+6, CGRectGetMaxY(userNameLabel.frame), 100, 22);
         [userCareerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
-            make.height.mas_equalTo(43/2.0f);
             make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
         }];
         [userCareerLabel sizeToFit];
@@ -106,6 +134,7 @@
     [self.contentView addSubview:goodImgView];
     goodImgView.contentMode=2;
     [regular setZeroBorder:goodImgView];
+//    goodImgView.frame=CGRectMake(kEdge, CGRectGetMaxY(userHeadImg.frame)+19, IsPhone6_gt?234:190, 300);
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         if(!_isUserHomePage)
@@ -122,13 +151,14 @@
     
     UIView *lastView=nil;
     for (int i=0; i<3; i++) {
-        UIImageView *goods=[UIImageView getCustomImg];
+        UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
         [self.contentView addSubview:goods];
         goods.contentMode=2;
         [regular setZeroBorder:goods];
         goods.userInteractionEnabled=YES;
-        goods.tag=100+i;
         [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+        goods.tag=100+i;
+//        goods.frame=CGRectMake(ScreenWidth-2*kEdge-66,CGRectGetMaxY(goodImgView.frame)+(66+24)*i , 66, 66);
         [goods mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-kEdge);
             make.width.height.mas_equalTo(66);
@@ -141,14 +171,13 @@
             }
         }];
         lastView=goods;
-        [goodsImgArr addObject:goods];
-        
-        UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
+
+        UIButton *pricebtn=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
         [goods addSubview:pricebtn];
         pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
         pricebtn.userInteractionEnabled=NO;
-        pricebtn.tag=150+i;
         [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+//        pricebtn.frame=CGRectMake(0, CGRectGetHeight(goods.frame)-18,CGRectGetWidth(goods.frame) , 18);
         [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
             make.height.mas_equalTo(18);
@@ -159,19 +188,23 @@
     conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:conentLabel];
     conentLabel.numberOfLines=0;
+//    conentLabel.frame=CGRectMake(kEdge, CGRectGetMaxY(goodImgView.frame)+19, ScreenWidth-2*kEdge, 0);
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(0);
     }];
     
     UIButton *_lastView_state=nil;
     _last_count_view=nil;
-//    删除 评论 收藏 点赞
+//    点赞 评论 收藏
+
     for (int i=0; i<3; i++) {
-        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:i==0?@"System_NoGood":i==1?@"System_Comment":@"System_Notcollection" WithSelectedImageStr:i==0?@"System_Good":i==1?@"System_Comment":@"System_Collection"];
+        UIButton *btn=i==0?praiseBtn:i==1?commentBtn:collectBtn;
+        [btn setImage:[UIImage imageNamed:i==0?@"System_NoGood":i==1?@"System_Comment":@"System_Notcollection"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:i==0?@"System_Good":i==1?@"System_Comment":@"System_Collection"] forState:UIControlStateSelected];
         [self.contentView addSubview:btn];
-        btn.tag=200+i;
         if(i==0)
         {
             [btn setEnlargeEdgeWithTop:0 right:15 bottom:0 left:15];
@@ -179,7 +212,9 @@
         {
             [btn setEnlargeEdge:15];
         }
+        btn.tag=200+i;
         [btn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
+//        btn.frame=CGRectMake(ScreenWidth-kEdge-25, CGRectGetMaxY(conentLabel.frame)+8, 25, 23);
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             if(_lastView_state)
@@ -200,15 +235,15 @@
                 make.right.mas_equalTo(-kEdge);
                 make.width.mas_equalTo(25);
                 make.height.mas_equalTo(44);
-                make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8.5f);
+                make.top.mas_equalTo(conentLabel.mas_bottom).with.offset(8);
             }
         }];
-        [userBtnArr addObject:btn];
         
-        
-        UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+
+        UILabel *label=i==0?praiseLabel:i==1?commentLabel:collectLabel;
         [self.contentView addSubview:label];
-        label.tag=300+i;
+        label.font=[regular get_en_Font:12.0f];
+//        label.frame=CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMinY(btn.frame), CGRectGetWidth(btn.frame), 20);
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(btn);
             if(_last_count_view)
@@ -218,6 +253,7 @@
             {
                 make.top.mas_equalTo(btn.mas_bottom).with.offset(0);
             }
+            make.height.mas_equalTo(20);
         }];
         _lastView_state=btn;
         _last_count_view=label;
@@ -225,6 +261,7 @@
     
     timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:timeLabel];
+//    timeLabel.frame=CGRectMake(kEdge, CGRectGetMinY(_lastView_state.frame), 100, 30);
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(_lastView_state.mas_centerY);
@@ -302,10 +339,18 @@
 {
     if(!_isUserHomePage)
     {
-        [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:43/2.0f];
+        [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_listModel.userHead WithSize:400 placeHolderImageName:nil radius:44/2.0f];
         userNameLabel.text=_listModel.userName;
-        userCareerLabel.text=_listModel.career;
+        if([NSString isNilOrEmpty:_listModel.career])
+        {
+            userCareerLabel.text=@"貌似来自火星";
+        }else
+        {
+            userCareerLabel.text=_listModel.career;
+        }
+        
     }
+    
     if(_listModel.pics.count)
     {
         DD_ImageModel *imgModel=[_listModel.pics objectAtIndex:0];
@@ -320,9 +365,11 @@
     {
         count_index=_listModel.items.count;
     }
-    for (int i=0; i<goodsImgArr.count; i++) {
-        UIImageView *goods=[goodsImgArr objectAtIndex:i];
-        UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
+    
+    for (int i=0; i<3; i++) {
+        UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
+//        UIButton *goodsPrice=(UIButton *)[self.contentView viewWithTag:150+i];
+        UIButton *goodsPrice=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
         if(i<count_index)
         {
             DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
@@ -334,31 +381,20 @@
             goods.hidden=YES;
         }
     }
+    [conentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(_listModel.contentHeight);
+    }];
     conentLabel.text=_listModel.shareAdvise;
     timeLabel.text=[regular getSpacingTime:_listModel.createTime];
-
-    UIButton *praiseBtn=[self viewWithTag:200];
+    
     praiseBtn.selected=_listModel.isLike;
-    UILabel *praiseLabel=[self viewWithTag:300];
     praiseLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.likeTimes];
     
-    UILabel *commentLabel=[self viewWithTag:301];
     commentLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.commentTimes];
     
-    UIButton *collectBtn=[self viewWithTag:202];
     collectBtn.selected=_listModel.isCollect;
-    UILabel *collectLabel=[self viewWithTag:302];
     collectLabel.text=[[NSString alloc] initWithFormat:@"%ld",_listModel.collectTimes];
     
-    UIButton *delectBtn=[self viewWithTag:203];
-    DD_UserModel *user=[DD_UserModel getLocalUserInfo];
-    if([_listModel.userId isEqualToString:user.u_id])
-    {
-        delectBtn.hidden=NO;
-    }else
-    {
-        delectBtn.hidden=YES;
-    }
     
 }
 #pragma mark - Other

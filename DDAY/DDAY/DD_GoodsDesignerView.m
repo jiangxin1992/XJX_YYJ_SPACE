@@ -110,9 +110,9 @@
     }];
     [brandName sizeToFit];
     
-    guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_white_color];
+    guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_black_color];
     [upView addSubview:guanzhu];
-    guanzhu.backgroundColor=_define_black_color;
+    [regular setBorder:guanzhu];
     [guanzhu addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     [guanzhu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
@@ -187,6 +187,14 @@
 -(void)UpdateFollowBtnState
 {
     guanzhu.selected=_detailModel.guanzhu;
+    if(_detailModel.guanzhu)
+    {
+        guanzhu.backgroundColor=_define_white_color;
+    }else
+    {
+        guanzhu.backgroundColor=_define_black_color;
+    }
+    
 }
 -(void)followAction:(UIButton *)btn
 {

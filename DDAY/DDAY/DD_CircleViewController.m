@@ -177,6 +177,7 @@
 -(void)CreateTableview
 {
     _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
     
     [self.view addSubview:_tableview];
     //    消除分割线
@@ -505,21 +506,19 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
+//    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
+    return listModel.height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
     return _dataArr.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    数据还未获取时候
-    if(_dataArr.count==indexPath.section)
+    if(_dataArr.count==indexPath.row)
     {
         static NSString *cellid=@"cellid";
         UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
@@ -531,21 +530,25 @@
         return cell;
     }
     //获取到数据以后
-    static NSString *cellid=@"cell_circle_list";
+    static NSString *cellid=@"CircleListCell";
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
         cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+        cell.cellBlock=cellBlock;
+        
     }
-    cell.listModel=[_dataArr objectAtIndex:indexPath.section];
-    cell.index=indexPath.section;
-    cell.cellBlock=cellBlock;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    cell.listModel=[_dataArr objectAtIndex:indexPath.row];
+    cell.index=indexPath.row;
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self PushCommentViewWithIndex:indexPath.section];
+    [self PushCommentViewWithIndex:indexPath.row];
 }
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
@@ -570,26 +573,7 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - 弃用代码
-//section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 1;//section头部高度
-//}
-////section头部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-////section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 1;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
+
 
 
 @end

@@ -280,6 +280,9 @@
             break;
         }
     }
+    
+    [[CircleModel.tagMap objectForKey:@"shareTags"] addObject:tagModel.tagName];
+    
 }
 +(BOOL)isExistCustomModelWithTagName:(NSString *)tagName WithCircleModel:(DD_CircleModel *)CircleModel
 {

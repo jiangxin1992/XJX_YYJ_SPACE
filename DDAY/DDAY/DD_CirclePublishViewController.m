@@ -385,7 +385,7 @@
     //设置选取器类型
     picker.sourceType = type;
     //编辑
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     if ([picker.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
         for (id obj in list) {
@@ -453,9 +453,9 @@
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
     //    获取选择图片
-    UIImage *originImage = info[UIImagePickerControllerEditedImage];
+    UIImage *originImage = info[UIImagePickerControllerOriginalImage];
     //    压缩比例0.5
-    NSData *data1 = UIImageJPEGRepresentation(originImage, 0.5f);
+    NSData *data1 = UIImageJPEGRepresentation(originImage, 0.8f);
     //    获取七牛上传文件所需的token
     [[JX_AFNetworking alloc] GET:@"user/getQiNiuToken.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)

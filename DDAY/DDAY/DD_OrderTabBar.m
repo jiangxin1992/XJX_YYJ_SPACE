@@ -48,6 +48,7 @@
             //待发货 waiting_delivery
             DD_CustomBtn *tabBarBtn=(DD_CustomBtn *)[DD_CustomBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
             [self addSubview:tabBarBtn];
+            tabBarBtn.imageEdgeInsets=UIEdgeInsetsMake(10, (CGRectGetWidth(self.frame)-CGRectGetHeight(self.frame)+20)/2.0f, 10, (CGRectGetWidth(self.frame)-CGRectGetHeight(self.frame)+20)/2.0f);
             tabBarBtn.type=@"contact";
             tabBarBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
             [tabBarBtn addTarget:self action:@selector(tabbarAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,6 +62,7 @@
                 {
                     tabBarBtn=[DD_CustomBtn getCustomImgBtnWithImageStr:@"System_Contact" WithSelectedImageStr:@"System_Contact"];
                     [self addSubview:tabBarBtn];
+                    tabBarBtn.imageEdgeInsets=UIEdgeInsetsMake(10, (_width-CGRectGetHeight(self.frame)+20)/2.0f, 10, (_width-CGRectGetHeight(self.frame)+20)/2.0f);
                     tabBarBtn.type=@"contact";
                     [tabBarBtn addTarget:self action:@selector(tabbarAction:) forControlEvents:UIControlEventTouchUpInside];
                 }else

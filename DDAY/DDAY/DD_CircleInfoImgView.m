@@ -161,6 +161,7 @@
                     NSDictionary *dict=[_circleModel.picArr objectAtIndex:i];
                     [imgBtn setImage:[dict objectForKey:@"data"] forState:UIControlStateNormal];
                     [imgBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 0, 0, 16)];
+                    imgBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                     [imgBtn addTarget:self action:@selector(showAction:) forControlEvents:UIControlEventTouchUpInside];
                 }else
                 {

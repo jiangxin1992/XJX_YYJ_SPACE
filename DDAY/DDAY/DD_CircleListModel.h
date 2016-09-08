@@ -94,4 +94,12 @@ __array(items);
  * 搭配标记
  */
 __array(tags);
+/**
+ * cell高度
+ */
+__float(height);
+/**
+ * 搭配建议高度
+ */
+__float(contentHeight);
 @end

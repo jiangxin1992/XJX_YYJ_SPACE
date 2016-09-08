@@ -66,7 +66,9 @@
         make.centerX.mas_equalTo(self.view);
         make.width.and.height.mas_equalTo(72);
     }];
-    _phoneTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:NO];
+    _phoneTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入手机号" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Phone" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+        
+    }] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfiled];
     [_phoneTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -74,7 +76,9 @@
         make.height.mas_equalTo(50);
         make.top.mas_equalTo(Logo.mas_bottom).with.offset(IsPhone5_gt?28:22);
     }];
-    _PSWTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Eye" WithSize:CGSizeMake(21, 14) isLeft:NO WithBlock:^(NSString *type) {
+    _PSWTextfiled=[UITextField getTextFieldWithPlaceHolder:@"输入密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+        
+    }] WithRightView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_Eye" WithSize:CGSizeMake(21, 14) isLeft:NO WithBlock:^(NSString *type) {
         if([type isEqualToString:@"click"])
         {
             _PSWTextfiled.secureTextEntry=!_PSWTextfiled.isSecureTextEntry;
@@ -198,7 +202,7 @@
             }else
             {
 
-                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_psw_form", @"")] animated:YES completion:nil];
+                [self presentViewController:[regular alertTitle_Simple:@"用户名或密码错误"] animated:YES completion:nil];
             }
             
         }else

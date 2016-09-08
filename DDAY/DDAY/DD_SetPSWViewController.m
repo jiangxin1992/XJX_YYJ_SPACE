@@ -53,7 +53,9 @@
         make.centerX.mas_equalTo(self.view);
     }];
     
-    _PSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"设置登录密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:nil] WithRightView:nil WithSecureTextEntry:YES];
+    _PSWTextfield=[UITextField getTextFieldWithPlaceHolder:@"设置登录密码" WithAlignment:0 WithFont:15.0f WithTextColor:nil WithLeftView:[[DD_LoginTextView alloc] initWithFrame:CGRectMake(0, 0, 35, 50) WithImgStr:@"Login_PWD" WithSize:CGSizeMake(17, 27) isLeft:YES WithBlock:^(NSString *type) {
+        
+    }] WithRightView:nil WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfield];
     _PSWTextfield.returnKeyType=UIReturnKeyDone;
     _PSWTextfield.delegate=self;

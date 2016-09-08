@@ -192,7 +192,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  kIPhone4s?568-ktabbarHeight-kNavHeight:ScreenHeight-ktabbarHeight-kNavHeight;
+//    return  kIPhone4s?568-ktabbarHeight-kNavHeight:ScreenHeight-ktabbarHeight-kNavHeight;
+    return ScreenWidth;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -231,13 +232,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
-//    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
-//        if([type isEqualToString:@"update"])
-//        {
-//            [_tableview reloadData];
-//        }
-//    }] animated:YES];
+    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
+    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"update"])
+        {
+            [_tableview reloadData];
+        }
+    }] animated:YES];
 }
 ////section头部间距
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

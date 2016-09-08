@@ -73,14 +73,14 @@
     [self.view addSubview:_headBack];
     [_headBack addTarget:self action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
     [_headBack mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(97);
+        make.height.width.mas_equalTo(98);
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(13+64);
     }];
     _headBack.layer.masksToBounds=YES;
-    _headBack.layer.cornerRadius=97/2.0f;
+    _headBack.layer.cornerRadius=98/2.0f;
     _headBack.layer.borderColor=[_define_black_color CGColor];
-    _headBack.layer.borderWidth=2.0f;
+    _headBack.layer.borderWidth=3.0f;
     [_headBack setEnlargeEdgeWithTop:0 right:50 bottom:60 left:50];
     
     _userHeadImg=[UIImageView getCornerRadiusImg];
@@ -90,7 +90,7 @@
     _userHeadImg.contentMode=2;
     [regular setZeroBorder:_userHeadImg];
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(93);
+        make.height.width.mas_equalTo(94);
         make.center.mas_equalTo(_headBack);
     }];
     
@@ -149,7 +149,7 @@
                         [regular UpdateRoot];
                     }
                     _userName.text=_usermodel.nickName;
-                    [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:83/2.0f];
+                    [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:94/2.0f];
                 }
             }else
             {
@@ -169,9 +169,9 @@
 {
     if(![DD_UserModel isLogin])
     {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
             [self pushLoginView];
-        }] animated:YES completion:nil];
+//        }] animated:YES completion:nil];
     }else
     {
         [self.navigationController pushViewController:[[DD_UserInfoViewController alloc] initWithBlock:^(NSString *type ,DD_UserModel *model) {

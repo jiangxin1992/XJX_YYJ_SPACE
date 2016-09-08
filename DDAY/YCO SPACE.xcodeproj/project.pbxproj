@@ -105,6 +105,7 @@
 		3F4553001D2104B400524738 /* DD_TarentoHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4552FE1D2104B400524738 /* DD_TarentoHomePageViewController.m */; };
 		3F4553051D21081E00524738 /* DD_TarentoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553041D21081E00524738 /* DD_TarentoHeadView.m */; };
 		3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553081D21312300524738 /* DD_FansViewController.m */; };
+		3F48D75B1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */; };
 		3F4904DC1D18D4C4009F4CD3 /* DD_CircleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4904DB1D18D4C4009F4CD3 /* DD_CircleListModel.m */; };
 		3F4904E01D18DA0A009F4CD3 /* DD_CircleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4904DE1D18DA0A009F4CD3 /* DD_CircleListCell.m */; };
 		3F4904E51D18E12E009F4CD3 /* DD_CircleListImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4904E41D18E12E009F4CD3 /* DD_CircleListImgView.m */; };
@@ -552,6 +553,8 @@
 		3F4553041D21081E00524738 /* DD_TarentoHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_TarentoHeadView.m; sourceTree = "<group>"; };
 		3F4553071D21312300524738 /* DD_FansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_FansViewController.h; sourceTree = "<group>"; };
 		3F4553081D21312300524738 /* DD_FansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_FansViewController.m; sourceTree = "<group>"; };
+		3F48D7591D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYAnimatedImageView+LoadImage.h"; sourceTree = "<group>"; };
+		3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYAnimatedImageView+LoadImage.m"; sourceTree = "<group>"; };
 		3F4904DA1D18D4C4009F4CD3 /* DD_CircleListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleListModel.h; sourceTree = "<group>"; };
 		3F4904DB1D18D4C4009F4CD3 /* DD_CircleListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleListModel.m; sourceTree = "<group>"; };
 		3F4904DD1D18DA0A009F4CD3 /* DD_CircleListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleListCell.h; sourceTree = "<group>"; };
@@ -1449,6 +1452,8 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3F48D7591D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.h */,
+				3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */,
 				3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */,
 				3F4C2F231D76833400C954C4 /* NSDate+Custom */,
 				3F6002041D499A88007E395F /* UIView+Custom */,
@@ -3283,6 +3288,7 @@
 				3F3C3EFE1CFEB92E0056CD6B /* DD_DDAYModel.m in Sources */,
 				3F6813B11D1A6C1D00F4807A /* UIImageView+LoadImage.m in Sources */,
 				3F8228EF1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m in Sources */,
+				3F48D75B1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m in Sources */,
 				3FCC60501D06FC75006D6E44 /* DD_OrderClearingView.m in Sources */,
 				3F8228E91D0D0D8900F95E79 /* DD_DesignerMainViewController.m in Sources */,
 				3F4187CA1CEEFED6001BCA3D /* DD_BaseViewController.m in Sources */,

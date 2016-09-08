@@ -277,6 +277,7 @@
     }else
     {
         
+        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }
 }
 -(NSString *)getStrWithTag:(NSInteger )_tag

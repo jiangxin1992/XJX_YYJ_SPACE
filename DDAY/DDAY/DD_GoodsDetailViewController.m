@@ -35,6 +35,7 @@
 #import "DD_ClearingModel.h"
 #import "DD_GoodsDetailModel.h"
 #import "DD_OtherItemModel.h"
+#import "DD_SizeAlertModel.h"
 
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
@@ -584,67 +585,81 @@ __bool(isExpanded);
 {
     if(!mengban)
     {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        mengban=[UIImageView getMaskImageView];
-        [self.view addSubview:mengban];
-        [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
         
         DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-        sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
-            if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_DetailModel.item.itemId,@"colorCode":_colorModel.colorCode};
+        [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
             {
+                DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
                 
-                if([sizeid isEqualToString:@""])
-                {
-                    [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
-                }else
-                {
-                    if(count)
+                [self.navigationController setNavigationBarHidden:YES animated:YES];
+                mengban=[UIImageView getMaskImageView];
+                [self.view addSubview:mengban];
+                [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+                sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
+                    if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
                     {
-                        if(![DD_UserModel isLogin])
+                        
+                        if([sizeid isEqualToString:@""])
                         {
-                            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                                [self pushLoginView];
-                            }] animated:YES completion:nil];
+                            [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
                         }else
                         {
-                            [self mengban_dismiss];
-                            if([type isEqualToString:@"shop"])
+                            if(count)
                             {
-                                //                加入购物车
-                                [self ShopAction:sizeid WithNum:count];
-                            }else if([type isEqualToString:@"buy"])
-                            {
-                                //                购买
-                                [self BuyAction:sizeid WithNum:count];
+                                if(![DD_UserModel isLogin])
+                                {
+                                    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                                        [self pushLoginView];
+                                    }] animated:YES completion:nil];
+                                }else
+                                {
+                                    [self mengban_dismiss];
+                                    if([type isEqualToString:@"shop"])
+                                    {
+                                        //                加入购物车
+                                        [self ShopAction:sizeid WithNum:count];
+                                    }else if([type isEqualToString:@"buy"])
+                                    {
+                                        //                购买
+                                        [self BuyAction:sizeid WithNum:count];
+                                    }
+                                }
+                                
                             }
                         }
                         
+                    }else if([type isEqualToString:@"stock_warning"])
+                    {
+                        [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
                     }
-                }
+                    
+                }];
+                [mengban addSubview:sizeView];
                 
-            }else if([type isEqualToString:@"stock_warning"])
+                _mengban_size_Height=0;
+                if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
+                {
+                    _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight+14):(79+ktabbarHeight+14);
+                    NSLog(@"111");
+                }else
+                {
+                    CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
+                    _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight+16):(102+ktabbarHeight+_imgHeight+16);
+                    NSLog(@"111");
+                }
+                sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
+                [UIView animateWithDuration:0.5 animations:^{
+                    sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
+                }];
+                
+            }else
             {
-                [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
+                [self presentViewController:successAlert animated:YES completion:nil];
             }
-            
-        }];
-        [mengban addSubview:sizeView];
-        
-        _mengban_size_Height=0;
-        if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
-        {
-            _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight+14):(79+ktabbarHeight+14);
-            NSLog(@"111");
-        }else
-        {
-            CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight+16):(102+ktabbarHeight+_imgHeight+16);
-            NSLog(@"111");
-        }
-        sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
-        [UIView animateWithDuration:0.5 animations:^{
-            sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
         }];
     }
     

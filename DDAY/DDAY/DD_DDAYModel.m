@@ -34,6 +34,7 @@
 //    _DDAYModel.isJoin=NO;
 //    _DDAYModel.isQuotaLimt=YES;
 //    [self testData:_DDAYModel WithType:0];
+    
     return _DDAYModel;
 }
 

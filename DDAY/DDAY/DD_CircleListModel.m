@@ -18,7 +18,8 @@
     DD_CircleListModel *_tagModel=[DD_CircleListModel objectWithKeyValues:dict];
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
-    //    _tagModel.suggestHeight=[regular getHeightWithContent:_tagModel.shareAdvise WithWidth:ScreenWidth-40 WithFont:13.0f] ;
+    _tagModel.height=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]])+9+44+19+300+19+8+44+20+30;
+    _tagModel.contentHeight=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]]);
     return _tagModel;
 }
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr
@@ -45,6 +46,8 @@
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
     _tagModel.tags=[DD_CircleTagModel getCircleTagModelArr:[dict objectForKey:@"personTags"]];
     _tagModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
+    _tagModel.height=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]])+9+44+19+300+19+8+44+20+30;
+    _tagModel.contentHeight=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]]);
     return _tagModel;
 }
 -(NSMutableArray *)getTagArr

@@ -169,7 +169,7 @@
                         //                有则删除、没有则修改
                         if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeId WithColorID:itemModel.colorId])
                         {
-                            NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName}];
+                            NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName,@"colorCode":itemModel.colorCode}];
                             [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                                 if(success)
                                 {
@@ -191,6 +191,7 @@
                                                      ,@"itemName":itemModel.itemName
                                                      ,@"colorId":itemModel.colorId
                                                      ,@"colorName":itemModel.colorName
+                                                     ,@"colorCode":itemModel.colorCode
                                                      ,@"sizeId":sizeId
                                                      ,@"sizeName":sizeName
                                                      ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
@@ -287,7 +288,7 @@
                     //                有则删除、没有则修改
                     if([self haveSameItemWithIndexPath:indexPath WithSizeID:itemModel.sizeId WithColorID:itemModel.colorId])
                     {
-                        NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
+                        NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId,@"colorCode":itemModel.colorCode}];
                         [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                             if(success)
                             {
@@ -309,6 +310,7 @@
                                                  ,@"itemName":itemModel.itemName
                                                  ,@"colorId":itemModel.colorId
                                                  ,@"colorName":itemModel.colorName
+                                                 ,@"colorCode":itemModel.colorCode
                                                  ,@"sizeId":itemModel.sizeId
                                                  ,@"sizeName":[self GetSizeNameWithID:itemModel.sizeId WithSizeArr:sizeAlertModel.size]
                                                  ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
@@ -450,7 +452,7 @@
  */
 -(void)ChooseSizeWithItem:(DD_ShopItemModel *)_ItemModel WithIndexPath:(NSIndexPath *)indexPath WithType:(NSString *)type
 {
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_ItemModel.itemId,@"colorId":_ItemModel.colorId};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_ItemModel.itemId,@"colorCode":_ItemModel.colorCode};
     [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -569,7 +571,7 @@
 -(void)DeleteAddressWithIndexPath:(NSIndexPath *)indexPath
 {
     DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
-    NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId}];
+    NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId,@"colorCode":itemModel.colorCode}];
     [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -647,6 +649,7 @@
                 
             }];
         }
+        cell.indexPath=indexPath;
         cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
@@ -659,6 +662,7 @@
         {
             cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
         }
+        cell.indexPath=indexPath;
         cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         cell.contentView.backgroundColor=_define_backview_color;
         cell.selectionStyle=UITableViewCellSelectionStyleNone;

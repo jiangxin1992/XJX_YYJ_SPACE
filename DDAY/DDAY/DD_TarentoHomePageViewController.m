@@ -275,7 +275,7 @@
         return cell;
     }
     //获取到数据以后
-    static NSString *cellid=@"cell_circle_list";
+    static NSString *cellid=@"cell_tarento_list";
     DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {

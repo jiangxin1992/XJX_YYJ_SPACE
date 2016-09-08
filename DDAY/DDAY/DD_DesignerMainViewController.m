@@ -82,13 +82,13 @@
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
     
-    DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 17) WithImgeStr:@"Goods_list"];
+    DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(23, 22) WithImgeStr:@"Designer_All"];
     [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     allBtn.tag=100;
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:allBtn];
     [btnarr addObject:allBtn];
     
-    DD_NavBtn *followBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 17) WithImgeStr:@"Goods_list"];
+    DD_NavBtn *followBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(34, 19) WithImgeStr:@"Designer_Eyes"];
     [followBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     followBtn.tag=101;
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:followBtn];
