@@ -160,7 +160,7 @@
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeTop:return water_Top;
+        case WaterflowMarginTypeTop:return water_margin;
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;

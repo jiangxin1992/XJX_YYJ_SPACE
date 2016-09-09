@@ -235,6 +235,9 @@
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
+//    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+//    NSLog(@"idfv=%@",idfv);
+//    NSLog(@"111");
     //  关联用户token 给后台
     if(_is_first_register)
     {

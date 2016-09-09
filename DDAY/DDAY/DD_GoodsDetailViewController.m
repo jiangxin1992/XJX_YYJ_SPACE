@@ -76,6 +76,7 @@ __bool(isExpanded);
     [self SomePrepare];
     [self CreateScrollView];
     [self RequestData];
+
 }
 #pragma mark - 初始化
 -(instancetype)initWithModel:(DD_ItemsModel *)model WithBlock:(void (^)(DD_ItemsModel *model,NSString *type))block
@@ -394,18 +395,16 @@ __bool(isExpanded);
             make.left.and.right.mas_equalTo(0);
         }];
         [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(-88+ktabbarHeight);
+            make.edges.mas_equalTo(self.view);
             // 让scrollview的contentSize随着内容的增多而变化
-            make.bottom.mas_equalTo(_SimilarView.mas_bottom).with.offset(0);
+            make.bottom.mas_equalTo(_SimilarView.mas_bottom).with.offset(48);
         }];
     }else
     {
         [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(-88+ktabbarHeight);
+            make.edges.mas_equalTo(self.view);
             // 让scrollview的contentSize随着内容的增多而变化
-            make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
+            make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(48);
         }];
     }
 
@@ -633,6 +632,9 @@ __bool(isExpanded);
                     }else if([type isEqualToString:@"stock_warning"])
                     {
                         [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
+                    }else if([type isEqualToString:@"no_stock"])
+                    {
+                        [self presentViewController:[regular alertTitle_Simple:@"已售罄"] animated:YES completion:nil];
                     }
                     
                 }];
@@ -641,12 +643,12 @@ __bool(isExpanded);
                 _mengban_size_Height=0;
                 if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
                 {
-                    _mengban_size_Height=IsPhone6_gt?(109+ktabbarHeight+14):(79+ktabbarHeight+14);
+                    _mengban_size_Height=IsPhone6_gt?(123+ktabbarHeight):(93+ktabbarHeight);
                     NSLog(@"111");
                 }else
                 {
                     CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
-                    _mengban_size_Height=IsPhone6_gt?(132+ktabbarHeight+_imgHeight+16):(102+ktabbarHeight+_imgHeight+16);
+                    _mengban_size_Height=IsPhone6_gt?(148+ktabbarHeight+_imgHeight):(108+ktabbarHeight+_imgHeight);
                     NSLog(@"111");
                 }
                 sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);

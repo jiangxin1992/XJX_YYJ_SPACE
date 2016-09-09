@@ -63,7 +63,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.bottom.mas_equalTo(view.superview).with.offset(0);
     }];
     
     UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_circle", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
@@ -71,10 +71,10 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(13);
+        make.top.mas_equalTo(16);
     }];
     
-    UIButton *moreCircle=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"更多搭配" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *moreCircle=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"更多搭配" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     [backBtn addSubview:moreCircle];
     [moreCircle addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
     [moreCircle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,10 +87,10 @@
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [moreCircle addSubview:downLine];
     [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(moreCircle);
+        make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(2);
-        make.width.mas_equalTo([regular getWidthWithHeight:25 WithContent:@"更多搭配" WithFont:[regular getFont:15.0f]]+1);
+        make.width.mas_equalTo([regular getWidthWithHeight:25 WithContent:@"更多搭配" WithFont:[regular getFont:15.0f]]);
     }];
 
     
@@ -182,7 +182,7 @@
         make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-10);
+        make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-16);
     }];
 }
 #pragma mark - SomeAction

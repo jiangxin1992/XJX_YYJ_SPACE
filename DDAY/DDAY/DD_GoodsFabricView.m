@@ -47,7 +47,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.bottom.mas_equalTo(view.superview).with.offset(0);
     }];
     
     label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_fabric", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];

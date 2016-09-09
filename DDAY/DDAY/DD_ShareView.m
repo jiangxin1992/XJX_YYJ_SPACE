@@ -72,23 +72,58 @@
     for (int i=0; i<ListArr.count; i++) {
         DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:[ListArr objectAtIndex:i]] WithSelectedImageStr:nil];
         [self addSubview:btn];
+//        btn.backgroundColor=[UIColor redColor];
         btn.type=[ListArr objectAtIndex:i];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i%4==0)
             {
-                make.left.mas_equalTo(IsPhone6_gt?35:25);
+                if(i==ListArr.count-1)
+                {
+                    make.left.mas_equalTo(IsPhone6_gt?40:30);
+                }else
+                {
+                    make.left.mas_equalTo(IsPhone6_gt?35:25);
+                }
+                
             }else
             {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x);
+                if(i==ListArr.count-1)
+                {
+                    make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x+5);
+                }else
+                {
+                    make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x);
+                }
             }
-            make.width.height.mas_equalTo(50);
+            if(i==ListArr.count-1)
+            {
+                make.width.height.mas_equalTo(40);
+            }else
+            {
+                make.width.height.mas_equalTo(50);
+            }
+            
             if(i/4==0)
             {
-                make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(20);
+                if(i==ListArr.count-1)
+                {
+                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(25);
+                }else
+                {
+                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(20);
+                }
+               
             }else
             {
-                make.top.mas_equalTo(lastView.mas_bottom).with.offset(20);
+                if(i==ListArr.count-1)
+                {
+                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(25);
+                }else
+                {
+                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(20);
+                }
+                
             }
         }];
         lastView=btn;

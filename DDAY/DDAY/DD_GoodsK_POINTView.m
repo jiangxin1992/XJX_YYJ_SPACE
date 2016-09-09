@@ -60,7 +60,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.bottom.mas_equalTo(view.superview).with.offset(0);
     }];
     
     label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_k_ponit", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
@@ -71,7 +71,6 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(48);
     }];
-    
 //    DD_ShowRoomModel.h
     
     for (DD_ShowRoomModel *model in _showroomArr) {

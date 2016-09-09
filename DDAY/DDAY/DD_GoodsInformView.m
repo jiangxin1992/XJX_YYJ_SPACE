@@ -12,7 +12,7 @@
 
 #import "DD_ColorsModel.h"
 
-#define ver_edge 13
+#define ver_edge 16
 
 @implementation DD_GoodsInformView
 {
@@ -298,6 +298,8 @@
             {
                 _detailModel.item.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 collect_btn.selected=_detailModel.item.isCollect;
+//                color_select
+                _block(@"color_select");
             }
         }else
         {

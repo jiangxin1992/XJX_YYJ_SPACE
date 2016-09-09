@@ -81,7 +81,7 @@
             
             [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
             _btn.backgroundColor=_define_white_color;
-            _btn.userInteractionEnabled=NO;
+            _btn.userInteractionEnabled=YES;
         }
         [_btn setTitle:_sizeModel.sizeName forState:UIControlStateNormal];
         [_btn setTitle:_sizeModel.sizeName forState:UIControlStateSelected];
@@ -245,34 +245,41 @@
 -(void)chooseSizeAction:(UIButton *)btn
 {
     NSInteger _index=btn.tag-100;
-    for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
-        if(_index==i)
-        {
-            DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
-            if(_btn.selected)
+    DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:_index];
+    if(_sizeModel.stock)
+    {
+        for (int i=0; i<_sizeBtnArr.count; i++) {
+            UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+            if(_index==i)
             {
-                _btn.selected=NO;
-                _sizeID=@"";
-                [_btn setBackgroundColor:_define_white_color];
+                if(_btn.selected)
+                {
+                    _btn.selected=NO;
+                    _sizeID=@"";
+                    [_btn setBackgroundColor:_define_white_color];
+                }else
+                {
+                    _btn.selected=YES;
+                    _sizeID=_sizeModel.sizeId;
+                    [_btn setBackgroundColor:_define_black_color];
+                    if(_count>_sizeModel.stock)
+                    {
+                        _count=_sizeModel.stock;
+                        [countBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_count] forState:UIControlStateNormal];
+                    }
+                }
             }else
             {
-                _btn.selected=YES;
-                _sizeID=_sizeModel.sizeId;
-                [_btn setBackgroundColor:_define_black_color];
-                if(_count>_sizeModel.stock)
-                {
-                    _count=_sizeModel.stock;
-                    [countBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_count] forState:UIControlStateNormal];
-                }
+                _btn.selected=NO;
+                [_btn setBackgroundColor:_define_white_color];
             }
-            
-        }else
-        {
-            _btn.selected=NO;
-            [_btn setBackgroundColor:_define_white_color];
         }
+    }else
+    {
+        _block(@"no_stock",_sizeID,_colorid,_count);
     }
+    
+    
 }
 
 //-(void)CreateBuyShopBtn

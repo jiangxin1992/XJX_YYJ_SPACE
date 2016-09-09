@@ -82,8 +82,8 @@
         }else
         {
             [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
-            _btn.backgroundColor=_define_black_color;
-            _btn.userInteractionEnabled=NO;
+            _btn.backgroundColor=_define_white_color;
+            _btn.userInteractionEnabled=YES;
         }
         [_sizeBtnArr addObject:_btn];
         _btn.tag=100+i;
@@ -167,36 +167,45 @@
 -(void)chooseSizeAction:(UIButton *)btn
 {
     NSInteger _index=btn.tag-100;
-    for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
-        if(_index==i)
-        {
-            DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
-            if(_btn.selected)
+    
+    DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:_index];
+    if(_sizeModel.stock)
+    {
+        for (int i=0; i<_sizeBtnArr.count; i++) {
+            UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+            if(_index==i)
             {
-                _btn.selected=NO;
-                _sizeID=@"";
-                _sizeName=@"";
-                _count=0;
-                [_btn setBackgroundColor:_define_white_color];
+                DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
+                if(_btn.selected)
+                {
+                    _btn.selected=NO;
+                    _sizeID=@"";
+                    _sizeName=@"";
+                    _count=0;
+                    [_btn setBackgroundColor:_define_white_color];
+                }else
+                {
+                    _btn.selected=YES;
+                    _sizeID=_sizeModel.sizeId;
+                    _sizeName=_sizeModel.sizeName;
+                    [_btn setBackgroundColor:_define_black_color];
+                    if(_count>_sizeModel.stock)
+                    {
+                        _count=_sizeModel.stock;
+                    }
+                }
             }else
             {
-                _btn.selected=YES;
-                _sizeID=_sizeModel.sizeId;
-                _sizeName=_sizeModel.sizeName;
-                [_btn setBackgroundColor:_define_black_color];
-                if(_count>_sizeModel.stock)
-                {
-                    _count=_sizeModel.stock;
-                }
+                _btn.selected=NO;
+                [_btn setBackgroundColor:_define_white_color];
             }
-            
-        }else
-        {
-            _btn.selected=NO;
-            [_btn setBackgroundColor:_define_white_color];
         }
+    }else
+    {
+        _block(@"no_stock",_sizeID,_sizeName,_count);
     }
+    
+    
 }
 
 

@@ -44,7 +44,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.bottom.mas_equalTo(view.superview).with.offset(0);
     }];
     
     label=[UILabel getLabelWithAlignment:0 WithTitle:NSLocalizedString(@"goods_detail_send_return", nil) WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
@@ -55,7 +55,6 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(48);
     }];
-    
     NSLog(@"%@",_item.deliverDeclaration);
     return_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.deliverDeclaration  WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:return_content];

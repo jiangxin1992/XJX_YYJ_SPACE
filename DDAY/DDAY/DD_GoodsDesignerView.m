@@ -12,7 +12,7 @@
 
 #import "DD_OtherItemModel.h"
 
-#define ver_edge 15
+#define ver_edge 18
 
 @implementation DD_GoodsDesignerView
 {
@@ -63,7 +63,7 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.and.right.mas_equalTo(view.superview).with.offset(0);
-        make.bottom.mas_equalTo(view.superview).with.offset(-1);
+        make.bottom.mas_equalTo(view.superview).with.offset(0);
     }];
     
     
@@ -76,7 +76,7 @@
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(ver_edge);
         make.width.and.height.mas_equalTo(50);
-        make.bottom.mas_equalTo(upView).with.offset(-ver_edge);
+        make.bottom.mas_equalTo(upView).with.offset(-ver_edge-1);
     }];
     [_headImge JX_ScaleAspectFill_loadImageUrlStr:_detailModel.designer.head WithSize:200 placeHolderImageName:nil radius:0];
     

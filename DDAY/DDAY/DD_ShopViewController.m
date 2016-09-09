@@ -239,11 +239,14 @@
             }else if([type isEqualToString:@"no_alert"])
             {
                 [self mengban_size_dismiss];
+            }else if([type isEqualToString:@"no_stock"])
+            {
+                [self presentViewController:[regular alertTitle_Simple:@"已售罄"] animated:YES completion:nil];
             }
             
         }];
         [mengban_size addSubview:_alertSizeView];
-        //    230:187
+    
         _mengban_size_Height=0;
         if(!sizeAlertModel.sizeBriefPic||[sizeAlertModel.sizeBriefPic isEqualToString:@""])
         {
@@ -356,9 +359,9 @@
         }];
         [mengban_num addSubview:_alertNumView];
         
-        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?161:138);
+        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
         [UIView animateWithDuration:0.3 animations:^{
-            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?(66+4+ktabbarHeight):(46+4+ktabbarHeight)), ScreenWidth, IsPhone6_gt?(66+ktabbarHeight):(46+ktabbarHeight));
+            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight)), ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
         }];
     }
    
@@ -511,7 +514,7 @@
 -(void)mengban_num_dismiss
 {
     [UIView animateWithDuration:0.3 animations:^{
-        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?(66+ktabbarHeight):(46+ktabbarHeight));
+        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
     } completion:^(BOOL finished) {
         [mengban_num removeFromSuperview];
         mengban_num=nil;
