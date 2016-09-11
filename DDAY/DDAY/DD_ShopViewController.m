@@ -460,7 +460,6 @@
         if(success)
         {
             DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
-//            NSArray *sizeArr=[DD_SizeModel getSizeModelArr:[data objectForKey:@"size"]];
             if([type isEqualToString:@"num_alert"])
             {
                 [self CreateNumChooseViewWithSizeAlertModel:sizeAlertModel WithIndexPath:indexPath];

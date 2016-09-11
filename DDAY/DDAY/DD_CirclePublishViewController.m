@@ -175,6 +175,9 @@
         {
 //            删除已选款式
             [self deleteChooseItem:index];
+        }else if([type isEqualToString:@"num_limit"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"搭配建议不能超过200字"] animated:YES completion:nil];
         }
     }];
     [container addSubview:_infoView];

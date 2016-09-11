@@ -183,11 +183,7 @@
 -(void)CreateInforView
 {
     _infoView=[[DD_CircleApplyInfoView alloc] initWithCircleModel:_CircleModel WithBlock:^(NSString *type,long index) {
-//        if([type isEqualToString:@"suggest_remarks"]||[type isEqualToString:@"like_reason_remarks"])
-//        {
-//            //            跳转搭配建议界面
-//            [self PushRemarksViewWithNum:index WithType:type];
-//        }else
+
         if([type isEqualToString:@"chooseStyle"])
         {
             //            款式选择
@@ -214,13 +210,7 @@
             //            删除已选款式
             [self deleteChooseItem:index];
             
-        }
-//        else if([type isEqualToString:@"choose_designer"])
-//        {
-//            //            选择最喜爱的设计师
-//            [self ChooseFavouriteDesigner];
-//        }
-        else if([type isEqualToString:@"person_tag_delete"])
+        }else if([type isEqualToString:@"person_tag_delete"])
         {
             //            适合人群标签删除
             [DD_CirclePublishTool TagDelete:index WithType:2 WithCircleModel:_CircleModel];
@@ -247,6 +237,9 @@
         }else if([type isEqualToString:@"delete_pic"])
         {
             [self DeleteImgWithIndex:index];
+        }else if([type isEqualToString:@"num_limit"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"搭配建议不能超过200字"] animated:YES completion:nil];
         }
     }];
     [container addSubview:_infoView];

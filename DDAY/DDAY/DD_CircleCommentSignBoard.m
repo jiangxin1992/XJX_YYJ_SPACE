@@ -55,14 +55,12 @@
     
     _commentField=[[UITextView alloc] init];
     [backimg addSubview:_commentField];
-    
+    _commentField.returnKeyType=UIReturnKeySend;
     _commentField.backgroundColor=_define_white_color;
     _commentField.font = [regular getFont:13.0f];//设置字体名字和字体大小
     
     _commentField.delegate = self;//设置它的委托方法
     _commentField.textAlignment=0;
-    
-    _commentField.returnKeyType = UIReturnKeyDefault;//返回键的类型
     
     _commentField.keyboardType = UIKeyboardTypeDefault;//键盘类型
     _commentField.textColor=_define_light_gray_color1;
@@ -165,6 +163,14 @@
 //键盘return的时候发送 发送评论的请求
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     [self sendAction];
+    return YES;
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        [self sendAction];
+        //在这里做你响应return键的代码
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
     return YES;
 }
 @end

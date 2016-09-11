@@ -42,8 +42,6 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
-    NSLog(@"%d",kEdge);
-    NSLog(@"111");
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -217,11 +215,9 @@
         mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, IsPhone6_gt?(ScreenHeight-16):ScreenHeight);
     }
     
-    
     mywaterflow.dataSource = self;
     
     mywaterflow.delegate = self;
-    
     
 //    mywaterflow.showsVerticalScrollIndicator=NO;
     

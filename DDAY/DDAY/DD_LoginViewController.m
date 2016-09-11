@@ -70,6 +70,9 @@
         
     }] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfiled];
+    _phoneTextfiled.returnKeyType=UIReturnKeyDone;
+    _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
+    _phoneTextfiled.delegate=self;
     [_phoneTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -85,7 +88,7 @@
         }
     }] WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfiled];
-    _PSWTextfiled.returnKeyType=UIReturnKeyDone;
+    _PSWTextfiled.returnKeyType=UIReturnKeyGo;
     _PSWTextfiled.delegate=self;
     [_PSWTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
@@ -376,7 +379,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self loginAction];
+    if(textField == _PSWTextfiled)
+    {
+        [self loginAction];
+    }
     return YES;
 }
 #pragma mark - Other

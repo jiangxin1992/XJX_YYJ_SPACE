@@ -82,7 +82,8 @@
     }];
     [_phoneLabel sizeToFit];
     
-    _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:_AddressModel.detailAddress WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    NSString *addressContent=[[NSString alloc] initWithFormat:@"%@ %@ %@",_AddressModel.provinceName,_AddressModel.cityName,_AddressModel.detailAddress];
+    _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:addressContent WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_addressLabel];
     _addressLabel.numberOfLines=2;
     _addressLabel.preferredMaxLayoutWidth = ScreenWidth-kEdge*2;

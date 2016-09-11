@@ -128,6 +128,11 @@
             UITextField *textFiled=[[UITextField alloc] init];
             [cellview addSubview:textFiled];
             textFiled.tag=100+i;
+            textFiled.delegate=self;
+            textFiled.returnKeyType=UIReturnKeyDone;
+            if(i==1||i==2){
+                textFiled.keyboardType=UIKeyboardTypeNumberPad;
+            }else
             textFiled.font=[regular getFont:14.0f];
             textFiled.textColor=_define_black_color;
             textFiled.textAlignment=0;
@@ -340,6 +345,11 @@
         }
     }
     return @"";
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

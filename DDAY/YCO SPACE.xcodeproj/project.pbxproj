@@ -137,8 +137,6 @@
 		3F552E6C1CF1C80D00BC5E33 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F552E6B1CF1C80D00BC5E33 /* libsqlite3.tbd */; };
 		3F552E6E1CF1C83200BC5E33 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F552E6D1CF1C83200BC5E33 /* MessageUI.framework */; };
 		3F552E711CF1E7BA00BC5E33 /* DD_ItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E701CF1E7BA00BC5E33 /* DD_ItemsModel.m */; };
-		3F552E7A1CF1EA3C00BC5E33 /* DD_ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E781CF1EA3C00BC5E33 /* DD_ItemCell.m */; };
-		3F552E7B1CF1EA3C00BC5E33 /* DD_ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F552E791CF1EA3C00BC5E33 /* DD_ItemCell.xib */; };
 		3F552E7F1CF1F58C00BC5E33 /* DD_DesignerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E7D1CF1F58C00BC5E33 /* DD_DesignerCell.m */; };
 		3F552E831CF1F59E00BC5E33 /* DD_DesignerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E821CF1F59E00BC5E33 /* DD_DesignerModel.m */; };
 		3F552E891CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E871CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m */; };
@@ -605,9 +603,6 @@
 		3F552E6D1CF1C83200BC5E33 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3F552E6F1CF1E7BA00BC5E33 /* DD_ItemsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ItemsModel.h; sourceTree = "<group>"; };
 		3F552E701CF1E7BA00BC5E33 /* DD_ItemsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ItemsModel.m; sourceTree = "<group>"; };
-		3F552E771CF1EA3C00BC5E33 /* DD_ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ItemCell.h; sourceTree = "<group>"; };
-		3F552E781CF1EA3C00BC5E33 /* DD_ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ItemCell.m; sourceTree = "<group>"; };
-		3F552E791CF1EA3C00BC5E33 /* DD_ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_ItemCell.xib; sourceTree = "<group>"; };
 		3F552E7C1CF1F58C00BC5E33 /* DD_DesignerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerCell.h; sourceTree = "<group>"; };
 		3F552E7D1CF1F58C00BC5E33 /* DD_DesignerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerCell.m; sourceTree = "<group>"; };
 		3F552E811CF1F59E00BC5E33 /* DD_DesignerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerModel.h; sourceTree = "<group>"; };
@@ -1805,9 +1800,6 @@
 			isa = PBXGroup;
 			children = (
 				3F7160A41D4EDCEE00E165D2 /* 下拉选择 */,
-				3F552E771CF1EA3C00BC5E33 /* DD_ItemCell.h */,
-				3F552E781CF1EA3C00BC5E33 /* DD_ItemCell.m */,
-				3F552E791CF1EA3C00BC5E33 /* DD_ItemCell.xib */,
 				3F9B8AEE1CEF5633008EC460 /* DD_GoodsViewController.h */,
 				3F9B8AEF1CEF5633008EC460 /* DD_GoodsViewController.m */,
 			);
@@ -3080,7 +3072,6 @@
 				3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */,
 				3F4187801CEEFB24001BCA3D /* Assets.xcassets in Resources */,
 				3F4C2F2D1D76E1BD00C954C4 /* loading@2x.gif in Resources */,
-				3F552E7B1CF1EA3C00BC5E33 /* DD_ItemCell.xib in Resources */,
 				3F4C2F2C1D76E1BD00C954C4 /* loading.gif in Resources */,
 				3F3811A91CF54F7C007154F1 /* AlipaySDK.bundle in Resources */,
 				3F41877E1CEEFB24001BCA3D /* Main.storyboard in Resources */,
@@ -3191,7 +3182,6 @@
 				3F4B81D21D0052CB00B323E4 /* DD_DDAYDetailViewController.m in Sources */,
 				3F57172E1D6EBD10006E1940 /* DD_MonthModel.m in Sources */,
 				3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */,
-				3F552E7A1CF1EA3C00BC5E33 /* DD_ItemCell.m in Sources */,
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,
 				3F85BAD41D66ED3C00820018 /* MyPoint.m in Sources */,

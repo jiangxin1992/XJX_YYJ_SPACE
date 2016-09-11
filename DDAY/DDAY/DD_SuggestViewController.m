@@ -53,7 +53,7 @@
     textView.textAlignment=0;
     textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
     
-    textView.returnKeyType = UIReturnKeyDefault;//返回键的类型
+    textView.returnKeyType = UIReturnKeySend;//返回键的类型
     
     textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
     
@@ -97,6 +97,14 @@
 }
 
 #pragma mark - Other
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        [self sendAction];
+        //在这里做你响应return键的代码
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    return YES;
+}
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [regular dismissKeyborad];

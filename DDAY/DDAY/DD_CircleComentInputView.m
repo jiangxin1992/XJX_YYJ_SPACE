@@ -125,8 +125,6 @@
     
 }
 #pragma mark - SomeAction
-
-
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     textView.textColor=_define_black_color;
@@ -148,7 +146,6 @@
 -(void)textViewDidChange:(UITextView *)textView{
     //博客园-FlyElephant
     [self reloadHeight:textView];
-    
 }
 -(void)sendAction:(UIButton *)btn
 {

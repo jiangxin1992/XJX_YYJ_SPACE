@@ -147,7 +147,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self registerAction];
+    if(textField == _PSWTextfield)
+    {
+        
+        [self registerAction];
+    }
     return YES;
 }
 #pragma mark - Other

@@ -582,13 +582,12 @@ __bool(isExpanded);
 //shop buy
 -(void)Shop_Buy_Action:(NSString *)type
 {
-    if(!mengban)
-    {
-        
-        DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_DetailModel.item.itemId,@"colorCode":_colorModel.colorCode};
-        [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_DetailModel.item.itemId,@"colorCode":_colorModel.colorCode};
+    [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            if(!mengban)
             {
                 DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
                 
@@ -655,15 +654,15 @@ __bool(isExpanded);
                 [UIView animateWithDuration:0.5 animations:^{
                     sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
                 }];
-                
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
-    }
+            
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
     
 }
 //购买动作

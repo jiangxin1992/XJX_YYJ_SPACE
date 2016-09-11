@@ -105,11 +105,21 @@
             [regular dismissKeyborad];
         }else if([type isEqualToString:@"save"])
         {
-            _content=content;
-            _textView.text=_content;
-            _numlabel.text=[self getlength];
-            [regular dismissKeyborad];
-            _block(@"save",_content);
+            if(content.length<=_limitNum)
+            {
+                _content=content;
+                _textView.text=_content;
+                _numlabel.text=[self getlength];
+                [regular dismissKeyborad];
+                _block(@"save",_content);
+            }else
+            {
+//                _content=content;
+//                _textView.text=_content;
+//                _numlabel.text=[self getlength];
+                [regular dismissKeyborad];
+                _block(@"num_limit",_content);
+            }
         }else
         {
             _block(type,_content);

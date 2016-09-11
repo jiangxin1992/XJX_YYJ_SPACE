@@ -75,6 +75,10 @@
 //        btn.backgroundColor=[UIColor redColor];
         btn.type=[ListArr objectAtIndex:i];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        if(i==ListArr.count-1)
+        {
+            [btn setEnlargeEdge:5];
+        }
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i%4==0)
             {
@@ -161,7 +165,7 @@
     }else if([_type isEqualToString:@"qq"])
     {
 //        QQ
-        [self ShareActionWithType:SSDKPlatformSubTypeQQFriend];
+        [self ShareActionWithType:SSDKPlatformTypeQQ];
     }else if([_type isEqualToString:@"copy"])
     {
 //        复制

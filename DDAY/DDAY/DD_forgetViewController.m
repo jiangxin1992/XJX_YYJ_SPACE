@@ -51,6 +51,9 @@
         
     }] WithRightView:nil WithSecureTextEntry:NO];
     [self.view addSubview:_phoneTextfield];
+    _phoneTextfield.returnKeyType=UIReturnKeyDone;
+    _phoneTextfield.keyboardType=UIKeyboardTypeNumberPad;
+    _phoneTextfield.delegate=self;
     [_phoneTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -217,7 +220,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self verifyAction];
+    if(textField==_codeTextfield)
+    {
+        [self verifyAction];
+    }
     return YES;
 }
 #pragma mark - Ohter

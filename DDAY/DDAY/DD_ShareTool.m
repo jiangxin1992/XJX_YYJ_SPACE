@@ -25,23 +25,23 @@
 }
 +(NSArray *)getShareListArr
 {
-    if((![self isInstallQQ])&&(![self isInstallWeChat]))
+    BOOL _isInstallQQ=[self isInstallQQ];
+    BOOL _isInstallWeChat=[self isInstallWeChat];
+    NSLog(@"%d %d",_isInstallQQ,_isInstallWeChat);
+    if(_isInstallQQ&&_isInstallWeChat)
     {
-        return @[@"sina",@"copy"];
+        return @[@"wechat",@"wechat_friend",@"sina",@"qq",@"copy"];
     }else
     {
-        if([self isInstallQQ]&&[self isInstallWeChat])
+        if(_isInstallQQ)
         {
-            return @[@"wechat",@"wechat_friend",@"sina",@"qq",@"copy"];
+            return @[@"sina",@"qq",@"copy"];
+        }else if(_isInstallWeChat)
+        {
+            return @[@"wechat",@"wechat_friend",@"sina",@"copy"];
         }else
         {
-            if([self isInstallQQ])
-            {
-                return @[@"wechat",@"wechat_friend",@"sina",@"copy"];
-            }else
-            {
-                return @[@"sina",@"qq",@"copy"];
-            }
+            return @[@"sina",@"copy"];
         }
     }
 }

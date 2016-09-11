@@ -48,6 +48,8 @@
         
     }] WithRightView:nil WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfield];
+    _PSWTextfield.returnKeyType=UIReturnKeyDone;
+    _PSWTextfield.delegate=self;
     [_PSWTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -145,7 +147,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self doneAction];
+    if(textField==_repeatPSWTextfield)
+    {
+        [self doneAction];
+    }
+    
     return YES;
 }
 #pragma mark - Ohers

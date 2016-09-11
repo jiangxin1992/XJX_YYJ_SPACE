@@ -79,6 +79,7 @@
     [_SignBoard.commentField becomeFirstResponder];
     
 }
+
 #pragma mark - UIConfig
 -(void)UIConfig
 {
@@ -104,6 +105,7 @@
     _textfield=[[UITextField alloc] init];
     [self addSubview:_textfield];
     _textfield.placeholder=_holdStr;
+    _textfield.returnKeyType=UIReturnKeyDone;
     _textfield.inputAccessoryView = _SignBoard;
     _textfield.returnKeyType=UIReturnKeyDefault;
     _textfield.font=[regular getFont:13.0f];

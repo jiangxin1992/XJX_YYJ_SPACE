@@ -123,8 +123,9 @@
     }];
     
     UIView *lastView=nil;
+    NSString *addressContent=[[NSString alloc] initWithFormat:@"%@ %@ %@",_DetailModel.address.provinceName,_DetailModel.address.cityName,_DetailModel.address.detailAddress];
     for (int i=0; i<3; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:_DetailModel.address.detailAddress WithFont:i==0?15:i==1?14:12 WithTextColor:nil WithSpacing:0];
+        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:addressContent WithFont:i==0?15:i==1?14:12 WithTextColor:nil WithSpacing:0];
         [_downView addSubview:label];
         label.tag=100+i;
         if(i==2)
@@ -193,9 +194,10 @@
         
     }else
     {
+        NSString *addressContent=[[NSString alloc] initWithFormat:@"%@ %@ %@",_DetailModel.address.provinceName,_DetailModel.address.cityName,_DetailModel.address.detailAddress];
         for (int i=0; i<3; i++) {
             UILabel *label=(UILabel *)[self viewWithTag:100+i];
-            label.text=i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:_DetailModel.address.detailAddress;
+            label.text=i==0?_DetailModel.address.deliverName:i==1?_DetailModel.address.deliverPhone:addressContent;
         }
     }
     

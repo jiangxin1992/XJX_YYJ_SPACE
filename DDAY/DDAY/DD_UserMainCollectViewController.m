@@ -98,7 +98,7 @@
         [btn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag=100+i;
         btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-        NSString *str=i==0?@"发布品":@"共享搭配";
+        NSString *str=i==0?@"发布品":@"共享";
         btn.titleLabel.font=(kIOSVersions>=9.0? [UIFont systemFontOfSize:13.0f]:[UIFont fontWithName:@"Helvetica Neue" size:13.0f]);
         [btn setTitle:str forState:UIControlStateNormal];
         [btn.titleLabel setAttributedText:[regular createAttributeString:str andFloat:@(3.0)]];

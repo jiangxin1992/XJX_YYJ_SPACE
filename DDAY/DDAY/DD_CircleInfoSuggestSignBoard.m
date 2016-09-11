@@ -74,7 +74,7 @@
     
     _commentField=[[UITextView alloc] init];
     [self addSubview:_commentField];
-    _commentField.returnKeyType=UIReturnKeyDefault;
+    _commentField.returnKeyType=UIReturnKeyDone;
     _commentField.delegate=self;
     _commentField.font=[regular getFont:14.0f];
     _commentField.textColor=_define_black_color;
@@ -115,11 +115,7 @@
     }
     return YES;
 }
-//键盘return的时候发送 发送评论的请求
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-    [self sendAction];
-    return YES;
-}
+
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     textView.textColor=_define_black_color;
@@ -127,6 +123,15 @@
         
         textView.text = @"";
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        [self sendAction];
+        //在这里做你响应return键的代码
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    return YES;
 }
 
 @end
