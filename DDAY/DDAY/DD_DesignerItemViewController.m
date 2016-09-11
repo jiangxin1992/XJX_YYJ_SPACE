@@ -132,14 +132,21 @@
 // cell的个数，必须实现
 - (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
     
-    return _dataArr.count;
+    return _dataArr.count+1;
 }
 // 返回cell，必须实现
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
-    DD_ItemsModel *item=[_dataArr objectAtIndex:index];
-    DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-    return [DD_ItemTool getHomePageCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height];
+    if(index)
+    {
+        DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
+        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+        return [DD_ItemTool getHomePageCustomWaterflowCell:waterflow cellAtIndex:index-1 WithItemsModel:item WithHeight:_height];
+    }else
+    {
+        return [WaterflowCell waterflowCellWithWaterflow:waterflow];
+    }
+    
 }
 // 这个方法可选不是必要的，默认是3列
 - (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
@@ -147,34 +154,42 @@
 }
 // 返回每一个cell的高度，非必要，默认为80
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
-    
-    DD_ItemsModel *item=[_dataArr objectAtIndex:index];
-    if(item.pics)
+    if(index)
     {
-        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height+25;
+        DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
+        if(item.pics)
+        {
+            DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+            CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+            return _height+25+water_margin;
+        }
+        return 25+water_margin;
+    }else
+    {
+        return 0;
     }
-    return 25;
+    
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeTop:return water_margin;
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeBottom:return water_Bottom;
-            //        case WaterflowMarginTypeColumn:return 0;
         default:return 0;
     }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
 
-    DD_ItemsModel *_model=[_dataArr objectAtIndex:index];
-    _block(@"detail",_model);
+    if(index)
+    {
+        DD_ItemsModel *_model=[_dataArr objectAtIndex:index-1];
+        _block(@"detail",_model);
+    }
+    
 }
 #pragma mark - SomeAction
 //跳转购物车

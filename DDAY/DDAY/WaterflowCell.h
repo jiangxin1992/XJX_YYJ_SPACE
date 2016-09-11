@@ -17,5 +17,6 @@
 
 
 @property (nonatomic,copy) NSString *identifier;
+//@property (nonatomic,copy) NSString *index;
 
 @end

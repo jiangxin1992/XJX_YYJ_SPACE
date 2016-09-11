@@ -11,10 +11,12 @@
 #import "DD_ImageModel.h"
 
 @implementation DD_ItemTool
-+(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
++(WaterflowCell *)getCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
 {
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
     cell.backgroundColor=_define_white_color;
+//    cell.index=@"1";
+    
     UIImageView *imageview=nil;
     if(item.pics&&item.pics.count)
     {
@@ -25,7 +27,7 @@
         [regular setZeroBorder:imageview];
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(water_Top);
             make.height.mas_equalTo(_height);
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
@@ -51,6 +53,7 @@
 
     return cell;
 }
+
 +(WaterflowCell *)getColCustomWaterflowCell:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index WithItemsModel:(DD_ItemsModel *)item WithHeight:(CGFloat )_height
 {
     WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
@@ -65,7 +68,7 @@
         [regular setZeroBorder:imageview];
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(water_Top);
             make.height.mas_equalTo(_height);
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
@@ -135,7 +138,7 @@
 
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(water_margin);
             make.height.mas_equalTo(_height);
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];

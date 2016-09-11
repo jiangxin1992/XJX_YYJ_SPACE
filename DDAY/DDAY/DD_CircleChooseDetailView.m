@@ -328,22 +328,83 @@
 // cell的个数，必须实现
 - (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
     
-    return _dataArr.count;
+    return _dataArr.count+1;
 }
 // 返回cell，必须实现
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
+    if(index)
+    {
+        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
+        return [[DD_CirclePublishTool alloc] getCustomWaterflowCell:waterflow cellAtIndex:index-1 WithItemsModel:item WithHeight:_height WithBlock:^(NSString *type,NSInteger _index) {
+            DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:_index];
+            if(!_itemModel.isSelect)
+            {
+                _itemModel.isSelect=YES;
+                if(_circleModel.chooseItem.count<_num)
+                {
+                    [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:_index]];
+                    //                _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",___num-___chooseItem.count];
+                }else
+                {
+                    [self presentViewController:[regular alertTitle_Simple:[[NSString alloc] initWithFormat:@"最多可选择%ld款",_num]] animated:YES completion:nil];
+                }
+                [self UpdateImgView];
+            }else
+            {
+                _itemModel.isSelect=NO;
+                _block(@"delete_choose_item",_index);
+                [self UpdateImgView];
+            }
+            [waterflow reloadData];
+        }];
+    }else
+    {
+        return [WaterflowCell waterflowCellWithWaterflow:waterflow];
+    }
+}
+// 这个方法可选不是必要的，默认是3列
+- (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
+    return 2;
+}
+// 返回每一个cell的高度，非必要，默认为80
+- (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
+    if(index)
+    {
+        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
+        return _height+25+water_Top;
+    }else
+    {
+        return 0;
+    }
     
-    
-    DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index];
-    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
-    return [[DD_CirclePublishTool alloc] getCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:item WithHeight:_height WithBlock:^(NSString *type,NSInteger index) {
-        DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:index];
+}
+// 间隔，非必要，默认均为10
+- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
+    switch (type) {
+            
+        case WaterflowMarginTypeLeft:return water_margin;
+        case WaterflowMarginTypeRight:return water_margin;
+        case WaterflowMarginTypeRow:return water_Spacing;
+        case WaterflowMarginTypeColumn:return water_Bottom;
+        case WaterflowMarginTypeBottom:return water_Bottom;
+        default:return 0;
+
+    }
+}
+// 非必要
+- (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
+    if(index)
+    {
+        DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:index-1];
         if(!_itemModel.isSelect)
         {
-            _itemModel.isSelect=YES;
+            
             if(_circleModel.chooseItem.count<_num)
             {
-                [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:index]];
+                _itemModel.isSelect=YES;
+                [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:index-1]];
                 //                _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",___num-___chooseItem.count];
             }else
             {
@@ -352,70 +413,17 @@
             [self UpdateImgView];
         }else
         {
-            _itemModel.isSelect=NO;
-            _block(@"delete_choose_item",index);
+            //            删除已选款式
+            DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+            item.isSelect=NO;
+            //    删除item 对应的已选款式
+            [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
+            
+            _block(@"delete_choose_item",index-1);
             [self UpdateImgView];
         }
         [waterflow reloadData];
-    }];
-}
-// 这个方法可选不是必要的，默认是3列
-- (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
-    return 2;
-}
-// 返回每一个cell的高度，非必要，默认为80
-- (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
-    DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index];
-    CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
-    return _height+25;
-}
-// 间隔，非必要，默认均为10
-- (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
-    switch (type) {
-            
-        case WaterflowMarginTypeTop:return water_Top;
-        case WaterflowMarginTypeLeft:return water_margin;
-        case WaterflowMarginTypeRight:return water_margin;
-        case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
-        case WaterflowMarginTypeBottom:return water_Bottom;
-            
-        default:return 0;
-//        case WaterflowMarginTypeLeft:return 14;
-//        case WaterflowMarginTypeRight:return 14;
-//        case WaterflowMarginTypeRow:return 8;
-//        default:return 0;
     }
-}
-// 非必要
-- (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
-    
-    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:index];
-    if(!_itemModel.isSelect)
-    {
-        
-        if(_circleModel.chooseItem.count<_num)
-        {
-            _itemModel.isSelect=YES;
-            [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:index]];
-            //                _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",___num-___chooseItem.count];
-        }else
-        {
-            [self presentViewController:[regular alertTitle_Simple:[[NSString alloc] initWithFormat:@"最多可选择%ld款",_num]] animated:YES completion:nil];
-        }
-        [self UpdateImgView];
-    }else
-    {
-        //            删除已选款式
-        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index];
-        item.isSelect=NO;
-        //    删除item 对应的已选款式
-        [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
-        
-        _block(@"delete_choose_item",index);
-        [self UpdateImgView];
-    }
-    [waterflow reloadData];
 }
 #pragma mark - SomeAction
 -(void)doneAction

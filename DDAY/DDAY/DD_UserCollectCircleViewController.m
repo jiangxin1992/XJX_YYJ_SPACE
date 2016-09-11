@@ -129,25 +129,33 @@
 // cell的个数，必须实现
 - (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
     
-    return _dataArr.count;
+    return _dataArr.count+1;
 }
 // 返回cell，必须实现
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
-    WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    if(listModel.pics.count)
+    if(index)
     {
-        DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
-        UIImageView *img=[UIImageView getCustomImg];
-        [cell addSubview:img];
-        img.contentMode=2;
-        [regular setZeroBorder:img];
-        [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-        [img mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(cell);
-        }];
+        WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
+        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        if(listModel.pics.count)
+        {
+            DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
+            UIImageView *img=[UIImageView getCustomImg];
+            [cell addSubview:img];
+            img.contentMode=2;
+            [regular setZeroBorder:img];
+            [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+            [img mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(water_Top);
+            }];
+        }
+        return cell;
+    }else
+    {
+        return [WaterflowCell waterflowCellWithWaterflow:waterflow];
     }
-    return cell;
+    
 }
 // 这个方法可选不是必要的，默认是3列
 - (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
@@ -155,32 +163,39 @@
 }
 // 返回每一个cell的高度，非必要，默认为80
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    if(listModel.pics.count)
+    if(index)
     {
-        DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
-        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-        return _height;
+        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        if(listModel.pics.count)
+        {
+            DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
+            CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+            return _height+water_Top;
+        }
+        return 0;
+    }else{
+      return 0;
     }
-    return 0;
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeTop:return water_Top;
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeBottom:return water_Bottom;
-            //        case WaterflowMarginTypeColumn:return 0;
         default:return 0;
     }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    _block(@"push_circle_detail",listModel,nil);
+    if(index)
+    {
+        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        _block(@"push_circle_detail",listModel,nil);
+    }
+   
 }
 
 

@@ -81,7 +81,7 @@
 //    [navview addSubview:dibu];
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
-    
+//    designer_follow_title
     DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(23, 22) WithImgeStr:@"Designer_All"];
     [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     allBtn.tag=100;
@@ -147,6 +147,7 @@
     {
         if(currentPage>0)
         {
+            self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
             if(!left)
             {
                 left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type,DD_DesignerModel *model) {
@@ -191,6 +192,7 @@
             }] animated:YES completion:nil];
         }else
         {
+            self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_follow_title", @"") withmaxwidth:100];
             if(!right)
             {
                 right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {

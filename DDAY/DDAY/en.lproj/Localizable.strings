@@ -42,6 +42,7 @@
  * 设计师
  */
 "designer_title"="设计师";
+"designer_follow_title"="我关注的设计师";
 
 /**
  * 确认订单

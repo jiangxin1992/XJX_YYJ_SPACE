@@ -114,17 +114,24 @@
 // cell的个数，必须实现
 - (NSUInteger)numberOfCellsInWaterflow:(Waterflow *)waterflow{
     
-    return _dataArr.count;
+    return _dataArr.count+1;
 }
 // 返回cell，必须实现
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
-    DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index];
-    CGFloat _height=0;
-    if(choose_item.pic)
+    if(index)
     {
-        _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+        DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index-1];
+        CGFloat _height=0;
+        if(choose_item.pic)
+        {
+            _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+        }
+        return [DD_CirclePublishTool getColCustomWaterflowCell:waterflow cellAtIndex:index-1 WithItemsModel:choose_item WithHeight:_height];
+    }else
+    {
+        return [WaterflowCell waterflowCellWithWaterflow:waterflow];
     }
-    return [DD_CirclePublishTool getColCustomWaterflowCell:waterflow cellAtIndex:index WithItemsModel:choose_item WithHeight:_height];
+    
 }
 // 这个方法可选不是必要的，默认是3列
 - (NSUInteger)numberOfColumnsInWaterflow:(Waterflow *)waterflow{
@@ -132,35 +139,43 @@
 }
 // 返回每一个cell的高度，非必要，默认为80
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
-    DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index];
-    if(choose_item.pic)
+    if(index)
     {
-        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
-        return _height+25;
+        DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index-1];
+        if(choose_item.pic)
+        {
+            CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
+            return _height+25+water_Top;
+        }
+        return 25+water_Top;
+    }else
+    {
+        return 0;
     }
-    return 0;
+    
 }
 // 间隔，非必要，默认均为10
 - (CGFloat)waterflow:(Waterflow *)waterflow marginOfWaterflowMarginType:(WaterflowMarginType)type{
     switch (type) {
-        case WaterflowMarginTypeTop:return water_Top;
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom+water_Top;
+        case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeBottom:return water_Bottom;
-//        case WaterflowMarginTypeColumn:return 0;
         default:return 0;
     }
 }
 // 非必要
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
+    if(index)
+    {
+        DD_ItemsModel *_item=[_dataArr objectAtIndex:index-1];
+        DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+            //        if(type)
+        }];
+        [self.navigationController pushViewController:_GoodsDetail animated:YES];
+    }
     
-    DD_ItemsModel *_item=[_dataArr objectAtIndex:index];
-    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-        //        if(type)
-    }];
-    [self.navigationController pushViewController:_GoodsDetail animated:YES];
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
