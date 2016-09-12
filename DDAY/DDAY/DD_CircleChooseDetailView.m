@@ -316,12 +316,12 @@
             [mywaterflow reloadData];
             [self presentViewController:successAlert animated:YES completion:nil];
         }
-        [mywaterflow.header endRefreshing];
-        [mywaterflow.footer endRefreshing];
+        [mywaterflow.mj_header endRefreshing];
+        [mywaterflow.mj_footer endRefreshing];
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
-        [mywaterflow.header endRefreshing];
-        [mywaterflow.footer endRefreshing];
+        [mywaterflow.mj_header endRefreshing];
+        [mywaterflow.mj_footer endRefreshing];
     }];
 }
 #pragma mark - WaterflowDelegate
@@ -440,7 +440,7 @@
         {
             queryStr=_queryStr;
             [searchBtn setTitle:queryStr forState:UIControlStateNormal];
-            [mywaterflow.header beginRefreshing];
+            [mywaterflow.mj_header beginRefreshing];
             [_searchView removeFromSuperview];
         }
         [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -450,19 +450,19 @@
 }
 -(void)MJRefresh
 {
-    mywaterflow.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    mywaterflow.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page=1;
         [self RequestData];
     }];
     
-    mywaterflow.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    mywaterflow.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page+=1;
         [self RequestData];
     }];
     
-    [mywaterflow.header beginRefreshing];
+    [mywaterflow.mj_header beginRefreshing];
 }
 /**
  * 删除已选款式

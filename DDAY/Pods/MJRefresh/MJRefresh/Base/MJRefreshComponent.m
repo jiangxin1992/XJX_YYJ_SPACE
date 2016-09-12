@@ -10,6 +10,8 @@
 #import "MJRefreshComponent.h"
 #import "MJRefreshConst.h"
 #import "UIView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;
@@ -66,7 +68,7 @@
         // 设置永远支持垂直弹簧效果
         _scrollView.alwaysBounceVertical = YES;
         // 记录UIScrollView最开始的contentInset
-        _scrollViewOriginalInset = self.scrollView.contentInset;
+        _scrollViewOriginalInset = _scrollView.contentInset;
         
         // 添加监听
         [self addObservers];
@@ -104,14 +106,17 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     // 遇到这些情况就直接返回
-    if (!self.userInteractionEnabled || self.hidden) return;
+    if (!self.userInteractionEnabled) return;
     
+    // 这个就算看不见也需要处理
+    if ([keyPath isEqualToString:MJRefreshKeyPathContentSize]) {
+        [self scrollViewContentSizeDidChange:change];
+    }
+    
+    // 看不见
+    if (self.hidden) return;
     if ([keyPath isEqualToString:MJRefreshKeyPathContentOffset]) {
         [self scrollViewContentOffsetDidChange:change];
-    } else if ([keyPath isEqualToString:MJRefreshKeyPathContentSize]) {
-        [self scrollViewContentSizeDidChange:change];
-    } else if ([keyPath isEqualToString:MJRefreshKeyPathContentInset]) {
-        [self scrollViewContentInsetDidChange:change];
     } else if ([keyPath isEqualToString:MJRefreshKeyPathPanState]) {
         [self scrollViewPanStateDidChange:change];
     }
@@ -119,7 +124,6 @@
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change{}
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change{}
-- (void)scrollViewContentInsetDidChange:(NSDictionary *)change{}
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change{}
 
 #pragma mark - 公共方法
@@ -128,6 +132,43 @@
 {
     self.refreshingTarget = target;
     self.refreshingAction = action;
+}
+
+- (NSString *)localizedStringForKey:(NSString *)key{
+    return [self localizedStringForKey:key withDefault:nil];
+}
+
+- (NSString *)localizedStringForKey:(NSString *)key withDefault:(NSString *)defaultString
+{
+    static NSBundle *bundle = nil;
+    if (bundle == nil) {
+        // 获得设备的语言
+        NSString *language = [NSLocale preferredLanguages].firstObject;
+        // 如果是iOS9以上，截取前面的语言标识
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
+            NSRange range = [language rangeOfString:@"-" options:NSBackwardsSearch];
+            language = [language substringToIndex:range.location];
+        }
+        
+        if (language.length == 0) {
+            language = @"zh-Hans";
+        }
+        
+        // 先从MJRefresh.bundle中查找资源
+        NSBundle *refreshBundle = [NSBundle mj_refreshBundle];
+        if ([refreshBundle.localizations containsObject:language]) {
+            bundle = [NSBundle bundleWithPath:[refreshBundle pathForResource:language ofType:@"lproj"]];
+        }
+    }
+    defaultString = [bundle localizedStringForKey:key value:defaultString table:nil];
+    return [[NSBundle mainBundle] localizedStringForKey:key value:defaultString table:nil];
+}
+
+- (void)setState:(MJRefreshState)state
+{
+    _state = state;
+    
+    [self setNeedsLayout];
 }
 
 #pragma mark 进入刷新状态
@@ -141,9 +182,12 @@
     if (self.window) {
         self.state = MJRefreshStateRefreshing;
     } else {
-        self.state = MJRefreshStateWillRefresh;
-        // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
-        [self setNeedsDisplay];
+        // 预发当前正在刷新中时调用本方法使得header insert回置失败
+        if (self.state != MJRefreshStateRefreshing) {
+            self.state = MJRefreshStateWillRefresh;
+            // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
+            [self setNeedsDisplay];
+        }
     }
 }
 
@@ -162,12 +206,22 @@
 #pragma mark 自动切换透明度
 - (void)setAutoChangeAlpha:(BOOL)autoChangeAlpha
 {
-    _autoChangeAlpha = autoChangeAlpha;
+    self.automaticallyChangeAlpha = autoChangeAlpha;
+}
+
+- (BOOL)isAutoChangeAlpha
+{
+    return self.isAutomaticallyChangeAlpha;
+}
+
+- (void)setAutomaticallyChangeAlpha:(BOOL)automaticallyChangeAlpha
+{
+    _automaticallyChangeAlpha = automaticallyChangeAlpha;
     
     if (self.isRefreshing) return;
     
-    if (autoChangeAlpha) {
-         self.alpha = self.pullingPercent;
+    if (automaticallyChangeAlpha) {
+        self.alpha = self.pullingPercent;
     } else {
         self.alpha = 1.0;
     }
@@ -180,7 +234,7 @@
     
     if (self.isRefreshing) return;
     
-    if (self.isAutoChangeAlpha) {
+    if (self.isAutomaticallyChangeAlpha) {
         self.alpha = pullingPercent;
     }
 }
@@ -193,14 +247,14 @@
             self.refreshingBlock();
         }
         if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
-            msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
+            MJRefreshMsgSend(MJRefreshMsgTarget(self.refreshingTarget), self.refreshingAction, self);
         }
     });
 }
 @end
 
 @implementation UILabel(MJRefresh)
-+ (instancetype)label
++ (instancetype)mj_label
 {
     UILabel *label = [[self alloc] init];
     label.font = MJRefreshLabelFont;
@@ -209,5 +263,25 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     return label;
+}
+
+- (CGFloat)mj_textWith {
+    CGFloat stringWidth = 0;
+    CGSize size = CGSizeMake(MAXFLOAT, MAXFLOAT);
+    if (self.text.length > 0) {
+#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        stringWidth =[self.text
+                      boundingRectWithSize:size
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{NSFontAttributeName:self.font}
+                      context:nil].size.width;
+#else
+        
+        stringWidth = [self.text sizeWithFont:self.font
+                             constrainedToSize:size
+                                 lineBreakMode:NSLineBreakByCharWrapping].width;
+#endif
+    }
+    return stringWidth;
 }
 @end

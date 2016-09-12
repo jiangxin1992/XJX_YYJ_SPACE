@@ -24,7 +24,7 @@ PODS:
   - JSONModel (1.2.0)
   - Masonry (0.6.4)
   - MJExtension (2.3.8)
-  - MJRefresh (2.2.1)
+  - MJRefresh (3.1.0)
   - MOBFoundation (1.5.2)
   - Qiniu (7.0.18):
     - AFNetworking (~> 2.0)
@@ -56,7 +56,7 @@ DEPENDENCIES:
   - JSONModel (~> 1.2.0)
   - Masonry (~> 0.6.1)
   - MJExtension (~> 2.3.7)
-  - MJRefresh (~> 2.2.0)
+  - MJRefresh (~> 3.1.0)
   - MOBFoundation
   - Qiniu (~> 7.0)
   - ReactiveCocoa (~> 2.5)
@@ -75,7 +75,7 @@ SPEC CHECKSUMS:
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJExtension: d83b55e6cb95c6274388539c782386b56f394a6d
-  MJRefresh: c3fa0387e8e97a11a9666639d2f815607edd1c2f
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MOBFoundation: 6cea4097eed468d6f3c5b3c358dcf2503e762bb3
   Qiniu: 7a9c2a2bbdec02ae84b92051637e1e9ea3d182fb
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 173a5a2541536225f4c947935560975136f18a34
   YYKit: a80c77ab7be226ebe539ef1495dfc25d5766d61e
 
-PODFILE CHECKSUM: 5fb57b998ed4809a6222adebdaa014c18c6a968f
+PODFILE CHECKSUM: 1c69f88045a61f3b9128599bc02c798fbc5570b1
 
 COCOAPODS: 1.0.0

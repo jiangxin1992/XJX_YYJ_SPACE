@@ -82,12 +82,12 @@
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {
-    _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         [self RequestData];
     }];
     
-    [_tableview.header beginRefreshing];
+    [_tableview.mj_header beginRefreshing];
 }
 /**
  * 创建自定义tabbar
@@ -379,19 +379,19 @@
             _shopModel=[DD_ShopModel getShopModel:data];//解析数据
             _tabbar.shopModel=_shopModel;
             [self updateTabbarState];
-            [_tableview.header endRefreshing];
-            [_tableview.footer endRefreshing];
+            [_tableview.mj_header endRefreshing];
+            [_tableview.mj_footer endRefreshing];
             
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
-            [_tableview.header endRefreshing];
-            [_tableview.footer endRefreshing];
+            [_tableview.mj_header endRefreshing];
+            [_tableview.mj_footer endRefreshing];
         }
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
-        [_tableview.header endRefreshing];
-        [_tableview.footer endRefreshing];
+        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
     }];
 }
 

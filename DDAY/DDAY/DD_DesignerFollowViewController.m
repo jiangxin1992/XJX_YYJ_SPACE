@@ -150,12 +150,12 @@
         {
             [self presentViewController:successAlert animated:YES completion:nil];
         }
-        [_tableview.header endRefreshing];
-        [_tableview.footer endRefreshing];
+        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
         
     } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [_tableview.header endRefreshing];
-        [_tableview.footer endRefreshing];
+        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
@@ -179,19 +179,19 @@
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {
-    _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page=1;
         [self RequestData];
     }];
     
-    _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    _tableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         _page+=1;
         [self RequestData];
     }];
     
-    [_tableview.header beginRefreshing];
+    [_tableview.mj_header beginRefreshing];
 }
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

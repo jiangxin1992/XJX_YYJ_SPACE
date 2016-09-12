@@ -68,23 +68,23 @@
 }
 -(void)MJRefresh
 {
-    _tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [_tableview.header endRefreshing];
-            [_tableview.footer endRefreshing];
+            [_tableview.mj_header endRefreshing];
+            [_tableview.mj_footer endRefreshing];
         });
     }];
     
-    _tableview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    _tableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [_tableview.header endRefreshing];
-            [_tableview.footer endRefreshing];
+            [_tableview.mj_header endRefreshing];
+            [_tableview.mj_footer endRefreshing];
         });
     }];
     
-    [_tableview.header beginRefreshing];
+    [_tableview.mj_header beginRefreshing];
 }
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
