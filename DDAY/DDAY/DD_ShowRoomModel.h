@@ -47,5 +47,12 @@ __string(brief);
  * 店铺地址
  */
 __string(address);
-
+/**
+ * 营业时间
+ */
+__string(businessHours);
+/**
+ * 联系方式
+ */
+__string(contactPhone);
 @end

@@ -212,6 +212,19 @@
                     frame.size.height = height;
                     headView.frame = frame;
                     _tableview.tableHeaderView = headView;
+                }else if([type isEqualToString:@"alert_address"])
+                {
+                    if([addressModel.udaId isEqualToString:_Clearingmodel.address.udaId])
+                    {
+                        _Clearingmodel.address=addressModel;
+                        _AddressBtn.AddressModel=_Clearingmodel.address;
+                        [_AddressBtn SetState];
+                        CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+                        CGRect frame = headView.frame;
+                        frame.size.height = height;
+                        headView.frame = frame;
+                        _tableview.tableHeaderView = headView;
+                    }
                 }
                 
             }] animated:YES];

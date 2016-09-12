@@ -12,10 +12,10 @@
 
 @interface DD_GoodsK_POINTView : UIView
 
--(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type,DD_ShowRoomModel *model))block;
 
 __array(showroomArr);
 __bool(is_show);
-__block_type(block, type);
+@property(nonatomic,copy) void (^block)(NSString *type,DD_ShowRoomModel *model);
 
 @end

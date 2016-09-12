@@ -49,7 +49,8 @@
     [self.contentView addSubview:_storeName];
     [_storeName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_head.mas_right).with.offset(10);
-        make.bottom.mas_equalTo(_head);
+        make.centerY.mas_equalTo(_head);
+    
     }];
     [_storeName sizeToFit];
     

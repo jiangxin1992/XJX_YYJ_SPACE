@@ -111,15 +111,6 @@
 #pragma mark - SomeAction
 
 /**
- * 跳转地址管理界面
- */
-//-(void)pushAddressView
-//{
-//    [self.navigationController pushViewController:[[DD_AddressViewController alloc] initWithType:@"normal" WithBlock:^(NSString *type, DD_AddressModel *addressModel) {
-//        
-//    }] animated:YES];
-//}
-/**
  * 跳转修改密码界面
  */
 -(void)alertPSW

@@ -17,6 +17,7 @@
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_CircleDetailViewController.h"
 #import "DD_MoreCircleViewController.h"
+#import "DD_ShowRoomDetailViewController.h"
 
 #import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
@@ -348,10 +349,15 @@ __bool(isExpanded);
 {
     if(_DetailModel.physicalStore.count)
     {
-        _K_PonitView=[[DD_GoodsK_POINTView alloc] initWithShowRoomModelArr:_DetailModel.physicalStore WithBlock:^(NSString *type) {
+        _K_PonitView=[[DD_GoodsK_POINTView alloc] initWithShowRoomModelArr:_DetailModel.physicalStore WithBlock:^(NSString *type,DD_ShowRoomModel *model) {
             if([type isEqualToString:@"click"])
             {
                 _K_PonitView.is_show=!_K_PonitView.is_show;
+            }else if([type isEqualToString:@"choose"])
+            {
+                DD_ShowRoomDetailViewController *showroom=[[DD_ShowRoomDetailViewController alloc] initWithShowRoomID:model.s_id];
+                showroom.title=model.storeName;
+                [self.navigationController pushViewController:showroom animated:YES];
             }
         }];
         [container addSubview:_K_PonitView];

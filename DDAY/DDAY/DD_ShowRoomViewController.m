@@ -8,8 +8,7 @@
 
 #import "DD_ShowRoomViewController.h"
 
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
+#import "DD_ShowRoomDetailViewController.h"
 
 #import "DD_ShowRoomSimpleCell.h"
 
@@ -141,61 +140,12 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==0)
-    {
-        BOOL gaoDeMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]];
-        [self openGaoDeMap];
-    }else
-    {
-//        BOOL baiduMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]];
-//        [self openBaiDuMap];
-        [self openAppleMap];
-    }
+    DD_ShowRoomModel *roomModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_ShowRoomDetailViewController *showroom=[[DD_ShowRoomDetailViewController alloc] initWithShowRoomID:roomModel.s_id];
+    showroom.title=roomModel.storeName;
+    [self.navigationController pushViewController:showroom animated:YES];
 }
-//打开高德地图导航
-
-- (void)openGaoDeMap{
-    
-    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&poiname=%@&lat=%f&lon=%f&dev=1&style=2",@"app name", @"YGche", @"终点", 29.9724500000, 120.2725810000] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
-    
-}
-
-//打开百度地图导航
-
-- (void)openBaiDuMap{
-    
-    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%f,%f|name:我的位置&destination=latlng:%f,%f|name:终点&mode=driving",30.0410591836, 121.1528907660,currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
-    
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
-    
-}
-//打开苹果自带地图导航
-
-- (void)openAppleMap{
-    
-    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-    
-    //目的地的位置
-    
-    CLLocationCoordinate2D coords2 = CLLocationCoordinate2DMake(29.9724500000,120.2725810000);
-    
-    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
-    
-    toLocation.name =@"青芝坞";
-    
-    NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
-    
-    NSDictionary *options = @{ MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapTypeKey: [NSNumber numberWithInteger:MKMapTypeStandard], MKLaunchOptionsShowsTrafficKey:@YES };
-    
-    //打开苹果自身地图应用，并呈现特定的item
-    
-    [MKMapItem openMapsWithItems:items launchOptions:options];
-    
-}
-
+#pragma mark - Other
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

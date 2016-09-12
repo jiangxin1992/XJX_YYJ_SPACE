@@ -173,7 +173,11 @@
                 
             }else
             {
-
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                    [_tableview reloadData];
+                }
             }
             
         }else

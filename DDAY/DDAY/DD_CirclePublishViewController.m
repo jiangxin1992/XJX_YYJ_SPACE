@@ -17,7 +17,6 @@
 #import "DD_CircleCustomTagViewController.h"
 #import "DD_CricleShowViewController.h"
 #import "DD_CirclePushlishPreViewController.h"
-//#import "DD_RemarksViewController.h"
 
 #import "DD_CircleInfoView.h"
 #import "DD_CircleChooseDetailView.h"

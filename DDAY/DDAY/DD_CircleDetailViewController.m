@@ -252,7 +252,11 @@
                 [_tableview reloadData];
             }else
             {
-//                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_more", @"")] animated:YES completion:nil];
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                    [_tableview reloadData];
+                }
             }
         }else
         {

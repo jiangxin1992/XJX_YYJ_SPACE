@@ -21,7 +21,7 @@
 }
 #pragma mark - 初始化
 
--(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type,DD_ShowRoomModel *model))block
 {
     self=[super init];
     if(self)
@@ -71,11 +71,13 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(48);
     }];
-//    DD_ShowRoomModel.h
-    
-    for (DD_ShowRoomModel *model in _showroomArr) {
+    for (int i=0; i<_showroomArr.count; i++) {
+        DD_ShowRoomModel *model=[_showroomArr objectAtIndex:i];
         UIView *backView=[UIView getCustomViewWithColor:nil];
         [backBtn addSubview:backView];
+        backView.userInteractionEnabled=YES;
+        backView.tag=100+i;
+        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
         [viewArr addObject:backView];
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
@@ -100,7 +102,7 @@
         [backView addSubview:storeName];
         [storeName mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_head.mas_right).with.offset(10);
-            make.bottom.mas_equalTo(_head);
+            make.centerY.mas_equalTo(_head);
         }];
         [storeName sizeToFit];
         
@@ -120,6 +122,13 @@
     
 }
 #pragma mark - SomeAction
+-(void)ChooseAction:(UIGestureRecognizer *)ges
+{
+    NSInteger index = ges.view.tag-100;
+    DD_ShowRoomModel *model=[_showroomArr objectAtIndex:index];
+    _block(@"choose",model);
+    
+}
 -(void)setIs_show:(BOOL)is_show
 {
     _is_show=is_show;
@@ -142,6 +151,6 @@
 }
 -(void)clickAction
 {
-    _block(@"click");
+    _block(@"click",nil);
 }
 @end

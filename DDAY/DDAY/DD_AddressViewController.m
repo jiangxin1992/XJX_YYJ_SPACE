@@ -192,6 +192,8 @@
             [self updateDataArr:model];
             _defaultID=defaultID;
             [_tableview reloadData];
+            
+            _touchBlock(@"alert_address",model);
         }
     }];
     AddNewAddress.title=@"修改地址";
@@ -299,27 +301,5 @@
     [super didReceiveMemoryWarning];
     
 }
-#pragma mark - 弃用代码
-////section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 1;//section头部高度
-//}
-////section头部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-////section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 1;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-
 
 @end
