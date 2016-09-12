@@ -31,6 +31,8 @@
 		3F1682D41D21724F00C35ED0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D31D21724F00C35ED0 /* AVFoundation.framework */; };
 		3F1682D61D21725400C35ED0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D51D21725400C35ED0 /* CoreLocation.framework */; };
 		3F1682D81D21726200C35ED0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1682D71D21726200C35ED0 /* CoreBluetooth.framework */; };
+		3F17B81F1D863B4400209675 /* DD_ShowRoomSimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B81E1D863B4400209675 /* DD_ShowRoomSimpleCell.m */; };
+		3F17B8211D8655E100209675 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F17B8201D8655E100209675 /* Default-568h@2x.png */; };
 		3F1FF5C71D6B04A900C28843 /* DD_ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */; };
 		3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */; };
 		3F21E20B1D17954800FE7ADF /* DD_CricleChooseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */; };
@@ -339,6 +341,9 @@
 		3F1682D31D21724F00C35ED0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3F1682D51D21725400C35ED0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F1682D71D21726200C35ED0 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		3F17B81D1D863B4400209675 /* DD_ShowRoomSimpleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomSimpleCell.h; sourceTree = "<group>"; };
+		3F17B81E1D863B4400209675 /* DD_ShowRoomSimpleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomSimpleCell.m; sourceTree = "<group>"; };
+		3F17B8201D8655E100209675 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3F1FF5C51D6B04A900C28843 /* DD_ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShareView.h; sourceTree = "<group>"; };
 		3F1FF5C61D6B04A900C28843 /* DD_ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShareView.m; sourceTree = "<group>"; };
 		3F21E1FE1D177E5000FE7ADF /* DD_CircleChooseDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleChooseDetailView.h; sourceTree = "<group>"; };
@@ -1313,6 +1318,7 @@
 		3F4187671CEEFB24001BCA3D = {
 			isa = PBXGroup;
 			children = (
+				3F17B8201D8655E100209675 /* Default-568h@2x.png */,
 				3F4187721CEEFB24001BCA3D /* DDAY */,
 				3F41878C1CEEFB24001BCA3D /* DDAYTests */,
 				3F4187971CEEFB24001BCA3D /* DDAYUITests */,
@@ -2294,6 +2300,8 @@
 			children = (
 				3F85BAC81D66AFB300820018 /* DD_ShowRoomViewController.h */,
 				3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */,
+				3F17B81D1D863B4400209675 /* DD_ShowRoomSimpleCell.h */,
+				3F17B81E1D863B4400209675 /* DD_ShowRoomSimpleCell.m */,
 				3F85BACB1D66D12500820018 /* DD_ShowRoomCell.h */,
 				3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */,
 			);
@@ -3069,6 +3077,7 @@
 				3F4187831CEEFB24001BCA3D /* LaunchScreen.storyboard in Resources */,
 				3F4187A81CEEFBF0001BCA3D /* Localizable.strings in Resources */,
 				3F4187AE1CEEFD02001BCA3D /* area.json in Resources */,
+				3F17B8211D8655E100209675 /* Default-568h@2x.png in Resources */,
 				3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */,
 				3F4187801CEEFB24001BCA3D /* Assets.xcassets in Resources */,
 				3F4C2F2D1D76E1BD00C954C4 /* loading@2x.gif in Resources */,
@@ -3168,6 +3177,7 @@
 				3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */,
 				3F552EA41CF212C300BC5E33 /* DD_GoodSeriesModel.m in Sources */,
 				3F552E7F1CF1F58C00BC5E33 /* DD_DesignerCell.m in Sources */,
+				3F17B81F1D863B4400209675 /* DD_ShowRoomSimpleCell.m in Sources */,
 				3F8E76721D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m in Sources */,
 				3F3811B31CF54F7C007154F1 /* openssl_wrapper.m in Sources */,
 				3F4187B71CEEFE35001BCA3D /* JX_AFNetworking.m in Sources */,

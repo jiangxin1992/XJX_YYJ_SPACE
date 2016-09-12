@@ -12,8 +12,7 @@
 
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <AVFoundation/AVCaptureDevice.h>
-#import <AVFoundation/AVMediaFormat.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "DD_CircleCustomTagViewController.h"
 #import "DD_CricleShowViewController.h"
@@ -412,26 +411,34 @@
  */
 -(void)loadImageWithType:(UIImagePickerControllerSourceType)type
 {
-    if(type==UIImagePickerControllerSourceTypeCamera)
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
+        
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"system_album", @"") WithBlock:^{
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }
+        }] animated:YES completion:nil];
+    }else if(authStatus == ALAuthorizationStatusRestricted || authStatus == ALAuthorizationStatusDenied)
     {
-        //        相机
-        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)
-        {
-            //无权限
-            [self ShowAlertview:NSLocalizedString(@"system_camera", @"")];
-        }else
-        {
-            [self pushPickerWithType:type];
-        }
-    }else if(type==UIImagePickerControllerSourceTypePhotoLibrary)
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"system_camera", @"") WithBlock:^{
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }
+        }] animated:YES completion:nil];
+    }else
     {
         if(kIOSVersions_v9)
         {
             PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
             if (author == PHAuthorizationStatusDenied) {
                 //无权限
-                [self ShowAlertview:NSLocalizedString(@"system_album", @"")];
+                [self ShowAlertview:NSLocalizedString(@"system_album_no_root", @"")];
             }else{
                 [self pushPickerWithType:type];
             }
@@ -442,13 +449,14 @@
             ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
             if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
                 //无权限
-                [self ShowAlertview:NSLocalizedString(@"system_album", @"")];
+                [self ShowAlertview:NSLocalizedString(@"system_album_no_root", @"")];
             }else
             {
                 [self pushPickerWithType:type];
             }
         }
     }
+    
 }
 
 #pragma mark - UIImagePickerControllerDelegate

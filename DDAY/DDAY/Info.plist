@@ -69,6 +69,8 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>iosamap</string>
+		<string>baidumap</string>
 		<string>sinaweibosso</string>
 		<string>wechat</string>
 		<string>weixin</string>

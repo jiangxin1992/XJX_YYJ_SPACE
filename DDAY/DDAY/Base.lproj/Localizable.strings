@@ -17,6 +17,10 @@
 "submit_success"="提交成功";
 "system_camera"="请在iPhone的 设置－隐私－相机 选项中，允许 YCO SPACE 访问你的相机。";
 "system_album"="请在iPhone的 设置－隐私－相机 选项中，允许 YCO SPACE 访问你的相册。";
+"system_loc"="请在iPhone的 设置－隐私－定位服务 选项中，允许 YCO SPACE 使用您的位置。";
+"system_camera_no_root"="无权限访问相机。";
+"system_album_no_root"="无权限访问相册。";
+"system_loc_no_root"="无权限获取位置信息。";
 "take_photos"="拍照";
 "open_album"="从手机相册选择";
 "right_format"="请输入正确格式";
