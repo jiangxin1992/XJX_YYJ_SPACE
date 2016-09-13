@@ -68,23 +68,38 @@
 }
 -(void)MJRefresh
 {
-    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [_tableview.mj_header endRefreshing];
-            [_tableview.mj_footer endRefreshing];
-        });
-    }];
+    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _tableview.mj_header = header;
     
-    _tableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [_tableview.mj_header endRefreshing];
-            [_tableview.mj_footer endRefreshing];
-        });
-    }];
+    MJRefreshAutoNormalFooter *_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    [_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    [_footer setTitle:@"" forState:MJRefreshStateIdle];
+    [_footer setTitle:@"" forState:MJRefreshStatePulling];
+    [_footer setTitle:@"" forState:MJRefreshStateRefreshing];
+    [_footer setTitle:@"" forState:MJRefreshStateWillRefresh];
+    _footer.refreshingTitleHidden = YES;
+    _footer.stateLabel.textColor = _define_light_gray_color1;
+    _tableview.mj_footer = _footer;
     
     [_tableview.mj_header beginRefreshing];
+}
+-(void)loadNewData
+{
+    // 进入刷新状态后会自动调用这个block
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
+    });
+}
+-(void)loadMoreData
+{
+    // 进入刷新状态后会自动调用这个block
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
+    });
 }
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

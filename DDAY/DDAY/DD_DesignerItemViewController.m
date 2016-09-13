@@ -117,20 +117,35 @@
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {
-    mywaterflow.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        _page=1;
-        [self RequestData];
-    }];
+    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    mywaterflow.mj_header = header;
     
-    mywaterflow.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        _page+=1;
-        [self RequestData];
-    }];
+    MJRefreshAutoNormalFooter *_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    [_footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    [_footer setTitle:@"" forState:MJRefreshStateIdle];
+    [_footer setTitle:@"" forState:MJRefreshStatePulling];
+    [_footer setTitle:@"" forState:MJRefreshStateRefreshing];
+    [_footer setTitle:@"" forState:MJRefreshStateWillRefresh];
+    _footer.refreshingTitleHidden = YES;
+    _footer.stateLabel.textColor = _define_light_gray_color1;
+    mywaterflow.mj_footer = _footer;
     
     [mywaterflow.mj_header beginRefreshing];
 
+}
+-(void)loadNewData
+{
+    // 进入刷新状态后会自动调用这个block
+    _page=1;
+    [self RequestData];
+}
+-(void)loadMoreData
+{
+    // 进入刷新状态后会自动调用这个block
+    _page+=1;
+    [self RequestData];
 }
 #pragma mark - UITableViewDelegate
 // cell的个数，必须实现

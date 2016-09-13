@@ -131,12 +131,16 @@
 }
 -(void)MJRefresh
 {
-    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        [self RequestData];
-    }];
-    
+    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _tableview.mj_header = header;
     [_tableview.mj_header beginRefreshing];
+}
+-(void)loadNewData
+{
+    // 进入刷新状态后会自动调用这个block
+    [self RequestData];
 }
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

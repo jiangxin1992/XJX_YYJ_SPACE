@@ -88,11 +88,16 @@
 
 #pragma mark - MJRefresh
 -(void)MJRefresh
-{
+{    
     _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         [self RequestData];
     }];
+}
+-(void)loadNewData
+{
+    // 进入刷新状态后会自动调用这个block
+    [self RequestData];
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
