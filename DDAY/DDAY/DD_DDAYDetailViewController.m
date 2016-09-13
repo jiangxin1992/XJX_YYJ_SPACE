@@ -193,7 +193,12 @@
     [self.view addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
-    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+    NSString *pic=nil;
+    if(_detailModel.seriesFrontPic.pic)
+    {
+        pic=[regular getImgUrl:_detailModel.seriesFrontPic.pic WithSize:800];
+    }
+    shareView=[[DD_ShareView alloc] initWithTitle:_detailModel.name Content:[[NSString alloc] initWithFormat:@"%@发布会开始啦，马上来报名吧！%@",_detailModel.name,_detailModel.appUrl] WithImg:pic WithUrl:_detailModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss];

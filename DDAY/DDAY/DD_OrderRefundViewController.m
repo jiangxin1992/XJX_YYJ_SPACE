@@ -157,7 +157,7 @@
  */
 -(void)sendAction
 {
-    if([NSString isNilOrEmpty:_textView.text])
+    if([NSString isNilOrEmpty:_textView.text]||[_textView.text isEqualToString:@"请填写退款理由"])
     {
         //        对空判断
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];

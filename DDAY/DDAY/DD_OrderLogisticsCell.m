@@ -82,6 +82,7 @@
 #pragma mark - SomeAction
 -(void)setLogisticsModel:(DD_OrderLogisticsModel *)logisticsModel IsFirst:(BOOL )isFirst IsLast:(BOOL )isLast
 {
+    
     _logisticsModel=logisticsModel;
     
     timeLabel.text=[regular getTimeStr:_logisticsModel.AcceptTime WithFormatter:@"YYYY-MM-dd HH:mm"];

@@ -14,6 +14,7 @@
 #import "DD_TarentoHeadView.h"
 #import "DD_CircleListCell.h"
 #import "DD_ShareView.h"
+#import "DD_CircleDailyListCell.h"
 
 #import "DD_ShareTool.h"
 #import "DD_CircleListModel.h"
@@ -278,18 +279,42 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    //获取到数据以后
-    static NSString *cellid=@"cell_tarento_list";
-    DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-    if(!cell)
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
+    if([listModel.shareType longValue]==4)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:YES];
+        //获取到数据以后
+        static NSString *cellid=@"CircleListCell";
+        DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell.cellBlock=cellBlock;
+            
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        cell.listModel=listModel;
+        cell.index=indexPath.row;
+        return cell;
+    }else
+    {
+        //获取到数据以后
+        static NSString *cellid=@"DD_CircleDailyListCell";
+        DD_CircleDailyListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_CircleDailyListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell.cellBlock=cellBlock;
+            
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        cell.listModel=listModel;
+        cell.index=indexPath.row;
+        return cell;
     }
-    cell.listModel=[_dataArr objectAtIndex:indexPath.section];
-    cell.index=indexPath.section;
-    cell.cellBlock=cellBlock;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -321,7 +346,7 @@
     [self.view addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
-    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithUrl:@"https://appsto.re/cn/9EOHcb.i" WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss];

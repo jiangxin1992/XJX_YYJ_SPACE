@@ -69,7 +69,13 @@
 {
 
     _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSString *content) {
-        _CircleModel.remark=content;
+        if([type isEqualToString:@"num_limit"])
+        {
+            _block(type,0);
+        }else
+        {
+            _CircleModel.remark=content;
+        }
     }];
     [self addSubview:_commentview];
     [_commentview mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_ShareView : UIView
--(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithBlock:(void(^)(NSString *type))block;
+-(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block;
 
 @property (nonatomic,copy) void (^block)(NSString *type);
 __string(content);
 __string(img);
 __string(title);
-
+__string(url);
 __float(height);
 @end

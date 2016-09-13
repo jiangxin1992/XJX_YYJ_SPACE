@@ -19,10 +19,12 @@
 #import "DD_CircleComentInputView.h"
 #import "DD_CircleCommentCell.h"
 #import "DD_ShareView.h"
+#import "DD_CircleDailyDetailHeadView.h"
 
 #import "DD_CircleCommentModel.h"
 #import "DD_ItemsModel.h"
 #import "DD_ShareTool.h"
+#import "DD_ImageModel.h"
 
 @interface DD_CircleDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -36,6 +38,7 @@
     
     DD_CircleComentInputView *_commentview;//评论框
     DD_CircleDetailHeadView *_headView;
+    DD_CircleDailyDetailHeadView *_dailyHeadView;
     
     void (^cellBlock)(NSString *type,NSInteger index);//cell点击回调
     
@@ -150,78 +153,156 @@
 }
 -(void)CreateTableViewHead
 {
-    __block DD_CircleDetailViewController *_DetailView=self;
-    _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel IsHomePage:_isHomePage WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
-//        涉及用户登录权限
-        if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
-        {
-            if(![DD_UserModel isLogin])
+    if([_ListModel.shareType longValue]==4)
+    {
+        __block DD_CircleDetailViewController *_DetailView=self;
+        _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel IsHomePage:_isHomePage WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
+            //        涉及用户登录权限
+            if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
             {
-                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                    [self pushLoginView];
-                }] animated:YES completion:nil];
+                if(![DD_UserModel isLogin])
+                {
+                    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                        [self pushLoginView];
+                    }] animated:YES completion:nil];
+                }else
+                {
+                    if([type isEqualToString:@"collect_cancel"])
+                    {
+                        //            取消收藏
+                        [_DetailView collectActionIsCancel:YES];
+                    }else if([type isEqualToString:@"collect"])
+                    {
+                        //            收藏
+                        [_DetailView collectActionIsCancel:NO];
+                    }
+                    else if([type isEqualToString:@"praise_cancel"])
+                    {
+                        //            取消点赞
+                        [_DetailView praiseActionIsCancel:YES];
+                    }else if([type isEqualToString:@"praise"])
+                    {
+                        //             点赞
+                        [_DetailView praiseActionIsCancel:NO];
+                    }
+                    else if([type isEqualToString:@"delete"])
+                    {
+                        [_DetailView deleteThisCircle];
+                    }
+                }
             }else
             {
-                if([type isEqualToString:@"collect_cancel"])
+                if([type isEqualToString:@"show_item_list"])
                 {
-                    //            取消收藏
-                    [_DetailView collectActionIsCancel:YES];
-                }else if([type isEqualToString:@"collect"])
+                    //            显示商品列表
+                    [_DetailView PushItemListViewWithID:_ShareID];
+                }else if([type isEqualToString:@"head_click"])
                 {
-                    //            收藏
-                    [_DetailView collectActionIsCancel:NO];
-                }
-                else if([type isEqualToString:@"praise_cancel"])
-                {
-                    //            取消点赞
-                    [_DetailView praiseActionIsCancel:YES];
-                }else if([type isEqualToString:@"praise"])
-                {
-                    //             点赞
-                    [_DetailView praiseActionIsCancel:NO];
-                }
-                else if([type isEqualToString:@"delete"])
-                {
-                    [_DetailView deleteThisCircle];
-                }
-            }
-        }else
-        {
-            if([type isEqualToString:@"show_item_list"])
-            {
-                //            显示商品列表
-                [_DetailView PushItemListViewWithID:_ShareID];
-            }else if([type isEqualToString:@"head_click"])
-            {
-                //            点击用户头像
-                [_DetailView pushUserHomePage];
-                
-            }else if([type isEqualToString:@"comment"])
-            {
-                //            跳转评论页面
-                [_commentview becomeFirstResponder];
-                
-            }else if([type isEqualToString:@"show_img"])
-            {
-                //            显示图片
-                [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithType:@"model" WithIndex:index WithBlock:^(NSString *type) {
+                    //            点击用户头像
+                    [_DetailView pushUserHomePage];
                     
-                }] animated:YES];
-            }else if([type isEqualToString:@"item_click"])
-            {
-                //                查看商品
-                [_DetailView pushItemViewWithItemModel:item];
+                }else if([type isEqualToString:@"comment"])
+                {
+                    //            跳转评论页面
+                    [_commentview becomeFirstResponder];
+                    
+                }else if([type isEqualToString:@"show_img"])
+                {
+                    //            显示图片
+                    [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithType:@"model" WithIndex:index WithBlock:^(NSString *type) {
+                        
+                    }] animated:YES];
+                }else if([type isEqualToString:@"item_click"])
+                {
+                    //                查看商品
+                    [_DetailView pushItemViewWithItemModel:item];
+                }
+                
             }
             
-        }
+        }];
+        _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        _headView.userInteractionEnabled=YES;
+        [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
         
-    }];
-    _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
-    NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
-    _headView.userInteractionEnabled=YES;
-    [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
-
-    _tableview.tableHeaderView=_headView;
+        _tableview.tableHeaderView=_headView;
+    }else
+    {
+        __block DD_CircleDetailViewController *_DetailView=self;
+        _dailyHeadView=[[DD_CircleDailyDetailHeadView alloc] initWithCircleListModel:nowListModel IsHomePage:_isHomePage WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
+            //        涉及用户登录权限
+            if([type isEqualToString:@"collect_cancel"]||[type isEqualToString:@"collect"]||[type isEqualToString:@"praise_cancel"]||[type isEqualToString:@"praise"]||[type isEqualToString:@"delete"])
+            {
+                if(![DD_UserModel isLogin])
+                {
+                    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                        [self pushLoginView];
+                    }] animated:YES completion:nil];
+                }else
+                {
+                    if([type isEqualToString:@"collect_cancel"])
+                    {
+                        //            取消收藏
+                        [_DetailView collectActionIsCancel:YES];
+                    }else if([type isEqualToString:@"collect"])
+                    {
+                        //            收藏
+                        [_DetailView collectActionIsCancel:NO];
+                    }
+                    else if([type isEqualToString:@"praise_cancel"])
+                    {
+                        //            取消点赞
+                        [_DetailView praiseActionIsCancel:YES];
+                    }else if([type isEqualToString:@"praise"])
+                    {
+                        //             点赞
+                        [_DetailView praiseActionIsCancel:NO];
+                    }
+                    else if([type isEqualToString:@"delete"])
+                    {
+                        [_DetailView deleteThisCircle];
+                    }
+                }
+            }else
+            {
+                if([type isEqualToString:@"show_item_list"])
+                {
+                    //            显示商品列表
+                    [_DetailView PushItemListViewWithID:_ShareID];
+                }else if([type isEqualToString:@"head_click"])
+                {
+                    //            点击用户头像
+                    [_DetailView pushUserHomePage];
+                    
+                }else if([type isEqualToString:@"comment"])
+                {
+                    //            跳转评论页面
+                    [_commentview becomeFirstResponder];
+                    
+                }else if([type isEqualToString:@"show_img"])
+                {
+                    //            显示图片
+                    [_DetailView.navigationController pushViewController:[[DD_CircleShowDetailImgViewController alloc] initWithCircleArr:nowListModel.pics WithType:@"model" WithIndex:index WithBlock:^(NSString *type) {
+                        
+                    }] animated:YES];
+                }else if([type isEqualToString:@"item_click"])
+                {
+                    //                查看商品
+                    [_DetailView pushItemViewWithItemModel:item];
+                }
+                
+            }
+            
+        }];
+        _dailyHeadView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        _dailyHeadView.userInteractionEnabled=YES;
+        [_dailyHeadView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+        
+        _tableview.tableHeaderView=_dailyHeadView;
+    }
+    
     
 }
 /**
@@ -279,13 +360,26 @@
         {
             nowListModel=[DD_CircleListModel getCircleListImgModel:[data objectForKey:@"shareInfo"]];
 //            已创建就更新
-            if(_headView)
+            if([_ListModel.shareType longValue]==4)
             {
-                _headView.listModel=nowListModel;
+                if(_headView)
+                {
+                    _headView.listModel=nowListModel;
+                }else
+                {
+                    [self CreateTableViewHead];
+                }
             }else
             {
-                [self CreateTableViewHead];
+                if(_dailyHeadView)
+                {
+                    _dailyHeadView.listModel=nowListModel;
+                }else
+                {
+                    [self CreateTableViewHead];
+                }
             }
+            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -385,7 +479,13 @@
     [self.view addSubview:mengban_share];
     [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
     
-    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+    NSString *pic=nil;
+    if(nowListModel.pics.count)
+    {
+        DD_ImageModel *img=[nowListModel.pics objectAtIndex:0];
+        pic=[regular getImgUrl:img.pic WithSize:800];
+    }
+    shareView=[[DD_ShareView alloc] initWithTitle:nowListModel.userName Content:nowListModel.shareAdvise WithImg:pic WithUrl:nowListModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
@@ -536,7 +636,13 @@
                     _ListModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
                     _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 }
-                [_headView setState];
+                if([_ListModel.shareType longValue]==4)
+                {
+                    [_headView setState];
+                }else
+                {
+                    [_dailyHeadView setState];
+                }
                 if(_ListModel)
                 {
                     _block(@"reload");
@@ -583,7 +689,14 @@
                     _ListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
                     _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
                 }
-                [_headView setState];
+                if([_ListModel.shareType longValue]==4)
+                {
+                    [_headView setState];
+                }else
+                {
+                    [_dailyHeadView setState];
+                }
+                
                 if(_ListModel)
                 {
                     _block(@"reload");
@@ -645,7 +758,7 @@
         [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
             [self pushLoginView];
         }] animated:YES completion:nil];
-    }else if([content isEqualToString:@""])
+    }else if([content isEqualToString:@""]||[content isEqualToString:@"发表评论"])
     {
         [self presentViewController:[regular alertTitle_Simple:@"请输入评论内容"] animated:YES completion:nil];
     }else
@@ -672,7 +785,13 @@
             [_tableview.mj_header beginRefreshing];
             
             [_commentview initTextView];
-            [_headView setState];
+            if([_ListModel.shareType longValue]==4)
+            {
+                [_headView setState];
+            }else
+            {
+                [_dailyHeadView setState];
+            }
             if(_ListModel)
             {
                 _block(@"reload");

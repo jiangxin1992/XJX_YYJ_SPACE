@@ -14,7 +14,7 @@
 
 @implementation DD_RemarksViewController
 {
-    UITextView *textView;
+    UITextView *_textView;
 }
 
 - (void)viewDidLoad {
@@ -57,26 +57,26 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    textView = [[UITextView alloc] init] ; //初始化大小并自动释放
-    [self.view addSubview: textView];//加入到整个页面中
-    textView.textColor = _define_black_color;//设置textview里面的字体颜色
+    _textView = [[UITextView alloc] init] ; //初始化大小并自动释放
+    [self.view addSubview: _textView];//加入到整个页面中
+    _textView.textColor = _define_black_color;//设置textview里面的字体颜色
     
-    textView.font = [regular getFont:13.0f];//设置字体名字和字体大小
+    _textView.font = [regular getFont:13.0f];//设置字体名字和字体大小
     
-    textView.delegate = self;//设置它的委托方法
-    textView.textAlignment=0;
-    textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
+    _textView.delegate = self;//设置它的委托方法
+    _textView.textAlignment=0;
+    _textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
     
-    textView.returnKeyType = UIReturnKeyDone;//返回键的类型
+    _textView.returnKeyType = UIReturnKeyDone;//返回键的类型
     
-    textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
-    textView.text = nil;
-    textView.text=_Remarks;
-    [regular setBorder:textView];
+    _textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
+    _textView.text = nil;
+    _textView.text=_Remarks;
+    [regular setBorder:_textView];
     
-    [textView becomeFirstResponder];
+    [_textView becomeFirstResponder];
  
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(kNavHeight+15);
@@ -89,7 +89,7 @@
  */
 -(void)doneAction
 {
-    if([NSString isNilOrEmpty:textView.text])
+    if([NSString isNilOrEmpty:_textView.text]||[_textView.text isEqualToString:@"请填写订单备注"])
     {
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }else
@@ -98,9 +98,9 @@
 //        判断是否有字数限制
         if(_limitNum)
         {
-            if(textView.text.length<=_limitNum)
+            if(_textView.text.length<=_limitNum)
             {
-                _doneBlcok(@"done",textView.text);
+                _doneBlcok(@"done",_textView.text);
                 [self.navigationController popViewControllerAnimated:YES];
             }else
             {
@@ -108,7 +108,7 @@
             }
         }else
         {
-            _doneBlcok(@"done",textView.text);
+            _doneBlcok(@"done",_textView.text);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -125,6 +125,24 @@
 {
     [regular dismissKeyborad];
     
+}
+//在开始编辑的代理方法中进行如下操作
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.textColor=_define_black_color;
+    if ([textView.text isEqualToString:@"请填写订单备注"]) {
+        
+        textView.text = @"";
+    }
+}
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"请填写订单备注"]||[textView.text isEqualToString:@""]) {
+        textView.text = @"请填写订单备注";
+        textView.textColor=_define_light_gray_color1;
+    }else
+    {
+        textView.textColor=_define_black_color;
+    }
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return

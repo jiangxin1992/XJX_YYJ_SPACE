@@ -37,6 +37,7 @@
 #import "DD_GoodsDetailModel.h"
 #import "DD_OtherItemModel.h"
 #import "DD_SizeAlertModel.h"
+#import "DD_ImageModel.h"
 
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
@@ -794,7 +795,16 @@ __bool(isExpanded);
     [self.view addSubview:mengban_share];
     [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
     
-    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithBlock:^(NSString *type) {
+    DD_ColorsModel *colorModel=[_DetailModel getColorsModel];
+    
+    NSString *pic=nil;
+    if(colorModel.pics.count)
+    {
+        DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
+        pic=[regular getImgUrl:img.pic WithSize:800];
+    }
+    
+    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@,让设计步入日常 %@",_DetailModel.item.itemName,_DetailModel.appUrl] WithImg:pic WithUrl:_DetailModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];

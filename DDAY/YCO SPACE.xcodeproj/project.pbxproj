@@ -247,6 +247,12 @@
 		3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */; };
 		3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */; };
 		3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */; };
+		3FA39EAC1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EAB1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m */; };
+		3FA39EAF1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EAE1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m */; };
+		3FA39EB21D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EB11D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m */; };
+		3FA39EB61D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EB51D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.m */; };
+		3FA39EB91D87E28100CA9A3C /* DD_CircleDailyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EB81D87E28100CA9A3C /* DD_CircleDailyListCell.m */; };
+		3FA39EBF1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EBE1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m */; };
 		3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */; };
 		3FA551111D4CBA2500528B5F /* DD_GoodsFabricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551101D4CBA2500528B5F /* DD_GoodsFabricView.m */; };
 		3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA551131D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m */; };
@@ -828,6 +834,18 @@
 		3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfo_AlertPSWViewController.m; sourceTree = "<group>"; };
 		3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingOrderViewController.h; sourceTree = "<group>"; };
 		3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingOrderViewController.m; sourceTree = "<group>"; };
+		3FA39EAA1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePublishDailyViewController.h; sourceTree = "<group>"; };
+		3FA39EAB1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePublishDailyViewController.m; sourceTree = "<group>"; };
+		3FA39EAD1D87CB6800CA9A3C /* DD_CircleDailyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDailyInfoView.h; sourceTree = "<group>"; };
+		3FA39EAE1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDailyInfoView.m; sourceTree = "<group>"; };
+		3FA39EB01D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePublishDailyPreViewController.h; sourceTree = "<group>"; };
+		3FA39EB11D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePublishDailyPreViewController.m; sourceTree = "<group>"; };
+		3FA39EB41D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDailyInfoImgView.h; sourceTree = "<group>"; };
+		3FA39EB51D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDailyInfoImgView.m; sourceTree = "<group>"; };
+		3FA39EB71D87E28100CA9A3C /* DD_CircleDailyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDailyListCell.h; sourceTree = "<group>"; };
+		3FA39EB81D87E28100CA9A3C /* DD_CircleDailyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDailyListCell.m; sourceTree = "<group>"; };
+		3FA39EBD1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleDailyDetailHeadView.h; sourceTree = "<group>"; };
+		3FA39EBE1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleDailyDetailHeadView.m; sourceTree = "<group>"; };
 		3FA5510C1D4CAEC400528B5F /* DD_GoodsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsCircleView.h; sourceTree = "<group>"; };
 		3FA5510D1D4CAEC400528B5F /* DD_GoodsCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsCircleView.m; sourceTree = "<group>"; };
 		3FA5510F1D4CBA2500528B5F /* DD_GoodsFabricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsFabricView.h; sourceTree = "<group>"; };
@@ -1640,6 +1658,8 @@
 				3F4904E21D18E10C009F4CD3 /* CustomView */,
 				3F4904DD1D18DA0A009F4CD3 /* DD_CircleListCell.h */,
 				3F4904DE1D18DA0A009F4CD3 /* DD_CircleListCell.m */,
+				3FA39EB71D87E28100CA9A3C /* DD_CircleDailyListCell.h */,
+				3FA39EB81D87E28100CA9A3C /* DD_CircleDailyListCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -2486,8 +2506,9 @@
 		3F9B8AC31CEF5472008EC460 /* 共享带 */ = {
 			isa = PBXGroup;
 			children = (
-				3F4904D81D18D33E009F4CD3 /* cell */,
 				3F6813A51D1A378200F4807A /* 搭配详情页 */,
+				3FA39EA91D87CA8B00CA9A3C /* 发布日常 */,
+				3F4904D81D18D33E009F4CD3 /* cell */,
 				3F8E76741D1BCE1C00722FDA /* 申请成为达人 */,
 				3F4904F41D19228D009F4CD3 /* 搭配商品列表 */,
 				3FB3425D1D0FFF2400C9A682 /* 发布搭配 */,
@@ -2678,6 +2699,55 @@
 				3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */,
 			);
 			name = "结算成功订单列表";
+			sourceTree = "<group>";
+		};
+		3FA39EA91D87CA8B00CA9A3C /* 发布日常 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EBB1D87E3D800CA9A3C /* 日常详情页 */,
+				3FA39EBA1D87E3B000CA9A3C /* 预览 */,
+				3FA39EB31D87D09800CA9A3C /* custom */,
+				3FA39EAA1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.h */,
+				3FA39EAB1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m */,
+			);
+			name = "发布日常";
+			sourceTree = "<group>";
+		};
+		3FA39EB31D87D09800CA9A3C /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EB41D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.h */,
+				3FA39EB51D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.m */,
+				3FA39EAD1D87CB6800CA9A3C /* DD_CircleDailyInfoView.h */,
+				3FA39EAE1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m */,
+			);
+			name = custom;
+			sourceTree = "<group>";
+		};
+		3FA39EBA1D87E3B000CA9A3C /* 预览 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EB01D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.h */,
+				3FA39EB11D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m */,
+			);
+			name = "预览";
+			sourceTree = "<group>";
+		};
+		3FA39EBB1D87E3D800CA9A3C /* 日常详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EBC1D87E41A00CA9A3C /* headView */,
+			);
+			name = "日常详情页";
+			sourceTree = "<group>";
+		};
+		3FA39EBC1D87E41A00CA9A3C /* headView */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EBD1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.h */,
+				3FA39EBE1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m */,
+			);
+			name = headView;
 			sourceTree = "<group>";
 		};
 		3FA6E0151D5078760038569C /* DD_NavBtn */ = {
@@ -3190,6 +3260,7 @@
 				3F4B81D91D0058D900B323E4 /* DD_DDayDetailModel.m in Sources */,
 				3F9B8B4C1CF1A652008EC460 /* DD_AlertViewController.m in Sources */,
 				3F4187EF1CEEFF1A001BCA3D /* DD_CityTool.m in Sources */,
+				3FA39EBF1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m in Sources */,
 				3F8228FC1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m in Sources */,
 				3F14013B1CF7E28C0093474A /* DD_ShopModel.m in Sources */,
 				3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */,
@@ -3211,6 +3282,8 @@
 				3FA836741D051B3F006D2919 /* DD_OrderTool.m in Sources */,
 				3F7E58B71D4079AA000FDE5F /* DD_ItemTool.m in Sources */,
 				3FA5510E1D4CAEC400528B5F /* DD_GoodsCircleView.m in Sources */,
+				3FA39EAC1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m in Sources */,
+				3FA39EAF1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m in Sources */,
 				3FFCCF5E1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m in Sources */,
 				3F4904EF1D18E16A009F4CD3 /* DD_CircleListInteractionView.m in Sources */,
 				3F9B8B231CF0472A008EC460 /* DD_forgetViewController.m in Sources */,
@@ -3315,6 +3388,7 @@
 				3F4938951D0EAEF7000D213B /* DD_UserMainCollectViewController.m in Sources */,
 				3F3811AD1CF54F7C007154F1 /* Order.m in Sources */,
 				3F8E765C1D1B77D600722FDA /* DD_CircleCommentSignBoard.m in Sources */,
+				3FA39EB61D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.m in Sources */,
 				3F552E891CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m in Sources */,
 				3F7160BD1D4F2BBA00E165D2 /* DD_GoodsListBtn.m in Sources */,
 				3F60024D1D49EEFD007E395F /* DD_DrawManageView.m in Sources */,
@@ -3347,6 +3421,7 @@
 				3F7E58BA1D408D0D000FDE5F /* DD_ImageModel.m in Sources */,
 				3FA836711D051308006D2919 /* DD_OrderModel.m in Sources */,
 				3F3A0BF11D37CE9E006CD46F /* DD_LoginTextView.m in Sources */,
+				3FA39EB21D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m in Sources */,
 				3F4904EC1D18E15F009F4CD3 /* DD_CircleListUserView.m in Sources */,
 				3F4187DA1CEEFF0B001BCA3D /* DD_AdressTableViewCell.m in Sources */,
 				3F6F0F7F1D6BF0540074EAF4 /* DD_CustomBtn.m in Sources */,
@@ -3356,6 +3431,7 @@
 				3F3811B01CF54F7C007154F1 /* DataVerifier.m in Sources */,
 				3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */,
 				3F6153241D3F28CB00BB60FD /* UIView+Custom.m in Sources */,
+				3FA39EB91D87E28100CA9A3C /* DD_CircleDailyListCell.m in Sources */,
 				3F85BAD11D66D1FA00820018 /* DD_ShowRoomModel.m in Sources */,
 				3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */,
 				3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */,

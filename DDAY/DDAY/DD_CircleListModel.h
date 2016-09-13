@@ -23,7 +23,7 @@
 +(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict;
 
 -(NSMutableArray *)getTagArr;
-
+__string(appUrl);
 /**
  * 用户职业
  */
@@ -102,4 +102,8 @@ __float(height);
  * 搭配建议高度
  */
 __float(contentHeight);
+/**
+ * 共享类型 2日常 4达人
+ */
+__number(shareType);
 @end

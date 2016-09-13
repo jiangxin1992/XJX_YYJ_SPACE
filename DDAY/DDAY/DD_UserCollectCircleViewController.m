@@ -189,7 +189,7 @@
         if(listModel.pics.count)
         {
             DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
-            CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+            CGFloat _height=([imgModel.height floatValue]/[imgModel.width floatValue])*((ScreenWidth-water_margin*2-water_Spacing)/2);
             return _height+water_Top;
         }
         return 0;

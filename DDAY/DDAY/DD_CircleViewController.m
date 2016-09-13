@@ -14,8 +14,10 @@
 #import "DD_CirclePublishViewController.h"
 #import "DD_CircleDetailViewController.h"
 #import "DD_GoodsDetailViewController.h"
+#import "DD_CirclePublishDailyViewController.h"
 
 #import "DD_CircleListCell.h"
+#import "DD_CircleDailyListCell.h"
 
 #import "DD_CircleListModel.h"
 
@@ -61,7 +63,7 @@
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.leftBarButtonItem=nil;
-    }else if(_userType==2||_userType==4||_userType==1)
+    }else if(_userType==2||_userType==4)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
@@ -389,13 +391,27 @@
         }] animated:YES completion:nil];
     }else
     {
-        [self.navigationController pushViewController:[[DD_CirclePublishViewController alloc] initWithBlock:^(NSString *type) {
-            if([type isEqualToString:@"refresh"])
-            {
-                //            重新刷新
-                [_tableview.mj_header beginRefreshing];
-            }
-        }] animated:YES];
+
+        if([DD_UserModel getUserType]==2)
+        {
+            [self.navigationController pushViewController:[[DD_CirclePublishDailyViewController alloc] initWithBlock:^(NSString *type) {
+                if([type isEqualToString:@"refresh"])
+                {
+                    //            重新刷新
+                    [_tableview.mj_header beginRefreshing];
+                }
+            }] animated:YES];
+        }else
+        {
+            [self.navigationController pushViewController:[[DD_CirclePublishViewController alloc] initWithBlock:^(NSString *type) {
+                if([type isEqualToString:@"refresh"])
+                {
+                    //            重新刷新
+                    [_tableview.mj_header beginRefreshing];
+                }
+            }] animated:YES];
+        }
+  
     }
     
 }
@@ -501,7 +517,7 @@
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.leftBarButtonItem=nil;
-    }else if(_userType==2||_userType==4||_userType==1)
+    }else if(_userType==2||_userType==4)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
@@ -549,21 +565,43 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    //获取到数据以后
-    static NSString *cellid=@"CircleListCell";
-    DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-    if(!cell)
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
+    if([listModel.shareType longValue]==4)
     {
-        cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
-        cell.cellBlock=cellBlock;
-        
+        //获取到数据以后
+        static NSString *cellid=@"CircleListCell";
+        DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell.cellBlock=cellBlock;
+            
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        cell.listModel=listModel;
+        cell.index=indexPath.row;
+        return cell;
+    }else
+    {
+        //获取到数据以后
+        static NSString *cellid=@"DD_CircleDailyListCell";
+        DD_CircleDailyListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_CircleDailyListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell.cellBlock=cellBlock;
+            
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        cell.listModel=listModel;
+        cell.index=indexPath.row;
+        return cell;
     }
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.layer.shouldRasterize = YES;
-    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    cell.listModel=[_dataArr objectAtIndex:indexPath.row];
-    cell.index=indexPath.row;
-    return cell;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

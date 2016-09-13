@@ -38,7 +38,7 @@ __bool(guanzhu);
 @property (nonatomic,strong)DD_GoodsDesignerModel *designer;
 @property (nonatomic,strong)DD_GoodsItemModel *item;
 @property (nonatomic,strong)DD_CircleListModel *circle;
-
+__string(appUrl);
 __array(physicalStore);
 __array(similarItems);
 

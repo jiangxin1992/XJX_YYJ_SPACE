@@ -22,11 +22,12 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithBlock:(void(^)(NSString *type))block
+-(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
+        _url=url;
         _block=block;
         _title=title;
         _content=content;
@@ -177,10 +178,11 @@
     //1、创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     [shareParams SSDKSetupShareParamsByText:_content
-                                     images:[UIImage imageNamed:_img]
-                                        url:[NSURL URLWithString:@"http://mob.com"]
+                                     images:@[_img]
+                                        url:[NSURL URLWithString:_url]
                                       title:_title
                                        type:SSDKContentTypeAuto];
+    [shareParams SSDKEnableUseClientShare];
     
     // 定制新浪微博的分享内容
 //    [shareParams SSDKSetupSinaWeiboShareParamsByText:@"定制新浪微博的分享内容" title:nil image:[UIImage imageNamed:@"传入的图片名"] url:nil latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];

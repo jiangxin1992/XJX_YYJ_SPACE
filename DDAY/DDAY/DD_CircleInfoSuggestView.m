@@ -49,7 +49,7 @@
 }
 -(void)PrepareUI
 {
-    self.backgroundColor=_define_white_color;
+    self.backgroundColor=[UIColor clearColor];
     self.userInteractionEnabled=YES;
 //    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
 }
@@ -100,7 +100,7 @@
     [_numlabel sizeToFit];
     
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
-        if([type isEqualToString:@"cancel"])
+        if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
             [regular dismissKeyborad];
         }else if([type isEqualToString:@"save"])
@@ -125,11 +125,11 @@
             _block(type,_content);
         }
     }];
-    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, 140);
+    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight+400);
     
     _textView=[[UITextView alloc] init];
     _textView.inputAccessoryView = _SignBoard;
-    _textView.returnKeyType=UIReturnKeyDefault;
+    _textView.returnKeyType=UIReturnKeyDone;
     _textView.font=[regular getFont:13.0f];
     _textView.text=_holdStr;
     _textView.textColor=_define_light_gray_color1;

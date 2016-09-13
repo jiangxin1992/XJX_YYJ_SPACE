@@ -14,7 +14,7 @@
 
 @implementation DD_SuggestViewController
 {
-    UITextView *textView;
+    UITextView *_textView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,26 +43,26 @@
 }
 -(void)CreateTextView
 {
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(10,74, ScreenWidth-20, 200)] ; //初始化大小并自动释放
-    textView.contentSize=CGSizeMake( ScreenWidth-20, 200);
-    textView.textColor = _define_black_color;//设置textview里面的字体颜色
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(10,74, ScreenWidth-20, 200)] ; //初始化大小并自动释放
+    _textView.contentSize=CGSizeMake( ScreenWidth-20, 200);
+    _textView.textColor = _define_black_color;//设置textview里面的字体颜色
     
-    textView.font = [regular getFont:14.0f];//设置字体名字和字体大小
+    _textView.font = [regular getFont:14.0f];//设置字体名字和字体大小
     
-    textView.delegate = self;//设置它的委托方法
-    textView.textAlignment=0;
-    textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
+    _textView.delegate = self;//设置它的委托方法
+    _textView.textAlignment=0;
+    _textView.backgroundColor =  _define_clear_color;//设置它的背景颜色
     
-    textView.returnKeyType = UIReturnKeySend;//返回键的类型
+    _textView.returnKeyType = UIReturnKeySend;//返回键的类型
     
-    textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
+    _textView.keyboardType = UIKeyboardTypeDefault;//键盘类型
     
     //    textView.scrollEnabled = YES;//是否可以拖动
     
     //    textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
     
-    [self.view addSubview: textView];//加入到整个页面中
-    [textView becomeFirstResponder];//设为第一响应
+    [self.view addSubview: _textView];//加入到整个页面中
+    [_textView becomeFirstResponder];//设为第一响应
 }
 #pragma mark - SomeActions
 /**
@@ -70,14 +70,14 @@
  */
 -(void)sendAction
 {
-    if([NSString isNilOrEmpty:textView.text])
+    if([NSString isNilOrEmpty:_textView.text]||[_textView.text isEqualToString:@"请填写建议"])
     {
 //        对空判断
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }else
     {
 //        提交建议
-        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"advise":textView.text};
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"advise":_textView.text};
         [[JX_AFNetworking alloc] GET:@"user/commitAdvise.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -97,6 +97,24 @@
 }
 
 #pragma mark - Other
+//在开始编辑的代理方法中进行如下操作
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.textColor=_define_black_color;
+    if ([textView.text isEqualToString:@"请填写建议"]) {
+        
+        textView.text = @"";
+    }
+}
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"请填写建议"]||[textView.text isEqualToString:@""]) {
+        textView.text = @"请填写建议";
+        textView.textColor=_define_light_gray_color1;
+    }else
+    {
+        textView.textColor=_define_black_color;
+    }
+}
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         [self sendAction];

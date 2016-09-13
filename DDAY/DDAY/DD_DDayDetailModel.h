@@ -32,7 +32,7 @@ __string(brandBrief);
  * 系列提示
  */
 __string(seriesTips);
-
+__string(appUrl);
 /**
  * 发布会结束时间
  */
