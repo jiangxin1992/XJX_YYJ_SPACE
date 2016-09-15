@@ -108,7 +108,17 @@
 #pragma mark - SomeAction
 -(void)MJRefresh
 {
-    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    NSArray *refreshingImages=[regular getGifImg];
+    
+    //     Set the ordinary state of animated images
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateIdle];
+    //     Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStatePulling];
+    //     Set the refreshing state of animated images
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateRefreshing];
+    
     header.lastUpdatedTimeLabel.hidden = YES;
     header.stateLabel.hidden = YES;
     _tableview.mj_header = header;

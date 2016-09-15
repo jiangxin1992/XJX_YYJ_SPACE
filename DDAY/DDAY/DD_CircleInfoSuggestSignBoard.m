@@ -44,7 +44,7 @@
         make.edges.mas_equalTo(self);
     }];
     
-    UIButton *sendBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"发 送" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *sendBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"完 成" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [backimg addSubview:sendBtn];
     sendBtn.backgroundColor=_define_black_color;
     [sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];

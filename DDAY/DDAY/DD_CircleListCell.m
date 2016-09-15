@@ -34,6 +34,8 @@
     UILabel *commentLabel;
     UILabel *collectLabel;
     
+    UIScrollView *_scrollview;
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -144,53 +146,77 @@
         {
             make.top.mas_equalTo(19);
         }
-        
-        make.width.mas_equalTo(IsPhone6_gt?234:190);
+        if(IsPhone6_gt)
+        {
+            make.width.mas_equalTo(IsPhone6_gt?234:190);
+        }else
+        {
+            make.right.mas_equalTo(-kEdge);
+        }
         make.height.mas_equalTo(300);
     }];
-    
-    UIView *lastView=nil;
-    for (int i=0; i<3; i++) {
-        UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
-        [self.contentView addSubview:goods];
-        goods.contentMode=2;
-        [regular setZeroBorder:goods];
-        goods.userInteractionEnabled=YES;
-        [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
-        goods.tag=100+i;
-//        goods.frame=CGRectMake(ScreenWidth-2*kEdge-66,CGRectGetMaxY(goodImgView.frame)+(66+24)*i , 66, 66);
-        [goods mas_makeConstraints:^(MASConstraintMaker *make) {
+    if(IsPhone6_gt)
+    {
+        UIView *lastView=nil;
+        for (int i=0; i<3; i++) {
+            UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
+            [self.contentView addSubview:goods];
+            goods.contentMode=2;
+            [regular setZeroBorder:goods];
+            goods.userInteractionEnabled=YES;
+            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            goods.tag=100+i;
+            //        goods.frame=CGRectMake(ScreenWidth-2*kEdge-66,CGRectGetMaxY(goodImgView.frame)+(66+24)*i , 66, 66);
+            [goods mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(-kEdge);
+                make.width.height.mas_equalTo(66);
+                if(lastView)
+                {
+                    make.bottom.mas_equalTo(lastView.mas_top).with.offset(-24);
+                }else
+                {
+                    make.bottom.mas_equalTo(goodImgView.mas_bottom).with.offset(0);
+                }
+            }];
+            lastView=goods;
+            
+            UIButton *pricebtn=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
+            [goods addSubview:pricebtn];
+            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+            pricebtn.userInteractionEnabled=NO;
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            //        pricebtn.frame=CGRectMake(0, CGRectGetHeight(goods.frame)-18,CGRectGetWidth(goods.frame) , 18);
+            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(18);
+            }];
+            
+        }
+    }else
+    {
+        _scrollview=[[UIScrollView alloc] init];
+        [self.contentView addSubview:_scrollview];
+        [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
-            make.width.height.mas_equalTo(66);
-            if(lastView)
-            {
-                make.bottom.mas_equalTo(lastView.mas_top).with.offset(-24);
-            }else
-            {
-                make.bottom.mas_equalTo(goodImgView.mas_bottom).with.offset(0);
-            }
+            make.height.mas_equalTo(66);
+            make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(20);
         }];
-        lastView=goods;
-
-        UIButton *pricebtn=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
-        [goods addSubview:pricebtn];
-        pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
-        pricebtn.userInteractionEnabled=NO;
-        [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
-//        pricebtn.frame=CGRectMake(0, CGRectGetHeight(goods.frame)-18,CGRectGetWidth(goods.frame) , 18);
-        [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(18);
-        }];
-        
     }
+    
     
     conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:conentLabel];
     conentLabel.numberOfLines=0;
 //    conentLabel.frame=CGRectMake(kEdge, CGRectGetMaxY(goodImgView.frame)+19, ScreenWidth-2*kEdge, 0);
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
+        if(IsPhone6_gt)
+        {
+            make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
+        }else
+        {
+            make.top.mas_equalTo(_scrollview.mas_bottom).with.offset(20);
+        }
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(0);
@@ -365,22 +391,57 @@
     {
         count_index=_listModel.items.count;
     }
-    
-    for (int i=0; i<3; i++) {
-        UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
-//        UIButton *goodsPrice=(UIButton *)[self.contentView viewWithTag:150+i];
-        UIButton *goodsPrice=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
-        if(i<count_index)
-        {
+    if(IsPhone6_gt)
+    {
+        for (int i=0; i<3; i++) {
+            UIImageView *goods=i==0?goods1:i==1?goods2:goods3;
+            //        UIButton *goodsPrice=(UIButton *)[self.contentView viewWithTag:150+i];
+            UIButton *goodsPrice=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
+            if(i<count_index)
+            {
+                DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
+                [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+                goods.hidden=NO;
+                [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
+            }else
+            {
+                goods.hidden=YES;
+            }
+        }
+    }else
+    {
+        for (UIView *obj in _scrollview.subviews) {
+            [obj removeFromSuperview];
+        }
+        _scrollview.contentSize=CGSizeMake(66*_listModel.items.count+20*(_listModel.items.count-1), 66);
+        CGFloat _x_p=0;
+        for (int i=0; i<_listModel.items.count; i++) {
+            UIImageView *goods=[UIImageView getCustomImg];;
+            [_scrollview addSubview:goods];
+            goods.frame=CGRectMake(_x_p, 0, 66, 66);
+            goods.contentMode=2;
+            [regular setZeroBorder:goods];
+            goods.userInteractionEnabled=YES;
+            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            goods.tag=100+i;
             DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
-            goods.hidden=NO;
-            [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
-        }else
-        {
-            goods.hidden=YES;
+            
+            
+            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];;
+            [goods addSubview:pricebtn];
+            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+            pricebtn.userInteractionEnabled=NO;
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
+            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(18);
+            }];
+            _x_p+=CGRectGetWidth(goods.frame)+20;
         }
     }
+    
     [conentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_listModel.contentHeight);
     }];

@@ -19,6 +19,14 @@
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
     _tagModel.items=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"items"]];
     _tagModel.height=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]])+9+44+19+300+19+8+44+20+30;
+    if([_tagModel.shareType longValue]==4)
+    {
+        if(!(IsPhone6_gt))
+        {
+           _tagModel.height=_tagModel.height+66+20;
+        }
+    }
+
     _tagModel.contentHeight=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]]);
     return _tagModel;
 }
@@ -47,6 +55,13 @@
     _tagModel.tags=[DD_CircleTagModel getCircleTagModelArr:[dict objectForKey:@"personTags"]];
     _tagModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     _tagModel.height=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]])+9+44+19+300+19+8+44+20+30;
+    if([_tagModel.shareType longValue]==4)
+    {
+        if(!(IsPhone6_gt))
+        {
+            _tagModel.height=_tagModel.height+66+20;
+        }
+    }
     _tagModel.contentHeight=ceilf([regular getHeightWithWidth:ScreenWidth-2*kEdge WithContent:_tagModel.shareAdvise WithFont:[regular getFont:13.0f]]);
     return _tagModel;
 }

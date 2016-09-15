@@ -26,6 +26,14 @@ static regular *_t = nil;
     }
     return _t;
 }
++(NSArray *)getGifImg
+{
+    NSMutableArray *refreshingImages=[[NSMutableArray alloc] init];
+    for (int i=0; i<50; i++) {
+        [refreshingImages addObject:[UIImage imageNamed:[[NSString alloc] initWithFormat:@"图层-%d@2x",i+1]]];
+    }
+    return refreshingImages;
+}
 /**
  *  // 验证是固话或者手机号
  *

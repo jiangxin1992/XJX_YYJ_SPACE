@@ -21,6 +21,7 @@
  * 更新用户权限
  */
 +(void)UpdateRoot;
++(NSArray *)getGifImg;
 /**
  * 更新友盟用户统计和渠道
  */

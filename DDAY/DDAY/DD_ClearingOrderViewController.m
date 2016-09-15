@@ -89,10 +89,20 @@
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {    
-    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        [self RequestData];
-    }];
+    //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    NSArray *refreshingImages=[regular getGifImg];
+    
+    //     Set the ordinary state of animated images
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateIdle];
+    //     Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStatePulling];
+    //     Set the refreshing state of animated images
+    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _tableview.mj_header = header;
 }
 -(void)loadNewData
 {

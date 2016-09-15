@@ -21,6 +21,8 @@
     UILabel *conentLabel;
     UILabel *timeLabel;
     
+    UIScrollView *_scrollview;
+    
 }
 #pragma mark - 初始化
 -(instancetype)initWithGoodsItem:(DD_CircleListModel *)circle WithBlock:(void (^)(NSString *type,DD_OrderItemModel *item))block
@@ -136,50 +138,102 @@
     [goodImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(userHeadImg);
         make.top.mas_equalTo(userHeadImg.mas_bottom).with.offset(19);
-        make.width.mas_equalTo(IsPhone6_gt?234:190);
+        if(IsPhone6_gt)
+        {
+            make.width.mas_equalTo(IsPhone6_gt?234:190);
+        }else
+        {
+            make.right.mas_equalTo(-kEdge);
+        }
         make.height.mas_equalTo(300);
     }];
-    
-    UIView *lastView=nil;
-    for (int i=0; i<3; i++) {
-        UIImageView *goods=[UIImageView getCustomImg];
-        [backBtn addSubview:goods];
-        goods.contentMode=2;
-        [regular setZeroBorder:goods];
-        goods.userInteractionEnabled=YES;
-        goods.tag=100+i;
-        [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
-        [goods mas_makeConstraints:^(MASConstraintMaker *make) {
+    if(IsPhone6_gt)
+    {
+        UIView *lastView=nil;
+        for (int i=0; i<3; i++) {
+            UIImageView *goods=[UIImageView getCustomImg];
+            [backBtn addSubview:goods];
+            goods.contentMode=2;
+            [regular setZeroBorder:goods];
+            goods.userInteractionEnabled=YES;
+            goods.tag=100+i;
+            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(-kEdge);
+                make.width.height.mas_equalTo(66);
+                if(lastView)
+                {
+                    make.bottom.mas_equalTo(lastView.mas_top).with.offset(-24);
+                }else
+                {
+                    make.bottom.mas_equalTo(goodImgView.mas_bottom).with.offset(0);
+                }
+            }];
+            lastView=goods;
+            [goodsImgArr addObject:goods];
+            
+            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
+            [goods addSubview:pricebtn];
+            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+            pricebtn.userInteractionEnabled=NO;
+            pricebtn.tag=150+i;
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(18);
+            }];
+        }
+    }else
+    {
+        _scrollview=[[UIScrollView alloc] init];
+        [backBtn addSubview:_scrollview];
+        [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(kEdge);
             make.right.mas_equalTo(-kEdge);
-            make.width.height.mas_equalTo(66);
-            if(lastView)
-            {
-                make.bottom.mas_equalTo(lastView.mas_top).with.offset(-24);
-            }else
-            {
-                make.bottom.mas_equalTo(goodImgView.mas_bottom).with.offset(0);
-            }
+            make.height.mas_equalTo(66);
+            make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(20);
         }];
-        lastView=goods;
-        [goodsImgArr addObject:goods];
-        
-        UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];
-        [goods addSubview:pricebtn];
-        pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
-        pricebtn.userInteractionEnabled=NO;
-        pricebtn.tag=150+i;
-        [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
-        [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(18);
-        }];
+        _scrollview.contentSize=CGSizeMake(66*_circle.items.count+20*(_circle.items.count-1), 66);
+        CGFloat _x_p=0;
+        for (int i=0; i<_circle.items.count; i++) {
+            UIImageView *goods=[UIImageView getCustomImg];;
+            [_scrollview addSubview:goods];
+            goods.frame=CGRectMake(_x_p, 0, 66, 66);
+            goods.contentMode=2;
+            [regular setZeroBorder:goods];
+            goods.userInteractionEnabled=YES;
+            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            goods.tag=100+i;
+            DD_OrderItemModel *_order=[_circle.items objectAtIndex:i];
+            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+            
+            
+            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];;
+            [goods addSubview:pricebtn];
+            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+            pricebtn.userInteractionEnabled=NO;
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
+            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(18);
+            }];
+            _x_p+=CGRectGetWidth(goods.frame)+20;
+        }
     }
+    
     
     conentLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:conentLabel];
     conentLabel.numberOfLines=0;
     [conentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
+        if(IsPhone6_gt)
+        {
+            make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(19);
+        }else
+        {
+            make.top.mas_equalTo(_scrollview.mas_bottom).with.offset(20);
+        }
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.bottom.mas_equalTo(backBtn.mas_bottom).with.offset(-16);

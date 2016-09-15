@@ -59,7 +59,7 @@
 
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) UIImageView *splashView;
 @end
 
 @implementation AppDelegate
@@ -67,9 +67,8 @@
     BOOL _is_first_register;//是否是第一次提交设备token
 }
 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self.window makeKeyAndVisible];
     _is_first_register=YES;
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册
@@ -157,7 +156,7 @@
         NSLog(@"record=%@",record);
     }
     
-    [self.window makeKeyAndVisible];
+    
     self.window.rootViewController = [DD_CustomViewController sharedManager] ;
     return YES;
 }

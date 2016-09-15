@@ -105,7 +105,7 @@
     
     
     UIButton *lastview=nil;
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<1; i++) {
         NSString *normalImg=i==0?@"System_alipay_normal":i==1?@"System_wechat_normal":@"System_unionpay_normal";
         UIButton *iconBtn=[UIButton getCustomImgBtnWithImageStr:normalImg WithSelectedImageStr:nil];
         [payView addSubview:iconBtn];
