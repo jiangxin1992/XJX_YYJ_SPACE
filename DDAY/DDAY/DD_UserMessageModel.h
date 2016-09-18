@@ -37,4 +37,6 @@ __array(type);
  * 是否展开
  */
 __bool(is_expand);
+
+__array(unReadIds);
 @end

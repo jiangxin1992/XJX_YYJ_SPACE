@@ -387,6 +387,7 @@ static regular *_t = nil;
     NSString *head=[[NSString alloc] initWithFormat:@"%@-z%ld.jpg",img,_size];
     return head;
 }
+
 +(NSString *)getSize
 {
     SDImageCache *cache=[SDImageCache sharedImageCache];

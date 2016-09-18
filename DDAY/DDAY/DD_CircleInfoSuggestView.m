@@ -102,7 +102,8 @@
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
-            [regular dismissKeyborad];
+//            [regular dismissKeyborad];
+            [_textView resignFirstResponder];
         }else if([type isEqualToString:@"save"])
         {
             if(content.length<=_limitNum)
@@ -110,14 +111,16 @@
                 _content=content;
                 _textView.text=_content;
                 _numlabel.text=[self getlength];
-                [regular dismissKeyborad];
+//                [regular dismissKeyborad];
+                [_textView resignFirstResponder];
                 _block(@"save",_content);
             }else
             {
 //                _content=content;
 //                _textView.text=_content;
 //                _numlabel.text=[self getlength];
-                [regular dismissKeyborad];
+//                [regular dismissKeyborad];
+                [_textView resignFirstResponder];
                 _block(@"num_limit",_content);
             }
         }else

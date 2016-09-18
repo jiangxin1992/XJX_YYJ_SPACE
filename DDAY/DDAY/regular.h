@@ -21,6 +21,7 @@
  * 更新用户权限
  */
 +(void)UpdateRoot;
+
 +(NSArray *)getGifImg;
 /**
  * 更新友盟用户统计和渠道
@@ -59,7 +60,6 @@
 +(NSString *)getTimeStr:(long)time;
 /**
  * 时间戳转时间
- *
  */
 +(NSString *)getTimeStr:(long)time WithFormatter:(NSString *)_formatter;
 /**

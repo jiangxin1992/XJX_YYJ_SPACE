@@ -90,11 +90,10 @@
     _SignBoard=[[DD_CircleCommentSignBoard alloc] initWithBlock:^(NSString *type, NSString *content,CGFloat height) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
-            
             [self return_KeyBoard];
         }else if([type isEqualToString:@"send"])
         {
-            [regular dismissKeyborad];
+            [_commentField resignFirstResponder];
             _commentField.text=_SignBoard.commentField.text;
             _block(type,content);
         }
@@ -187,7 +186,7 @@
  */
 -(void)return_KeyBoard
 {
-    [regular dismissKeyborad];
+    [_commentField resignFirstResponder];
     _commentField.text=_SignBoard.commentField.text;
     if([_SignBoard.commentField.text isEqualToString:@"发表评论"]||[_SignBoard.commentField.text isEqualToString:@""])
     {

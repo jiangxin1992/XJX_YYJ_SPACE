@@ -122,8 +122,9 @@
     if(_circleModel.chooseItem.count)
     {
         [_downView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(_width+32);
+            make.height.mas_equalTo(@(_width+32));
         }];
+        NSLog(@"1111");
         _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(kEdge, 0, ScreenWidth-kEdge*2, _width)];
         [_downView addSubview:_scrollView];
         _scrollView.contentSize=CGSizeMake((_circleModel.chooseItem.count-1)*intes+_width*_circleModel.chooseItem.count, _width);
@@ -158,8 +159,9 @@
     }else
     {
         [_downView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0);
+            make.height.mas_equalTo(@0);
         }];
+        NSLog(@"1111");
     }
     
 }

@@ -702,7 +702,6 @@
         DD_ShopItemModel *item=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         //                修改/跳转详情页
         DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
-        _ItemsModel.colorId=item.colorId;
         _ItemsModel.g_id=item.itemId;
         _ItemsModel.colorCode=item.colorCode;
         DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {

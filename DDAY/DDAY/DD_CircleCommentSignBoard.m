@@ -85,6 +85,7 @@
 #pragma mark - OtherAction
 -(void)clickAction
 {
+    [_commentField resignFirstResponder];
     _block(@"resign",_commentField.text,0);
 }
 //在开始编辑的代理方法中进行如下操作
@@ -153,6 +154,7 @@
  */
 -(void)sendAction
 {
+    [_commentField resignFirstResponder];
     _block(@"send",_commentField.text,0);
 }
 #pragma mark - UITextViewDelegate

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_ShareView : UIView
+@interface DD_ShareView : UIView <UIAlertViewDelegate>
+
 -(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block;
 
 @property (nonatomic,copy) void (^block)(NSString *type);

@@ -281,7 +281,6 @@ __bool(isExpanded);
             {
                 DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
                 _item.g_id=item.itemId;
-                _item.colorId=item.colorId;
                 _item.colorCode=item.colorCode;
                 DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
                     //        if(type)
@@ -386,7 +385,6 @@ __bool(isExpanded);
             if([type isEqualToString:@"img_click"])
             {
                 DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
-                _ItemsModel.colorId=itemModel.colorId;
                 _ItemsModel.g_id=itemModel.itemId;
                 _ItemsModel.colorCode=itemModel.colorCode;
                 DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
@@ -761,7 +759,6 @@ __bool(isExpanded);
 {
     DD_OtherItemModel *_OtherItem=[_DetailModel.item.otherItems objectAtIndex:index];
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
-    _ItemsModel.colorId=_OtherItem.colorId;
     _ItemsModel.g_id=_OtherItem.itemId;
     _ItemsModel.colorCode=_OtherItem.colorCode;
     DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:nil];
@@ -801,10 +798,10 @@ __bool(isExpanded);
     if(colorModel.pics.count)
     {
         DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
-        pic=[regular getImgUrl:img.pic WithSize:800];
+        pic=[[NSString alloc] initWithFormat:@"%@-z800.jpg",img.pic];
     }
     
-    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@,让设计步入日常 %@",_DetailModel.item.itemName,_DetailModel.appUrl] WithImg:pic WithUrl:_DetailModel.appUrl WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常 %@",_DetailModel.item.itemName,_DetailModel.appUrl] WithImg:pic WithUrl:_DetailModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];

@@ -160,7 +160,6 @@
                 //            点击item
                 DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
                 _item.g_id=item.itemId;
-                _item.colorId=item.colorId;
                 _item.colorCode=item.colorCode;
                 DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
                     //        if(type)

@@ -526,7 +526,6 @@
     DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
     
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
-    _ItemsModel.colorId=_item.colorId;
     _ItemsModel.g_id=_item.itemId;
     _ItemsModel.colorCode=_item.colorCode;
     DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {

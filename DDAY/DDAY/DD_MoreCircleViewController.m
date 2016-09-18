@@ -144,7 +144,6 @@
                 //            点击item
                 DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
                 _item.g_id=item.itemId;
-                _item.colorId=item.colorId;
                 _item.colorCode=item.colorCode;
                 DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
                     //        if(type)
@@ -467,7 +466,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
     if([listModel.shareType longValue]==4)
     {
         //获取到数据以后

@@ -25,7 +25,7 @@
         self.backgroundColor=_define_white_color;
         self.userInteractionEnabled=YES;
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)]];
-        title=[UILabel getLabelWithAlignment:0 WithTitle:_messageModel.messageCategory WithFont:13.0f WithTextColor:nil WithSpacing:0];
+        title=[UILabel getLabelWithAlignment:0 WithTitle:_messageModel.messageCategory WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [self addSubview:title];
         [title mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);

@@ -268,6 +268,19 @@
     [_preView removeFromSuperview];
 }
 #pragma mark - SomeAction
+-(void)backAction
+{
+    if(_CircleModel.status==-1||_CircleModel.status==2)
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:@"放弃编辑？" WithBlock:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }] animated:YES completion:nil];
+    }else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
 -(void)DeleteImgWithIndex:(long )index
 {
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_CircleModel.picArr objectAtIndex:index] objectForKey:@"key"]};

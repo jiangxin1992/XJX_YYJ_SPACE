@@ -85,22 +85,21 @@
 {
     
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
-        if([type isEqualToString:@"cancel"])
+        if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
-            [regular dismissKeyborad];
+            [_textfield resignFirstResponder];
         }else if([type isEqualToString:@"save"])
         {
             _content=content;
             _textfield.text=_content;
-//            _numlabel.text=[self getlength];
-            [regular dismissKeyborad];
+            [_textfield resignFirstResponder];
             _block(@"save",_content);
         }else
         {
             _block(type,_content);
         }
     }];
-    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, 140);
+    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight+400);
     
     _textfield=[[UITextField alloc] init];
     [self addSubview:_textfield];
@@ -183,7 +182,7 @@
 //            _block(type,_content);
 //        }
 //    }];
-//    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, 140);
+//    _SignBoard.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight+400);
 //    
 //    _textView=[[UITextView alloc] init];
 //    _textView.inputAccessoryView = _SignBoard;

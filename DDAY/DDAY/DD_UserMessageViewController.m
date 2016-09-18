@@ -12,12 +12,17 @@
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_FansViewController.h"
 #import "DD_CircleApplyViewController.h"
+#import "DD_DDAYDetailViewController.h"
+#import "DD_CircleDetailViewController.h"
+#import "DD_OrderDetailViewController.h"
+#import "DD_GoodsDetailViewController.h"
 
 #import "DD_UserMessageHeadView.h"
 #import "DD_UserMessageHeadCell.h"
 #import "DD_UserMessageNormalCell.h"
 
 #import "DD_UserMessageModel.h"
+#import "DD_ItemsModel.h"
 
 @interface DD_UserMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -119,7 +124,7 @@
     }
     DD_UserMessageModel *_messageModel=[_dataArr objectAtIndex:indexPath.section];
     DD_UserMessageItemModel *_itemModel=[_messageModel.messages objectAtIndex:indexPath.row];
-    if(_itemModel.type==2||_itemModel.type==4||_itemModel.type==5||_itemModel.type==6||_itemModel.type==7||_itemModel.type==8)
+    if(_itemModel.type==4||_itemModel.type==5||_itemModel.type==6||_itemModel.type==7||_itemModel.type==8)
     {
         static NSString *cellid=@"cellid";
         DD_UserMessageHeadCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
@@ -184,7 +189,7 @@
                 if(!_userModel.readStatus)
                 {
                     
-                    [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type JSONString],@"unReadIds":[_userModel.unReadIds JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                         if(success)
                         {
                             _userModel.readStatus=YES;
@@ -192,6 +197,7 @@
                         {
                             [self presentViewController:successAlert animated:YES completion:nil];
                         }
+                        [_tableview reloadData];
                     } failure:^(NSError *error, UIAlertController *failureAlert) {
                         [self presentViewController:failureAlert animated:YES completion:nil];
                     }];
@@ -214,15 +220,54 @@
     }else if(_itemModel.paramType==2)
     {
 //        跳转订单详情页 以支付（orderCode）未支付（tradeOrderCode） 还需要是否支付
+        DD_OrderModel *order=[[DD_OrderModel alloc] init];
+        order.isPay=[[_itemModel.params objectForKey:@"ispay"] boolValue];
+        if(order.isPay)
+        {
+            order.subOrderCode=[_itemModel.params objectForKey:@"orderCode"];
+        }else
+        {
+            order.tradeOrderCode=[_itemModel.params objectForKey:@"orderCode"];
+        }
+        order.totalAmount=[_itemModel.params objectForKey:@"totalAmount"];
+        [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:^(NSString *type, NSDictionary *resultDic) {
+            
+        }] animated:YES];
     }else if(_itemModel.paramType==3)
     {
 //        跳转发布品详情页 (itemId,colorCode)
+
+        DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+        _item.g_id=[_itemModel.params objectForKey:@"itemId"];
+        _item.colorCode=[_itemModel.params objectForKey:@"colorCode"];
+        DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+            //        if(type)
+        }];
+        [self.navigationController pushViewController:_GoodsDetail animated:YES];
+        
     }else if(_itemModel.paramType==4)
     {
 //        跳转搭配详情页 (shareId)
+        DD_CircleListModel *listModel=[[DD_CircleListModel alloc] init];
+        listModel.shareId=[_itemModel.params objectForKey:@"shareId"];
+        [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId IsHomePage:NO WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"reload"])
+            {
+                [_tableview reloadData];
+            }
+        }] animated:YES];
     }else if(_itemModel.paramType==5)
     {
 //        跳转发布会详情页(seriesId)
+        if(_itemModel.params)
+        {
+            DD_DDAYModel *seriesModel=[[DD_DDAYModel alloc] init];
+            seriesModel.s_id=[_itemModel.params objectForKey:@"seriesId"];
+            seriesModel.name=[_itemModel.params objectForKey:@"seriesName"];
+            [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
+                
+            }] animated:YES];
+        }
     }else if(_itemModel.paramType==6)
     {
 //        跳转粉丝列表

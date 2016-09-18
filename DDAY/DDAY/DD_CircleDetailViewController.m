@@ -493,7 +493,7 @@
     if(nowListModel.pics.count)
     {
         DD_ImageModel *img=[nowListModel.pics objectAtIndex:0];
-        pic=[regular getImgUrl:img.pic WithSize:800];
+        pic=[[NSString alloc] initWithFormat:@"%@-z800.jpg",img.pic];
     }
     shareView=[[DD_ShareView alloc] initWithTitle:nowListModel.userName Content:nowListModel.shareAdvise WithImg:pic WithUrl:nowListModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
@@ -557,7 +557,6 @@
 {
     DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
     _item.g_id=item.itemId;
-    _item.colorId=item.colorId;
     _item.colorCode=item.colorCode;
     DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
         //        if(type)

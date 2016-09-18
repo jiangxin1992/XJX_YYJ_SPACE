@@ -84,6 +84,7 @@
 #pragma mark - OtherAction
 -(void)clickAction
 {
+    [_commentField resignFirstResponder];
     _block(@"resign",_commentField.text);
 }
 /**
@@ -91,6 +92,7 @@
  */
 -(void)cancelAction
 {
+    [_commentField resignFirstResponder];
     _block(@"cancel",_commentField.text);
 }
 /**
@@ -98,6 +100,7 @@
  */
 -(void)sendAction
 {
+    [_commentField resignFirstResponder];
     _block(@"save",_commentField.text);
 }
 //在开始编辑的代理方法中进行如下操作

@@ -26,7 +26,7 @@
     if(self)
     {
         _SizeAlertModel=sizeAlertModel;
-        _sizeArr=colorModel.size;
+        _sizeArr=sizeAlertModel.size;
         _sizeID=colorModel.colorId;
         _block=block;
         _ColorsModel=colorModel;

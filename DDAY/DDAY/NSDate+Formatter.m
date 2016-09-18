@@ -17,9 +17,9 @@
 {
     NSDate *date = [NSDate date];
     
-    NSTimeInterval  timeZoneOffset=[[NSTimeZone systemTimeZone] secondsFromGMT];
-    
-    date = [date dateByAddingTimeInterval:timeZoneOffset];
+//    NSTimeInterval  timeZoneOffset=[[NSTimeZone systemTimeZone] secondsFromGMT];
+//    
+//    date = [date dateByAddingTimeInterval:timeZoneOffset];
     return date;
 }
 + (NSDate *)yesterday{

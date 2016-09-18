@@ -21,7 +21,7 @@
                           ,@"payApproach":@"1"
                           ,@"memo":remarks
                           ,@"freight":[[NSString alloc] initWithFormat:@"%.0lf",_Freight]
-                          ,@"total":@"0.02"
+                          ,@"total":[[NSString alloc] initWithFormat:@"%.1lf",_subTotal+_Freight]
                           ,@"subTotal":[[NSString alloc] initWithFormat:@"%.1lf",_subTotal]
                           };
     

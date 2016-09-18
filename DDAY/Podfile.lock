@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - HappyDNS (0.2.4)
   - JSONModel (1.2.0)
-  - Masonry (0.6.4)
+  - Masonry (1.0.0)
   - MJExtension (2.3.8)
   - MJRefresh (3.1.0)
   - MOBFoundation (1.5.2)
@@ -54,7 +54,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - JSONModel (~> 1.2.0)
-  - Masonry (~> 0.6.1)
+  - Masonry (~> 1.0.0)
   - MJExtension (~> 2.3.7)
   - MJRefresh (~> 3.1.0)
   - MOBFoundation
@@ -73,7 +73,7 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   HappyDNS: 86ab4be498cc5cc884002b248979cd130cfbe10e
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MJExtension: d83b55e6cb95c6274388539c782386b56f394a6d
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MOBFoundation: 6cea4097eed468d6f3c5b3c358dcf2503e762bb3
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 173a5a2541536225f4c947935560975136f18a34
   YYKit: a80c77ab7be226ebe539ef1495dfc25d5766d61e
 
-PODFILE CHECKSUM: 1c69f88045a61f3b9128599bc02c798fbc5570b1
+PODFILE CHECKSUM: 7f1a89e0e242f6ed38f44dabbb6cc616aa672d04
 
 COCOAPODS: 1.0.0

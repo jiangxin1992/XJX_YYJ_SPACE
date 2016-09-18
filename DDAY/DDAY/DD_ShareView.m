@@ -19,6 +19,7 @@
 {
     NSDictionary *ListMap;
     NSArray *ListArr;
+    BOOL _is_show;
 }
 
 #pragma mark - 初始化
@@ -49,6 +50,7 @@
 {
     ListMap=[DD_ShareTool getShareListMap];
     ListArr=[DD_ShareTool getShareListArr];
+    _is_show=NO;
 }
 -(void)PrepareUI{}
 
@@ -181,7 +183,13 @@
                                      images:@[_img]
                                         url:[NSURL URLWithString:_url]
                                       title:_title
-                                       type:SSDKContentTypeAuto];
+                                       type:SSDKContentTypeImage];
+//    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//    [shareParams SSDKSetupShareParamsByText:@"这是一个分享"
+//                                     images:nil
+//                                        url:[NSURL URLWithString:_url]
+//                                      title:@"分享"
+//                                       type:SSDKContentTypeAuto];
     [shareParams SSDKEnableUseClientShare];
     
     // 定制新浪微博的分享内容
@@ -192,7 +200,7 @@
     //2、分享
     [ShareSDK share:platformType parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
         _block(@"cancel");
-        
+
         switch (state) {
                 
             case SSDKResponseStateBegin:
@@ -215,63 +223,93 @@
                     title=@"分享成功";
                     
                 }
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                                    message:nil
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"确定"
-                                                          otherButtonTitles:nil];
-                [alertView show];
-                
-                
+                if(!_is_show)
+                {
+                    _is_show=YES;
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                                        message:nil
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"确定"
+                                                              otherButtonTitles:nil];
+                    alertView.delegate=self;
+                    [alertView show];
+                }
                 break;
             }
             case SSDKResponseStateFail:
             {
                 if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                    message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil, nil];
-                    [alert show];
+                    if(!_is_show)
+                    {
+                        _is_show=YES;
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                        message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil, nil];
+                        alert.delegate=self;
+                        [alert show];
+                    }
                     break;
                 }
                 else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                    message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil, nil];
-                    [alert show];
+                    if(!_is_show)
+                    {
+                        _is_show=YES;
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                        message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil, nil];
+                        alert.delegate=self;
+                        [alert show];
+                    }
                     break;
                 }
                 else
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                    message:[NSString stringWithFormat:@"%@",error]
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil, nil];
-                    [alert show];
+                    if(!_is_show)
+                    {
+                        _is_show=YES;
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                        message:[NSString stringWithFormat:@"%@",error]
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil, nil];
+                        alert.delegate=self;
+                        [alert show];
+                    }
                     break;
                 }
                 break;
             }
             case SSDKResponseStateCancel:
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
-                                                                    message:nil
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"确定"
-                                                          otherButtonTitles:nil];
-                [alertView show];
+                if(!_is_show)
+                {
+                    _is_show=YES;
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+                                                                        message:nil
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"确定"
+                                                              otherButtonTitles:nil];
+                    alertView.delegate=self;
+                    [alertView show];
+                }
                 break;
             }
             default:
                 break;
         }
     }];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        _is_show=NO;
+    }
 }
 @end

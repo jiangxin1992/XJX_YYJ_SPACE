@@ -279,7 +279,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
     if([listModel.shareType longValue]==4)
     {
         //获取到数据以后

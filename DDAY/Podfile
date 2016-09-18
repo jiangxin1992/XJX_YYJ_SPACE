@@ -10,10 +10,11 @@ pod 'SDWebImage','~>3.7.2’
 pod 'MJRefresh','~>3.1.0’
 pod 'MJExtension','~>2.3.7'
 pod 'JSONModel','~>1.2.0’
-pod 'Masonry','~>0.6.1’
+pod 'Masonry','~>1.0.0’
 # 无IDFA版SDK（请根据需要选择其中一个）
 pod 'UMengAnalytics-NO-IDFA'
 pod 'Qiniu', '~> 7.0'
+
  # 主模块(必须)
  pod 'ShareSDK3'
  # Mob 公共库(必须) 如果同时集成SMSSDK iOS2.0:可看此注意事项：http://bbs.mob.com/thread-20051-1-1.html
@@ -23,6 +24,5 @@ pod 'Qiniu', '~> 7.0'
  pod 'ShareSDK3/ShareSDKPlatforms/QQ'
  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
  pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
-
  
 end
