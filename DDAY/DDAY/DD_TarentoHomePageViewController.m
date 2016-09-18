@@ -86,11 +86,11 @@
 //        make.width.height.mas_equalTo(44);
 //    }];
     
-    UIView *titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:140];
+    UIView *titleView=[regular returnNavView:NSLocalizedString(@"user_home_page", @"") withmaxwidth:IsPhone6_gt?180:130];
     [self.view addSubview:titleView];
     [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(140);
-        make.height.mas_equalTo(44);
+        make.width.mas_equalTo(IsPhone6_gt?180:130);
+        make.height.mas_equalTo(40);
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_top).with.offset(kStatusBarHeight);
     }];
@@ -253,9 +253,11 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+//    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
+//    return _height;
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
-    return _height;
+    return listModel.height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

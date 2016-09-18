@@ -36,66 +36,51 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    [self CreateTotalView];
-    [self CreatePayView];
     [self CreateRemarksView];
+    [self CreatePayView];
+    [self CreateTotalView];
 }
 /**
- * 创建总结视图(小计)
+ * 创建备注视图
  */
--(void)CreateTotalView
+-(void)CreateRemarksView
 {
-    totalView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:totalView];
-    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
+    remarksView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:remarksView];
+    //    remarksView.userInteractionEnabled=YES;
+    //    [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
+    [remarksView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
     }];
     
-    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-    [totalView addSubview:upline];
-    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
+//    [remarksView addSubview:upline];
+//    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(0);
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_equalTo(-kEdge);
+//        make.height.mas_equalTo(1);
+//    }];
+    
+    UILabel *titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"订单备注:" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [remarksView addSubview:titlelabel];
+    [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(1);
     }];
+    [titlelabel sizeToFit];
     
-    CGFloat _count=[_subTotal floatValue];
-    CGFloat _countPrice=_count+_freight;
-    
-    UIView *lastView=nil;
-    for (int i=0; i<2; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:2 WithTitle:i==0?[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice]:[[NSString alloc] initWithFormat:@"共%ld件商品（含邮费￥%.0lf）",[self getGoodsCount],_freight] WithFont:12.0f WithTextColor:nil WithSpacing:0];
-        [totalView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(lastView)
-            {
-                make.right.mas_equalTo(lastView.mas_left).with.offset(-20);
-            }else
-            {
-                make.right.mas_equalTo(-kEdge);
-            }
-            make.top.mas_equalTo(_jiange);
-        }];
-        [label sizeToFit];
-        
-        lastView=label;
-    }
-    [lastView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(totalView.mas_bottom).with.offset(-_jiange);
+    UILabel *weblabel=[UILabel getLabelWithAlignment:0 WithTitle:_orderInfo.memo WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [remarksView addSubview:weblabel];
+    weblabel.numberOfLines=0;
+    [weblabel sizeToFit];
+    weblabel.lineBreakMode=NSLineBreakByCharWrapping;
+    [weblabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(titlelabel.mas_bottom).with.offset(_jiange);
+        make.width.mas_equalTo(ScreenWidth-2*kEdge);
+        make.centerX.mas_equalTo(self);
+        make.bottom.mas_equalTo(remarksView.mas_bottom).with.offset(-_jiange);
     }];
-    
-//    NSArray *content=@[
-//                       @"总结"
-//                       ,[[NSString alloc] initWithFormat:@"小计(%ld)"
-//                         ,[self getGoodsCount]]
-//                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_count]
-//                       ,@"运费"
-//                       ,[[NSString alloc] initWithFormat:@"￥%.0lf",_freight]
-//                       ,@"总计"
-//                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_countPrice]
-//                       ];
-   
 }
 /**
  * 创建支付视图
@@ -105,7 +90,7 @@
     payView=[UIView getCustomViewWithColor:nil];
     [self addSubview:payView];
     [payView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(totalView.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(remarksView.mas_bottom).with.offset(0);
         make.left.right.mas_equalTo(0);
     }];
     
@@ -119,7 +104,7 @@
     }];
     UIView *lastView=nil;
     for (int i=0; i<2; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?@"支付方式":@"支付宝" WithFont:12.0f WithTextColor:i==0?_define_black_color:_define_light_gray_color1 WithSpacing:0];
+        UILabel *label=[UILabel getLabelWithAlignment:i==0?0:2 WithTitle:i==0?@"支付方式":@"支付宝" WithFont:13.0f WithTextColor:i==0?_define_black_color:_define_light_gray_color1 WithSpacing:0];
         [payView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
@@ -139,22 +124,20 @@
     }];
 }
 /**
- * 创建备注视图
+ * 创建总结视图(小计)
  */
--(void)CreateRemarksView
+-(void)CreateTotalView
 {
-    remarksView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:remarksView];
-//    remarksView.userInteractionEnabled=YES;
-//    [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
-    [remarksView mas_makeConstraints:^(MASConstraintMaker *make) {
+    totalView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:totalView];
+    [totalView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(payView.mas_bottom).with.offset(0);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(0);
     }];
     
     UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-    [remarksView addSubview:upline];
+    [totalView addSubview:upline];
     [upline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(kEdge);
@@ -162,29 +145,43 @@
         make.height.mas_equalTo(1);
     }];
     
-    UILabel *titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"订单备注:" WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [remarksView addSubview:titlelabel];
-    [titlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_jiange);
-        make.left.mas_equalTo(kEdge);
-    }];
-    [titlelabel sizeToFit];
-
-    UILabel *weblabel=[UILabel getLabelWithAlignment:0 WithTitle:_orderInfo.memo WithFont:14.0f WithTextColor:nil WithSpacing:0];
-    [remarksView addSubview:weblabel];
-    weblabel.numberOfLines=0;
-    [weblabel sizeToFit];
-    weblabel.lineBreakMode=NSLineBreakByCharWrapping;
-    [weblabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(titlelabel.mas_bottom).with.offset(_jiange);
-        make.width.mas_equalTo(ScreenWidth-2*kEdge);
-        make.centerX.mas_equalTo(self);
-        make.bottom.mas_equalTo(remarksView.mas_bottom).with.offset(-_jiange);
+    CGFloat _count=[_subTotal floatValue];
+    CGFloat _countPrice=_count+_freight;
+    
+    UIView *lastView=nil;
+    for (int i=0; i<2; i++) {
+        UILabel *label=[UILabel getLabelWithAlignment:2 WithTitle:i==0?[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice]:[[NSString alloc] initWithFormat:@"共%ld件商品（含邮费￥%.0lf）",[self getGoodsCount],_freight] WithFont:15.0f WithTextColor:nil WithSpacing:0];
+        [totalView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(lastView)
+            {
+                make.right.mas_equalTo(lastView.mas_left).with.offset(-20);
+            }else
+            {
+                make.right.mas_equalTo(-kEdge);
+            }
+            make.top.mas_equalTo(_jiange);
+        }];
+        [label sizeToFit];
+        
+        lastView=label;
+    }
+    [lastView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(totalView.mas_bottom).with.offset(-_jiange);
     }];
     
+    //    NSArray *content=@[
+    //                       @"总结"
+    //                       ,[[NSString alloc] initWithFormat:@"小计(%ld)"
+    //                         ,[self getGoodsCount]]
+    //                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_count]
+    //                       ,@"运费"
+    //                       ,[[NSString alloc] initWithFormat:@"￥%.0lf",_freight]
+    //                       ,@"总计"
+    //                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_countPrice]
+    //                       ];
     
 }
-
 #pragma mark - SomeAction
 /**
  * 获取结算页面的订单个数

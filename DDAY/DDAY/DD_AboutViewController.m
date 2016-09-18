@@ -71,7 +71,7 @@
     headIcon.contentMode=2;
     [regular setZeroBorder:headIcon];
     [headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(70);
+        make.top.mas_equalTo(45);
         make.width.mas_equalTo(80);
         make.centerX.mas_equalTo(container);
         make.height.mas_equalTo(0);

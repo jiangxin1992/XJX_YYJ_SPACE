@@ -75,7 +75,6 @@
         DD_ShowRoomModel *model=[_showroomArr objectAtIndex:i];
         UIView *backView=[UIView getCustomViewWithColor:nil];
         [backBtn addSubview:backView];
-        backView.backgroundColor=[UIColor redColor];
         backView.userInteractionEnabled=YES;
         backView.tag=100+i;
         [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];

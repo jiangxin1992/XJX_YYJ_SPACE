@@ -155,6 +155,7 @@
         }
         make.height.mas_equalTo(300);
     }];
+    
     if(IsPhone6_gt)
     {
         UIView *lastView=nil;

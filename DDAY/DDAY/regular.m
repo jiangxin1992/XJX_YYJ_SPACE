@@ -319,7 +319,6 @@ static regular *_t = nil;
     
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
     titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
-    titleLabel.textColor=[UIColor blackColor];
     titleLabel.textAlignment=1;
 //    titleLabel.text=title;
     titleLabel.text=title;

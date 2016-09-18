@@ -798,7 +798,7 @@ __bool(isExpanded);
     if(colorModel.pics.count)
     {
         DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
-        pic=[[NSString alloc] initWithFormat:@"%@-z800.jpg",img.pic];
+        pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
     }
     
     shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常 %@",_DetailModel.item.itemName,_DetailModel.appUrl] WithImg:pic WithUrl:_DetailModel.appUrl WithBlock:^(NSString *type) {

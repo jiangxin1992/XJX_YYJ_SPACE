@@ -552,7 +552,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.row];
-//    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
     return listModel.height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

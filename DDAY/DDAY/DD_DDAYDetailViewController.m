@@ -196,7 +196,7 @@
     NSString *pic=nil;
     if(_detailModel.seriesFrontPic.pic)
     {
-        pic=[[NSString alloc] initWithFormat:@"%@-z800.jpg",_detailModel.seriesFrontPic.pic];
+        pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",_detailModel.seriesFrontPic.pic];
     }
     shareView=[[DD_ShareView alloc] initWithTitle:_detailModel.name Content:[[NSString alloc] initWithFormat:@"%@发布会开始啦，马上来报名吧 %@",_detailModel.name,_detailModel.appUrl] WithImg:pic WithUrl:_detailModel.appUrl WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])

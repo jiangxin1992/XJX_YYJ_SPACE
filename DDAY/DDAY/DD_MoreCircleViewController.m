@@ -440,9 +440,11 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+//    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
+//    return _height;
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:NO];
-    return _height;
+    return listModel.height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -117,7 +117,7 @@
     [businessHoursLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(_head.mas_bottom).with.offset(12);
+        make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
     }];
     
     UIButton *contactPhoneBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"联系方式：%@",_showRoomModel.contactPhone] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
@@ -128,7 +128,7 @@
     [contactPhoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(businessHoursLabel.mas_bottom).with.offset(12);
+        make.top.mas_equalTo(businessHoursLabel.mas_bottom).with.offset(6);
         make.height.mas_equalTo(_height);
     }];
     
@@ -141,7 +141,7 @@
     [scrollview_pic mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(8);
         make.height.mas_equalTo(202);
     }];
     
