@@ -33,8 +33,18 @@
 }
 -(void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
+    NSMutableDictionary *_parameters=nil;
+    if(parameters)
+    {
+        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }else
+    {
+        _parameters=[[NSMutableDictionary alloc] init];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
@@ -46,9 +56,18 @@
 }
 -(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    
+    NSMutableDictionary *_parameters=nil;
+    if(parameters)
+    {
+        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }else
+    {
+        _parameters=[[NSMutableDictionary alloc] init];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager DELETE:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager DELETE:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
@@ -60,8 +79,18 @@
 }
 -(void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
+    NSMutableDictionary *_parameters=nil;
+    if(parameters)
+    {
+        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }else
+    {
+        _parameters=[[NSMutableDictionary alloc] init];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
@@ -73,9 +102,18 @@
 }
 -(void)PUT:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    
+    NSMutableDictionary *_parameters=nil;
+    if(parameters)
+    {
+        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }else
+    {
+        _parameters=[[NSMutableDictionary alloc] init];
+        [_parameters setObject:@"1.0" forKey:@"version"];
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager PUT:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager PUT:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);

@@ -13,9 +13,21 @@
 -(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block;
 
 @property (nonatomic,copy) void (^block)(NSString *type);
-__string(content);
-__string(img);
+/**
+ * 分享标题
+ */
 __string(title);
+/**
+ * 分享内容
+ */
+__string(content);
+/**
+ * 分享图片
+ */
+__string(img);
+/**
+ * 分享url
+ */
 __string(url);
-__float(height);
+
 @end

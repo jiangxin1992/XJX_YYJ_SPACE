@@ -502,12 +502,10 @@
         }
     }];
     [mengban_share addSubview:shareView];
-    
     CGFloat _height=[DD_ShareTool getHeight];
     shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
-    shareView.height=_height;
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-shareView.height, ScreenWidth, shareView.height);
+        shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
     }];
     
 }
@@ -515,7 +513,7 @@
 -(void)mengban_dismiss_share
 {
     [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, shareView.height);
+        shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, CGRectGetHeight(shareView.frame));
     } completion:^(BOOL finished) {
         [mengban_share removeFromSuperview];
         mengban_share=nil;
