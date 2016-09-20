@@ -16,12 +16,13 @@
 {
     CGFloat _Freight=dataArr.count*[_freight floatValue]*dataArr.count;
     CGFloat _subTotal=[[dataDict objectForKey:@"subTotal"] floatValue];
+    NSString *total=[DNS rangeOfString:@"http://121.40.217.115"].location !=NSNotFound?[[NSString alloc] initWithFormat:@"%.1lf",_subTotal+_Freight]:@"0.03";
     NSDictionary *_dict=@{@"address":[dataDict objectForKey:@"address"]
                           ,@"orders":[self getPayOrderWithDataArr:dataArr]
                           ,@"payApproach":@"1"
                           ,@"memo":remarks
                           ,@"freight":[[NSString alloc] initWithFormat:@"%.0lf",_Freight]
-                          ,@"total":[[NSString alloc] initWithFormat:@"%.1lf",_subTotal+_Freight]
+                          ,@"total":total
                           ,@"subTotal":[[NSString alloc] initWithFormat:@"%.1lf",_subTotal]
                           };
     

@@ -32,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
+//    UIImageView *view=[[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth-200)/2.0f, (ScreenHeight-200)/2.0f, 200, 200)];
+//    [self.view addSubview:view];
+//    view.image=[UIImage imageNamed:@"start_icon.jpg"];
     [self CreatePageView];
 }
 #pragma mark - SomePrepare

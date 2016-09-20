@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleInfoSuggestSimpleView : UIView
+@interface DD_CircleInfoSuggestSimpleView : UIView<UITextFieldDelegate>
 /**
  * 初始化
  */

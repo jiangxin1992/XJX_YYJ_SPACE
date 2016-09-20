@@ -57,8 +57,6 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-//    getShareListMap
-//    getShareListArr
     self.backgroundColor=_define_white_color;
     UILabel *labelTitle=[UILabel getLabelWithAlignment:2 WithTitle:@"分享到" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:labelTitle];
@@ -75,7 +73,6 @@
     for (int i=0; i<ListArr.count; i++) {
         DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:[ListArr objectAtIndex:i]] WithSelectedImageStr:nil];
         [self addSubview:btn];
-//        btn.backgroundColor=[UIColor redColor];
         btn.type=[ListArr objectAtIndex:i];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         if(i==ListArr.count-1)

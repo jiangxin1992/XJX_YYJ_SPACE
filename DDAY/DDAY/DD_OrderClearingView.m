@@ -47,20 +47,9 @@
 {
     remarksView=[UIView getCustomViewWithColor:nil];
     [self addSubview:remarksView];
-    //    remarksView.userInteractionEnabled=YES;
-    //    [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
     [remarksView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
     }];
-    
-//    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-//    [remarksView addSubview:upline];
-//    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(0);
-//        make.left.mas_equalTo(kEdge);
-//        make.right.mas_equalTo(-kEdge);
-//        make.height.mas_equalTo(1);
-//    }];
     
     UILabel *titlelabel=[UILabel getLabelWithAlignment:0 WithTitle:@"订单备注:" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [remarksView addSubview:titlelabel];

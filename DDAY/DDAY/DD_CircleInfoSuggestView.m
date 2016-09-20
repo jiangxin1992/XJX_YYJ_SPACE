@@ -102,7 +102,6 @@
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
-//            [regular dismissKeyborad];
             [_textView resignFirstResponder];
         }else if([type isEqualToString:@"save"])
         {
@@ -110,18 +109,22 @@
             {
                 _content=content;
                 _textView.text=_content;
-                _numlabel.text=[self getlength];
-//                [regular dismissKeyborad];
+                NSLog(@"textview=%@",_textView.text);
+                
+                if([_content isEqualToString:_holdStr])
+                {
+                    _block(@"save",@"");
+                    _numlabel.text=[[NSString alloc] initWithFormat:@"0/%ld",_limitNum];
+                }else
+                {
+                    _block(@"save",_content);
+                    _numlabel.text=[self getlength];
+                }
                 [_textView resignFirstResponder];
-                _block(@"save",_content);
             }else
             {
-//                _content=content;
-//                _textView.text=_content;
-//                _numlabel.text=[self getlength];
-//                [regular dismissKeyborad];
-                [_textView resignFirstResponder];
                 _block(@"num_limit",_content);
+                [_textView resignFirstResponder];
             }
         }else
         {
@@ -161,10 +164,11 @@
 }
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    textView.textColor=_define_black_color;
     if ([textView.text isEqualToString:_holdStr]) {
-        
-        textView.text = @"";
+        textView.textColor=_define_light_gray_color1;
+    }else
+    {
+        textView.textColor=_define_black_color;
     }
 }
 

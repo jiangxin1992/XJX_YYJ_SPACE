@@ -55,7 +55,7 @@
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(10);
         make.left.and.right.mas_equalTo(0);
-        make.height.mas_equalTo(IsPhone6_gt?260:220);
+        make.height.mas_equalTo(ScreenWidth-2*kEdge+48);
     }];
 }
 /**
@@ -64,7 +64,7 @@
 -(void)CreateRemarksView
 {
     
-    _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"写下你的搭配建议" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSString *content) {
+    _commentview=[[DD_CircleInfoSuggestView alloc] initWithPlaceHoldStr:@"说点什么吧！" WithBlockType:@"suggest_remarks" WithLimitNum:200 Block:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"num_limit"])
         {
             _block(type,0);

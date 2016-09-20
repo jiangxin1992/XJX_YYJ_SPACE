@@ -46,16 +46,6 @@
     }
 }
 
-
-+(BOOL)isInstallQQ
-{
-    return [ShareSDK isClientInstalled:SSDKPlatformSubTypeQQFriend];
-}
-
-+(BOOL)isInstallWeChat
-{
-    return [ShareSDK isClientInstalled:SSDKPlatformSubTypeWechatSession];
-}
 +(CGFloat)getHeight
 {
     NSArray *arr=[self getShareListArr];
@@ -67,4 +57,19 @@
         return 180;
     }
 }
+/**
+ * 当前设备是否安装QQ
+ */
++(BOOL)isInstallQQ
+{
+    return [ShareSDK isClientInstalled:SSDKPlatformSubTypeQQFriend];
+}
+/**
+ * 当前设备是否安装微信
+ */
++(BOOL)isInstallWeChat
+{
+    return [ShareSDK isClientInstalled:SSDKPlatformSubTypeWechatSession];
+}
+
 @end

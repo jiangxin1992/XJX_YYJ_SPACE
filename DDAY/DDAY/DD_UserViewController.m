@@ -85,7 +85,7 @@
     
     _userHeadImg=[UIImageView getCornerRadiusImg];
     [self.view addSubview:_userHeadImg];
-    _userHeadImg.contentMode=0;
+    _userHeadImg.contentMode=2;
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(84);
         make.center.mas_equalTo(_headBack);

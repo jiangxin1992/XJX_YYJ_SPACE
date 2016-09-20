@@ -163,7 +163,7 @@
 ////    return 454+listModel.suggestHeight;
 //    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
     DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
-    return listModel.height;
+    return listModel.height-72;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -195,7 +195,7 @@
         DD_CircleListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell=[[DD_CircleListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:YES];
             cell.cellBlock=cellBlock;
             
         }
@@ -212,7 +212,7 @@
         DD_CircleDailyListCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[DD_CircleDailyListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:NO];
+            cell=[[DD_CircleDailyListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsUserHomePage:YES];
             cell.cellBlock=cellBlock;
             
         }

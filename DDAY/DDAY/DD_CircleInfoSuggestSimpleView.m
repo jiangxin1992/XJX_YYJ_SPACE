@@ -91,9 +91,18 @@
         }else if([type isEqualToString:@"save"])
         {
             _content=content;
+            if([_content isEqualToString:_holdStr])
+            {
+                _textfield.textColor=_define_light_gray_color1;
+                 _block(@"save",@"");
+            }else
+            {
+                _textfield.textColor=_define_black_color;
+                 _block(@"save",_content);
+            }
             _textfield.text=_content;
             [_textfield resignFirstResponder];
-            _block(@"save",_content);
+           
         }else
         {
             _block(type,_content);

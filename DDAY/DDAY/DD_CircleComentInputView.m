@@ -93,9 +93,9 @@
             [self return_KeyBoard];
         }else if([type isEqualToString:@"send"])
         {
-            [_commentField resignFirstResponder];
             _commentField.text=_SignBoard.commentField.text;
             _block(type,content);
+            [_commentField resignFirstResponder];
         }
         
     }];
@@ -124,14 +124,6 @@
     
 }
 #pragma mark - SomeAction
-//在开始编辑的代理方法中进行如下操作
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    textView.textColor=_define_black_color;
-    if ([textView.text isEqualToString:@"发表评论"]) {
-        
-        textView.text = @"";
-    }
-}
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@"发表评论"]||[textView.text isEqualToString:@""]) {
@@ -186,7 +178,7 @@
  */
 -(void)return_KeyBoard
 {
-    [_commentField resignFirstResponder];
+    
     _commentField.text=_SignBoard.commentField.text;
     if([_SignBoard.commentField.text isEqualToString:@"发表评论"]||[_SignBoard.commentField.text isEqualToString:@""])
     {
@@ -199,7 +191,7 @@
     }
     
     [self reloadHeight:_commentField];
-    
+    [_commentField resignFirstResponder];
 }
 /**
  * 初始化输入框内容

@@ -84,24 +84,46 @@
 #pragma mark - OtherAction
 -(void)clickAction
 {
-    [_commentField resignFirstResponder];
+    if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
+        _commentField.text = _holdStr;
+        _commentField.textColor=_define_light_gray_color1;
+    }else
+    {
+        _commentField.textColor=_define_black_color;
+    }
     _block(@"resign",_commentField.text);
+    [_commentField resignFirstResponder];
 }
 /**
  * 取消
  */
 -(void)cancelAction
 {
-    [_commentField resignFirstResponder];
+    if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
+        _commentField.text = _holdStr;
+        _commentField.textColor=_define_light_gray_color1;
+    }else
+    {
+        _commentField.textColor=_define_black_color;
+    }
     _block(@"cancel",_commentField.text);
+    [_commentField resignFirstResponder];
 }
 /**
  * 发送
  */
 -(void)sendAction
 {
-    [_commentField resignFirstResponder];
+    if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
+        _commentField.text = _holdStr;
+        _commentField.textColor=_define_light_gray_color1;
+    }else
+    {
+        _commentField.textColor=_define_black_color;
+    }
+    NSLog(@"_commentField111=%@",_commentField.text);
     _block(@"save",_commentField.text);
+    [_commentField resignFirstResponder];
 }
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -113,16 +135,7 @@
     
     [self reloadHeight:textView];
 }
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:_holdStr]||[textView.text isEqualToString:@""]) {
-        textView.text = _holdStr;
-        textView.textColor=_define_light_gray_color1;
-    }else
-    {
-        textView.textColor=_define_black_color;
-    }
-}
+
 -(void)textViewDidChange:(UITextView *)textView{
     [self reloadHeight:textView];
 }
@@ -158,19 +171,6 @@
     }];
 }
 #pragma mark - UITextViewDelegate
--(BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    if (textView.text.length<1) {
-        
-        textView.text = _holdStr;
-        textView.textColor=_define_light_gray_color1;
-        
-    }else
-    {
-        textView.textColor=_define_black_color;
-    }
-    return YES;
-}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return

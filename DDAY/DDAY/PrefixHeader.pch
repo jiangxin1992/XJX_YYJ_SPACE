@@ -12,8 +12,8 @@
 //************** DNS **************
 //#define DNS @"http://10.200.6.36:8080/dday-web/service/" //本地
 //#define DNS @"http://121.40.57.9:8050/dday-web/service/" //测试服务器
-#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
-//#define DNS @"http://121.40.217.115/"//正式环境
+//#define DNS @"http://121.40.103.231:8051/dday-web/service/"//展示环境
+#define DNS @"http://121.40.217.115/v1.0/"//正式环境
 /*************** Color ***************/
 #define _define_backview_color [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 

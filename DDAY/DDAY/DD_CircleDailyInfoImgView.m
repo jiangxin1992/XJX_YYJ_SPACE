@@ -109,7 +109,7 @@
         [imgBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 0, 0, 16)];
         imgBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [imgBtn addTarget:self action:@selector(showAction:) forControlEvents:UIControlEventTouchUpInside];
-        
+        imgBtn.tag=100;
         [_downView addSubview:imgBtn];
         [imgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(16);
