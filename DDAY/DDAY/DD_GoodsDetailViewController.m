@@ -643,18 +643,7 @@ __bool(isExpanded);
                     
                 }];
                 [mengban addSubview:sizeView];
-                
-                _mengban_size_Height=0;
-                if(!_colorModel.sizeBriefPic||[_colorModel.sizeBriefPic isEqualToString:@""])
-                {
-                    _mengban_size_Height=IsPhone6_gt?(123+ktabbarHeight):(93+ktabbarHeight);
-                    NSLog(@"111");
-                }else
-                {
-                    CGFloat _imgHeight=([_colorModel.sizeBriefPicHeight floatValue]/[_colorModel.sizeBriefPicWidth floatValue])*(ScreenWidth-kEdge*2);
-                    _mengban_size_Height=IsPhone6_gt?(148+ktabbarHeight+_imgHeight):(108+ktabbarHeight+_imgHeight);
-                    NSLog(@"111");
-                }
+                _mengban_size_Height=[DD_ChooseSizeView getHeightWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel];
                 sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
                 [UIView animateWithDuration:0.5 animations:^{
                     sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
@@ -682,7 +671,7 @@ __bool(isExpanded);
     DD_ColorsModel *clolorModel=[_DetailModel getColorsModel];
     NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorCode":clolorModel.colorCode,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice],@"originalPrice":_DetailModel.item.originalPrice}];
     
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr mj_JSONString]};
     [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -739,7 +728,7 @@ __bool(isExpanded);
                             }
                         ];
     
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"items":[_itemArr JSONString]};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"items":[_itemArr mj_JSONString]};
     [[JX_AFNetworking alloc] GET:@"item/putToShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

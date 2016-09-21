@@ -11,7 +11,7 @@
 @implementation DD_GoodsDesignerModel
 +(DD_GoodsDesignerModel *)getGoodsDesignerModel:(NSDictionary *)dict
 {
-    DD_GoodsDesignerModel *_DesignerModel=[DD_GoodsDesignerModel objectWithKeyValues:dict];
+    DD_GoodsDesignerModel *_DesignerModel=[DD_GoodsDesignerModel mj_objectWithKeyValues:dict];
     return _DesignerModel;
 }
 @end

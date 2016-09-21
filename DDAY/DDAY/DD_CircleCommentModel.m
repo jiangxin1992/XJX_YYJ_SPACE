@@ -11,7 +11,7 @@
 @implementation DD_CircleCommentModel
 +(DD_CircleCommentModel *)getCircleCommentModel:(NSDictionary *)dict
 {
-    DD_CircleCommentModel *_tagModel=[DD_CircleCommentModel objectWithKeyValues:dict];
+    DD_CircleCommentModel *_tagModel=[DD_CircleCommentModel mj_objectWithKeyValues:dict];
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
 //    _tagModel.createTime=_tagModel.createTime/1000;
     [_tagModel IntegrationComment];

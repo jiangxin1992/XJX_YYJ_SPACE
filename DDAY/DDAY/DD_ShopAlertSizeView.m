@@ -37,6 +37,15 @@
     return self;
 }
 -(void)NULLAction{}
++(CGFloat )getHeightWithSizeAlertModel:(DD_SizeAlertModel *)SizeAlertModel WithItem:(DD_ShopItemModel *)ItemModel
+{
+    DD_ShopAlertSizeView *_sizeView = [[DD_ShopAlertSizeView alloc] initWithSizeAlertModel:SizeAlertModel WithItem:ItemModel WithBlock:^(NSString *type, NSString *sizeId, NSString *sizeName, NSInteger count) {
+        
+    }];
+    [_sizeView layoutIfNeeded];
+    CGRect frame =  _sizeView.confirmBtn.frame;
+    return frame.origin.y + frame.size.height;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -58,6 +67,10 @@
 {
     
     UIView *lastView=nil;
+    // 间距为10
+    int intes = 10;
+    int num = 0;
+    CGFloat _x_p=kEdge;
     for (int i=0; i<_SizeAlertModel.size.count; i++) {
         DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
         UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
@@ -88,18 +101,38 @@
         [_sizeBtnArr addObject:_btn];
         _btn.tag=100+i;
         [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
+        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+        {
+            num++;
+            _x_p=kEdge;
+        }
+        
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(lastView)
-            {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
-            }else
-            {
-                make.left.mas_equalTo(kEdge);
-            }
-            make.top.mas_equalTo(IsPhone6_gt?25:15);
-            make.width.mas_equalTo(28);
+            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
+            make.left.mas_equalTo(_x_p);
+            make.width.mas_equalTo(__width);
             make.height.mas_equalTo(28);
         }];
+        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+        {
+        }else
+        {
+            _x_p+=__width+intes;
+        }
+//        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(lastView)
+//            {
+//                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
+//            }else
+//            {
+//                make.left.mas_equalTo(kEdge);
+//            }
+//            make.top.mas_equalTo(IsPhone6_gt?25:15);
+//            make.width.mas_equalTo(28);
+//            make.height.mas_equalTo(28);
+//        }];
         lastView=_btn;
     }
     
@@ -120,11 +153,11 @@
         }];
     }
     
-    UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:confirmBtn];
-    confirmBtn.backgroundColor=_define_black_color;
-    [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
-    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self addSubview:_confirmBtn];
+    _confirmBtn.backgroundColor=_define_black_color;
+    [_confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
+    [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         if(sizeBriefImg)
         {
             make.top.mas_equalTo(sizeBriefImg.mas_bottom).with.offset(IsPhone6_gt?25:15);

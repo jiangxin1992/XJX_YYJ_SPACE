@@ -11,7 +11,7 @@
 @implementation DD_CricleChooseItemModel
 +(DD_CricleChooseItemModel *)getCricleChooseItemModel:(NSDictionary *)dict WithDetail:(NSArray *)chooseItem
 {
-    DD_CricleChooseItemModel *_ItemsModel=[DD_CricleChooseItemModel objectWithKeyValues:dict];
+    DD_CricleChooseItemModel *_ItemsModel=[DD_CricleChooseItemModel mj_objectWithKeyValues:dict];
     _ItemsModel.g_id=[dict objectForKey:@"id"];
     BOOL _is_exit=NO;
 //    遍历查询chooseItem中是否有_ItemsModel
@@ -28,7 +28,7 @@
 }
 +(DD_CricleChooseItemModel *)getCricleChooseItemModel:(NSDictionary *)dict
 {
-    DD_CricleChooseItemModel *_ItemsModel=[DD_CricleChooseItemModel objectWithKeyValues:dict];
+    DD_CricleChooseItemModel *_ItemsModel=[DD_CricleChooseItemModel mj_objectWithKeyValues:dict];
     _ItemsModel.g_id=[dict objectForKey:@"id"];
     _ItemsModel.isSelect=NO;
     return _ItemsModel;

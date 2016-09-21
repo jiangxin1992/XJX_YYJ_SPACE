@@ -13,7 +13,7 @@
 @implementation DD_ItemsModel
 +(DD_ItemsModel *)getItemsModel:(NSDictionary *)dict
 {
-    DD_ItemsModel *_ItemsModel=[DD_ItemsModel objectWithKeyValues:dict];
+    DD_ItemsModel *_ItemsModel=[DD_ItemsModel mj_objectWithKeyValues:dict];
     _ItemsModel.g_id=[dict objectForKey:@"id"];
     _ItemsModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     return _ItemsModel;

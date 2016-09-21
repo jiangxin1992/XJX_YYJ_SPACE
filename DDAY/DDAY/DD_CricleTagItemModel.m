@@ -12,7 +12,7 @@
 
 +(DD_CricleTagItemModel *)getCricleTagItemModel:(NSDictionary *)dict
 {
-    DD_CricleTagItemModel *_tagModel=[DD_CricleTagItemModel objectWithKeyValues:dict];
+    DD_CricleTagItemModel *_tagModel=[DD_CricleTagItemModel mj_objectWithKeyValues:dict];
 //    _tagModel.createTime=_tagModel.createTime/1000;//java时间戳转换
     _tagModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;//java时间戳转换
     _tagModel.is_select=NO;//初始化为未选中状态

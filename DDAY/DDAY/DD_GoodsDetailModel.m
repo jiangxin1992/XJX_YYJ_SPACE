@@ -14,7 +14,7 @@
 @implementation DD_GoodsDetailModel
 +(DD_GoodsDetailModel *)getGoodsDetailModel:(NSDictionary *)dict
 {
-    DD_GoodsDetailModel *_GoodsDetailModel=[DD_GoodsDetailModel objectWithKeyValues:dict];
+    DD_GoodsDetailModel *_GoodsDetailModel=[DD_GoodsDetailModel mj_objectWithKeyValues:dict];
     _GoodsDetailModel.item=[DD_GoodsItemModel getGoodsItemModel:[dict objectForKey:@"item"]];
     _GoodsDetailModel.designer=[DD_GoodsDesignerModel getGoodsDesignerModel:[dict objectForKey:@"designer"]];
     _GoodsDetailModel.similarItems=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"similarItems"]];

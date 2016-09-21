@@ -13,7 +13,7 @@
 @implementation DD_OrderModel
 +(DD_OrderModel *)getOrderModel:(NSDictionary *)dict
 {
-    DD_OrderModel *_OrderModel=[DD_OrderModel objectWithKeyValues:dict];
+    DD_OrderModel *_OrderModel=[DD_OrderModel mj_objectWithKeyValues:dict];
     _OrderModel.itemList=[DD_OrderItemModel getOrderItemModelArr:[dict objectForKey:@"itemList"]];
     _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
 //    _OrderModel.createTime=_OrderModel.createTime/1000;

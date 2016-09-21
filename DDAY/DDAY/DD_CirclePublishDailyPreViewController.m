@@ -222,7 +222,7 @@
                                                         ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
                                                         ,@"tags":_circleModel.tagMap
                                                         }
-                                                } JSONString],@"token":[DD_UserModel getToken]};
+                                                } mj_JSONString],@"token":[DD_UserModel getToken]};
     
     [[JX_AFNetworking alloc] GET:@"share/applyToDoyen.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -245,7 +245,7 @@
                                 @"shareInfo":[@{
                                                 @"shareAdvise":_circleModel.remark
                                                 ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
-                                                } JSONString]
+                                                } mj_JSONString]
                                 ,@"token":[DD_UserModel getToken]
                                 };
     [[JX_AFNetworking alloc] GET:@"share/saveDesignerShare.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {

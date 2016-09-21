@@ -20,7 +20,7 @@
 }
 +(DD_CityModel *)getCityModel:(NSDictionary *)dict
 {
-    DD_CityModel *_City=[DD_CityModel objectWithKeyValues:dict];
+    DD_CityModel *_City=[DD_CityModel mj_objectWithKeyValues:dict];
     _City.c_id=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] integerValue]];
     return _City;
 }

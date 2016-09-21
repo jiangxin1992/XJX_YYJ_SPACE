@@ -13,7 +13,7 @@
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
     for (NSDictionary *dict in arr) {
-        [itemsArr addObject:[DD_OtherItemModel objectWithKeyValues:dict]];
+        [itemsArr addObject:[DD_OtherItemModel mj_objectWithKeyValues:dict]];
     }
     return itemsArr;
 }

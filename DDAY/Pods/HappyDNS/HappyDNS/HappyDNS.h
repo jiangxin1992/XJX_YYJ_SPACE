@@ -13,7 +13,10 @@
 #import "QNDnspodFree.h"
 #import "QNDomain.h"
 #import "QNHijackingDetectWrapper.h"
+#import "QNIP.h"
 #import "QNNetworkInfo.h"
 #import "QNRecord.h"
 #import "QNResolver.h"
 #import "QNResolverDelegate.h"
+
+#import "QNGetAddrInfo.h"

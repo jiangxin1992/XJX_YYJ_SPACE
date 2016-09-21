@@ -14,7 +14,7 @@
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
     for (NSDictionary *dict in arr){
-        [itemsArr addObject:[DD_GoodsCategorySubModel objectWithKeyValues:dict]];
+        [itemsArr addObject:[DD_GoodsCategorySubModel mj_objectWithKeyValues:dict]];
     }
     return itemsArr;
 }

@@ -11,7 +11,7 @@
 @implementation DD_GoodsCategoryModel
 +(DD_GoodsCategoryModel *)getGoodsCategoryModel:(NSDictionary *)dict
 {
-    DD_GoodsCategoryModel *_GoodsItemModel=[DD_GoodsCategoryModel objectWithKeyValues:dict];
+    DD_GoodsCategoryModel *_GoodsItemModel=[DD_GoodsCategoryModel mj_objectWithKeyValues:dict];
     _GoodsItemModel.catTwoList=[DD_GoodsCategorySubModel getGoodsCategorySubModelArr:[dict objectForKey:@"catTwoList"]];
     return _GoodsItemModel;
 }

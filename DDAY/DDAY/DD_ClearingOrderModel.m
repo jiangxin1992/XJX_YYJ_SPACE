@@ -11,7 +11,7 @@
 @implementation DD_ClearingOrderModel
 +(DD_ClearingOrderModel *)getClearingOrderModel:(NSDictionary *)dict
 {
-    DD_ClearingOrderModel *_ClearingOrder=[DD_ClearingOrderModel objectWithKeyValues:dict];
+    DD_ClearingOrderModel *_ClearingOrder=[DD_ClearingOrderModel mj_objectWithKeyValues:dict];
     _ClearingOrder.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
     _ClearingOrder.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
 //    将商品价格设置成当前状态的价格

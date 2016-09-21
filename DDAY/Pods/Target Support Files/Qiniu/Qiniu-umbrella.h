@@ -13,7 +13,6 @@
 #import "QNVersion.h"
 #import "QN_GTM_Base64.h"
 #import "QNHttpDelegate.h"
-#import "QNHttpManager.h"
 #import "QNResponseInfo.h"
 #import "QNSessionManager.h"
 #import "QNUserAgent.h"

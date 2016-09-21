@@ -16,7 +16,7 @@
  */
 +(DD_UserMessageModel *)getUserMessageModel:(NSDictionary *)dict
 {
-    DD_UserMessageModel *MessageModel=[DD_UserMessageModel objectWithKeyValues:dict];
+    DD_UserMessageModel *MessageModel=[DD_UserMessageModel mj_objectWithKeyValues:dict];
     MessageModel.is_expand=NO;
     MessageModel.messages=[DD_UserMessageItemModel getUserMessageItemModelArr:[dict objectForKey:@"messages"]];
     return MessageModel;

@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JSONModel.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,7 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0BF8569A1D17D47E1A86EB020383E8D1</key>
+		<key>0E5E8034C6E420D9FB7537CD276A731F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,22 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2D5ACC658096300A4C656A151F18BF65</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3ECDE0FD868802123EAF7ABAF83ED1AD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>50443E810C18CF9BDD1A06FD0C9952FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8BABD63D2E5C1E6451F4F872E4131CC9</key>
+		<key>7C0126D717EB28DC6DB2EEA2E20B5172</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,27 +87,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5064B7E9C4764656FC78B9EB1EFB07B</key>
+		<key>CEAF0E83761F52E878B1F788C9E62752</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BADD61361F46E83E591D7C6F38D7865F</key>
+		<key>DCA96536FA512F26D0A2E33F3768569C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2126C95F2491DF3FFBB6629E37EE6A8</key>
+		<key>E1B4C963030730FA04EE2561A44558B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C91A46012F8822DFDBAC8BC32FCC9001</key>
+		<key>EB993BBCA83D9AA67B2828717821B7BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA442114C0F26414051E19FA0B7AA7F1</key>
+		<key>F95F53E92FF3974B1448FDB205F02B27</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC7BCBB02172379286C7ED297BCD055A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

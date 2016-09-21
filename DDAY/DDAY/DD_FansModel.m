@@ -14,7 +14,7 @@
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
     for (NSDictionary *dict in arr) {
-        [itemsArr addObject:[DD_FansModel objectWithKeyValues:dict]];
+        [itemsArr addObject:[DD_FansModel mj_objectWithKeyValues:dict]];
     }
     return itemsArr;
 }

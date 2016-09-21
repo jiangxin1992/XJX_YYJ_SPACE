@@ -11,7 +11,7 @@
 @implementation DD_ImageModel
 +(DD_ImageModel *)getImageModel:(NSDictionary *)dict
 {
-    DD_ImageModel *_ItemsModel=[DD_ImageModel objectWithKeyValues:dict];
+    DD_ImageModel *_ItemsModel=[DD_ImageModel mj_objectWithKeyValues:dict];
     return _ItemsModel;
 }
 +(NSArray *)getImageModelArr:(NSArray *)arr

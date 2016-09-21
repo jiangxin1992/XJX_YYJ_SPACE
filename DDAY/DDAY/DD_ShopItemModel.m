@@ -12,7 +12,7 @@
 +(DD_ShopItemModel *)getShopItemModel:(NSDictionary *)dict
 {
     
-    DD_ShopItemModel *_ShopItemModel=[DD_ShopItemModel objectWithKeyValues:dict];
+    DD_ShopItemModel *_ShopItemModel=[DD_ShopItemModel mj_objectWithKeyValues:dict];
 //    java时间戳转换
     ;
     _ShopItemModel.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;

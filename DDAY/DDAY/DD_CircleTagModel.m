@@ -11,7 +11,7 @@
 @implementation DD_CircleTagModel
 +(DD_CircleTagModel *)getCircleTagModel:(NSDictionary *)dict
 {
-    DD_CircleTagModel *_tagModel=[DD_CircleTagModel objectWithKeyValues:dict];
+    DD_CircleTagModel *_tagModel=[DD_CircleTagModel mj_objectWithKeyValues:dict];
     _tagModel.tags=[DD_CricleTagItemModel getCricleTagItemModelArr:[dict objectForKey:@"tags"]];
     _tagModel.CategoryName=[dict objectForKey:@"name"];
     return _tagModel;

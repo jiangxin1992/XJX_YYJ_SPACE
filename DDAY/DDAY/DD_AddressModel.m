@@ -11,7 +11,7 @@
 @implementation DD_AddressModel
 +(DD_AddressModel *)getAddressModel:(NSDictionary *)dict
 {
-    DD_AddressModel *_Address=[DD_AddressModel objectWithKeyValues:dict];
+    DD_AddressModel *_Address=[DD_AddressModel mj_objectWithKeyValues:dict];
     return _Address;
 }
 +(NSArray *)getAddressModelArray:(NSArray *)arrdata

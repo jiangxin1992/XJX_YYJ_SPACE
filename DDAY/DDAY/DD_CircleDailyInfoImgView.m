@@ -120,6 +120,7 @@
         
         UIButton *deleteBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Delete" WithSelectedImageStr:nil];
         [imgBtn addSubview:deleteBtn];
+        deleteBtn.tag=150;
         [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
         [deleteBtn setEnlargeEdge:10];
         [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {

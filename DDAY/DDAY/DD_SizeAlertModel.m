@@ -16,7 +16,7 @@
  */
 +(DD_SizeAlertModel *)getSizeAlertModel:(NSDictionary *)dict
 {
-    DD_SizeAlertModel *_SizeAlertModel=[DD_SizeAlertModel objectWithKeyValues:dict];
+    DD_SizeAlertModel *_SizeAlertModel=[DD_SizeAlertModel mj_objectWithKeyValues:dict];
     _SizeAlertModel.size=[DD_SizeModel getSizeModelArr:[dict objectForKey:@"size"]];//获取item model数组
     return _SizeAlertModel;
 }

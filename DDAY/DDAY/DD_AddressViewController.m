@@ -188,12 +188,15 @@
     DD_AddNewAddressViewController *AddNewAddress=[[DD_AddNewAddressViewController alloc] initWithModel:addressModel isDefault:addressModel.isDefault WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
         if([type isEqualToString:@"modify"])
         {
-            //            修改地址
-            [self updateDataArr:model];
-            _defaultID=defaultID;
-            [_tableview reloadData];
             
-            _touchBlock(@"alert_address",model);
+                //            修改地址
+                [self updateDataArr:model];
+                _defaultID=defaultID;
+                [_tableview reloadData];
+            if([_type isEqualToString:@"address"])
+            {
+                _touchBlock(@"alert_address",model);
+            }
         }
     }];
     AddNewAddress.title=@"修改地址";
@@ -209,10 +212,14 @@
     DD_AddNewAddressViewController *_newAddress=[[DD_AddNewAddressViewController alloc] initWithModel:nil isDefault:_isDefault WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
         if([type isEqualToString:@"add"])
         {
-            //            新增地址
-            [_dataArr addObject:model];
-            _defaultID=defaultID;
-            [_tableview reloadData];
+                //            新增地址
+                [_dataArr addObject:model];
+                _defaultID=defaultID;
+                [_tableview reloadData];
+            if([_type isEqualToString:@"address"])
+            {
+                _touchBlock(@"add_address",model);
+            }
         }
     }];
     _newAddress.title=@"添加新地址";
@@ -282,7 +289,7 @@
 {
     if([_type isEqualToString:@"address"])
     {
-        _touchBlock(@"add_address",[_dataArr objectAtIndex:indexPath.section]);
+        _touchBlock(@"choose_address",[_dataArr objectAtIndex:indexPath.section]);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

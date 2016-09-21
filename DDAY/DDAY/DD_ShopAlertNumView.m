@@ -33,6 +33,15 @@
     return self;
 }
 -(void)NULLAction{}
++(CGFloat )getHeightWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel
+{
+    DD_ShopAlertNumView *_sizeView = [[DD_ShopAlertNumView alloc] initWithSizeArr:sizeArr WithItem:ItemModel WithBlock:^(NSString *type, NSInteger count) {
+        
+    }];
+    [_sizeView layoutIfNeeded];
+    CGRect frame =  _sizeView.confirmBtn.frame;
+    return frame.origin.y + frame.size.height;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -78,11 +87,11 @@
     }];
     
     
-    UIButton * confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:confirmBtn];
-    confirmBtn.backgroundColor=_define_black_color;
-    [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
-    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _confirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确   定" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self addSubview:_confirmBtn];
+    _confirmBtn.backgroundColor=_define_black_color;
+    [_confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
+    [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(subtract.mas_bottom).with.offset(IsPhone6_gt?25:15);
 //        make.right.mas_equalTo(-kEdge);
 //        make.left.mas_equalTo(kEdge);

@@ -16,7 +16,7 @@
  */
 +(DD_DDAYModel *)getDDAYModel:(NSDictionary *)dict
 {
-    DD_DDAYModel *_DDAYModel=[DD_DDAYModel objectWithKeyValues:dict];
+    DD_DDAYModel *_DDAYModel=[DD_DDAYModel mj_objectWithKeyValues:dict];
     _DDAYModel.s_id=[dict objectForKey:@"id"];
     
     _DDAYModel.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;

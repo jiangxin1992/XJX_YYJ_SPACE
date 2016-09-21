@@ -187,7 +187,7 @@
         {
             //            添加收货地址
             [self.navigationController pushViewController:[[DD_AddressViewController alloc]initWithType:@"address" WithBlock:^(NSString *type, DD_AddressModel *addressModel) {
-                if([type isEqualToString:@"add_address"])
+                if([type isEqualToString:@"choose_address"])
                 {
                     _Clearingmodel.address=addressModel;
                     if(addressModel)
@@ -225,6 +225,35 @@
                         headView.frame = frame;
                         _tableview.tableHeaderView = headView;
                     }
+                }else if([type isEqualToString:@"add_address"])
+                {
+                    if(!_Clearingmodel.address)
+                    {
+                        _Clearingmodel.address=addressModel;
+                        if(addressModel)
+                        {
+                            [_dataDict setObject:@{
+                                                   @"deliverName":addressModel.deliverName
+                                                   ,@"deliverPhone":addressModel.deliverPhone
+                                                   ,@"detailAddress":addressModel.detailAddress
+                                                   ,@"addressId":addressModel.udaId
+                                                   ,@"countryName":addressModel.countryName
+                                                   ,@"provinceName":addressModel.provinceName
+                                                   ,@"cityName":addressModel.cityName
+                                                   } forKey:@"address"];
+                        }else
+                        {
+                            [_dataDict removeObjectForKey:@"address"];
+                        }
+                        _AddressBtn.AddressModel=addressModel;
+                        [_AddressBtn SetState];
+                        CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+                        CGRect frame = headView.frame;
+                        frame.size.height = height;
+                        headView.frame = frame;
+                        _tableview.tableHeaderView = headView;
+                    }
+                    
                 }
                 
             }] animated:YES];
@@ -298,7 +327,7 @@
     if([_dataDict objectForKey:@"address"])
     {
         //    结算验证  不反悔参数
-        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[[_Clearingmodel getItemsArr] JSONString]};
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[[_Clearingmodel getItemsArr] mj_JSONString]};
         [[JX_AFNetworking alloc] GET:@"item/buyCheckWithOutReturnData.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -326,7 +355,7 @@
     {
         NSDictionary *_parameters=@{
                                     @"token":[DD_UserModel getToken]
-                                    ,@"orderInfo":[[DD_ClearingTool getPayOrderInfoWithDataDict:_dataDict WithDataArr:_dataArr WithRemarks:remarksStr WithFreight:_Clearingmodel.freight] JSONString]
+                                    ,@"orderInfo":[[DD_ClearingTool getPayOrderInfoWithDataDict:_dataDict WithDataArr:_dataArr WithRemarks:remarksStr WithFreight:_Clearingmodel.freight] mj_JSONString]
                                     };
         [[JX_AFNetworking alloc] GET:@"order/createOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)

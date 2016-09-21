@@ -14,7 +14,7 @@
 +(DD_ShopSeriesModel *)getShopSeriesModel:(NSDictionary *)dict
 {
     
-    DD_ShopSeriesModel *_ShopSeries=[DD_ShopSeriesModel objectWithKeyValues:dict];
+    DD_ShopSeriesModel *_ShopSeries=[DD_ShopSeriesModel mj_objectWithKeyValues:dict];
     _ShopSeries.items=[DD_ShopItemModel getShopItemModelArr:[dict objectForKey:@"items"]];//获取item model数组
     _ShopSeries.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;
     _ShopSeries.signEndTime=[[dict objectForKey:@"signEndTime"] longLongValue]/1000;

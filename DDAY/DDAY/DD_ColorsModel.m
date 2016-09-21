@@ -14,7 +14,7 @@
 @implementation DD_ColorsModel
 +(DD_ColorsModel *)getColorsModel:(NSDictionary *)dict
 {
-    DD_ColorsModel *_ColorsModel=[DD_ColorsModel objectWithKeyValues:dict];
+    DD_ColorsModel *_ColorsModel=[DD_ColorsModel mj_objectWithKeyValues:dict];
     _ColorsModel.size=[DD_SizeModel getSizeModelArr:[dict objectForKey:@"size"]];
     _ColorsModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     return _ColorsModel;

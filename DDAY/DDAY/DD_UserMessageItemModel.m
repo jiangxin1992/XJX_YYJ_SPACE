@@ -15,7 +15,7 @@
 +(DD_UserMessageItemModel *)getUserMessageItemModel:(NSDictionary *)dict
 {
     {
-        DD_UserMessageItemModel *MessageModel=[DD_UserMessageItemModel objectWithKeyValues:dict];
+        DD_UserMessageItemModel *MessageModel=[DD_UserMessageItemModel mj_objectWithKeyValues:dict];
         MessageModel.messageID=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] longValue]];
         MessageModel.createTime=[[dict objectForKey:@"createTime"] longValue]/1000;
         MessageModel.fromUser=[DD_UserModel getUserModel:[dict objectForKey:@"fromUser"]];

@@ -13,7 +13,7 @@
  * 获取解析model
  */
 +(DD_DDayDetailModel *)getDDayDetailModel:(NSDictionary *)dict{
-    DD_DDayDetailModel *_DDAYModel=[DD_DDayDetailModel objectWithKeyValues:dict];
+    DD_DDayDetailModel *_DDAYModel=[DD_DDayDetailModel mj_objectWithKeyValues:dict];
     _DDAYModel.s_id=[dict objectForKey:@"id"];
     
     _DDAYModel.signStartTime=[[dict objectForKey:@"signStartTime"] longLongValue]/1000;;

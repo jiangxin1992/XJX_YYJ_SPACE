@@ -2,18 +2,17 @@ source ‘https://github.com/CocoaPods/Specs.git’
 platform :ios, ‘7.0’
 use_frameworks!
 target “YCO SPACE” do
-pod 'AFNetworking', '~> 2.5.4'
+pod 'AFNetworking', '~> 3.1.0'
 pod 'YYKit'
 pod 'TTTAttributedLabel'
 pod 'ReactiveCocoa','~>2.5’
-pod 'SDWebImage','~>3.7.2’
+pod 'SDWebImage','~>3.8.2’
 pod 'MJRefresh','~>3.1.0’
-pod 'MJExtension','~>2.3.7'
-pod 'JSONModel','~>1.2.0’
-pod 'Masonry','~>1.0.0’
+pod 'MJExtension','~>3.0.13'
+pod 'Masonry','~>1.0.2’
 # 无IDFA版SDK（请根据需要选择其中一个）
 pod 'UMengAnalytics-NO-IDFA'
-pod 'Qiniu', '~> 7.0'
+pod 'Qiniu', '~> 7.1’
 
  # 主模块(必须)
  pod 'ShareSDK3'

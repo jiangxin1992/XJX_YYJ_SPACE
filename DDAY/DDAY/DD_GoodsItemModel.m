@@ -54,7 +54,7 @@
 
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict
 {
-    DD_GoodsItemModel *_GoodsItemModel=[DD_GoodsItemModel objectWithKeyValues:dict];
+    DD_GoodsItemModel *_GoodsItemModel=[DD_GoodsItemModel mj_objectWithKeyValues:dict];
     
     _GoodsItemModel.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
     _GoodsItemModel.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;

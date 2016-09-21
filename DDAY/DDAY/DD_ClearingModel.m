@@ -15,7 +15,7 @@
 @implementation DD_ClearingModel
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict
 {
-    DD_ClearingModel *_Clearing=[DD_ClearingModel objectWithKeyValues:dict];
+    DD_ClearingModel *_Clearing=[DD_ClearingModel mj_objectWithKeyValues:dict];
     _Clearing.address=[DD_AddressModel getAddressModel:[dict objectForKey:@"address"]];
     
     _Clearing.orders=[DD_ClearingOrderModel getClearingOrderModelArray:[dict objectForKey:@"orders"]];

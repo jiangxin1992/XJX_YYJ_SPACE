@@ -202,10 +202,14 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         
     } else {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        
         UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
                                                                        UIRemoteNotificationTypeSound |
                                                                        UIRemoteNotificationTypeBadge);
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+        #pragma clang diagnostic pop
     }
 #else
     UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |

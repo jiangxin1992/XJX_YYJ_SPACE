@@ -13,7 +13,7 @@
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     DD_UserModel *_User=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
-    NSString *jsonstr_user=[_User JSONString];
+    NSString *jsonstr_user=[_User mj_JSONString];
     [_default setObject:jsonstr_user forKey:@"user"];
     [_default setObject:[data objectForKey:@"thirdPartLogin"] forKey:@"thirdPartLogin"];
 }
@@ -22,7 +22,7 @@
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     DD_UserModel *_User=[self getLocalUserInfo];
     _User.userType=[[NSString alloc] initWithFormat:@"%ld",userType];
-    NSString *jsonstr_user=[_User JSONString];
+    NSString *jsonstr_user=[_User mj_JSONString];
     [_default setObject:jsonstr_user forKey:@"user"];
 }
 +(void)setTradeOrderCode:(NSString *)tradeOrderCode
@@ -49,11 +49,11 @@
 +(DD_UserModel *)getLocalUserInfo
 {
    NSString *jsonstr_user=[[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
-    return [DD_UserModel objectWithKeyValues:jsonstr_user];
+    return [DD_UserModel mj_objectWithKeyValues:jsonstr_user];
 }
 +(DD_UserModel *)getUserModel:(NSDictionary *)dict
 {
-    DD_UserModel *_User=[DD_UserModel objectWithKeyValues:dict];
+    DD_UserModel *_User=[DD_UserModel mj_objectWithKeyValues:dict];
     _User.u_id=[dict objectForKey:@"id"];
     return _User;
 }

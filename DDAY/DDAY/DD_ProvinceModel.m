@@ -14,7 +14,7 @@
 +(DD_ProvinceModel *)getProvinceModel:(NSDictionary *)dict
 {
 
-    DD_ProvinceModel *_Province=[DD_ProvinceModel objectWithKeyValues:dict];
+    DD_ProvinceModel *_Province=[DD_ProvinceModel mj_objectWithKeyValues:dict];
     _Province.p_id=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] integerValue]];
     _Province.City=[DD_CityModel getCityModelArray:[dict objectForKey:@"City"]];
     return _Province;

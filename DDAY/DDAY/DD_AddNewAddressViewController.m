@@ -86,7 +86,7 @@
                 make.top.mas_equalTo(lastview.mas_bottom);
             }else
             {
-                make.top.mas_equalTo(kNavHeight);
+                make.top.mas_equalTo(kNavHeight+20);
             }
             make.left.right.mas_equalTo(0);
             make.height.mas_equalTo(41);
@@ -132,7 +132,7 @@
             textFiled.returnKeyType=UIReturnKeyDone;
             if(i==1||i==2){
                 textFiled.keyboardType=UIKeyboardTypeNumberPad;
-            }else
+            }
             textFiled.font=[regular getFont:14.0f];
             textFiled.textColor=_define_black_color;
             textFiled.textAlignment=0;

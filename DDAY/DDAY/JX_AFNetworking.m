@@ -16,11 +16,9 @@
 {
     return [[NSString alloc] initWithFormat:@"%@%@",DNS,url];
 }
--(void)NETWorkingData:(AFHTTPRequestOperation *)operation WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
+-(void)NETWorkingData:(id )responseObject WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
 {
-    NSString *html = operation.responseString;
-    NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *dict=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *dict=responseObject;
     NSDictionary *_data=[dict objectForKey:@"data"];
     if([[dict objectForKey:@"status"] integerValue]==100)
     {
@@ -33,94 +31,96 @@
 }
 -(void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    NSMutableDictionary *_parameters=nil;
-    if(parameters)
-    {
-        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }else
-    {
-        _parameters=[[NSMutableDictionary alloc] init];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager GET:[self getUrl:url] parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
+
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//            successBlock(success,data,successAlert);
+//        }];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failureBlock(error,[regular alert_NONETWORKING]);
+//    }];
 }
 -(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    NSMutableDictionary *_parameters=nil;
-    if(parameters)
-    {
-        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }else
-    {
-        _parameters=[[NSMutableDictionary alloc] init];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager DELETE:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager DELETE:[self getUrl:url] parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager DELETE:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//            successBlock(success,data,successAlert);
+//        }];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failureBlock(error,[regular alert_NONETWORKING]);
+//    }];
 }
 -(void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    NSMutableDictionary *_parameters=nil;
-    if(parameters)
-    {
-        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }else
-    {
-        _parameters=[[NSMutableDictionary alloc] init];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:[self getUrl:url] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager POST:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//            successBlock(success,data,successAlert);
+//        }];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failureBlock(error,[regular alert_NONETWORKING]);
+//    }];
 }
 -(void)PUT:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
-    NSMutableDictionary *_parameters=nil;
-    if(parameters)
-    {
-        _parameters=[[NSMutableDictionary alloc] initWithDictionary:parameters];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }else
-    {
-        _parameters=[[NSMutableDictionary alloc] init];
-        [_parameters setObject:@"1.0" forKey:@"version"];
-    }
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager PUT:[self getUrl:url] parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager PUT:[self getUrl:url] parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
+
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager PUT:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//            successBlock(success,data,successAlert);
+//        }];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failureBlock(error,[regular alert_NONETWORKING]);
+//    }];
 }
 @end

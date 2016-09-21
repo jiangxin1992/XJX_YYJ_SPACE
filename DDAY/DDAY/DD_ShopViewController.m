@@ -46,7 +46,7 @@
 
     
     CGFloat _mengban_size_Height;
-    
+    CGFloat _mengban_num_Height;
 }
 
 - (void)viewDidLoad {
@@ -185,7 +185,7 @@
                         if([self haveSameItemWithIndexPath:indexPath WithSizeID:sizeId WithColorID:itemModel.colorId])
                         {
                             NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":sizeName,@"colorCode":itemModel.colorCode}];
-                            [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                            [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                                 if(success)
                                 {
                                     [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
@@ -226,7 +226,7 @@
                                                      }
                                                  ];
                             NSDictionary *_parameters=@{
-                                                        @"items":[_itemsArr JSONString]
+                                                        @"items":[_itemsArr mj_JSONString]
                                                         ,@"token":[DD_UserModel getToken]
                                                         };
                             [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
@@ -262,15 +262,8 @@
         }];
         [mengban_size addSubview:_alertSizeView];
     
-        _mengban_size_Height=0;
-        if(!sizeAlertModel.sizeBriefPic||[sizeAlertModel.sizeBriefPic isEqualToString:@""])
-        {
-            _mengban_size_Height=IsPhone6_gt?(78+ktabbarHeight):(58+ktabbarHeight);
-        }else
-        {
-            CGFloat _imgHeight=(((CGFloat)sizeAlertModel.sizeBriefPicHeight)/((CGFloat)sizeAlertModel.sizeBriefPicWidth))*(ScreenWidth-kEdge*2);
-            _mengban_size_Height=IsPhone6_gt?(103+ktabbarHeight+_imgHeight):(73+ktabbarHeight+_imgHeight);
-        }
+        _mengban_size_Height=[DD_ShopAlertSizeView getHeightWithSizeAlertModel:sizeAlertModel WithItem:itemModel];
+        
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
         [UIView animateWithDuration:0.5 animations:^{
             _alertSizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
@@ -307,7 +300,7 @@
                     if([self haveSameItemWithIndexPath:indexPath WithSizeID:itemModel.sizeId WithColorID:itemModel.colorId])
                     {
                         NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId,@"colorCode":itemModel.colorCode}];
-                        [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                        [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                             if(success)
                             {
                                 [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
@@ -348,7 +341,7 @@
                                                  }
                                              ];
                         NSDictionary *_parameters=@{
-                                                    @"items":[_itemsArr JSONString]
+                                                    @"items":[_itemsArr mj_JSONString]
                                                     ,@"token":[DD_UserModel getToken]
                                                     };
                         [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
@@ -373,10 +366,10 @@
             
         }];
         [mengban_num addSubview:_alertNumView];
-        
-        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
+        _mengban_num_Height=[DD_ShopAlertNumView getHeightWithSizeArr:sizeAlertModel.size WithItem:itemModel];
+        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_num_Height);
         [UIView animateWithDuration:0.3 animations:^{
-            _alertNumView.frame=CGRectMake(0, ScreenHeight-(IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight)), ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
+            _alertNumView.frame=CGRectMake(0, ScreenHeight-_mengban_num_Height, ScreenWidth, _mengban_num_Height);
         }];
     }
    
@@ -528,7 +521,7 @@
 -(void)mengban_num_dismiss
 {
     [UIView animateWithDuration:0.3 animations:^{
-        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, IsPhone6_gt?(70+ktabbarHeight):(50+ktabbarHeight));
+        _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_num_Height);
     } completion:^(BOOL finished) {
         [mengban_num removeFromSuperview];
         mengban_num=nil;
@@ -545,7 +538,7 @@
     NSArray *_itemArr=[DD_ShopTool getConfirmArrWithModel:_shopModel];
     if(_itemArr.count)
     {
-        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr JSONString]};
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"buyItems":[_itemArr mj_JSONString]};
         [[JX_AFNetworking alloc] GET:@"item/buyCheck.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -589,7 +582,7 @@
 {
     DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
     NSArray *_parameters=@[@{@"itemId":itemModel.itemId,@"colorId":itemModel.colorId,@"sizeId":itemModel.sizeId,@"colorCode":itemModel.colorCode}];
-    [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"item/delFromShoppingCart.do" parameters:@{@"token":[DD_UserModel getToken],@"items":[_parameters mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];

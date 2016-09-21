@@ -189,7 +189,7 @@
                 if(!_userModel.readStatus)
                 {
                     
-                    [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type JSONString],@"unReadIds":[_userModel.unReadIds JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type mj_JSONString],@"unReadIds":[_userModel.unReadIds mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                         if(success)
                         {
                             _userModel.readStatus=YES;

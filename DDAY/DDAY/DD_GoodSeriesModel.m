@@ -11,7 +11,7 @@
 @implementation DD_GoodSeriesModel
 +(DD_GoodSeriesModel *)getGoodSeriesModel:(NSDictionary *)dict
 {
-    DD_GoodSeriesModel *_GoodSeriesModel=[DD_GoodSeriesModel objectWithKeyValues:dict];
+    DD_GoodSeriesModel *_GoodSeriesModel=[DD_GoodSeriesModel mj_objectWithKeyValues:dict];
     _GoodSeriesModel.s_id=[dict objectForKey:@"id"];
     return _GoodSeriesModel;
 }

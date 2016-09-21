@@ -12,12 +12,20 @@
 #include <resolv.h>
 #include <string.h>
 
+#include <netdb.h>
+#include <netinet/in.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <unistd.h>
+
 #import "QNDomain.h"
 #import "QNRecord.h"
+#import "QNResolvUtil.h"
 #import "QNResolver.h"
 
 @interface QNTxtResolver ()
-@property (nonatomic) NSString *address;
+@property (nonatomic, readonly, strong) NSString *address;
+@property (nonatomic, readonly) NSUInteger timeout;
 @end
 
 static NSArray *query_ip(res_state res, const char *host) {
@@ -67,45 +75,15 @@ static NSArray *query_ip(res_state res, const char *host) {
     return ret;
 }
 
-static int setup_dns_server_v4(res_state res, const char *dns_server) {
-    struct in_addr addr;
-    int r = inet_pton(AF_INET, dns_server, &addr);
-    if (r == 0) {
-        return -1;
-    }
-
-    res->nsaddr_list[0].sin_addr = addr;
-    res->nsaddr_list[0].sin_family = AF_INET;
-    res->nsaddr_list[0].sin_port = htons(NS_DEFAULTPORT);
-    res->nscount = 1;
-    return 0;
-}
-
-// does not support ipv6 nameserver now
-static int setup_dns_server_v6(res_state res, const char *dns_server) {
-    return -1;
-}
-
-static int setup_dns_server(res_state res, const char *dns_server) {
-    int r = res_ninit(res);
-    if (r != 0) {
-        return r;
-    }
-    if (dns_server == NULL) {
-        return 0;
-    }
-
-    if (strchr(dns_server, ':') == NULL) {
-        return setup_dns_server_v4(res, dns_server);
-    }
-
-    return setup_dns_server_v6(res, dns_server);
-}
-
 @implementation QNTxtResolver
-- (instancetype)initWithAddres:(NSString *)address {
+- (instancetype)initWithAddress:(NSString *)address {
+    return [self initWithAddress:address timeout:QN_DNS_DEFAULT_TIMEOUT];
+}
+
+- (instancetype)initWithAddress:(NSString *)address timeout:(NSUInteger)time {
     if (self = [super init]) {
         _address = address;
+        _timeout = time;
     }
     return self;
 }
@@ -113,17 +91,19 @@ static int setup_dns_server(res_state res, const char *dns_server) {
 - (NSArray *)query:(QNDomain *)domain networkInfo:(QNNetworkInfo *)netInfo error:(NSError *__autoreleasing *)error {
     struct __res_state res;
 
-    int r;
-    if (_address == nil) {
-        r = setup_dns_server(&res, NULL);
-    } else {
-        r = setup_dns_server(&res, [_address cStringUsingEncoding:NSASCIIStringEncoding]);
-    }
+    int r = setup_dns_server(&res, _address, _timeout);
     if (r != 0) {
+        if (error != nil) {
+            *error = [[NSError alloc] initWithDomain:@"qiniu.dns" code:kQNDomainSeverError userInfo:nil];
+        }
         return nil;
     }
 
-    return query_ip(&res, [domain.domain cStringUsingEncoding:NSUTF8StringEncoding]);
+    NSArray *ret = query_ip(&res, [domain.domain cStringUsingEncoding:NSUTF8StringEncoding]);
+    if (ret == nil && error != nil) {
+        *error = [[NSError alloc] initWithDomain:@"qiniu.dns" code:NSURLErrorDNSLookupFailed userInfo:nil];
+    }
+    return ret;
 }
 
 @end

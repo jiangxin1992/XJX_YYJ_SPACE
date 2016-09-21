@@ -157,7 +157,6 @@
                 
                 [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.mas_equalTo(btn.superview).offset(40+35*num);
-
                     make.left.mas_equalTo(_x_p);
                     make.width.mas_equalTo(__width);
                     make.height.mas_equalTo(28);

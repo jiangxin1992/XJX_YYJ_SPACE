@@ -13,7 +13,7 @@
 @implementation DD_ShopModel
 +(DD_ShopModel *)getShopModel:(NSDictionary *)dict
 {
-     DD_ShopModel *_ShopModel=[DD_ShopModel objectWithKeyValues:dict];
+     DD_ShopModel *_ShopModel=[DD_ShopModel mj_objectWithKeyValues:dict];
     _ShopModel.seriesNormal=[DD_ShopSeriesModel getShopSeriesModelArr:[dict objectForKey:@"seriesNormal"]];
     _ShopModel.seriesInvalid=[DD_ShopSeriesModel getShopSeriesModelArr:[dict objectForKey:@"seriesInvalid"]];
     return _ShopModel;

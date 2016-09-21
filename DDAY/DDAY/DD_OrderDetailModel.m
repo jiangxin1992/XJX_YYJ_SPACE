@@ -11,7 +11,7 @@
 @implementation DD_OrderDetailModel
 +(DD_OrderDetailModel *)getOrderDetailModel:(NSDictionary *)dict
 {
-    DD_OrderDetailModel *_OrderModel=[DD_OrderDetailModel objectWithKeyValues:dict];
+    DD_OrderDetailModel *_OrderModel=[DD_OrderDetailModel mj_objectWithKeyValues:dict];
     _OrderModel.address=[DD_AddressModel getAddressModel:[dict objectForKey:@"address"]];
     _OrderModel.orderInfo=[DD_OrderDetailInfoModel getOrderDetailInfoModel:[dict objectForKey:@"orderInfo"]];
     return _OrderModel;

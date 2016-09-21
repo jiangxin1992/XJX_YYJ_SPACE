@@ -338,7 +338,7 @@
 
 - (void)openGaoDeMap{
     
-    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&poiname=%@&lat=%f&lon=%f&dev=1&style=2",@"app name", @"YGche", @"终点", [_showRoomModel.latitude doubleValue], [_showRoomModel.longitude doubleValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&poiname=%@&lat=%f&lon=%f&dev=1&style=2",@"YCO SPACE", @"YCO", _showRoomModel.storeName, [_showRoomModel.latitude doubleValue], [_showRoomModel.longitude doubleValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
     
@@ -349,7 +349,7 @@
 - (void)openBaiDuMap{
     
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%f,%f|name:我的位置&destination=latlng:%f,%f|name:终点&mode=driving",[_showRoomModel.latitude doubleValue], [_showRoomModel.longitude doubleValue],currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
+    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%f,%f|name:我的位置&destination=latlng:%f,%f|name:%@&mode=driving",[_showRoomModel.latitude doubleValue],[_showRoomModel.longitude doubleValue],currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude,_showRoomModel.storeName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
     
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
     

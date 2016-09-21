@@ -39,6 +39,15 @@
 {
     
 }
++(CGFloat )getHeightWithColorModel:(DD_ColorsModel *)colorModel WithSizeAlertModel:(DD_SizeAlertModel *)sizeAlertModel
+{
+    DD_ChooseSizeView *_sizeView = [[DD_ChooseSizeView alloc] initWithColorModel:colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type, NSString *sizeid, NSString *colorid, NSInteger count) {
+        
+    }];
+    [_sizeView layoutIfNeeded];
+    CGRect frame =  _sizeView.shop.frame;
+    return frame.origin.y + frame.size.height;
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -62,6 +71,10 @@
 {
     
     UIView *lastView=nil;
+    // 间距为10
+    int intes = 10;
+    int num = 0;
+    CGFloat _x_p=kEdge;
     for (int i=0; i<_sizeArr.count; i++) {
         DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
         UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -89,18 +102,26 @@
         [_sizeBtnArr addObject:_btn];
         _btn.tag=100+i;
         [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
+        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+        {
+            num++;
+            _x_p=kEdge;
+        }
+        
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(lastView)
-            {
-                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
-            }else
-            {
-                make.left.mas_equalTo(kEdge);
-            }
-            make.top.mas_equalTo(IsPhone6_gt?25:15);
-            make.width.mas_equalTo(28);
+            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
+            make.left.mas_equalTo(_x_p);
+            make.width.mas_equalTo(__width);
             make.height.mas_equalTo(28);
         }];
+        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+        {
+        }else
+        {
+            _x_p+=__width+intes;
+        }
         lastView=_btn;
     }
     
@@ -160,11 +181,11 @@
 
     
     
-    UIButton * shop=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"加入购物车" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
-    [self addSubview:shop];
-    shop.backgroundColor=_define_white_color;
-    [shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
-    [shop mas_makeConstraints:^(MASConstraintMaker *make) {
+    _shop=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"加入购物车" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    [self addSubview:_shop];
+    _shop.backgroundColor=_define_white_color;
+    [_shop addTarget:self action:@selector(shopAction) forControlEvents:UIControlEventTouchUpInside];
+    [_shop mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?25:15);
         make.left.mas_equalTo(0);
         make.height.mas_equalTo(ktabbarHeight);
@@ -172,7 +193,7 @@
     }];
     
     UIView *lineView=[UIView getCustomViewWithColor:_define_black_color];
-    [shop addSubview:lineView];
+    [_shop addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.left.right.top.mas_equalTo(0);
@@ -184,8 +205,8 @@
     [buy addTarget:self action:@selector(buyAction) forControlEvents:UIControlEventTouchUpInside];
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(shop);
-        make.height.mas_equalTo(shop);
+        make.top.mas_equalTo(_shop);
+        make.height.mas_equalTo(_shop);
         make.width.mas_equalTo(ScreenWidth/2.0f);
     }];
     
