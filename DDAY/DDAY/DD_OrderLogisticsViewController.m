@@ -222,12 +222,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_OrderLogisticsViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_OrderLogisticsViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

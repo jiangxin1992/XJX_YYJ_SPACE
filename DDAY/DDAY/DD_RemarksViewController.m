@@ -156,12 +156,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_RemarksViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_RemarksViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

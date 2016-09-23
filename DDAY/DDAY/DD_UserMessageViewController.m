@@ -291,12 +291,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_UserMessageViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_UserMessageViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

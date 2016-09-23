@@ -397,12 +397,10 @@
 {
     [super viewWillAppear:animated];
     [[DD_CustomViewController sharedManager] tabbarAppear];
-    [MobClick beginLogPageView:@"DD_DDAYViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_DDAYViewController"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -297,12 +297,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_AddressViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_AddressViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

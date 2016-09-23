@@ -878,12 +878,10 @@
         _page=1;
         [self RequestData];
     }
-    [MobClick beginLogPageView:@"DD_CircleDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_CircleDetailViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

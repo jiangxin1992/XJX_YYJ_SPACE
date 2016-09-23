@@ -238,12 +238,10 @@
         _page=1;
         [self RequestData];
     }
-    [MobClick beginLogPageView:@"DD_UserCollectCircleViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_UserCollectCircleViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -262,12 +262,10 @@
     {
         [self updateDesigner];
     }
-    [MobClick beginLogPageView:@"DD_DesignerViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_DesignerViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

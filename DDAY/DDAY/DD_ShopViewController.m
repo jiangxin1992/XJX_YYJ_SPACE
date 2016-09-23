@@ -713,12 +713,10 @@
     {
         [self RequestData];
     }
-    [MobClick beginLogPageView:@"DD_ShopViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_ShopViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

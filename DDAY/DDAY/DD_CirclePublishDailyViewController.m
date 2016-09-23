@@ -380,12 +380,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_CirclePublishDailyViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_CirclePublishDailyViewController"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -380,12 +380,10 @@
         [self RequestData];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
-    [MobClick beginLogPageView:@"DD_UserViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_UserViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

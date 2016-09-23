@@ -224,7 +224,7 @@
         if(success)
         {
             [DD_UserModel logout];
-            [MobClick profileSignOff];
+//            [MobClick profileSignOff];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"logout"];
             _successblock(@"logout");
             for (id obj in self.navigationController.viewControllers) {
@@ -255,12 +255,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_SetViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_SetViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

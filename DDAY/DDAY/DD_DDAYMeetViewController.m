@@ -236,12 +236,10 @@
 {
     
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_DDAYMeetViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_DDAYMeetViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -15,8 +15,7 @@
 #import "MJExtension.h"
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
-#import "ReactiveCocoa.h"
-#import "UMMobClick/MobClick.h"
+//#import "ReactiveCocoa.h"
 #import <YYKit/YYKit.h>
 
 /*************** Category ***************/

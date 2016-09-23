@@ -543,12 +543,10 @@
     {
         [self RequestData];
     }
-    [MobClick beginLogPageView:@"DD_OrderDetailViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"PageOne"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

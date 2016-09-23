@@ -135,10 +135,10 @@ static regular *_t = nil;
 {
     if(![[DD_UserModel getToken] isEqualToString:@""])
     {
-        NSInteger _thirdPartType=[DD_UserModel getThirdPartLogin];
-        NSString *_provider=_thirdPartType==2?@"WECHAT":_thirdPartType==3?@"QQ":_thirdPartType==3?@"SINA":@"PHONE";
-        NSString *token=[DD_UserModel getToken];
-        [MobClick profileSignInWithPUID:token provider:_provider];
+//        NSInteger _thirdPartType=[DD_UserModel getThirdPartLogin];
+//        NSString *_provider=_thirdPartType==2?@"WECHAT":_thirdPartType==3?@"QQ":_thirdPartType==3?@"SINA":@"PHONE";
+//        NSString *token=[DD_UserModel getToken];
+//        [MobClick profileSignInWithPUID:token provider:_provider];
     }
     
 }

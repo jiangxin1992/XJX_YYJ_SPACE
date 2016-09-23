@@ -19,7 +19,6 @@
 		3F124B461D22213D002B4E87 /* DD_FansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F124B451D22213D002B4E87 /* DD_FansModel.m */; };
 		3F124B4A1D2225B8002B4E87 /* DD_FansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F124B481D2225B8002B4E87 /* DD_FansCell.m */; };
 		3F124B4D1D225115002B4E87 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F124B4C1D225115002B4E87 /* MobileCoreServices.framework */; };
-		3F124B511D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F124B501D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a */; };
 		3F14013B1CF7E28C0093474A /* DD_ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F14013A1CF7E28C0093474A /* DD_ShopModel.m */; };
 		3F14013E1CF824D40093474A /* DD_ShopSeriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F14013D1CF824D40093474A /* DD_ShopSeriesModel.m */; };
 		3F1401411CF825B20093474A /* DD_ShopItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1401401CF825B20093474A /* DD_ShopItemModel.m */; };
@@ -189,6 +188,7 @@
 		3F73CC691D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC681D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m */; };
 		3F73CC6C1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */; };
 		3F7647C41D77D17B00843F43 /* DD_SexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7647C31D77D17B00843F43 /* DD_SexViewController.m */; };
+		3F77CAE81D9517C70086C49B /* white_nav.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F77CAE71D9517C70086C49B /* white_nav.jpg */; };
 		3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */; };
 		3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */; };
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
@@ -382,8 +382,6 @@
 		3F124B471D2225B8002B4E87 /* DD_FansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_FansCell.h; sourceTree = "<group>"; };
 		3F124B481D2225B8002B4E87 /* DD_FansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_FansCell.m; sourceTree = "<group>"; };
 		3F124B4C1D225115002B4E87 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		3F124B4F1D2256CB002B4E87 /* GeTuiSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdk.h; sourceTree = "<group>"; };
-		3F124B501D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGeTuiSdk-1.4.2.a"; sourceTree = "<group>"; };
 		3F1401391CF7E28C0093474A /* DD_ShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopModel.h; sourceTree = "<group>"; };
 		3F14013A1CF7E28C0093474A /* DD_ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopModel.m; sourceTree = "<group>"; };
 		3F14013C1CF824D40093474A /* DD_ShopSeriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopSeriesModel.h; sourceTree = "<group>"; };
@@ -774,6 +772,7 @@
 		3F73CC6B1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderLogisticsHeadView.m; sourceTree = "<group>"; };
 		3F7647C21D77D17B00843F43 /* DD_SexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SexViewController.h; sourceTree = "<group>"; };
 		3F7647C31D77D17B00843F43 /* DD_SexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SexViewController.m; sourceTree = "<group>"; };
+		3F77CAE71D9517C70086C49B /* white_nav.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_nav.jpg; sourceTree = "<group>"; };
 		3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsDesignerView.h; sourceTree = "<group>"; };
 		3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsDesignerView.m; sourceTree = "<group>"; };
 		3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseSizeView.h; sourceTree = "<group>"; };
@@ -1032,7 +1031,6 @@
 				3F552E641CF1C7EB00BC5E33 /* libz.tbd in Frameworks */,
 				3F552E621CF1C7E100BC5E33 /* libicucore.tbd in Frameworks */,
 				3F1682D81D21726200C35ED0 /* CoreBluetooth.framework in Frameworks */,
-				3F124B511D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a in Frameworks */,
 				3F1682D61D21725400C35ED0 /* CoreLocation.framework in Frameworks */,
 				3F1682D41D21724F00C35ED0 /* AVFoundation.framework in Frameworks */,
 				3F3810D11CF54664007154F1 /* CoreTelephony.framework in Frameworks */,
@@ -1175,15 +1173,6 @@
 				3F0B66D81D23BB3B00A89F33 /* DD_NOTInformClass.m */,
 			);
 			name = NotObj;
-			sourceTree = "<group>";
-		};
-		3F124B4E1D2256CB002B4E87 /* GtSdkLib */ = {
-			isa = PBXGroup;
-			children = (
-				3F124B4F1D2256CB002B4E87 /* GeTuiSdk.h */,
-				3F124B501D2256CB002B4E87 /* libGeTuiSdk-1.4.2.a */,
-			);
-			path = GtSdkLib;
 			sourceTree = "<group>";
 		};
 		3F1401501CF836CE0093474A /* cell */ = {
@@ -1513,6 +1502,7 @@
 		3F4187731CEEFB24001BCA3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F77CAE71D9517C70086C49B /* white_nav.jpg */,
 				3FEEAFC31D89530A008F6EB6 /* gif-jpg */,
 				3F4187AD1CEEFD02001BCA3D /* area.json */,
 				3F4187741CEEFB24001BCA3D /* main.m */,
@@ -1567,7 +1557,6 @@
 		3F4187B31CEEFE21001BCA3D /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
-				3F124B4E1D2256CB002B4E87 /* GtSdkLib */,
 			);
 			name = "工具类";
 			sourceTree = "<group>";
@@ -3340,6 +3329,7 @@
 				3FEAC6441D91190100928979 /* 图层-39@2x.png in Resources */,
 				3FEAC64B1D91190100928979 /* 图层-46@2x.png in Resources */,
 				3FEAC6311D91190100928979 /* 图层-20@2x.png in Resources */,
+				3F77CAE81D9517C70086C49B /* white_nav.jpg in Resources */,
 				3FEAC6201D91190100928979 /* 图层-3@2x.png in Resources */,
 				3FEAC6361D91190100928979 /* 图层-25@2x.png in Resources */,
 				3FEAC6331D91190100928979 /* 图层-22@2x.png in Resources */,

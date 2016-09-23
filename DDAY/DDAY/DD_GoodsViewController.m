@@ -370,12 +370,10 @@
     {
         [[DD_CustomViewController sharedManager] tabbarAppear];
     }
-    [MobClick beginLogPageView:@"DD_GoodsViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_GoodsViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

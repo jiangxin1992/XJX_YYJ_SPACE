@@ -128,23 +128,24 @@
                  break;
          }
      }];
+
     
     // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
-    
+    NSLog(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
     // 注册APNS
     [self registerRemoteNotification];
-    
-    // 友盟数据分析
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [MobClick setAppVersion:version];
-    UMConfigInstance.appKey = @"578310d8e0f55a985a000d44";
-    UMConfigInstance.channelId = @"App Store";
-    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
+//    // 友盟数据分析
+//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    [MobClick setAppVersion:version];
+//    NSLog(@"version=%ld",(long)[MobClick version]);
+//    UMConfigInstance.appKey = @"578310d8e0f55a985a000d44";
+//    UMConfigInstance.channelId = @"App Store";
+//    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
     // 加密
-    [MobClick setEncryptEnabled:YES];
-    // 更新友盟用户统计和渠道
-    [regular updateProfileSignInWithPUID];
+//    [MobClick setEncryptEnabled:YES];
+//    // 更新友盟用户统计和渠道
+//    [regular updateProfileSignInWithPUID];
     
     
     NSDictionary*message=[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -333,9 +334,16 @@
 
 /** SDK启动成功返回cid */
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
+    
     // [4-EXT-1]: 个推SDK已注册，返回clientId
     NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
-    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[NSString alloc] initWithFormat:@"clientId=%@",clientId]
+//                                                        message:nil
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"确定"
+//                                              otherButtonTitles:nil];
+//    alertView.delegate=self;
+//    [alertView show];
 }
 
 /** SDK遇到错误回调 */

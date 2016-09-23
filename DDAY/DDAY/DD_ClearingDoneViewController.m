@@ -201,12 +201,10 @@
 {
     [super viewWillAppear:animated];
 //    [DD_UserModel removeTradeOrderCode];
-    [MobClick beginLogPageView:@"DD_ClearingDoneViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_ClearingDoneViewController"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -13,9 +13,11 @@
 @interface DD_CircleTagView : UIView
 -(instancetype)initWithTagArr:(NSArray *)tagArr;
 -(void)setState;
++(CGFloat)GetHeightWithTagArr:(NSArray *)tagArr;
 /**
  * 搭配model
  */
 __array(tagArr);
-__float(height);
+__label(lastView);
+
 @end

@@ -114,12 +114,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_ProvinceVCT"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_ProvinceVCT"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

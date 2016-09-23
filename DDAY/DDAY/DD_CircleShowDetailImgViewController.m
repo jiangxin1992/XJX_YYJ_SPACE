@@ -103,13 +103,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"DD_CircleShowDetailImgViewController"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     _pho.hidden=YES;
-    [MobClick endLogPageView:@"DD_CircleShowDetailImgViewController"];
 }
 - (void)viewDidDisappear:(BOOL)animated
 {

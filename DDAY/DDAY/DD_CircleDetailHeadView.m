@@ -203,11 +203,12 @@
     
     DD_CircleTagView *_CircleTagView=[[DD_CircleTagView alloc] initWithTagArr:[_listModel getTagArr]];
     [_contentView addSubview:_CircleTagView];
+    CGFloat _height=[DD_CircleTagView GetHeightWithTagArr:[_listModel getTagArr]];
     [_CircleTagView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8.5f);
-        make.height.mas_equalTo(_CircleTagView.height);
+        make.height.mas_equalTo(_height);
     }];
     
     

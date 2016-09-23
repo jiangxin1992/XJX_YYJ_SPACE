@@ -530,12 +530,10 @@
         [self RequestListData];
     }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [MobClick beginLogPageView:@"DD_TarentoHomePageViewController"];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"DD_TarentoHomePageViewController"];
 
 }
 
