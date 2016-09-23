@@ -31,6 +31,7 @@
 @property(nonatomic,copy) void (^block)(NSString *type,NSInteger index,DD_OrderItemModel *item);
 
 __view(contentView);
+__label(timeLabel);
 __bool(isHomePage);
 /**
  * 更新

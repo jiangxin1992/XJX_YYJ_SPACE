@@ -88,7 +88,7 @@
     [viewArr addObject:washing_title];
     [washing_title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(fabric_content.mas_bottom).with.offset(6);
+        make.top.mas_equalTo(fabric_content.mas_bottom).with.offset(6+20);
     }];
     [washing_title sizeToFit];
     

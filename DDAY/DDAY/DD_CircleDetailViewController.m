@@ -295,11 +295,10 @@
             }
             
         }];
-        _dailyHeadView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        _dailyHeadView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDailyDetailHeadView heightWithModel:nowListModel]);
         NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         _dailyHeadView.userInteractionEnabled=YES;
         [_dailyHeadView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
-        
         _tableview.tableHeaderView=_dailyHeadView;
     }
     

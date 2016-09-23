@@ -185,7 +185,7 @@
         [userBtnArr addObject:btn];
         
         UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-        [self.contentView addSubview:label];
+        [_contentView addSubview:label];
         label.font=[regular get_en_Font:12.0f];
         label.tag=300+i;
         [label mas_makeConstraints:^(MASConstraintMaker *make) {

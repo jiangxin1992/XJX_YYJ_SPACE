@@ -19,7 +19,7 @@
     UILabel *userNameLabel;
     UILabel *userCareerLabel;
     UILabel *_conentLabel;
-    UILabel *_timeLabel;
+    
     UIScrollView *_item_scrollview;
     
     NSMutableArray *goodsImgArr;

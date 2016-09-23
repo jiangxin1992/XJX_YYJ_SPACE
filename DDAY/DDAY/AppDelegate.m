@@ -43,6 +43,7 @@
 
 //支付宝
 #import <AlipaySDK/AlipaySDK.h>
+
 //ShareSDK
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -68,7 +69,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self.window makeKeyAndVisible];
+    
     _is_first_register=YES;
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册
@@ -128,13 +129,6 @@
                  break;
          }
      }];
-
-    
-    // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
-    [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
-    NSLog(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
-    // 注册APNS
-    [self registerRemoteNotification];
 //    // 友盟数据分析
 //    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 //    [MobClick setAppVersion:version];
@@ -147,6 +141,11 @@
 //    // 更新友盟用户统计和渠道
 //    [regular updateProfileSignInWithPUID];
     
+    // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
+    [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
+    NSLog(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
+    // 注册APNS
+    [self registerRemoteNotification];
     
     NSDictionary*message=[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     
@@ -157,7 +156,7 @@
         NSLog(@"record=%@",record);
     }
     
-    
+    [self.window makeKeyAndVisible];
     self.window.rootViewController = [DD_CustomViewController sharedManager] ;
     return YES;
 }
@@ -239,15 +238,19 @@
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
-//    NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-//    NSLog(@"idfv=%@",idfv);
-//    NSLog(@"111");
-    //  关联用户token 给后台
-    if(_is_first_register)
-    {
+
+//    if(_is_first_register)
+//    {
         _is_first_register=NO;
         [self connectedDeviceToken:token];
-    }
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[NSString alloc] initWithFormat:@"DeviceToken=%@",token]
+//                                                            message:nil
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"确定"
+//                                                  otherButtonTitles:nil];
+//        alertView.delegate=self;
+//        [alertView show];
+//    }
     // [3]:向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
 }
