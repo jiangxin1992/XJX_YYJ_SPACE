@@ -69,6 +69,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   
+    
     
     _is_first_register=YES;
     /**
@@ -113,7 +115,7 @@
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
                  [appInfo SSDKSetupSinaWeiboByAppKey:@"2022235857"
                                            appSecret:@"fbe2d9fb0a424a467dd0318fa8295e50"
-                                         redirectUri:@"http://www.yunejian.com"
+                                         redirectUri:@"http://spaceshow.ycosystem.com"
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
@@ -129,17 +131,6 @@
                  break;
          }
      }];
-//    // 友盟数据分析
-//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    [MobClick setAppVersion:version];
-//    NSLog(@"version=%ld",(long)[MobClick version]);
-//    UMConfigInstance.appKey = @"578310d8e0f55a985a000d44";
-//    UMConfigInstance.channelId = @"App Store";
-//    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
-    // 加密
-//    [MobClick setEncryptEnabled:YES];
-//    // 更新友盟用户统计和渠道
-//    [regular updateProfileSignInWithPUID];
     
     // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
@@ -147,17 +138,9 @@
     // 注册APNS
     [self registerRemoteNotification];
     
-    NSDictionary*message=[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    
-    if (message) {
-        NSString*payloadMsg = [message objectForKey:@"payload"];
-
-        NSString*record = [NSString stringWithFormat:@"[APN]%@,%@",[NSDate date],payloadMsg];
-        NSLog(@"record=%@",record);
-    }
-    
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [DD_CustomViewController sharedManager] ;
+    
     return YES;
 }
 
@@ -202,14 +185,14 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         
     } else {
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         
         UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
                                                                        UIRemoteNotificationTypeSound |
                                                                        UIRemoteNotificationTypeBadge);
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
-        #pragma clang diagnostic pop
+#pragma clang diagnostic pop
     }
 #else
     UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
@@ -217,6 +200,7 @@
                                                                    UIRemoteNotificationTypeBadge);
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
 #endif
+    
 }
 
 #pragma mark - 用户通知(推送)回调 _IOS 8.0以上使用
@@ -238,21 +222,15 @@
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
+    
+    //向个推服务器注册deviceToken
+    [GeTuiSdk registerDeviceToken:token];
 
 //    if(_is_first_register)
 //    {
         _is_first_register=NO;
         [self connectedDeviceToken:token];
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[NSString alloc] initWithFormat:@"DeviceToken=%@",token]
-//                                                            message:nil
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"确定"
-//                                                  otherButtonTitles:nil];
-//        alertView.delegate=self;
-//        [alertView show];
 //    }
-    // [3]:向个推服务器注册deviceToken
-    [GeTuiSdk registerDeviceToken:token];
 }
 -(void)connectedDeviceToken:(NSString *)deviceToken
 {
@@ -340,13 +318,6 @@
     
     // [4-EXT-1]: 个推SDK已注册，返回clientId
     NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[NSString alloc] initWithFormat:@"clientId=%@",clientId]
-//                                                        message:nil
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"确定"
-//                                              otherButtonTitles:nil];
-//    alertView.delegate=self;
-//    [alertView show];
 }
 
 /** SDK遇到错误回调 */

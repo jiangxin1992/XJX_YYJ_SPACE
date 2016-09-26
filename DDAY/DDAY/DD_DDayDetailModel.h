@@ -81,9 +81,27 @@ __string(s_id);
  * 系列剩余名额
  */
 __long(leftQuota);
+
+
 /**
  * 品牌图片
  */
 @property (nonatomic,strong) DD_ImageModel *brandPic;
+/**
+ * 品牌名
+ */
+__string(brandName);
+/**
+ *  设计师头像
+ */
+__string(designerHead);
+/**
+ * 设计师id
+ */
+__string(designerId);
+/**
+ * 设计师名
+ */
+__string(designerName);
 
 @end

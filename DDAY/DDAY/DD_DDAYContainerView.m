@@ -185,68 +185,88 @@
     [upline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(seriesTipsLabel.mas_bottom).with.offset(28);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(4);
 
     }];
     
-    UIImageView *brandPicImg=[UIImageView getCustomImg];
-    [self addSubview:brandPicImg];
-    brandPicImg.contentMode=2;
-    [regular setZeroBorder:brandPicImg];
-    [brandPicImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.brandPic.pic WithSize:800 placeHolderImageName:nil radius:0];
-    [brandPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(upline.mas_bottom).with.offset(30);
+    UIView *view1=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:view1];
+    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.height.mas_equalTo(([_detailModel.brandPic.height floatValue]/[_detailModel.brandPic.width floatValue])*(ScreenWidth-kEdge*2));
+        make.top.mas_equalTo(upline.mas_bottom).with.offset(25);
+        make.width.mas_equalTo(4);
+        make.height.mas_equalTo(17);
     }];
     
-//    60 90
-    UIView *lastView=nil;
-    for (int i=0; i<2; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:i==0?@"ABOUT":@"关于品牌/设计师" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-        [self addSubview:label];
-        [label sizeToFit];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(kEdge);
-            if(lastView)
-            {
-                make.top.mas_equalTo(lastView.mas_bottom).with.offset(0);
-            }else
-            {
-                make.top.mas_equalTo(brandPicImg.mas_bottom).with.offset(28);
-            }
-            
-        }];
-        [label sizeToFit];
-        lastView=label;
-    }
-    
-    UILabel *brandBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.brandBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:brandBriefLabel];
-    brandBriefLabel.numberOfLines=0;
-    [brandBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kEdge);
-        make.left.mas_offset(kEdge);
-        make.top.mas_equalTo(lastView.mas_bottom).with.offset(27);
+    UILabel *designerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"关于设计师" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:designerLabel];
+    [designerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(view1.mas_right).with.offset(6);
+        make.centerY.mas_equalTo(view1);
     }];
-    [brandBriefLabel sizeToFit];
     
-    UIView *downLine=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
-    [self addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIButton *desigerBtn=[UIButton getCustomBtn];
+    [self addSubview:desigerBtn];
+    [desigerBtn addTarget:self action:@selector(designerAction) forControlEvents:UIControlEventTouchUpInside];
+    [desigerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        if([NSString isNilOrEmpty:_detailModel.brandBrief])
-        {
-            make.top.mas_equalTo(brandBriefLabel.mas_bottom).with.offset(0);
-        }else
-        {
-            make.top.mas_equalTo(brandBriefLabel.mas_bottom).with.offset(27);
-        }
-        
-        make.height.mas_equalTo(1);
+        make.top.mas_equalTo(view1.mas_bottom).with.offset(0);
     }];
     
+    UIImageView *brandImg=[UIImageView getCustomImg];
+    [desigerBtn addSubview:brandImg];
+    brandImg.contentMode=2;
+    [regular setZeroBorder:brandImg];
+    [brandImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.brandPic.pic WithSize:400 placeHolderImageName:nil radius:0];
+    [brandImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.top.mas_equalTo(view1.mas_bottom).with.offset(25);
+        make.width.height.mas_equalTo(IsPhone5_gt?60:70);
+    }];
+    
+    UIImageView *designerImg=[UIImageView getCustomImg];
+    [desigerBtn addSubview:designerImg];
+    designerImg.contentMode=2;
+    [regular setZeroBorder:designerImg];
+    [designerImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.designerHead WithSize:400 placeHolderImageName:nil radius:0];
+    [designerImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(brandImg.mas_right).with.offset(20);
+        make.top.mas_equalTo(brandImg);
+        make.width.height.mas_equalTo(IsPhone5_gt?60:70);
+        make.bottom.mas_equalTo(desigerBtn.mas_bottom).with.offset(-25);
+    }];
+    
+    UILabel *designerName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designerName WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [desigerBtn addSubview:designerName];
+    [designerName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(designerImg.mas_right).with.offset(20);
+        make.bottom.mas_equalTo(designerImg.mas_centerY).with.offset(0);
+        make.right.mas_equalTo(-kEdge);
+    }];
+    
+    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.brandName WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [desigerBtn addSubview:brandName];
+    [brandName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(designerImg.mas_right).with.offset(20);
+        make.top.mas_equalTo(designerImg.mas_centerY).with.offset(0);
+        make.right.mas_equalTo(-kEdge);
+    }];
+    
+    UIView *view2=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:view2];
+    [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.top.mas_equalTo(desigerBtn.mas_bottom).with.offset(0);
+        make.width.mas_equalTo(4);
+        make.height.mas_equalTo(17);
+    }];
+    
+    UILabel *seriesLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"关于系列" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [self addSubview:seriesLabel];
+    [seriesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(view2.mas_right).with.offset(6);
+        make.centerY.mas_equalTo(view2);
+    }];
     
     UIImageView *seriesBannerPicImg=[UIImageView getCustomImg];
     [self addSubview:seriesBannerPicImg];
@@ -255,27 +275,10 @@
     [seriesBannerPicImg JX_ScaleAspectFill_loadImageUrlStr:_detailModel.seriesBannerPic.pic WithSize:800 placeHolderImageName:nil radius:0];
     [seriesBannerPicImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(downLine.mas_bottom).with.offset(30);
+        make.top.mas_equalTo(view2.mas_bottom).with.offset(25);
         make.right.mas_offset(-kEdge);
         make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(ScreenWidth-2*kEdge));
     }];
-    UIView *lastViewSeries=nil;
-    for (int i=0; i<2; i++) {
-        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:i==0?@"ABOUT":@"关于发布系列" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-        [self addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(kEdge);
-            if(lastViewSeries)
-            {
-                make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(0);
-            }else
-            {
-                make.top.mas_equalTo(seriesBannerPicImg.mas_bottom).with.offset(30);
-            }
-        }];
-        [label sizeToFit];
-        lastViewSeries=label;
-    }
 
     UILabel *seriesBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:seriesBriefLabel];
@@ -283,18 +286,15 @@
     [seriesBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_offset(-kEdge);
-        if([NSString isNilOrEmpty:_detailModel.seriesBrief])
-        {
-            make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(0);
-        }else
-        {
-            make.top.mas_equalTo(lastViewSeries.mas_bottom).with.offset(28);
-        }
+        make.top.mas_equalTo(seriesBannerPicImg.mas_bottom).with.offset(30);
         make.width.mas_equalTo(250);
         make.bottom.mas_equalTo(-28);
     }];
     [seriesBriefLabel sizeToFit];
     
 }
-
+-(void)designerAction
+{
+    _block(@"enter_designer_homepage");
+}
 @end

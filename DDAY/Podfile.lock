@@ -19,7 +19,7 @@ PODS:
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.0)
-  - MOBFoundation (2.0.11)
+  - MOBFoundation_IDFA (2.0.11)
   - Qiniu (7.1.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
@@ -43,10 +43,10 @@ DEPENDENCIES:
   - Masonry (~> 1.0.2)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.0)
-  - MOBFoundation
+  - MOBFoundation_IDFA (~> 2.0.11)
   - Qiniu (~> 7.1)
   - SDWebImage (~> 3.8.2)
-  - ShareSDK3
+  - ShareSDK3 (~> 3.4.2)
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -60,13 +60,13 @@ SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  MOBFoundation: e213065e65eebd8146ab29d10a8445dc8f385091
+  MOBFoundation_IDFA: fb7bf493361568f392e0a71bd2503aaa5b8dab9d
   Qiniu: 5e5d7d759d22393bb4b87cdfacf8fab951260f3e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   ShareSDK3: 2fa975dd22937fc7de3f6b5d0c41a18ba0dd1661
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: d4e9ab20251b011aa43dc62d4b4917db515809b1
+PODFILE CHECKSUM: a2faea62e6d363814d2de9e8e487396741fa3da1
 
 COCOAPODS: 1.0.0

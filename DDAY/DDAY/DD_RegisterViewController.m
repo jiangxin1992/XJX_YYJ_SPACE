@@ -9,6 +9,8 @@
 #import "DD_RegisterViewController.h"
 
 #import "DD_SetPSWViewController.h"
+#import "DD_ProtocolViewController.h"
+
 #import "DD_LoginTextView.h"
 
 @interface DD_RegisterViewController ()<UITextFieldDelegate>
@@ -107,8 +109,23 @@
         make.height.mas_equalTo(40);
         make.top.mas_equalTo(_codeTextfield.mas_bottom).with.offset(IsPhone5_gt?65:47);
     }];
+    
+    UIButton *ProtocolBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"注册表示您已经同意YCO SPACE服务协议" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
+    [self.view addSubview:ProtocolBtn];
+    [ProtocolBtn addTarget:self action:@selector(ProtocolAction) forControlEvents:UIControlEventTouchUpInside];
+    [ProtocolBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.bottom.mas_equalTo(-25);
+        make.height.mas_equalTo(40);
+    }];
+    
 }
 #pragma mark - SomeAction
+-(void)ProtocolAction
+{
+    [self.navigationController pushViewController:[[DD_ProtocolViewController alloc] init] animated:YES];
+}
 /**
  * 计时
  */

@@ -474,7 +474,7 @@ THE SOFTWARE.
 			<key>FooterText</key>
 			<string>Copyright &#169; 2012-2015 mob</string>
 			<key>Title</key>
-			<string>MOBFoundation</string>
+			<string>MOBFoundation_IDFA</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

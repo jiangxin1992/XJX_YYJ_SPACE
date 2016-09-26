@@ -10,6 +10,7 @@
 
 #import "DD_DDAYMeetViewController.h"
 #import "DD_ShopViewController.h"
+#import "DD_DesignerHomePageViewController.h"
 
 #import "DD_DDAYContainerView.h"
 #import "DD_DDAYDetailView.h"
@@ -236,7 +237,15 @@
         if(success)
         {
             _detailModel=[DD_DDayDetailModel getDDayDetailModel:[data objectForKey:@"seriesPageInfo"]];
-            DD_DDAYContainerView *_DDAYContainerView=[[DD_DDAYContainerView alloc] initWithGoodsDetailModel:_detailModel WithBlock:nil];
+            DD_DDAYContainerView *_DDAYContainerView=[[DD_DDAYContainerView alloc] initWithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
+                if([type isEqualToString:@"enter_designer_homepage"])
+                {
+                    //                设计师
+                    DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+                    _DesignerHomePage.designerId=_detailModel.designerId;
+                    [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+                }
+            }];
             [_container addSubview:_DDAYContainerView];
             [_DDAYContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.mas_equalTo(0);
