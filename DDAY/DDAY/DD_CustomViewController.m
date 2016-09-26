@@ -48,7 +48,10 @@ static DD_CustomViewController *tabbarController = nil;
     
     //4.设置视图控制器数组
     [self createViewControllers];
+    
     [self Notifications];
+    
+    NSLog(@"111");
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
