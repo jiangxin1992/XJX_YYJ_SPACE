@@ -432,7 +432,6 @@ __bool(isExpanded);
 #pragma mark - RequestData
 -(void)RequestData
 {
-        
     [[JX_AFNetworking alloc] GET:@"item/queryItemDetailByColorCode.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_model.g_id,@"colorCode":_model.colorCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -789,8 +788,7 @@ __bool(isExpanded);
         DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
         pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
     }
-    
-    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常 %@",_DetailModel.item.itemName,_DetailModel.appUrl] WithImg:pic WithUrl:_DetailModel.appUrl WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常",_DetailModel.item.itemName] WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]] WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
@@ -803,7 +801,6 @@ __bool(isExpanded);
     [UIView animateWithDuration:0.5 animations:^{
         shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
     }];
-    
 }
 //跳转购物车视图
 -(void)PushShopView

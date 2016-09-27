@@ -30,12 +30,14 @@
     [self UIConfig];
 }
 #pragma mark - 初始化
--(instancetype)initWithBlock:(void (^)(NSString *type))successblock
+-(instancetype)initWithParameters:(NSDictionary *)parameters WithThirdPartLogin:(NSInteger )thirdPartLogin WithBlock:(void (^)(NSString *type))successblock
 {
     self=[super init];
     if(self)
     {
         _successblock=successblock;
+        _parameters=parameters;
+        _thirdPartLogin=thirdPartLogin;
     }
     return self;
 }
@@ -220,22 +222,22 @@
  */
 -(void)enterVerifyAction
 {
-    NSDictionary *_parameters=@{@"phone":_phoneTextfield.text,@"type":@"register",@"verifyCode":_codeTextfield.text};
-    [[JX_AFNetworking alloc] GET:@"user/validateVerifyCode.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            DD_SetPSWViewController *_SetPSW=[[DD_SetPSWViewController alloc] initWithBlock:^(NSString *type) {
-                _successblock(type);
-            }];
-            _SetPSW.phone=_phoneTextfield.text;
-            [self.navigationController pushViewController:_SetPSW animated:YES];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        NSDictionary *parameters=@{@"phone":_phoneTextfield.text,@"type":@"register",@"verifyCode":_codeTextfield.text};
+        [[JX_AFNetworking alloc] GET:@"user/validateVerifyCode.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                DD_SetPSWViewController *_SetPSW=[[DD_SetPSWViewController alloc] initWithParameters:_parameters WithThirdPartLogin:_thirdPartLogin WithBlock:^(NSString *type) {
+                    _successblock(type);
+                }];
+                _SetPSW.phone=_phoneTextfield.text;
+                [self.navigationController pushViewController:_SetPSW animated:YES];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
 }
 /**
  * 返回

@@ -494,7 +494,7 @@
         DD_ImageModel *img=[nowListModel.pics objectAtIndex:0];
         pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
     }
-    shareView=[[DD_ShareView alloc] initWithTitle:nowListModel.userName Content:nowListModel.shareAdvise WithImg:pic WithUrl:nowListModel.appUrl WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithTitle:nowListModel.userName Content:nowListModel.shareAdvise WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,nowListModel.appUrl] WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];

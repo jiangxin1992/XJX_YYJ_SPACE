@@ -180,7 +180,7 @@
                                      images:@[_img]
                                         url:[NSURL URLWithString:_url]
                                       title:_title
-                                       type:SSDKContentTypeImage];
+                                       type:SSDKContentTypeWebPage];
 //    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
 //    [shareParams SSDKSetupShareParamsByText:@"这是一个分享"
 //                                     images:nil

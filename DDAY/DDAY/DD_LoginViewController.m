@@ -254,7 +254,7 @@
  */
 -(void)CreateCount
 {
-    DD_RegisterViewController *_Register=[[DD_RegisterViewController alloc]initWithBlock:^(NSString *type) {
+    DD_RegisterViewController *_Register=[[DD_RegisterViewController alloc]initWithParameters:nil WithThirdPartLogin:1 WithBlock:^(NSString *type) {
         //        注册成功
         _successblock(type);
     }];
@@ -322,19 +322,41 @@
                  _aboutMe=user.aboutMe;
              }
              
-             NSDictionary *_parameters=@{@"uid":user.uid,@"nickname":user.nickname,@"icon":_icon,@"gender":[NSNumber numberWithInteger:user.gender],@"aboutMe":_aboutMe,@"works":_works};
+             NSDictionary *_parameters=@{@"uid":user.uid};
              [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                  if(success)
                  {
-                     [DD_UserModel setLocalUserInfo:data];
-                     // 更新当前权限状态
-//                     [regular UpdateRoot];
-                     // 更新友盟用户统计和渠道
-                     [regular updateProfileSignInWithPUID];
-                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
-                     _successblock(@"success");
-                     
-                     [self.navigationController popViewControllerAnimated:YES];
+                     if([[data objectForKey:@"isRegisted"] boolValue])
+                     {
+                         [DD_UserModel setLocalUserInfo:data];
+                         // 更新当前权限状态
+                         //                     [regular UpdateRoot];
+                         // 更新友盟用户统计和渠道
+                         [regular updateProfileSignInWithPUID];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                         _successblock(@"success");
+                         [self.navigationController popViewControllerAnimated:YES];
+                     }else
+                     {
+                         
+                         NSDictionary *par=@{
+                                             @"uid":user.uid
+                                             ,@"nickname":user.nickname
+                                             ,@"icon":_icon
+                                             ,@"gender":[NSNumber numberWithInteger:user.gender]
+                                             ,@"aboutMe":_aboutMe
+                                             ,@"works":_works
+                                             ,@"uid":user.uid
+                                             ,@"regType":[data objectForKey:@"thirdPartLogin"]
+                                             };
+                         
+                         DD_RegisterViewController *_Register=[[DD_RegisterViewController alloc]initWithParameters:par WithThirdPartLogin:[[data objectForKey:@"thirdPartLogin"] integerValue] WithBlock:^(NSString *type) {
+                             //        注册成功
+                             _successblock(type);
+                         }];
+                         [self.navigationController pushViewController:_Register animated:YES];
+                         
+                     }
                  }else
                  {
                      [self presentViewController:successAlert animated:YES completion:nil];
