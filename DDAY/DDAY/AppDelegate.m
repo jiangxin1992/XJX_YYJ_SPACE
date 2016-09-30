@@ -39,7 +39,7 @@
 
 #import "AppDelegate.h"
 
-#import "DD_CustomViewController.h"
+#import "DD_StartViewController.h"
 
 //支付宝
 #import <AlipaySDK/AlipaySDK.h>
@@ -115,7 +115,7 @@
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
                  [appInfo SSDKSetupSinaWeiboByAppKey:@"2022235857"
                                            appSecret:@"fbe2d9fb0a424a467dd0318fa8295e50"
-                                         redirectUri:@"http://spaceshow.ycosystem.com"
+                                         redirectUri:@"http://www.yunejian.com"
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
@@ -139,7 +139,7 @@
     [self registerRemoteNotification];
     
     [self.window makeKeyAndVisible];
-    self.window.rootViewController = [DD_CustomViewController sharedManager] ;
+    self.window.rootViewController = [[DD_StartViewController alloc] init] ;
     
     return YES;
 }

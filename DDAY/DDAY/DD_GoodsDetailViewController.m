@@ -586,76 +586,84 @@ __bool(isExpanded);
 //shop buy
 -(void)Shop_Buy_Action:(NSString *)type
 {
-    DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_DetailModel.item.itemId,@"colorCode":_colorModel.colorCode};
-    [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            if(!mengban)
+    if(![DD_UserModel isLogin])
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }else
+    {
+        DD_ColorsModel *_colorModel=[_DetailModel getColorsModel];
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_DetailModel.item.itemId,@"colorCode":_colorModel.colorCode};
+        [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
             {
-                DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
-                
-                [self.navigationController setNavigationBarHidden:YES animated:YES];
-                mengban=[UIImageView getMaskImageView];
-                [self.view addSubview:mengban];
-                [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
-                sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
-                    if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
-                    {
-                        
-                        if([sizeid isEqualToString:@""])
+                if(!mengban)
+                {
+                    DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
+                    
+                    [self.navigationController setNavigationBarHidden:YES animated:YES];
+                    mengban=[UIImageView getMaskImageView];
+                    [self.view addSubview:mengban];
+                    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+                    sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
+                        if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
                         {
-                            [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
-                        }else
-                        {
-                            if(count)
+                            
+                            if([sizeid isEqualToString:@""])
                             {
-                                if(![DD_UserModel isLogin])
+                                [self presentViewController:[regular alertTitle_Simple:@"请先选择尺寸"] animated:YES completion:nil];
+                            }else
+                            {
+                                if(count)
                                 {
-                                    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                                        [self pushLoginView];
-                                    }] animated:YES completion:nil];
-                                }else
-                                {
-                                    [self mengban_dismiss];
-                                    if([type isEqualToString:@"shop"])
+                                    if(![DD_UserModel isLogin])
                                     {
-                                        //                加入购物车
-                                        [self ShopAction:sizeid WithNum:count];
-                                    }else if([type isEqualToString:@"buy"])
+                                        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                                            [self pushLoginView];
+                                        }] animated:YES completion:nil];
+                                    }else
                                     {
-                                        //                购买
-                                        [self BuyAction:sizeid WithNum:count];
+                                        [self mengban_dismiss];
+                                        if([type isEqualToString:@"shop"])
+                                        {
+                                            //                加入购物车
+                                            [self ShopAction:sizeid WithNum:count];
+                                        }else if([type isEqualToString:@"buy"])
+                                        {
+                                            //                购买
+                                            [self BuyAction:sizeid WithNum:count];
+                                        }
                                     }
+                                    
                                 }
-                                
                             }
+                            
+                        }else if([type isEqualToString:@"stock_warning"])
+                        {
+                            [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
+                        }else if([type isEqualToString:@"no_stock"])
+                        {
+                            [self presentViewController:[regular alertTitle_Simple:@"已售罄"] animated:YES completion:nil];
                         }
                         
-                    }else if([type isEqualToString:@"stock_warning"])
-                    {
-                        [self presentViewController:[regular alertTitle_Simple:@"库存不足"] animated:YES completion:nil];
-                    }else if([type isEqualToString:@"no_stock"])
-                    {
-                        [self presentViewController:[regular alertTitle_Simple:@"已售罄"] animated:YES completion:nil];
-                    }
-                    
-                }];
-                [mengban addSubview:sizeView];
-                _mengban_size_Height=[DD_ChooseSizeView getHeightWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel];
-                sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
-                [UIView animateWithDuration:0.5 animations:^{
-                    sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
-                }];
+                    }];
+                    [mengban addSubview:sizeView];
+                    _mengban_size_Height=[DD_ChooseSizeView getHeightWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel];
+                    sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
+                    [UIView animateWithDuration:0.5 animations:^{
+                        sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
+                    }];
+                }
+                
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
             }
-            
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
     
 }
 //购买动作

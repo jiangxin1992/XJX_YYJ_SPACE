@@ -14,6 +14,8 @@
 #import "DD_GoodsViewController.h"
 #import "DD_DDAYViewController.h"
 
+#import "DD_StartView.h"
+
 #import "DD_TabbarItem.h"
 
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
@@ -39,7 +41,6 @@ static DD_CustomViewController *tabbarController = nil;
     [super viewDidLoad];
     //1.隐藏系统自带的标签栏
     [self SomePrepare];
-    
     //2.添加一个自定义的view
     [self createTabbar];
     
@@ -49,9 +50,9 @@ static DD_CustomViewController *tabbarController = nil;
     //4.设置视图控制器数组
     [self createViewControllers];
     
+    
     [self Notifications];
     
-    NSLog(@"111");
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -139,6 +140,7 @@ static DD_CustomViewController *tabbarController = nil;
 }
 
 #pragma mark - UIConfig
+
 -(void)createViewControllers
 {
 

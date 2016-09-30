@@ -121,6 +121,9 @@
 		3F4B81D61D0058B400B323E4 /* DD_DDAYDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */; };
 		3F4B81D91D0058D900B323E4 /* DD_DDayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */; };
 		3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */; };
+		3F5003471D9E3152001551C1 /* DD_StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5003451D9E3152001551C1 /* DD_StartViewController.m */; };
+		3F50034F1D9E37B0001551C1 /* DD_StartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50034E1D9E37B0001551C1 /* DD_StartView.m */; };
+		3F5003511D9E3BE6001551C1 /* loading for Space.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5003501D9E3BE6001551C1 /* loading for Space.mp4 */; };
 		3F5306DC1D124E5C000C9EC0 /* DD_CricleShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306DA1D124E5C000C9EC0 /* DD_CricleShowViewController.m */; };
 		3F5306E11D126A0A000C9EC0 /* DD_CircleTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306E01D126A0A000C9EC0 /* DD_CircleTagModel.m */; };
 		3F5306E41D126AEE000C9EC0 /* DD_CricleTagItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306E31D126AEE000C9EC0 /* DD_CricleTagItemModel.m */; };
@@ -647,6 +650,11 @@
 		3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDayDetailModel.m; sourceTree = "<group>"; };
 		3F4B81DE1D0115D800B323E4 /* DD_DDAYMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYMeetViewController.h; sourceTree = "<group>"; };
 		3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYMeetViewController.m; sourceTree = "<group>"; };
+		3F5003441D9E3152001551C1 /* DD_StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_StartViewController.h; sourceTree = "<group>"; };
+		3F5003451D9E3152001551C1 /* DD_StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartViewController.m; sourceTree = "<group>"; };
+		3F50034D1D9E37B0001551C1 /* DD_StartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_StartView.h; sourceTree = "<group>"; };
+		3F50034E1D9E37B0001551C1 /* DD_StartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartView.m; sourceTree = "<group>"; };
+		3F5003501D9E3BE6001551C1 /* loading for Space.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "loading for Space.mp4"; sourceTree = "<group>"; };
 		3F5306D91D124E5C000C9EC0 /* DD_CricleShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CricleShowViewController.h; sourceTree = "<group>"; };
 		3F5306DA1D124E5C000C9EC0 /* DD_CricleShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CricleShowViewController.m; sourceTree = "<group>"; };
 		3F5306DF1D126A0A000C9EC0 /* DD_CircleTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleTagModel.h; sourceTree = "<group>"; };
@@ -1493,6 +1501,10 @@
 				3F4187B11CEEFDA8001BCA3D /* Class */,
 				3F4187761CEEFB24001BCA3D /* AppDelegate.h */,
 				3F4187771CEEFB24001BCA3D /* AppDelegate.m */,
+				3F50034D1D9E37B0001551C1 /* DD_StartView.h */,
+				3F50034E1D9E37B0001551C1 /* DD_StartView.m */,
+				3F5003441D9E3152001551C1 /* DD_StartViewController.h */,
+				3F5003451D9E3152001551C1 /* DD_StartViewController.m */,
 				3F41877C1CEEFB24001BCA3D /* Main.storyboard */,
 				3F41877F1CEEFB24001BCA3D /* Assets.xcassets */,
 				3FC31B8F1D91208B005C8A73 /* LaunchScreen.xib */,
@@ -1506,6 +1518,7 @@
 		3F4187731CEEFB24001BCA3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F5003501D9E3BE6001551C1 /* loading for Space.mp4 */,
 				3FEEAFC31D89530A008F6EB6 /* gif-jpg */,
 				3F4187AD1CEEFD02001BCA3D /* area.json */,
 				3F4187741CEEFB24001BCA3D /* main.m */,
@@ -3366,6 +3379,7 @@
 				3FEAC6261D91190100928979 /* 图层-9@2x.png in Resources */,
 				3FEAC6481D91190100928979 /* 图层-43@2x.png in Resources */,
 				3FEAC6461D91190100928979 /* 图层-41@2x.png in Resources */,
+				3F5003511D9E3BE6001551C1 /* loading for Space.mp4 in Resources */,
 				3F4187801CEEFB24001BCA3D /* Assets.xcassets in Resources */,
 				3FEAC6281D91190100928979 /* 图层-11@2x.png in Resources */,
 				3FEAC6291D91190100928979 /* 图层-12@2x.png in Resources */,
@@ -3639,6 +3653,7 @@
 				3FA5511A1D4CC65000528B5F /* DD_GoodsTabBar.m in Sources */,
 				3F3811BE1CF5D223007154F1 /* DD_ShopViewController.m in Sources */,
 				3F9B8B331CF0917A008EC460 /* DD_SetTool.m in Sources */,
+				3F50034F1D9E37B0001551C1 /* DD_StartView.m in Sources */,
 				3FA8367E1D051E1D006D2919 /* DD_OrderCell.m in Sources */,
 				3F4904E51D18E12E009F4CD3 /* DD_CircleListImgView.m in Sources */,
 				3F85BACD1D66D12500820018 /* DD_ShowRoomCell.m in Sources */,
@@ -3646,6 +3661,7 @@
 				3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */,
 				3F17B8251D86583300209675 /* DD_ShowRoomDetailViewController.m in Sources */,
 				3F5717331D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m in Sources */,
+				3F5003471D9E3152001551C1 /* DD_StartViewController.m in Sources */,
 				3F3A0BEA1D37C7A5006CD46F /* UIImageView+Custom.m in Sources */,
 				3F4187781CEEFB24001BCA3D /* AppDelegate.m in Sources */,
 				3F73CC691D6D483D00E419B9 /* DD_OrderLogisticsManageModel.m in Sources */,
