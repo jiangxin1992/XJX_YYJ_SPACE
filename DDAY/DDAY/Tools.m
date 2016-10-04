@@ -28,7 +28,7 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:millisecond];
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    NSTimeZone* timeZone = [NSTimeZone systemTimeZone];
     [dateFormatter setTimeZone:timeZone];
     
     [dateFormatter setDateFormat:format];

@@ -57,7 +57,7 @@
 }
 -(void)CreateWebView
 {
-    _webView=[[UIWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kNavHeight-169+ktabbarHeight)];
+    _webView=[[UIWebView alloc] initWithFrame:CGRectMake( 0, -11, ScreenWidth, ScreenHeight-kNavHeight-169+ktabbarHeight)];
     [_scrollView addSubview:_webView];
     _webView.userInteractionEnabled=YES;
     _webView.backgroundColor =  _define_clear_color;

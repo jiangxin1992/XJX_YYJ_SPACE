@@ -115,7 +115,8 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(-18);
         make.height.mas_equalTo(ScreenHeight-kNavHeight-171);
         make.width.mas_equalTo(ScreenWidth);
     }];
