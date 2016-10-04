@@ -112,7 +112,7 @@
         make.top.mas_equalTo(_codeTextfield.mas_bottom).with.offset(IsPhone5_gt?65:47);
     }];
     
-    UIButton *ProtocolBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"注册表示您已经同意YCO SPACE服务协议" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *ProtocolBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_light_gray_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:ProtocolBtn];
     [ProtocolBtn addTarget:self action:@selector(ProtocolAction) forControlEvents:UIControlEventTouchUpInside];
     [ProtocolBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +121,17 @@
         make.bottom.mas_equalTo(-25);
         make.height.mas_equalTo(40);
     }];
-    
+    //下划线
+    NSString *protocolBtnStr = @"注册表示您已经同意\"YCO SPACE服务协议\"";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:protocolBtnStr];
+    NSRange range = [protocolBtnStr rangeOfString:@"\"YCO SPACE服务协议\""];
+    if(range.location != NSNotFound){
+        NSDictionary *linkAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithHexString:@"47a3dc"],
+                                        
+                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+        [attributedString addAttributes:linkAttributes range:range];
+    }
+    [ProtocolBtn setAttributedTitle:attributedString forState:UIControlStateNormal];
 }
 #pragma mark - SomeAction
 -(void)ProtocolAction
@@ -176,8 +186,8 @@
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_phone_flase", @"")] animated:YES completion:nil];
     }else
     {
-        NSDictionary *_parameters=@{@"phone":_phoneTextfield.text,@"type":@"register"};
-        [[JX_AFNetworking alloc] GET:@"user/sendVerifyCode.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        NSDictionary *__parameters=@{@"phone":_phoneTextfield.text,@"type":@"register"};
+        [[JX_AFNetworking alloc] GET:@"user/sendVerifyCode.do" parameters:__parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 [self startTime];

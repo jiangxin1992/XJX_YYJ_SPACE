@@ -12,5 +12,5 @@
 
 +(CGSize)sizeOfStr:(NSString *)str andFont:(UIFont *)font andMaxSize:(CGSize)size andLineBreakMode:(NSLineBreakMode)mode;
 
-
++(NSString *)getShowDateByFormatAndTimeInterval:(NSString *)format timeInterval:(NSString *)timeInterval;
 @end

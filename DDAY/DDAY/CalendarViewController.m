@@ -253,8 +253,8 @@
     [_monthArr removeAllObjects];
     if(_SeriesArr.count)
     {
-        [DD_CalendarTool SetUnSelectWithArr:_SeriesArr];
-        [_monthArr addObjectsFromArray:[DD_CalendarTool getMonthSeriesWithDayModel:date WithSeriesArr:_SeriesArr WithDataArr:_dayModelArray]];
+       [DD_CalendarTool SetUnSelectWithArr:_SeriesArr];
+       [_monthArr addObjectsFromArray:[DD_CalendarTool getMonthSeriesWithDayModel:date WithSeriesArr:_SeriesArr WithDataArr:_dayModelArray]];
     }
     
     [self.collectionView reloadData];
@@ -300,6 +300,7 @@
  */
 -(void)resetMonthSeriesView
 {
+    
     if(_monthArr.count)
     {
         UIView *lastView=nil;

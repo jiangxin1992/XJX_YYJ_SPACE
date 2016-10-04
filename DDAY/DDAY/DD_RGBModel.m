@@ -13,7 +13,10 @@
 {
     NSMutableString *mustr=[[NSMutableString alloc] initWithFormat:@"%@",colorCode];
     // 转换成标准16进制数
-    [mustr replaceCharactersInRange:[colorCode rangeOfString:@"#" ] withString:@"0x"];
+    NSRange range = [mustr rangeOfString:@"#"];
+    if(range.location != NSNotFound){
+        [mustr replaceCharactersInRange:[colorCode rangeOfString:@"#" ] withString:@"0x"];
+    }
     DD_RGBModel *model=[[DD_RGBModel alloc] init];
     // 十六进制字符串转成整形。
     long colorLong = strtoul([mustr cStringUsingEncoding:NSUTF8StringEncoding], 0, 16);

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18D380951DA2569700EBE436 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D380941DA2569700EBE436 /* LaunchScreen.xib */; };
 		3F00D4171D5A4CA000896ED5 /* DD_UserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F00D4161D5A4CA000896ED5 /* DD_UserMessageViewController.m */; };
 		3F0A6DF81D11056100CDCBC5 /* DD_CircleInfoSuggestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */; };
 		3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DFA1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m */; };
@@ -272,7 +273,6 @@
 		3FC2D17F1D06A272005A1FF0 /* DD_OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */; };
 		3FC2D1831D06CB3F005A1FF0 /* DD_OrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC2D1821D06CB3F005A1FF0 /* DD_OrderDetailModel.m */; };
 		3FC2D1861D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC2D1851D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m */; };
-		3FC31B901D91208B005C8A73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FC31B8F1D91208B005C8A73 /* LaunchScreen.xib */; };
 		3FC31B961D912F39005C8A73 /* start_icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC31B951D912F39005C8A73 /* start_icon1.png */; };
 		3FC59EA11D993A07007C587D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC59EA01D993A07007C587D /* AdSupport.framework */; };
 		3FCB11551CFC33BC00FBB018 /* DD_ShopClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB11541CFC33BC00FBB018 /* DD_ShopClearingView.m */; };
@@ -362,6 +362,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18D380941DA2569700EBE436 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.debug.xcconfig"; sourceTree = "<group>"; };
 		3F00D4151D5A4CA000896ED5 /* DD_UserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageViewController.h; sourceTree = "<group>"; };
 		3F00D4161D5A4CA000896ED5 /* DD_UserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserMessageViewController.m; sourceTree = "<group>"; };
@@ -945,7 +946,6 @@
 		3FC2D1821D06CB3F005A1FF0 /* DD_OrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderDetailModel.m; sourceTree = "<group>"; };
 		3FC2D1841D06E47D005A1FF0 /* DD_OrderDetailInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderDetailInfoModel.h; sourceTree = "<group>"; };
 		3FC2D1851D06E47D005A1FF0 /* DD_OrderDetailInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderDetailInfoModel.m; sourceTree = "<group>"; };
-		3FC31B8F1D91208B005C8A73 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3FC31B951D912F39005C8A73 /* start_icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_icon1.png; sourceTree = "<group>"; };
 		3FC59EA01D993A07007C587D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3FCB11531CFC33BC00FBB018 /* DD_ShopClearingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShopClearingView.h; sourceTree = "<group>"; };
@@ -1506,8 +1506,8 @@
 				3F5003441D9E3152001551C1 /* DD_StartViewController.h */,
 				3F5003451D9E3152001551C1 /* DD_StartViewController.m */,
 				3F41877C1CEEFB24001BCA3D /* Main.storyboard */,
+				18D380941DA2569700EBE436 /* LaunchScreen.xib */,
 				3F41877F1CEEFB24001BCA3D /* Assets.xcassets */,
-				3FC31B8F1D91208B005C8A73 /* LaunchScreen.xib */,
 				3F4187841CEEFB24001BCA3D /* Info.plist */,
 				3F4187731CEEFB24001BCA3D /* Supporting Files */,
 				3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */,
@@ -3301,6 +3301,7 @@
 					3F41876F1CEEFB24001BCA3D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 86BC6SR69M;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3309,10 +3310,12 @@
 					};
 					3F4187881CEEFB24001BCA3D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 86BC6SR69M;
 						TestTargetID = 3F41876F1CEEFB24001BCA3D;
 					};
 					3F4187931CEEFB24001BCA3D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 86BC6SR69M;
 						TestTargetID = 3F41876F1CEEFB24001BCA3D;
 					};
 				};
@@ -3359,7 +3362,7 @@
 				3FEAC6341D91190100928979 /* 图层-23@2x.png in Resources */,
 				3FEAC62B1D91190100928979 /* 图层-14@2x.png in Resources */,
 				3F4187A81CEEFBF0001BCA3D /* Localizable.strings in Resources */,
-				3FC31B901D91208B005C8A73 /* LaunchScreen.xib in Resources */,
+				18D380951DA2569700EBE436 /* LaunchScreen.xib in Resources */,
 				3FEAC62F1D91190100928979 /* 图层-18@2x.png in Resources */,
 				3FEAC62D1D91190100928979 /* 图层-16@2x.png in Resources */,
 				3FEAC63D1D91190100928979 /* 图层-32@2x.png in Resources */,
@@ -3797,9 +3800,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 86BC6SR69M;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3846,9 +3851,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 86BC6SR69M;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3873,15 +3880,16 @@
 			baseConfigurationReference = 32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 86BC6SR69M;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DDAY",
 					"$(PROJECT_DIR)/DDAY/ZFB",
 				);
-				GCC_PREFIX_HEADER = /Users/yyj/Desktop/DDAY/DDAY/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DDAY/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3904,6 +3912,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "YCO SPACE";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3913,15 +3922,16 @@
 			baseConfigurationReference = CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 86BC6SR69M;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DDAY",
 					"$(PROJECT_DIR)/DDAY/ZFB",
 				);
-				GCC_PREFIX_HEADER = /Users/yyj/Desktop/DDAY/DDAY/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DDAY/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

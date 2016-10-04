@@ -209,7 +209,7 @@
 -(void)CreatePageViewCtn
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
-    _pageVc.view.frame = CGRectMake(0, 171+kNavHeight, 1000, 1000);
+    _pageVc.view.frame = CGRectMake(0, 171+kNavHeight+21, 1000, 1000);
     if(ctn1==nil)
     {
         ctn1=[[DD_DesignerItemViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_ItemsModel *model) {
@@ -380,17 +380,18 @@
 {
     for (int i=0; i<2; i++) {
 
-        UIImageView *imageView=[UIImageView getCornerRadiusImg];
-        [_UpView addSubview:imageView];
-        imageView.contentMode=i==0?2:1;
+        UIImageView *imageView=nil;
         if(i==0)
         {
-            [imageView JX_ScaleAspectFill_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
+            imageView=[UIImageView getCustomImg];
+            [imageView JX_ScaleAspectFill_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
         }else
         {
-            [imageView JX_ScaleAspectFit_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:30];
+            imageView=[UIImageView getCornerRadiusImg];
+            [imageView JX_ScaleAspectFit_loadImageUrlStr:i==0?_DesignerModel.head:_DesignerModel.brandIcon WithSize:400 placeHolderImageName:nil radius:35];
         }
-        
+        [_UpView addSubview:imageView];
+        imageView.contentMode=i==0?2:1;
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i==0)
             {
@@ -400,7 +401,7 @@
                 make.left.mas_equalTo(_UpView.mas_centerX).with.offset(39);
             }
             make.top.mas_equalTo(10);
-            make.height.width.mas_equalTo(60);
+            make.height.width.mas_equalTo(70);
         }];
 
         UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:i==0?_DesignerModel.name:_DesignerModel.brandName WithFont:15.0f WithTextColor:nil WithSpacing:0];

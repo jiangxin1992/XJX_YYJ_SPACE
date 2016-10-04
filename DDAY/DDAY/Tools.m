@@ -22,4 +22,20 @@
     return s;
 }
 
++(NSString *)getShowDateByFormatAndTimeInterval:(NSString *)format timeInterval:(NSString *)timeInterval
+{
+    float millisecond = [timeInterval doubleValue];
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:millisecond];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    [dateFormatter setTimeZone:timeZone];
+    
+    [dateFormatter setDateFormat:format];
+    
+    NSString *string = [dateFormatter stringFromDate:date];
+    return string;
+}
+
+
 @end

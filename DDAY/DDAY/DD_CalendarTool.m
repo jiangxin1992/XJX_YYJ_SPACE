@@ -7,7 +7,7 @@
 //
 
 #import "DD_CalendarTool.h"
-
+#import "Tools.h"
 #import "DD_MonthModel.h"
 #import "DD_RGBModel.h"
 
@@ -455,6 +455,8 @@
 
 +(NSArray *)getWeekSeriesWithDayModel:(NSDate *)date WithWeekNum:(NSInteger )week WithSeriesArr:(NSArray *)seriesArr WithDataArr:(NSArray *)dataArr
 {
+    NSLog(@"date%@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:[date getTime]] stringValue]]);
+
     NSUInteger days = [date numberOfDaysInMonth];
     NSInteger _week = [date startDayOfWeek];
     if(week==5)
@@ -464,10 +466,10 @@
     NSMutableArray *weekArr=[[NSMutableArray alloc] init];
     
     
-    NSInteger _count=[self getWeekCountWithDayModel:date];
+    NSInteger _count=7;//[self getWeekCountWithDayModel:date];
     for (int j=0; j<_count; j++) {
         NSInteger _num=(week-1)*7+j;
-        if(_num<days+_week-1)
+        if(_num<(days+_week-1))
         {
             id mon = [dataArr objectAtIndex:_num];
             if ([mon isKindOfClass:[DD_MonthModel class]]) {
@@ -476,6 +478,8 @@
                 for (DD_DDAYModel *ddayModel in seriesArr) {
                     long firstTime=[[[regular zoneChange:ddayModel.signStartTime] getFirstTime] getTime];
                     long lastTime=[[[regular zoneChange:ddayModel.saleEndTime] getFirstTime] getTime];
+                    NSLog(@"firstTime%@ lastTime%@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:firstTime] stringValue]],[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:lastTime] stringValue]]);
+
                     if(firstTime<=nowTime&&lastTime>=nowTime)
                     {
                         BOOL _have=NO;
@@ -514,14 +518,14 @@
     NSUInteger days = [date numberOfDaysInMonth];
     NSInteger _week = [date startDayOfWeek];
     //    获取每周开始到结束
-    long _week_start_time=0;
+/*    long _week_start_time=0;
     long _week_end_time=0;
     NSInteger _left_index=0;
     NSInteger _right_index=0;
     
     for (int j=0; j<7; j++) {
         NSInteger _num=(week-1)*7+j;
-        if(_num<days+_week-1)
+        if(_num<(days+_week-1))
         {
             id mon = [dataArr objectAtIndex:_num];
             if ([mon isKindOfClass:[DD_MonthModel class]]) {
@@ -535,10 +539,13 @@
                 _right_index=j;
             }
         }
-    }
-    NSLog(@"_left_index=%ld,_right_index=%ld",_left_index,_right_index);
-    NSLog(@"_week_start_time=%ld,_week_end_time=%ld",_week_start_time,_week_end_time);
-    NSLog(@"111");
+    }*/
+   // NSLog(@"_left_index=%ld,_right_index=%ld",_left_index,_right_index);
+   // NSLog(@"_week_start_time=%ld,_week_end_time=%ld",_week_start_time,_week_end_time);
+    
+    
+    //[[[NSNumber alloc] initWithLong:_week_end_time] stringValue];
+   // NSLog(@"week%@ %@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:_week_start_time] stringValue]],[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:_week_end_time] stringValue]]);
     
     //    计算宽度 和 起始点
     for (int i=0; i<weekArr.count; i++) {
@@ -548,7 +555,7 @@
         DD_DDAYModel *seriesModel=[weekArr objectAtIndex:i];
         for (int j=0; j<7; j++) {
             NSInteger _num=(week-1)*7+j;
-            if(_num<days+_week-1)
+            if(_num<(days+_week-1))
             {
                 id mon = [dataArr objectAtIndex:_num];
                 if ([mon isKindOfClass:[DD_MonthModel class]]) {
@@ -556,7 +563,22 @@
                     long _series_start_time=[[[regular zoneChange:seriesModel.signStartTime] getFirstTime] getTime];
                     long _series_end_time=[[[regular zoneChange:seriesModel.saleEndTime] getFirstTime] getTime];
                     long m_time=[[m_mon.dateValue getFirstTime] getTime];
-                    if(_series_start_time<_week_start_time && _series_end_time>=_week_start_time && _series_end_time<=_week_end_time)
+                    NSLog(@"series%@ %@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:_series_start_time] stringValue]],[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:_series_end_time] stringValue]]);
+                    NSLog(@"m_time%@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:m_time] stringValue]]);
+                    if(_series_start_time > _series_end_time){
+                        break;
+                    }
+                    if(_series_start_time <= m_time && _left_s_index == -1){
+                        _left_s_index = j;
+                    }
+                    if(_series_end_time <= m_time){
+                        _right_s_index = j;
+                        break;
+                    }else{
+                        _right_s_index = j;
+                    }
+                    
+ /*                   if(_series_start_time<_week_start_time && _series_end_time>=_week_start_time && _series_end_time<=_week_end_time)
                     {
                         if(m_time<=_series_end_time)
                         {
@@ -610,10 +632,10 @@
                             _left_s_index=_left_index;
                         }
                     }
+  */
                 }
             }
         }
-        NSLog(@"111");
         if(_left_s_index!=-1&&_right_s_index!=-1)
         {
             if(weekArr.count==1)
@@ -650,6 +672,8 @@
         }
         
     }
+    NSLog(@"111____________________");
+
     return viewArr;
 }
 

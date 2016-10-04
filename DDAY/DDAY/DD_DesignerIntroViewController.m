@@ -52,7 +52,7 @@
 
 -(void)CreateScrollView
 {
-    _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kNavHeight-171)];
+    _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kNavHeight-171-21)];
     [self.view addSubview:_scrollView];
 }
 -(void)CreateWebView
@@ -96,6 +96,12 @@
     frame.size = fittingSize;
     webView.frame = frame;
     _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetHeight(webView.frame));
+    
+//    NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName_r('body')[0].style.webkitTextSizeAdjust= '%d'",
+//                          10];
+//    [webView stringByEvaluatingJavaScriptFromString:jsString];
+//    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",1.0f,@"#FFFF00"];
+//    [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 #pragma mark - Other
 - (void)viewWillAppear:(BOOL)animated

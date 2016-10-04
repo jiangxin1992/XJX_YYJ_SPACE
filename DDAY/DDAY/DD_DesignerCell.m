@@ -17,6 +17,8 @@
     UIButton *_followBtn;
     UILabel *_name_label;
     UILabel *_brand_label;
+    UIView *_txt_container_view;
+    UIView *_txt_line_view;
 }
 
 - (void)awakeFromNib {
@@ -41,15 +43,15 @@
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(17);
-        make.width.height.mas_equalTo(IsPhone6_gt?50:40);
+        make.width.height.mas_equalTo(IsPhone6_gt?70:60);
     }];
     
     _brand=[UIImageView getCustomImg];
     [self.contentView addSubview:_brand];
     [_brand mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_head.mas_right).with.offset(IsPhone6_gt?17:10);
+        make.left.mas_equalTo(_head.mas_right).with.offset(IsPhone6_gt?12:10);
         make.top.mas_equalTo(_head);
-        make.width.height.mas_equalTo(IsPhone6_gt?50:40);
+        make.width.height.mas_equalTo(IsPhone6_gt?70:60);
     }];
     
     _followBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_black_color];
@@ -63,22 +65,40 @@
         make.centerY.mas_equalTo(_brand);
     }];
     
+    _txt_container_view = [UIView getCustomViewWithColor:[UIColor colorWithHexString:@"f0f1f2"]];
+    [self.contentView addSubview:_txt_container_view];
+    [_txt_container_view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(_head.mas_bottom).with.offset(15);
+        make.height.mas_equalTo(21);
+    }];
+    
     _name_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:_name_label];
+    [_txt_container_view addSubview:_name_label];
     [_name_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_brand.mas_right).with.offset(9);
-        make.top.mas_equalTo(_head);
-        make.right.mas_equalTo(_followBtn.mas_left).with.offset(-9);
-        make.height.mas_equalTo(IsPhone6_gt?25:20);
+        make.left.mas_equalTo(5);
+        make.top.mas_equalTo(0);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(21);
+    }];
+    
+    _txt_line_view = [UIView getCustomViewWithColor:[UIColor blackColor]];
+    [_txt_container_view addSubview:_txt_line_view];
+    [_txt_line_view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_name_label.mas_right).with.offset(12);
+        make.top.mas_equalTo(2);
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(17);
     }];
     
     _brand_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:_brand_label];
+    [_txt_container_view addSubview:_brand_label];
     [_brand_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_brand.mas_right).with.offset(9);
-        make.top.mas_equalTo(_name_label.mas_bottom).with.offset(0);
-        make.right.mas_equalTo(_followBtn.mas_left).with.offset(-9);
-        make.height.mas_equalTo(IsPhone6_gt?25:20);
+        make.left.mas_equalTo(_txt_line_view.mas_right).with.offset(12);
+        make.top.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.height.mas_equalTo(21);
     }];
     NSLog(@"%d",-kEdge);
     NSLog(@"111");
@@ -92,7 +112,7 @@
     [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(_head.mas_bottom).with.offset(17);
+        make.top.mas_equalTo(_txt_container_view.mas_bottom).with.offset(15);
         make.height.mas_equalTo(236);
     }];
     
@@ -129,6 +149,11 @@
     [_brand JX_ScaleAspectFit_loadImageUrlStr:Designer.brandIcon WithSize:400 placeHolderImageName:nil radius:0];
     
     _name_label.text=Designer.name;
+    CGSize _name_label_size = [_name_label.text sizeWithAttributes:@{NSFontAttributeName:_name_label.font}];
+    [_name_label mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(_name_label_size.width+1);
+    }];
+
     _brand_label.text=Designer.brandName;
     
     for (UIView *view in _scrollview.subviews) {
