@@ -37,7 +37,7 @@
         {
             //        微信
             // 定制微信好友的分享内容
-            [shareParams SSDKSetupWeChatParamsByText:_DetailModel.item.itemName title:_DetailModel.designer.brandName url:[NSURL URLWithString:url] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+            [shareParams SSDKSetupWeChatParamsByText:_DetailModel.designer.brandName title:_DetailModel.item.itemName url:[NSURL URLWithString:url] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
         }else if(platformType==SSDKPlatformSubTypeWechatTimeline)
         {
             //        朋友圈
@@ -51,7 +51,7 @@
         }else if(platformType==SSDKPlatformSubTypeQQFriend)
         {
             //        QQ
-            [shareParams SSDKSetupQQParamsByText:_DetailModel.item.itemName title:_DetailModel.designer.brandName url:[NSURL URLWithString:url] thumbImage:nil image:pic type:SSDKContentTypeAuto forPlatformSubType:platformType];
+            [shareParams SSDKSetupQQParamsByText:_DetailModel.designer.brandName title:_DetailModel.item.itemName url:[NSURL URLWithString:url] thumbImage:nil image:pic type:SSDKContentTypeAuto forPlatformSubType:platformType];
         }else if(platformType==SSDKPlatformTypeCopy)
         {
             //        复制
@@ -122,7 +122,7 @@
         {
             //        朋友圈
             // 定制微信好友的分享内容
-            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\nfrom %@ @yco space",_DetailModel.shareAdvise,_DetailModel.userName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\nfrom %@ @YCO SPACE",_DetailModel.shareAdvise,_DetailModel.userName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博

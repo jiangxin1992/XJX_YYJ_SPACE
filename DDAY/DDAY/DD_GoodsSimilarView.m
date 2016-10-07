@@ -44,8 +44,7 @@
         img.userInteractionEnabled=YES;
         [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
         [img JX_ScaleAspectFill_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
-        img.contentMode=2;
-        [regular setZeroBorder:img];
+        img.contentMode=1;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
