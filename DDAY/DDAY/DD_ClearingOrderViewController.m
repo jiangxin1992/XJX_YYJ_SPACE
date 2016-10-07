@@ -268,30 +268,40 @@
  */
 -(void)PayActionWithModel:(DD_OrderModel *)_OrderModel
 {
-    //不验证直接获取orderSpec 发起支付
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
-    [[JX_AFNetworking alloc] GET:@"order/queryOrderPayParams.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"order/orderExpireCheck.do" parameters:@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            NSString *appScheme = @"DDAY";
-            //            payParam
-            NSString *orderSpec = [data objectForKey:@"payParam"];
-            NSLog(@"orderSpec = %@",orderSpec);
-            id<DataSigner> signer = CreateRSADataSigner([data objectForKey:@"privateKey"]);
-            NSString *signedString = [signer signString:orderSpec];
-            NSString *orderString = nil;
-            if (signedString != nil) {
-                orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                               orderSpec, signedString, @"RSA"];
-                NSLog(@"%@",orderString);
-                [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
-                [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                    [self RequestData];
-                    
-                    [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"order" WithBlock:^(NSString *type) {
-                    }] animated:YES];
-                }];
-            }
+            //不验证直接获取orderSpec 发起支付
+            NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
+            [[JX_AFNetworking alloc] GET:@"order/queryOrderPayParams.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    NSString *appScheme = @"DDAY";
+                    //            payParam
+                    NSString *orderSpec = [data objectForKey:@"payParam"];
+                    NSLog(@"orderSpec = %@",orderSpec);
+                    id<DataSigner> signer = CreateRSADataSigner([data objectForKey:@"privateKey"]);
+                    NSString *signedString = [signer signString:orderSpec];
+                    NSString *orderString = nil;
+                    if (signedString != nil) {
+                        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                                       orderSpec, signedString, @"RSA"];
+                        NSLog(@"%@",orderString);
+                        [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
+                        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                            [self RequestData];
+                            
+                            [self.navigationController pushViewController:[[DD_ClearingDoneViewController alloc] initWithReturnCode:[resultDic objectForKey:@"resultStatus"] WithTradeOrderCode:[data objectForKey:@"tradeOrderCode"] WithType:@"order" WithBlock:^(NSString *type) {
+                            }] animated:YES];
+                        }];
+                    }
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -299,6 +309,7 @@
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
+    
 }
 #pragma mark - TableViewDelegate
 
