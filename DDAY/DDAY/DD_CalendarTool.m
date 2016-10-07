@@ -659,11 +659,11 @@
                 view.layer.borderWidth=2;
                 DD_RGBModel *RGBModel=[DD_RGBModel initWithColorCode:seriesModel.seriesColor];
                 view.layer.borderColor=[[UIColor colorWithRed:RGBModel.R/255.0 green:RGBModel.G/255.0 blue:RGBModel.B/255.0 alpha:1] CGColor];
-                if(i==0)
+                if(i%2==0)
                 {
                     view.frame=CGRectMake(6+_left_s_index*cellWH, 40+(week-1)*cellWH+0.1*cellWH+6 , (_right_s_index-_left_s_index+1)*cellWH, cellWH-0.2*cellWH-6);
                     [viewArr addObject:view];
-                }else if(i==1)
+                }else if(i%2==1)
                 {
                     view.frame=CGRectMake(6+_left_s_index*cellWH, 40+(week-1)*cellWH+0.1*cellWH+6+6 , (_right_s_index-_left_s_index+1)*cellWH, cellWH-0.2*cellWH-6);
                     [viewArr insertObject:view atIndex:0];

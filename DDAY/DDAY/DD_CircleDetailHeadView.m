@@ -222,8 +222,8 @@
         imgArr_select=@[@"System_Good",@"System_Comment",@"System_Collection",@"System_Dustbin"];
     }else
     {
-        imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection"];
-        imgArr_select=@[@"System_Good",@"System_Comment",@"System_Collection"];
+        imgArr_normal=@[@"System_NoGood",@"System_Comment",@"System_Notcollection",@"System_Dustbin"];
+        imgArr_select=@[@"System_Good",@"System_Comment",@"System_Collection",@"System_Dustbin"];
     }
     //    删除 评论 收藏 点赞
     for (int i=0; i<imgArr_normal.count; i++) {
@@ -480,7 +480,7 @@
     
     UIButton *delectBtn=[_contentView viewWithTag:203];
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];
-    if([_listModel.userId isEqualToString:user.u_id])
+    if([DD_UserModel isLogin] && [_listModel.userId isEqualToString:user.u_id])
     {
         delectBtn.hidden=NO;
     }else

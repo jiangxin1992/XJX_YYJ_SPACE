@@ -307,7 +307,7 @@
             [self PushCommentViewWithIndex:_index];
         }else
         {
-            [self PushCommentViewWithShareID:_shareId];
+            [self PushCommentViewWithShareID:_shareId andIndex:_index];
         }
         
     }
@@ -369,18 +369,22 @@
         {
             [_tableview reloadData];
         }
-//        else if([type isEqualToString:@"delete"])
-//        {
-//            [_dataArr removeObjectAtIndex:index];
-//            [_tableview reloadData];
-//        }
+        else if([type isEqualToString:@"delete"])
+        {
+            [_dataArr removeObjectAtIndex:index];
+            [_tableview reloadData];
+        }
     }] animated:YES];
 }
--(void)PushCommentViewWithShareID:(NSString *)shareId
+-(void)PushCommentViewWithShareID:(NSString *)shareId andIndex:(NSInteger )index
 {
     [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:nil WithShareID:shareId IsHomePage:NO  WithBlock:^(NSString *type) {
         if([type isEqualToString:@"reload"])
         {
+            [_tableview reloadData];
+        }else if([type isEqualToString:@"delete"])
+        {
+            [_dataArr removeObjectAtIndex:index];
             [_tableview reloadData];
         }
     }] animated:YES];
