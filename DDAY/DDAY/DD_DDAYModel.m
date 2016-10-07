@@ -33,7 +33,7 @@
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=NO;
 //    _DDAYModel.isQuotaLimt=YES;
-//    [self testData:_DDAYModel WithType:0];
+//    [self testData1:_DDAYModel WithType:0];
     
     return _DDAYModel;
 }

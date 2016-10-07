@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_ShareView.h"
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKExtension/ShareSDK+Extension.h>
+
 @interface DD_ShareTool : NSObject
 /**
  * 全部分享平台的图片map
@@ -21,4 +26,8 @@
  * 获取当前设备对应视图的高度
  */
 +(CGFloat)getHeight;
+/**
+ * 获取分享参数
+ */
++(NSMutableDictionary *)getShareParamsWithType:(NSString *)type WithShare_type:(SSDKPlatformType )platformType WithShareParams:(NSDictionary *)params;
 @end

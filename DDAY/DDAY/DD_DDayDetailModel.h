@@ -33,6 +33,7 @@ __string(brandBrief);
  */
 __string(seriesTips);
 __string(appUrl);
+__string(downLoadUrl);
 /**
  * 发布会结束时间
  */

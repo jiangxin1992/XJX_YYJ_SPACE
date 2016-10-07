@@ -23,21 +23,34 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block
+-(instancetype)initWithType:(NSString *)type WithParams:(NSDictionary *)params WithBlock:(void(^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
-        _url=url;
         _block=block;
-        _title=title;
-        _content=content;
-        _img=img;
+        _params=params;
+        _type=type;
         [self SomePrepare];
         [self UIConfig];
     }
     return self;
 }
+//-(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block
+//{
+//    self=[super init];
+//    if(self)
+//    {
+//        _url=url;
+//        _block=block;
+//        _title=title;
+//        _content=content;
+//        _img=img;
+//        [self SomePrepare];
+//        [self UIConfig];
+//    }
+//    return self;
+//}
 
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -149,24 +162,24 @@
 }
 -(void)btnClick:(DD_CustomBtn *)btn
 {
-    NSString *_type=btn.type;
-    if([_type isEqualToString:@"wechat"])
+    NSString *_share_type=btn.type;
+    if([_share_type isEqualToString:@"wechat"])
     {
 //        微信
         [self ShareActionWithType:SSDKPlatformSubTypeWechatSession];
-    }else if([_type isEqualToString:@"wechat_friend"])
+    }else if([_share_type isEqualToString:@"wechat_friend"])
     {
 //        朋友圈
         [self ShareActionWithType:SSDKPlatformSubTypeWechatTimeline];
-    }else if([_type isEqualToString:@"sina"])
+    }else if([_share_type isEqualToString:@"sina"])
     {
 //        微博
         [self ShareActionWithType:SSDKPlatformTypeSinaWeibo];
-    }else if([_type isEqualToString:@"qq"])
+    }else if([_share_type isEqualToString:@"qq"])
     {
 //        QQ
-        [self ShareActionWithType:SSDKPlatformTypeQQ];
-    }else if([_type isEqualToString:@"copy"])
+        [self ShareActionWithType:SSDKPlatformSubTypeQQFriend];
+    }else if([_share_type isEqualToString:@"copy"])
     {
 //        复制
         [self ShareActionWithType:SSDKPlatformTypeCopy];
@@ -175,18 +188,13 @@
 -(void)ShareActionWithType:(SSDKPlatformType )platformType
 {
     //1、创建分享参数（必要）
-    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    [shareParams SSDKSetupShareParamsByText:_content
-                                     images:@[_img]
-                                        url:[NSURL URLWithString:_url]
-                                      title:_title
-                                       type:SSDKContentTypeWebPage];
+    NSMutableDictionary *shareParams = [DD_ShareTool getShareParamsWithType:_type WithShare_type:platformType WithShareParams:_params];
 //    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-//    [shareParams SSDKSetupShareParamsByText:@"这是一个分享"
-//                                     images:nil
+//    [shareParams SSDKSetupShareParamsByText:_content
+//                                     images:@[_img]
 //                                        url:[NSURL URLWithString:_url]
-//                                      title:@"分享"
-//                                       type:SSDKContentTypeAuto];
+//                                      title:_title
+//                                       type:SSDKContentTypeWebPage];
     [shareParams SSDKEnableUseClientShare];
     
     // 定制新浪微博的分享内容

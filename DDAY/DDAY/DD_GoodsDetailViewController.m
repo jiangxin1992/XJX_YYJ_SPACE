@@ -788,20 +788,18 @@ __bool(isExpanded);
     [self.view addSubview:mengban_share];
     [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
     
-    DD_ColorsModel *colorModel=[_DetailModel getColorsModel];
-    
-    NSString *pic=nil;
-    if(colorModel.pics.count)
-    {
-        DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
-        pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
-    }
-    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常",_DetailModel.item.itemName] WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]] WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithType:@"goods_detail" WithParams:@{@"detailModel":_DetailModel} WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
         }
     }];
+//    shareView=[[DD_ShareView alloc] initWithTitle:_DetailModel.item.itemName Content:[[NSString alloc] initWithFormat:@"%@，让设计步入日常",_DetailModel.item.itemName] WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]] WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"cancel"])
+//        {
+//            [self mengban_dismiss_share];
+//        }
+//    }];
     [mengban_share addSubview:shareView];
     
     CGFloat _height=[DD_ShareTool getHeight];

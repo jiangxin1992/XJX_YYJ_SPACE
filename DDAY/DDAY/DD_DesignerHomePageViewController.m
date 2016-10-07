@@ -75,15 +75,6 @@
         make.left.mas_equalTo(0);
     }];
     
-//    DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(25, 25) WithImgeStr:@"System_share"];
-//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:shareBtn];
-//    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(kStatusBarHeight);
-//        make.right.mas_equalTo(0);
-//        make.width.height.mas_equalTo(44);
-//    }];
-    
     DD_UserModel *user=[DD_UserModel getLocalUserInfo];
     if(![_designerId isEqualToString:user.u_id])
     {
@@ -242,29 +233,7 @@
     }];
     
 }
-//分享
--(void)ShareAction
-{
-    
-    mengban=[UIImageView getMaskImageView];
-    [self.view addSubview:mengban];
-    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
-    
-    shareView=[[DD_ShareView alloc] initWithTitle:@"hi 我是标题君" Content:@"我也不知道分享什么" WithImg:@"System_Fans" WithUrl:@"https://appsto.re/cn/9EOHcb.i" WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"cancel"])
-        {
-            [self mengban_dismiss];
-        }
-    }];
-    [mengban addSubview:shareView];
-    
-    CGFloat _height=[DD_ShareTool getHeight];
-    shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
-    [UIView animateWithDuration:0.5 animations:^{
-        shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
-    }];
-    
-}
+
 /**
  * 切换视图
  */

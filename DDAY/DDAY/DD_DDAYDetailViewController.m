@@ -194,17 +194,18 @@
     [self.view addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
-    NSString *pic=nil;
-    if(_detailModel.seriesFrontPic.pic)
-    {
-        pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",_detailModel.seriesFrontPic.pic];
-    }
-    shareView=[[DD_ShareView alloc] initWithTitle:_detailModel.name Content:[[NSString alloc] initWithFormat:@"%@发布会开始啦，马上来报名吧",_detailModel.name] WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,_detailModel.appUrl] WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithType:@"dday_detail" WithParams:@{@"detailModel":_detailModel} WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss];
         }
     }];
+//    shareView=[[DD_ShareView alloc] initWithTitle:_detailModel.name Content:[[NSString alloc] initWithFormat:@"%@发布会开始啦，马上来报名吧",_detailModel.name] WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,_detailModel.appUrl] WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"cancel"])
+//        {
+//            [self mengban_dismiss];
+//        }
+//    }];
     [mengban addSubview:shareView];
     
     CGFloat _height=[DD_ShareTool getHeight];

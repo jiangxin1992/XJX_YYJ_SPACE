@@ -24,6 +24,7 @@
 
 -(NSMutableArray *)getTagArr;
 __string(appUrl);
+__string(downLoadUrl);
 /**
  * 用户职业
  */

@@ -26,7 +26,7 @@
 //    _DDAYModel.saleEndTime=_DDAYModel.saleEndTime/1000;
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=YES;
-//    [self testData_Q:_DDAYModel WithType:4];
+//    [self testData1:_DDAYModel WithType:4];
     return _DDAYModel;
 }
 +(void)testData_Q:(DD_DDayDetailModel *)_DDAYModel WithType:(NSInteger )type
