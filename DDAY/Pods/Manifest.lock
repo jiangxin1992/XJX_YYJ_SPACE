@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Bugly (2.4.0)
   - GTSDK (1.5.0)
   - HappyDNS (0.3.10)
   - Masonry (1.0.2)
@@ -39,6 +40,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - Bugly
   - GTSDK
   - Masonry (~> 1.0.2)
   - MJExtension (~> 3.0.13)
@@ -55,6 +57,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Bugly: 3b56d8365c5687f74fd6fbb50c5b7ede3cdac96c
   GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -67,6 +70,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2817052accb173a3b6f83918b26e84134b16edae
+PODFILE CHECKSUM: ab12a1108d31863ad968cba10eee0fa3a08f2b4e
 
 COCOAPODS: 1.0.0

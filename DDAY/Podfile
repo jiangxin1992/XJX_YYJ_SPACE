@@ -11,6 +11,7 @@ pod 'MJExtension','~>3.0.13'
 pod 'Masonry','~>1.0.2’
 pod 'Qiniu', '~> 7.1’
 pod 'GTSDK'
+pod 'Bugly'
 
  # 主模块(必须)
  pod 'ShareSDK3', '~> 3.4.2'
