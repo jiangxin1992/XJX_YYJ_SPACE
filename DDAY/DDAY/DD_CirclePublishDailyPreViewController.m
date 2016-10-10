@@ -40,6 +40,7 @@
     DD_CircleTagView *_CircleTagView;
     
     UIButton *submit;
+    BOOL _is_submit;
 }
 
 - (void)viewDidLoad {
@@ -71,6 +72,7 @@
 
 -(void)PrepareData
 {
+    _is_submit=NO;
     goodsImgArr=[[NSMutableArray alloc] init];
 }
 -(void)PrepareUI
@@ -213,62 +215,78 @@
 #pragma mark - SomeAction
 -(void)submitApplyAction
 {
-    NSDictionary *_parameters=@{@"applyInfo":[@{
-                                                @"likeDesignerName":_circleModel.designerModel.likeDesignerName
-                                                ,@"likeReason":_circleModel.designerModel.likeReason
-                                                ,@"shareInfo":@{
-                                                        @"shareAdvise":_circleModel.remark
-                                                        ,@"items":[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel]
-                                                        ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
-                                                        ,@"tags":_circleModel.tagMap
-                                                        }
-                                                } mj_JSONString],@"token":[DD_UserModel getToken]};
+    if(!_is_submit)
+    {
+        NSLog(@"---is-submit---");
+        _is_submit=YES;
+        NSDictionary *_parameters=@{@"applyInfo":[@{
+                                                    @"likeDesignerName":_circleModel.designerModel.likeDesignerName
+                                                    ,@"likeReason":_circleModel.designerModel.likeReason
+                                                    ,@"shareInfo":@{
+                                                            @"shareAdvise":_circleModel.remark
+                                                            ,@"items":[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel]
+                                                            ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
+                                                            ,@"tags":_circleModel.tagMap
+                                                            }
+                                                    } mj_JSONString],@"token":[DD_UserModel getToken]};
+        
+        [[JX_AFNetworking alloc] GET:@"share/applyToDoyen.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            _is_submit=NO;
+            if(success)
+            {
+                _circleModel.status=[[data objectForKey:@"status"] integerValue];
+                _block(@"update_status");
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            _is_submit=NO;
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
     
-    [[JX_AFNetworking alloc] GET:@"share/applyToDoyen.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            _circleModel.status=[[data objectForKey:@"status"] integerValue];
-            _block(@"update_status");
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
 }
 -(void)submitPublishAction
 {
-    NSDictionary *_parameters=@{
-                                @"shareInfo":[@{
-                                                @"shareAdvise":_circleModel.remark
-                                                ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
-                                                } mj_JSONString]
-                                ,@"token":[DD_UserModel getToken]
-                                };
-    [[JX_AFNetworking alloc] GET:@"share/saveDesignerShare.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            //                回调、搭配列表下拉刷新数据
-            _block(@"refresh");
-            //                返回搭配列表界面
-            NSArray *controllers=self.navigationController.viewControllers;
-            for (int i=0; i<controllers.count; i++) {
-                id obj=controllers[i];
-                if([obj isKindOfClass:[DD_CircleViewController class]])
-                {
-                    [self.navigationController popToViewController:obj animated:YES];
+    if(!_is_submit)
+    {
+        NSLog(@"---is-submit---");
+        _is_submit=YES;
+        NSDictionary *_parameters=@{
+                                    @"shareInfo":[@{
+                                                    @"shareAdvise":_circleModel.remark
+                                                    ,@"sharePics":[DD_CirclePublishTool getPicArrWithCircleModel:_circleModel]
+                                                    } mj_JSONString]
+                                    ,@"token":[DD_UserModel getToken]
+                                    };
+        [[JX_AFNetworking alloc] GET:@"share/saveDesignerShare.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            _is_submit=NO;
+            if(success)
+            {
+                //                回调、搭配列表下拉刷新数据
+                _block(@"refresh");
+                //                返回搭配列表界面
+                NSArray *controllers=self.navigationController.viewControllers;
+                for (int i=0; i<controllers.count; i++) {
+                    id obj=controllers[i];
+                    if([obj isKindOfClass:[DD_CircleViewController class]])
+                    {
+                        [self.navigationController popToViewController:obj animated:YES];
+                    }
                 }
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
             }
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            _is_submit=NO;
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+
+    }
 }
 -(void)SetState
 {

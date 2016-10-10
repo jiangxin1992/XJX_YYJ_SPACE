@@ -47,6 +47,8 @@
     
     UIImageView *mengban_share;
     DD_ShareView *shareView;
+    
+    BOOL _is_send_comment;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,6 +78,7 @@
 }
 -(void)PrepareData
 {
+    _is_send_comment=NO;
     commToId=@"";
     _page=1;
     _dataArr=[[NSMutableArray alloc] init];
@@ -779,36 +782,43 @@
  */
 -(void)sendCommentWithContent:(NSString *)content
 {
-    [[JX_AFNetworking alloc] GET:@"share/commentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID,@"commToId":commToId,@"comment":content} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            nowListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
-            if(_ListModel)
+    if(!_is_send_comment)
+    {
+        NSLog(@"----is-commenting----");
+        _is_send_comment=YES;
+        [[JX_AFNetworking alloc] GET:@"share/commentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID,@"commToId":commToId,@"comment":content} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            _is_send_comment=NO;
+            if(success)
             {
-                _ListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
-            }
-            commToId=@"";
-            [_tableview.mj_header beginRefreshing];
-            
-            [_commentview initTextView];
-            if([_ListModel.shareType longValue]==4)
-            {
-                [_headView setState];
+                nowListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
+                if(_ListModel)
+                {
+                    _ListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
+                }
+                commToId=@"";
+                [_tableview.mj_header beginRefreshing];
+                
+                [_commentview initTextView];
+                if([_ListModel.shareType longValue]==4)
+                {
+                    [_headView setState];
+                }else
+                {
+                    [_dailyHeadView setState];
+                }
+                if(_ListModel)
+                {
+                    _block(@"reload");
+                }
             }else
             {
-                [_dailyHeadView setState];
+                [self presentViewController:successAlert animated:YES completion:nil];
             }
-            if(_ListModel)
-            {
-                _block(@"reload");
-            }
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            _is_send_comment=NO;
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
 }
 /**
  * 删除评论

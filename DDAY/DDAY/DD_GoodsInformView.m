@@ -291,7 +291,9 @@
  */
 -(void)setCollectState
 {
-    [[JX_AFNetworking alloc] GET:@"item/isCollectItem.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_detailModel.item.itemId,@"colorId":_detailModel.item.colorId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    DD_ColorsModel *colorModel=[_detailModel getColorsModel];
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_detailModel.item.itemId,@"colorId":_detailModel.item.colorId,@"colorCode":colorModel.colorCode};
+    [[JX_AFNetworking alloc] GET:@"item/isCollectItem.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             if([_detailModel.item.colorId isEqualToString:[data objectForKey:@"colorId"]])

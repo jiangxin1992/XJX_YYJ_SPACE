@@ -26,11 +26,6 @@
  */
 +(NSArray *)getMonthSeriesWithDayModel:(NSDate *)date WithSeriesArr:(NSArray *)seriesArr WithDataArr:(NSArray *)dataArr;
 
-/**
- * 已弃用
- */
-+(NSArray *)getPointArrWithType:(NSInteger )type WithColorOne:(NSString *)colorCode1 WithColorTwo:(NSString *)colorCode2;
-
 +(NSArray *)getCurrentSeriesWithMonthModel:(DD_MonthModel *)monthModel WithData:(NSArray *)seriesArr;
 
 +(NSInteger)getTypeWithArr:(NSArray *)getArr WithMonthModel:(DD_MonthModel *)monthModel;

@@ -18,6 +18,7 @@
 @implementation DD_SetPSWViewController
 {
     UITextField *_PSWTextfield;
+    BOOL _isInRegister;
 }
 
 - (void)viewDidLoad {
@@ -39,6 +40,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
+    _isInRegister=NO;
     DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -112,78 +114,88 @@
  */
 -(void)enterRegisterAction
 {
-    if(_thirdPartLogin==1)
+    if(!_isInRegister)
     {
-        NSDictionary *parameters=@{@"phone":_phone,@"password":[regular md5:_PSWTextfield.text]};
-        [[JX_AFNetworking alloc] GET:@"user/regist.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                // 本地化数据
-                [DD_UserModel setLocalUserInfo:data];
-                // 更新当前权限状态
-                //            [regular UpdateRoot];
-                // 更新友盟用户统计和渠道
-                [regular updateProfileSignInWithPUID];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
-                _successblock(@"success");
-                //            回到登录发起页面
-                NSArray *controllers=self.navigationController.viewControllers;
-                for (int i=0; i<controllers.count; i++) {
-                    id obj=controllers[i];
-                    if([obj isKindOfClass:[DD_LoginViewController class]])
-                    {
-                        if(i>0)
+        NSLog(@"----register-time----");
+        if(_thirdPartLogin==1)
+        {
+            _isInRegister=YES;
+            NSDictionary *parameters=@{@"phone":_phone,@"password":[regular md5:_PSWTextfield.text]};
+            [[JX_AFNetworking alloc] GET:@"user/regist.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                _isInRegister=NO;
+                if(success)
+                {
+                    // 本地化数据
+                    [DD_UserModel setLocalUserInfo:data];
+                    // 更新当前权限状态
+                    //            [regular UpdateRoot];
+                    // 更新友盟用户统计和渠道
+                    [regular updateProfileSignInWithPUID];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                    _successblock(@"success");
+                    //            回到登录发起页面
+                    NSArray *controllers=self.navigationController.viewControllers;
+                    for (int i=0; i<controllers.count; i++) {
+                        id obj=controllers[i];
+                        if([obj isKindOfClass:[DD_LoginViewController class]])
                         {
-                            [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                            if(i>0)
+                            {
+                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                            }
                         }
                     }
+                    
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
                 }
                 
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
-    }else
-    {
-        NSMutableDictionary *parameters=[[NSMutableDictionary alloc] initWithDictionary:_parameters];
-        [parameters setValue:_phone forKey:@"phone"];
-        [parameters setValue:[regular md5:_PSWTextfield.text] forKey:@"password"];
-        [[JX_AFNetworking alloc] GET:@"user/thirdPlatFormRegistSucess.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                // 本地化数据
-                [DD_UserModel setLocalUserInfo:data];
-                // 更新当前权限状态
-                //            [regular UpdateRoot];
-                // 更新友盟用户统计和渠道
-                [regular updateProfileSignInWithPUID];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
-                _successblock(@"success");
-                //            回到登录发起页面
-                NSArray *controllers=self.navigationController.viewControllers;
-                for (int i=0; i<controllers.count; i++) {
-                    id obj=controllers[i];
-                    if([obj isKindOfClass:[DD_LoginViewController class]])
-                    {
-                        if(i>0)
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                _isInRegister=NO;
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }else
+        {
+            _isInRegister=YES;
+            NSMutableDictionary *parameters=[[NSMutableDictionary alloc] initWithDictionary:_parameters];
+            [parameters setValue:_phone forKey:@"phone"];
+            [parameters setValue:[regular md5:_PSWTextfield.text] forKey:@"password"];
+            [[JX_AFNetworking alloc] GET:@"user/thirdPlatFormRegistSucess.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                _isInRegister=NO;
+                if(success)
+                {
+                    // 本地化数据
+                    [DD_UserModel setLocalUserInfo:data];
+                    // 更新当前权限状态
+                    //            [regular UpdateRoot];
+                    // 更新友盟用户统计和渠道
+                    [regular updateProfileSignInWithPUID];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                    _successblock(@"success");
+                    //            回到登录发起页面
+                    NSArray *controllers=self.navigationController.viewControllers;
+                    for (int i=0; i<controllers.count; i++) {
+                        id obj=controllers[i];
+                        if([obj isKindOfClass:[DD_LoginViewController class]])
                         {
-                            [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                            if(i>0)
+                            {
+                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                            }
                         }
                     }
+                    
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
                 }
-                
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                _isInRegister=NO;
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
     }
-    
 }
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
