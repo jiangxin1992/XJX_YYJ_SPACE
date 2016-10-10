@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Bugly (2.4.0)
+  - Bugly (2.4.2)
   - GTSDK (1.5.0)
   - HappyDNS (0.3.10)
   - Masonry (1.0.2)
@@ -57,7 +57,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Bugly: 3b56d8365c5687f74fd6fbb50c5b7ede3cdac96c
+  Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
   GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
