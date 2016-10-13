@@ -225,7 +225,7 @@
             
         }];
         _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
-        NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        JXLOG(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         _headView.userInteractionEnabled=YES;
         [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
         
@@ -299,7 +299,7 @@
             
         }];
         _dailyHeadView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDailyDetailHeadView heightWithModel:nowListModel]);
-        NSLog(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
+        JXLOG(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         _dailyHeadView.userInteractionEnabled=YES;
         [_dailyHeadView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
         _tableview.tableHeaderView=_dailyHeadView;
@@ -784,7 +784,7 @@
 {
     if(!_is_send_comment)
     {
-        NSLog(@"----is-commenting----");
+        JXLOG(@"----is-commenting----");
         _is_send_comment=YES;
         [[JX_AFNetworking alloc] GET:@"share/commentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID,@"commToId":commToId,@"comment":content} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             _is_send_comment=NO;

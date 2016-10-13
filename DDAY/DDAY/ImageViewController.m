@@ -63,7 +63,7 @@
 }
 -(void)touchAction
 {
-    NSLog(@"_currentPage=%ld",_currentPage);
+    JXLOG(@"_currentPage=%ld",_currentPage);
     _block(@"show_img",_currentPage);
 }
 

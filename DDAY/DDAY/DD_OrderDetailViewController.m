@@ -414,14 +414,14 @@
                     NSString *appScheme = @"DDAY";
                     //            payParam
                     NSString *orderSpec = [data objectForKey:@"payParam"];
-                    NSLog(@"orderSpec = %@",orderSpec);
+                    JXLOG(@"orderSpec = %@",orderSpec);
                     id<DataSigner> signer = CreateRSADataSigner([data objectForKey:@"privateKey"]);
                     NSString *signedString = [signer signString:orderSpec];
                     NSString *orderString = nil;
                     if (signedString != nil) {
                         orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                                        orderSpec, signedString, @"RSA"];
-                        NSLog(@"%@",orderString);
+                        JXLOG(@"%@",orderString);
                         [DD_UserModel setTradeOrderCode:[data objectForKey:@"tradeOrderCode"]];
                         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                             if([self haveClearingDoneView])

@@ -162,7 +162,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                NSLog(@"____%@",strTime);
+                JXLOG(@"____%@",strTime);
                 [_yanzhengBtn setTitle:[NSString stringWithFormat:@"%@s",strTime] forState:UIControlStateNormal];
                 _yanzhengBtn.userInteractionEnabled = NO;
                 [_yanzhengBtn setTitleColor:_define_light_gray_color forState:UIControlStateNormal];

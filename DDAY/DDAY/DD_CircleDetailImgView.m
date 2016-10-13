@@ -28,7 +28,7 @@
         _detailModel=model;
         _type=@"model";
         [self setState];
-        NSLog(@"111");
+        JXLOG(@"111");
     }
     return self;
 }
@@ -41,7 +41,7 @@
         _picArr=picArr;
         _type=@"data";
         [self setState];
-        NSLog(@"111");
+        JXLOG(@"111");
     }
     return self;
 }

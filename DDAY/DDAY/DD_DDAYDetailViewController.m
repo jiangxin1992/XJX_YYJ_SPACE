@@ -232,7 +232,7 @@
 #pragma mark - RequestData
 -(void)RequestData
 {
-    NSLog(@"token=%@",[DD_UserModel getToken]);
+    JXLOG(@"token=%@",[DD_UserModel getToken]);
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"seriesId":_model.s_id};
     [[JX_AFNetworking alloc] GET:@"series/querySeriesPageInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)

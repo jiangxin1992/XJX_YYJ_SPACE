@@ -171,7 +171,7 @@
  */
 -(void)backAction
 {
-    NSLog(@"type=%@",_type);
+    JXLOG(@"type=%@",_type);
     if([_type isEqualToString:@"clear"])
     {
         [self.navigationController popViewControllerAnimated:YES];

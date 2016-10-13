@@ -198,7 +198,7 @@
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text = day;
     [self getDataDayModel:self.tempDate];
-    NSLog(@"monthArr=%@",_monthArr);
+    JXLOG(@"monthArr=%@",_monthArr);
     [_leftBtn setTitle:self.tempDate.getLastMonthWithDate forState:UIControlStateNormal];
     [_rightBtn setTitle:self.tempDate.getNextMonthWithDate forState:UIControlStateNormal];
 }
@@ -211,7 +211,7 @@
     NSString *day=self.tempDate.yyyyMMByLineWithDate;
     _dateLabel.text = day;
     [self getDataDayModel:self.tempDate];
-    NSLog(@"monthArr=%@",_monthArr);
+    JXLOG(@"monthArr=%@",_monthArr);
     [_leftBtn setTitle:self.tempDate.getLastMonthWithDate forState:UIControlStateNormal];
     [_rightBtn setTitle:self.tempDate.getNextMonthWithDate forState:UIControlStateNormal];
 }

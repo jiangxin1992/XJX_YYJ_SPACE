@@ -97,7 +97,7 @@
     webView.frame = frame;
     _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetHeight(webView.frame));
     
-    //NSLog(@"%@",webView.mj_JSONString);
+    //JXLOG(@"%@",webView.mj_JSONString);
     NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.fontFamily= '%@'",
                           @"Helvetica"];
     [webView stringByEvaluatingJavaScriptFromString:jsString];

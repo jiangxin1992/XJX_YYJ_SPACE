@@ -121,7 +121,7 @@
     {
         _commentField.textColor=_define_black_color;
     }
-    NSLog(@"_commentField111=%@",_commentField.text);
+    JXLOG(@"_commentField111=%@",_commentField.text);
     _block(@"save",_commentField.text);
     [_commentField resignFirstResponder];
 }

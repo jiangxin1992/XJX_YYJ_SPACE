@@ -293,7 +293,7 @@ __bool(isExpanded);
                 }] animated:YES];
             }else if([type isEqualToString:@"more_circle"])
             {
-//                NSLog(@"更多搭配");
+//                JXLOG(@"更多搭配");
                 [self.navigationController pushViewController:[[DD_MoreCircleViewController alloc] initWithColorCode:_model.colorCode WithItemId:_model.g_id] animated:YES];
             }
         }];

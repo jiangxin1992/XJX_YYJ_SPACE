@@ -72,7 +72,7 @@
         self.navigationItem.leftBarButtonItem=nil;
     }else
     {
-        NSLog(@"UserType=%ld",_userType);
+        JXLOG(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
@@ -522,7 +522,7 @@
 -(void)RootChangeAction:(NSNotification *)not
 {
     NSInteger _userType=[DD_UserModel getUserType];
-    NSLog(@"UserType=%ld",_userType);
+    JXLOG(@"UserType=%ld",_userType);
     //     1 管理员 2 设计师 3 普通用户 4 达人
     if(_userType==3)
     {
@@ -539,7 +539,7 @@
         self.navigationItem.leftBarButtonItem=nil;
     }else
     {
-         NSLog(@"UserType=%ld",_userType);
+         JXLOG(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
         [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];

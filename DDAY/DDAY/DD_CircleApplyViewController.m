@@ -469,7 +469,7 @@
             }
             else
             {
-                NSLog(@"不能打开相机");
+                JXLOG(@"不能打开相机");
             }
         }];
         
@@ -479,7 +479,7 @@
             }
             else
             {
-                NSLog(@"无法打开相册");
+                JXLOG(@"无法打开相册");
             }
         }];
         [alertController addAction:cancelAction];

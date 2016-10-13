@@ -89,7 +89,7 @@
     _DDAYModel=DDAYModel;
     [imageView JX_ScaleAspectFill_loadImageUrlStr:DDAYModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     titlelabel.text=DDAYModel.name;
-    NSLog(@"start=%@,end=%@",[regular getTimeStr:DDAYModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"],[regular getTimeStr:DDAYModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"]);
+    JXLOG(@"start=%@,end=%@",[regular getTimeStr:DDAYModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"],[regular getTimeStr:DDAYModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"]);
     startLabel.text=[regular getTimeStr:DDAYModel.saleStartTime WithFormatter:@"YYYY-MM-dd HH:mm"];
     endLabel.text=[regular getTimeStr:DDAYModel.saleEndTime WithFormatter:@"YYYY-MM-dd HH:mm"];
 }

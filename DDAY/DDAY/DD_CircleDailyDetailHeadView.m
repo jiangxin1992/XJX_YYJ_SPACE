@@ -217,8 +217,8 @@
         make.bottom.mas_equalTo(-30);
     }];
     
-    NSLog(@"%@",_listModel);
-    NSLog(@"111");
+    JXLOG(@"%@",_listModel);
+    JXLOG(@"111");
     
     
 }

@@ -116,7 +116,7 @@
 {
     if(!_isInRegister)
     {
-        NSLog(@"----register-time----");
+        JXLOG(@"----register-time----");
         if(_thirdPartLogin==1)
         {
             _isInRegister=YES;

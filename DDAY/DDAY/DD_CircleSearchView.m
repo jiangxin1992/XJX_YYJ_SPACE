@@ -223,14 +223,14 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     [self searchAction];
-    NSLog(@"ShouldBeginEditing");
+    JXLOG(@"ShouldBeginEditing");
     return YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self searchAction];
-    NSLog(@"DidChange");
+    JXLOG(@"DidChange");
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {

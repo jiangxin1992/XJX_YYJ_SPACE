@@ -109,7 +109,7 @@
             {
                 _content=content;
                 _textView.text=_content;
-                NSLog(@"textview=%@",_textView.text);
+                JXLOG(@"textview=%@",_textView.text);
                 
                 if([_content isEqualToString:_holdStr])
                 {

@@ -16,6 +16,12 @@
 //#define DNS @"http://show.ycospace.com:8051/dday-web/service/"//展示环境
 #define DNS @"http://app.ycospace.com/v1.0/"//正式环境
 
+#ifdef DEBUG
+#define JXLOG(...) NSLog(__VA_ARGS__);//调试阶段打印,发布阶段不打印
+#else
+#define JXLOG(...)
+#endif
+
 /*************** Color ***************/
 #define _define_backview_color [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 

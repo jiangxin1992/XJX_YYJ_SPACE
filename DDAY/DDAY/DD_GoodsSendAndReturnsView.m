@@ -55,7 +55,7 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(48);
     }];
-    NSLog(@"%@",_item.deliverDeclaration);
+    JXLOG(@"%@",_item.deliverDeclaration);
     return_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.deliverDeclaration  WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:return_content];
     return_content.numberOfLines=0;

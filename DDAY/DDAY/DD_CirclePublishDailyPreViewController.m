@@ -217,7 +217,7 @@
 {
     if(!_is_submit)
     {
-        NSLog(@"---is-submit---");
+        JXLOG(@"---is-submit---");
         _is_submit=YES;
         NSDictionary *_parameters=@{@"applyInfo":[@{
                                                     @"likeDesignerName":_circleModel.designerModel.likeDesignerName
@@ -253,7 +253,7 @@
 {
     if(!_is_submit)
     {
-        NSLog(@"---is-submit---");
+        JXLOG(@"---is-submit---");
         _is_submit=YES;
         NSDictionary *_parameters=@{
                                     @"shareInfo":[@{
@@ -290,7 +290,7 @@
 }
 -(void)SetState
 {
-    NSLog(@"contentMode=%ld",userHeadImg.contentMode);
+    JXLOG(@"contentMode=%ld",userHeadImg.contentMode);
     [userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:400 placeHolderImageName:nil radius:44/2.0f];
     userNameLabel.text=_usermodel.nickName;
     if([NSString isNilOrEmpty:_usermodel.career])

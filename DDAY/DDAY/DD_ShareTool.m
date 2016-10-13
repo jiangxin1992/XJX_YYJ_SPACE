@@ -154,7 +154,7 @@
 {
     BOOL _isInstallQQ=[self isInstallQQ];
     BOOL _isInstallWeChat=[self isInstallWeChat];
-    NSLog(@"%d %d",_isInstallQQ,_isInstallWeChat);
+    JXLOG(@"%d %d",_isInstallQQ,_isInstallWeChat);
     if(_isInstallQQ&&_isInstallWeChat)
     {
         return @[@"wechat",@"wechat_friend",@"sina",@"qq",@"copy"];

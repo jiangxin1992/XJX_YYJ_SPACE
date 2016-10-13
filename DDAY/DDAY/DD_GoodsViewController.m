@@ -190,7 +190,7 @@
         if(success)
         {
             [_categoryArr addObjectsFromArray:[DD_GoodsCategoryModel getGoodsCategoryModelArr:[data objectForKey:@"category"]]];
-            NSLog(@"_categoryModel=%@",_categoryArr);
+            JXLOG(@"_categoryModel=%@",_categoryArr);
             if(listTableView&&_categoryArr.count)
             {
                 listTableView.categoryArr=_categoryArr;

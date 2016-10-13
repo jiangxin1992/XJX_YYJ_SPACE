@@ -99,7 +99,7 @@
 
     if([NSString isNilOrEmpty:_oldPSWTextfield.text]||[NSString isNilOrEmpty:_newpsw.text]||[NSString isNilOrEmpty:_repeat_newpsw.text])
     {
-        NSLog(@"%@ %@ %@",_oldPSWTextfield.text,_newpsw.text,_repeat_newpsw.text);
+        JXLOG(@"%@ %@ %@",_oldPSWTextfield.text,_newpsw.text,_repeat_newpsw.text);
         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
     }else
     {

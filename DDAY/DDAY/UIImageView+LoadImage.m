@@ -42,7 +42,7 @@
 //        placeHolder.imageURL = path;
         
         [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            NSLog(@"SDImageCacheType=%ld",cacheType);
+//            JXLOG(@"SDImageCacheType=%ld",cacheType);
 //            if (!error) {
 //                self.image = image;
 //                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
@@ -88,7 +88,7 @@
 //        placeHolder.imageURL = path;
         
         [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            NSLog(@"SDImageCacheType=%ld",cacheType);
+            JXLOG(@"SDImageCacheType=%ld",cacheType);
 //            if (!error) {
 //                self.image = image;
 //                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];
@@ -134,7 +134,7 @@
 //        placeHolder.imageURL = path;
     
         [self sd_setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            NSLog(@"SDImageCacheType=%ld",cacheType);
+            JXLOG(@"SDImageCacheType=%ld",cacheType);
 //            if (!error) {
 //                self.image = image;
 //                [[SDImageCache sharedImageCache] storeImage:image forKey:urlStr];

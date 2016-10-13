@@ -71,7 +71,6 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
     
     
     _is_first_register=YES;
@@ -137,7 +136,7 @@
     
     // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
-    NSLog(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
+    JXLOG(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
     // 注册APNS
     [self registerRemoteNotification];
     
@@ -224,7 +223,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
+    JXLOG(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
     //向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
@@ -241,18 +240,18 @@
     [[JX_AFNetworking alloc] GET:@"user/setUserDeviceToken.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            NSLog(@"111");
+            JXLOG(@"111");
         }else
         {
-            NSLog(@"111");
+            JXLOG(@"111");
         }
     } failure:^(NSError *error, UIAlertController *failureAlert) {
-        NSLog(@"111");
+        JXLOG(@"111");
     }];
 }
 /** 远程通知注册失败委托 */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"\n>>>[DeviceToken Error]:%@\n\n", error.description);
+    JXLOG(@"\n>>>[DeviceToken Error]:%@\n\n", error.description);
 }
 #pragma mark - APP运行中接收到通知(推送)处理
 
@@ -260,7 +259,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     application.applicationIconBadgeNumber = 0; // 标签
     
-    NSLog(@"\n>>>[Receive RemoteNotification]:%@\n\n", userInfo);
+    JXLOG(@"\n>>>[Receive RemoteNotification]:%@\n\n", userInfo);
 }
 
 /** APP已经接收到“远程”通知(推送) - 透传推送消息  */
@@ -268,9 +267,9 @@
     
     if(application.applicationState!=UIApplicationStateActive)
     {
-        NSLog(@"applicationState=%ld",application.applicationState);
+        JXLOG(@"applicationState=%ld",application.applicationState);
         // 处理APN
-        NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n", userInfo);
+        JXLOG(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n", userInfo);
         
         completionHandler(UIBackgroundFetchResultNewData);
         NSData* data=[[[userInfo objectForKey:@"aps"] objectForKey:@"category"] dataUsingEncoding:NSUTF8StringEncoding];
@@ -320,13 +319,13 @@
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
     
     // [4-EXT-1]: 个推SDK已注册，返回clientId
-    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+    JXLOG(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
 }
 
 /** SDK遇到错误回调 */
 - (void)GeTuiSdkDidOccurError:(NSError *)error {
     // [EXT]:个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知。
-    NSLog(@"\n>>>[GexinSdk error]:%@\n\n", [error localizedDescription]);
+    JXLOG(@"\n>>>[GexinSdk error]:%@\n\n", [error localizedDescription]);
 }
 
 
@@ -340,30 +339,30 @@
     }
     
     NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
-    NSLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
+    JXLOG(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
 }
 
 /** SDK收到sendMessage消息回调 */
 - (void)GeTuiSdkDidSendMessage:(NSString *)messageId result:(int)result {
     // [4-EXT]:发送上行消息结果反馈
     NSString *msg = [NSString stringWithFormat:@"sendmessage=%@,result=%d", messageId, result];
-    NSLog(@"\n>>>[GexinSdk DidSendMessage]:%@\n\n", msg);
+    JXLOG(@"\n>>>[GexinSdk DidSendMessage]:%@\n\n", msg);
 }
 
 /** SDK运行状态通知 */
 - (void)GeTuiSDkDidNotifySdkState:(SdkStatus)aStatus {
     // [EXT]:通知SDK运行状态
-    NSLog(@"\n>>>[GexinSdk SdkState]:%u\n\n", aStatus);
+    JXLOG(@"\n>>>[GexinSdk SdkState]:%u\n\n", aStatus);
 }
 
 /** SDK设置推送模式回调 */
 - (void)GeTuiSdkDidSetPushMode:(BOOL)isModeOff error:(NSError *)error {
     if (error) {
-        NSLog(@"\n>>>[GexinSdk SetModeOff Error]:%@\n\n", [error localizedDescription]);
+        JXLOG(@"\n>>>[GexinSdk SetModeOff Error]:%@\n\n", [error localizedDescription]);
         return;
     }
     
-    NSLog(@"\n>>>[GexinSdk SetModeOff]:%@\n\n", isModeOff ? @"开启" : @"关闭");
+    JXLOG(@"\n>>>[GexinSdk SetModeOff]:%@\n\n", isModeOff ? @"开启" : @"关闭");
 }
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
