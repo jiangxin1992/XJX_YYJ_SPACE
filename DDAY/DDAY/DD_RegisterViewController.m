@@ -171,7 +171,6 @@
         }
     });
     dispatch_resume(_timer);
-    
 }
 /**
  * 获取验证码

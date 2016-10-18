@@ -21,4 +21,8 @@
  * tabbarAppear
  */
 -(void)tabbarAppear;
+/**
+ * 清理缓存  处理内存警告
+ */
+-(void)cleanCache;
 @end

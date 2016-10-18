@@ -43,7 +43,30 @@
     [self SomePrepare];
     [self UIConfig];
 }
+-(void)loadView
+{
+    mywaterflow = [[Waterflow alloc] init];
+    
+    if(_noTabbar)
+    {
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight);
+    }else
+    {
+        
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, IsPhone6_gt?(ScreenHeight-16):ScreenHeight);
+    }
+    
+    mywaterflow.dataSource = self;
+    
+    mywaterflow.delegate = self;
+    
+    self.view=mywaterflow;
+}
 #pragma mark - SomePrepare
+-(void)setNoTabbar:(BOOL)noTabbar
+{
+    _noTabbar=noTabbar;
+}
 -(void)SomePrepare
 {
     [self hideBackNavBtn];
@@ -206,29 +229,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    [self CreateWaterFlow];
     [self MJRefresh];
-}
--(void)CreateWaterFlow
-{
-    mywaterflow = [[Waterflow alloc] init];
-    
-    if(_noTabbar)
-    {
-        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight);
-    }else
-    {
-        
-        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, IsPhone6_gt?(ScreenHeight-16):ScreenHeight);
-    }
-    
-    mywaterflow.dataSource = self;
-    
-    mywaterflow.delegate = self;
-    
-//    mywaterflow.showsVerticalScrollIndicator=NO;
-    
-    [self.view addSubview:mywaterflow];
 }
 #pragma mark - MJRefresh
 -(void)MJRefresh

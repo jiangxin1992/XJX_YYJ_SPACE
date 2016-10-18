@@ -54,6 +54,7 @@ static DD_CustomViewController *tabbarController = nil;
     [self Notifications];
     
 }
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -243,6 +244,17 @@ static DD_CustomViewController *tabbarController = nil;
     
 }
 #pragma mark - SomeAction
+-(void)cleanCache
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[[NSString alloc] initWithFormat:@"系统内存不足，是否清除应用缓存（%@M）",[regular getSize]] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[SDImageCache sharedImageCache] clearDiskOnCompletion:nil];
+    }];
+    [alertController addAction:okAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 -(void)updateBtnStatus:(NSInteger )index
 {
     for (UIButton *b in _tabbar.subviews) {

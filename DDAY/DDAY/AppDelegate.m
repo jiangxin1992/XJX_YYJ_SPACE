@@ -40,6 +40,7 @@
 #import "AppDelegate.h"
 
 #import "DD_StartViewController.h"
+#import "DD_CustomViewController.h"
 
 //支付宝
 #import <AlipaySDK/AlipaySDK.h>
@@ -140,8 +141,12 @@
     // 注册APNS
     [self registerRemoteNotification];
     
-    [self.window makeKeyAndVisible];
+    //1.创建窗口
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     self.window.rootViewController = [[DD_StartViewController alloc] init] ;
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -446,5 +451,10 @@
     }
     return @"";
 }
-
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    DD_CustomViewController *shareCustomView=[DD_CustomViewController sharedManager];
+    [shareCustomView cleanCache];
+    
+}
 @end

@@ -16,36 +16,62 @@
 //#define DNS @"http://show.ycospace.com:8051/dday-web/service/"//展示环境
 #define DNS @"http://app.ycospace.com/v1.0/"//正式环境
 
+
+
+//自定义log（调试阶段打印,发布阶段不打印）
 #ifdef DEBUG
-#define JXLOG(...) NSLog(__VA_ARGS__);//调试阶段打印,发布阶段不打印
+
+#define JXLOG(...) NSLog(__VA_ARGS__);
+
 #else
+
 #define JXLOG(...)
+
 #endif
+
+//处理混合编译
+#ifdef __OBJC__
 
 /*************** Color ***************/
 #define _define_backview_color [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
 
 #define _define_black_color [UIColor colorWithHexString:@"#000000"]
+
 #define _define_white_color [UIColor colorWithHexString:@"#FFFFFF"]
+
 #define _define_clear_color [UIColor clearColor]
 
 #define _define_light_gray_color [UIColor colorWithHexString:@"#7C7B7B"]//最深
+
 #define _define_light_gray_color1 [UIColor colorWithHexString:@"#A8A7A7"]//最深-1
+
 //#define _define_light_gray_color2 [UIColor colorWithHexString:@"#EAEAEA"]//最深-2
+
 #define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]
 
 /*************** SIZE ***************/
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
 #define kEdge (IsPhone6_gt?26:20)
+
 #define water_margin 20
+
 #define water_Spacing 21
+
 #define water_Top 9
+
 #define water_Bottom 12
+
 #define kStatusBarHeight         20 //状态栏高度
+
 #define kNavigationBarHeight     44 //导航栏高度
+
 #define kNavHeight     64 //导航栏高度+状态栏高度
+
 #define ktabbarHeight 49 //tabbar高度
+
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height //当前设备屏幕高
+
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width //当前设备屏幕宽
 
 #define kIPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2208), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为5.5英寸屏幕
@@ -93,9 +119,14 @@
 #define __block_type(__k__,__type__) @property(nonatomic,copy) void (^__k__)(NSString *__type__)
 
 #define __label(__k__) @property(nonatomic,strong) UILabel *__k__
+
 #define __btn(__k__) @property(nonatomic,strong) UIButton *__k__
+
 #define __view(__k__) @property(nonatomic,strong) UIView *__k__
+
 #define __scrollView(__k__) @property(nonatomic,strong) UIScrollView *__k__
+
+#endif
 
 
 /*************** Other ***************/
