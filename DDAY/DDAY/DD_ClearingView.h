@@ -8,7 +8,7 @@
 /*********** 总结视图为确认订单页面中的结算视图 ***********/
 #import <UIKit/UIKit.h>
 
-@interface DD_ClearingView : UIView<UIWebViewDelegate>
+@interface DD_ClearingView : UIView
 /**
  * 初始化方法
  */

@@ -13,6 +13,10 @@
 
 #define _jiange 9
 
+@interface DD_OrderClearingView()<UIWebViewDelegate>
+
+@end
+
 @implementation DD_OrderClearingView
 {
     UIView *totalView;

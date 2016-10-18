@@ -8,6 +8,10 @@
 
 #import "DD_CircleInfoSuggestSignBoard.h"
 
+@interface DD_CircleInfoSuggestSignBoard()<UITextViewDelegate,UITextFieldDelegate>
+
+@end
+
 @implementation DD_CircleInfoSuggestSignBoard
 
 #pragma mark - 初始化

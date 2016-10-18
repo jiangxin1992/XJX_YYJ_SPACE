@@ -13,6 +13,10 @@
 
 #import "DD_GoodsCategoryModel.h"
 
+@interface DD_GoodsListTableView()<UITableViewDelegate,UITableViewDataSource>
+
+@end
+
 @implementation DD_GoodsListTableView
 {
     NSMutableArray *_btnArr;

@@ -10,6 +10,10 @@
 
 #import "ImageViewController.h"
 
+@interface DD_CircleDetailImgView()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+
+@end
+
 @implementation DD_CircleDetailImgView
 {
     UIPageViewController *_pageViewControler;

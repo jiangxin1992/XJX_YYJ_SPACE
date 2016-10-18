@@ -8,6 +8,10 @@
 
 #import "DD_CircleCommentSignBoard.h"
 
+@interface DD_CircleCommentSignBoard()<UITextViewDelegate>
+
+@end
+
 @implementation DD_CircleCommentSignBoard
 
 #pragma mark - 初始化

@@ -15,6 +15,10 @@
 
 #import "DD_ShareTool.h"
 
+@interface DD_ShareView()<UIAlertViewDelegate>
+
+@end
+
 @implementation DD_ShareView
 {
     NSDictionary *ListMap;

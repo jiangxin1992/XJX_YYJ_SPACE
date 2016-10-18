@@ -18,7 +18,7 @@
 
 #import "DD_CircleModel.h"
 
-@interface DD_CircleApplyInfoView : UIView<UIWebViewDelegate>
+@interface DD_CircleApplyInfoView : UIView
 /**
  * 初始化
  */

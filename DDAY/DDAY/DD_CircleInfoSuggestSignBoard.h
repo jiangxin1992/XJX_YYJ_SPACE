@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleInfoSuggestSignBoard : UIView<UITextViewDelegate,UITextFieldDelegate>
+@interface DD_CircleInfoSuggestSignBoard : UIView
 /**
  * 初始化
  */

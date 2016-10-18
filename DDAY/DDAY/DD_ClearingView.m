@@ -11,6 +11,10 @@
 //#import "DD_ClearingTool.h"
 //#import "DD_ClearingSeriesModel.h"
 
+@interface DD_ClearingView()<UIWebViewDelegate>
+
+@end
+
 @implementation DD_ClearingView
 {
 //    UIView *totalView;// 总结视图(小计)

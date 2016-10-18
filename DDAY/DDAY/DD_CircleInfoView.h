@@ -14,7 +14,7 @@
 #import "DD_CircleTagsView.h"
 #import "DD_CircleFitPersonView.h"
 
-@interface DD_CircleInfoView : UIView<UIWebViewDelegate>
+@interface DD_CircleInfoView : UIView
 /**
  * 初始化
  */

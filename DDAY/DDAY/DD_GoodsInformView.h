@@ -10,7 +10,7 @@
 
 #import "DD_GoodsDetailModel.h"
 
-@interface DD_GoodsInformView : UIView<UIWebViewDelegate>
+@interface DD_GoodsInformView : UIView
 
 -(instancetype)initWithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type))block;
 //-(void)cancelTime;

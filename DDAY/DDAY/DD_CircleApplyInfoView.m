@@ -9,6 +9,10 @@
 
 #import "DD_CircleApplyInfoView.h"
 
+@interface DD_CircleApplyInfoView ()<UIWebViewDelegate>
+
+@end
+
 @implementation DD_CircleApplyInfoView
 
 #pragma mark - 初始化

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleCommentSignBoard : UIView<UITextViewDelegate>
+@interface DD_CircleCommentSignBoard : UIView
 /**
  * 初始化
  */

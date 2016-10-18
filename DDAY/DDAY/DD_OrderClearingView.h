@@ -10,7 +10,7 @@
 
 #import "DD_OrderDetailInfoModel.h"
 
-@interface DD_OrderClearingView : UIView<UIWebViewDelegate>
+@interface DD_OrderClearingView : UIView
 /**
  * 初始化方法
  */

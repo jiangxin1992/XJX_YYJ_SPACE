@@ -12,6 +12,10 @@
 
 #import "DD_CircleSearchCell.h"
 
+@interface DD_CircleSearchView()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
+
+@end
+
 @implementation DD_CircleSearchView
 {
     UISearchBar *_searchBar;

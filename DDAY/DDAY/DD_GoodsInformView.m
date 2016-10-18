@@ -14,6 +14,10 @@
 
 #define ver_edge 16
 
+@interface DD_GoodsInformView()<UIWebViewDelegate>
+
+@end
+
 @implementation DD_GoodsInformView
 {
     UIView *downView;//下部视图

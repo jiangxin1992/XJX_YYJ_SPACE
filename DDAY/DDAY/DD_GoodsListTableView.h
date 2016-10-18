@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_GoodsListTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
+@interface DD_GoodsListTableView : UITableView
 __array(categoryArr);
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryName,NSString *categoryID))block;

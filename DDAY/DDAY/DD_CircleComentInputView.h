@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DD_CircleComentInputView : UIView<UITextViewDelegate>
+@interface DD_CircleComentInputView : UIView
 /**
  * 初始化
  */

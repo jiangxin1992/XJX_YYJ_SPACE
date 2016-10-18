@@ -9,7 +9,7 @@
 #import "DD_OrderModel.h"
 #import <UIKit/UIKit.h>
 
-@interface DD_OrderMoreCell : UITableViewCell<UIScrollViewDelegate>
+@interface DD_OrderMoreCell : UITableViewCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
 
 @property (nonatomic,strong)NSIndexPath *indexPath;

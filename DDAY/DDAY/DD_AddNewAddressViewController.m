@@ -16,6 +16,10 @@
 #import "DD_ProvinceModel.h"
 #import "DD_CityModel.h"
 
+@interface DD_AddNewAddressViewController()<UITextFieldDelegate>
+
+@end
+
 @implementation DD_AddNewAddressViewController
 {
     NSString *_p_id;

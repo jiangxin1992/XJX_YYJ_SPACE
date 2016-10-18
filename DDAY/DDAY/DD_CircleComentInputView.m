@@ -9,7 +9,9 @@
 #import "DD_CircleComentInputView.h"
 
 #import "DD_CircleCommentSignBoard.h"
+@interface DD_CircleComentInputView()<UITextViewDelegate>
 
+@end
 @implementation DD_CircleComentInputView
 {
     UITextView *_commentField;

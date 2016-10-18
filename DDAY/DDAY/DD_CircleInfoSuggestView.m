@@ -10,6 +10,10 @@
 
 #import "DD_CircleInfoSuggestSignBoard.h"
 
+@interface DD_CircleInfoSuggestView()<UITextViewDelegate>
+
+@end
+
 @implementation DD_CircleInfoSuggestView
 {
     DD_CircleInfoSuggestSignBoard *_SignBoard;

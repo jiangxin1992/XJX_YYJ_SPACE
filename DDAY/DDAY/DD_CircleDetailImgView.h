@@ -10,7 +10,7 @@
 
 #import "DD_CircleListModel.h"
 
-@interface DD_CircleDetailImgView : UIView<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface DD_CircleDetailImgView : UIView
 /**
  * 初始化
  */

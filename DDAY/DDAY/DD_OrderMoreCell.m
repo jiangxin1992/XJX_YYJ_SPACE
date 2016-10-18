@@ -10,6 +10,10 @@
 
 #import "DD_CustomBtn.h"
 
+@interface DD_OrderMoreCell()<UIScrollViewDelegate>
+
+@end
+
 @implementation DD_OrderMoreCell
 {
     UIScrollView *_scrollview;
