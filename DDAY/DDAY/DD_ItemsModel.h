@@ -49,4 +49,12 @@ __string(colorId);
  * 单品颜色code
  */
 __string(colorCode);
+/**
+ * public static Integer ITEM_STATUS_WSJ = 0; //未上架
+ * public static Integer ITEM_STATUS_YSJ = 1; //已上架
+ * public static Integer ITEM_STATUS_YXJ = 2; //已下架
+ * public static Integer ITEM_STATUS_YSC = 3; //已删除
+ */
+__int(status);
+
 @end

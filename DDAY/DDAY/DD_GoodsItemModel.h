@@ -38,6 +38,7 @@ __long(saleEndTime);
 __long(saleStartTime);
 __long(signEndTime);
 __long(signStartTime);
+__int(status);
 /**
  * 寄送与退换
  */

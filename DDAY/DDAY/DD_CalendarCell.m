@@ -10,8 +10,6 @@
 
 #import "DD_CalendarTool.h"
 
-#define cellWH floor(([UIScreen mainScreen].bounds.size.width-40-12)/7)
-
 @implementation DD_CalendarCell
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

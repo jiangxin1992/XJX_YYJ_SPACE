@@ -416,10 +416,13 @@ __bool(isExpanded);
 }
 -(void)CreateTabbar
 {
-    DD_GoodsTabBar *tabbar=[[DD_GoodsTabBar alloc] initWithBlock:^(NSString *type) {
+    DD_GoodsTabBar *tabbar=[[DD_GoodsTabBar alloc] initWithItem:_DetailModel.item WithBlock:^(NSString *type) {
         if([type isEqualToString:@"buy"])
         {
             [self Shop_Buy_Action:@"buy"];
+        }else if([type isEqualToString:@"sold_out"])
+        {
+            [self presentViewController:[regular alertTitle_Simple:@"该商品以下架"] animated:YES completion:nil];
         }
     }];
     [self.view addSubview:tabbar];
@@ -436,6 +439,7 @@ __bool(isExpanded);
         if(success)
         {
             _DetailModel=[DD_GoodsDetailModel getGoodsDetailModel:data];
+            NSLog(@"%@",_DetailModel);
             [self UIConfig];
         }else
         {

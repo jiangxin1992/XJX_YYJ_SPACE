@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_GoodsItemModel.h"
+
 @interface DD_GoodsTabBar : UIView
 
--(instancetype)initWithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block;
 
+@property (nonatomic,strong)DD_GoodsItemModel *item;
 __block_type(block, type);
 
 @end

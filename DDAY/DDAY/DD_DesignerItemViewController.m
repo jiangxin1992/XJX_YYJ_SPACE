@@ -167,6 +167,7 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     if(index)
     {
+        
         DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
         DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
         CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);

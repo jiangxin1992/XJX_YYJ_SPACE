@@ -53,6 +53,7 @@
     [self CreateFootView];
     [self CreateTabBar];
 }
+
 #pragma mark - 初始化
 -(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block
 {

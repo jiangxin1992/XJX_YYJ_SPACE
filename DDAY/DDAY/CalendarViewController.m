@@ -23,7 +23,8 @@
 #define HeaderViewHeight 40
 #define WeekViewHeight 40
 
-#define cellWH floor(([UIScreen mainScreen].bounds.size.width-40-12)/7)
+#define cellW floor(([UIScreen mainScreen].bounds.size.width-40-12)/7)
+#define cellH floor((([UIScreen mainScreen].bounds.size.width-40-12)/7)-6)
 
 @interface CalendarViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -120,8 +121,8 @@
     [_scrollView addSubview:backView];
     backView.backgroundColor=_define_white_color;
     [regular setBorder:backView];
-    CGFloat _bianju=(ScreenWidth-cellWH*7)/2.0f-6;
-    backView.frame=CGRectMake(_bianju, CGRectGetMaxY(_rightBtn.frame)+25, cellWH * 7+12, cellWH * 7+12);
+    CGFloat _bianju=(ScreenWidth-cellW*7)/2.0f-6;
+    backView.frame=CGRectMake(_bianju, CGRectGetMaxY(_rightBtn.frame)+25, cellW * 7+12, cellH * 7+12);
     
     
     [_scrollView addSubview:self.collectionView];
@@ -131,7 +132,7 @@
 //        6
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
-        layout.itemSize = CGSizeMake(cellWH, cellWH);
+        layout.itemSize = CGSizeMake(cellW, cellH);
         layout.footerReferenceSize  = CGSizeMake(0, 0);
         layout.headerReferenceSize = CGSizeMake(LL_SCREEN_WIDTH, HeaderViewHeight);
         
@@ -141,7 +142,7 @@
         
         //        cellWH
 
-         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake((ScreenWidth-cellWH*7)/2.0f, 25+38+6, cellWH * 7, cellWH * 7) collectionViewLayout:layout];
+         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake((ScreenWidth-cellW*7)/2.0f, 25+38+6, cellW * 7, cellH * 7) collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor =  _define_clear_color;
@@ -300,7 +301,6 @@
  */
 -(void)resetMonthSeriesView
 {
-    
     if(_monthArr.count)
     {
         UIView *lastView=nil;
@@ -314,10 +314,10 @@
                 make.width.mas_equalTo(ScreenWidth);
                 if(lastView)
                 {
-                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(30);
+                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?26:20);
                 }else
                 {
-                    make.top.mas_equalTo(backView.mas_bottom).with.offset(30);
+                    make.top.mas_equalTo(backView.mas_bottom).with.offset(IsPhone6_gt?26:20);
                 }
             }];
             
@@ -341,14 +341,14 @@
             [seriesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(kEdge);
                 make.right.mas_equalTo(-kEdge);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(IsPhone6_gt?30:25);
                 make.top.mas_equalTo(0);
                 make.bottom.mas_equalTo(0);
             }];
             [_monthSeriesViewArr addObject:_backView_s];
             lastView=_backView_s;
         }
-        _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+60*_monthArr.count+20);
+        _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+(IsPhone6_gt?30:25+IsPhone6_gt?26:20)*_monthArr.count+10);
         
     }else
     {
@@ -459,7 +459,7 @@
         self.backgroundColor= _define_clear_color;
         NSArray *weekArray = [[NSArray alloc] initWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
         for (int i=0; i<weekArray.count; i++) {
-            UILabel *weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(i*cellWH, 0, cellWH, HeaderViewHeight)];
+            UILabel *weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(i*cellW, 0, cellW, HeaderViewHeight)];
             weekLabel.textAlignment = NSTextAlignmentCenter;
             if(i==0||i==6)
             {

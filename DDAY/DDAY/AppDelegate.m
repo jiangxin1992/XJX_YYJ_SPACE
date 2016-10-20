@@ -453,8 +453,8 @@
 }
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-    DD_CustomViewController *shareCustomView=[DD_CustomViewController sharedManager];
-    [shareCustomView cleanCache];
+//    DD_CustomViewController *shareCustomView=[DD_CustomViewController sharedManager];
+//    [shareCustomView cleanCache];
     
 }
 @end
