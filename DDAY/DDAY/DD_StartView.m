@@ -11,6 +11,12 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
+@interface DD_StartView()
+
+@property(nonatomic ,strong)AVPlayer *avPlayer1;
+@property(nonatomic ,strong)AVPlayerItem *playerItem1;
+@end
+
 @implementation DD_StartView
 
 -(instancetype)initWithBlock:(void (^)(NSString *))block
@@ -19,22 +25,26 @@
     if(self)
     {
         _block=block;
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
-        NSURL *urlMovie1 = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"loading for Space" ofType:@"mp4"]];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
+        NSURL *urlMovie1 = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"]];
         AVURLAsset *asset1 = [AVURLAsset URLAssetWithURL:urlMovie1 options:nil];
-        AVPlayerItem *playerItem1 = [AVPlayerItem playerItemWithAsset:asset1];
-        AVPlayer *avPlayer1 = [AVPlayer playerWithPlayerItem: playerItem1];
-        AVPlayerLayer *avlayer1 = [AVPlayerLayer playerLayerWithPlayer:avPlayer1];
+        _playerItem1 = [AVPlayerItem playerItemWithAsset:asset1];
+        _avPlayer1 = [AVPlayer playerWithPlayerItem: _playerItem1];
+        AVPlayerLayer *avlayer1 = [AVPlayerLayer playerLayerWithPlayer:_avPlayer1];
         avlayer1.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         avlayer1.videoGravity = AVLayerVideoGravityResizeAspectFill;
         [self.layer addSublayer:avlayer1];
-        [avPlayer1 play];
+        [_avPlayer1 play];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+        
     }
     return self;
 }
 -(void)PlayEndAction
 {
+//    [_avPlayer1 replaceCurrentItemWithPlayerItem:nil];
+//    _playerItem1=nil;
+//    _avPlayer1=nil;
     _block(@"remove");
 }
 @end

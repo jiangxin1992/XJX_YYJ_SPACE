@@ -207,6 +207,11 @@
                 {
                     [self PushNotView:@"COMMENTSHARE"];
                 }
+                if([DD_NOTInformClass GET_REPLYCOMMENT_NOT_SHAREID]&&[DD_NOTInformClass GET_REPLYCOMMENT_NOT_COMMENTID])
+                {
+                    [self PushNotView:@"REPLYCOMMENT"];
+                }
+                
                 [_tableview reloadData];
             }else
             {
@@ -333,7 +338,7 @@
         {
             [self PushNotView:@"COMMENTSHARE"];
         }
-        if([DD_NOTInformClass GET_REPLYCOMMENT_NOT_SHAREID]&&[DD_NOTInformClass GET_COMMENTSHARE_NOT_COMMENTID])
+        if([DD_NOTInformClass GET_REPLYCOMMENT_NOT_SHAREID]&&[DD_NOTInformClass GET_REPLYCOMMENT_NOT_COMMENTID])
         {
             [self PushNotView:@"REPLYCOMMENT"];
         }

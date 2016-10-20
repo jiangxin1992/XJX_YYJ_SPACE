@@ -10,6 +10,7 @@
 
 #import "DD_StartView.h"
 
+
 @interface DD_StartViewController ()
 
 @end
@@ -29,6 +30,7 @@
     [_StartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
     }];
+
 }
 
 - (void)didReceiveMemoryWarning {

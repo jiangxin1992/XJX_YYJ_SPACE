@@ -45,6 +45,8 @@
 //支付宝
 #import <AlipaySDK/AlipaySDK.h>
 
+#import <UserNotifications/UserNotifications.h>
+
 //ShareSDK
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -62,7 +64,7 @@
 #import <Bugly/Bugly.h>
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 @property (strong, nonatomic) UIImageView *splashView;
 @end
 
@@ -140,11 +142,28 @@
     JXLOG(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
     // 注册APNS
     [self registerRemoteNotification];
-    
+    if (IS_IOS10_OR_LATER) {  //IOS10 之后采用UNUserNotificationCenter注册通知
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (!error) {
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+                NSLog(@"succeeded!");
+            }
+        }];
+    }else{ //IOS10 之前注册通知
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge |UIUserNotificationTypeSound |UIUserNotificationTypeAlert)
+                                                                                     categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
+    }
     //1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     self.window.rootViewController = [[DD_StartViewController alloc] init] ;
+//    self.window.rootViewController = [DD_CustomViewController sharedManager];
     
     [self.window makeKeyAndVisible];
     
@@ -236,11 +255,14 @@
 //    if(_is_first_register)
 //    {
         _is_first_register=NO;
+    
         [self connectedDeviceToken:token];
 //    }
 }
+
 -(void)connectedDeviceToken:(NSString *)deviceToken
 {
+
     NSDictionary *_parameters=@{@"deviceToken":deviceToken,@"token":[DD_UserModel getToken]};
     [[JX_AFNetworking alloc] GET:@"user/setUserDeviceToken.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -305,7 +327,7 @@
         }else if([[dict objectForKey:@"type"]isEqualToString:@"REPLYCOMMENT"])
         {
             //        评论回复的通知
-            [DD_NOTInformClass SET_REPLYCOMMENT_NOT_COMMENT:[dict objectForKey:@"commentId"]];
+            [DD_NOTInformClass SET_REPLYCOMMENT_NOT_COMMENT:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"REPLYCOMMENT_NOT" object:nil];
             
         }else if([[dict objectForKey:@"type"]isEqualToString:@"COMMENTSHARE"])
@@ -315,9 +337,63 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"COMMENTSHARE_NOT" object:nil];
         }
     }
+    completionHandler(UIBackgroundFetchResultNewData);
     
 }
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+}
+//IOS10之后 推送消息接收
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary *userInfo = response.notification.request.content.userInfo;
+    if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive)
+    {
+        
+        // 处理APN
+        JXLOG(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n", userInfo);
+        
+        completionHandler(UIBackgroundFetchResultNewData);
+        NSData* data=[[[userInfo objectForKey:@"aps"] objectForKey:@"category"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dict=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
 
+        if([[dict objectForKey:@"type"]isEqualToString:@"NEWFANS"])
+        {
+            //        新增粉丝
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWFANS_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"DOYENAPPLY"])
+        {
+            //        申请达人审核进度通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DOYENAPPLY_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"REFUNDAPPLY"])
+        {
+            //        申请退款的通知
+            
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"NEWSERIES"])
+        {
+            //        新的发布会通知
+            [DD_NOTInformClass SET_NEWSERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWSERIES_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"STARTSERIES"])
+        {
+            //        已报名发布会开始的通知
+            [DD_NOTInformClass SET_STARTSERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTSERIES_NOT" object:nil];
+            
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"REPLYCOMMENT"])
+        {
+            //        评论回复的通知
+            [DD_NOTInformClass SET_REPLYCOMMENT_NOT_COMMENT:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"REPLYCOMMENT_NOT" object:nil];
+            
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"COMMENTSHARE"])
+        {
+            //        评论的通知
+            [DD_NOTInformClass SET_COMMENTSHARE_NOT_COMMENT:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"COMMENTSHARE_NOT" object:nil];
+        }
+    }
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 #pragma mark - GeTuiSdkDelegate
 
 /** SDK启动成功返回cid */
@@ -451,10 +527,10 @@
     }
     return @"";
 }
--(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
+//-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+//{
 //    DD_CustomViewController *shareCustomView=[DD_CustomViewController sharedManager];
 //    [shareCustomView cleanCache];
-    
-}
+//    
+//}
 @end
