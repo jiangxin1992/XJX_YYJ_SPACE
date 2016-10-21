@@ -625,12 +625,16 @@
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
             [upManager putData:data1 key:nil token:upLoadToken
                       complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                          
-                          [_CircleModel.picArr addObject:@{
-                                                           @"key":resp[@"key"]
-                                                           ,@"data":originImage}];
-                          [_infoView.imgView setState];
-                          
+                          if(info.statusCode==200)
+                          {
+                              [_CircleModel.picArr addObject:@{
+                                                               @"key":resp[@"key"]
+                                                               ,@"data":originImage}];
+                              [_infoView.imgView setState];
+                          }else
+                          {
+                              [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"system_img_upload_fail", @"")] animated:YES completion:nil];
+                          }
                       } option:nil];
             
         }else

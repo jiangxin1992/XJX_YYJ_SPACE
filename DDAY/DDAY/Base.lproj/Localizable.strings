@@ -29,6 +29,7 @@
 "right_postcode"="请输入正确格式邮编";
 "login_first"="请先登录";
 "no_homepage"="该用户没有主页";
+"system_img_upload_fail"="图片上传失败";
 /**
  * 发布品
  */

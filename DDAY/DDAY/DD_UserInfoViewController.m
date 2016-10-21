@@ -342,7 +342,13 @@
             [upManager putData:data1 key:nil token:upLoadToken
                       complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                           
-                          [self uploadImage:resp[@"key"]];
+                          if(info.statusCode==200)
+                          {
+                              [self uploadImage:resp[@"key"]];
+                          }else
+                          {
+                              [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"system_img_upload_fail", @"")] animated:YES completion:nil];
+                          }
                           
                       } option:nil];
         }else
