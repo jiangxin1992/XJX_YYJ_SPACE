@@ -613,7 +613,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     //    获取选择图片
     UIImage *originImage = info[UIImagePickerControllerOriginalImage];
-    //    压缩比例0.5
+    //    压缩比例0.8
     NSData *data1 = UIImageJPEGRepresentation(originImage, 0.8f);
     //    获取七牛上传文件所需的token
     [[JX_AFNetworking alloc] GET:@"user/getQiNiuToken.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {

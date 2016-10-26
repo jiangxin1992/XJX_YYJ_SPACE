@@ -572,7 +572,8 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright &#169; 2012-2015 mob</string>
+			<string>Copyright &#169; 2012-2016 mob
+</string>
 			<key>Title</key>
 			<string>ShareSDK3</string>
 			<key>Type</key>

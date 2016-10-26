@@ -20,19 +20,20 @@ PODS:
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
-  - MOBFoundation_IDFA (2.0.11)
+  - MOBFoundation_IDFA (2.2.1)
   - Qiniu (7.1.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - ShareSDK3 (3.4.2):
-    - ShareSDK3/ShareSDK (= 3.4.2)
-  - ShareSDK3/ShareSDK (3.4.2)
-  - ShareSDK3/ShareSDKPlatforms/QQ (3.4.2)
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.4.2)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.2)
+  - ShareSDK3 (3.5.1):
+    - ShareSDK3/ShareSDK (= 3.5.1)
+  - ShareSDK3/ShareSDK (3.5.1)
+  - ShareSDK3/ShareSDKExtension (3.5.1)
+  - ShareSDK3/ShareSDKPlatforms/QQ (3.5.1)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.5.1)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.1)
   - TTTAttributedLabel (1.13.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -45,10 +46,11 @@ DEPENDENCIES:
   - Masonry (~> 1.0.2)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
-  - MOBFoundation_IDFA (~> 2.0.11)
+  - MOBFoundation_IDFA (~> 2.2.1)
   - Qiniu (~> 7.1)
   - SDWebImage (~> 3.8.2)
-  - ShareSDK3 (~> 3.4.2)
+  - ShareSDK3 (~> 3.5.0)
+  - ShareSDK3/ShareSDKExtension
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -63,13 +65,13 @@ SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  MOBFoundation_IDFA: fb7bf493361568f392e0a71bd2503aaa5b8dab9d
+  MOBFoundation_IDFA: 6566349199a5eba13e03f6dbcd47ef1abff1d15a
   Qiniu: 5e5d7d759d22393bb4b87cdfacf8fab951260f3e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  ShareSDK3: 2fa975dd22937fc7de3f6b5d0c41a18ba0dd1661
+  ShareSDK3: dc051268317cd144acbd7d48d6bc7867ff58bc04
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: ab12a1108d31863ad968cba10eee0fa3a08f2b4e
+PODFILE CHECKSUM: a2286a4a202356e2939c0bc6a49a8bf28c5ac50b
 
 COCOAPODS: 1.0.0
