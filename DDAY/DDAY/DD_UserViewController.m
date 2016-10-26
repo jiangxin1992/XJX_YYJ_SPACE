@@ -46,6 +46,7 @@
     [self SetDataArr];
     [self UIConfig];
     [self RequestData];
+    [self Has_readMessage];
 }
 
 #pragma mark - SomePrepare
@@ -62,9 +63,7 @@
 -(void)PrepareUI
 {
 //    System_News
-    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:@"System_NoNews"];
-    [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
+    [self setNotBtnWithExist:NO];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -161,7 +160,42 @@
         _headImgLabel.text=@"点击登录";
     }
 }
+-(void)Has_readMessage
+{
+    if([DD_UserModel isLogin])
+    {
+        [[JX_AFNetworking alloc] GET:@"/user/isHaveUnReadMessage.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                BOOL _is_have = [[data objectForKey:@"isHave"] boolValue];
+                [self setNotBtnWithExist:_is_have];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }else
+    {
+        [self setNotBtnWithExist:NO];
+    }
+}
 #pragma mark - SomeAction
+-(void)setNotBtnWithExist:(BOOL )is_exist
+{
+    NSString *_img=nil;
+    if(is_exist)
+    {
+        _img=@"System_News";
+    }else
+    {
+        _img=@"System_NoNews";
+    }
+    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:_img];
+    [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
+}
 -(void)pushUserInfo
 {
     if(![DD_UserModel isLogin])
@@ -378,6 +412,7 @@
     if(_userHeadImg)
     {
         [self RequestData];
+        [self Has_readMessage];
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
 }

@@ -108,4 +108,8 @@ __string(weight);
  * 更新本地用户权限
  */
 +(void)UpdateUserType:(NSInteger )userType;
+
++(void)setDeviceToken:(NSString *)token;
+
++(NSString *)getDeviceToken;
 @end

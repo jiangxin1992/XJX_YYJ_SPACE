@@ -250,6 +250,7 @@
 //        跳转搭配详情页 (shareId)
         DD_CircleListModel *listModel=[[DD_CircleListModel alloc] init];
         listModel.shareId=[_itemModel.params objectForKey:@"shareId"];
+        listModel.shareType=[_itemModel.params objectForKey:@"shareType"];
         [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:listModel.shareId IsHomePage:NO WithBlock:^(NSString *type) {
             if([type isEqualToString:@"reload"])
             {

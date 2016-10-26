@@ -9,5 +9,9 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_StartViewController : DD_BaseViewController
-
+/**
+ * 创建单例
+ */
++(id)sharedManager;
+-(void)pushMainView;
 @end

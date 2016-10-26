@@ -42,9 +42,7 @@
 }
 -(void)PlayEndAction
 {
-//    [_avPlayer1 replaceCurrentItemWithPlayerItem:nil];
-//    _playerItem1=nil;
-//    _avPlayer1=nil;
+    [_avPlayer1 replaceCurrentItemWithPlayerItem:nil];
     _block(@"remove");
 }
 @end

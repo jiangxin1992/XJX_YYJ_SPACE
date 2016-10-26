@@ -31,13 +31,6 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:titleLabel];
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.centerY.mas_equalTo(self.contentView);
-    }];
-    
     timeLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self.contentView addSubview:timeLabel];
     timeLabel.font=[regular get_en_Font:12.0f];
@@ -45,6 +38,16 @@
         make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(self.contentView);
     }];
+    
+    titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.centerY.mas_equalTo(self.contentView);
+        make.right.mas_equalTo(timeLabel.mas_left).with.offset(-10);
+    }];
+    
+    
 }
 #pragma mark - setter
 -(void)setMessageItem:(DD_UserMessageItemModel *)messageItem

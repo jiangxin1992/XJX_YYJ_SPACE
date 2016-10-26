@@ -108,4 +108,18 @@
         }
     }
 }
++(void)setDeviceToken:(NSString *)token
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:token forKey:@"deviceToken"];
+}
++(NSString *)getDeviceToken
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    if([_default objectForKey:@"deviceToken"])
+    {
+        return [_default objectForKey:@"deviceToken"];
+    }
+    return @"";
+}
 @end

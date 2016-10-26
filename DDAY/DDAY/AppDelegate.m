@@ -162,7 +162,7 @@
     //1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    self.window.rootViewController = [[DD_StartViewController alloc] init] ;
+    self.window.rootViewController = [DD_StartViewController sharedManager] ;
 //    self.window.rootViewController = [DD_CustomViewController sharedManager];
     
     [self.window makeKeyAndVisible];
@@ -178,6 +178,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[DD_StartViewController sharedManager] pushMainView];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -251,6 +254,7 @@
     
     //向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
+    [DD_UserModel setDeviceToken:token];
 
 //    if(_is_first_register)
 //    {

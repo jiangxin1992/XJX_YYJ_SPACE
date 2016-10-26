@@ -82,20 +82,25 @@
         if(success)
         {
             LogisticsManageModel=[DD_OrderLogisticsManageModel getLogisticsManageModel:data];
+            JXLOG(@"%@",LogisticsManageModel);
             [_tableview reloadData];
-            if(!headView)
+            if(LogisticsManageModel.LogisticCode)
             {
-                headView=[[DD_OrderLogisticsHeadView alloc] initWithCircleListModel:LogisticsManageModel WithBlock:^(NSString *type) {
-                    
-                }];
-                headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_OrderLogisticsHeadView heightWithModel:LogisticsManageModel]);
-            }else
-            {
-                headView.LogisticsManageModel=LogisticsManageModel;
-                [headView setState];
-                headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_OrderLogisticsHeadView heightWithModel:LogisticsManageModel]);
+                if(!headView)
+                {
+                    headView=[[DD_OrderLogisticsHeadView alloc] initWithCircleListModel:LogisticsManageModel WithBlock:^(NSString *type) {
+                        
+                    }];
+                    headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_OrderLogisticsHeadView heightWithModel:LogisticsManageModel]);
+                }else
+                {
+                    headView.LogisticsManageModel=LogisticsManageModel;
+                    [headView setState];
+                    headView.frame=CGRectMake(0, 0, ScreenWidth, [DD_OrderLogisticsHeadView heightWithModel:LogisticsManageModel]);
+                }
+                _tableview.tableHeaderView=headView;
             }
-            _tableview.tableHeaderView=headView;
+            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

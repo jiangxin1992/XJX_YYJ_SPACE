@@ -383,7 +383,8 @@
 }
 -(void)PushCommentViewWithShareID:(NSString *)shareId andIndex:(NSInteger )index
 {
-    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:nil WithShareID:shareId IsHomePage:NO  WithBlock:^(NSString *type) {
+    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:listModel WithShareID:shareId IsHomePage:NO  WithBlock:^(NSString *type) {
         if([type isEqualToString:@"reload"])
         {
             [_tableview reloadData];

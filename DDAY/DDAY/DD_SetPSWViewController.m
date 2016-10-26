@@ -120,8 +120,8 @@
         if(_thirdPartLogin==1)
         {
             _isInRegister=YES;
-            NSDictionary *parameters=@{@"phone":_phone,@"password":[regular md5:_PSWTextfield.text]};
-            [[JX_AFNetworking alloc] GET:@"user/regist.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            NSDictionary *parameters=@{@"phone":_phone,@"password":[regular md5:_PSWTextfield.text],@"deviceToken":[DD_UserModel getDeviceToken]};
+            [[JX_AFNetworking alloc] GET:@"user/v1_0_7/regist.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                 _isInRegister=NO;
                 if(success)
                 {
@@ -161,7 +161,8 @@
             NSMutableDictionary *parameters=[[NSMutableDictionary alloc] initWithDictionary:_parameters];
             [parameters setValue:_phone forKey:@"phone"];
             [parameters setValue:[regular md5:_PSWTextfield.text] forKey:@"password"];
-            [[JX_AFNetworking alloc] GET:@"user/thirdPlatFormRegistSucess.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            [parameters setValue:[DD_UserModel getDeviceToken] forKey:@"deviceToken"];
+            [[JX_AFNetworking alloc] GET:@"user/v1_0_7/thirdPlatFormRegistSucess.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                 _isInRegister=NO;
                 if(success)
                 {

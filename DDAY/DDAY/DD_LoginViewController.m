@@ -220,8 +220,8 @@
  */
 -(void)enterloginAction
 {
-    NSDictionary *parameters=@{@"phone":_phoneTextfiled.text,@"password":[regular md5:_PSWTextfiled.text]};
-    [[JX_AFNetworking alloc] GET:@"user/login.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    NSDictionary *parameters=@{@"phone":_phoneTextfiled.text,@"password":[regular md5:_PSWTextfiled.text],@"deviceToken":[DD_UserModel getDeviceToken]};
+    [[JX_AFNetworking alloc] GET:@"user/v1_0_7/login.do" parameters:parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             [DD_UserModel setLocalUserInfo:data];
@@ -270,18 +270,17 @@
     [ShareSDK getUserInfo:platformType
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
      {
-
          if (state == SSDKResponseStateSuccess)
          {
              NSString *url=nil;
              NSString *_icon=nil;
              if(platformType==SSDKPlatformTypeWechat)
              {
-                 url=@"user/weiXinLogin.do";
+                 url=@"user/v1_0_7/weiXinLogin.do";
                  _icon=user.icon;
              }else if(platformType==SSDKPlatformSubTypeQZone)
              {
-                 url=@"user/sinaLogin.do";
+                 url=@"user/v1_0_7/sinaLogin.do";
                  if([user.rawData objectForKey:@"figureurl_qq_2"])
                  {
                      _icon=[user.rawData objectForKey:@"figureurl_qq_2"];
@@ -292,7 +291,7 @@
                  
              }else if(platformType==SSDKPlatformTypeSinaWeibo)
              {
-                 url=@"user/qqLogin.do";
+                 url=@"user/v1_0_7/qqLogin.do";
                  if([user.rawData objectForKey:@"avatar_hd"])
                  {
                      _icon=[user.rawData objectForKey:@"avatar_hd"];
@@ -322,7 +321,7 @@
                  _aboutMe=user.aboutMe;
              }
              
-             NSDictionary *_parameters=@{@"uid":user.uid};
+             NSDictionary *_parameters=@{@"uid":user.uid,@"deviceToken":[DD_UserModel getDeviceToken]};
              [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                  if(success)
                  {
