@@ -112,4 +112,9 @@ __string(weight);
 +(void)setDeviceToken:(NSString *)token;
 
 +(NSString *)getDeviceToken;
+
++(BOOL)isReadBenefit;
+
++(void)setReadBenefit:(BOOL)read;
+
 @end

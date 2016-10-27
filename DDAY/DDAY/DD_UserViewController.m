@@ -192,6 +192,7 @@
     {
         _img=@"System_NoNews";
     }
+    
     DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:_img];
     [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];

@@ -122,4 +122,21 @@
     }
     return @"";
 }
+
++(BOOL)isReadBenefit
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    if([_default objectForKey:@"isReadBenefit"])
+    {
+        return [[_default objectForKey:@"isReadBenefit"] boolValue];
+    }
+    return NO;
+}
+
++(void)setReadBenefit:(BOOL)is_read
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:[NSNumber numberWithBool:is_read] forKey:@"isReadBenefit"];
+}
+
 @end

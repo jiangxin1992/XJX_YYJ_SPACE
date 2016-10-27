@@ -14,12 +14,14 @@
 #import "WaterflowCell.h"
 #import "DD_GoodsListView.h"
 #import "DD_GoodsListTableView.h"
+#import "DD_headViewBenefitView.h"
 
 #import "DD_ItemTool.h"
 #import "DD_ItemsModel.h"
 #import "DD_GoodsCategoryModel.h"
 #import "DD_ImageModel.h"
-
+#import "DD_BenefitInfoModel.h"
+#define BenefitHeight 80
 @interface DD_GoodsViewController ()<WaterflowDataSource,WaterflowDelegate>
 
 @end
@@ -28,7 +30,10 @@
 {
     Waterflow *mywaterflow;
     NSMutableArray *_dataArr;
+    DD_BenefitInfoModel *_benefitInfoModel;
     NSInteger _page;
+    BOOL _isReadBenefit;
+    UIView *_headView;
     
     NSString *_categoryName;
     NSString *_categoryID;
@@ -61,12 +66,13 @@
     _categoryArr=[[NSMutableArray alloc] init];
     _categoryName=@"";
     _categoryID=@"";
+    _isReadBenefit=NO;
     
 }
 -(void)PrepareUI
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
-
+    
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
     [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
@@ -75,16 +81,16 @@
     [listBtn addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:listBtn];
     
-//    Goods_list
-//
-//    titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
-//    [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];
-//    
-//    [titleView setImage:[UIImage imageNamed:@"System_UpTriangle"] forState:UIControlStateSelected];
-//    [titleView setTitle:@"类别" forState:UIControlStateNormal];
-//    titleView.titleLabel.font=[regular getSemiboldFont:17.0f];
-//    [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.titleView=titleView;
+    //    Goods_list
+    //
+    //    titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
+    //    [titleView setImage:[UIImage imageNamed:@"System_Triangle"] forState:UIControlStateNormal];
+    //
+    //    [titleView setImage:[UIImage imageNamed:@"System_UpTriangle"] forState:UIControlStateSelected];
+    //    [titleView setTitle:@"类别" forState:UIControlStateNormal];
+    //    titleView.titleLabel.font=[regular getSemiboldFont:17.0f];
+    //    [titleView addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
+    //    self.navigationItem.titleView=titleView;
     
     if(_noTabbar)
     {
@@ -108,24 +114,24 @@
     {
         btn.selected=YES;
         listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryName,NSString *categoryID) {
-
+            
             btn.selected=NO;
             if([type isEqualToString:@"click"])
             {
-//                [titleView setTitle:categoryName forState:UIControlStateNormal];
+                //                [titleView setTitle:categoryName forState:UIControlStateNormal];
                 self.navigationItem.titleView=[regular returnNavView:categoryName withmaxwidth:200];
-
+                
             }else if([type isEqualToString:@"all"])
             {
-//                [titleView setTitle:@"类别" forState:UIControlStateNormal];
+                //                [titleView setTitle:@"类别" forState:UIControlStateNormal];
                 self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
-
+                
             }
             _categoryName=categoryName;
             _categoryID=categoryID;
             [mywaterflow.mj_header beginRefreshing];
             [self listTableViewHide];
-
+            
         }];
         [self.view addSubview:listTableView];
         [UIView animateWithDuration:0.5 animations:^{
@@ -164,6 +170,11 @@
                 if(_page==1)
                 {
                     [_dataArr removeAllObjects];//删除所有数据
+                    
+                    _benefitInfoModel=[DD_BenefitInfoModel getBenefitInfoModel:[data objectForKey:@"benefitInfo"]];
+                    
+                    [self updateHeadViewState];
+                    
                 }
                 [_dataArr addObjectsFromArray:modelArr];
                 [mywaterflow reloadData];
@@ -181,7 +192,7 @@
         }
         [mywaterflow.mj_header endRefreshing];
         [mywaterflow.mj_footer endRefreshing];
-
+        
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [mywaterflow.mj_header endRefreshing];
         [mywaterflow.mj_footer endRefreshing];
@@ -237,15 +248,15 @@
 #pragma mark - MJRefresh
 -(void)MJRefresh
 {
-//    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     NSArray *refreshingImages=[regular getGifImg];
     
-//     Set the ordinary state of animated images
+    //     Set the ordinary state of animated images
     [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateIdle];
-//     Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
+    //     Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
     [header setImages:refreshingImages duration:1.5 forState:MJRefreshStatePulling];
-//     Set the refreshing state of animated images
+    //     Set the refreshing state of animated images
     [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateRefreshing];
     
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -265,6 +276,77 @@
     [mywaterflow.mj_header beginRefreshing];
 }
 #pragma mark - SomeAction
+-(void)updateHeadViewState
+{
+    if(_benefitInfoModel)
+    {
+        if([DD_UserModel isLogin])
+        {
+            _isReadBenefit=_benefitInfoModel.isReadBenefit;
+            //登陆
+            //                            mywaterflow
+            if(_benefitInfoModel.isReadBenefit)
+            {
+                //隐藏headview
+                [_headView removeFromSuperview];
+            }else
+            {
+                //显示headview
+                _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                    if([type isEqualToString:@"close"])
+                    {
+                        //关闭
+                        [[JX_AFNetworking alloc] GET:@"user/readBenefit.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                            if(success)
+                            {
+                                _benefitInfoModel.isReadBenefit=YES;
+                                _isReadBenefit=_benefitInfoModel.isReadBenefit;
+                                [_headView removeFromSuperview];
+                                [mywaterflow reloadData];
+                            }else
+                            {
+                                [self presentViewController:successAlert animated:YES completion:nil];
+                            }
+                        } failure:^(NSError *error, UIAlertController *failureAlert) {
+                            [self presentViewController:failureAlert animated:YES completion:nil];
+                        }];
+                    }else if([type isEqualToString:@"enter"])
+                    {
+                        
+                    }
+                }];
+                [mywaterflow addSubview:_headView];
+            }
+        }else
+        {
+            _isReadBenefit=[DD_UserModel isReadBenefit];
+            //未登陆
+            if([DD_UserModel isReadBenefit])
+            {
+                //隐藏headview
+                [_headView removeFromSuperview];
+            }else
+            {
+                //显示headview
+                _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                    if([type isEqualToString:@"close"])
+                    {
+                        //关闭
+                        [DD_UserModel setReadBenefit:YES];
+                        _isReadBenefit=[DD_UserModel isReadBenefit];
+                        [_headView removeFromSuperview];
+                        [mywaterflow reloadData];
+                    }else if([type isEqualToString:@"enter"])
+                    {
+                        
+                    }
+                }];
+                [mywaterflow addSubview:_headView];
+            }
+            
+        }
+    }
+}
 -(void)loadNewData
 {
     _page=1;
@@ -305,7 +387,7 @@
 }
 // 返回cell，必须实现
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
-
+    
     if(index)
     {
         DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
@@ -347,6 +429,7 @@
         case WaterflowMarginTypeRow:return water_Spacing;
         case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeBottom:return water_Bottom;
+        case WaterflowMarginTypeTop:return _isReadBenefit?0:BenefitHeight;
         default:return 0;
     }
 }
@@ -395,12 +478,12 @@
 //        } completion:^(BOOL finished) {
 //            [self listTableViewHide];
 //        }];
-//        
+//
 //    }else
 //    {
 //        btn.selected=YES;
 //        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryName,NSString *categoryID) {
-//            
+//
 //            btn.selected=NO;
 //            if([type isEqualToString:@"click"])
 //            {
@@ -413,7 +496,7 @@
 //            _categoryID=categoryID;
 //            [mywaterflow.header beginRefreshing];
 //            [self listTableViewHide];
-//            
+//
 //        }];
 //        [self.view addSubview:listTableView];
 //        [UIView animateWithDuration:0.5 animations:^{

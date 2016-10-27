@@ -172,8 +172,7 @@
     //                       ,[[NSString alloc] initWithFormat:@"￥%.0lf",_freight]
     //                       ,@"总计"
     //                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_countPrice]
-    //                       ];
-    
+    //                       ];   
 }
 #pragma mark - SomeAction
 /**
