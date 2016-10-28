@@ -17,6 +17,14 @@
     //    自定义的标签栏
     UIImageView *_tabbar;
     NSMutableArray *btnarr;
+    
+    DD_TabbarItem *_goodsItem;
+    DD_TabbarItem *_designerItem;
+    DD_TabbarItem *_ddayItem;
+    DD_TabbarItem *_circleItem;
+    DD_TabbarItem *_userItem;
+    
+    DD_UnReadMsgModel *_unReadMsgModel;
 }
 
 @end
@@ -38,9 +46,9 @@ static DD_CustomViewController *tabbarController = nil;
     //4.设置视图控制器数组
     [self createViewControllers];
     
+    [self UpdateNoReadMessageState];
     
     [self Notifications];
-    
 }
 
 #pragma mark - SomePrepare
@@ -56,6 +64,12 @@ static DD_CustomViewController *tabbarController = nil;
     _ddayCtn=[[DD_DDAYViewController alloc] init];
     _circleCtn=[[DD_CircleViewController alloc]init];
     _userCtn=[[DD_UserViewController alloc] init];
+    
+    _goodsItem = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
+    _designerItem = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
+    _ddayItem = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
+    _circleItem = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
+    _userItem = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
 }
 -(void)Notifications
 {
@@ -173,11 +187,8 @@ static DD_CustomViewController *tabbarController = nil;
     
     CGFloat buttonWidth =ScreenWidth/5;
     for (int i = 0; i<titleArr.count; i++) {
-        DD_TabbarItem *item = [DD_TabbarItem buttonWithType:UIButtonTypeCustom];
+        DD_TabbarItem *item = i==0?_goodsItem:i==1?_designerItem:i==2?_ddayItem:i==3?_circleItem:_userItem;
         //        设置item的frame，标题，normal和select的图片
-//        item.type=i;
-//        [item setTitle:titleArr[i] forState:UIControlStateNormal];
-        
         //锁定第一个视图为默认出现页面
         if (i == 0) {
             item.selected = YES;
@@ -232,6 +243,70 @@ static DD_CustomViewController *tabbarController = nil;
     
 }
 #pragma mark - SomeAction
+/**
+ * 网络请求
+ * 更新当前tabbar 用户item的状态
+ */
+-(void)UpdateNoReadMessageState
+{
+    if([DD_UserModel isLogin])
+    {
+        [[JX_AFNetworking alloc] GET:@"/user/isHaveUnReadMessage.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                _unReadMsgModel=[DD_UnReadMsgModel getUnReadMsgModel:data];
+                //更新底部tabbar状态
+                [self UpdateUserBtnState];
+                
+            }else
+            {
+//                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+//            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }else
+    {
+        //更新底部tabbar状态为没有消息
+        [self UpdateUserBtnState];
+    }
+}
+-(void)UpdateUserBtnState
+{
+    if([DD_UserModel isLogin])
+    {
+        if(_unReadMsgModel)
+        {
+            [self setUserItemState:_unReadMsgModel.isHaveUnReadBottomRedPoint];
+        }else
+        {
+            [self setUserItemState:NO];
+        }
+    }else
+    {
+        [self setUserItemState:NO];
+    }
+}
+
+-(void)UpdateUnReadMsgModel:(DD_UnReadMsgModel *)unReadMsgModel
+{
+    _unReadMsgModel=unReadMsgModel;
+    [self UpdateUserBtnState];
+}
+
+-(void)setUserItemState:(BOOL )haveUnRead
+{
+    if(haveUnRead)
+    {
+        [_userItem setImage:[UIImage imageNamed:@"System_User_Not_Normal"] forState:UIControlStateNormal];
+        [_userItem setImage:[UIImage imageNamed:@"System_User_Not_Select"] forState:UIControlStateSelected];
+    }else
+    {
+        [_userItem setImage:[UIImage imageNamed:@"System_User_Normal"] forState:UIControlStateNormal];
+        [_userItem setImage:[UIImage imageNamed:@"System_User_Select"] forState:UIControlStateSelected];
+    }
+}
+
 -(void)cleanCache
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[[NSString alloc] initWithFormat:@"系统内存不足，是否清除应用缓存（%@M）",[regular getSize]] preferredStyle:UIAlertControllerStyleAlert];

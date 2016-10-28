@@ -14,6 +14,8 @@
 #import "DD_GoodsViewController.h"
 #import "DD_DDAYViewController.h"
 
+#import "DD_UnReadMsgModel.h"
+
 @interface DD_CustomViewController : UITabBarController
 /**
  * 创建单例
@@ -31,6 +33,12 @@
  * 清理缓存  处理内存警告
  */
 -(void)cleanCache;
+
+/**
+ * 更新unReadMsgModel
+ * 并更新当前tabbar 用户item的状态
+ */
+-(void)UpdateUnReadMsgModel:(DD_UnReadMsgModel *)unReadMsgModel;
 
 @property (nonatomic,strong) DD_UserViewController *userCtn;
 

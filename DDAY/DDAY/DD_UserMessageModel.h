@@ -22,6 +22,10 @@
  */
 __bool(readStatus);
 /**
+ * 是否是通知类型的消息
+ */
+__bool(isNotice);
+/**
  * 消息组名
  */
 __string(messageCategory);

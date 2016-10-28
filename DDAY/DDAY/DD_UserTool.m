@@ -39,8 +39,8 @@
         return @[@"System_Conference"
                  ,@"System_Notcollection"
                  ,@"System_Order"
-                 ,@"System_showroom"
-                 ,@"System_showroom"
+                 ,@"System_Discount"
+                 ,@"System_Score"
                  ,@"System_showroom"
                  ,@"System_set_up"
                  ];
@@ -52,8 +52,8 @@
                  ,@"System_Order"
                  ,@"System_Conference"
                  ,@"System_Notcollection"
-                 ,@"System_showroom"
-                 ,@"System_showroom"
+                 ,@"System_Discount"
+                 ,@"System_Score"
                  ,@"System_showroom"
                  ,@"System_set_up"
                  ];
@@ -64,8 +64,8 @@
                  ,@"System_Conference"
                  ,@"System_Order"
                  ,@"System_Notcollection"
-                 ,@"System_showroom"
-                 ,@"System_showroom"
+                 ,@"System_Discount"
+                 ,@"System_Score"
                  ,@"System_showroom"
                  ,@"System_set_up"
                  ];

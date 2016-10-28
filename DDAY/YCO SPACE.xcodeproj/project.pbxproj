@@ -334,6 +334,7 @@
 		3FEAC64D1D91190100928979 /* 图层-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEAC61B1D91190100928979 /* 图层-48@2x.png */; };
 		3FEAC64E1D91190100928979 /* 图层-49@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEAC61C1D91190100928979 /* 图层-49@2x.png */; };
 		3FEAC64F1D91190100928979 /* 图层-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEAC61D1D91190100928979 /* 图层-50@2x.png */; };
+		3FEB1F961DC338A000ABB8C9 /* DD_UnReadMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB1F951DC338A000ABB8C9 /* DD_UnReadMsgModel.m */; };
 		3FEEAF481D89174C008F6EB6 /* DD_UserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEAF471D89174C008F6EB6 /* DD_UserMessageModel.m */; };
 		3FEEAF4B1D891774008F6EB6 /* DD_UserMessageItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEAF4A1D891774008F6EB6 /* DD_UserMessageItemModel.m */; };
 		3FEEAF4E1D8923F2008F6EB6 /* DD_UserMessageHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEAF4D1D8923F2008F6EB6 /* DD_UserMessageHeadView.m */; };
@@ -1018,6 +1019,8 @@
 		3FEAC61B1D91190100928979 /* 图层-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-48@2x.png"; sourceTree = "<group>"; };
 		3FEAC61C1D91190100928979 /* 图层-49@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-49@2x.png"; sourceTree = "<group>"; };
 		3FEAC61D1D91190100928979 /* 图层-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-50@2x.png"; sourceTree = "<group>"; };
+		3FEB1F941DC338A000ABB8C9 /* DD_UnReadMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UnReadMsgModel.h; sourceTree = "<group>"; };
+		3FEB1F951DC338A000ABB8C9 /* DD_UnReadMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UnReadMsgModel.m; sourceTree = "<group>"; };
 		3FEEAF461D89174C008F6EB6 /* DD_UserMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageModel.h; sourceTree = "<group>"; };
 		3FEEAF471D89174C008F6EB6 /* DD_UserMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserMessageModel.m; sourceTree = "<group>"; };
 		3FEEAF491D891774008F6EB6 /* DD_UserMessageItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageItemModel.h; sourceTree = "<group>"; };
@@ -2980,6 +2983,8 @@
 		3FBE22D71D48B254000C3EE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3FEB1F941DC338A000ABB8C9 /* DD_UnReadMsgModel.h */,
+				3FEB1F951DC338A000ABB8C9 /* DD_UnReadMsgModel.m */,
 				3F9B8B001CEF6562008EC460 /* DD_UserModel.h */,
 				3F9B8B011CEF6562008EC460 /* DD_UserModel.m */,
 				3F6001FB1D4997C9007E395F /* 我的订单 */,
@@ -3565,6 +3570,7 @@
 				3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */,
 				3F4B81D21D0052CB00B323E4 /* DD_DDAYDetailViewController.m in Sources */,
 				3F57172E1D6EBD10006E1940 /* DD_MonthModel.m in Sources */,
+				3FEB1F961DC338A000ABB8C9 /* DD_UnReadMsgModel.m in Sources */,
 				3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */,
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,

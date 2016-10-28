@@ -152,6 +152,7 @@
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.messageItem=_itemModel;
+        cell.isNotice=_messageModel.isNotice;
         return cell;
     }else
     {
@@ -165,6 +166,7 @@
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.messageItem=_itemModel;
+        cell.isNotice=_messageModel.isNotice;
         return cell;
     }
 }
@@ -186,21 +188,24 @@
                 _userModel.is_expand=NO;
             }else
             {
-                if(!_userModel.readStatus)
+                if(!_userModel.isNotice)
                 {
-                    
-                    [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type mj_JSONString],@"unReadIds":[_userModel.unReadIds mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                        if(success)
-                        {
-                            _userModel.readStatus=YES;
-                        }else
-                        {
-                            [self presentViewController:successAlert animated:YES completion:nil];
-                        }
-                        [_tableview reloadData];
-                    } failure:^(NSError *error, UIAlertController *failureAlert) {
-                        [self presentViewController:failureAlert animated:YES completion:nil];
-                    }];
+                    if(!_userModel.readStatus)
+                    {
+                        
+                        [[JX_AFNetworking alloc] GET:@"user/readUserMessage.do" parameters:@{@"token":[DD_UserModel getToken],@"types":[_userModel.type mj_JSONString],@"unReadIds":[_userModel.unReadIds mj_JSONString]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                            if(success)
+                            {
+                                _userModel.readStatus=YES;
+                            }else
+                            {
+                                [self presentViewController:successAlert animated:YES completion:nil];
+                            }
+                            [_tableview reloadData];
+                        } failure:^(NSError *error, UIAlertController *failureAlert) {
+                            [self presentViewController:failureAlert animated:YES completion:nil];
+                        }];
+                    }
                 }
                 _userModel.is_expand=YES;
             }
@@ -287,6 +292,33 @@
         [self.navigationController pushViewController:[[DD_CircleApplyViewController alloc] initWithBlock:^(NSString *type) {
         }] animated:YES];
     }
+    
+    if(!_itemModel.readStatus)
+    {
+        NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"messageId":_itemModel.messageID};
+        [[JX_AFNetworking alloc] GET:@"user/readUserMessageSignle.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                _itemModel.readStatus=YES;
+                BOOL _all_readStatus=YES;
+                for (DD_UserMessageItemModel *itemModel in _userModel.messages) {
+                    if(!itemModel.readStatus)
+                    {
+                        _all_readStatus=NO;
+                        break;
+                    }
+                }
+                _userModel.readStatus=_all_readStatus;
+                [_tableview reloadData];
+            }else
+            {
+//                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+//            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }
+    
 }
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated

@@ -22,6 +22,7 @@
 #import "DD_UserItemBtn.h"
 
 #import "DD_UserTool.h"
+#import "DD_UnReadMsgModel.h"
 
 @interface DD_UserViewController ()
 
@@ -37,6 +38,8 @@
     UIImageView *_userHeadImg;
     UILabel *_headImgLabel;
     UILabel *_userName;
+    
+    DD_UnReadMsgModel *_unReadMsgModel;
     
 }
 
@@ -167,19 +170,44 @@
         [[JX_AFNetworking alloc] GET:@"/user/isHaveUnReadMessage.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                BOOL _is_have = [[data objectForKey:@"isHave"] boolValue];
-                [self setNotBtnWithExist:_is_have];
+                
+                _unReadMsgModel=[DD_UnReadMsgModel getUnReadMsgModel:data];
+                
+                [self setNotBtnWithExist:_unReadMsgModel.isHaveUnReadMessage];
+                
+                [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) UpdateUnReadMsgModel:_unReadMsgModel];
+                
+                [self readBottomRedPoint];
+                
             }else
             {
-                [self presentViewController:successAlert animated:YES completion:nil];
+//                [self presentViewController:successAlert animated:YES completion:nil];
             }
         } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
+//            [self presentViewController:failureAlert animated:YES completion:nil];
         }];
     }else
     {
         [self setNotBtnWithExist:NO];
     }
+}
+-(void)readBottomRedPoint
+{
+    [[JX_AFNetworking alloc] GET:@"user/readBottomRedPoint.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            _unReadMsgModel=[DD_UnReadMsgModel getUnReadMsgModel:data];
+            
+            [self setNotBtnWithExist:_unReadMsgModel.isHaveUnReadMessage];
+            
+            [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) UpdateUnReadMsgModel:_unReadMsgModel];
+        }else
+        {
+//            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+//        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
 }
 #pragma mark - SomeAction
 -(void)setNotBtnWithExist:(BOOL )is_exist

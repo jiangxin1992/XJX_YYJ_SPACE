@@ -13,6 +13,7 @@
     UIImageView *userHead;
     UILabel *titleLabel;
     UILabel *timeLabel;
+    UIView *_view;
 }
 
 - (void)awakeFromNib {
@@ -58,12 +59,21 @@
         make.right.mas_equalTo(timeLabel.mas_left).with.offset(-10);
     }];
     
+    _view=[UIView getCustomViewWithColor:_define_light_red_color];
+    [self.contentView addSubview:_view];
+    [_view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(5);
+        make.width.height.mas_offset(5);
+    }];
+    _view.hidden=YES;
 }
 #pragma mark - setter
 -(void)headClick
 {
     _block(@"headClick",_messageItem.fromUser);
 }
+
 -(void)setMessageItem:(DD_UserMessageItemModel *)messageItem
 {
     _messageItem=messageItem;
@@ -73,6 +83,17 @@
     }
     titleLabel.text=_messageItem.message;
     timeLabel.text=[regular getTimeStr:_messageItem.createTime WithFormatter:@"YYYY-MM-dd"];
+}
+-(void)setIsNotice:(BOOL)isNotice
+{
+    _isNotice=isNotice;
+    if(_isNotice)
+    {
+        _view.hidden=_messageItem.readStatus;
+    }else
+    {
+        _view.hidden=YES;
+    }
 }
 #pragma mark - Other
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
