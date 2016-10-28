@@ -9,5 +9,12 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_GoodsViewController : DD_BaseViewController
-__bool(noTabbar);
+
+//__bool(noTabbar);
+@property(nonatomic,assign) BOOL noTabbar;
+
+-(void)reload;
+
+-(void)loadNewData;
+
 @end

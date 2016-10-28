@@ -9,6 +9,7 @@
 
 #import "DD_GoodsViewController.h"
 #import "DD_ShopViewController.h"
+#import "DD_BenefitViewController.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
@@ -276,6 +277,18 @@
     [mywaterflow.mj_header beginRefreshing];
 }
 #pragma mark - SomeAction
+-(void)reload
+{
+    if(mywaterflow)
+    {
+        if(_benefitInfoModel&&![DD_UserModel isLogin])
+        {
+            [self unLoginAction];
+            [mywaterflow reloadData];
+        }
+    }
+}
+
 -(void)updateHeadViewState
 {
     if(_benefitInfoModel)
@@ -312,39 +325,61 @@
                         }];
                     }else if([type isEqualToString:@"enter"])
                     {
-                        
+                        [self.navigationController pushViewController:[[DD_BenefitViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                            if([type isEqualToString:@"markread"])
+                            {
+                                _benefitInfoModel.isReadBenefit=YES;
+                                _isReadBenefit=_benefitInfoModel.isReadBenefit;
+                                [_headView removeFromSuperview];
+                                [mywaterflow reloadData];
+                            }
+                            
+                        }] animated:YES];
                     }
                 }];
                 [mywaterflow addSubview:_headView];
             }
         }else
         {
-            _isReadBenefit=[DD_UserModel isReadBenefit];
-            //未登陆
-            if([DD_UserModel isReadBenefit])
+            [self unLoginAction];
+        }
+    }
+}
+-(void)unLoginAction
+{
+    _isReadBenefit=[DD_UserModel isReadBenefit];
+    //未登陆
+    if([DD_UserModel isReadBenefit])
+    {
+        //隐藏headview
+        [_headView removeFromSuperview];
+    }else
+    {
+        //显示headview
+        _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"close"])
             {
-                //隐藏headview
+                //关闭
+                [DD_UserModel setReadBenefit:YES];
+                _isReadBenefit=[DD_UserModel isReadBenefit];
                 [_headView removeFromSuperview];
-            }else
+                [mywaterflow reloadData];
+            }else if([type isEqualToString:@"enter"])
             {
-                //显示headview
-                _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
-                    if([type isEqualToString:@"close"])
+                [self.navigationController pushViewController:[[DD_BenefitViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                    if([type isEqualToString:@"markread"])
                     {
                         //关闭
                         [DD_UserModel setReadBenefit:YES];
                         _isReadBenefit=[DD_UserModel isReadBenefit];
                         [_headView removeFromSuperview];
                         [mywaterflow reloadData];
-                    }else if([type isEqualToString:@"enter"])
-                    {
-                        
                     }
-                }];
-                [mywaterflow addSubview:_headView];
+                    
+                }] animated:YES];
             }
-            
-        }
+        }];
+        [mywaterflow addSubview:_headView];
     }
 }
 -(void)loadNewData

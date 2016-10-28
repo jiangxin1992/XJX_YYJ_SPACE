@@ -87,6 +87,8 @@
 "user_contact_customer"="联系客服";
 "user_address_title"="收件地址";
 "user_showroom"="体验店";
+"user_benefit"="优惠";
+"user_integral"="积分";
 
 /**
  * 设置

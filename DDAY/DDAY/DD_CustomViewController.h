@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_UserViewController.h"
+#import "DD_CircleViewController.h"
+#import "DD_DesignerMainViewController.h"
+#import "DD_GoodsViewController.h"
+#import "DD_DDAYViewController.h"
+
 @interface DD_CustomViewController : UITabBarController
 /**
  * 创建单例
@@ -25,4 +31,15 @@
  * 清理缓存  处理内存警告
  */
 -(void)cleanCache;
+
+@property (nonatomic,strong) DD_UserViewController *userCtn;
+
+@property (nonatomic,strong) DD_CircleViewController *circleCtn;
+
+@property (nonatomic,strong) DD_DesignerMainViewController *designerCtn;
+
+@property (nonatomic,strong) DD_GoodsViewController *goodsCtn;
+
+@property (nonatomic,strong) DD_DDAYViewController *ddayCtn;
+
 @end

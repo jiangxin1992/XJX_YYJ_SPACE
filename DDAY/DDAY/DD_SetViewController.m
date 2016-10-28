@@ -226,6 +226,7 @@
             [DD_UserModel logout];
 //            [MobClick profileSignOff];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"logout"];
+            [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn reload];
             _successblock(@"logout");
             for (id obj in self.navigationController.viewControllers) {
                 if([obj isKindOfClass:[DD_UserViewController class]])

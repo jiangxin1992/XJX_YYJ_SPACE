@@ -24,6 +24,8 @@
              ,@"customer":NSLocalizedString(@"user_contact_customer", @"")
              ,@"set":NSLocalizedString(@"user_set_title", @"")
              ,@"showroom":NSLocalizedString(@"user_showroom", @"")
+             ,@"benefit":NSLocalizedString(@"user_benefit", @"")
+             ,@"integral":NSLocalizedString(@"user_integral", @"")
              };
 }
 +(NSArray *)getUserImgListArr
@@ -38,6 +40,8 @@
                  ,@"System_Notcollection"
                  ,@"System_Order"
                  ,@"System_showroom"
+                 ,@"System_showroom"
+                 ,@"System_showroom"
                  ,@"System_set_up"
                  ];
     }else if(_usertype==2)
@@ -49,6 +53,8 @@
                  ,@"System_Conference"
                  ,@"System_Notcollection"
                  ,@"System_showroom"
+                 ,@"System_showroom"
+                 ,@"System_showroom"
                  ,@"System_set_up"
                  ];
     }else
@@ -58,6 +64,8 @@
                  ,@"System_Conference"
                  ,@"System_Order"
                  ,@"System_Notcollection"
+                 ,@"System_showroom"
+                 ,@"System_showroom"
                  ,@"System_showroom"
                  ,@"System_set_up"
                  ];
@@ -70,10 +78,11 @@
     if(_usertype==0||_usertype==3)
     {
 //        3/0 未登录或普通用户
-
         return @[@"conference"
                  ,@"collection"
                  ,@"order"
+                 ,@"benefit"
+                 ,@"integral"
                  ,@"showroom"
                  ,@"set"
                  ];
@@ -86,6 +95,8 @@
                  ,@"order"
                  ,@"conference"
                  ,@"collection"
+                 ,@"benefit"
+                 ,@"integral"
                  ,@"showroom"
                  ,@"set"
                  ];
@@ -96,6 +107,8 @@
                  ,@"conference"
                  ,@"order"
                  ,@"collection"
+                 ,@"benefit"
+                 ,@"integral"
                  ,@"showroom"
                  ,@"set"
                  ];

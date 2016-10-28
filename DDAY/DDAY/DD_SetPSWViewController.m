@@ -132,6 +132,7 @@
                     // 更新友盟用户统计和渠道
                     [regular updateProfileSignInWithPUID];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                    [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn loadNewData];
                     _successblock(@"success");
                     //            回到登录发起页面
                     NSArray *controllers=self.navigationController.viewControllers;
@@ -173,6 +174,7 @@
                     // 更新友盟用户统计和渠道
                     [regular updateProfileSignInWithPUID];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                    [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn loadNewData];
                     _successblock(@"success");
                     //            回到登录发起页面
                     NSArray *controllers=self.navigationController.viewControllers;

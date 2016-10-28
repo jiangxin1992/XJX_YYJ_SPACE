@@ -8,12 +8,6 @@
 
 #import "DD_CustomViewController.h"
 
-#import "DD_UserViewController.h"
-#import "DD_CircleViewController.h"
-#import "DD_DesignerMainViewController.h"
-#import "DD_GoodsViewController.h"
-#import "DD_DDAYViewController.h"
-
 #import "DD_StartView.h"
 
 #import "DD_TabbarItem.h"
@@ -28,13 +22,7 @@
 @end
 
 @implementation DD_CustomViewController
-{
-    DD_UserViewController *_userCtn;
-    DD_GoodsViewController *_goodsCtn;
-    DD_DesignerMainViewController *_designerCtn;
-    DD_DDAYViewController *_ddayCtn;
-    DD_CircleViewController *_circleCtn;
-}
+
 static DD_CustomViewController *tabbarController = nil;
 
 - (void)viewDidLoad {

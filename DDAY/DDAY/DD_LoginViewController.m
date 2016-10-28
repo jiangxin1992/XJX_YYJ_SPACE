@@ -230,6 +230,7 @@
             // 更新友盟用户统计和渠道
             [regular updateProfileSignInWithPUID];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+            [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn loadNewData];
             _successblock(@"success");
             [self.navigationController popViewControllerAnimated:YES];
         }else
@@ -333,6 +334,7 @@
                          // 更新友盟用户统计和渠道
                          [regular updateProfileSignInWithPUID];
                          [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"login"];
+                         [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn loadNewData];
                          _successblock(@"success");
                          [self.navigationController popViewControllerAnimated:YES];
                      }else
