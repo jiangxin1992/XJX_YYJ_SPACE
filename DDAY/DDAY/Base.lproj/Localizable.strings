@@ -89,6 +89,8 @@
 "user_showroom"="体验店";
 "user_benefit"="优惠";
 "user_integral"="积分";
+"user_integral_title"="我的积分";
+"user_benefit_title"="我的优惠";
 
 /**
  * 设置

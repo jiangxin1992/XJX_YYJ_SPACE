@@ -309,6 +309,10 @@
                     }
                 }
                 _userModel.readStatus=_all_readStatus;
+                if(_userModel.unReadMessageNumber)
+                {
+                    _userModel.unReadMessageNumber--;
+                }
                 [_tableview reloadData];
             }else
             {

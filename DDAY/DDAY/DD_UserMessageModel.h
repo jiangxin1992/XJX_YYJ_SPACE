@@ -43,4 +43,6 @@ __array(type);
 __bool(is_expand);
 
 __array(unReadIds);
+
+__int(unReadMessageNumber);
 @end

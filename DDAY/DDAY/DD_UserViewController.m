@@ -18,6 +18,8 @@
 #import "DD_UserDDAYViewController.h"
 #import "DD_ShowRoomViewController.h"
 #import "DD_UserInfoViewController.h"
+#import "DD_IntegralViewController.h"
+#import "DD_BenefitListViewController.h"
 
 #import "DD_UserItemBtn.h"
 
@@ -270,7 +272,28 @@
     }else if([btn.type isEqualToString:@"showroom"])
     {
         [self PushShowRoom];
+    }else if([btn.type isEqualToString:@"integral"])
+    {
+        [self PushScoreView];
+    }else if([btn.type isEqualToString:@"benefit"])
+    {
+        [self PushBenefitView];
     }
+
+}
+/**
+ * 跳转优惠券页面
+ */
+-(void)PushBenefitView
+{
+    [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+}
+/**
+ * 跳转积分页面
+ */
+-(void)PushScoreView
+{
+    [self.navigationController pushViewController:[[DD_IntegralViewController alloc] init] animated:YES];
 }
 /**
  * 跳转体验店页面
