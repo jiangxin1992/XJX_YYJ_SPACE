@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_GoodsListTableView : UITableView
+
 __array(categoryArr);
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryName,NSString *categoryID))block;
 
 @property(nonatomic,copy) void (^block)(NSString *type,NSString *categoryName,NSString *categoryID);
+
 @end

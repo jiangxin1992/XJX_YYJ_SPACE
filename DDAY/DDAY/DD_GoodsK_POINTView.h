@@ -15,7 +15,9 @@
 -(instancetype)initWithShowRoomModelArr:(NSArray *)showroomArr WithBlock:(void (^)(NSString *type,DD_ShowRoomModel *model))block;
 
 __array(showroomArr);
+
 __bool(is_show);
+
 @property(nonatomic,copy) void (^block)(NSString *type,DD_ShowRoomModel *model);
 
 @end

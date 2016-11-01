@@ -12,9 +12,6 @@
 
 //有人关注了你
 
-//发布会即将开始
-//有人评论了你的搭配
-//有人回复了你的评论
 //        新的发布会通知
 +(NSString *)GET_NEWSERIES_NOT_SERIESID;
 +(void)SET_NEWSERIES_NOT_SERIESID:(NSDictionary *)dict;

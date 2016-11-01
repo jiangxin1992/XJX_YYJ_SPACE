@@ -12,6 +12,7 @@
 #import "DD_CircleListModel.h"
 
 @interface DD_CircleListCell : UITableViewCell
+
 /**
  * 初始化
  */
@@ -20,19 +21,19 @@
 + (CGFloat)heightWithModel:(DD_CircleListModel *)model IsUserHomePage:(BOOL )_isUserHomePage;
 
 -(void)setAction;
-/**
- * 搭配model
- */
+
+/** 搭配model*/
 @property(nonatomic,strong)DD_CircleListModel *listModel;
-/**
- * 当前model在dataarr中的index
- */
+
+/** 当前model在dataarr中的index*/
 @property(nonatomic,assign)NSInteger index;
+
 __bool(isUserHomePage);
-/**
- * 回调block
- */
+
+/** 回调block*/
 @property(nonatomic,copy) void (^cellBlock)(NSString *type,NSInteger index,DD_OrderItemModel *item);
+
 __view(last_count_view);
+
 @end
 

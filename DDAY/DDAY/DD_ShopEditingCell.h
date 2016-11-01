@@ -12,10 +12,15 @@
 #import "DD_ShopItemModel.h"
 
 @interface DD_ShopEditingCell : UITableViewCell
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath,DD_ShopModel *shopModel))block;
 
 @property (nonatomic,strong)DD_ShopModel *shopModel;
+
 @property (nonatomic,strong)DD_ShopItemModel *ItemModel;
+
 @property (nonatomic,copy) void (^clickblock)(NSString *type,NSIndexPath *indexPath,DD_ShopModel *shopModel);
+
 @property (nonatomic,strong)NSIndexPath *indexPath;
+
 @end

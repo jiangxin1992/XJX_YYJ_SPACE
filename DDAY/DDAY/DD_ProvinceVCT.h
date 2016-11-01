@@ -11,7 +11,9 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_ProvinceVCT : DD_BaseViewController
+
 -(instancetype)initWithBlock:(void(^)(NSString *p_id,NSString *c_id))block;
+
 @property (nonatomic,copy) void(^chooseblock)(NSString *p_id,NSString *c_id);
 
 @end

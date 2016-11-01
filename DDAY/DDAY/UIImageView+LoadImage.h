@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (LoadImage)
+
 /**
  * 图片加载
  */
-
 - (void)JX_ScaleToFill_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius;
 
 - (void)JX_ScaleAspectFit_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius;

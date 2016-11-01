@@ -15,41 +15,33 @@
 #import "DD_CircleFitPersonView.h"
 
 @interface DD_CircleInfoView : UIView
+
 /**
  * 初始化
  */
 -(instancetype)initWithCircleModel:(DD_CircleModel *)model WithBlock:(void (^)(NSString *type,long index))block;
-/**
- * 搭配建议
- */
+
+/** 搭配建议*/
 @property (nonatomic,strong) DD_CircleInfoSuggestView *remarksView;
-/**
- * 款式选择
- */
+
+/** 款式选择*/
 @property (nonatomic,strong) DD_CircleChooseStyleView *chooseStyleView;
-/**
- * 搭配图
- */
+
+/** 搭配图*/
 @property (nonatomic,strong) DD_CircleInfoImgView *imgView;
-/**
- * 搭配建议
- */
+
+/** 搭配建议*/
 @property (nonatomic,strong) DD_CircleInfoSuggestView *commentview;
-/**
- * 官方标签和自定义标签视图
- */
+
+/** 官方标签和自定义标签视图*/
 @property (nonatomic,strong) DD_CircleTagsView *tagsView;
-/**
- * 适合标签图
- */
+
+/** 适合标签图*/
 @property (nonatomic,strong) DD_CircleFitPersonView *fitPersonView;
-/**
- * 发布视图model/管理
- */
-//@property (nonatomic,strong) DD_CirclePublishModel *detailModel;
+
 @property (nonatomic,strong)DD_CircleModel *CircleModel;
-/**
- * 回调block
- */
+
+/** 回调block*/
 @property(nonatomic,copy) void (^block)(NSString *type,long index);
+
 @end

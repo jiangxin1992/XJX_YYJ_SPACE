@@ -8,10 +8,17 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CityModel : NSObject
+
 +(NSArray *)getCityModelArray:(NSArray *)arrdata;
+
 +(DD_CityModel *)getCityModel:(NSDictionary *)dict;
+
 __string(name);
+
 __string(en_name);
+
 __string(code);
+
 __string(c_id);
+
 @end

@@ -11,20 +11,19 @@
 #import "DD_CircleModel.h"
 
 @interface DD_CricleShowViewController : DD_BaseViewController
+
 /**
  * 初始化
  */
 -(instancetype)initWithCircleModel:(DD_CircleModel *)CircleModel WithIndex:(NSInteger )index WithBlock:(void (^)(NSString *type))block;
-/**
- * 搭配图
- */
+
+/** 搭配图*/
 @property (nonatomic,strong) DD_CircleModel *circleModel;
-/**
- * 当前选择搭配图index
- */
+
+/** 当前选择搭配图index*/
 __int(index);
-/**
- * 回调block
- */
+
+/** 回调block*/
 @property(nonatomic,copy) void (^block)(NSString *type);
+
 @end

@@ -11,11 +11,19 @@
 #import "DD_ProvinceModel.h"
 
 @interface DD_ProvinceModel : NSObject
+
 +(NSArray *)getProvinceModelArray:(NSArray *)arrdata;
+
 +(DD_ProvinceModel *)getProvinceModel:(NSDictionary *)dict;
+
 __string(name);
+
 __string(en_name);
+
 __string(code);
+
 __string(p_id);
+
 __array(City);
+
 @end

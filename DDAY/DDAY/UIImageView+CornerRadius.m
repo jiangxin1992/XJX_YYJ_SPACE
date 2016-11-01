@@ -23,9 +23,6 @@ const char kProcessedImage;
 @end
 
 
-
-
-
 @implementation UIImageView (CornerRadius)
 /**
  * @brief init the Rounding UIImageView, no off-screen-rendered

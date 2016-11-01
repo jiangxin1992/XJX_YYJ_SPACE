@@ -13,6 +13,7 @@
 @interface DD_headViewBenefitView : UIView
 
 -(instancetype)initWithModel:(DD_BenefitInfoModel *)benefitInfoModel WithBlock:(void (^)(NSString *type))block;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
 
 @end

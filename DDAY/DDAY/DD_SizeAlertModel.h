@@ -9,16 +9,23 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_SizeAlertModel : NSObject
+
 /**
  * 获取解析model
  */
 +(DD_SizeAlertModel *)getSizeAlertModel:(NSDictionary *)dict;
+
 /**
  * 获取解析数组
  */
 +(NSArray *)getSizeAlertModelArr:(NSArray *)arr;
+
 __array(size);
+
 __string(sizeBriefPic);
+
 __long(sizeBriefPicHeight);
+
 __long(sizeBriefPicWidth);
+
 @end

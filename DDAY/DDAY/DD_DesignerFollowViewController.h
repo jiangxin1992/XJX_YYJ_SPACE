@@ -11,6 +11,9 @@
 #import "DD_DesignerModel.h"
 
 @interface DD_DesignerFollowViewController : UIViewController
+
 -(instancetype)initWithBlock:(void(^)(NSString *type ,DD_DesignerModel *model))block;
+
 @property(nonatomic,copy) void (^block)(NSString *type ,DD_DesignerModel *model);
+
 @end

@@ -13,19 +13,19 @@
 #import "DD_ClearingModel.h"
 
 @interface DD_ClearingViewController : DD_BaseViewController
+
 /**
  * 结算页面初始化
  * _model:结算界面数据
  */
 -(instancetype)initWithModel:(DD_ClearingModel *)_model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block;
-/**
- * 结算界面数据
- */
+
+/** 结算界面数据*/
 @property (nonatomic,strong)DD_ClearingModel *Clearingmodel;
-/**
- * 结算回调
- */
+
+/** 结算回调*/
 @property (nonatomic,copy)void(^successblock)(NSString *type,NSDictionary *resultDic);
+
 @end
 
 

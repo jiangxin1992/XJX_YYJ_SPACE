@@ -9,13 +9,13 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_CirclePublishDailyViewController : DD_BaseViewController
+
 /**
  *  初始化
  */
 -(instancetype)initWithBlock:(void (^)(NSString *type))block;
-/**
- * 回调block
- */
+
+/** 回调block*/
 __block_type(block, type);
 
 @end

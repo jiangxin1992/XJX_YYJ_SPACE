@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_CircleSearchCell : UITableViewCell
+
 __string(content);
+
 @end

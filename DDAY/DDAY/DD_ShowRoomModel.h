@@ -23,36 +23,28 @@
  */
 __array(pics);
 
-/**
- * 店名
- */
+/** 店名*/
 __string(storeName);
-/**
- * 维度
- */
+
+/** 维度*/
 __string(latitude);
-/**
- * 经度
- */
+
+/** 经度*/
 __string(longitude);
-/**
- * 店铺id
- */
+
+/** 店铺ID*/
 __string(s_id);
-/**
- * 店铺描述
- */
+
+/** 店铺描述*/
 __string(brief);
-/**
- * 店铺地址
- */
+
+/** 店铺地址*/
 __string(address);
-/**
- * 营业时间
- */
+
+/** 营业时间*/
 __string(businessHours);
-/**
- * 联系方式
- */
+
+/** 联系方式*/
 __string(contactPhone);
+
 @end

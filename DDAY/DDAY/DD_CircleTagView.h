@@ -11,13 +11,16 @@
 #import "DD_CircleListModel.h"
 
 @interface DD_CircleTagView : UIView
+
 -(instancetype)initWithTagArr:(NSArray *)tagArr;
+
 -(void)setState;
+
 +(CGFloat)GetHeightWithTagArr:(NSArray *)tagArr;
-/**
- * 搭配model
- */
+
+/** 搭配model*/
 __array(tagArr);
+
 __label(lastView);
 
 @end

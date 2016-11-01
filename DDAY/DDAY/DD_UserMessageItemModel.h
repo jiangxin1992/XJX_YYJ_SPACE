@@ -11,14 +11,17 @@
 #import "DD_UserModel.h"
 
 @interface DD_UserMessageItemModel : NSObject
+
 /**
  * 获取消息列表model
  */
 +(DD_UserMessageItemModel *)getUserMessageItemModel:(NSDictionary *)dict;
+
 /**
  * 获取消息列表model数组
  */
 +(NSMutableArray *)getUserMessageItemModelArr:(NSArray *)arr;
+
 /**
  * 动作类型
  * 1 跳转物流详情页（orderCode）
@@ -30,6 +33,7 @@
  * 7 跳转申请详情页 不需要
  */
 __int(paramType);
+
 /**
  * 后台的类型
  * 1 订单更新
@@ -43,29 +47,23 @@ __int(paramType);
  * 9 达人申请通知
  */
 __int(type);
-/**
- *  用户信息
- */
+
+/** 用户信息*/
 @property (nonatomic,strong)DD_UserModel *fromUser;
-/**
- * 是否已读
- */
+
+/** 是否已读*/
 __bool(readStatus);
-/**
- *  创建时间
- */
+
+/** 创建时间*/
 __long(createTime);
-/**
- * 消息ID
- */
+
+/** 消息ID*/
 __string(messageID);
-/**
- * 消息内容
- */
+
+/** 消息内容*/
 __string(message);
-/**
- * 参数列表
- */
+
+/** 参数列表*/
 __dict(params);
 
 @end

@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CityTool : NSObject
+
 +(NSArray *)getCityModelArr;
+
 @end

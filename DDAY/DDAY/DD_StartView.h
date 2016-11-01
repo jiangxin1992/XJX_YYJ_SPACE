@@ -11,6 +11,7 @@
 @interface DD_StartView : UIView
 
 -(instancetype)initWithBlock:(void (^)(NSString *type))block;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
 
 @end

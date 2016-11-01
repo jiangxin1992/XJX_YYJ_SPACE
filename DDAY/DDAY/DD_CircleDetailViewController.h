@@ -17,20 +17,16 @@
  */
 -(instancetype)initWithCircleListModel:(DD_CircleListModel *)ListModel WithShareID:(NSString *)ShareID IsHomePage:(BOOL )isHomePage WithBlock:(void (^)(NSString *type))block;
 
-/**
- * 搭配list model
- */
+/** 搭配list model*/
 @property (nonatomic,strong)DD_CircleListModel *ListModel;
-/**
- * 搭配ID
- */
+
+/** 搭配ID*/
 __string(ShareID);
-/**
- * 是否从主页进入
- */
+
+/** 是否从主页进入*/
 __bool(isHomePage);
-/**
- * 回调block
- */
+
+/** 回调block*/
 __block_type(block, type);
+
 @end

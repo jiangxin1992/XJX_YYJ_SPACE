@@ -19,7 +19,9 @@
 -(void)setCalShowRoomModel:(DD_ShowRoomModel *)showRoomModel;
 
 @property (nonatomic,strong) DD_ShowRoomModel *showRoomModel;
+
 __block_type(block, type);
 
 @property (nonatomic,strong)MKMapView *mapView;
+
 @end

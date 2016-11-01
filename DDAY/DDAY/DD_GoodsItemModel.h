@@ -13,10 +13,15 @@
 #import "DD_GoodSeriesModel.h"
 
 @interface DD_GoodsItemModel : NSObject
+
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict;
+
 +(NSArray *)getGoodsItemModelArr:(NSArray *)arr;
+
 -(NSString *)getSizeNameWithID:(NSString *)sizeID;
+
 -(DD_SizeModel *)getSizeModelWithID:(NSString *)sizeID;
+
 -(NSArray *)getPicsArr;
 
 __string(colorId);
@@ -24,9 +29,8 @@ __array(colors);
 __string(categoryName);//类别
 __string(discount);
 __bool(discountEnable);
-/**
- * 用户是否收藏
- */
+
+/** 用户是否收藏*/
 __bool(isCollect);
 __string(originalPrice);
 __string(price);
@@ -39,17 +43,16 @@ __long(saleStartTime);
 __long(signEndTime);
 __long(signStartTime);
 __int(status);
-/**
- * 寄送与退换
- */
+
+/** 寄送与退换*/
 __string(deliverDeclaration);
-/**
- * 面料
- */
+
+/** 面料*/
 __string(material);
-/**
- * 洗涤说明
- */
+
+/** 洗涤说明*/
 __string(washCare);
+
 @property (nonatomic,strong)DD_GoodSeriesModel *series;
+
 @end

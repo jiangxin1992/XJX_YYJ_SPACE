@@ -9,17 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CircleFavouriteDesignerModel : NSObject
+
 +(DD_CircleFavouriteDesignerModel *)initDesignerModel;
-/**
- * 设计师id
- */
+
+/** 设计师ID*/
 __string(likeDesignerId);
-/**
- * 设计师用户名
- */
+
+/** 设计师用户名*/
 __string(likeDesignerName);
-/**
- * 喜欢它的理由
- */
+
+/** 喜欢它的理由*/
 __string(likeReason);
+
 @end

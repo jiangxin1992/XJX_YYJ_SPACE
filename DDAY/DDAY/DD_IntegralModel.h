@@ -20,24 +20,22 @@
  */
 +(DD_IntegralModel *)getIntegralModel:(NSDictionary *)dict;
 
-/**
- * 内容
- */
+/** 内容*/
 __string(tips);
-/**
- * 1进
- * 0出
- */
-__bool(pointType);
-/**
- * 积分数量
- */
-__int(points);
-__string(pointStr);
-/**
- * 创建时间
- */
 
+/** 1进/0出*/
+__bool(pointType);
+
+/** 积分数量*/
+__int(points);
+
+/** 积分数量（描述）*/
+__string(pointStr);
+
+/** 创建时间*/
 __long(happenTime);
+
+/** 创建时间（转具体时间）*/
 __string(createTime);
+
 @end

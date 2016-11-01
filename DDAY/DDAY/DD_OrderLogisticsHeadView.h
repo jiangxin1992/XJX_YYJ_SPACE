@@ -17,19 +17,18 @@
  */
 -(instancetype)initWithCircleListModel:(DD_OrderLogisticsManageModel *)model WithBlock:(void (^)(NSString *type))block;
 
-+ (CGFloat)heightWithModel:(DD_OrderLogisticsManageModel *)model;
-/**
- * 搭配model
- */
-@property (nonatomic,strong) DD_OrderLogisticsManageModel *LogisticsManageModel;
-/**
- * 回调block
- */
-@property(nonatomic,copy) void (^block)(NSString *type);
 /**
  * 更新
  */
 -(void)setState;
+
++ (CGFloat)heightWithModel:(DD_OrderLogisticsManageModel *)model;
+
+/** 搭配model*/
+@property (nonatomic,strong) DD_OrderLogisticsManageModel *LogisticsManageModel;
+
+/** 回调block*/
+@property(nonatomic,copy) void (^block)(NSString *type);
 
 @property (nonatomic,strong)UIImageView *head;
 

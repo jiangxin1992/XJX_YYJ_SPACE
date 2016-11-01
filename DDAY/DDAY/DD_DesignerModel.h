@@ -9,19 +9,33 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_DesignerModel : NSObject
+
 +(DD_DesignerModel *)getDesignerModel:(NSDictionary *)dict;
+
 +(NSArray *)getDesignerModelArr:(NSArray *)arr;
 
-__string(brandName);
+/** 设计师ID*/
 __string(designerId);
+
+/** 用户是否已关注*/
 __bool(guanzhu);
+
+/** 设计师头像*/
 __string(head);
+
+/** 设计师名*/
 __string(name);
+
+/** 设计师的代表性单品数组*/
 __array(items);
+
+/** 品牌icon*/
 __string(brandIcon);
-/**
- * 用户类型 2设计师 3普通用户 4达人
- */
+
+/** 品牌名称*/
+__string(brandName);
+
+/** 用户类型 2设计师 3普通用户 4达人*/
 __string(userType);
 
 @end

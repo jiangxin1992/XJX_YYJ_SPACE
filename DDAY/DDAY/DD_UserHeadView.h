@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_UserHeadView : UIButton
+
 +(instancetype)buttonWithType:(UIButtonType)buttonType WithModel:(DD_UserModel *)usermodel WithBlock:(void(^)(NSString *type))block;
+
 -(void)updateState;
+
 @property (nonatomic,strong) DD_UserModel *usermodel;
+
 __block_type(touchblock, type);
+
 @end

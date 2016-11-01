@@ -15,20 +15,16 @@
  */
 -(instancetype)initWithRemarks:(NSString *)Remarks WithLimit:(long)limitNum WithTitle:(NSString *)title WithBlock:(void(^)(NSString *type,NSString *content))doneBlcok;
 
-/**
- * 完成回调
- */
+/** 完成回调*/
 @property (nonatomic,copy) void(^doneBlcok)(NSString *type,NSString *content);
-/**
- * 备注
- */
+
+/** 备注*/
 __string(Remarks);
-/**
- * 标题
- */
+
+/** 标题*/
 __string(v_title);
-/**
- * 字数限制
- */
+
+/** 字数限制*/
 __long(limitNum);
+
 @end

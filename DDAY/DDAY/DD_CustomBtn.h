@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_CustomBtn : UIButton
+
 /**
  * 创建带title 的自定义 btn
  */
 +(DD_CustomBtn *)getCustomTitleBtnWithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithSpacing:(CGFloat )_spacing WithNormalTitle:(NSString *)_normalTitle WithNormalColor:(UIColor *)_normalColor WithSelectedTitle:(NSString *)_selectedTitle WithSelectedColor:(UIColor *)_selectedColor;
+
 /**
  * 创建带image 的自定义 btn
  */
@@ -22,6 +24,7 @@
  * 创建带backimage 的自定义 btn
  */
 +(DD_CustomBtn *)getCustomBackImgBtnWithImageStr:(NSString *)_normalImageStr WithSelectedImageStr:(NSString *)_selectedImageStr;
+
 /**
  * 创建自定义 btn
  */

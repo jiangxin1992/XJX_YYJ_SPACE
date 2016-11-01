@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_DDAYTool : NSObject
+
 +(NSString *)getTimeStrWithTime:(long)time;
+
 @end

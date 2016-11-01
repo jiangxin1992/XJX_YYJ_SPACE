@@ -9,17 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CircleApplyDesignerModel : NSObject
+
 /**
  * 获取单品model数组
  */
 +(NSArray *)getApplyDesignerModelArr:(NSArray *)arr;
 
-/**
- * 设计师id
- */
+/** 设计师ID*/
 __string(designerId);
-/**
- * 设计师名
- */
+
+/** 设计师名*/
 __string(designerName);
 @end

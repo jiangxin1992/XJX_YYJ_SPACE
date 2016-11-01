@@ -19,4 +19,5 @@
 
 @property (nonatomic,strong)DD_OrderDetailInfoModel *orderInfo;
 @property (nonatomic,strong)DD_AddressModel *address;
+
 @end

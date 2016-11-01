@@ -13,6 +13,7 @@
 @interface DD_OrderTabBar : UIView
 
 /**
+ * 初始化方法
  * 查看物流 logistics
  * 取消订单 cancel
  * 去支付 pay
@@ -23,22 +24,17 @@
  * 退款 refund
  * 联系客服 contact
  */
-
-/**
- * 初始化方法
- */
 -(instancetype)initWithFrame:(CGRect)frame WithOrderDetailInfoModel:(DD_OrderDetailInfoModel *)orderInfo WithBlock:(void (^)(NSString *type))block;
+
 /**
  * 更新状态
  */
 -(void)UIConfig;
 
-/**
- * 回调方法
- */
+/** 回调方法*/
 __block_type(Block, type);
-/**
- * model
- */
+
+/** model*/
 @property (nonatomic,strong)DD_OrderDetailInfoModel *orderInfo;
+
 @end

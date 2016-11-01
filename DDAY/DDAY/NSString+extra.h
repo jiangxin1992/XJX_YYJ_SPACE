@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (extra)
+
 + (BOOL )isNilOrEmpty: (NSString *) str;
 
 @end

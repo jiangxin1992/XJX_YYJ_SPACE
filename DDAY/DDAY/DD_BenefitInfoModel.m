@@ -12,6 +12,8 @@
 +(DD_BenefitInfoModel *)getBenefitInfoModel:(NSDictionary *)dict
 {
     DD_BenefitInfoModel *_BenefitInfoModel=[DD_BenefitInfoModel mj_objectWithKeyValues:dict];
+    _BenefitInfoModel.effectStartTime=_BenefitInfoModel.effectStartTime/1000;
+    _BenefitInfoModel.effectEndTime=_BenefitInfoModel.effectEndTime/1000;
     return _BenefitInfoModel;
 }
 +(NSArray *)getBenefitInfoModelArr:(NSArray *)arr

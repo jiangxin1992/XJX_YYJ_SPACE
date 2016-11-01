@@ -12,9 +12,11 @@
 #import "DD_OrderModel.h"
 
 @interface DD_OrderDetailViewController : DD_BaseViewController
+
 -(instancetype)initWithModel:(DD_OrderModel *)model WithBlock:(void (^)(NSString *type,NSDictionary *resultDic))block;
 
 @property(nonatomic,copy) void (^block)(NSString *type,NSDictionary *resultDic);
+
 @property (nonatomic,strong)DD_OrderModel *OrderModel;
 
 @end

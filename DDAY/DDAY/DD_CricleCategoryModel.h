@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CricleCategoryModel : NSObject
+
 /**
  * 获取分类标签model 数组
  */
@@ -18,16 +19,13 @@
  */
 +(DD_CricleCategoryModel *)getInitModel;
 
-/**
- * 分类标签code
- */
+/** 分类标签Code*/
 __string(code);
-/**
- * 分类标签的分级
- */
+
+/** 分类标签的分级*/
 __string(level);
-/**
- * 分裂标签名
- */
+
+/** 分裂标签名*/
 __string(name);
+
 @end

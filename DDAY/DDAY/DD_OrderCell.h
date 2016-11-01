@@ -14,14 +14,11 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
 
 @property (nonatomic,strong)NSIndexPath *indexPath;
-/**
- * cell 回调
- */
+
+/** cell 回调*/
 @property (nonatomic,copy) void (^cellblock)(NSString *type,NSIndexPath *indexPath);
 
-/**
- * cell model
- */
+/** cell model*/
 @property (nonatomic,strong)DD_OrderModel *OrderModel;
 
 @end

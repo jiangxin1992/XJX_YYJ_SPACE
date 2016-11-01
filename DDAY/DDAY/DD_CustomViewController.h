@@ -17,18 +17,22 @@
 #import "DD_UnReadMsgModel.h"
 
 @interface DD_CustomViewController : UITabBarController
+
 /**
  * 创建单例
  */
 +(id)sharedManager;
+
 /**
  * tabbarHide
  */
 -(void)tabbarHide;
+
 /**
  * tabbarAppear
  */
 -(void)tabbarAppear;
+
 /**
  * 清理缓存  处理内存警告
  */

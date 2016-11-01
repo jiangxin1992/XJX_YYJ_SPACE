@@ -11,6 +11,7 @@
 @interface DD_FansViewController : DD_BaseViewController
 
 -(instancetype)initWithBlock:(void (^)(NSString *type))block;
+
 __block_type(block, type);
 
 @end

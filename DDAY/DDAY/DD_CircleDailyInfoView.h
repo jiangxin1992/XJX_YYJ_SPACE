@@ -14,25 +14,22 @@
 #import "DD_CircleModel.h"
 
 @interface DD_CircleDailyInfoView : UIView
+
 /**
  * 初始化
  */
 -(instancetype)initWithCircleModel:(DD_CircleModel *)model WithBlock:(void (^)(NSString *type,long index))block;
-/**
- * 搭配建议
- */
+
+/** 搭配建议*/
 @property (nonatomic,strong) DD_CircleInfoSuggestView *commentview;
-/**
- * 搭配图
- */
+
+/** 搭配图*/
 @property (nonatomic,strong) DD_CircleDailyInfoImgView *imgView;
-/**
- * 发布视图model/管理
- */
-//@property (nonatomic,strong) DD_CirclePublishModel *detailModel;
+
+/** 发布视图model/管理*/
 @property (nonatomic,strong)DD_CircleModel *CircleModel;
-/**
- * 回调block
- */
+
+/** 回调block*/
 @property(nonatomic,copy) void (^block)(NSString *type,long index);
+
 @end

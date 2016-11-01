@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (RoundedImage)
+
 /**
  * 创建圆角
  */
 + (id)createRoundedRectImage:(UIImage*)image size:(CGSize)size radius:(NSInteger)r;
+
 @end

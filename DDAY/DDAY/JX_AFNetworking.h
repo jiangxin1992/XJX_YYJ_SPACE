@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface JX_AFNetworking : NSObject
+
 /**
  * GET
  */

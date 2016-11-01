@@ -11,8 +11,13 @@
 #import "DD_CircleModel.h"
 
 @interface DD_CirclePushlishPreViewController : DD_BaseViewController
+
 -(instancetype)initWithCircleModel:(DD_CircleModel *)circleModel WithType:(NSString *)type WithBlock:(void (^)(NSString *type))block;
+
 __block_type(block, type);
+
 __string(type);
+
 @property (nonatomic,strong)DD_CircleModel *circleModel;
+
 @end

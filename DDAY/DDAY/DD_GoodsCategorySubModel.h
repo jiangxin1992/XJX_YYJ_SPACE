@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_GoodsCategorySubModel : NSObject
+
 +(NSArray *)getGoodsCategorySubModelArr:(NSArray *)arr;
+
 __string(catTwoName);
+
 __string(catTwoId);
 
 @end

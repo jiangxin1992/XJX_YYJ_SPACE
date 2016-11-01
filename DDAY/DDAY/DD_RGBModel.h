@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_RGBModel : NSObject
+
 +(DD_RGBModel *)initWithColorCode:(NSString *)colorCode;
+
 __float(R);
+
 __float(G);
+
 __float(B);
+
 @end

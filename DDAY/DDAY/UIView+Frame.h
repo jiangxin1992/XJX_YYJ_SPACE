@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#define __float(__k__) @property(nonatomic,assign) CGFloat __k__
+
 @interface UIView (Frame)
+
 //在分类中声明property,只会生成方法的声明，不会生成方法的实现和带有下划线的成员变量
-@property(nonatomic,assign)CGFloat fr_width;
+__float(fr_width);
 
-@property(nonatomic,assign)CGFloat fr_height;
+__float(fr_height);
 
-@property(nonatomic,assign)CGFloat fr_x;
+__float(fr_x);
 
-@property(nonatomic,assign)CGFloat fr_y;
+__float(fr_y);
 
 @end

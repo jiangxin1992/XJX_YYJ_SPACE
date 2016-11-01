@@ -17,4 +17,5 @@
 + (CGFloat)heightWithModel:(DD_ShowRoomModel *)model;
 
 __label(address);
+
 @end

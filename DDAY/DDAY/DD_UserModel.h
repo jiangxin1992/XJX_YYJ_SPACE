@@ -11,79 +11,79 @@
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
 
 @interface DD_UserModel : NSObject
-/**
- * 职业
- */
+
+/** 职业*/
 __string(career);
-/**
- * 头像
- */
+
+/** 头像*/
 __string(head);
-/**
- * 身高
- */
+
+/** 身高*/
 __string(height);
-/**
- * 用户id
- */
+
+/** 用户id*/
 __string(u_id);
-/**
- * 用户昵称
- */
+
+/** 用户昵称*/
 __string(nickName);
-/**
- * 手机号
- */
+
+/** 手机号*/
 __string(phone);
-/**
- * 性别 0男1女2未知
- */
+
+/** 性别 0男1女2未知*/
 __string(sex);
-/**
- * 用户token
- */
+
+/** 用户token*/
 __string(token);
-/**
- * 用户类型 2设计师 3普通用户 4达人
- */
+
+/** 用户类型 2设计师 3普通用户 4达人*/
 __string(userType);
-/**
- * 体重
- */
+
+/** 体重*/
 __string(weight);
+
+
 /**
  * 登出
  */
 +(void)logout;
+
 /**
  * 存入订单号
  */
 +(void)setTradeOrderCode:(NSString *)tradeOrderCode;
+
 /**
  * 移除订单号
  */
 +(void)removeTradeOrderCode;
+
 /**
  * 获取订单号
  */
 +(NSString *)getTradeOrderCode;
+
 /**
  * 获取model
  */
 +(DD_UserModel *)getUserModel:(NSDictionary *)dict;
+
 /**
  * 设置本地用户信息
  */
 +(void)setLocalUserInfo:(NSDictionary *)data;
+
 /**
  * 获取本地用户信息
  */
 +(DD_UserModel *)getLocalUserInfo;
+
 /**
  * 获取当前登录用户权限
  * 1 管理员 2 设计师 3 普通用户 4 达人
  */
 +(NSInteger )getUserType;
+
 /**
  * 获取用户的登陆渠道
  * public static final int USER_LOGIN_PHONE = 1;//手机号码登陆
@@ -92,29 +92,45 @@ __string(weight);
  * public static final int USER_LOGIN_SINA = 4;//sina登陆
  */
 +(NSInteger )getThirdPartLogin;
+
 /**
  * 用户是否登录
  */
 +(BOOL )isLogin;
+
 /**
  * 获取用户token
  */
 +(NSString *)getToken;
+
 /**
  * 获取性别
  */
 -(NSString *)getSexStr;
+
 /**
  * 更新本地用户权限
  */
 +(void)UpdateUserType:(NSInteger )userType;
 
+/**
+ * 将DeviceToken存入本地
+ */
 +(void)setDeviceToken:(NSString *)token;
 
+/**
+ * 获取本地存放的DeviceToken
+ */
 +(NSString *)getDeviceToken;
 
+/**
+ * 首单立减红包是否已读（未登录状态下）
+ */
 +(BOOL)isReadBenefit;
 
+/**
+ * 设置首单立减红包在未登录状态下的（已读／未读）状态
+ */
 +(void)setReadBenefit:(BOOL)read;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_UserCell : UITableViewCell
+
 -(id)initWithImageStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 -(id)initWithF_titleStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
@@ -18,7 +19,11 @@
 -(id)initWithNotF_titleStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 __bool(hasNewFans);
+
 __string(image);
+
 __string(f_title);
+
 __string(title);
+
 @end

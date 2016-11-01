@@ -9,16 +9,16 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_CircleItemListViewController : DD_BaseViewController
+
 /**
  * 初始化
  */
 -(instancetype)initWithShareID:(NSString *)shareID WithBlock:(void (^)(NSString *type))block;
-/**
- * 搭配id
- */
+
+/** 搭配ID*/
 __string(shareID);
-/**
- * 回调block
- */
+
+/** 回调block*/
 @property(nonatomic,copy) void (^block)(NSString *type);
+
 @end

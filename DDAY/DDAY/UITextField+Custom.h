@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UITextField (Custom)
+
 +(UITextField *)getTextFieldWithPlaceHolder:(NSString *)_placeHolder WithAlignment:(NSInteger )_alignment WithFont:(CGFloat )_font WithTextColor:(UIColor *)_textColor WithLeftView:(UIView *)_leftView WithRightView:(UIView *)_rightView WithSecureTextEntry:(BOOL )_isSecure;
+
 @end

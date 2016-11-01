@@ -15,5 +15,7 @@
 -(instancetype)initWithBlock:(void(^)(NSString *p_id,NSString *c_id))block;
 
 @property (nonatomic,copy) void(^chooseblock)(NSString *p_id,NSString *c_id);
+
 __string(p_id);
+
 @end

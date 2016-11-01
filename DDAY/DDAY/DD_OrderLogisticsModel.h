@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_OrderLogisticsModel : NSObject
+
 /**
  * 获取解析model
  */
@@ -17,16 +18,14 @@
  * 获取解析数组
  */
 +(NSArray *)getLogisticsModelArr:(NSArray *)arr;
-/**
- * 物流信息
- */
+
+/** 物流信息*/
 __string(AcceptStation);
-/**
- * 该物流信息的更新时间
- */
+
+/** 该物流信息的更新时间*/
 __long(AcceptTime);
-/**
- * 该物流信息的备注
- */
+
+/** 该物流信息的备注*/
 __string(mark);
+
 @end

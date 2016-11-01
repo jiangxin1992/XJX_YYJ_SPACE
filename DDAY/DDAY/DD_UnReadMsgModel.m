@@ -10,7 +10,6 @@
 
 @implementation DD_UnReadMsgModel
 
-
 +(DD_UnReadMsgModel *)getUnReadMsgModel:(NSDictionary *)dict
 {
     return [DD_UnReadMsgModel mj_objectWithKeyValues:dict];

@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_OtherItemModel : NSObject
+
 +(NSArray *)getOtherItemModelArr:(NSArray *)arr;
+
 __string(itemPic);
+
 __string(itemName);
+
 __string(itemId);
+
 __string(colorId);
+
 __string(colorCode);
+
 @end

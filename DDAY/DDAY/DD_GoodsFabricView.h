@@ -15,6 +15,9 @@
 -(instancetype)initWithGoodsItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block;
 
 __block_type(block, type);
+
 __bool(is_show);
+
 @property (nonatomic,strong)DD_GoodsItemModel *item;
+
 @end

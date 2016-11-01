@@ -10,12 +10,14 @@
 
 #import "DrawView.h"
 
-//#import "DD_CalendarTool.h"
 #import "DD_MonthModel.h"
 
 @interface DD_CalendarCell : UICollectionViewCell
+
 @property (weak, nonatomic) UILabel *dayLabel;
 
 @property (strong, nonatomic) DD_MonthModel *monthModel;
+
 __array(SeriesArr);
+
 @end

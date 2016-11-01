@@ -12,6 +12,7 @@
 
 @interface DD_ClearingModel : NSObject
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict;
+
 /**
  * 获取结算请求 itemarr
  * 结算请求参数
@@ -25,18 +26,13 @@
  */
 -(NSDictionary *)getOrderInfo;
 
-
-/**
- * 订单model 数组
- */
+/** 订单model 数组*/
 __array(orders);
-/**
- * 地址model
- */
+
+/** 地址model*/
 @property (nonatomic,strong)DD_AddressModel *address;
-/**
- * 单个订单运费
- */
+
+/** 单个订单运费*/
 __string(freight);
 
 @end

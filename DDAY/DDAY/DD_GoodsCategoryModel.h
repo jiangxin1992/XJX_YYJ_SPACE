@@ -11,9 +11,15 @@
 #import "DD_GoodsCategorySubModel.h"
 
 @interface DD_GoodsCategoryModel : NSObject
+
 +(DD_GoodsCategoryModel *)getGoodsCategoryModel:(NSDictionary *)dict;
+
 +(NSArray *)getGoodsCategoryModelArr:(NSArray *)arr;
+
 __string(catOneName);
+
 __array(catTwoList);
+
 __bool(isAll);
+
 @end

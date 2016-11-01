@@ -11,20 +11,21 @@
 #import "DD_CircleListModel.h"
 
 @interface DD_CircleListInteractionView : UIView
+
 /**
  * 初始化
  */
 -(instancetype)initWithCircleListModel:(DD_CircleListModel *)model WithBlock:(void (^)(NSString *type))block;
+
 /**
  * 更新
  */
 -(void)setState;
-/**
- * 搭配model
- */
+
+/** 搭配model*/
 @property (nonatomic,strong) DD_CircleListModel *detailModel;
-/**
- * 回调
- */
+
+/** 回调*/
 __block_type(block, type);
+
 @end

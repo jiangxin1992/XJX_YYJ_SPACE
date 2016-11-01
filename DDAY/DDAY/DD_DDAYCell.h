@@ -19,8 +19,10 @@
  * beforeSaleEnd
  * afterSaleEnd
  */
-
 @property (nonatomic,copy) void (^ddayblock)(NSInteger index,NSString *type);
+
 @property (nonatomic,strong)DD_DDAYModel *DDAYModel;
+
 __int(index);
+
 @end

@@ -9,6 +9,7 @@
 #import "DD_UserModel.h"
 
 @implementation DD_UserModel
+
 +(void)setLocalUserInfo:(NSDictionary *)data
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
@@ -17,6 +18,7 @@
     [_default setObject:jsonstr_user forKey:@"user"];
     [_default setObject:[data objectForKey:@"thirdPartLogin"] forKey:@"thirdPartLogin"];
 }
+
 +(void)UpdateUserType:(NSInteger )userType
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
@@ -25,6 +27,7 @@
     NSString *jsonstr_user=[_User mj_JSONString];
     [_default setObject:jsonstr_user forKey:@"user"];
 }
+
 +(void)setTradeOrderCode:(NSString *)tradeOrderCode
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];

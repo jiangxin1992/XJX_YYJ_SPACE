@@ -198,18 +198,7 @@ static regular *_t = nil;
     return [self Verify:password WithCode:@"^[A-Za-z0-9]{6,16}$"];
     
 }
-//+(BOOL )pswFormVerify:(NSString *)phone
-//{
-//    return [self Verify:phone WithCode:@"^[a-zA-Z]\w{5,15}$"];
-//}
-//+(BOOL )pswLengthVerify:(NSString *)phone
-//{
-//    if(phone.length>=6&&phone.length<=15)
-//    {
-//        return YES;
-//    }
-//    return NO;
-//}
+
 +(BOOL)numberVerift:(NSString *)phone
 {
     return [self Verify:phone WithCode:@"^[0-9]+([.]{0,1}[0-9]+){0,1}$"];

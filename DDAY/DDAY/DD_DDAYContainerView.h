@@ -15,6 +15,7 @@
 -(instancetype)initWithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block;
 
 @property (nonatomic,strong) DD_DDayDetailModel *detailModel;
+
 __block_type(block, type);
 
 @end

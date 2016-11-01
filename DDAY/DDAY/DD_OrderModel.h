@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_OrderModel : NSObject
+
 /**
  * 获取解析数组
  */
@@ -23,6 +24,7 @@
  * 获取SectionHeaderView
  */
 -(UIView *)getViewHeader;
+
 /**
  * 获取SectionFooterView
  */
@@ -32,16 +34,11 @@
  * 当前订单中的item数量
  */
 -(BOOL )isSingle;
+
 /**
  * 获取购买验证参数BuyItems
  */
 -(NSArray *)getBuyItems;
-
-/**
- * item list
- */
-__array(itemList);
-
 
 /**
  * public static Integer ORDER_STATUS_DFK = 0; //待付款
@@ -55,44 +52,34 @@ __array(itemList);
  */
 __long(orderStatus);
 
-/**
- * 数量
- */
+/** item list*/
+__array(itemList);
+
+/** 数量*/
 __long(itemCount);
-/**
- * 订单创建时间
- */
+
+/** 订单创建时间*/
 __long(createTime);
 
-/**
- * 是否支付
- */
+/** 是否支付*/
 __bool(isPay);
 
-/**
- * 系列id
- */
+/** 系列ID*/
 __string(seriesId);
-/**
- * 系列名称
- */
-__string(seriesName);
-/**
- * 小计 不算运费
- */
-__string(totalAmount);
-/**
- * 运费
- */
-__long(allFreight);
-/**
- * 订单号
- */
-__string(tradeOrderCode);
-/**
- * 子订单号
- */
-__string(subOrderCode);
 
+/** 系列名称*/
+__string(seriesName);
+
+/** 小计 不算运费*/
+__string(totalAmount);
+
+/** 运费*/
+__long(allFreight);
+
+/** 订单号*/
+__string(tradeOrderCode);
+
+/** 子订单号*/
+__string(subOrderCode);
 
 @end

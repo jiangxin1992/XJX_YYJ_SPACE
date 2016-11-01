@@ -13,10 +13,12 @@
 @interface DD_UserMessageNormalCell : UITableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
+
 @property (nonatomic,copy)DD_UserMessageItemModel *messageItem;
+
 __block_type(block, type);
-/**
- * 是否是通知类型的消息
- */
+
+/** 是否是通知类型的消息*/
 __bool(isNotice);
+
 @end

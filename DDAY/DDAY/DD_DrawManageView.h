@@ -11,6 +11,7 @@
 @interface DD_DrawManageView : UIView
 
 -(instancetype)initWithImgCount:(NSInteger )imgCount;
+
 -(void)changeSelectNum:(NSInteger )selectNum;
 
 @property(nonatomic,assign) NSInteger imgCount;

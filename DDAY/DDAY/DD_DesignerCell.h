@@ -18,6 +18,9 @@
 @property (nonatomic,copy) void (^followblock)(NSInteger index,NSString *type);
 
 @property (nonatomic,strong)DD_DesignerModel *Designer;
+
 __int(index);
+
 __scrollView(scrollview);
+
 @end

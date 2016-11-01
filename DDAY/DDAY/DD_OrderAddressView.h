@@ -11,24 +11,24 @@
 #import "DD_OrderDetailModel.h"
 
 @interface DD_OrderAddressView : UIView
+
 /**
  * 初始化方法
  */
 -(instancetype)initWithOrderDetailInfoModel:(DD_OrderDetailModel *)_OrderDetailModel WithBlock:(void (^)(NSString *type))block;
+
 /**
  * 更新
  */
 -(void)SetState;
-/**
- * 回调
- */
+
+/** 回调*/
 __block_type(addressBlock, type);
-/**
- * 退款按钮  
- */
+
+/** 退款按钮 */
 __btn(refundBtn);
-/**
- * model
- */
+
+/** model*/
 @property (nonatomic,strong)DD_OrderDetailModel *DetailModel;
+
 @end

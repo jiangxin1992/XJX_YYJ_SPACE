@@ -11,6 +11,9 @@
 #import "DD_GoodsCategorySubModel.h"
 
 @interface DD_GoodsListTableViewCell : UITableViewCell
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
 @property (nonatomic,strong)DD_GoodsCategorySubModel *CategoryModel;
+
 @end

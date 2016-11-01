@@ -11,7 +11,11 @@
 #import "DD_DDAYModel.h"
 
 @interface DD_UserDDAYCell : UITableViewCell
+
 @property (nonatomic,copy) void (^ddayblock)(NSInteger index,NSString *type);
+
 @property (nonatomic,strong)DD_DDAYModel *DDAYModel;
+
 __int(index);
+
 @end

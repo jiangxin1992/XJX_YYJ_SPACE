@@ -9,5 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_DDAYViewController : DD_BaseViewController
+
 -(void)PushDDAYDetailView;
+
 @end

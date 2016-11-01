@@ -11,6 +11,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_LoginViewController : DD_BaseViewController
+    
 -(instancetype)initWithBlock:(void (^)(NSString *type))successblock;
 
 __block_type(successblock, type);

@@ -13,8 +13,11 @@
 @interface DD_GoodsInformView : UIView
 
 -(instancetype)initWithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type))block;
-//-(void)cancelTime;
+
 -(void)setState;
+
 @property (nonatomic,strong) DD_GoodsDetailModel *detailModel;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
+
 @end

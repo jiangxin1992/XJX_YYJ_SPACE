@@ -22,4 +22,55 @@
  * 是否已读
  */
 __bool(isReadBenefit);
+
+/**
+ * 抵扣金额
+ */
+__int(amount);
+
+/**
+ * 优惠券ID
+ */
+__string(benefitId);
+
+/**
+ * 优惠券图片
+ */
+__string(benefitPic);
+
+/**
+ * 优惠券描述信息
+ */
+__string(describeInfo);
+
+/**
+ * 有效时间-开始时间
+ */
+__long(effectStartTime);
+
+/**
+ * 有效时间-结束时间
+ */
+__long(effectEndTime);
+
+/**
+ * 是否已用
+ */
+__bool(isUse);
+
+/**
+ * 最低使用金额
+ */
+__int(lowLimit);
+
+/**
+ * 优惠券名称
+ */
+__string(name);
+
+/**
+ * 当前访问用户ID
+ */
+__string(userId);
+
 @end

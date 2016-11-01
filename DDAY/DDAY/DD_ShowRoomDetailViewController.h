@@ -9,6 +9,9 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_ShowRoomDetailViewController : DD_BaseViewController
+
 -(instancetype)initWithShowRoomID:(NSString *)showRoom_ID;
+
 __string(showRoom_ID);
+
 @end

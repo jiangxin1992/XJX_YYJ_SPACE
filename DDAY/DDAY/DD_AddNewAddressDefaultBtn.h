@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_AddNewAddressDefaultBtn : UIButton
+
 +(DD_AddNewAddressDefaultBtn *)getBtn;
+
 @end

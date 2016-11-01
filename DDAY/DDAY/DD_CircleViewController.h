@@ -9,6 +9,9 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_CircleViewController : DD_BaseViewController
+
 -(void)PushCircleDetailView;
+
 -(void)PushCircleApplyView;
+
 @end

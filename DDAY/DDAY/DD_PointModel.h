@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_PointModel : NSObject
+
 __float(x_p);
+
 __float(y_p);
+
 @end

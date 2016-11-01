@@ -11,9 +11,13 @@
 #import "DD_ShopModel.h"
 
 @interface DD_ShopClearingView : UIView
+
 -(instancetype)initWithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *type))block;
+
 -(void)SetState;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
+
 @property (nonatomic,strong)DD_ShopModel *shopModel;
 
 @end

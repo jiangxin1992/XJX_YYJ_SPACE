@@ -11,5 +11,7 @@
 #import "DD_FansModel.h"
 
 @interface DD_FansCell : UITableViewCell
+
 @property(nonatomic,strong)DD_FansModel *fansModel;
+
 @end

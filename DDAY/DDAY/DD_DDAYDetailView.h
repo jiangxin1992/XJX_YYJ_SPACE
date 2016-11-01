@@ -15,9 +15,11 @@
 -(instancetype)initWithFrame:(CGRect)frame WithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block;
 
 -(void)cancelTime;
+
 -(void)setState;
 
 @property (nonatomic,strong) DD_DDayDetailModel *detailModel;
+
 @property (nonatomic,copy) void (^block)(NSString *type);
 
 @end

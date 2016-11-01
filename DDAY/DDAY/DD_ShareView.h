@@ -15,30 +15,22 @@
 
 @property (nonatomic,copy) void (^block)(NSString *type);
 
-/**
- * 分享标题
- */
+/** 分享标题*/
 __string(title);
-/**
- * 分享内容
- */
+
+/** 分享内容*/
 __string(content);
-/**
- * 分享图片
- */
+
+/** 分享图片*/
 __string(img);
 
-/**
- * 分享url
- */
+/** 分享url*/
 __string(url);
-/**
- * 类型
- */
+
+/** 类型*/
 __string(type);
-/**
- * 参数
- */
+
+/** 参数*/
 __dict(params);
 
 @end

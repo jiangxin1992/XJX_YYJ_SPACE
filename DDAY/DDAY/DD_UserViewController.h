@@ -9,5 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_UserViewController : DD_BaseViewController
+
 -(void)PushFansView;
+
 @end

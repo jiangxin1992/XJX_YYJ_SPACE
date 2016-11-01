@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_CircleCommentModel : NSObject
+
 /**
  * 获取搭配评论列表model
  */
@@ -18,49 +19,37 @@
  */
 +(NSMutableArray *)getCircleCommentModelArr:(NSArray *)arr;
 
-/**
- * 评论高度
- */
+/** 评论高度*/
 __float(commHeight);
-/**
- * 回复人的id
- */
+
+/** 回复人的ID*/
 __string(commToId);
-/**
- * 回复人的昵称
- */
+
+/** 回复人的昵称*/
 __string(commToName);
-/**
- * 评论id
- */
+
+/** 评论ID*/
 __string(commId);
-/**
- * 评论内容
- */
+
+/** 评论内容*/
 __string(comment);
-/**
- * 评论创建时间
- */
+
+/** 评论创建时间*/
 __long(createTime);
-/**
- * 是否点赞
- */
+
+/** 是否点赞*/
 __bool(isLike);
-/**
- * 点赞数量
- */
+
+/** 点赞数量*/
 __long(likeTimes);
-/**
- * 用户头像
- */
+
+/** 用户头像*/
 __string(userHead);
-/**
- * 用户id
- */
+
+/** 用户ID*/
 __string(userId);
-/**
- * 用户昵称
- */
+
+/** 用户昵称*/
 __string(userName);
 
 @end

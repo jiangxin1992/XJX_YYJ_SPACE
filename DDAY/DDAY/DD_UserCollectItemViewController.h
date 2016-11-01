@@ -11,6 +11,9 @@
 #import "DD_ItemsModel.h"
 
 @interface DD_UserCollectItemViewController : DD_BaseViewController
+
 -(instancetype)initWithBlock:(void(^)(NSString *type,DD_ItemsModel *model))block;
+
 @property(nonatomic,copy) void (^block)(NSString *type,DD_ItemsModel *model);
+
 @end

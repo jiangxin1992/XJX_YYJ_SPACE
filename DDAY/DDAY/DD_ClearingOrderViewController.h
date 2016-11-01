@@ -13,6 +13,7 @@
 -(instancetype)initWithDataArr:(NSMutableArray *)dataArr WithTradeOrderCode:(NSString *)tradeOrderCode;
 
 __mu_array(dataArr);
+
 __string(tradeOrderCode);
 
 @end

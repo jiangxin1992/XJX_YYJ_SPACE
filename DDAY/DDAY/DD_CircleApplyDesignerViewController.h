@@ -11,7 +11,9 @@
 #import "DD_CircleApplyDesignerModel.h"
 
 @interface DD_CircleApplyDesignerViewController : DD_BaseViewController
+
 -(instancetype)initWithBlock:(void (^)(NSString *type,DD_CircleApplyDesignerModel *designer))block;
+
 /**
  * 回调block
  */

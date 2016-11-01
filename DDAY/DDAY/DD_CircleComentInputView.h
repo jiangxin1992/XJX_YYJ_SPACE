@@ -10,25 +10,28 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_CircleComentInputView : UIView
+
 /**
  * 初始化
  */
 -(instancetype)initWithBlock:(void (^)(NSString *type,NSString *content))block;
+
 /**
  * 键盘消失
  */
 -(void)return_KeyBoard;
+
 /**
  * 初始化输入框内容
  */
 -(void)initTextView;
+
 /**
  * 成为第一响应
  */
 -(void)becomeFirstResponder;
 
-/**
- * 回调block
- */
+/** 回调block*/
 @property(nonatomic,copy) void (^block)(NSString *type,NSString *content);
+
 @end

@@ -16,11 +16,14 @@
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSString *phoneNum))block;
 
+-(void)setLogisticsModel:(DD_OrderLogisticsModel *)logisticsModel IsFirst:(BOOL )isFirst IsLast:(BOOL )isLast;
+
 + (CGFloat)heightWithModel:(DD_OrderLogisticsModel *)model;
 
 @property(nonatomic,copy) void (^block)(NSString *type,NSString *phoneNum);
+
 __view(downLine);
 
 @property (nonatomic,strong)DD_OrderLogisticsModel *logisticsModel;
--(void)setLogisticsModel:(DD_OrderLogisticsModel *)logisticsModel IsFirst:(BOOL )isFirst IsLast:(BOOL )isLast;
+
 @end

@@ -11,11 +11,17 @@
 #import "DD_ShopItemModel.h"
 
 @interface DD_ShopAlertNumView : UIView
+
 -(instancetype)initWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSInteger count))block;
+
 +(CGFloat )getHeightWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel;
 
 @property (nonatomic,copy) void (^block)(NSString *type,NSInteger count);
+
 __array(sizeArr);
+
 @property (nonatomic,strong)DD_ShopItemModel *ItemModel;
+
 __btn(confirmBtn);
+
 @end

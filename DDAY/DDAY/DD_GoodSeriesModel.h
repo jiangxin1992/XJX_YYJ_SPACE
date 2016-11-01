@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_GoodSeriesModel : NSObject
+
 +(DD_GoodSeriesModel *)getGoodSeriesModel:(NSDictionary *)dict;
+
 __string(s_id);
+
 __string(name);
+
 @end

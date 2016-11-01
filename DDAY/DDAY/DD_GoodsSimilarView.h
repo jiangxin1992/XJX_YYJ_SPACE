@@ -11,7 +11,11 @@
 #import "DD_OrderItemModel.h"
 
 @interface DD_GoodsSimilarView : UIView
+
 -(instancetype)initWithGoodsSimilarArr:(NSArray *)similarArr WithBlock:(void (^)(NSString *type,DD_OrderItemModel *itemModel))block;
+
 __array(similarArr);
+
 @property (nonatomic,copy) void (^block)(NSString *type,DD_OrderItemModel *itemModel);
+
 @end

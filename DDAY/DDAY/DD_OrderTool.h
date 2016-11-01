@@ -12,8 +12,10 @@
 #import "DD_OrderItemModel.h"
 
 @interface DD_OrderTool : NSObject
+
 /**
  * 模型转化
  */
 +(DD_ClearingOrderModel *)getClearingOrderModel:(DD_OrderItemModel *)_item;
+
 @end

@@ -9,20 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_MonthModel : NSObject
-/**
- * 几号
- */
+
+/** 几号*/
 @property (assign, nonatomic) NSInteger dayValue;
-/**
- * 时间
- */
+
+/** 时间*/
 @property (strong, nonatomic) NSDate *dateValue;
-/**
- * 星期几
- */
+
+/** 星期几*/
 __string(week);
-/**
- * 是否被锁定
- */
+
+/** 是否被锁定*/
 __bool(isSelectedDay);
+
 @end

@@ -11,9 +11,9 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_RegisterViewController :DD_BaseViewController
+
 -(instancetype)initWithParameters:(NSDictionary *)parameters WithThirdPartLogin:(NSInteger )thirdPartLogin WithBlock:(void (^)(NSString *type))successblock;
-__block_type(successblock, type);
-__dict(parameters);
+
 /**
  * 获取用户的登陆渠道
  * public static final int USER_LOGIN_PHONE = 1;//手机号码登陆
@@ -22,4 +22,9 @@ __dict(parameters);
  * public static final int USER_LOGIN_SINA = 4;//sina登陆
  */
 __int(thirdPartLogin);
+
+__block_type(successblock, type);
+
+__dict(parameters);
+
 @end
