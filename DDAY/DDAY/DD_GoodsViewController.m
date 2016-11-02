@@ -22,7 +22,7 @@
 #import "DD_GoodsCategoryModel.h"
 #import "DD_ImageModel.h"
 #import "DD_BenefitInfoModel.h"
-#define BenefitHeight 80
+
 @interface DD_GoodsViewController ()<WaterflowDataSource,WaterflowDelegate>
 
 @end
@@ -42,6 +42,7 @@
     DD_GoodsListTableView *listTableView;
     NSMutableArray *_categoryArr;
     
+    CGFloat _benefitHeight;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,7 +69,7 @@
     _categoryName=@"";
     _categoryID=@"";
     _isReadBenefit=NO;
-    
+    _benefitHeight=0;
 }
 -(void)PrepareUI
 {
@@ -166,6 +167,7 @@
         if(success)
         {
             NSArray *modelArr=[DD_ItemsModel getItemsModelArr:[data objectForKey:@"items"]];
+            
             if(modelArr.count)
             {
                 if(_page==1)
@@ -173,6 +175,8 @@
                     [_dataArr removeAllObjects];//删除所有数据
                     
                     _benefitInfoModel=[DD_BenefitInfoModel getBenefitInfoModel:[data objectForKey:@"benefitInfo"]];
+                    
+                    _benefitHeight=floor(([_benefitInfoModel.picInfo.height floatValue]/[_benefitInfoModel.picInfo.width floatValue])*ScreenWidth);
                     
                     [self updateHeadViewState];
                     
@@ -447,9 +451,9 @@
         {
             DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-            return _height+25+water_Top;
+            return _height+56+water_Top;
         }
-        return 25+water_Top;
+        return 56+water_Top;
     }else
     {
         return 0;
@@ -462,9 +466,10 @@
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom;
+//        case WaterflowMarginTypeColumn:return water_Bottom;
+        case WaterflowMarginTypeColumn:return 0;
         case WaterflowMarginTypeBottom:return water_Bottom;
-        case WaterflowMarginTypeTop:return _isReadBenefit?0:BenefitHeight;
+        case WaterflowMarginTypeTop:return _isReadBenefit?0:_benefitHeight;
         default:return 0;
     }
 }

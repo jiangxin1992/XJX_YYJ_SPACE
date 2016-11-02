@@ -52,4 +52,5 @@ __string(colorId);
 /** 单品颜色Code*/
 __string(colorCode);
 
+
 @end

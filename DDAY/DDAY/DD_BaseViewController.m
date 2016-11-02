@@ -96,9 +96,9 @@
 {
     [super viewWillDisappear:animated];
     
-    _lineView.hidden = NO;
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+//    _lineView.hidden = NO;
+//    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
 }
 //找到导航栏最下面黑线视图
 - (UIImageView *)getLineViewInNavigationBar:(UIView *)view

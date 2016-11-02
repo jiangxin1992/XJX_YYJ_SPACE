@@ -18,12 +18,20 @@
     if(self)
     {
         _block=block;
-        self.frame=CGRectMake(0, 0, ScreenWidth, 80);
+        CGFloat _pic_height=floor(([benefitInfoModel.picInfo.height floatValue]/[benefitInfoModel.picInfo.width floatValue])*ScreenWidth);
+        self.frame=CGRectMake(0, 0, ScreenWidth, _pic_height);
         self.userInteractionEnabled=YES;
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterAction)]];
         
-        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:14.0f WithSpacing:0 WithNormalTitle:@"关 闭" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
-        btn.frame=CGRectMake(ScreenWidth-60, 0, 60, 40);
+        UIImageView *benefitImg=[UIImageView getCustomImg];
+        [self addSubview:benefitImg];
+        benefitImg.frame=CGRectMake(0, 0, ScreenWidth, _pic_height);
+        [benefitImg JX_ScaleToFill_loadImageUrlStr:benefitInfoModel.picInfo.pic WithSize:800 placeHolderImageName:nil radius:0];
+        
+        UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:14.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+//        btn.backgroundColor=[UIColor redColor];
+//        btn.alpha=0.5;
+        btn.frame=CGRectMake(ScreenWidth-_pic_height*4.0f/6.0f, _pic_height/4.0f, _pic_height/2.0f, _pic_height/2.0f);
         [self addSubview:btn];
         [btn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     }

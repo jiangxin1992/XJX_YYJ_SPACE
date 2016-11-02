@@ -159,9 +159,9 @@
         if(choose_item.pic)
         {
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
-            return _height+25+water_Top;
+            return _height+56+water_Top;
         }
-        return 25+water_Top;
+        return 56+water_Top;
     }else
     {
         return 0;
@@ -174,7 +174,8 @@
         case WaterflowMarginTypeLeft:return water_margin;
         case WaterflowMarginTypeRight:return water_margin;
         case WaterflowMarginTypeRow:return water_Spacing;
-        case WaterflowMarginTypeColumn:return water_Bottom;
+//        case WaterflowMarginTypeColumn:return water_Bottom;
+        case WaterflowMarginTypeColumn:return 0;
         case WaterflowMarginTypeBottom:return water_Bottom;
         default:return 0;
     }

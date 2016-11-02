@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_ImageModel.h"
+
 @interface DD_BenefitInfoModel : NSObject
 /**
  * 获取优惠券model
@@ -36,7 +38,7 @@ __string(benefitId);
 /**
  * 优惠券图片
  */
-__string(benefitPic);
+@property(nonatomic,strong) DD_ImageModel *picInfo;
 
 /**
  * 优惠券描述信息

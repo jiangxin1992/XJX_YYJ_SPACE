@@ -34,21 +34,24 @@
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
-    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [imageview addSubview:price_label];
-    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
-    price_label.titleLabel.font=[regular getSemiboldFont:15.0f];
-    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
+//    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:price_label];
+//    price_label.backgroundColor=[UIColor blueColor];
+    price_label.font=[regular getSemiboldFont:15.0f];
+    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+//    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(25);
     }];
+    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
+//    titleLabel.backgroundColor=[UIColor yellowColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);
     }];
 
@@ -74,21 +77,24 @@
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
-    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [imageview addSubview:price_label];
-    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
-    price_label.titleLabel.font=[regular getSemiboldFont:15.0f];
-    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
+    //    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:price_label];
+    //    price_label.backgroundColor=[UIColor blueColor];
+    price_label.font=[regular getSemiboldFont:15.0f];
+    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(25);
     }];
+    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
+    //    titleLabel.backgroundColor=[UIColor yellowColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);
     }];
     
@@ -112,7 +118,7 @@
 
         [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(water_margin);
+            make.top.mas_equalTo(water_Top);
             make.height.mas_equalTo(_height);
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
@@ -133,21 +139,24 @@
         title=@"已下架";
     }
     
-    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:title WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [imageview addSubview:price_label];
-    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
-    price_label.titleLabel.font=[regular getSemiboldFont:15.0f];
-    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
+    //    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    [cell addSubview:price_label];
+//        price_label.backgroundColor=[UIColor blueColor];
+    price_label.font=[regular getSemiboldFont:15.0f];
+    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(25);
     }];
+    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
+//        titleLabel.backgroundColor=[UIColor yellowColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);
     }];
 
