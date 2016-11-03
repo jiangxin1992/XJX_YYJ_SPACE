@@ -18,4 +18,6 @@
 
 __string(type);
 
+__label(rewardPoints_label);
+
 @end

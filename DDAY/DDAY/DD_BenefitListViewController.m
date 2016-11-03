@@ -8,6 +8,8 @@
 
 #import "DD_BenefitListViewController.h"
 
+#import "DD_BenefitDetailViewController.h"
+
 #import "DD_BenefitListCell.h"
 
 #import "DD_BenefitInfoModel.h"
@@ -72,25 +74,23 @@
     [[JX_AFNetworking alloc] GET:@"user/queryUserBenefits.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-//            NSArray *modelArr=[DD_BenefitInfoModel  getIntegralModelArr:[data objectForKey:@"userRewardPointsLogList"]];
-//            _integral_count=[[data objectForKey:@"totalPoints"] integerValue];
-//            _deduction_count=[[data objectForKey:@"value"] integerValue];
-//            if(modelArr.count)
-//            {
-//                if(_page==1)
-//                {
-//                    [_dataArr removeAllObjects];//删除所有数据
-//                }
-//                [_dataArr addObjectsFromArray:modelArr];
-//                [_tableview reloadData];
-//            }else
-//            {
-//                if(_page==1)
-//                {
-//                    [_dataArr removeAllObjects];//删除所有数据
-//                    [_tableview reloadData];
-//                }
-//            }
+            NSArray *modelArr=[DD_BenefitInfoModel  getBenefitInfoModelArr:[data objectForKey:@"userBenefits"]];
+            if(modelArr.count)
+            {
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                }
+                [_dataArr addObjectsFromArray:modelArr];
+                [_tableview reloadData];
+            }else
+            {
+                if(_page==1)
+                {
+                    [_dataArr removeAllObjects];//删除所有数据
+                    [_tableview reloadData];
+                }
+            }
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -107,7 +107,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    NSLog(@"height=%lf",floor((ScreenWidth)*240.0f/750.0f));
+    return floor((ScreenWidth)*240.0f/750.0f);
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -137,9 +138,18 @@
     {
         cell=[[DD_BenefitListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-//    cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.benefitInfoModel=[_dataArr objectAtIndex:indexPath.section];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"markread"])
+        {
+        }
+        
+    }] animated:YES];
 }
 -(void)MJRefresh
 {

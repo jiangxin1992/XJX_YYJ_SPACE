@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
+#define __long(__k__) @property(nonatomic,assign) long __k__
 
 @interface DD_UserModel : NSObject
 
@@ -21,8 +22,11 @@ __string(head);
 /** 身高*/
 __string(height);
 
-/** 用户id*/
+/** 用户ID*/
 __string(u_id);
+
+/*** 用户积分*/
+__long(rewardPoints);
 
 /** 用户昵称*/
 __string(nickName);

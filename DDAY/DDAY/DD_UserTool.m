@@ -77,7 +77,16 @@
     NSInteger _usertype=[DD_UserModel getUserType];
     if(_usertype==0||_usertype==3)
     {
-//        3/0 未登录或普通用户
+//        0 未登录
+        return @[@"conference"
+                 ,@"collection"
+                 ,@"order"
+                 ,@"showroom"
+                 ,@"set"
+                 ];
+    }else if(_usertype==3)
+    {
+//        3 普通用户
         return @[@"conference"
                  ,@"collection"
                  ,@"order"

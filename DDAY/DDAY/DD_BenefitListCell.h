@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_BenefitInfoModel.h"
+
 @interface DD_BenefitListCell : UITableViewCell
+
+@property(nonatomic,strong)DD_BenefitInfoModel *benefitInfoModel;
 
 @end

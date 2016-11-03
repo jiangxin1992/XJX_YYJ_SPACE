@@ -119,6 +119,7 @@
     for (int i=0; i<_dataArr.count; i++) {
         DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
         [self.view addSubview:item];
+//        item.backgroundColor=[UIColor redColor];
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -139,7 +140,6 @@
                     for (UIView *view in self.view.subviews) {
                         [view removeFromSuperview];
                     }
-                    
                     [self UIConfig];
                 }
                 _usermodel=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
@@ -149,6 +149,8 @@
                     {
                         [regular UpdateRoot];
                     }
+                    [self updateRewardPoints];
+                    _userName.textColor=_define_black_color;
                     _userName.text=_usermodel.nickName;
                     [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:94/2.0f];
                 }
@@ -161,8 +163,20 @@
         }];
     }else
     {
-        _userName.text=@"";
+        //获取未登录时候  注册即送50红包之类的内容
         _headImgLabel.text=@"点击登录";
+        _userName.text=@"";
+        [[JX_AFNetworking alloc] GET:@"user/registBenefitTips.do" parameters:nil success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                _userName.textColor=_define_light_red_color;
+                _userName.text=[data objectForKey:@"benefitTips"];
+            }else
+            {
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            
+        }];
     }
 }
 -(void)Has_readMessage
@@ -174,7 +188,7 @@
             {
                 
                 _unReadMsgModel=[DD_UnReadMsgModel getUnReadMsgModel:data];
-                
+
                 [self setNotBtnWithExist:_unReadMsgModel.isHaveUnReadMessage];
                 
                 [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) UpdateUnReadMsgModel:_unReadMsgModel];
@@ -212,6 +226,28 @@
     }];
 }
 #pragma mark - SomeAction
+/**
+ * 更新当前积分
+ */
+-(void)updateRewardPoints
+{
+    for (id obj in self.view.subviews) {
+        if([obj isKindOfClass:[DD_UserItemBtn class]])
+        {
+            DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
+            if([_UserItemBtn.type isEqualToString:@"integral"])
+            {
+                if(_usermodel.rewardPoints)
+                {
+                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"（%ld）",_usermodel.rewardPoints];
+                }else
+                {
+                    _UserItemBtn.rewardPoints_label.text=@"";
+                }
+            }
+        }
+    }
+}
 -(void)setNotBtnWithExist:(BOOL )is_exist
 {
     NSString *_img=nil;

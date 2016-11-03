@@ -9,7 +9,7 @@
 
 #import "DD_GoodsViewController.h"
 #import "DD_ShopViewController.h"
-#import "DD_BenefitViewController.h"
+#import "DD_BenefitDetailViewController.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
@@ -329,7 +329,7 @@
                         }];
                     }else if([type isEqualToString:@"enter"])
                     {
-                        [self.navigationController pushViewController:[[DD_BenefitViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                        [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
                             if([type isEqualToString:@"markread"])
                             {
                                 _benefitInfoModel.isReadBenefit=YES;
@@ -370,7 +370,7 @@
                 [mywaterflow reloadData];
             }else if([type isEqualToString:@"enter"])
             {
-                [self.navigationController pushViewController:[[DD_BenefitViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
                     if([type isEqualToString:@"markread"])
                     {
                         //关闭

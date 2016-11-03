@@ -17,6 +17,8 @@
 		3F0A8CE91D07F6E8005549BE /* DD_OrderRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A8CE71D07F6E8005549BE /* DD_OrderRefundViewController.m */; };
 		3F0AE1021D55D12200AD7EFD /* DD_UserItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0AE1011D55D12200AD7EFD /* DD_UserItemBtn.m */; };
 		3F0B66D91D23BB3B00A89F33 /* DD_NOTInformClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0B66D81D23BB3B00A89F33 /* DD_NOTInformClass.m */; };
+		3F0E07DC1DCB354800F225DE /* DD_BenefitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E07DB1DCB354800F225DE /* DD_BenefitDetailViewController.m */; };
+		3F0E07DF1DCB371200F225DE /* DD_BenefitDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E07DE1DCB371200F225DE /* DD_BenefitDetailModel.m */; };
 		3F1143681DC6F0960036DE41 /* DD_IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1143671DC6F0960036DE41 /* DD_IntegralViewController.m */; };
 		3F11436C1DC6F1250036DE41 /* DD_IntegralModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11436B1DC6F1250036DE41 /* DD_IntegralModel.m */; };
 		3F11436F1DC70F530036DE41 /* DD_IntegralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11436E1DC70F530036DE41 /* DD_IntegralCell.m */; };
@@ -84,7 +86,6 @@
 		3F3C3EFE1CFEB92E0056CD6B /* DD_DDAYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C3EFD1CFEB92E0056CD6B /* DD_DDAYModel.m */; };
 		3F3C3F021CFEBCB00056CD6B /* DD_DDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C3F001CFEBCB00056CD6B /* DD_DDAYCell.m */; };
 		3F3C3F091CFEC7F40056CD6B /* DD_DDAYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C3F081CFEC7F40056CD6B /* DD_DDAYTool.m */; };
-		3F3DDACF1DC2E1E200E11ED8 /* DD_BenefitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DDACE1DC2E1E200E11ED8 /* DD_BenefitViewController.m */; };
 		3F4026161D7C76D3005E3A83 /* DD_CircleSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4026151D7C76D3005E3A83 /* DD_CircleSearchCell.m */; };
 		3F4187751CEEFB24001BCA3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187741CEEFB24001BCA3D /* main.m */; };
 		3F4187781CEEFB24001BCA3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187771CEEFB24001BCA3D /* AppDelegate.m */; };
@@ -392,6 +393,10 @@
 		3F0AE1011D55D12200AD7EFD /* DD_UserItemBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserItemBtn.m; sourceTree = "<group>"; };
 		3F0B66D71D23BB3B00A89F33 /* DD_NOTInformClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_NOTInformClass.h; sourceTree = "<group>"; };
 		3F0B66D81D23BB3B00A89F33 /* DD_NOTInformClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_NOTInformClass.m; sourceTree = "<group>"; };
+		3F0E07DA1DCB354800F225DE /* DD_BenefitDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BenefitDetailViewController.h; sourceTree = "<group>"; };
+		3F0E07DB1DCB354800F225DE /* DD_BenefitDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BenefitDetailViewController.m; sourceTree = "<group>"; };
+		3F0E07DD1DCB371200F225DE /* DD_BenefitDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BenefitDetailModel.h; sourceTree = "<group>"; };
+		3F0E07DE1DCB371200F225DE /* DD_BenefitDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BenefitDetailModel.m; sourceTree = "<group>"; };
 		3F1143661DC6F0960036DE41 /* DD_IntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_IntegralViewController.h; sourceTree = "<group>"; };
 		3F1143671DC6F0960036DE41 /* DD_IntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_IntegralViewController.m; sourceTree = "<group>"; };
 		3F11436A1DC6F1250036DE41 /* DD_IntegralModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_IntegralModel.h; sourceTree = "<group>"; };
@@ -586,8 +591,6 @@
 		3F3C3F001CFEBCB00056CD6B /* DD_DDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYCell.m; sourceTree = "<group>"; };
 		3F3C3F071CFEC7F40056CD6B /* DD_DDAYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYTool.h; sourceTree = "<group>"; };
 		3F3C3F081CFEC7F40056CD6B /* DD_DDAYTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYTool.m; sourceTree = "<group>"; };
-		3F3DDACD1DC2E1E200E11ED8 /* DD_BenefitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BenefitViewController.h; sourceTree = "<group>"; };
-		3F3DDACE1DC2E1E200E11ED8 /* DD_BenefitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BenefitViewController.m; sourceTree = "<group>"; };
 		3F4026141D7C76D3005E3A83 /* DD_CircleSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleSearchCell.h; sourceTree = "<group>"; };
 		3F4026151D7C76D3005E3A83 /* DD_CircleSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleSearchCell.m; sourceTree = "<group>"; };
 		3F4187701CEEFB24001BCA3D /* YCO SPACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YCO SPACE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1253,6 +1256,8 @@
 		3F1A5C9C1DC1F6B800E9765F /* 优惠券 */ = {
 			isa = PBXGroup;
 			children = (
+				3F0E07DD1DCB371200F225DE /* DD_BenefitDetailModel.h */,
+				3F0E07DE1DCB371200F225DE /* DD_BenefitDetailModel.m */,
 				3F1A5C9D1DC1F6E800E9765F /* DD_BenefitInfoModel.h */,
 				3F1A5C9E1DC1F6E800E9765F /* DD_BenefitInfoModel.m */,
 			);
@@ -1523,6 +1528,8 @@
 		3F3DDAD01DC2F57200E11ED8 /* 优惠 */ = {
 			isa = PBXGroup;
 			children = (
+				3F0E07DA1DCB354800F225DE /* DD_BenefitDetailViewController.h */,
+				3F0E07DB1DCB354800F225DE /* DD_BenefitDetailViewController.m */,
 				3F1143731DC730190036DE41 /* DD_BenefitListViewController.h */,
 				3F1143741DC730190036DE41 /* DD_BenefitListViewController.m */,
 				3F1143761DC732F20036DE41 /* DD_BenefitListCell.h */,
@@ -2039,8 +2046,6 @@
 		3F552E8B1CF201D500BC5E33 /* 发布品列表 */ = {
 			isa = PBXGroup;
 			children = (
-				3F3DDACD1DC2E1E200E11ED8 /* DD_BenefitViewController.h */,
-				3F3DDACE1DC2E1E200E11ED8 /* DD_BenefitViewController.m */,
 				3F1C72CD1DC2475600FF7451 /* DD_headViewBenefitView.h */,
 				3F1C72CE1DC2475600FF7451 /* DD_headViewBenefitView.m */,
 				3F7160A41D4EDCEE00E165D2 /* 下拉选择 */,
@@ -3584,7 +3589,6 @@
 				3F00D4171D5A4CA000896ED5 /* DD_UserMessageViewController.m in Sources */,
 				3F2F76481D1CC55C002E22A6 /* DD_CircleApplyInfoView.m in Sources */,
 				3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */,
-				3F3DDACF1DC2E1E200E11ED8 /* DD_BenefitViewController.m in Sources */,
 				3F552EA41CF212C300BC5E33 /* DD_GoodSeriesModel.m in Sources */,
 				3F552E7F1CF1F58C00BC5E33 /* DD_DesignerCell.m in Sources */,
 				3F1A5C9F1DC1F6E800E9765F /* DD_BenefitInfoModel.m in Sources */,
@@ -3605,6 +3609,7 @@
 				3F4B81D21D0052CB00B323E4 /* DD_DDAYDetailViewController.m in Sources */,
 				3F57172E1D6EBD10006E1940 /* DD_MonthModel.m in Sources */,
 				3FEB1F961DC338A000ABB8C9 /* DD_UnReadMsgModel.m in Sources */,
+				3F0E07DF1DCB371200F225DE /* DD_BenefitDetailModel.m in Sources */,
 				3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */,
 				3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */,
 				3F3811B41CF54F7C007154F1 /* RSADataSigner.m in Sources */,
@@ -3676,6 +3681,7 @@
 				3FB342611D0FFF4E00C9A682 /* DD_CirclePublishViewController.m in Sources */,
 				3FB342661D1001DB00C9A682 /* DD_CircleInfoView.m in Sources */,
 				3F1143781DC732F20036DE41 /* DD_BenefitListCell.m in Sources */,
+				3F0E07DC1DCB354800F225DE /* DD_BenefitDetailViewController.m in Sources */,
 				3F9B8B2F1CF08D32008EC460 /* DD_SetViewController.m in Sources */,
 				3FD02DBB1D50F06800E9D6EB /* DD_ShopAlertSizeView.m in Sources */,
 				3F1401531CFC0AD70093474A /* DD_ShopHeaderView.m in Sources */,

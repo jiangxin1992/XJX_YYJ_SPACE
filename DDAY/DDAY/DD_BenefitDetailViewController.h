@@ -1,8 +1,8 @@
 //
-//  DD_BenefitViewController.h
+//  DD_BenefitDetailViewController.h
 //  YCO SPACE
 //
-//  Created by yyj on 2016/10/28.
+//  Created by yyj on 2016/11/3.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 #import "DD_BenefitInfoModel.h"
 
-@interface DD_BenefitViewController : DD_BaseViewController
+@interface DD_BenefitDetailViewController : DD_BaseViewController
 
 /**
  * 初始化 根据shareId
