@@ -166,7 +166,7 @@
         //获取未登录时候  注册即送50红包之类的内容
         _headImgLabel.text=@"点击登录";
         _userName.text=@"";
-        [[JX_AFNetworking alloc] GET:@"user/registBenefitTips.do" parameters:nil success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        [[JX_AFNetworking alloc] GET:@"user/registBenefitTips.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 _userName.textColor=_define_light_red_color;

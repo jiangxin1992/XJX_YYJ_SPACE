@@ -9,8 +9,10 @@
 #import "DD_BenefitListViewController.h"
 
 #import "DD_BenefitDetailViewController.h"
+#import "DD_BenefitRuleViewController.h"
 
 #import "DD_BenefitListCell.h"
+#import "DD_BenefitHeadView.h"
 
 #import "DD_BenefitInfoModel.h"
 
@@ -52,6 +54,7 @@
 -(void)UIConfig
 {
     [self CreateTableview];
+    [self CreateTableHeadView];
     [self MJRefresh];
 }
 -(void)CreateTableview
@@ -67,6 +70,18 @@
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
 }
+-(void)CreateTableHeadView
+{
+    DD_BenefitHeadView *_headView=[[DD_BenefitHeadView alloc] initWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"rule"])
+        {
+            //跳转红包规则页
+            [self.navigationController pushViewController:[[DD_BenefitRuleViewController alloc] init] animated:YES];
+        }
+    }];
+   _tableview.tableHeaderView=_headView;
+}
+
 #pragma mark - RequestData
 -(void)RequestData
 {

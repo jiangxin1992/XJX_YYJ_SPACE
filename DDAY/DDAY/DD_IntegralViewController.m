@@ -8,6 +8,8 @@
 
 #import "DD_IntegralViewController.h"
 
+#import "DD_IntegralRuleViewController.h"
+
 #import "DD_IntegralCell.h"
 #import "DD_IntegralHeadView.h"
 
@@ -157,7 +159,7 @@
         _integralHeadView=[[DD_IntegralHeadView alloc] initWithIntegralCount:_integral_count WithDeductionCount:_deduction_count WithBlock:^(NSString *type) {
             if([type isEqualToString:@"rule"])
             {
-                
+                [self.navigationController pushViewController:[[DD_IntegralRuleViewController alloc] init] animated:YES];
             }
         }];
         _tableview.tableHeaderView=_integralHeadView;

@@ -30,6 +30,7 @@
 {
     _benefit_img=[UIImageView getCustomImg];
     [self.contentView addSubview:_benefit_img];
+    _benefit_img.contentMode=0;
     [_benefit_img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView);
     }];

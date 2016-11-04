@@ -26,6 +26,7 @@
         UIImageView *benefitImg=[UIImageView getCustomImg];
         [self addSubview:benefitImg];
         benefitImg.frame=CGRectMake(0, 0, ScreenWidth, _pic_height);
+        benefitImg.contentMode=0;
         [benefitImg JX_ScaleToFill_loadImageUrlStr:benefitInfoModel.picInfo.pic WithSize:800 placeHolderImageName:nil radius:0];
         
         UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:14.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];

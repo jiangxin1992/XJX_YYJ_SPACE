@@ -91,6 +91,8 @@
 "user_integral"="积分";
 "user_integral_title"="我的积分";
 "user_benefit_title"="我的优惠";
+"user_benefit_rule"="优惠券使用规则";
+"user_integral_rule"="积分规则";
 
 /**
  * 设置
