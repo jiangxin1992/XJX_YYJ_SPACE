@@ -11,6 +11,7 @@
 #import "DD_IntegralRuleViewController.h"
 
 #import "DD_IntegralCell.h"
+#import "DD_IntegralTitleCell.h"
 #import "DD_IntegralHeadView.h"
 
 #import "DD_IntegralModel.h"
@@ -79,9 +80,11 @@
     [[JX_AFNetworking alloc] GET:@"user/queryUserRewardPointsLog.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
+            NSLog(@"time=%@",[regular getTimeStr:1420041599 WithFormatter:@"YYYY/MM/dd HH:mm"]);
             NSArray *modelArr=[DD_IntegralModel  getIntegralModelArr:[data objectForKey:@"userRewardPointsLogList"]];
             _integral_count=[[data objectForKey:@"totalPoints"] integerValue];
             _deduction_count=[[data objectForKey:@"value"] integerValue];
+            NSLog(@"%@",_dataArr);
             if(modelArr.count)
             {
                 if(_page==1)
@@ -140,15 +143,31 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    static NSString *cellid=@"cellid";
-    DD_IntegralCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-    if(!cell)
+    DD_IntegralModel *_integralModel=[_dataArr objectAtIndex:indexPath.section];
+    if(_integralModel.type==2)
     {
-        cell=[[DD_IntegralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        static NSString *cellid=@"DD_IntegralTitleCell";
+        DD_IntegralTitleCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_IntegralTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        }
+        cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }else
+    {
+        static NSString *cellid=@"DD_IntegralCell";
+        DD_IntegralCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_IntegralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        }
+        cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return cell;
+    
 }
 
 #pragma mark - SomeAction

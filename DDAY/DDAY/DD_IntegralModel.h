@@ -20,6 +20,13 @@
  */
 +(DD_IntegralModel *)getIntegralModel:(NSDictionary *)dict;
 
+/**
+ * 1 未过期积分
+ * 2 标题
+ * 3 已过期积分
+ */
+__long(type);
+
 /** 内容*/
 __string(tips);
 

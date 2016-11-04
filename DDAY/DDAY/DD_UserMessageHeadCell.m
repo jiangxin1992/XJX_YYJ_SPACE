@@ -10,9 +10,9 @@
 
 @implementation DD_UserMessageHeadCell
 {
-    UIImageView *userHead;
-    UILabel *titleLabel;
-    UILabel *timeLabel;
+    UIImageView *_userHead;
+    UILabel *_titleLabel;
+    UILabel *_timeLabel;
     UIView *_view;
 }
 
@@ -33,38 +33,40 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    userHead=[UIImageView getCornerRadiusImg];
-    [self.contentView addSubview:userHead];
-    userHead.userInteractionEnabled=YES;
-    [userHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
-    [userHead mas_makeConstraints:^(MASConstraintMaker *make) {
+    _userHead=[UIImageView getCornerRadiusImg];
+    [self.contentView addSubview:_userHead];
+    _userHead.userInteractionEnabled=YES;
+    [_userHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [_userHead mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.width.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(50);
         make.centerY.mas_equalTo(self.contentView);
     }];
     
-    timeLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-    [self.contentView addSubview:timeLabel];
-    timeLabel.font=[regular get_en_Font:12.0f];
-    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [self.contentView addSubview:_titleLabel];
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_userHead.mas_right).with.offset(20);
+        make.centerY.mas_equalTo(self.contentView);
         make.right.mas_equalTo(-kEdge);
-        make.centerY.mas_equalTo(self.contentView);
     }];
     
-    titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [self.contentView addSubview:titleLabel];
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(userHead.mas_right).with.offset(10);
-        make.centerY.mas_equalTo(self.contentView);
-        make.right.mas_equalTo(timeLabel.mas_left).with.offset(-10);
+    _timeLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [self.contentView addSubview:_timeLabel];
+    _timeLabel.font=[regular get_en_Font:12.0f];
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEdge);
+        make.bottom.mas_equalTo(self.contentView);
     }];
     
     _view=[UIView getCustomViewWithColor:_define_light_red_color];
     [self.contentView addSubview:_view];
+    _view.layer.masksToBounds=YES;
+    _view.layer.cornerRadius=3;
     [_view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);
         make.top.mas_equalTo(5);
-        make.width.height.mas_offset(5);
+        make.width.height.mas_offset(6);
     }];
     _view.hidden=YES;
 }
@@ -79,10 +81,10 @@
     _messageItem=messageItem;
     if(_messageItem.fromUser)
     {
-        [userHead JX_ScaleAspectFill_loadImageUrlStr:_messageItem.fromUser.head WithSize:400 placeHolderImageName:nil radius:0];
+        [_userHead JX_ScaleAspectFill_loadImageUrlStr:_messageItem.fromUser.head WithSize:400 placeHolderImageName:nil radius:0];
     }
-    titleLabel.text=_messageItem.message;
-    timeLabel.text=[regular getTimeStr:_messageItem.createTime WithFormatter:@"YYYY-MM-dd"];
+    _titleLabel.text=_messageItem.message;
+    _timeLabel.text=_messageItem.createTimeStr;
 }
 -(void)setIsNotice:(BOOL)isNotice
 {

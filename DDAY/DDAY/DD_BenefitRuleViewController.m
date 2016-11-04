@@ -55,10 +55,10 @@
 #pragma mark - RequestData
 -(void)RequestData
 {
-//    [[JX_AFNetworking alloc] GET:@"user/queryBenefitDetail.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//        if(success)
-//        {
-            UILabel *rule_content_label=[UILabel getLabelWithAlignment:0 WithTitle:@"2222dwqdw" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [[JX_AFNetworking alloc] GET:@"user/getBenefitRule.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            UILabel *rule_content_label=[UILabel getLabelWithAlignment:0 WithTitle:[data objectForKey:@"rule"] WithFont:13.0f WithTextColor:nil WithSpacing:0];
             [container addSubview:rule_content_label];
             rule_content_label.numberOfLines=0;
             [rule_content_label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,13 +73,13 @@
                 // 让scrollview的contentSize随着内容的增多而变化
                 make.bottom.mas_equalTo(rule_content_label.mas_bottom).with.offset(18);
             }];
-//        }else
-//        {
-//            [self presentViewController:successAlert animated:YES completion:nil];
-//        }
-//    } failure:^(NSError *error, UIAlertController *failureAlert) {
-//        [self presentViewController:failureAlert animated:YES completion:nil];
-//    }];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
 }
 
 #pragma mark - Other

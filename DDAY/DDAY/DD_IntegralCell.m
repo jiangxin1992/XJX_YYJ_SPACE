@@ -57,8 +57,8 @@
     [self.contentView addSubview:line];
     line.backgroundColor=_define_light_gray_color1;
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(5);
-        make.right.mas_equalTo(-5);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
         make.bottom.mas_equalTo(self.bottom).with.offset(0);
 
@@ -68,10 +68,31 @@
 -(void)setIntegralModel:(DD_IntegralModel *)integralModel
 {
     _integralModel=integralModel;
-    _intergal_label.text=_integralModel.pointStr;
-    _content_label.text=_integralModel.tips;
-    _create_time_label.text=_integralModel.createTime;
-    
+    if(_integralModel.type==1)
+    {
+        _intergal_label.textColor = _define_black_color;
+        _content_label.textColor = _define_black_color;
+        _create_time_label.textColor = _define_black_color;
+        _intergal_label.text=_integralModel.pointStr;
+        _content_label.text=_integralModel.tips;
+        _create_time_label.text=_integralModel.createTime;
+    }else if(_integralModel.type==2)
+    {
+        _intergal_label.textColor = _define_light_gray_color1;
+        _content_label.textColor = _define_light_gray_color1;
+        _create_time_label.textColor = _define_light_gray_color1;
+        _intergal_label.text=@"";
+        _content_label.text=_integralModel.tips;
+        _create_time_label.text=@"";
+    }else if(_integralModel.type==3)
+    {
+        _intergal_label.textColor = _define_light_gray_color1;
+        _content_label.textColor = _define_light_gray_color1;
+        _create_time_label.textColor = _define_light_gray_color1;
+        _intergal_label.text=_integralModel.pointStr;
+        _content_label.text=_integralModel.tips;
+        _create_time_label.text=_integralModel.createTime;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

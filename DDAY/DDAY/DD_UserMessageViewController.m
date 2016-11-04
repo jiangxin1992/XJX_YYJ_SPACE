@@ -20,6 +20,7 @@
 #import "DD_UserMessageHeadView.h"
 #import "DD_UserMessageHeadCell.h"
 #import "DD_UserMessageNormalCell.h"
+#import "DD_UserMessageDDAYCell.h"
 
 #import "DD_UserMessageModel.h"
 #import "DD_ItemsModel.h"
@@ -92,8 +93,16 @@
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DD_UserMessageModel *_messageModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_UserMessageItemModel *_itemModel=[_messageModel.messages objectAtIndex:indexPath.row];
+    if(_itemModel.type==3)
+    {
+        return 120;
+    }else
+    {
+        return 70;
+    }
     
-    return 45;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -126,7 +135,7 @@
     DD_UserMessageItemModel *_itemModel=[_messageModel.messages objectAtIndex:indexPath.row];
     if(_itemModel.type==4||_itemModel.type==5||_itemModel.type==6||_itemModel.type==7||_itemModel.type==8)
     {
-        static NSString *cellid=@"cellid";
+        static NSString *cellid=@"DD_UserMessageHeadCell";
         DD_UserMessageHeadCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
@@ -148,6 +157,20 @@
                         [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
                     }
                 }
+            }];
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.messageItem=_itemModel;
+        cell.isNotice=_messageModel.isNotice;
+        return cell;
+    }else if(_itemModel.type==3)
+    {
+        static NSString *cellid=@"DD_UserMessageDDAYCell";
+        DD_UserMessageDDAYCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[DD_UserMessageDDAYCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:^(NSString *type) {
+                
             }];
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;

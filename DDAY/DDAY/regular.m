@@ -428,11 +428,30 @@ static regular *_t = nil;
 }
 +(NSString *)getTimeStr:(long)time WithFormatter:(NSString *)_formatter
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:_formatter];
-     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:time];
-    NSString *nowtimeStr = [formatter stringFromDate:confromTimesp];//----------将nsdate按formatter格式转成nsstring
-    return nowtimeStr;
+    
+    
+    NSDate*detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+    
+    NSLog(@"date:%@",[detaildate description]);
+    
+    //实例化一个NSDateFormatter对象
+    
+    NSDateFormatter*dateFormatter = [[NSDateFormatter alloc]init];
+    
+    //设定时间格式,这里可以设置成自己需要的格式
+    
+    [dateFormatter setDateFormat:_formatter];
+    
+    NSString*currentDateStr = [dateFormatter stringFromDate:detaildate];
+    
+    return currentDateStr;
+    
+    //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //[formatter setDateFormat:_formatter];
+    //NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:time];
+    //NSString *nowtimeStr = [formatter stringFromDate:confromTimesp];//----------将nsdate按formatter格式转成nsstring
+    //return nowtimeStr;
+    
 }
 +(long )getTimeWithTimeStr:(NSString *)time
 {

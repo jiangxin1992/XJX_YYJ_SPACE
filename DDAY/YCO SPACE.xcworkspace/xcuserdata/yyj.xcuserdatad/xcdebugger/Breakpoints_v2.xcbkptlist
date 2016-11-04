@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_BenefitListViewController.m"
-            timestampString = "499922878.980311"
+            filePath = "DDAY/DD_UserMessageItemModel.m"
+            timestampString = "499956508.412334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-CreateTableHeadView"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "+getUserMessageItemModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_BenefitRuleViewController.m"
-            timestampString = "499924079.262127"
+            filePath = "DDAY/DD_IntegralViewController.m"
+            timestampString = "499957180.585605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-RequestData"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

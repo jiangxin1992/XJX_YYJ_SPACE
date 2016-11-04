@@ -57,6 +57,9 @@ __bool(readStatus);
 /** 创建时间*/
 __long(createTime);
 
+/** 创建时间str*/
+__string(createTimeStr);
+
 /** 消息ID*/
 __string(messageID);
 

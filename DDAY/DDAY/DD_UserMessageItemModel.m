@@ -17,7 +17,19 @@
     {
         DD_UserMessageItemModel *MessageModel=[DD_UserMessageItemModel mj_objectWithKeyValues:dict];
         MessageModel.messageID=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] longValue]];
-        MessageModel.createTime=[[dict objectForKey:@"createTime"] longValue]/1000;
+        MessageModel.createTime=MessageModel.createTime/1000;
+        
+        NSDate *_getDate=[NSDate dateWithTimeIntervalSince1970:MessageModel.createTime];
+        long _get_first_time=[[_getDate getFirstTime] timeIntervalSince1970];
+        long _get_now_time=[[[NSDate nowDate] getFirstTime] timeIntervalSince1970];
+        if(_get_first_time==_get_now_time)
+        {
+            MessageModel.createTimeStr=[regular getTimeStr:MessageModel.createTime WithFormatter:@"YYYY-MM-dd HH:mm"];
+        }else
+        {
+            MessageModel.createTimeStr=[regular getTimeStr:MessageModel.createTime WithFormatter:@"YYYY-MM-dd"];
+        }
+        
         MessageModel.fromUser=[DD_UserModel getUserModel:[dict objectForKey:@"fromUser"]];
         return MessageModel;
     }
