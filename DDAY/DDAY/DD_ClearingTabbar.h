@@ -8,16 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DD_ClearingModel.h"
+
 @interface DD_ClearingTabbar : UIView
 
 /**
  * 初始化方法
  */
--(instancetype)initWithNumStr:(NSString *)numStr WithCountStr:(NSString *)countStr WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithClearingModel:(DD_ClearingModel *)clearingModel WithCountPrice:(CGFloat )countPrice WithCount:(CGFloat )count WithBlock:(void (^)(NSString *type))block;
 
-__string(numStr);
+-(void)SetState;
 
-__string(countStr);
+@property (nonatomic,strong)DD_ClearingModel *clearingModel;
+
+__float(countPrice);
+
+__float(count);
 
 __block_type(block, type);
 

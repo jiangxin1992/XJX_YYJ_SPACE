@@ -432,7 +432,7 @@ static regular *_t = nil;
     
     NSDate*detaildate=[NSDate dateWithTimeIntervalSince1970:time];
     
-    NSLog(@"date:%@",[detaildate description]);
+    JXLOG(@"date:%@",[detaildate description]);
     
     //实例化一个NSDateFormatter对象
     

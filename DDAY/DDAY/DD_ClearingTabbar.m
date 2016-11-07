@@ -9,15 +9,21 @@
 #import "DD_ClearingTabbar.h"
 
 @implementation DD_ClearingTabbar
--(instancetype)initWithNumStr:(NSString *)numStr WithCountStr:(NSString *)countStr WithBlock:(void (^)(NSString *type))block
+{
+    UILabel *countlabel;
+}
+
+-(instancetype)initWithClearingModel:(DD_ClearingModel *)clearingModel WithCountPrice:(CGFloat )countPrice WithCount:(CGFloat )count WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
-        _numStr=numStr;
-        _countStr=countStr;
+        _clearingModel=clearingModel;
+        _countPrice=countPrice;
+        _count=count;
         _block=block;
         [self UIConfig];
+        [self SetState];
     }
     return self;
 }
@@ -42,28 +48,44 @@
     }];
     [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     ConfirmBtn.backgroundColor=_define_black_color;
-    
-    
-    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:_numStr WithFont:15.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:numlabel];
-    [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.centerY.mas_equalTo(self);
-    }];
-    [numlabel sizeToFit];
-    
-    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:_countStr WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    countlabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:countlabel];
     countlabel.font=[regular getSemiboldFont:15.0f];
     [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
-        make.left.mas_equalTo(numlabel.mas_right).with.offset(10);
+        make.left.mas_equalTo(kEdge);
         make.top.bottom.mas_equalTo(0);
     }];
-    
-    
 }
 
+-(void)SetState
+{
+    DD_BenefitInfoModel *_benefitModel=[_clearingModel getChoosedBenefitInfo];
+    CGFloat _price=_countPrice;
+    if(_clearingModel.benefitInfo)
+    {
+        if(_benefitModel.amount>_price)
+        {
+            _price=0;
+        }else
+        {
+            _price=_price-_benefitModel.amount;
+        }
+    }
+    
+    if(_price&&_clearingModel.rewardPoints&&_clearingModel.use_rewardPoints)
+    {
+        if(_price>_clearingModel.employ_rewardPoints)
+        {
+            _price=_price-_clearingModel.employ_rewardPoints;
+        }else
+        {
+            _price=0;
+        }
+    }
+    
+    countlabel.text=[[NSString alloc] initWithFormat:@"实付 ￥%.1lf",_price];
+}
 -(void)ConfirmAction
 {
     _block(@"confirm");

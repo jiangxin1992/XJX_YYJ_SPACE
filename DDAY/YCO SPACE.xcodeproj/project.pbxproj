@@ -295,6 +295,7 @@
 		3FD02DBB1D50F06800E9D6EB /* DD_ShopAlertSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */; };
 		3FD20D961D92B7AF0030FCCA /* Waterflow.a in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E58B21D40666F000FDE5F /* Waterflow.a */; };
 		3FD74B681CF445B400C10C32 /* DD_SetAddressBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */; };
+		3FE8D7B41DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */; };
 		3FE98D821DC8767B00F273E8 /* 图层-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE98D501DC8767B00F273E8 /* 图层-10@2x.png */; };
 		3FE98D831DC8767B00F273E8 /* 图层-11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE98D511DC8767B00F273E8 /* 图层-11@2x.png */; };
 		3FE98D841DC8767B00F273E8 /* 图层-12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE98D521DC8767B00F273E8 /* 图层-12@2x.png */; };
@@ -1003,6 +1004,8 @@
 		3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopAlertSizeView.m; sourceTree = "<group>"; };
 		3FD74B661CF445B400C10C32 /* DD_SetAddressBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SetAddressBtn.h; sourceTree = "<group>"; };
 		3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SetAddressBtn.m; sourceTree = "<group>"; };
+		3FE8D7B21DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseBenefitListViewController.h; sourceTree = "<group>"; };
+		3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ChooseBenefitListViewController.m; sourceTree = "<group>"; };
 		3FE98D501DC8767B00F273E8 /* 图层-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-10@2x.png"; sourceTree = "<group>"; };
 		3FE98D511DC8767B00F273E8 /* 图层-11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-11@2x.png"; sourceTree = "<group>"; };
 		3FE98D521DC8767B00F273E8 /* 图层-12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-12@2x.png"; sourceTree = "<group>"; };
@@ -2515,6 +2518,7 @@
 		3F7C51D41CF43B3900D3565D /* 确认订单页面 */ = {
 			isa = PBXGroup;
 			children = (
+				3FE8D7B11DD08F6D00F3A21C /* 选择优惠券 */,
 				3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */,
 				3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */,
 				3F7C51D61CF43B7800D3565D /* 选择地址 */,
@@ -3266,6 +3270,15 @@
 			name = "总结";
 			sourceTree = "<group>";
 		};
+		3FE8D7B11DD08F6D00F3A21C /* 选择优惠券 */ = {
+			isa = PBXGroup;
+			children = (
+				3FE8D7B21DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.h */,
+				3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */,
+			);
+			name = "选择优惠券";
+			sourceTree = "<group>";
+		};
 		3FE98D4F1DC8767B00F273E8 /* gif */ = {
 			isa = PBXGroup;
 			children = (
@@ -3759,6 +3772,7 @@
 				3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */,
 				3F9B8B0F1CF0019B008EC460 /* DD_LoginViewController.m in Sources */,
 				3F0A8CE91D07F6E8005549BE /* DD_OrderRefundViewController.m in Sources */,
+				3FE8D7B41DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m in Sources */,
 				3F57173A1D6EE9DE006E1940 /* DD_CalendarTool.m in Sources */,
 				3F73CC621D6D35B300E419B9 /* DD_OrderLogisticsCell.m in Sources */,
 				3FB342611D0FFF4E00C9A682 /* DD_CirclePublishViewController.m in Sources */,

@@ -9,7 +9,9 @@
 #import "DD_ClearingView.h"
 
 //#import "DD_ClearingTool.h"
-//#import "DD_ClearingSeriesModel.h"
+#import "DD_ClearingSeriesModel.h"
+#import "DD_ClearingOrderModel.h"
+
 
 @interface DD_ClearingView()<UIWebViewDelegate>
 
@@ -21,27 +23,37 @@
 
     UIView *remarksView;// 备注的背景视图
     UIWebView *_webView;// 备注视图 remarksView子视图
+    UIView *line1;
     
-    UIView *middleLine;
+//    UIView *middleLine;
     UILabel *freightTitleLabel;
+    UILabel *_integralLabel;
+    
     UIView *payView;// 支付方式视图
+    UILabel *payWayLabel;
+    
+    UILabel *_couponDesLabel;
+    
+    UISwitch *_switch;
     
     BOOL _isShow;
     
     
 }
 #pragma mark - 初始化方法
--(instancetype)initWithDataArr:(NSArray *)dataArr Withfreight:(NSString *)freight WithPayWay:(NSString *)payWay WithBlock:(void (^)(NSString *type,CGFloat height,NSString *payWay))block
+-(instancetype)initWithDataArr:(NSArray *)dataArr WithClearingModel:(DD_ClearingModel *)clearingModel WithPayWay:(NSString *)payWay WithBlock:(void (^)(NSString *type,CGFloat height,NSString *payWay))block
 {
     self=[super init];
     if(self)
     {
-        _freight=freight;
+        _clearingModel=clearingModel;
         _payWay=payWay;
         _dataArr=dataArr;
         _block=block;
         _isShow=NO;
         [self UIConfig];
+        [self SetPayWayState];
+        [self SetState];
     }
     return self;
 }
@@ -53,7 +65,7 @@
     
     freightTitleLabel.frame=CGRectMake(kEdge, 0, 100, 30);
     
-    CGFloat _Freight=_dataArr.count*[_freight floatValue];
+    CGFloat _Freight=_dataArr.count*[_clearingModel.freight floatValue];
     UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%.0lf",_Freight] WithFont:12 WithTextColor:nil WithSpacing:0];
     [self addSubview:freightLabel];
     freightLabel.font=[regular getSemiboldFont:12];
@@ -72,30 +84,132 @@
     _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     [self setRemarksWithWebView:@"添加订单备注："];
     
-//    40 170
-    payView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:payView];
-    payView.frame=CGRectMake(0, CGRectGetMaxY(_webView.frame), ScreenWidth, _isShow?170:41);
+    line1=[UIView getCustomViewWithColor:_define_light_gray_color1];
+    [self addSubview:line1];
+    line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame), ScreenWidth-2*kEdge, 1);
     
-    middleLine=[UIView getCustomViewWithColor:_define_black_color];
-    [payView addSubview:middleLine];
-    [middleLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(0);
+    UIView *_subtotalView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:_subtotalView];
+    [_subtotalView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(line1.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(50);
+    }];
+    UILabel *_subtotalLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
+    [_subtotalView addSubview:_subtotalLabel];
+    [_subtotalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(line1.mas_bottom).with.offset(0);
+        make.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(kEdge);
+    }];
+    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"共 %ld 件商品 小计 ￥%.1lf",[self getGoodsCount],[self getAllCountPriceWithArr:_dataArr]];
+    
+    UIView *line2=[UIView getCustomViewWithColor:_define_black_color];
+    [self addSubview:line2];
+    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_subtotalView.mas_bottom).with.offset(0);
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
     }];
     
+    UIButton *_chooseCouponBtn=[UIButton getCustomBtn];
+    [self addSubview:_chooseCouponBtn];
+    [_chooseCouponBtn addTarget:self action:@selector(chooseCouponAction) forControlEvents:UIControlEventTouchUpInside];
+    [_chooseCouponBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(line2.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(50);
+    }];
+    UIImageView *_chooseImg=[UIImageView getImgWithImageStr:@"System_Arrow"];
+    [_chooseCouponBtn addSubview:_chooseImg];
+    [_chooseImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(_chooseCouponBtn);
+        make.right.mas_equalTo(-kEdge);
+        make.width.mas_equalTo(10);
+        make.height.mas_equalTo(18);
+    }];
+    UILabel *_couponLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"优惠" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [_chooseCouponBtn addSubview:_couponLabel];
+    [_couponLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.centerY.mas_equalTo(_chooseCouponBtn);
+    }];
+    _couponDesLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [_chooseCouponBtn addSubview:_couponDesLabel];
+    [_couponDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(_chooseImg.mas_left).with.offset(-15);
+        make.centerY.mas_equalTo(_chooseCouponBtn);
+        make.left.mas_equalTo(_couponLabel.mas_right).with.offset(10);
+    }];
+    
+    UIView *line3=[UIView getCustomViewWithColor:_define_light_gray_color1];
+    [self addSubview:line3];
+    [line3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_chooseCouponBtn.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(1);
+    }];
+    
+    UIView *_integralView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:_integralView];
+    [_integralView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(line3.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(50);
+    }];
+    _switch=[[UISwitch alloc] init];
+    [_integralView addSubview:_switch];
+    [_switch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEdge);
+        make.centerY.mas_equalTo(_integralView);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(20);
+    }];
+    
+    [_switch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    // 显示的颜色
+    _switch.onTintColor = [UIColor blackColor];
+    // 控件大小，不能设置frame，只能用缩放比例
+    _switch.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    // 控件开关
+    _switch.on = YES;
+    _integralLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    [_integralView addSubview:_integralLabel];
+    [_integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.centerY.mas_equalTo(_integralView);
+        make.right.mas_equalTo(_switch.mas_left).with.offset(-10);
+    }];
+    
+    
+    UIView *line4=[UIView getCustomViewWithColor:_define_light_gray_color1];
+    [self addSubview:line4];
+    [line4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_integralView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(kEdge);
+        make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(1);
+    }];
+    
+//    40 170
+    payView=[UIView getCustomViewWithColor:nil];
+    [self addSubview:payView];
+    [payView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(line4.mas_bottom).with.offset(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(_isShow?170:41);
+    }];
     UILabel *payWay=[UILabel getLabelWithAlignment:0 WithTitle:@"支付方式" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [payView addSubview:payWay];
     [payWay mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(middleLine.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(line4.mas_bottom).with.offset(0);
         make.left.mas_equalTo(kEdge);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(40);
     }];
-    
-    
     UIButton *pulldowBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Triangle" WithSelectedImageStr:@"System_UpTriangle"];
     [payView addSubview:pulldowBtn];
     [pulldowBtn addTarget:self action:@selector(showPayWayView:) forControlEvents:UIControlEventTouchUpInside];
@@ -107,6 +221,12 @@
     }];
     [pulldowBtn setEnlargeEdge:20];
     
+    payWayLabel = [UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12 WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [payView addSubview:payWayLabel];
+    [payWayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(pulldowBtn.mas_left).with.offset(-15);
+        make.centerY.mas_equalTo(pulldowBtn);
+    }];
     
     UIButton *lastview=nil;
     for (int i=0; i<1; i++) {
@@ -154,13 +274,71 @@
         [selectBtn setEnlargeEdge:20];
         lastview=iconBtn;
     }
-    [self setPayWayState];
+    
+}
+-(void)SetState
+{
+    if(!_clearingModel.rewardPoints)
+    {
+        _switch.on=NO;
+        _switch.userInteractionEnabled=NO;
+        _integralLabel.text=@"无积分";
+    }else{
+        _switch.on=_clearingModel.use_rewardPoints;
+        if(_clearingModel.rewardPoints>50)
+        {
+            _integralLabel.text=@"可用50积分抵扣50元";
+        }else
+        {
+            _integralLabel.text=[[NSString alloc] initWithFormat:@"可用%ld积分抵扣%ld元",_clearingModel.rewardPoints,_clearingModel.rewardPoints];
+        }
+    }
+    DD_BenefitInfoModel *_benefitModel=[_clearingModel getChoosedBenefitInfo];
+    _couponDesLabel.text=_benefitModel.name;
+}
+#pragma mark - SomeAction
+
+-(void)switchAction:(id)sender
+{
+    UISwitch *_mySwitch = (UISwitch *)sender;
+    if(_mySwitch == _switch){
+        BOOL switchStatus = _mySwitch.on;
+        _clearingModel.use_rewardPoints=switchStatus;
+        _block(@"switch",0,_payWay);
+    }
 }
 
-#pragma mark - SomeAction
--(void)setPayWayState
+-(void)chooseCouponAction
 {
+    _block(@"choose_coupon",0,_payWay);
+}
+/**
+ * 获取结算页面的订单个数
+ */
+-(NSInteger )getGoodsCount
+{
+    NSInteger _num=0;
+    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+        _num+=_Series.items.count;
+    }
+    return _num;
+}
+-(CGFloat )getAllCountPriceWithArr:(NSArray *)dataArr
+{
+    CGFloat _price=0;
+    for (DD_ClearingSeriesModel *Series in dataArr) {
+        for (DD_ClearingOrderModel *order in Series.items) {
+            _price+=[order.price floatValue]*[order.numbers integerValue];
+        }
+    }
+    return _price;
+}
+
+-(void)SetPayWayState
+{
+    
     NSInteger _selectIndex=[_payWay isEqualToString:@"alipay"]?0:[_payWay isEqualToString:@"wechat"]?1:2;
+    payWayLabel.text=_selectIndex==0?@"支付宝":_selectIndex==1?@"微信支付":@"银联在线支付";
     for (int i=0; i<3; i++) {
         UIButton *selectbtn=[self viewWithTag:300+i];
         if(_selectIndex==i)
@@ -179,8 +357,8 @@
     if(![__payway isEqualToString:_payWay])
     {
         _payWay=__payway;
-        [self setPayWayState];
-        _block(@"pay_way_change",CGRectGetMaxY(payView.frame)+10,_payWay);
+        [self SetPayWayState];
+        _block(@"pay_way_change",CGRectGetMaxY(payView.frame),_payWay);
     }
 }
 -(void)showPayWayView:(UIButton *)btn
@@ -203,8 +381,10 @@
         selectbtn.hidden=!_isShow;
     }
     
-    payView.frame=CGRectMake(0, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth, _isShow?170:41);
-    _block(@"height",CGRectGetMaxY(payView.frame)+10,_payWay);
+    [payView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(_isShow?170:41);
+    }];
+    _block(@"height",payView.origin.y + payView.size.height,_payWay);
 }
 /**
  * 添加备注
@@ -230,9 +410,10 @@
     CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
     frame.size = fittingSize;
     webView.frame = frame;
+    
     remarksView.frame=CGRectMake(CGRectGetMinX(remarksView.frame), CGRectGetMinY(remarksView.frame), CGRectGetWidth(remarksView.frame), frame.size.height);
-    payView.frame=CGRectMake(0, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth, _isShow?170:41);
-    _block(@"height",CGRectGetMaxY(payView.frame)+10,_payWay);
+    line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth-2*kEdge, 1);
+    _block(@"height",payView.origin.y + payView.size.height,_payWay);
 }
 
 #pragma mark - 弃用代码
@@ -322,15 +503,5 @@
 //        label.text=i==0?@"支付方式":@"支付宝";
 //    }
 //}
-///**
-// * 获取结算页面的订单个数
-// */
-//-(NSInteger )getGoodsCount
-//{
-//    NSInteger _num=0;
-//    for (DD_ClearingSeriesModel *_Series in _dataArr) {
-//        _num+=_Series.items.count;
-//    }
-//    return _num;
-//}
+
 @end

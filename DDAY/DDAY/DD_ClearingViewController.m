@@ -14,6 +14,7 @@
 #import "DD_ClearingTableViewCell.h"
 #import "DD_RemarksViewController.h"
 #import "DD_AddressViewController.h"
+#import "DD_ChooseBenefitListViewController.h"
 
 #import "DD_SetAddressBtn.h"
 #import "DD_ClearingView.h"
@@ -122,7 +123,13 @@
     CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
     CGFloat _countPrice=_count+_Freight;
     
-    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计 ￥%.1lf",_countPrice] WithBlock:^(NSString *type) {
+//    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计 ￥%.1lf",_countPrice] WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"confirm"])
+//        {
+//            [self ConfirmAction];
+//        }
+//    }];
+    _tabBar=[[DD_ClearingTabbar alloc] initWithClearingModel:_Clearingmodel WithCountPrice:_countPrice WithCount:_count WithBlock:^(NSString *type) {
         if([type isEqualToString:@"confirm"])
         {
             [self ConfirmAction];
@@ -134,48 +141,6 @@
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(ktabbarHeight);
     }];
-    
-//    UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-//    [_tabBar addSubview:upline];
-//    [upline mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(1);
-//        make.top.left.right.mas_equalTo(0);
-//    }];
-//    
-//    UIButton *ConfirmBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"确认订单" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-//    [_tabBar addSubview:ConfirmBtn];
-//    [ConfirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(0);
-//        make.top.mas_equalTo(upline.mas_bottom).with.offset(0);
-//        make.width.mas_equalTo(130);
-//        make.bottom.mas_equalTo(0);
-//    }];
-//    [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-//    ConfirmBtn.backgroundColor=_define_black_color;
-//    
-//    NSInteger _freight=[_Clearingmodel.freight integerValue];
-//    UILabel *numlabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"%ld件商品",_freight] WithFont:14.0f WithTextColor:nil WithSpacing:0];
-//    [_tabBar addSubview:numlabel];
-//    [numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(26);
-//        make.centerY.mas_equalTo(_tabBar);
-//    }];
-//    [numlabel sizeToFit];
-//    
-//    CGFloat _Freight=_dataArr.count*_freight;
-//    
-//    CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
-//    CGFloat _countPrice=_count+_Freight;
-//    
-//    UILabel *countlabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"总计￥%.1lf",_countPrice] WithFont:14.0f WithTextColor:nil WithSpacing:0];
-//    [_tabBar addSubview:countlabel];
-//    [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
-//        make.left.mas_equalTo(numlabel.mas_right).with.offset(10);
-//        make.top.bottom.mas_equalTo(0);
-//    }];
-    
-    
 }
 /**
  * 创建地址视图 HeadView
@@ -276,7 +241,7 @@
  */
 -(void)CreateFootView
 {
-    _ClearingView=[[DD_ClearingView alloc] initWithDataArr:_dataArr Withfreight:_Clearingmodel.freight WithPayWay:payWay WithBlock:^(NSString *type, CGFloat height,NSString *_payway) {
+    _ClearingView=[[DD_ClearingView alloc] initWithDataArr:_dataArr WithClearingModel:_Clearingmodel WithPayWay:payWay WithBlock:^(NSString *type, CGFloat height,NSString *_payway) {
         if([type isEqualToString:@"remarks"])
         {
             //            跳转remarks界面
@@ -290,9 +255,18 @@
         }else if([type isEqualToString:@"pay_way_change"])
         {
             payWay=_payway;
+        }else if([type isEqualToString:@"choose_coupon"])
+        {
+            //选择优惠券
+            [self.navigationController pushViewController:[[DD_ChooseBenefitListViewController alloc] init] animated:YES];
+        }else if([type isEqualToString:@"switch"])
+        {
+            [_Clearingmodel IntegralUpdate];
+            JXLOG(@"use_rewardPoints=%d,employ_rewardPoints=%ld",_Clearingmodel.use_rewardPoints,_Clearingmodel.employ_rewardPoints);
+            [_tabBar SetState];
         }
     }];
-    _ClearingView.frame=CGRectMake(0, 0, ScreenWidth, 105);
+    _ClearingView.frame=CGRectMake(0, 0, ScreenWidth, 155);
     _tableview.tableFooterView = _ClearingView;
 }
 #pragma mark - AnalysisData

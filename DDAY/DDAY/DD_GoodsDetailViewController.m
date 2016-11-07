@@ -422,7 +422,7 @@ __bool(isExpanded);
             [self Shop_Buy_Action:@"buy"];
         }else if([type isEqualToString:@"sold_out"])
         {
-            [self presentViewController:[regular alertTitle_Simple:@"该商品以下架"] animated:YES completion:nil];
+            [self presentViewController:[regular alertTitle_Simple:@"该商品已下架"] animated:YES completion:nil];
         }
     }];
     [self.view addSubview:tabbar];
@@ -439,7 +439,7 @@ __bool(isExpanded);
         if(success)
         {
             _DetailModel=[DD_GoodsDetailModel getGoodsDetailModel:data];
-            NSLog(@"%@",_DetailModel);
+            JXLOG(@"%@",_DetailModel);
             [self UIConfig];
         }else
         {
@@ -673,12 +673,6 @@ __bool(isExpanded);
 //购买动作
 -(void)BuyAction:(NSString *)sizeid WithNum:(NSInteger )count
 {
-//    NSArray *_itemArr=@[@{@"itemId":@"3",@"colorId":@"39",@"sizeId":@"24",@"number":@"6",@"price":@"2000"}
-//                        ,@{@"itemId":@"6",@"colorId":@"34",@"sizeId":@"20",@"number":@"1",@"price":@"5000"}
-//                        ,@{@"itemId":@"9",@"colorId":@"35",@"sizeId":@"20",@"number":@"2",@"price":@"1000"}
-//                        ,@{@"itemId":@"11",@"colorId":@"41",@"sizeId":@"20",@"number":@"4",@"price":@"1000"}
-//                        ,@{@"itemId":@"4",@"colorId":@"38",@"sizeId":@"20",@"number":@"3",@"price":@"2100"}
-//                        ];
     DD_ColorsModel *clolorModel=[_DetailModel getColorsModel];
     NSArray *_itemArr=@[@{@"itemId":_DetailModel.item.itemId,@"colorCode":clolorModel.colorCode,@"colorId":_DetailModel.item.colorId,@"sizeId":sizeid,@"number":[[NSString alloc] initWithFormat:@"%ld",count],@"price":[_DetailModel getPrice],@"originalPrice":_DetailModel.item.originalPrice}];
     

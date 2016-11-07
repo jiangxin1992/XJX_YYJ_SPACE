@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_UserMessageItemModel.m"
-            timestampString = "499956508.412334"
+            filePath = "DDAY/DD_GoodsDetailViewController.m"
+            timestampString = "500207585.074278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "+getUserMessageItemModel:"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
+            landmarkName = "-BuyAction:WithNum:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_IntegralViewController.m"
-            timestampString = "499957180.585605"
+            filePath = "DDAY/DD_ClearingModel.m"
+            timestampString = "500206722.272549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "+getClearingModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

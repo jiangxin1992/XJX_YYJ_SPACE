@@ -12,7 +12,8 @@
 {
     UILabel *_title;
     UIImageView *_redCircle;
-    UILabel *_notNumLabel;
+    UIButton *_notBtn;
+    UIButton *_pulldownBtn;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame WithUserMessageModel:(DD_UserMessageModel *)messageModel WithSection:(NSInteger )section  WithBlock:(void(^)(NSString *type,NSInteger section))block
@@ -21,6 +22,9 @@
     if(self)
     {
         _messageModel=messageModel;
+//        _messageModel.is_expand
+//        System_Triangle
+//        System_Item_Select
         _block=block;
         _section=section;
         self.backgroundColor=_define_white_color;
@@ -32,34 +36,39 @@
             make.left.mas_equalTo(kEdge);
             make.centerY.mas_equalTo(self);
         }];
+        if(!_pulldownBtn)
+        {
+            _pulldownBtn = [UIButton getCustomBackImgBtnWithImageStr:@"System_Triangle" WithSelectedImageStr:@"System_UpTriangle"];
+        }
+        [self addSubview:_pulldownBtn];
+        _pulldownBtn.selected=_messageModel.is_expand;
+        [_pulldownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-kEdge);
+            make.centerY.mas_equalTo(self);
+            make.width.mas_equalTo(17);
+            make.height.mas_equalTo(9);
+        }];
         
         if(_messageModel.isNotice)
         {
-            
-            if(!_notNumLabel)
+            // 23 18
+            if(!_notBtn)
             {
-                _notNumLabel=[UILabel getLabelWithAlignment:1 WithTitle:[[NSString alloc] initWithFormat:@"%ld",_messageModel.unReadMessageNumber] WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
-            }else
-            {
-                _notNumLabel.text=[[NSString alloc] initWithFormat:@"%ld",_messageModel.unReadMessageNumber];
+                _notBtn=[UIButton getCustomBackImgBtnWithImageStr:@"System_Trumpet_Normal" WithSelectedImageStr:@"System_Trumpet_Select"];
             }
-            [self addSubview:_notNumLabel];
-            _notNumLabel.textColor=_define_white_color;
-            _notNumLabel.backgroundColor=_define_light_red_color;
-            [_notNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(_title.mas_right).with.offset(0);
-                make.centerY.mas_equalTo(_title.mas_top);
-                make.height.mas_equalTo(20);
-                make.width.mas_equalTo(20);
+            [self addSubview:_notBtn];
+            [_notBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(_title.mas_right).with.offset(6);
+                make.centerY.mas_equalTo(_title.centerY);
+                make.height.mas_equalTo(18);
+                make.width.mas_equalTo(23);
             }];
-            _notNumLabel.layer.masksToBounds=YES;
-            _notNumLabel.layer.cornerRadius=10;
             if(_messageModel.unReadMessageNumber)
             {
-                _notNumLabel.hidden=NO;
+                _notBtn.selected=YES;
             }else
             {
-                _notNumLabel.hidden=YES;
+                _notBtn.selected=NO;
             }
         }else
         {
@@ -81,7 +90,6 @@
                 make.width.height.mas_equalTo(6);
             }];
         }
-        
         
     }
     return self;

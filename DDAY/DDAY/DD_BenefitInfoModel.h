@@ -34,9 +34,6 @@ __string(benefitId);
 /** 优惠券图片*/
 @property(nonatomic,strong) DD_ImageModel *picInfo;
 
-/** 优惠券描述信息*/
-__string(describeInfo);
-
 /** 有效时间-开始时间*/
 __long(effectStartTime);
 

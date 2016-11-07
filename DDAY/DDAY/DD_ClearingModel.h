@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DD_AddressModel.h"
+#import "DD_BenefitInfoModel.h"
 
 @interface DD_ClearingModel : NSObject
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict;
@@ -26,6 +27,15 @@
  */
 -(NSDictionary *)getOrderInfo;
 
+/** 积分变化*/
+-(void)IntegralUpdate;
+
+/** 优惠券变化*/
+-(void)BenefitUpdate;
+
+/** 获取当前选中的优惠券model*/
+-(DD_BenefitInfoModel *)getChoosedBenefitInfo;
+
 /** 订单model 数组*/
 __array(orders);
 
@@ -34,5 +44,20 @@ __array(orders);
 
 /** 单个订单运费*/
 __string(freight);
+
+/** 默认优惠券*/
+__array(benefitInfo);
+
+/** 用户当前积分*/
+__long(rewardPoints);
+
+/** 是否使用当前积分*/
+__bool(use_rewardPoints);
+
+/** 使用的积分*/
+__long(employ_rewardPoints);
+
+/** 当前选择的优惠券*/
+__string(choosedBenefitId);
 
 @end

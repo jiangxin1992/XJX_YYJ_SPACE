@@ -148,7 +148,7 @@
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (!error) {
                 [[UIApplication sharedApplication] registerForRemoteNotifications];
-                NSLog(@"succeeded!");
+                JXLOG(@"succeeded!");
             }
         }];
     }else{ //IOS10 之前注册通知
