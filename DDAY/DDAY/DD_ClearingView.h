@@ -19,6 +19,8 @@
 
 -(void)setRemarksWithWebView:(NSString *)content;
 
+-(void)SetState;
+
 /** 小计，不包括运费*/
 //__string(subTotal);
 

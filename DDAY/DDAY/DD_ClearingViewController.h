@@ -10,6 +10,8 @@
 
 #import "DD_BaseViewController.h"
 
+#import "DD_ClearingView.h"
+
 #import "DD_ClearingModel.h"
 
 @interface DD_ClearingViewController : DD_BaseViewController
@@ -25,6 +27,8 @@
 
 /** 结算回调*/
 @property (nonatomic,copy)void(^successblock)(NSString *type,NSDictionary *resultDic);
+
+@property (nonatomic,strong)DD_ClearingView *ClearingView;
 
 @end
 

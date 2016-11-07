@@ -285,16 +285,17 @@
         _integralLabel.text=@"无积分";
     }else{
         _switch.on=_clearingModel.use_rewardPoints;
-        if(_clearingModel.rewardPoints>50)
-        {
-            _integralLabel.text=@"可用50积分抵扣50元";
-        }else
-        {
-            _integralLabel.text=[[NSString alloc] initWithFormat:@"可用%ld积分抵扣%ld元",_clearingModel.rewardPoints,_clearingModel.rewardPoints];
-        }
+        _integralLabel.text=[[NSString alloc] initWithFormat:@"可用%ld积分抵扣%ld元",_clearingModel.employ_rewardPoints,_clearingModel.employ_rewardPoints];
     }
+    
     DD_BenefitInfoModel *_benefitModel=[_clearingModel getChoosedBenefitInfo];
-    _couponDesLabel.text=_benefitModel.name;
+    if(_benefitModel)
+    {
+        _couponDesLabel.text=_benefitModel.name;
+    }else
+    {
+        _couponDesLabel.text=@"";
+    }
 }
 #pragma mark - SomeAction
 

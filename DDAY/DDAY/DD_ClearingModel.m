@@ -56,16 +56,36 @@
         
         if(_price&&_Clearing.use_rewardPoints)
         {
-            
-            if(_Clearing.rewardPoints>_price)
+            if(_Clearing.rewardPoints>50)
             {
-                //积分大于剩余金额时候
-                _Clearing.employ_rewardPoints=ceil(_price);
+                if(_Clearing.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    if(_price>50)
+                    {
+                         _Clearing.employ_rewardPoints=50;
+                    }else
+                    {
+                         _Clearing.employ_rewardPoints=ceil(_price);
+                    }
+                }else
+                {
+                    //积分小于剩余金额时候
+                    _Clearing.employ_rewardPoints=50;
+                }
             }else
             {
-                //积分小于剩余金额时候
-                _Clearing.employ_rewardPoints=_Clearing.rewardPoints;
+                if(_Clearing.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    _Clearing.employ_rewardPoints=ceil(_price);
+                }else
+                {
+                    //积分小于剩余金额时候
+                    _Clearing.employ_rewardPoints=_Clearing.rewardPoints;
+                }
             }
+            
         }
     }else
     {
@@ -112,15 +132,36 @@
             
             if(_price)
             {
-                if(self.rewardPoints>_price)
+                if(self.rewardPoints>50)
                 {
-                    //积分大于剩余金额时候
-                    self.employ_rewardPoints=ceil(_price);
+                    if(self.rewardPoints>_price)
+                    {
+                        //积分大于剩余金额时候
+                        if(_price>50)
+                        {
+                            self.employ_rewardPoints=50;
+                        }else
+                        {
+                            self.employ_rewardPoints=ceil(_price);
+                        }
+                    }else
+                    {
+                        //积分小于剩余金额时候
+                        self.employ_rewardPoints=50;
+                    }
                 }else
                 {
-                    //积分小于剩余金额时候
-                    self.employ_rewardPoints=self.rewardPoints;
+                    if(self.rewardPoints>_price)
+                    {
+                        //积分大于剩余金额时候
+                        self.employ_rewardPoints=ceil(_price);
+                    }else
+                    {
+                        //积分小于剩余金额时候
+                        self.employ_rewardPoints=self.rewardPoints;
+                    }
                 }
+                
             }else
             {
                 self.use_rewardPoints=NO;
@@ -152,6 +193,7 @@
     
     DD_BenefitInfoModel *_benefitModel=[self getChoosedBenefitInfo];
     CGFloat _price=_countPrice;
+    
     if(self.benefitInfo)
     {
         //有优惠券的时候
@@ -167,16 +209,38 @@
         
         if(self.rewardPoints&&self.use_rewardPoints)
         {
-            //有积分的时候
-            if(self.rewardPoints>_price)
+            if(self.rewardPoints>50)
             {
-                //积分大于剩余金额时候
-                self.employ_rewardPoints=ceil(_price);
+                //有积分的时候
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    if(_price>50)
+                    {
+                        self.employ_rewardPoints=50;
+                    }else
+                    {
+                        self.employ_rewardPoints=ceil(_price);
+                    }
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=50;
+                }
             }else
             {
-                //积分小于剩余金额时候
-                self.employ_rewardPoints=self.rewardPoints;
+                //有积分的时候
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    self.employ_rewardPoints=ceil(_price);
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=self.rewardPoints;
+                }
             }
+            
         }else
         {
             //没有积分的时候
@@ -188,16 +252,38 @@
         //没有优惠券的时候
         if(self.rewardPoints&&self.use_rewardPoints)
         {
-            //有积分的时候
-            if(self.rewardPoints>_price)
+            if(self.rewardPoints>50)
             {
-                //积分大于剩余金额时候
-                self.employ_rewardPoints=ceil(_price);
+                //有积分的时候
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    if(_price>50)
+                    {
+                        self.employ_rewardPoints=50;
+                    }else
+                    {
+                        self.employ_rewardPoints=ceil(_price);
+                    }
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=50;
+                }
             }else
             {
-                //积分小于剩余金额时候
-                self.employ_rewardPoints=self.rewardPoints;
+                //有积分的时候
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    self.employ_rewardPoints=ceil(_price);
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=self.rewardPoints;
+                }
             }
+            
         }else
         {
             //没有积分的时候

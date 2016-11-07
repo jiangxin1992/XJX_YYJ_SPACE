@@ -17,7 +17,6 @@
 #import "DD_ChooseBenefitListViewController.h"
 
 #import "DD_SetAddressBtn.h"
-#import "DD_ClearingView.h"
 #import "DD_ClearingTabbar.h"
 
 #import "DD_ClearingTool.h"
@@ -33,7 +32,6 @@
     
     DD_ClearingTabbar *_tabBar;
     
-    DD_ClearingView *_ClearingView;
     DD_SetAddressBtn *_AddressBtn;// 选择地址按钮
     
     NSString *remarksStr;// 订单备注 默认为空
@@ -247,8 +245,7 @@
             //            跳转remarks界面
             [self PushRemarksView];
             
-        }
-        else if([type isEqualToString:@"height"])
+        }else if([type isEqualToString:@"height"])
         {
             _ClearingView.frame=CGRectMake(CGRectGetMinX(_ClearingView.frame), CGRectGetMinY(_ClearingView.frame), ScreenWidth, height);
             _tableview.tableFooterView=_ClearingView;
@@ -258,17 +255,26 @@
         }else if([type isEqualToString:@"choose_coupon"])
         {
             //选择优惠券
-            [self.navigationController pushViewController:[[DD_ChooseBenefitListViewController alloc] init] animated:YES];
+            [self.navigationController pushViewController:[[DD_ChooseBenefitListViewController alloc] initWithClearingModel:_Clearingmodel WithBlock:^(NSString *type) {
+                if([type isEqualToString:@"choose_benefit"])
+                {
+                    [_Clearingmodel IntegralUpdate];
+                    [_ClearingView SetState];
+                    [_tabBar SetState];
+                }
+            }] animated:YES];
         }else if([type isEqualToString:@"switch"])
         {
-            [_Clearingmodel IntegralUpdate];
+            [_Clearingmodel BenefitUpdate];
             JXLOG(@"use_rewardPoints=%d,employ_rewardPoints=%ld",_Clearingmodel.use_rewardPoints,_Clearingmodel.employ_rewardPoints);
+            [_ClearingView SetState];
             [_tabBar SetState];
         }
     }];
     _ClearingView.frame=CGRectMake(0, 0, ScreenWidth, 155);
     _tableview.tableFooterView = _ClearingView;
 }
+
 #pragma mark - AnalysisData
 /**
  * 数据解析

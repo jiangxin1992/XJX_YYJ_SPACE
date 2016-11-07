@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_GoodsDetailViewController.m"
-            timestampString = "500207585.074278"
+            filePath = "DDAY/DD_ClearingModel.m"
+            timestampString = "500212354.50615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
-            landmarkName = "-BuyAction:WithNum:"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "+getClearingModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DDAY/DD_ClearingModel.m"
-            timestampString = "500206722.272549"
+            timestampString = "500212360.746815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "+getClearingModel:"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-IntegralUpdate"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DDAY/DD_ClearingModel.m"
+            timestampString = "500212363.834175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-BenefitUpdate"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
