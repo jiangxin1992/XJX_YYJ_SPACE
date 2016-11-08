@@ -27,9 +27,6 @@ __array(orderList);
 /** 总运费*/
 __long(allFreight);
 
-/** 订单创建时间*/
-__long(createTime);
-
 /** 小计 不算运费*/
 __string(totalAmount);
 
@@ -38,5 +35,29 @@ __long(totalItemCount);
 
 /** 订单号*/
 __string(tradeOrderCode);
+
+/** 订单创建时间*/
+__long(createTime);
+
+/** 未支付的情况下，订单取消时间*/
+__long(orderCancelTime);
+
+/** 订单支付时间*/
+__long(orderPayTime);;
+
+/** 优惠券优惠金额*/
+__float(benefitAmount);
+
+/** 积分优惠金额*/
+__float(intergralAmout);
+
+/** 实际支付金额*/
+__float(actuallyPay);
+
+/** 支付方式 1 支付宝 2 微信 3 银联 */
+__int(payWay);
+
+
+
 
 @end

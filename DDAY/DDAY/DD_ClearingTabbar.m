@@ -83,7 +83,6 @@
             _price=0;
         }
     }
-    
     countlabel.text=[[NSString alloc] initWithFormat:@"实付 ￥%.1lf",_price];
 }
 -(void)ConfirmAction

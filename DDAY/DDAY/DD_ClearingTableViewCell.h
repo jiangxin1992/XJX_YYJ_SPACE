@@ -15,10 +15,13 @@
 /**
  * 初始化方法
  */
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier IsOrderDetail:(BOOL )isOrderDetail WithBlock:(void(^)(NSString *type))block;
 
 @property (nonatomic,strong)DD_ClearingOrderModel *ClearingModel;
 
 @property (nonatomic,copy) void (^clickblock)(NSString *type);
+
+/** 是否是订单详情页中用到*/
+__bool(isOrderDetail);
 
 @end

@@ -19,6 +19,7 @@
     _Clearing.address=[DD_AddressModel getAddressModel:[dict objectForKey:@"address"]];
     _Clearing.orders=[DD_ClearingOrderModel getClearingOrderModelArray:[dict objectForKey:@"orders"]];
     _Clearing.benefitInfo=[DD_BenefitInfoModel getBenefitInfoModelArr:[dict objectForKey:@"benefitInfo"]];
+//    _Clearing.rewardPoints=500;
     
     NSMutableDictionary *_dataDict=[[NSMutableDictionary alloc] init];
     NSMutableArray *_dataArr=[[NSMutableArray alloc] init];
@@ -110,8 +111,9 @@
     CGFloat _countPrice=_count+_Freight;
     
     DD_BenefitInfoModel *_benefitModel=[self getChoosedBenefitInfo];
-    if(self.use_rewardPoints)
-    {
+//    if(self.use_rewardPoints)
+//    {
+    
         if(self.rewardPoints)
         {
             CGFloat _price=_countPrice;
@@ -164,20 +166,26 @@
                 
             }else
             {
-                self.use_rewardPoints=NO;
+//                self.use_rewardPoints=NO;
                 self.employ_rewardPoints=0;
             }
         }else
         {
             //没有积分时候 为未使用／使用数量为0
-            self.use_rewardPoints=NO;
+//            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
-    }else
-    {
-        self.use_rewardPoints=NO;
-        self.employ_rewardPoints=0;
-    }
+//    }else
+//    {
+//        if(self.rewardPoints)
+//        {
+//        }else
+//        {
+//            //没有积分时候 为未使用／使用数量为0
+//            self.use_rewardPoints=NO;
+//            self.employ_rewardPoints=0;
+//        }
+//    }
 }
 -(void)BenefitUpdate
 {
@@ -200,7 +208,7 @@
         if(_benefitModel.amount>_price)
         {
             _price=0;
-            self.use_rewardPoints=NO;
+//            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }else
         {
@@ -244,13 +252,14 @@
         }else
         {
             //没有积分的时候
-            self.use_rewardPoints=NO;
+//            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }else
     {
         //没有优惠券的时候
-        if(self.rewardPoints&&self.use_rewardPoints)
+//        if(self.rewardPoints&&self.use_rewardPoints)
+        if(self.rewardPoints)
         {
             if(self.rewardPoints>50)
             {
@@ -287,7 +296,7 @@
         }else
         {
             //没有积分的时候
-            self.use_rewardPoints=NO;
+//            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }

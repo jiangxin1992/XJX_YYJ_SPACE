@@ -336,7 +336,7 @@
 
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_cancel_order", @"") WithBlock:^{
         NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderDetailModel.orderInfo.tradeOrderCode};
-        [[JX_AFNetworking alloc] GET:@"order/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        [[JX_AFNetworking alloc] GET:@"order/v1_0_7/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"已成功取消订单" preferredStyle:UIAlertControllerStyleAlert];
@@ -521,7 +521,7 @@
     DD_ClearingTableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
+        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:YES WithBlock:nil];
     }
     NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
     DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
@@ -563,31 +563,5 @@
     [super didReceiveMemoryWarning];
 }
 #pragma mark - 弃用代码
-//section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    //section头部高度
-//    return 40;
-//}
-//section头部视图
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-//    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
-//    return [__OrderModel getViewHeader];
-//}
-
-//section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 40;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-//    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
-//    return [__OrderModel getViewFooter];
-//}
 
 @end

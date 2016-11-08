@@ -258,14 +258,14 @@
             [self.navigationController pushViewController:[[DD_ChooseBenefitListViewController alloc] initWithClearingModel:_Clearingmodel WithBlock:^(NSString *type) {
                 if([type isEqualToString:@"choose_benefit"])
                 {
-                    [_Clearingmodel IntegralUpdate];
+                    [_Clearingmodel BenefitUpdate];
                     [_ClearingView SetState];
                     [_tabBar SetState];
                 }
             }] animated:YES];
         }else if([type isEqualToString:@"switch"])
         {
-            [_Clearingmodel BenefitUpdate];
+            [_Clearingmodel IntegralUpdate];
             JXLOG(@"use_rewardPoints=%d,employ_rewardPoints=%ld",_Clearingmodel.use_rewardPoints,_Clearingmodel.employ_rewardPoints);
             [_ClearingView SetState];
             [_tabBar SetState];
@@ -334,11 +334,42 @@
 {
     if([_dataDict objectForKey:@"address"])
     {
+        NSInteger _freight=[_Clearingmodel.freight integerValue];
+        CGFloat _Freight=_dataArr.count*_freight;
+        CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
+        CGFloat _countPrice=_count+_Freight;
+        DD_BenefitInfoModel *_benefitModel=[_Clearingmodel getChoosedBenefitInfo];
+        CGFloat _price=_countPrice;
+        if(_Clearingmodel.benefitInfo)
+        {
+            if(_benefitModel.amount>_price)
+            {
+                _price=0;
+            }else
+            {
+                _price=_price-_benefitModel.amount;
+            }
+        }
+        
+        if(_price&&_Clearingmodel.rewardPoints&&_Clearingmodel.use_rewardPoints)
+        {
+            if(_price>_Clearingmodel.employ_rewardPoints)
+            {
+                _price=_price-_Clearingmodel.employ_rewardPoints;
+            }else
+            {
+                _price=0;
+            }
+        }
+        
         NSDictionary *_parameters=@{
                                     @"token":[DD_UserModel getToken]
                                     ,@"orderInfo":[[DD_ClearingTool getPayOrderInfoWithDataDict:_dataDict WithDataArr:_dataArr WithRemarks:remarksStr WithFreight:_Clearingmodel.freight] mj_JSONString]
+                                    ,@"benefitId":_Clearingmodel.choosedBenefitId?_Clearingmodel.choosedBenefitId:@""
+                                    ,@"deduction":[NSNumber numberWithLong:_Clearingmodel.employ_rewardPoints]
+                                    ,@"actuallyPay":[NSNumber numberWithFloat:_price]
                                     };
-        [[JX_AFNetworking alloc] GET:@"order/createOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        [[JX_AFNetworking alloc] GET:@"order/v1_0_7/createOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 NSString *appScheme = @"DDAY";
@@ -436,7 +467,7 @@
     DD_ClearingTableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
     if(!cell)
     {
-        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
+        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:NO WithBlock:nil];
     }
     DD_ClearingSeriesModel *_Series=[_dataArr objectAtIndex:indexPath.section];
     cell.ClearingModel=[_Series.items objectAtIndex:indexPath.row];
@@ -457,52 +488,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 弃用代码
-/**
- * 创建总结视图 FootView
- */
-//-(void)CreateFootView
-//{
-//    _ClearingView=[[DD_ClearingView alloc] initWithDataArr:_dataArr Withfreight:_Clearingmodel.freight WithPayWay:payWay WithCountPrice:[_dataDict objectForKey:@"subTotal"] WithBlock:^(NSString *type, CGFloat height,NSString *_payway) {
-//        if([type isEqualToString:@"remarks"])
-//        {
-//            //            跳转remarks界面
-//            [self PushRemarksView];
-//            
-//        }
-//        else if([type isEqualToString:@"height"])
-//        {
-//            _ClearingView.frame=CGRectMake(CGRectGetMinX(_ClearingView.frame), CGRectGetMinY(_ClearingView.frame), ScreenWidth, height);
-//            _tableview.tableFooterView=_ClearingView;
-//        }else if([type isEqualToString:@"pay_way_change"])
-//        {
-//            payWay=_payway;
-//        }
-//    }];
-//    _ClearingView.frame=CGRectMake(0, 0, ScreenWidth, 105);
-//    _tableview.tableFooterView = _ClearingView;
-//}
-////section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    //section头部高度
-//    return 40;
-//}
-////section头部视图
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [(DD_ClearingSeriesModel *)[_dataArr objectAtIndex:section] getViewHeader];
-//}
-////section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//
-//    return 40;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [(DD_ClearingSeriesModel *)[_dataArr objectAtIndex:section] getViewFooter];
-//}
 
 @end

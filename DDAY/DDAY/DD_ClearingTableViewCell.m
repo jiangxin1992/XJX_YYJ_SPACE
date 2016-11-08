@@ -26,12 +26,13 @@
     [super awakeFromNib];
 }
 #pragma mark - 初始化
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier IsOrderDetail:(BOOL )isOrderDetail WithBlock:(void(^)(NSString *type))block
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
         _clickblock=block;
+        _isOrderDetail=isOrderDetail;
         [self SomePrepare];
         [self UIConfig];
     }
@@ -133,22 +134,26 @@
     [sizeNameBtn setTitle:ClearingModel.sizeName forState:UIControlStateNormal];
     [numBtn setTitle:[[NSString alloc] initWithFormat:@"×%@",ClearingModel.numbers] forState:UIControlStateNormal];
     
-    if(ClearingModel.saleEndTime>[NSDate nowTime])
+    if(_isOrderDetail)
     {
-        priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
+        priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ClearingModel.price];
     }else
     {
-        if(ClearingModel.discountEnable)
+        if(ClearingModel.saleEndTime>[NSDate nowTime])
         {
             priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
-            
         }else
         {
-            priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ClearingModel.originalPrice];
+            if(ClearingModel.discountEnable)
+            {
+                priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ClearingModel.price,ClearingModel.originalPrice];
+                
+            }else
+            {
+                priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ClearingModel.originalPrice];
+            }
         }
-        
     }
-
 }
 
 #pragma mark - Other
