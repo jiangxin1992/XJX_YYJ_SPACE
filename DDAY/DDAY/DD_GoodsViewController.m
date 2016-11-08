@@ -176,7 +176,15 @@
                     
                     _benefitInfoModel=[DD_BenefitInfoModel getBenefitInfoModel:[data objectForKey:@"benefitInfo"]];
                     
-                    _benefitHeight=floor(([_benefitInfoModel.picInfo.height floatValue]/[_benefitInfoModel.picInfo.width floatValue])*ScreenWidth);
+                    if(_benefitInfoModel)
+                    {
+                        _benefitHeight=floor(([_benefitInfoModel.picInfo.height floatValue]/[_benefitInfoModel.picInfo.width floatValue])*ScreenWidth);
+                    }else
+                    {
+                        _benefitHeight=0;
+                    }
+                    
+                    JXLOG(@"_benefitHeight=%lf",_benefitHeight);
                     
                     [self updateHeadViewState];
                     
@@ -347,6 +355,9 @@
         {
             [self unLoginAction];
         }
+    }else
+    {
+        JXLOG(@"111");
     }
 }
 -(void)unLoginAction
@@ -449,8 +460,15 @@
         DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
         if(item.pics)
         {
+            
             DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+            if([item.g_id isEqualToString:@"110"])
+            {
+                JXLOG(@"_isReadBenefit=%d",_isReadBenefit);
+                JXLOG(@"111");
+            }
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
+            NSLog(@"_height=%lf item=%@",_height,item.g_id);
             return _height+56+water_Top;
         }
         return 56+water_Top;
@@ -469,7 +487,7 @@
 //        case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeColumn:return 0;
         case WaterflowMarginTypeBottom:return water_Bottom;
-        case WaterflowMarginTypeTop:return _isReadBenefit?0:_benefitHeight;
+        case WaterflowMarginTypeTop:return _benefitInfoModel?_benefitHeight:0;
         default:return 0;
     }
 }

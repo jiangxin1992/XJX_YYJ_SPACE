@@ -17,23 +17,13 @@
     _OrderModel.orderList=[DD_OrderModel getOrderModelArr:[dict objectForKey:@"orderList"]];
     _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
     
-//    /** 未支付的情况下，订单取消时间*/
-//    __long(orderCancelTime);
-//    
-//    /** 订单支付时间*/
-//    __long(orderPayTime);;
-//    
-//    /** 优惠券优惠金额*/
-//    __float(benefitAmount);
-//    
-//    /** 积分优惠金额*/
-//    __float(intergralAmout);
-//    
-//    /** 实际支付金额*/
-//    __float(actuallyPay);
-//    
-//    /** 支付方式 1 支付宝 2 微信 3 银联 */
-//    __int(payWay);
+    
+    _OrderModel.payWay=1;
+    _OrderModel.orderPayTime = [NSDate nowTime]-60*60;
+    _OrderModel.orderCancelTime = [NSDate nowTime]+30*60;
+    _OrderModel.benefitAmount = 30;
+    _OrderModel.intergralAmout = 40;
+    _OrderModel.actuallyPay=_OrderModel.allFreight+[_OrderModel.totalAmount floatValue]-_OrderModel.benefitAmount-_OrderModel.intergralAmout;
     return _OrderModel;
 }
 @end

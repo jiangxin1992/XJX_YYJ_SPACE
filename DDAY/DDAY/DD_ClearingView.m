@@ -393,6 +393,7 @@
     [payView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_isShow?170:41);
     }];
+    [self layoutIfNeeded];
     _block(@"height",payView.origin.y + payView.size.height,_payWay);
 }
 /**
@@ -422,7 +423,9 @@
     
     remarksView.frame=CGRectMake(CGRectGetMinX(remarksView.frame), CGRectGetMinY(remarksView.frame), CGRectGetWidth(remarksView.frame), frame.size.height);
     line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth-2*kEdge, 1);
-    _block(@"height",payView.origin.y + payView.size.height,_payWay);
+    [self layoutIfNeeded];
+    CGFloat _y_p=payView.origin.y + payView.size.height;
+    _block(@"height",_y_p,_payWay);
 }
 
 #pragma mark - 弃用代码
