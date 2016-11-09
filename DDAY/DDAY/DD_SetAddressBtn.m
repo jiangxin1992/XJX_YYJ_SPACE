@@ -68,7 +68,7 @@
     [addressImg mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLabel.mas_right).with.offset(20);
         make.right.mas_equalTo(-kEdge);
-        make.width.mas_equalTo(20.5);
+        make.width.mas_equalTo(20);
         make.height.mas_equalTo(27);
         make.centerY.mas_equalTo(_nameLabel);
     }];

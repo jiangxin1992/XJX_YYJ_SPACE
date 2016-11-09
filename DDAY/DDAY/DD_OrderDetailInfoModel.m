@@ -17,7 +17,6 @@
     _OrderModel.orderList=[DD_OrderModel getOrderModelArr:[dict objectForKey:@"orderList"]];
     _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
     
-    
     _OrderModel.payWay=1;
     _OrderModel.orderPayTime = [NSDate nowTime]-60*60;
     _OrderModel.orderCancelTime = [NSDate nowTime]+30*60;

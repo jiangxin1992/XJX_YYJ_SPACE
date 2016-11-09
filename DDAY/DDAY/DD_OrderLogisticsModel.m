@@ -16,7 +16,6 @@
 {
     DD_OrderLogisticsModel *_SizeAlertModel=[DD_OrderLogisticsModel mj_objectWithKeyValues:dict];
     _SizeAlertModel.AcceptTime=[[dict objectForKey:@"AcceptTime"] longLongValue]/1000;
-//    _SizeAlertModel.AcceptTime=_SizeAlertModel.AcceptTime/1000;
     return _SizeAlertModel;
 }
 /**

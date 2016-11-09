@@ -10,6 +10,7 @@
 
 #import "DD_OrderDetailInfoModel.h"
 #import "DD_AddressModel.h"
+#import "DD_OrderLogisticsModel.h"
 
 @interface DD_OrderDetailModel : NSObject
 /**
@@ -19,5 +20,6 @@
 
 @property (nonatomic,strong)DD_OrderDetailInfoModel *orderInfo;
 @property (nonatomic,strong)DD_AddressModel *address;
+@property (nonatomic,strong)DD_OrderLogisticsModel *logisticsModel;
 
 @end

@@ -220,6 +220,7 @@
 		3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8228F61D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib */; };
 		3F8228FC1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FA1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m */; };
 		3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */; };
+		3F82AEE91DD2FBC7004C8219 /* DD_OrderDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */; };
 		3F82E78D1D81417100EA4950 /* DD_UserMessageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F82E78C1D81417100EA4950 /* DD_UserMessageTool.m */; };
 		3F83EEA21D38916A0051C89E /* UILabel+DD_Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */; };
 		3F85BACA1D66AFB300820018 /* DD_ShowRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */; };
@@ -856,6 +857,8 @@
 		3F8228FA1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerCircleViewController.m; sourceTree = "<group>"; };
 		3F8228FE1D0DA10500F95E79 /* DD_DesignerIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerIntroViewController.h; sourceTree = "<group>"; };
 		3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerIntroViewController.m; sourceTree = "<group>"; };
+		3F82AEE71DD2FBC7004C8219 /* DD_OrderDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderDetailHeadView.h; sourceTree = "<group>"; };
+		3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderDetailHeadView.m; sourceTree = "<group>"; };
 		3F82E78B1D81417100EA4950 /* DD_UserMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageTool.h; sourceTree = "<group>"; };
 		3F82E78C1D81417100EA4950 /* DD_UserMessageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserMessageTool.m; sourceTree = "<group>"; };
 		3F83EEA01D38916A0051C89E /* UILabel+DD_Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+DD_Custom.h"; sourceTree = "<group>"; };
@@ -3255,6 +3258,8 @@
 		3FC2D17B1D06A25D005A1FF0 /* 订单详情 */ = {
 			isa = PBXGroup;
 			children = (
+				3F82AEE71DD2FBC7004C8219 /* DD_OrderDetailHeadView.h */,
+				3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */,
 				3FC2D17C1D06A272005A1FF0 /* DD_OrderDetailViewController.h */,
 				3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */,
 			);
@@ -3757,6 +3762,7 @@
 				3F552EB01CF220B700BC5E33 /* DD_GoodsInformView.m in Sources */,
 				3F9B8B081CEF6D29008EC460 /* DD_UserTool.m in Sources */,
 				3F5717311D6EBD75006E1940 /* DD_CalendarCell.m in Sources */,
+				3F82AEE91DD2FBC7004C8219 /* DD_OrderDetailHeadView.m in Sources */,
 				3F3C3F021CFEBCB00056CD6B /* DD_DDAYCell.m in Sources */,
 				3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */,
 				3F9B8B151CF0095C008EC460 /* DD_RegisterViewController.m in Sources */,

@@ -19,7 +19,8 @@
 #import "DD_OrderTabBar.h"
 #import "DD_OrderClearingView.h"
 #import "DD_ClearingTableViewCell.h"
-#import "DD_OrderAddressView.h"
+//#import "DD_OrderAddressView.h"
+#import "DD_OrderDetailHeadView.h"
 
 #import "DD_OrderTool.h"
 #import "DD_OrderDetailModel.h"
@@ -35,7 +36,8 @@
     UITableView *_tableview;
     DD_OrderTabBar *_tabBar;
     DD_OrderClearingView *_ClearingView;
-    DD_OrderAddressView *_AddressView;
+//    DD_OrderAddressView *_AddressView;
+    DD_OrderDetailHeadView *_headView;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +53,7 @@
     if(self)
     {
         _block=block;
+        model.orderStatus=0;
         _OrderModel=model;
     }
     return self;
@@ -121,25 +124,54 @@
  */
 -(void)CreateHeadView
 {
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"refund"])
-        {
-            //            跳转退款界面
-            [self RefundAction];
-        }
-    }];
-    [headView addSubview:_AddressView];
-    [_AddressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(headView);
-    }];
-    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    CGRect frame = headView.frame;
-    frame.size.height = height;
+
+    if(!_headView)
+    {
+        _headView=[[DD_OrderDetailHeadView alloc] initWithOrderDetailModel:_OrderDetailModel WithOrderModel:_OrderModel WithBlock:^(NSString *type, CGFloat height, NSString *phonenum) {
+            if([type isEqualToString:@"height"])
+            {
+                //高度调整
+                _headView.frame=CGRectMake(0, 0, ScreenWidth, height);
+                _tableview.tableHeaderView=_headView;
+            }else if([type isEqualToString:@"close"])
+            {
+                //定时关闭
+            }else if([type isEqualToString:@"phone_click"])
+            {
+                //打电话
+            }else if([type isEqualToString:@"enter_logistics"])
+            {
+                //跳转物流详情页
+            }
+        }];
+        _headView.frame=CGRectMake(0, 0, ScreenWidth, 0);
+        _tableview.tableHeaderView = _headView;
+    }else
+    {
+        _headView.orderModel=_OrderModel;
+        _headView.orderDetailModel=_OrderDetailModel;
+        [_headView SetState];
+    }
     
-    headView.frame = frame;
-    _tableview.tableHeaderView = headView;
     
+    //    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    //    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:^(NSString *type) {
+    //        if([type isEqualToString:@"refund"])
+    //        {
+    //            //            跳转退款界面
+    //            [self RefundAction];
+    //        }
+    //    }];
+    //    [headView addSubview:_AddressView];
+    //    [_AddressView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.edges.mas_equalTo(headView);
+    //    }];
+    //    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    //    CGRect frame = headView.frame;
+    //    frame.size.height = height;
+    //
+    //    headView.frame = frame;
+    //    _tableview.tableHeaderView = headView;
 }
 /**
  * 确认订单按钮
@@ -223,8 +255,8 @@
                 [_tableview reloadData];
                 _tabBar.orderInfo=_OrderDetailModel.orderInfo;
                 [_tabBar UIConfig];
-                _AddressView.DetailModel=_OrderDetailModel;
-                [_AddressView SetState];
+//                _AddressView.DetailModel=_OrderDetailModel;
+//                [_AddressView SetState];
             }
         }] animated:YES];
     }] animated:YES completion:nil];
