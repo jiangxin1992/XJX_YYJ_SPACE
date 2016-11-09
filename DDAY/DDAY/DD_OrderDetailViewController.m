@@ -179,6 +179,37 @@
     _tabBar.backgroundColor=_define_white_color;
     [self.view addSubview:_tabBar];
 }
+#pragma mark - RequestData
+-(void)RequestData
+{
+    NSString *_url=nil;
+    NSDictionary *_parameters=nil;
+    if(_OrderModel.isPay)
+    {
+        _url=@"order/querySubOrderDetail.do";
+        _parameters=@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode};
+    }else
+    {
+        _url=@"order/queryOrderDetail.do";
+        _parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
+    }
+    
+    [[JX_AFNetworking alloc] GET:_url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        if(success)
+        {
+            _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
+            [self CreateTabBar];
+            [self CreateFootView];
+            [self CreateHeadView];
+            [_tableview reloadData];
+        }else
+        {
+            [self presentViewController:successAlert animated:YES completion:nil];
+        }
+    } failure:^(NSError *error, UIAlertController *failureAlert) {
+        [self presentViewController:failureAlert animated:YES completion:nil];
+    }];
+}
 #pragma mark - SomeActions
 /**
  * 退款
@@ -451,37 +482,7 @@
     }];
     
 }
-#pragma mark - RequestData
--(void)RequestData
-{
-    NSString *_url=nil;
-    NSDictionary *_parameters=nil;
-    if(_OrderModel.isPay)
-    {
-        _url=@"order/querySubOrderDetail.do";
-        _parameters=@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode};
-    }else
-    {
-        _url=@"order/queryOrderDetail.do";
-        _parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
-    }
-    
-    [[JX_AFNetworking alloc] GET:_url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-        if(success)
-        {
-            _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
-            [self CreateTabBar];
-            [self CreateFootView];
-            [self CreateHeadView];
-            [_tableview reloadData];
-        }else
-        {
-            [self presentViewController:successAlert animated:YES completion:nil];
-        }
-    } failure:^(NSError *error, UIAlertController *failureAlert) {
-        [self presentViewController:failureAlert animated:YES completion:nil];
-    }];
-}
+
 #pragma mark - TableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

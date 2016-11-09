@@ -11,13 +11,12 @@
 #import "DD_SetViewController.h"
 #import "DD_OrderViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+#import "DD_TarentoHomePageViewController.h"
 #import "DD_UserMainCollectViewController.h"
 #import "DD_UserMessageViewController.h"
-#import "DD_TarentoHomePageViewController.h"
 #import "DD_FansViewController.h"
 #import "DD_UserDDAYViewController.h"
 #import "DD_ShowRoomViewController.h"
-#import "DD_UserInfoViewController.h"
 #import "DD_IntegralViewController.h"
 #import "DD_BenefitListViewController.h"
 
@@ -67,7 +66,6 @@
 }
 -(void)PrepareUI
 {
-//    System_News
     [self setNotBtnWithExist:NO];
 }
 #pragma mark - UIConfig
@@ -119,7 +117,6 @@
     for (int i=0; i<_dataArr.count; i++) {
         DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]]];
         [self.view addSubview:item];
-//        item.backgroundColor=[UIColor redColor];
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -226,62 +223,7 @@
     }];
 }
 #pragma mark - SomeAction
-/**
- * 更新当前积分
- */
--(void)updateRewardPoints
-{
-    for (id obj in self.view.subviews) {
-        if([obj isKindOfClass:[DD_UserItemBtn class]])
-        {
-            DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
-            if([_UserItemBtn.type isEqualToString:@"integral"])
-            {
-                if(_usermodel.rewardPoints)
-                {
-                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"（%ld）",_usermodel.rewardPoints];
-                }else
-                {
-                    _UserItemBtn.rewardPoints_label.text=@"";
-                }
-            }
-        }
-    }
-}
--(void)setNotBtnWithExist:(BOOL )is_exist
-{
-    NSString *_img=nil;
-    if(is_exist)
-    {
-        _img=@"System_News";
-    }else
-    {
-        _img=@"System_NoNews";
-    }
-    
-    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:_img];
-    [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
-}
--(void)pushUserInfo
-{
-    if(![DD_UserModel isLogin])
-    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-//        }] animated:YES completion:nil];
-    }else
-    {
-        [self.navigationController pushViewController:[[DD_UserInfoViewController alloc] initWithBlock:^(NSString *type ,DD_UserModel *model) {
-            if([type isEqualToString:@"info_update"])
-            {
-                //                我的主页  viewwillapp的时候会重新获取用户信息
-                //                所以这边不做处理
-            }
-        }] animated:YES];
-    }
 
-}
 /**
  * 点击事件
  */
@@ -322,14 +264,30 @@
  */
 -(void)PushBenefitView
 {
-    [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+    if([DD_UserModel isLogin])
+    {
+        [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+    }else
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }
 }
 /**
  * 跳转积分页面
  */
 -(void)PushScoreView
 {
-    [self.navigationController pushViewController:[[DD_IntegralViewController alloc] init] animated:YES];
+    if([DD_UserModel isLogin])
+    {
+        [self.navigationController pushViewController:[[DD_IntegralViewController alloc] init] animated:YES];
+    }else
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }
 }
 /**
  * 跳转体验店页面
@@ -426,31 +384,11 @@
     
 }
 /**
- * 用户权限变化
- */
--(void)MonitorRootChangeAction
-{
-    _dataArr=[DD_UserTool getUserListArr];
-    _imgDataArr=[DD_UserTool getUserImgListArr];
-}
-/**
  * 跳转消息界面
  */
 -(void)messageAction
 {
     [self.navigationController pushViewController:[DD_UserMessageViewController new] animated:YES];
-}
-/**
- * 界面更新
- */
--(void)UpdateUI
-{
-    [self SetDataArr];
-    for (UIView *view in self.view.subviews) {
-        [view removeFromSuperview];
-    }
-    [self UIConfig];
-    _usermodel=[DD_UserModel getLocalUserInfo];
 }
 /**
  * 跳转设置界面
@@ -465,15 +403,6 @@
         }
     }];
     [self.navigationController pushViewController:_set animated:YES];
-}
-
-/**
- * 获取当前的list arr
- */
--(void)SetDataArr
-{
-    _dataArr=[DD_UserTool getUserListArr];
-    _imgDataArr=[DD_UserTool getUserImgListArr];
 }
 /**
  * 跳转登录界面
@@ -491,7 +420,75 @@
         [self.navigationController pushViewController:_login animated:YES];
     }
 }
+/**
+ * 更新当前积分
+ */
+-(void)updateRewardPoints
+{
+    for (id obj in self.view.subviews) {
+        if([obj isKindOfClass:[DD_UserItemBtn class]])
+        {
+            DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
+            if([_UserItemBtn.type isEqualToString:@"integral"])
+            {
+                if(_usermodel.rewardPoints)
+                {
+                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"（%ld）",_usermodel.rewardPoints];
+                }else
+                {
+                    _UserItemBtn.rewardPoints_label.text=@"";
+                }
+            }
+        }
+    }
+}
+/**
+ * 设置当前消息已读状态
+ */
+-(void)setNotBtnWithExist:(BOOL )is_exist
+{
+    NSString *_img=nil;
+    if(is_exist)
+    {
+        _img=@"System_News";
+    }else
+    {
+        _img=@"System_NoNews";
+    }
+    
+    DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:_img];
+    [message addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:message];
+}
+/**
+ * 用户权限变化
+ */
+-(void)MonitorRootChangeAction
+{
+    _dataArr=[DD_UserTool getUserListArr];
+    _imgDataArr=[DD_UserTool getUserImgListArr];
+}
+/**
+ * 界面更新
+ */
+-(void)UpdateUI
+{
+    [self SetDataArr];
+    for (UIView *view in self.view.subviews) {
+        [view removeFromSuperview];
+    }
+    [self UIConfig];
+    _usermodel=[DD_UserModel getLocalUserInfo];
+}
 
+/**
+ * 获取当前的list arr
+ */
+-(void)SetDataArr
+{
+    _dataArr=[DD_UserTool getUserListArr];
+    _imgDataArr=[DD_UserTool getUserImgListArr];
+}
 
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
@@ -512,22 +509,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 弃用代码
-//-(void)RequestNewFansStatus
-//{
-//    
-//    [[JX_AFNetworking alloc] GET:@"designer/queryHasNewFans.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//        if(success)
-//        {
-//            FansNum=[[NSString alloc] initWithFormat:@"%ld",[[data objectForKey:@"fansNum"] integerValue]];
-//            //            hasNewFans=[[data objectForKey:@"hasNewFans"] boolValue];
-//            [_tableview reloadData];
-//        }else
-//        {
-//            [self presentViewController:successAlert animated:YES completion:nil];
-//        }
-//    } failure:^(NSError *error, UIAlertController *failureAlert) {
-//        [self presentViewController:failureAlert animated:YES completion:nil];
-//    }];
-//}
+
 @end

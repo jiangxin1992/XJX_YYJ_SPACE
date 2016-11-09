@@ -81,6 +81,8 @@
         return @[@"conference"
                  ,@"collection"
                  ,@"order"
+                 ,@"benefit"
+                 ,@"integral"
                  ,@"showroom"
                  ,@"set"
                  ];

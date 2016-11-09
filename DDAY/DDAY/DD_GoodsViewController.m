@@ -357,7 +357,7 @@
         }
     }else
     {
-        JXLOG(@"111");
+        _isReadBenefit=NO;
     }
 }
 -(void)unLoginAction
@@ -487,7 +487,7 @@
 //        case WaterflowMarginTypeColumn:return water_Bottom;
         case WaterflowMarginTypeColumn:return 0;
         case WaterflowMarginTypeBottom:return water_Bottom;
-        case WaterflowMarginTypeTop:return _benefitInfoModel?_benefitHeight:0;
+        case WaterflowMarginTypeTop:return _isReadBenefit?0:_benefitHeight;
         default:return 0;
     }
 }
