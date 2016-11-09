@@ -18,8 +18,9 @@
     _OrderModel.createTime=[[dict objectForKey:@"createTime"] longLongValue]/1000;
     
     _OrderModel.payWay=1;
-    _OrderModel.orderPayTime = [NSDate nowTime]-60*60;
-    _OrderModel.orderCancelTime = [NSDate nowTime]+30*60;
+    _OrderModel.createTime = [NSDate nowTime]-400;
+    _OrderModel.orderPayTime = [NSDate nowTime]-200;
+    _OrderModel.orderCancelTime = [NSDate nowTime]+200;
     _OrderModel.benefitAmount = 30;
     _OrderModel.intergralAmout = 40;
     _OrderModel.actuallyPay=_OrderModel.allFreight+[_OrderModel.totalAmount floatValue]-_OrderModel.benefitAmount-_OrderModel.intergralAmout;

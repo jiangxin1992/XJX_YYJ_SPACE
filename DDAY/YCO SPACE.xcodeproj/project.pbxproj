@@ -119,6 +119,7 @@
 		3F4553001D2104B400524738 /* DD_TarentoHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4552FE1D2104B400524738 /* DD_TarentoHomePageViewController.m */; };
 		3F4553051D21081E00524738 /* DD_TarentoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553041D21081E00524738 /* DD_TarentoHeadView.m */; };
 		3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553081D21312300524738 /* DD_FansViewController.m */; };
+		3F48935D1DD37D0900D9735F /* DD_OrderDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F48935C1DD37D0900D9735F /* DD_OrderDetailFootView.m */; };
 		3F48D75B1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */; };
 		3F4904DC1D18D4C4009F4CD3 /* DD_CircleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4904DB1D18D4C4009F4CD3 /* DD_CircleListModel.m */; };
 		3F4904E01D18DA0A009F4CD3 /* DD_CircleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4904DE1D18DA0A009F4CD3 /* DD_CircleListCell.m */; };
@@ -666,6 +667,8 @@
 		3F4553041D21081E00524738 /* DD_TarentoHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_TarentoHeadView.m; sourceTree = "<group>"; };
 		3F4553071D21312300524738 /* DD_FansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_FansViewController.h; sourceTree = "<group>"; };
 		3F4553081D21312300524738 /* DD_FansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_FansViewController.m; sourceTree = "<group>"; };
+		3F48935B1DD37D0900D9735F /* DD_OrderDetailFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderDetailFootView.h; sourceTree = "<group>"; };
+		3F48935C1DD37D0900D9735F /* DD_OrderDetailFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderDetailFootView.m; sourceTree = "<group>"; };
 		3F48D7591D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYAnimatedImageView+LoadImage.h"; sourceTree = "<group>"; };
 		3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYAnimatedImageView+LoadImage.m"; sourceTree = "<group>"; };
 		3F4904DA1D18D4C4009F4CD3 /* DD_CircleListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleListModel.h; sourceTree = "<group>"; };
@@ -3072,7 +3075,6 @@
 			isa = PBXGroup;
 			children = (
 				3F0A8CDD1D07B881005549BE /* 地址 */,
-				3FCC604D1D06FC4F006D6E44 /* 总结 */,
 				3F0A8CE51D07F6CE005549BE /* 退款界面 */,
 				3F0A8CE11D07C841005549BE /* tabbar */,
 				3FA836851D055C19006D2919 /* DD_OrderHeadView.h */,
@@ -3258,21 +3260,16 @@
 		3FC2D17B1D06A25D005A1FF0 /* 订单详情 */ = {
 			isa = PBXGroup;
 			children = (
+				3FCC604E1D06FC75006D6E44 /* DD_OrderClearingView.h */,
+				3FCC604F1D06FC75006D6E44 /* DD_OrderClearingView.m */,
+				3F48935B1DD37D0900D9735F /* DD_OrderDetailFootView.h */,
+				3F48935C1DD37D0900D9735F /* DD_OrderDetailFootView.m */,
 				3F82AEE71DD2FBC7004C8219 /* DD_OrderDetailHeadView.h */,
 				3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */,
 				3FC2D17C1D06A272005A1FF0 /* DD_OrderDetailViewController.h */,
 				3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */,
 			);
 			name = "订单详情";
-			sourceTree = "<group>";
-		};
-		3FCC604D1D06FC4F006D6E44 /* 总结 */ = {
-			isa = PBXGroup;
-			children = (
-				3FCC604E1D06FC75006D6E44 /* DD_OrderClearingView.h */,
-				3FCC604F1D06FC75006D6E44 /* DD_OrderClearingView.m */,
-			);
-			name = "总结";
 			sourceTree = "<group>";
 		};
 		3FE8D7B11DD08F6D00F3A21C /* 选择优惠券 */ = {
@@ -3805,6 +3802,7 @@
 				3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */,
 				3F9B8B1B1CF01F8D008EC460 /* DD_SetPSWViewController.m in Sources */,
 				3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */,
+				3F48935D1DD37D0900D9735F /* DD_OrderDetailFootView.m in Sources */,
 				3F5717241D6EAC63006E1940 /* DD_PointModel.m in Sources */,
 				3F4904F21D1910A5009F4CD3 /* Tools.m in Sources */,
 				3F5717371D6ED356006E1940 /* CalendarViewController.m in Sources */,

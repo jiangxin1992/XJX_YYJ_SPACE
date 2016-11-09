@@ -399,6 +399,10 @@
 {
 //    跳转订单详情
     [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+        if([type isEqualToString:@"reload"])
+        {
+            [_tableview.mj_header beginRefreshing];
+        }
         
     }] animated:YES];
 }

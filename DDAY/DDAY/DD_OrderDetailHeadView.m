@@ -13,17 +13,20 @@
 @implementation DD_OrderDetailHeadView
 {
 
+    //订单状态
     UIView *_orderStateView;
     UILabel *_stateLabel;
     UILabel *_restTimeLabel;
     dispatch_source_t _timer;
     
+    //物流状态
     UIButton *_orderLogisticsBtn;
     UIImageView *_logisticsImgView;
     TTTAttributedLabel *_latestLogisticsInfoLabel;
     UILabel *_latestLogisticsTimeLabel;
     UIView *_logisticsDownLine;
     
+    //地址
     UIView *_addressView;
     UIImageView *_addressImgView;
     UILabel *_addressNameLabel;
@@ -31,12 +34,8 @@
     UILabel *_addressDetailLabel;
     UIView *_addressDownLine;
 }
-#pragma mark - 初始化
-/**
- * 订单状态view
- * 物流状态view
- * 地址view
- */
+#pragma mark - init
+
 -(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height,NSString *phonenum))block
 {
     self=[super init];
@@ -60,7 +59,10 @@
     [self PrepareUI];
 }
 -(void)PrepareData{}
--(void)PrepareUI{}
+-(void)PrepareUI
+{
+    self.backgroundColor=_define_white_color;
+}
 
 #pragma mark - UIConfig
 
@@ -153,7 +155,7 @@
 #pragma mark - SetState
 
 /**
- * 设置当前视图状态
+ * 设置/更新 当前视图状态
  */
 -(void)SetState
 {
@@ -363,12 +365,6 @@
         _restTimeLabel.text=@"";
     }
 }
-#pragma mark  ---------------TTTAttributedLabelDelegate--------------
-
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber {
-    //点击手机号
-    _block(@"phone_click",0,phoneNumber);
-}
 
 #pragma mark - SomeAction
 /**
@@ -399,17 +395,18 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //时间已到 自动取消订单
                     [self dispatch_cancel];
-                    _block(@"close",0,@"");
+                    _block(@"count_end",0,@"");
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
     
                     NSCalendar *cal = [NSCalendar currentCalendar];//定义一个NSCalendar对象
                     //用来得到具体的时差
-                    unsigned int unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+                    unsigned int unitFlags =  NSCalendarUnitMinute | NSCalendarUnitSecond;
                     NSDateComponents *d = [cal components:unitFlags fromDate:[NSDate nowDate] toDate:[NSDate dateWithTimeIntervalSince1970:[NSDate nowTime]+timeout] options:0];
                     
                     _restTimeLabel.text=[[NSString alloc] initWithFormat:@"%ld分%ld秒后自动取消订单",[d minute],[d second]];
+                    JXLOG(@"------------%@------------",_restTimeLabel.text);
                     timeout--;
                 });
             }
@@ -427,5 +424,10 @@
     [regular dispatch_cancel:_timer];
     _timer=nil;
 }
+#pragma mark  ---------------TTTAttributedLabelDelegate--------------
 
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber {
+    //点击手机号
+    _block(@"phone_click",0,phoneNumber);
+}
 @end

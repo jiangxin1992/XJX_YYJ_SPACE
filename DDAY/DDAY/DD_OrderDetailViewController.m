@@ -26,7 +26,7 @@
 #import "DD_OrderDetailModel.h"
 #import "DD_ItemsModel.h"
 
-@interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -93,7 +93,7 @@
     _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(self.view);
     }];
 }
 
@@ -120,9 +120,9 @@
     
 }
 /**
- * 创建地址视图 HeadView
+ * 创建／更新headview视图
  */
--(void)CreateHeadView
+-(void)UpdateHeadView
 {
 
     if(!_headView)
@@ -133,15 +133,18 @@
                 //高度调整
                 _headView.frame=CGRectMake(0, 0, ScreenWidth, height);
                 _tableview.tableHeaderView=_headView;
-            }else if([type isEqualToString:@"close"])
+            }else if([type isEqualToString:@"count_end"])
             {
-                //定时关闭
+                //计时结束(订单关闭)
+                [self OrderEndAction];
             }else if([type isEqualToString:@"phone_click"])
             {
                 //打电话
+                [self CallActionWithPhoneNum:phonenum];
             }else if([type isEqualToString:@"enter_logistics"])
             {
                 //跳转物流详情页
+                [self checkLogisticsInfo];
             }
         }];
         _headView.frame=CGRectMake(0, 0, ScreenWidth, 0);
@@ -232,7 +235,7 @@
             _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
             [self CreateTabBar];
             [self CreateFootView];
-            [self CreateHeadView];
+            [self UpdateHeadView];
             [_tableview reloadData];
         }else
         {
@@ -242,7 +245,126 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
+#pragma mark  UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",alertView.title];
+    if (buttonIndex == 0) {
+        
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
+    }
+}
+#pragma mark - TableViewDelegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 140;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //    子订单数量
+    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
+    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
+    return __OrderModel.itemList.count;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    //    子订单数量
+    return _OrderDetailModel.orderInfo.orderList.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    数据还未获取时候
+    if(_OrderDetailModel==nil)
+    {
+        static NSString *cellid=@"cellid";
+        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+        if(!cell)
+        {
+            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
+    //获取到数据以后
+    static NSString *cellid=@"cell_p";
+    DD_ClearingTableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    if(!cell)
+    {
+        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:YES WithBlock:nil];
+    }
+    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
+    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
+    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
+    cell.ClearingModel=[DD_OrderTool getClearingOrderModel:_item];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
+    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
+    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
+    
+    DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
+    _ItemsModel.g_id=_item.itemId;
+    _ItemsModel.colorCode=_item.colorCode;
+    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
+        
+    }];
+    [self.navigationController pushViewController:_GoodsDetailView animated:YES];
+}
 #pragma mark - SomeActions
+/**
+ * 返回 
+ * 取消线程
+ */
+-(void)backAction
+{
+    [_headView dispatch_cancel];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+/**
+ * 订单关闭
+ */
+-(void)OrderEndAction
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"订单已关闭" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dialAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _block(@"reload",nil);
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alert addAction:dialAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+/**
+ * 电话
+ */
+-(void)CallActionWithPhoneNum:(NSString *)phoneNumber
+{
+    NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",phoneNumber];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:phoneNumber message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *dialAction = [UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:cancelAction];
+        [alert addAction:dialAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:phoneNumber message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
+        
+        [alertView show];
+    }
+}
 /**
  * 退款
  */
@@ -514,71 +636,6 @@
     }];
     
 }
-
-#pragma mark - TableViewDelegate
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 140;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-//    子订单数量
-    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
-    return __OrderModel.itemList.count;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    //    子订单数量
-    return _OrderDetailModel.orderInfo.orderList.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    数据还未获取时候
-    if(_OrderDetailModel==nil)
-    {
-        static NSString *cellid=@"cellid";
-        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-        if(!cell)
-        {
-            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-        }
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    
-    //获取到数据以后
-    static NSString *cellid=@"cell_p";
-    DD_ClearingTableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
-    if(!cell)
-    {
-        cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:YES WithBlock:nil];
-    }
-    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
-    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
-    cell.ClearingModel=[DD_OrderTool getClearingOrderModel:_item];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
-    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
-    
-    DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
-    _ItemsModel.g_id=_item.itemId;
-    _ItemsModel.colorCode=_item.colorCode;
-    DD_GoodsDetailViewController *_GoodsDetailView=[[DD_GoodsDetailViewController alloc] initWithModel:_ItemsModel WithBlock:^(DD_ItemsModel *model, NSString *type) {
-        
-    }];
-    [self.navigationController pushViewController:_GoodsDetailView animated:YES];
-}
-
-
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated
 {

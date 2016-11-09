@@ -28,7 +28,15 @@
  */
 -(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height,NSString *phonenum))block;
 
+/**
+ * 更新视图
+ */
 -(void)SetState;
+
+/**
+ * 关闭线程
+ */
+-(void)dispatch_cancel;
 
 /**
  * 1、倒计时结束

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_OrderDetailHeadView.m"
-            timestampString = "500387305.824138"
+            filePath = "DDAY/DD_OrderDetailViewController.m"
+            timestampString = "500398606.861708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-SetOrderLogisticsView"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "-backAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
