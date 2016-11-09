@@ -16,4 +16,6 @@
 
 @property (nonatomic,copy) void (^block)(NSString *type);
 
+@property (nonatomic,strong) DD_BenefitInfoModel *benefitInfoModel;
+
 @end

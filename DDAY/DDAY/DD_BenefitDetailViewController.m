@@ -129,7 +129,6 @@
 -(void)RequestData
 {
     [self RequestDetailData];
-//    [self RequestCloseData];
 }
 -(void)RequestDetailData
 {
@@ -146,22 +145,7 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
--(void)RequestCloseData
-{
-    if([DD_UserModel isLogin])
-    {
-        //关闭
-        [[JX_AFNetworking alloc] GET:@"user/readBenefit.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                _block(@"markread");
-            }else
-            {
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-        }];
-    }
-}
+
 
 #pragma mark - other
 - (void)didReceiveMemoryWarning {

@@ -4093,6 +4093,7 @@
 					"$(PROJECT_DIR)/DDAY",
 					"$(PROJECT_DIR)/DDAY/ZFB",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DDAY/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4136,6 +4137,7 @@
 					"$(PROJECT_DIR)/DDAY",
 					"$(PROJECT_DIR)/DDAY/ZFB",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DDAY/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

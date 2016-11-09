@@ -11,6 +11,9 @@
 
 
 @implementation DD_headViewBenefitView
+{
+    UIImageView *benefitImg;
+}
 
 -(instancetype)initWithModel:(DD_BenefitInfoModel *)benefitInfoModel WithBlock:(void (^)(NSString *type))block
 {
@@ -23,7 +26,7 @@
         self.userInteractionEnabled=YES;
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterAction)]];
         
-        UIImageView *benefitImg=[UIImageView getCustomImg];
+        benefitImg=[UIImageView getCustomImg];
         [self addSubview:benefitImg];
         benefitImg.frame=CGRectMake(0, 0, ScreenWidth, _pic_height);
         benefitImg.contentMode=0;
@@ -36,9 +39,13 @@
         [self addSubview:btn];
         [btn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    
     return self;
+}
+-(void)setBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel
+{
+    _benefitInfoModel=benefitInfoModel;
+    benefitImg.contentMode=0;
+    [benefitImg JX_ScaleToFill_loadImageUrlStr:_benefitInfoModel.picInfo.pic WithSize:800 placeHolderImageName:nil radius:0];
 }
 -(void)closeAction
 {

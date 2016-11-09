@@ -10,6 +10,10 @@
 
 #import "DD_ImageModel.h"
 
+#define __bool(__k__) @property(nonatomic,assign) BOOL __k__
+#define __long(__k__) @property(nonatomic,assign) long __k__
+#define __int(__k__) @property(nonatomic,assign) NSInteger __k__
+
 @interface DD_BenefitInfoModel : NSObject
 
 /**
@@ -42,6 +46,9 @@ __long(effectEndTime);
 
 /** 是否已用*/
 __bool(isUse);
+
+/** 本地是否已读*/
+__bool(localRead);
 
 /** 最低使用金额*/
 __int(lowLimit);

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_BenefitInfoModel.h"
+
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
 #define __long(__k__) @property(nonatomic,assign) long __k__
 
@@ -130,11 +132,11 @@ __string(weight);
 /**
  * 首单立减红包是否已读（未登录状态下）
  */
-+(BOOL)isReadBenefit;
++(BOOL)isReadWithBenefitID:(NSString *)benefitID;
 
 /**
  * 设置首单立减红包在未登录状态下的（已读／未读）状态
  */
-+(void)setReadBenefit:(BOOL)read;
++(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel;
 
 @end

@@ -126,20 +126,75 @@
     return @"";
 }
 
-+(BOOL)isReadBenefit
++(BOOL)isReadWithBenefitID:(NSString *)benefitID
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    if([_default objectForKey:@"isReadBenefit"])
+    
+    NSMutableArray *_localBenefitArr = [_default objectForKey:@"localReadBenefit"];
+    
+    if(_localBenefitArr)
     {
-        return [[_default objectForKey:@"isReadBenefit"] boolValue];
+        for (int i=0; i<_localBenefitArr.count; i++) {
+            NSString *obj=[_localBenefitArr objectAtIndex:i];
+            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
+            if([_model.benefitId isEqualToString:benefitID])
+            {
+                JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+                return _model.localRead;
+            }
+        }
+        JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+        return NO;
+        
+    }else
+    {
+        JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+        return NO;
     }
-    return NO;
+//    NSString *jsonstr_user=[[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+//    return [DD_UserModel mj_objectWithKeyValues:jsonstr_user];
 }
 
-+(void)setReadBenefit:(BOOL)is_read
++(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel
 {
+    
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    [_default setObject:[NSNumber numberWithBool:is_read] forKey:@"isReadBenefit"];
+    
+    NSMutableArray *_localBenefitArr = [_default objectForKey:@"localReadBenefit"];
+    if(_localBenefitArr)
+    {
+        BOOL _have_model=NO;
+        BOOL _model_index=0;
+        for (int i=0; i<_localBenefitArr.count; i++) {
+            NSString *obj=[_localBenefitArr objectAtIndex:i];
+            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
+            if([_model.benefitId isEqualToString:benefitInfoModel.benefitId])
+            {
+                
+                _have_model=YES;
+                _model_index=i;
+                break;
+            }
+        }
+        if(_have_model)
+        {
+            [_localBenefitArr removeObjectAtIndex:_model_index];
+        }
+        
+        benefitInfoModel.localRead=read;
+        [_localBenefitArr addObject:[benefitInfoModel mj_JSONString]];
+        [_default setObject:_localBenefitArr forKey:@"localReadBenefit"];
+        JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+    }else
+    {
+        NSMutableArray *_new_localBenefitArr = [[NSMutableArray alloc] init];
+        benefitInfoModel.localRead=read;
+        [_new_localBenefitArr addObject:[benefitInfoModel mj_JSONString]];
+        [_default setObject:_new_localBenefitArr forKey:@"localReadBenefit"];
+        JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+    }
+    //    NSString *jsonstr_user=[_User mj_JSONString];
+    //    [_default setObject:jsonstr_user forKey:@"user"];
 }
 
 @end
