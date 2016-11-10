@@ -12,8 +12,18 @@
 
 + (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
 
++ (NSString *)getRoundNum:(CGFloat )num;
+
+/**
+ * 固定内容 字体下
+ * 获取高度
+ */
 +(CGFloat )getHeightWithWidth:(CGFloat )width WithContent:(NSString *)content WithFont:(UIFont *)font;
 
+/**
+ * 固定内容 字体下
+ * 获取宽度
+ */
 +(CGFloat )getWidthWithHeight:(CGFloat )height WithContent:(NSString *)content WithFont:(UIFont *)font;
 
 +(NSString *)getSpacingTime:(long)createTime;
@@ -23,6 +33,9 @@
  */
 +(void)UpdateRoot;
 
+/**
+ * 获取下拉动画图片数组
+ */
 +(NSArray *)getGifImg;
 
 /**
@@ -42,11 +55,18 @@
 
 /**
  * 添加view边框
+ * 黑色 边框宽度为1
  */
 +(void)setBorder:(UIView *)view;
 
+/**
+ * 裁剪
+ */
 +(void)setZeroBorder:(UIView *)view;
 
+/**
+ * 添加自定义边框
+ */
 +(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width;
 
 /**
@@ -103,7 +123,6 @@
  * 正则匹配用户密码6-15位数字和字母组合
  */
 + (BOOL)checkPassword:(NSString *) password;
-
 
 /**
  * 验证码格式验证

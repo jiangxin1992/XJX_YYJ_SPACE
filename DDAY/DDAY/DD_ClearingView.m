@@ -66,7 +66,8 @@
     freightTitleLabel.frame=CGRectMake(kEdge, 0, 100, 30);
     
     CGFloat _Freight=_dataArr.count*[_clearingModel.freight floatValue];
-    UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%.0lf",_Freight] WithFont:12 WithTextColor:nil WithSpacing:0];
+    
+    UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:_Freight]] WithFont:12 WithTextColor:nil WithSpacing:0];
     [self addSubview:freightLabel];
     freightLabel.font=[regular getSemiboldFont:12];
     freightLabel.frame=CGRectMake(ScreenWidth-kEdge-100, 0, 100, 30);
@@ -103,7 +104,8 @@
         make.bottom.mas_equalTo(0);
         make.left.mas_equalTo(kEdge);
     }];
-    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"共 %ld 件商品 小计 ￥%.1lf",[self getGoodsCount],[self getAllCountPriceWithArr:_dataArr]+_Freight];
+    
+    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"共 %ld 件商品 小计 ￥%@",[self getGoodsCount],[regular getRoundNum:[self getAllCountPriceWithArr:_dataArr]+_Freight]];
     
     UIView *line2=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:line2];
@@ -462,11 +464,11 @@
 //                       @"总结"
 //                       ,[[NSString alloc] initWithFormat:@"小计(%ld)"
 //                         ,[self getGoodsCount]]
-//                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_count]
+//                       ,[regular getRoundNum:_count]
 //                       ,@"运费"
-//                       ,[[NSString alloc] initWithFormat:@"￥%.0lf",_Freight]
+//                       ,[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:_Freight]]
 //                       ,@"总计"
-//                       ,[[NSString alloc] initWithFormat:@"￥%.1lf",_countPrice]
+//                       ,[regular getRoundNum:_countPrice]
 //                       ];
 //    CGFloat _y_p=0;
 //    CGFloat _x_p=20;

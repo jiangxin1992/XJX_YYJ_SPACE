@@ -34,6 +34,35 @@ static regular *_t = nil;
     }
     return refreshingImages;
 }
++ (NSString *)getRoundNum:(CGFloat )_num
+{
+    CGFloat _changeNum=round(_num*100)/100;
+    long _changeNum2=round(_num*100);
+    
+    NSInteger _index=0;
+    
+    if(_changeNum2 % 100)
+    {
+        _index++;
+    }
+    if(_changeNum2 % 10)
+    {
+       _index++;
+    }
+    
+    NSString *_str=@"";
+    if(_index==0)
+    {
+        _str=[[NSString alloc] initWithFormat:@"%.0lf",_changeNum];
+    }else if(_index==1)
+    {
+        _str=[[NSString alloc] initWithFormat:@"%.1lf",_changeNum];
+    }else if(_index==2)
+    {
+        _str=[[NSString alloc] initWithFormat:@"%.2lf",_changeNum];
+    }
+    return _str;
+}
 /**
  *  // 验证是固话或者手机号
  *

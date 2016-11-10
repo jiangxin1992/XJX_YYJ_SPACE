@@ -384,11 +384,11 @@
 //    UILabel *label=[self viewWithTag:101];
 //    if(_detailModel.item.discountEnable)
 //    {
-//        
-//        label.text=[[NSString alloc] initWithFormat:@"￥%.1f 折 %@原价￥%.1f",[_detailModel.item.price floatValue],_detailModel.item.discount,[_detailModel.item.originalPrice floatValue]];
+//
+//        label.text=[[NSString alloc] initWithFormat:@"￥%@ 折 %@原价￥%@",[regular getRoundNum:[_detailModel.item.price floatValue]],_detailModel.item.discount,[regular getRoundNum:[_detailModel.item.originalPrice floatValue]]];
 //    }else
 //    {
-//        label.text=[[NSString alloc] initWithFormat:@"￥%.1f",[_detailModel.item.originalPrice floatValue]];
+//        label.text=[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[_detailModel.item.originalPrice floatValue]]];
 //    }
 //}
 /**

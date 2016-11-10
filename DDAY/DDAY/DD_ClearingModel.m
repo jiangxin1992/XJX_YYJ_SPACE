@@ -334,10 +334,12 @@
     CGFloat _countPrice=[DD_ClearingTool getAllCountPriceWithDict:ordersDict];
     if(self.address)
     {
-        return @{@"address":[self getAddressDict],@"orders":ordersDict,@"subTotal":[[NSString alloc] initWithFormat:@"%.1lf",_countPrice]};
+        
+        return @{@"address":[self getAddressDict],@"orders":ordersDict,@"subTotal":[regular getRoundNum:_countPrice]};
     }else
     {
-        return @{@"orders":ordersDict,@"subTotal":[[NSString alloc] initWithFormat:@"%.1lf",_countPrice]};
+        
+        return @{@"orders":ordersDict,@"subTotal":[regular getRoundNum:_countPrice]};
     }
 }
 -(NSDictionary *)CategoryData
@@ -455,7 +457,8 @@
         }
         _Series.items=itemArr;
         _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
-        _Series.totalMoney=[[NSString alloc] initWithFormat:@"%.1lf",_totalMoney];
+        
+        _Series.totalMoney=[regular getRoundNum:_totalMoney];
         [_endSaleingArr addObject:_Series];
     }
     return _endSaleingArr;
@@ -534,7 +537,7 @@
             _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
         }
         _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
-        _Series.totalMoney=[[NSString alloc] initWithFormat:@"%.1lf",_totalMoney];
+        _Series.totalMoney=[regular getRoundNum:_totalMoney];
         [_endRemainArr addObject:_Series];
     }
     return _endRemainArr;

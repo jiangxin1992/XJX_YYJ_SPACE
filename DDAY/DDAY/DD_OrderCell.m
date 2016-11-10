@@ -190,7 +190,8 @@
         }
 
         _goodNumLabel.text=[[NSString alloc] initWithFormat:@"共%ld件商品",_OrderModel.itemList.count];
-        _totalPriceLabel.text=[[NSString alloc] initWithFormat:@"总计￥%.1lf",[_OrderModel.totalAmount floatValue]+_OrderModel.allFreight];
+        
+        _totalPriceLabel.text=[[NSString alloc] initWithFormat:@"总计￥%@",[regular getRoundNum:[_OrderModel.totalAmount floatValue]+_OrderModel.allFreight]];
         
         if(_OrderModel.orderStatus==0)
         {

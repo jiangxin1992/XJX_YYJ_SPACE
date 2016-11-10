@@ -29,8 +29,8 @@
         [backview addSubview:_label];
         _label.textAlignment=i==0?2:0;
         _label.textColor=[UIColor blackColor];
-        
-        _label.text=i==0?[[NSString alloc] initWithFormat:@"%ld 件商品",self.items.count]:[[NSString alloc] initWithFormat:@"共计 ￥ %.1f",[self getSeriesPrice]];
+       
+        _label.text=i==0?[[NSString alloc] initWithFormat:@"%ld 件商品",self.items.count]:[[NSString alloc] initWithFormat:@"共计 ￥ %@", [regular getRoundNum:[self getSeriesPrice]]];
     }
     return view;
 }

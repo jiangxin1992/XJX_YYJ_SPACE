@@ -360,11 +360,13 @@
     {
         _remarkLabel.text=@"";
     }
-    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"小计￥%.1lf",[_orderDetailModel.orderInfo.totalAmount floatValue]+_orderDetailModel.orderInfo.allFreight];
+    
+    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"小计￥%@",[regular getRoundNum:[_orderDetailModel.orderInfo.totalAmount floatValue]+_orderDetailModel.orderInfo.allFreight]];
     _freightLabel.text=[[NSString alloc] initWithFormat:@"共%ld件商品（含邮费￥%ld）",_orderDetailModel.orderInfo.totalItemCount,_orderDetailModel.orderInfo.allFreight];
     if(_orderDetailModel.orderInfo.benefitAmount)
     {
-        _benefitLabel.text=[[NSString alloc] initWithFormat:@"-￥%.1lf",_orderDetailModel.orderInfo.benefitAmount];
+        
+        _benefitLabel.text=[[NSString alloc] initWithFormat:@"-￥%@",[regular getRoundNum:_orderDetailModel.orderInfo.benefitAmount]];
         _benefitTitleLabel.text=@"优惠";
     }else
     {
@@ -374,7 +376,7 @@
     
     if(_orderDetailModel.orderInfo.intergralAmout)
     {
-        _integralLabel.text=[[NSString alloc] initWithFormat:@"-￥%.1lf",_orderDetailModel.orderInfo.intergralAmout];
+        _integralLabel.text=[[NSString alloc] initWithFormat:@"-￥%@",[regular getRoundNum:_orderDetailModel.orderInfo.intergralAmout]];
         _integralTitleLabel.text=@"积分抵扣";
     }else
     {
@@ -382,7 +384,8 @@
         _integralTitleLabel.text=@"";
     }
     
-    _actuallyPayLabel.text=[[NSString alloc] initWithFormat:@"实付￥%.1lf",_orderDetailModel.orderInfo.actuallyPay];
+    
+    _actuallyPayLabel.text=[[NSString alloc] initWithFormat:@"实付￥%@",[regular getRoundNum:_orderDetailModel.orderInfo.actuallyPay]];
     
 }
 -(void)SetOrderDetailView

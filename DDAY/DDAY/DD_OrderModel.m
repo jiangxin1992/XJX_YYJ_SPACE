@@ -82,7 +82,8 @@
         [backview addSubview:_label];
         _label.textAlignment=i==0?2:0;
         _label.textColor=[UIColor blackColor];
-        _label.text=i==0?[[NSString alloc] initWithFormat:@"%ld 件商品",self.itemCount]:[[NSString alloc] initWithFormat:@"共计 ￥ %.1f",[self.totalAmount floatValue]];
+        
+        _label.text=i==0?[[NSString alloc] initWithFormat:@"%ld 件商品",self.itemCount]:[[NSString alloc] initWithFormat:@"共计 ￥ %@",[regular getRoundNum:[self.totalAmount floatValue]]];
     }
     return view;
 }

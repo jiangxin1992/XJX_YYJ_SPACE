@@ -127,7 +127,7 @@
     if(_OrderModel.itemList.count)
     {
         _goodNumLabel.text=[[NSString alloc] initWithFormat:@"共%ld件商品",_OrderModel.itemList.count];
-        _totalPriceLabel.text=[[NSString alloc] initWithFormat:@"总计￥%.1lf",[_OrderModel.totalAmount floatValue]+_OrderModel.allFreight];
+        _totalPriceLabel.text=[[NSString alloc] initWithFormat:@"总计￥%@",[regular getRoundNum:[_OrderModel.totalAmount floatValue]+_OrderModel.allFreight]];
         
         UIView *lastView=nil;
         for (int i=0; i<_OrderModel.itemList.count; i++) {
