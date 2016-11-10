@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderDetailInfoModel.h"
+#import "DD_OrderModel.h"
 
 @interface DD_OrderTabBar : UIView
 
@@ -24,17 +24,17 @@
  * 退款 refund
  * 联系客服 contact
  */
--(instancetype)initWithFrame:(CGRect)frame WithOrderDetailInfoModel:(DD_OrderDetailInfoModel *)orderInfo WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type))block;
 
 /**
  * 更新状态
  */
--(void)UIConfig;
+-(void)SetState;
 
 /** 回调方法*/
 __block_type(Block, type);
 
 /** model*/
-@property (nonatomic,strong)DD_OrderDetailInfoModel *orderInfo;
+@property (nonatomic,strong)DD_OrderModel *orderModel;
 
 @end

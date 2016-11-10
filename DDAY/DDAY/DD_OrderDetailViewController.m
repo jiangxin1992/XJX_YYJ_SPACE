@@ -17,9 +17,8 @@
 #import "DD_ClearingDoneViewController.h"
 
 #import "DD_OrderTabBar.h"
-#import "DD_OrderClearingView.h"
+#import "DD_OrderDetailFootView.h"
 #import "DD_ClearingTableViewCell.h"
-//#import "DD_OrderAddressView.h"
 #import "DD_OrderDetailHeadView.h"
 
 #import "DD_OrderTool.h"
@@ -35,8 +34,7 @@
     DD_OrderDetailModel *_OrderDetailModel;
     UITableView *_tableview;
     DD_OrderTabBar *_tabBar;
-    DD_OrderClearingView *_ClearingView;
-//    DD_OrderAddressView *_AddressView;
+    DD_OrderDetailFootView *_footView;
     DD_OrderDetailHeadView *_headView;
 }
 
@@ -53,7 +51,7 @@
     if(self)
     {
         _block=block;
-        model.orderStatus=0;
+//        model.orderStatus=1;
         _OrderModel=model;
     }
     return self;
@@ -80,6 +78,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
+    [self UpdateTabBar];
     [self CreateTableView];
 }
 -(void)CreateTableView
@@ -93,30 +92,43 @@
     _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(kNavHeight);
+        make.bottom.mas_equalTo(_tabBar.mas_top).with.offset(0);
     }];
 }
 
 /**
  * 创建总结视图 FootView
  */
--(void)CreateFootView
+-(void)UpdateFootView
 {
-    
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    _ClearingView=[[DD_OrderClearingView alloc] initWithOrderDetailInfoModel:_OrderDetailModel.orderInfo Withfreight:_OrderDetailModel.orderInfo.allFreight WithCountPrice:_OrderModel.totalAmount WithBlock:nil];
-    
-    [headView addSubview:_ClearingView];
-    [_ClearingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(headView);
-    }];
-    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    CGRect frame = headView.frame;
-    frame.size.height = height;
-    
-    headView.frame = frame;
-    _tableview.tableFooterView = headView;
-    
+    if(!_footView)
+    {
+        _footView=[[DD_OrderDetailFootView alloc] initWithOrderDetailModel:_OrderDetailModel WithOrderModel:_OrderModel WithBlock:^(NSString *type, CGFloat height) {
+            if([type isEqualToString:@"height"])
+            {
+                //高度调整
+                _footView.frame=CGRectMake(0, 0, ScreenWidth, height);
+                _tableview.tableFooterView=_footView;
+            }else if([type isEqualToString:@"contact"])
+            {
+                //联系客服
+                [self contactAction];
+            }else if([type isEqualToString:@"refund"])
+            {
+                //退货（退款）
+                [self RefundAction];
+            }
+        }];
+        _footView.frame=CGRectMake(0, 0, ScreenWidth, 0);
+        _tableview.tableFooterView = _headView;
+    }else
+    {
+        _footView.orderModel=_OrderModel;
+        _footView.orderDetailModel=_OrderDetailModel;
+        [_footView SetState];
+    }
     
 }
 /**
@@ -155,64 +167,35 @@
         _headView.orderDetailModel=_OrderDetailModel;
         [_headView SetState];
     }
-    
-    
-    //    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-    //    _AddressView=[[DD_OrderAddressView alloc] initWithOrderDetailInfoModel:_OrderDetailModel WithBlock:^(NSString *type) {
-    //        if([type isEqualToString:@"refund"])
-    //        {
-    //            //            跳转退款界面
-    //            [self RefundAction];
-    //        }
-    //    }];
-    //    [headView addSubview:_AddressView];
-    //    [_AddressView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.edges.mas_equalTo(headView);
-    //    }];
-    //    CGFloat height = [headView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    //    CGRect frame = headView.frame;
-    //    frame.size.height = height;
-    //
-    //    headView.frame = frame;
-    //    _tableview.tableHeaderView = headView;
 }
 /**
- * 确认订单按钮
+ * 创建／更新 tabbar
  */
--(void)CreateTabBar
+-(void)UpdateTabBar
 {
-    _tabBar=[[DD_OrderTabBar alloc] initWithFrame:CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight) WithOrderDetailInfoModel:_OrderDetailModel.orderInfo WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"pay"])
-        {
-            //            支付
-            [self PayActionWithTradeOrderCode:_OrderDetailModel.orderInfo.tradeOrderCode];
-            
-        }else if([type isEqualToString:@"logistics"])
-        {
-            //            查看物流
-             [self checkLogisticsInfo];
-        }else if([type isEqualToString:@"cancel"])
-        {
-            //            取消订单
-            [self CancelAction];
-            
-        }else if([type isEqualToString:@"confirm"])
-        {
-            //            确认收货
-            [self ConfirmAction];
-        }else if([type isEqualToString:@"delect"])
-        {
-            //            删除订单
-            [self DelectAction];
-        }else if([type isEqualToString:@"contact"])
-        {
-            //            联系客服
-            [self contactAction];
-        }
-        
-    }];
-    _tabBar.backgroundColor=_define_white_color;
-    [self.view addSubview:_tabBar];
+    if(!_tabBar)
+    {
+        _tabBar=[[DD_OrderTabBar alloc] initWithOrderModel:_OrderModel WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"pay"])
+            {
+                //            支付
+                [self PayActionWithTradeOrderCode:_OrderDetailModel.orderInfo.tradeOrderCode];
+                
+            }else if([type isEqualToString:@"confirm"])
+            {
+                //            确认收货
+                [self ConfirmAction];
+            }
+        }];
+        [self.view addSubview:_tabBar];
+        [_tabBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+        }];
+    }else
+    {
+        _tabBar.orderModel=_OrderModel;
+        [_tabBar SetState];
+    }
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -233,8 +216,8 @@
         if(success)
         {
             _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
-            [self CreateTabBar];
-            [self CreateFootView];
+            [self UpdateTabBar];
+            [self UpdateFootView];
             [self UpdateHeadView];
             [_tableview reloadData];
         }else
@@ -320,6 +303,24 @@
 }
 #pragma mark - SomeActions
 /**
+ * 更新视图
+ */
+-(void)updateView
+{
+    _headView.orderModel=_OrderModel;
+    _headView.orderDetailModel=_OrderDetailModel;
+    [_headView SetState];
+    
+    _footView.orderModel=_OrderModel;
+    _footView.orderDetailModel=_OrderDetailModel;
+    [_footView SetState];
+    
+    _tabBar.orderModel=_OrderModel;
+    [_tabBar SetState];
+    
+    [_tableview reloadData];
+}
+/**
  * 返回 
  * 取消线程
  */
@@ -374,9 +375,10 @@
         [self.navigationController pushViewController:[[DD_OrderRefundViewController alloc] initWithModel:_OrderDetailModel WithBlock:^(NSString *type) {
             if([type isEqualToString:@"update"])
             {
-                [_tableview reloadData];
-                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
-                [_tabBar UIConfig];
+                //更新当前状态
+//                [_tableview reloadData];
+//                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
+//                [_tabBar UIConfig];
 //                _AddressView.DetailModel=_OrderDetailModel;
 //                [_AddressView SetState];
             }
@@ -495,11 +497,13 @@
             [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                 if(success)
                 {
-                    _OrderModel.orderStatus=3;
-                    [_tableview reloadData];
-                    DD_OrderModel *__OrderModel=[_tabBar.orderInfo.orderList objectAtIndex:0];
-                    __OrderModel.orderStatus=3;
-                    [_tabBar UIConfig];
+                    //更新当前状态
+                    
+//                    _OrderModel.orderStatus=3;
+//                    [_tableview reloadData];
+//                    DD_OrderModel *__OrderModel=[_tabBar.orderInfo.orderList objectAtIndex:0];
+//                    __OrderModel.orderStatus=3;
+//                    [_tabBar UIConfig];
                 }else
                 {
                     [self presentViewController:successAlert animated:YES completion:nil];
@@ -577,7 +581,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
     
     UIAlertAction *take_photosAction = [UIAlertAction actionWithTitle:@"联系客服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",@"15715813684"]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"tel://%@",_OrderDetailModel.orderInfo.customerServicePhone]]];
     }];
     [alertController addAction:cancelAction];
     [alertController addAction:take_photosAction];

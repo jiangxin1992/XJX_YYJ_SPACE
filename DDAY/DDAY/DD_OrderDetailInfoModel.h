@@ -39,6 +39,8 @@ __string(tradeOrderCode);
 /** 订单创建时间*/
 __long(createTime);
 
+/** 客服电话号码*/
+__string(customerServicePhone);
 
 
 

@@ -472,7 +472,7 @@
                 JXLOG(@"111");
             }
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-            NSLog(@"_height=%lf item=%@",_height,item.g_id);
+            JXLOG(@"_height=%lf item=%@",_height,item.g_id);
             return _height+56+water_Top;
         }
         return 56+water_Top;
