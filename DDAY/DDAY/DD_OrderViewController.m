@@ -40,10 +40,12 @@
     [self SomeBlock];
 }
 #pragma mark - SomeBlock
+
 -(void)SomeBlock
 {
     __block DD_OrderViewController *_orderView=self;
     __block NSArray *__dataArr=_dataArr;
+    __block UITableView *__tableview=_tableview;
     cellblock=^(NSString *type,NSIndexPath *indexPath)
     {
         if([type isEqualToString:@"pay"])
@@ -72,7 +74,15 @@
         {
 //            跳转订单详情
             [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
-                
+                if([type isEqualToString:@"reload"])
+                {
+                    NSLog(@"ddasdads=%ld",((DD_OrderModel *)[__dataArr objectAtIndex:indexPath.section]).orderStatus);
+                    [__tableview reloadData];
+                    
+                }else if([type isEqualToString:@"refresh"])
+                {
+                    [__tableview.mj_header beginRefreshing];
+                }
             }] animated:YES];
         }
     };
@@ -220,18 +230,34 @@
 -(void)DelectActionWithModel:(DD_OrderModel *)_OrderModel WithIndex:(NSInteger )section
 {
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_delete_order", @"") WithBlock:^{
-        [[JX_AFNetworking alloc] GET:@"order/deleteOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+        long _status=_OrderModel.orderStatus;
+        if(_status==3||_status==8||_status==6||_status==7)
+        {
+            NSDictionary *_parameters=nil;
+            NSString *_url=nil;
+            if(_status==8)
             {
-                [_dataArr removeObjectAtIndex:section];
-                [_tableview reloadData];
-            }else
-            {
-                [self presentViewController:successAlert animated:YES completion:nil];
+                //                    待付款取消后删
+                _url=@"order/v1_0_7/deleteTradeOrder.do";
+                _parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderModel.tradeOrderCode};
+            }else{
+                _url=@"order/deleteOrder.do";
+                _parameters=@{@"token":[DD_UserModel getToken],@"orderCode":_OrderModel.subOrderCode};
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
+            [[JX_AFNetworking alloc] GET:_url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    [_dataArr removeObjectAtIndex:section];
+                    [_tableview reloadData];
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+            
+        }
     }] animated:YES completion:nil];
     
 }
@@ -266,7 +292,8 @@
         [[JX_AFNetworking alloc] GET:@"order/v1_0_7/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                [_dataArr removeObjectAtIndex:section];
+                //更新当前状态
+                _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
                 [_tableview reloadData];
             }else
             {
@@ -401,6 +428,10 @@
     [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
         if([type isEqualToString:@"reload"])
         {
+            [_tableview reloadData];
+           
+        }else if([type isEqualToString:@"refresh"])
+        {
             [_tableview.mj_header beginRefreshing];
         }
         
@@ -419,7 +450,14 @@
         if([type isEqualToString:@"click"])
         {
             [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
-                
+                if([type isEqualToString:@"reload"])
+                {
+                    [_tableview reloadData];
+                    
+                }else if([type isEqualToString:@"refresh"])
+                {
+                    [_tableview.mj_header beginRefreshing];
+                }
             }] animated:YES];
         }
     }];

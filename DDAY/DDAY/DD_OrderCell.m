@@ -203,7 +203,7 @@
             _rightBtn.type=@"cancel";
         }else if(_OrderModel.orderStatus==1||_OrderModel.orderStatus==4||_OrderModel.orderStatus==5)
         {
-            //待发货 //申请退款 //退款处理中
+            //待发货 //申请退款 //退款申请中
             _leftBtn.hidden=YES;
             _leftBtn.type=@"";
             _rightBtn.hidden=NO;
@@ -218,7 +218,7 @@
             _leftBtn.type=@"confirm";
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
-        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
+        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7||_OrderModel.orderStatus==8||_OrderModel.orderStatus==9)
         {
             //交易成功 //已退款 //拒绝退款
             _leftBtn.hidden=NO;

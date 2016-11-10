@@ -16,12 +16,12 @@
 }
 
 #pragma mark - 初始化方法
--(instancetype)initWithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
     if(self)
     {
-        _orderModel=orderModel;
+        _orderDetailModel=orderDetailModel;
         _Block=block;
         [self SomePrepare];
         [self UIConfig];
@@ -54,9 +54,9 @@
 {
     [_ActionBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.top.mas_equalTo(0);
-        if(_orderModel)
+        if(_orderDetailModel)
         {
-            if(_orderModel.orderStatus==0||_orderModel.orderStatus==2||_orderModel.orderStatus==3)
+            if(_orderDetailModel.orderInfo.orderStatus==0||_orderDetailModel.orderInfo.orderStatus==2)
             {
                 make.height.mas_equalTo(ktabbarHeight);
             }else
@@ -69,10 +69,10 @@
         }
     }];
     NSString *_title=nil;
-    if(_orderModel)
+    if(_orderDetailModel)
     {
-        _title=_orderModel.orderStatus==0?@"去支付":_orderModel.orderStatus==2?@"确认收货":_orderModel.orderStatus==3?@"确认收货":@"";
-        _ActionBtn.type=_orderModel.orderStatus==0?@"pay":_orderModel.orderStatus==2?@"confirm":_orderModel.orderStatus==3?@"confirm":@"";
+        _title=_orderDetailModel.orderInfo.orderStatus==0?@"去支付":_orderDetailModel.orderInfo.orderStatus==2?@"确认收货":@"";
+        _ActionBtn.type=_orderDetailModel.orderInfo.orderStatus==0?@"pay":_orderDetailModel.orderInfo.orderStatus==2?@"confirm":@"";
     }else
     {
         _title=@"";

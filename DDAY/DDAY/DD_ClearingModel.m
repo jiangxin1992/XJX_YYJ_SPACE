@@ -529,7 +529,7 @@
         NSInteger _num=0;
         //        数量
         for (int i=0; i<items.count; i++) {
-            DD_ClearingOrderModel *ordermodel=[remainArr objectAtIndex:i];
+            DD_ClearingOrderModel *ordermodel=[items objectAtIndex:i];
             _num+=[ordermodel.numbers integerValue];
             _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
         }

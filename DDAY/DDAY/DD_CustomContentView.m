@@ -38,9 +38,5 @@
     }
     return self;
 }
--(void)hideSubView:(BOOL )isHide
-{
-    imgView.hidden=isHide;
-    titleLabel.hidden=isHide;
-}
+
 @end

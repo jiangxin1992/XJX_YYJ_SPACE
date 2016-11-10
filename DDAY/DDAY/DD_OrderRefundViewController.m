@@ -28,7 +28,7 @@
     [self RequestData];
 }
 #pragma mark - 初始化
--(instancetype)initWithModel:(DD_OrderDetailModel *)model WithBlock:(void (^)(NSString *type))block
+-(instancetype)initWithModel:(DD_OrderDetailModel *)model WithBlock:(void (^)(NSString *type,long status))block
 {
     self=[super init];
     if(self)
@@ -105,7 +105,7 @@
     [self.view addSubview:label];
     label.textAlignment=1;
     label.textColor=_define_black_color;
-    label.text=_status==4?@"申请退款":_status==5?@"退款处理中":_status==6?@"已退款":@"拒绝退款";
+    label.text=_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":@"拒绝退款";
     
 }
 -(void)CreateTextView
@@ -171,11 +171,10 @@
             [[JX_AFNetworking alloc] GET:@"order/applyCancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                 if(success)
                 {
-                    
                     //                提交成功后
                     [regular dismissKeyborad];
-                    _order.orderStatus=4;
-                    _block(@"update");
+                    _order.orderStatus=[[data objectForKey:@"status"] longValue];;
+                    _block(@"update",_order.orderStatus);
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"submit_success", @"") preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [self.navigationController popViewControllerAnimated:YES];

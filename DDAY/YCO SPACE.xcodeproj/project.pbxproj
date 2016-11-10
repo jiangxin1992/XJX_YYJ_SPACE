@@ -12,7 +12,6 @@
 		3F0A6DF81D11056100CDCBC5 /* DD_CircleInfoSuggestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */; };
 		3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DFA1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m */; };
 		3F0A6DFE1D1127B000CDCBC5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A6DFD1D1127B000CDCBC5 /* UIView+Frame.m */; };
-		3F0A8CE01D07B892005549BE /* DD_OrderAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A8CDF1D07B892005549BE /* DD_OrderAddressView.m */; };
 		3F0A8CE41D07C855005549BE /* DD_OrderTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A8CE31D07C855005549BE /* DD_OrderTabBar.m */; };
 		3F0A8CE91D07F6E8005549BE /* DD_OrderRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A8CE71D07F6E8005549BE /* DD_OrderRefundViewController.m */; };
 		3F0AE1021D55D12200AD7EFD /* DD_UserItemBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0AE1011D55D12200AD7EFD /* DD_UserItemBtn.m */; };
@@ -391,8 +390,6 @@
 		3F0A6DFA1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleChooseStyleView.m; sourceTree = "<group>"; };
 		3F0A6DFC1D1127B000CDCBC5 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		3F0A6DFD1D1127B000CDCBC5 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		3F0A8CDE1D07B892005549BE /* DD_OrderAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderAddressView.h; sourceTree = "<group>"; };
-		3F0A8CDF1D07B892005549BE /* DD_OrderAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderAddressView.m; sourceTree = "<group>"; };
 		3F0A8CE21D07C855005549BE /* DD_OrderTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderTabBar.h; sourceTree = "<group>"; };
 		3F0A8CE31D07C855005549BE /* DD_OrderTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_OrderTabBar.m; sourceTree = "<group>"; };
 		3F0A8CE61D07F6E8005549BE /* DD_OrderRefundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_OrderRefundViewController.h; sourceTree = "<group>"; };
@@ -1199,15 +1196,6 @@
 				3F0A6DFD1D1127B000CDCBC5 /* UIView+Frame.m */,
 			);
 			name = "UIView+Frame";
-			sourceTree = "<group>";
-		};
-		3F0A8CDD1D07B881005549BE /* 地址 */ = {
-			isa = PBXGroup;
-			children = (
-				3F0A8CDE1D07B892005549BE /* DD_OrderAddressView.h */,
-				3F0A8CDF1D07B892005549BE /* DD_OrderAddressView.m */,
-			);
-			name = "地址";
 			sourceTree = "<group>";
 		};
 		3F0A8CE51D07F6CE005549BE /* 退款界面 */ = {
@@ -3065,7 +3053,6 @@
 		3FA8365E1D050B73006D2919 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
-				3F0A8CDD1D07B881005549BE /* 地址 */,
 				3F0A8CE51D07F6CE005549BE /* 退款界面 */,
 				3FA836851D055C19006D2919 /* DD_OrderHeadView.h */,
 				3FA836861D055C19006D2919 /* DD_OrderHeadView.m */,
@@ -3756,7 +3743,6 @@
 				3FA551141D4CBB1D00528B5F /* DD_GoodsSendAndReturnsView.m in Sources */,
 				3F9B8B151CF0095C008EC460 /* DD_RegisterViewController.m in Sources */,
 				3F5306DC1D124E5C000C9EC0 /* DD_CricleShowViewController.m in Sources */,
-				3F0A8CE01D07B892005549BE /* DD_OrderAddressView.m in Sources */,
 				3FEEAF4E1D8923F2008F6EB6 /* DD_UserMessageHeadView.m in Sources */,
 				3F0AE1021D55D12200AD7EFD /* DD_UserItemBtn.m in Sources */,
 				3F8924391CF6A6A300B76E6E /* DD_ClearingDoneViewController.m in Sources */,

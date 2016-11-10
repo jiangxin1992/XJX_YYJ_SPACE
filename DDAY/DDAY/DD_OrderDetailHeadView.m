@@ -331,8 +331,21 @@
 }
 -(void)SetOrderStateView
 {
-    long _status=_orderModel.orderStatus;
-    _stateLabel.text=_status==0?@"待付款":_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易成功":_status==4?@"申请退款":_status==5?@"退款处理中":_status==6?@"已退款":@"拒绝退款";
+    /**
+     * 初始化方法
+     * public static Integer ORDER_STATUS_DFK = 0; //待付款
+     * public static Integer ORDER_STATUS_DFH = 1; //待发货
+     * public static Integer ORDER_STATUS_DSH = 2; //待收货
+     * public static Integer ORDER_STATUS_JYCG = 3; //交易成功
+     * public static Integer ORDER_STATUS_SQTK = 4; //申请退款
+     * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
+     * public static Integer ORDER_STATUS_YTK = 6; //已退款
+     * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
+     * public static Integer ORDER_STATUS_YQX = 8; //已取消
+     * public static Integer ORDER_STATUS_YSC = 9; //已删除
+     */
+    long _status=_orderDetailModel.orderInfo.orderStatus;
+    _stateLabel.text=_status==0?@"待付款":_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易完成":_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":_status==7?@"拒绝退款":_status==8?@"订单已取消":@"订单已删除";
     _stateLabel.textAlignment=_status?1:2;
     [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         if(_status)
@@ -382,9 +395,9 @@
     [regular dispatch_cancel:_timer];
     _timer=nil;
     
-    if(_orderDetailModel.orderInfo.orderCancelTime>_orderDetailModel.orderInfo.createTime)
+    if(_orderDetailModel.orderInfo.orderCancelTime>[NSDate nowTime])
     {
-        __block NSInteger timeout=_orderDetailModel.orderInfo.orderCancelTime-_orderDetailModel.orderInfo.createTime;
+        __block NSInteger timeout=_orderDetailModel.orderInfo.orderCancelTime-[NSDate nowTime];
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     

@@ -103,7 +103,7 @@
         make.bottom.mas_equalTo(0);
         make.left.mas_equalTo(kEdge);
     }];
-    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"共 %ld 件商品 小计 ￥%.1lf",[self getGoodsCount],[self getAllCountPriceWithArr:_dataArr]];
+    _subtotalLabel.text=[[NSString alloc] initWithFormat:@"共 %ld 件商品 小计 ￥%.1lf",[self getGoodsCount],[self getAllCountPriceWithArr:_dataArr]+_Freight];
     
     UIView *line2=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:line2];

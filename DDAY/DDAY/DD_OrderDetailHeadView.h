@@ -25,6 +25,8 @@
  * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
  * public static Integer ORDER_STATUS_YTK = 6; //已退款
  * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
+ * public static Integer ORDER_STATUS_YQX = 8; //已取消
+ * public static Integer ORDER_STATUS_YSC = 9; //已删除
  */
 -(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height,NSString *phonenum))block;
 

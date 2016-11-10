@@ -186,7 +186,6 @@
  */
 + (UIView *)returnNavView:(NSString *)title withmaxwidth:(CGFloat )maxwidth;
 
-
 /**
  * 设置字间距
  */

@@ -12,9 +12,9 @@
 
 @interface DD_OrderRefundViewController : DD_BaseViewController
 
--(instancetype)initWithModel:(DD_OrderDetailModel *)model WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithModel:(DD_OrderDetailModel *)model WithBlock:(void (^)(NSString *type,long status))block;
 
-@property(nonatomic,copy) void (^block)(NSString *type);
+@property(nonatomic,copy) void (^block)(NSString *type,long status);
 
 @property (nonatomic,strong)DD_OrderDetailModel *OrderModel;
 

@@ -12,6 +12,4 @@
 
 -(instancetype)initCustomViewWithTitle:(NSString *)title WithImg:(NSString *)img;
 
--(void)hideSubView:(BOOL )isHide;
-
 @end

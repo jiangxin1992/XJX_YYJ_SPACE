@@ -25,7 +25,6 @@
                           ,@"total":total
                           ,@"subTotal":[[NSString alloc] initWithFormat:@"%.1lf",_subTotal]
                           };
-    
     return _dict;
 }
 +(NSArray *)getPayOrderWithDataArr:(NSArray *)dataArr

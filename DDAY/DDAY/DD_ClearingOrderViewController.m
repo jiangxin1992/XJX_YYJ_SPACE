@@ -52,6 +52,7 @@
 {
     __block DD_ClearingOrderViewController *_orderView=self;
     __block NSArray *__dataArr=_dataArr;
+    __block UITableView *__tableview=_tableview;
     cellblock=^(NSString *type,NSIndexPath *indexPath)
     {
         if([type isEqualToString:@"pay"])
@@ -80,6 +81,14 @@
         {
             //            跳转订单详情
             [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+                if([type isEqualToString:@"reload"])
+                {
+                    [__tableview reloadData];
+                    
+                }else if([type isEqualToString:@"refresh"])
+                {
+                    [__tableview.mj_header beginRefreshing];
+                }
                 
             }] animated:YES];
         }
@@ -250,7 +259,7 @@
         [[JX_AFNetworking alloc] GET:@"order/v1_0_7/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                [_dataArr removeObjectAtIndex:section];
+                _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
                 [_tableview reloadData];
             }else
             {
@@ -383,6 +392,14 @@
 {
     //    跳转订单详情
     [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+        if([type isEqualToString:@"reload"])
+        {
+            [_tableview reloadData];
+            
+        }else if([type isEqualToString:@"refresh"])
+        {
+            [_tableview.mj_header beginRefreshing];
+        }
         
     }] animated:YES];
 }
@@ -399,7 +416,14 @@
         if([type isEqualToString:@"click"])
         {
             [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
-                
+                if([type isEqualToString:@"reload"])
+                {
+                    [_tableview reloadData];
+                    
+                }else if([type isEqualToString:@"refresh"])
+                {
+                    [_tableview.mj_header beginRefreshing];
+                }
             }] animated:YES];
         }
     }];

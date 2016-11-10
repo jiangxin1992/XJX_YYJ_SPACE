@@ -111,11 +111,11 @@
         }else if(_orderModel.orderStatus==3)
         {
             //交易成功
-            stateLabel.text=@"交易成功";
+            stateLabel.text=@"交易完成";
         }else if(_orderModel.orderStatus==4)
         {
             //申请退款
-            stateLabel.text=@"申请退款";
+            stateLabel.text=@"退款申请中";
         }else if(_orderModel.orderStatus==5)
         {
             //退款处理中
@@ -128,6 +128,17 @@
         {
             //拒绝退款
             stateLabel.text=@"拒绝退款";
+        }else if(_orderModel.orderStatus==8)
+        {
+            //订单已取消
+            stateLabel.text=@"订单已取消";
+        }else if(_orderModel.orderStatus==8)
+        {
+            //订单已删除
+            stateLabel.text=@"订单已删除";
+        }else
+        {
+            stateLabel.text=@"";
         }
     }
 }

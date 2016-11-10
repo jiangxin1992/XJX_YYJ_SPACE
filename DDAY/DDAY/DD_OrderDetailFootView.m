@@ -94,6 +94,7 @@
     }];
     _contactView=[[DD_CustomContentView alloc] initCustomViewWithTitle:@"联系我们" WithImg:@"System_Contact"];
     [_contactBtn addSubview:_contactView];
+    _contactView.userInteractionEnabled=NO;
     [_contactView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_contactBtn);
         make.height.mas_equalTo(_contactView.size.height);
@@ -111,6 +112,7 @@
     }];
     _contactLeftView=[[DD_CustomContentView alloc] initCustomViewWithTitle:@"联系我们" WithImg:@"System_Contact"];
     [_contactLeftBtn addSubview:_contactLeftView];
+    _contactLeftView.userInteractionEnabled=NO;
     [_contactLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_contactLeftBtn);
         make.height.mas_equalTo(_contactLeftView.size.height);
@@ -131,6 +133,7 @@
     }];
     _refundView=[[DD_CustomContentView alloc] initCustomViewWithTitle:@"退货" WithImg:@"System_Return"];
     [_refundBtn addSubview:_refundView];
+    _refundView.userInteractionEnabled=NO;
     [_refundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_refundBtn);
         make.height.mas_equalTo(_refundView.size.height);
@@ -223,7 +226,7 @@
 }
 -(void)SetActionBtn
 {
-    if(_orderModel.orderStatus==0||_orderModel.orderStatus==4||_orderModel.orderStatus==5||_orderModel.orderStatus==6)
+    if(_orderDetailModel.orderInfo.orderStatus==0||_orderDetailModel.orderInfo.orderStatus==4||_orderDetailModel.orderInfo.orderStatus==5||_orderDetailModel.orderInfo.orderStatus==6||_orderDetailModel.orderInfo.orderStatus==7||_orderDetailModel.orderInfo.orderStatus==8)
     {
         _contactBtn.hidden=NO;
         _contactView.hidden=NO;

@@ -173,7 +173,7 @@
             _leftBtn.type=@"confirm";
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
-        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
+        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7||_OrderModel.orderStatus==8||_OrderModel.orderStatus==9)
         {
             //交易成功 //已退款 //拒绝退款
             _leftBtn.hidden=NO;
@@ -183,9 +183,7 @@
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
         }
-        
     }
-    
 }
 
 
