@@ -120,9 +120,10 @@
             {
                 //高度调整
                 _fit_footView=YES;
-                [self reload];
+                
                 _footView.frame=CGRectMake(0, 0, ScreenWidth, height);
                 _tableview.tableFooterView=_footView;
+                [self reload];
             }else if([type isEqualToString:@"contact"])
             {
                 //联系客服
@@ -157,13 +158,13 @@
             {
                 //高度调整
                 _fit_headView=YES;
-                [self reload];
                 _headView.frame=CGRectMake(0, 0, ScreenWidth, height);
                 _tableview.tableHeaderView=_headView;
+                [self reload];
             }else if([type isEqualToString:@"count_end"])
             {
-                //计时结束(订单关闭)
-                [self OrderEndAction];
+                //计时结束(订单标记为过期状态)
+                [self OrderExpireAction];
             }else if([type isEqualToString:@"phone_click"])
             {
                 //打电话
@@ -226,8 +227,18 @@
     long _status=_OrderDetailModel.orderInfo.orderStatus;
     if(_status==0)
     {
-        _title=@"取消订单";
-        _type=@"cancel";
+        if(_OrderDetailModel.orderInfo.expire)
+        {
+            //已过期
+            _title=@"删除订单";
+            _type=@"delete";
+        }else
+        {
+            //未过期
+            _title=@"取消订单";
+            _type=@"cancel";
+        }
+        
     }else if(_status==3||_status==8||_status==6||_status==7)
     {
         _title=@"删除订单";
@@ -269,11 +280,7 @@
         {
             _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
             _OrderModel.orderStatus=_OrderDetailModel.orderInfo.orderStatus;
-            _block(@"reload",nil);
-            [self UpdateTabBar];
-            [self UpdateFootView];
-            [self UpdateHeadView];
-            [self UpdateRightBar];
+            [self updataView];
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -379,11 +386,12 @@
  * 更新视图
  * 更新上个界面
  */
--(void)updateView
+-(void)updataView
 {
     [self UpdateHeadView];
     [self UpdateFootView];
     [self UpdateTabBar];
+    [self UpdateRightBar];
     _block(@"reload",nil);
 }
 /**
@@ -396,18 +404,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 /**
- * 订单关闭
+ * 订单过期
+ * 更新这个界面的数据
+ * 重新加载上个列表界面的数据（并reload）
  */
--(void)OrderEndAction
+-(void)OrderExpireAction
 {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"订单已关闭" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dialAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        _block(@"refresh",nil);
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    [alert addAction:dialAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    _OrderDetailModel.orderInfo.expire=YES;
+    _block(@"refresh",nil);
 }
 
 /**
@@ -447,7 +451,7 @@
                 _OrderModel.orderStatus=status;
                 JXLOG(@"_OrderModel.orderStatus=%ld",_OrderModel.orderStatus);
                 JXLOG(@"111")
-                [self updateView];
+                [self updataView];
 //                [_tableview reloadData];
 //                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
 //                [_tabBar UIConfig];
@@ -541,7 +545,7 @@
                     //更新当前状态
                     _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
                     _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
-                    [self updateView];
+                    [self updataView];
                 }else
                 {
                     [self presentViewController:successAlert animated:YES completion:nil];
@@ -569,7 +573,7 @@
                 //更新当前状态
                 _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
                 _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
-                [self updateView];
+                [self updataView];
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -615,6 +619,7 @@
                             }else
                             {
                                 _block(@"refresh",nil);
+                                [_headView dispatch_cancel];
                                 [self.navigationController popViewControllerAnimated:YES];
                             }
                             

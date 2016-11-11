@@ -99,7 +99,15 @@
         if(_orderModel.orderStatus==0)
         {
             //待付款
-            stateLabel.text=@"待付款";
+            if(_orderModel.expire)
+            {
+                //已过期
+                stateLabel.text=@"已过期";
+            }else
+            {
+                //未过期
+                stateLabel.text=@"待付款";
+            }
         }else if(_orderModel.orderStatus==1)
         {
             //待发货

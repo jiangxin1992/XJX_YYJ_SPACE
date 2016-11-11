@@ -383,8 +383,6 @@
         _integralLabel.text=@"";
         _integralTitleLabel.text=@"";
     }
-    
-    
     _actuallyPayLabel.text=[[NSString alloc] initWithFormat:@"实付￥%@",[regular getRoundNum:_orderDetailModel.orderInfo.actuallyPay]];
     
 }

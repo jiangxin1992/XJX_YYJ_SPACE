@@ -52,6 +52,9 @@
  */
 __long(orderStatus);
 
+/** 订单是否过期*/
+__bool(expire);
+
 /** item list*/
 __array(itemList);
 

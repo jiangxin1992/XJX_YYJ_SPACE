@@ -15,6 +15,24 @@
  */
 +(DD_OrderDetailInfoModel *)getOrderDetailInfoModel:(NSDictionary *)dict;
 
+/**
+ * 初始化方法
+ * public static Integer ORDER_STATUS_DFK = 0; //待付款
+ * public static Integer ORDER_STATUS_DFH = 1; //待发货
+ * public static Integer ORDER_STATUS_DSH = 2; //待收货
+ * public static Integer ORDER_STATUS_JYCG = 3; //交易成功
+ * public static Integer ORDER_STATUS_SQTK = 4; //申请退款
+ * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
+ * public static Integer ORDER_STATUS_YTK = 6; //已退款
+ * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
+ * public static Integer ORDER_STATUS_YQX = 8; //已取消
+ * public static Integer ORDER_STATUS_YSC = 9; //已删除
+ */
+__long(orderStatus);
+
+/** 订单是否过期*/
+__bool(expire);
+
 /** 是否支付*/
 __bool(isPay);
 
@@ -60,20 +78,7 @@ __float(actuallyPay);
 /** 支付方式 1 支付宝 2 微信 3 银联 */
 __int(payWay);
 
-/**
- * 初始化方法
- * public static Integer ORDER_STATUS_DFK = 0; //待付款
- * public static Integer ORDER_STATUS_DFH = 1; //待发货
- * public static Integer ORDER_STATUS_DSH = 2; //待收货
- * public static Integer ORDER_STATUS_JYCG = 3; //交易成功
- * public static Integer ORDER_STATUS_SQTK = 4; //申请退款
- * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
- * public static Integer ORDER_STATUS_YTK = 6; //已退款
- * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
- //订单已取消
- */
 
-__long(orderStatus);
 
 
 @end

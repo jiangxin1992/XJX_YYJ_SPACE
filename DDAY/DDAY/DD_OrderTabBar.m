@@ -56,12 +56,24 @@
         make.bottom.left.right.top.mas_equalTo(0);
         if(_orderDetailModel)
         {
-            if(_orderDetailModel.orderInfo.orderStatus==0||_orderDetailModel.orderInfo.orderStatus==2)
+            if(_orderDetailModel.orderInfo.orderStatus==2)
             {
                 make.height.mas_equalTo(ktabbarHeight);
+            }else if(_orderDetailModel.orderInfo.orderStatus==0)
+            {
+               //未支付
+                if(_orderDetailModel.orderInfo.expire)
+                {
+                    //已过期
+                     make.height.mas_equalTo(0);
+                }else
+                {
+                    //未过期
+                    make.height.mas_equalTo(ktabbarHeight);
+                }
             }else
             {
-                make.height.mas_equalTo(0);
+                 make.height.mas_equalTo(0);
             }
         }else
         {
@@ -71,8 +83,8 @@
     NSString *_title=nil;
     if(_orderDetailModel)
     {
-        _title=_orderDetailModel.orderInfo.orderStatus==0?@"去支付":_orderDetailModel.orderInfo.orderStatus==2?@"确认收货":@"";
-        _ActionBtn.type=_orderDetailModel.orderInfo.orderStatus==0?@"pay":_orderDetailModel.orderInfo.orderStatus==2?@"confirm":@"";
+        _title=_orderDetailModel.orderInfo.orderStatus==0?(_orderDetailModel.orderInfo.expire?@"":@"去支付"):_orderDetailModel.orderInfo.orderStatus==2?@"确认收货":@"";
+        _ActionBtn.type=_orderDetailModel.orderInfo.orderStatus==0?(_orderDetailModel.orderInfo.expire?@"":@"pay"):_orderDetailModel.orderInfo.orderStatus==2?@"confirm":@"";
     }else
     {
         _title=@"";

@@ -345,16 +345,27 @@
      * public static Integer ORDER_STATUS_YSC = 9; //已删除
      */
     long _status=_orderDetailModel.orderInfo.orderStatus;
-    _stateLabel.text=_status==0?@"待付款":_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易完成":_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":_status==7?@"拒绝退款":_status==8?@"订单已取消":@"订单已删除";
-    _stateLabel.textAlignment=_status?1:2;
+    _stateLabel.text=_status==0?(_orderDetailModel.orderInfo.expire?@"已过期":@"待付款"):_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易完成":_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":_status==7?@"拒绝退款":_status==8?@"订单已取消":@"订单已删除";
+    
+    _stateLabel.textAlignment=_status?1:(_orderDetailModel.orderInfo.expire?1:2);
     [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         if(_status)
         {
+            //已付款
             make.edges.mas_equalTo(_orderStateView);
         }else
         {
-            make.left.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(110);
+            //未付款
+            if(_orderDetailModel.orderInfo.expire)
+            {
+                //已过期
+                make.edges.mas_equalTo(_orderStateView);
+            }else
+            {
+                //未过期
+                make.left.top.bottom.mas_equalTo(0);
+                make.width.mas_equalTo(110);
+            }
         }
     }];
     
@@ -362,17 +373,36 @@
     [_restTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         if(_status)
         {
+            //已付款
             make.edges.mas_equalTo(_orderStateView);
         }else
         {
-            make.left.mas_equalTo(_stateLabel.mas_right).with.offset(12);
-            make.top.bottom.right.mas_equalTo(0);
+            //未付款
+            if(_orderDetailModel.orderInfo.expire)
+            {
+                //已过期
+                make.edges.mas_equalTo(_orderStateView);
+            }else
+            {
+                //未过期
+                make.left.mas_equalTo(_stateLabel.mas_right).with.offset(12);
+                make.top.bottom.right.mas_equalTo(0);
+            }
         }
     }];
     
-    if(!_status)
+    if(_status==0)
     {
-        [self orderCountdown];
+        //代付款
+        if(_orderDetailModel.orderInfo.expire)
+        {
+            //已过期
+            _restTimeLabel.text=@"";
+        }else
+        {
+            //未过期（开始计时）
+            [self orderCountdown];
+        }
     }else
     {
         _restTimeLabel.text=@"";

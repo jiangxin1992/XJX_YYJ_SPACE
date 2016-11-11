@@ -196,17 +196,34 @@
         if(_OrderModel.orderStatus==0)
         {
             //待付款
-            _leftBtn.hidden=NO;
-            _rightBtn.hidden=NO;
-            [_leftBtn setTitle:@"去支付" forState:UIControlStateNormal];
-            _leftBtn.type=@"pay";
-            [_rightBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-            _rightBtn.type=@"cancel";
+            if(_OrderModel.expire)
+            {
+                //已过期/只可以删除订单
+                _leftBtn.hidden=YES;
+                [_leftBtn setTitle:@"" forState:UIControlStateNormal];
+                _leftBtn.type=@"";
+                
+                _rightBtn.hidden=NO;
+                [_rightBtn setTitle:@"删除订单" forState:UIControlStateNormal];
+                _rightBtn.type=@"delect";
+            }else
+            {
+                //未过期
+                _leftBtn.hidden=NO;
+                [_leftBtn setTitle:@"去支付" forState:UIControlStateNormal];
+                _leftBtn.type=@"pay";
+                
+                _rightBtn.hidden=NO;
+                [_rightBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+                _rightBtn.type=@"cancel";
+            }
         }else if(_OrderModel.orderStatus==1||_OrderModel.orderStatus==4||_OrderModel.orderStatus==5)
         {
             //待发货 //申请退款 //退款申请中
             _leftBtn.hidden=YES;
+            [_leftBtn setTitle:@"" forState:UIControlStateNormal];
             _leftBtn.type=@"";
+            
             _rightBtn.hidden=NO;
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
@@ -214,20 +231,32 @@
         {
             //待收货
             _leftBtn.hidden=NO;
-            _rightBtn.hidden=NO;
             [_leftBtn setTitle:@"确认收货" forState:UIControlStateNormal];
             _leftBtn.type=@"confirm";
+            
+            _rightBtn.hidden=NO;
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
-        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7||_OrderModel.orderStatus==8||_OrderModel.orderStatus==9)
+        }else if(_OrderModel.orderStatus==3||_OrderModel.orderStatus==6||_OrderModel.orderStatus==7)
         {
-            //交易成功 //已退款 //拒绝退款
+            //交易成功/已退款/拒绝退款
             _leftBtn.hidden=NO;
-            _rightBtn.hidden=NO;
             [_leftBtn setTitle:@"删除订单" forState:UIControlStateNormal];
             _leftBtn.type=@"delect";
+            
+            _rightBtn.hidden=NO;
             [_rightBtn setTitle:@"查看物流" forState:UIControlStateNormal];
             _rightBtn.type=@"logistics";
+        }else if(_OrderModel.orderStatus==8||_OrderModel.orderStatus==9)
+        {
+            //已取消/已删除
+            _leftBtn.hidden=YES;
+            [_leftBtn setTitle:@"" forState:UIControlStateNormal];
+            _leftBtn.type=@"";
+            
+            _rightBtn.hidden=NO;
+            [_rightBtn setTitle:@"删除订单" forState:UIControlStateNormal];
+            _rightBtn.type=@"delect";
         }
         
     }
