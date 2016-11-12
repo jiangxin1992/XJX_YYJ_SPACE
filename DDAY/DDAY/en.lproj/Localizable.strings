@@ -113,7 +113,7 @@
 "order_refund_title"="退款";
 "order_if_delete_order"="删除该订单？";
 "order_if_confirm"="确认收货？";
-"order_if_cancel_order"="取消该订单？";
+"order_if_cancel_order"="确认取消该订单？";
 "order_if_refund_order"="确定退货？";
 //删除该订单？
 //确认收货？

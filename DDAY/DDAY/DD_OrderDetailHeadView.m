@@ -36,13 +36,12 @@
 }
 #pragma mark - init
 
--(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height,NSString *phonenum))block
+-(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithBlock:(void (^)(NSString *type,CGFloat height,NSString *phonenum))block
 {
     self=[super init];
     if(self)
     {
         _orderDetailModel=orderDetailModel;
-        _orderModel=orderModel;
         _block=block;
         [self SomePrepare];
         [self UIConfig];
@@ -349,6 +348,7 @@
     
     _stateLabel.textAlignment=_status?1:(_orderDetailModel.orderInfo.expire?1:2);
     [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
         if(_status)
         {
             //已付款

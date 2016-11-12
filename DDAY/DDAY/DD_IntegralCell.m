@@ -34,7 +34,7 @@
     [self.contentView addSubview:_intergal_label];
     [_intergal_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.bottom.mas_equalTo(self.contentView.mas_centerY).with.offset(-2);
+        make.bottom.mas_equalTo(self.contentView.mas_centerY).with.offset(-3);
     }];
     
     _content_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -50,7 +50,7 @@
     [_create_time_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(self.contentView.mas_centerY).with.offset(2);
+        make.top.mas_equalTo(self.contentView.mas_centerY).with.offset(3);
     }];
     
     UIView *line=[UIView getCustomViewWithColor:_define_black_color];
@@ -72,7 +72,7 @@
     {
         _intergal_label.textColor = _define_black_color;
         _content_label.textColor = _define_black_color;
-        _create_time_label.textColor = _define_black_color;
+        _create_time_label.textColor = _define_light_gray_color1;
         _intergal_label.text=_integralModel.pointStr;
         _content_label.text=_integralModel.tips;
         _create_time_label.text=_integralModel.createTime;

@@ -10,7 +10,7 @@
 
 @interface DD_UserItemBtn : UIButton
 
-+(DD_UserItemBtn *)getUserItemBtnWithFrame:(CGRect )frame WithImgSize:(CGSize )size WithImgeStr:(NSString *)imgStr WithTitle:(NSString *)title;
++(DD_UserItemBtn *)getUserItemBtnWithFrame:(CGRect )frame WithImgSize:(CGSize )size WithImgeStr:(NSString *)imgStr WithTitle:(NSString *)title isBig:(BOOL )isbig;
 
 @property (nonatomic,assign) CGSize size;
 

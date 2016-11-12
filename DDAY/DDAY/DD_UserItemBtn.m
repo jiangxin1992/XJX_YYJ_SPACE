@@ -9,7 +9,7 @@
 #import "DD_UserItemBtn.h"
 
 @implementation DD_UserItemBtn
-+(DD_UserItemBtn *)getUserItemBtnWithFrame:(CGRect )frame WithImgSize:(CGSize )size WithImgeStr:(NSString *)imgStr WithTitle:(NSString *)title
++(DD_UserItemBtn *)getUserItemBtnWithFrame:(CGRect )frame WithImgSize:(CGSize )size WithImgeStr:(NSString *)imgStr WithTitle:(NSString *)title isBig:(BOOL )isbig
 {
     DD_UserItemBtn *shopBtn=[DD_UserItemBtn buttonWithType:UIButtonTypeCustom];
     if(shopBtn)
@@ -27,8 +27,16 @@
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
             make.centerY.mas_equalTo(shopBtn);
-            make.width.mas_equalTo(21);
-            make.height.mas_equalTo((size.height/size.width)*21);
+            if(isbig)
+            {
+                make.width.mas_equalTo(23);
+                make.height.mas_equalTo((size.height/size.width)*23);
+            }else
+            {
+                make.width.mas_equalTo(21);
+                make.height.mas_equalTo((size.height/size.width)*21);
+            }
+            
         }];
         
         UILabel *titleL_label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];

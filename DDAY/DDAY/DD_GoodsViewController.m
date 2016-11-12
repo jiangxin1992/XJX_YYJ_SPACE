@@ -328,7 +328,7 @@
                                 if(success)
                                 {
                                     _benefitInfoModel.isReadBenefit=YES;
-                                    _isReadBenefit=_benefitInfoModel.isReadBenefit;
+                                    _isReadBenefit=YES;
                                     [_headView removeFromSuperview];
                                     _headView=nil;
                                     [mywaterflow reloadData];
@@ -353,6 +353,7 @@
                     _headView.benefitInfoModel=_benefitInfoModel;
                 }
             }
+            [mywaterflow reloadData];
         }else
         {
             [self unLoginAction];
@@ -360,6 +361,9 @@
     }else
     {
         _isReadBenefit=YES;
+        [_headView removeFromSuperview];
+        _headView=nil;
+        [mywaterflow reloadData];
     }
 }
 -(void)unLoginAction
@@ -372,6 +376,7 @@
         //隐藏headview
         [_headView removeFromSuperview];
         _headView=nil;
+        [mywaterflow reloadData];
     }else
     {
         if(!_headView)
@@ -399,6 +404,7 @@
         {
             _headView.benefitInfoModel=_benefitInfoModel;
         }
+        [mywaterflow reloadData];
     }
 }
 -(void)loadNewData
@@ -466,13 +472,7 @@
         {
             
             DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
-            if([item.g_id isEqualToString:@"110"])
-            {
-                JXLOG(@"_isReadBenefit=%d",_isReadBenefit);
-                JXLOG(@"111");
-            }
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
-            JXLOG(@"_height=%lf item=%@",_height,item.g_id);
             return _height+56+water_Top;
         }
         return 56+water_Top;

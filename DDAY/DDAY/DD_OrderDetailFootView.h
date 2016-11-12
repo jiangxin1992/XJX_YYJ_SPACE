@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "DD_OrderDetailModel.h"
-#import "DD_OrderModel.h"
 
 @interface DD_OrderDetailFootView : UIView
 
@@ -26,7 +25,7 @@
  * public static Integer ORDER_STATUS_YQX = 8; //已取消
  * public static Integer ORDER_STATUS_YSC = 9; //已删除
  */
--(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height))block;
+-(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithBlock:(void (^)(NSString *type,CGFloat height))block;
 
 /**
  * 更新视图
@@ -42,9 +41,5 @@
 
 /** 订单详情model*/
 @property (nonatomic,strong) DD_OrderDetailModel *orderDetailModel;
-
-/** 订单列表model*/
-@property (nonatomic,strong)DD_OrderModel *orderModel;
-
 
 @end

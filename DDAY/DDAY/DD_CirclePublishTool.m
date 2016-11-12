@@ -49,7 +49,7 @@
     //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-2);
     }];
     [price_label sizeToFit];
     
@@ -110,7 +110,7 @@
     //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-2);
     }];
     [price_label sizeToFit];
     

@@ -44,13 +44,12 @@
 }
 
 #pragma mark - init
--(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithOrderModel:(DD_OrderModel *)orderModel WithBlock:(void (^)(NSString *type,CGFloat height))block
+-(instancetype)initWithOrderDetailModel:(DD_OrderDetailModel *)orderDetailModel WithBlock:(void (^)(NSString *type,CGFloat height))block
 {
     self=[super init];
     if(self)
     {
         _orderDetailModel=orderDetailModel;
-        _orderModel=orderModel;
         _block=block;
         [self SomePrepare];
         [self UIConfig];
@@ -254,13 +253,7 @@
     [_remarkLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        if(![NSString isNilOrEmpty:_orderDetailModel.orderInfo.memo])
-        {
-            make.top.mas_equalTo(15);
-        }else
-        {
-            make.top.mas_equalTo(0);
-        }
+        make.top.mas_equalTo(0);
     }];
     
     [_countUpLine mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -342,7 +335,7 @@
     
     [_actuallyPayLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(_countMiddleLine.mas_bottom).with.offset(8);
+        make.top.mas_equalTo(_countMiddleLine.mas_bottom).with.offset(15);
     }];
     
     [_countDownLine mas_remakeConstraints:^(MASConstraintMaker *make) {

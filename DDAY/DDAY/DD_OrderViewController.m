@@ -231,11 +231,11 @@
 {
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_delete_order", @"") WithBlock:^{
         long _status=_OrderModel.orderStatus;
-        if(_status==3||_status==8||_status==6||_status==7)
+        if(_status==3||_status==8||_status==6||_status==7||(_status==0&&_OrderModel.expire))
         {
             NSDictionary *_parameters=nil;
             NSString *_url=nil;
-            if(_status==8)
+            if(_status==8||(_status==0&&_OrderModel.expire))
             {
                 //                    待付款取消后删
                 _url=@"order/v1_0_7/deleteTradeOrder.do";

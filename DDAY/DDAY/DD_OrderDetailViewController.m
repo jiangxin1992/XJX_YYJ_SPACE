@@ -115,7 +115,7 @@
     _fit_footView=NO;
     if(!_footView)
     {
-        _footView=[[DD_OrderDetailFootView alloc] initWithOrderDetailModel:_OrderDetailModel WithOrderModel:_OrderModel WithBlock:^(NSString *type, CGFloat height) {
+        _footView=[[DD_OrderDetailFootView alloc] initWithOrderDetailModel:_OrderDetailModel WithBlock:^(NSString *type, CGFloat height) {
             if([type isEqualToString:@"height"])
             {
                 //高度调整
@@ -138,7 +138,6 @@
         _tableview.tableFooterView = _headView;
     }else
     {
-        _footView.orderModel=_OrderModel;
         _footView.orderDetailModel=_OrderDetailModel;
         [_footView SetState];
     }
@@ -149,11 +148,11 @@
  */
 -(void)UpdateHeadView
 {
-
+    
     _fit_headView=NO;
     if(!_headView)
     {
-        _headView=[[DD_OrderDetailHeadView alloc] initWithOrderDetailModel:_OrderDetailModel WithOrderModel:_OrderModel WithBlock:^(NSString *type, CGFloat height, NSString *phonenum) {
+        _headView=[[DD_OrderDetailHeadView alloc] initWithOrderDetailModel:_OrderDetailModel WithBlock:^(NSString *type, CGFloat height, NSString *phonenum) {
             if([type isEqualToString:@"height"])
             {
                 //高度调整
@@ -179,7 +178,6 @@
         _tableview.tableHeaderView = _headView;
     }else
     {
-        _headView.orderModel=_OrderModel;
         _headView.orderDetailModel=_OrderDetailModel;
         [_headView SetState];
     }
@@ -280,7 +278,7 @@
         {
             _OrderDetailModel=[DD_OrderDetailModel getOrderDetailModel:data];
             _OrderModel.orderStatus=_OrderDetailModel.orderInfo.orderStatus;
-            [self updataView];
+            [self updateView];
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -386,16 +384,16 @@
  * 更新视图
  * 更新上个界面
  */
--(void)updataView
+-(void)updateView
 {
-    [self UpdateHeadView];
-    [self UpdateFootView];
-    [self UpdateTabBar];
-    [self UpdateRightBar];
     _block(@"reload",nil);
+    [self UpdateTabBar];
+    [self UpdateFootView];
+    [self UpdateHeadView];
+    [self UpdateRightBar];
 }
 /**
- * 返回 
+ * 返回
  * 取消线程
  */
 -(void)backAction
@@ -451,12 +449,12 @@
                 _OrderModel.orderStatus=status;
                 JXLOG(@"_OrderModel.orderStatus=%ld",_OrderModel.orderStatus);
                 JXLOG(@"111")
-                [self updataView];
-//                [_tableview reloadData];
-//                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
-//                [_tabBar UIConfig];
-//                _AddressView.DetailModel=_OrderDetailModel;
-//                [_AddressView SetState];
+                [self updateView];
+                //                [_tableview reloadData];
+                //                _tabBar.orderInfo=_OrderDetailModel.orderInfo;
+                //                [_tabBar UIConfig];
+                //                _AddressView.DetailModel=_OrderDetailModel;
+                //                [_AddressView SetState];
             }
         }] animated:YES];
     }] animated:YES completion:nil];
@@ -477,7 +475,7 @@
  * 支付回调
  */
 -(void)payAction:(NSNotification *)not
-{   
+{
     if([self isVisible])
     {
         if([self haveClearingDoneView])
@@ -545,7 +543,7 @@
                     //更新当前状态
                     _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
                     _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
-                    [self updataView];
+                    [self updateView];
                 }else
                 {
                     [self presentViewController:successAlert animated:YES completion:nil];
@@ -564,7 +562,7 @@
  */
 -(void)CancelAction
 {
-
+    
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_cancel_order", @"") WithBlock:^{
         NSDictionary *_parameters = @{@"token":[DD_UserModel getToken],@"tradeOrderCode":_OrderDetailModel.orderInfo.tradeOrderCode};
         [[JX_AFNetworking alloc] GET:@"order/v1_0_7/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
@@ -573,7 +571,7 @@
                 //更新当前状态
                 _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
                 _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
-                [self updataView];
+                [self updateView];
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -582,7 +580,7 @@
             [self presentViewController:failureAlert animated:YES completion:nil];
         }];
     }] animated:YES completion:nil];
-   
+    
 }
 /**
  * 删除订单
@@ -593,15 +591,28 @@
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_delete_order", @"") WithBlock:^{
         if(_OrderDetailModel.orderInfo.orderList.count)
         {
+            /**
+             * 初始化方法
+             * public static Integer ORDER_STATUS_DFK = 0; //待付款
+             * public static Integer ORDER_STATUS_DFH = 1; //待发货
+             * public static Integer ORDER_STATUS_DSH = 2; //待收货
+             * public static Integer ORDER_STATUS_JYCG = 3; //交易成功
+             * public static Integer ORDER_STATUS_SQTK = 4; //申请退款
+             * public static Integer ORDER_STATUS_TKCLZ = 5; //退款处理中
+             * public static Integer ORDER_STATUS_YTK = 6; //已退款
+             * public static Integer ORDER_STATUS_JJTK = 7; //拒绝退款
+             * public static Integer ORDER_STATUS_YQX = 8; //已取消
+             * public static Integer ORDER_STATUS_YSC = 9; //已删除
+             */
             long _status=_OrderDetailModel.orderInfo.orderStatus;
-            if(_status==3||_status==8||_status==6||_status==7)
+            if(_status==3||_status==8||_status==6||_status==7||(_status==0&&_OrderDetailModel.orderInfo.expire))
             {
                 DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
                 NSDictionary *_parameters=nil;
                 NSString *_url=nil;
-                if(_status==8)
+                if(_status==8||(_status==0&&_OrderDetailModel.orderInfo.expire))
                 {
-//                    待付款取消后删
+                    //                    待付款取消后删
                     _url=@"order/v1_0_7/deleteTradeOrder.do";
                     _parameters=@{@"token":[DD_UserModel getToken],@"tradeOrderCode":_order.tradeOrderCode};
                 }else{
@@ -633,7 +644,7 @@
                 } failure:^(NSError *error, UIAlertController *failureAlert) {
                     [self presentViewController:failureAlert animated:YES completion:nil];
                 }];
-
+                
             }
         }
     }] animated:YES completion:nil];

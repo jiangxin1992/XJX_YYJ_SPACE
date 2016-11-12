@@ -14,8 +14,7 @@
 
 @implementation DD_BenefitRuleViewController
 {
-    UIScrollView *_scrollView;
-    UIView *container;
+    UIWebView *_webView;
 }
 
 - (void)viewDidLoad {
@@ -39,17 +38,19 @@
 #pragma mark -UIConfig
 -(void)UIConfig
 {
-    [self CreateScrollView];
+    [self CreateWebView];
 }
--(void)CreateScrollView
+-(void)CreateWebView
 {
-    _scrollView=[[UIScrollView alloc] init];
-    [self.view addSubview:_scrollView];
-    container = [UIView new];
-    [_scrollView addSubview:container];
-    [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+    _webView=[[UIWebView alloc] init];
+    [self.view addSubview:_webView];
+    _webView.userInteractionEnabled=YES;
+    _webView.backgroundColor =  _define_clear_color;
+    _webView.opaque = NO;
+    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(ktabbarHeight);
     }];
 }
 #pragma mark - RequestData
@@ -58,21 +59,11 @@
     [[JX_AFNetworking alloc] GET:@"user/getBenefitRule.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            UILabel *rule_content_label=[UILabel getLabelWithAlignment:0 WithTitle:[data objectForKey:@"rule"] WithFont:13.0f WithTextColor:nil WithSpacing:0];
-            [container addSubview:rule_content_label];
-            rule_content_label.numberOfLines=0;
-            [rule_content_label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(kEdge);
-                make.right.mas_equalTo(-kEdge);
-                make.top.mas_equalTo(18);
-            }];
-            
-            [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.left.right.mas_equalTo(0);
-                make.bottom.mas_equalTo(ktabbarHeight);
-                // 让scrollview的contentSize随着内容的增多而变化
-                make.bottom.mas_equalTo(rule_content_label.mas_bottom).with.offset(18);
-            }];
+            if([data objectForKey:@"ruleLink"])
+            {
+                [_webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[data objectForKey:@"ruleLink"]]]];
+                [_webView sizeToFit];
+            }
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
