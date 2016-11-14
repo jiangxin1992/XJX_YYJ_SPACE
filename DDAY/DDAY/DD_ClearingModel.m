@@ -111,8 +111,8 @@
     CGFloat _countPrice=_count+_Freight;
     
     DD_BenefitInfoModel *_benefitModel=[self getChoosedBenefitInfo];
-//    if(self.use_rewardPoints)
-//    {
+    if(self.use_rewardPoints)
+    {
     
         if(self.rewardPoints)
         {
@@ -175,8 +175,9 @@
 //            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
-//    }else
-//    {
+    }else
+    {
+        self.employ_rewardPoints=0;
 //        if(self.rewardPoints)
 //        {
 //        }else
@@ -185,7 +186,7 @@
 //            self.use_rewardPoints=NO;
 //            self.employ_rewardPoints=0;
 //        }
-//    }
+    }
 }
 -(void)BenefitUpdate
 {

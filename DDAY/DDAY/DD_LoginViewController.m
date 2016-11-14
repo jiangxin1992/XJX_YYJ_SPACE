@@ -194,17 +194,17 @@
 /**
  * 是否切换到开发
  */
--(void)changeToDev:(BOOL )isDev
+-(void)changeDevState
 {
-    if(isDev)
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    if(![_default objectForKey:@"isdev"])
     {
         [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-                [_default setObject:[NSNumber numberWithBool:isDev] forKey:@"isdev"];
+                [_default setObject:[NSNumber numberWithBool:YES] forKey:@"isdev"];
                 [_default setObject:[data objectForKey:@"localAddress"] forKey:@"devDNS"];
-                _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
                 [_phoneTextfiled resignFirstResponder];
                 [self presentViewController:[regular alertTitle_Simple:@"已成功切换到开发环境"] animated:YES completion:nil];
             }else
@@ -218,9 +218,8 @@
     {
         //标记为生产，并且删除生产的dns
         NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-        [_default setObject:[NSNumber numberWithBool:isDev] forKey:@"isdev"];
+        [_default setObject:[NSNumber numberWithBool:NO] forKey:@"isdev"];
         [_default setObject:nil forKey:@"devDNS"];
-        _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
         [_phoneTextfiled resignFirstResponder];
         [self presentViewController:[regular alertTitle_Simple:@"已成功切换到生产环境"] animated:YES completion:nil];
         
@@ -235,18 +234,9 @@
     if([_phoneTextfiled.text isEqualToString:@"145000568"])
     {
         //切换键盘
-        _phoneTextfiled.keyboardType=UIKeyboardTypeDefault;
         _phoneTextfiled.text=@"";
         [_phoneTextfiled resignFirstResponder];
-        [_phoneTextfiled becomeFirstResponder];
-    }else if([_phoneTextfiled.text isEqualToString:devAccount]&&[_PSWTextfiled.text isEqualToString:devPSW])
-    {
-        //切换到开发状态
-        [self changeToDev:YES];
-    }else if([_phoneTextfiled.text isEqualToString:proAccount]&&[_PSWTextfiled.text isEqualToString:proPSW])
-    {
-        //切换到生产状态
-        [self changeToDev:NO];
+        [self changeDevState];
     }else
     {
         if([NSString isNilOrEmpty:_phoneTextfiled.text]||[NSString isNilOrEmpty:_PSWTextfiled.text])

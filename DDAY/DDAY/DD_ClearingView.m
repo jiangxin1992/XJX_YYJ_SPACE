@@ -286,15 +286,17 @@
         _switch.userInteractionEnabled=NO;
         _integralLabel.text=@"无积分";
     }else{
-        if(_clearingModel.employ_rewardPoints)
-        {
-            _switch.on=_clearingModel.use_rewardPoints;
-            _switch.userInteractionEnabled=YES;
-        }else
-        {
-            _switch.on=NO;
-            _switch.userInteractionEnabled=NO;
-        }
+//        if(_clearingModel.employ_rewardPoints)
+//        {
+//            _switch.on=_clearingModel.use_rewardPoints;
+//            _switch.userInteractionEnabled=YES;
+//        }else
+//        {
+//            _switch.on=NO;
+//            _switch.userInteractionEnabled=NO;
+//        }
+        _switch.on=_clearingModel.use_rewardPoints;
+        _switch.userInteractionEnabled=YES;
         _integralLabel.text=[[NSString alloc] initWithFormat:@"可用%ld积分抵扣%ld元",_clearingModel.employ_rewardPoints,_clearingModel.employ_rewardPoints];
     }
     
