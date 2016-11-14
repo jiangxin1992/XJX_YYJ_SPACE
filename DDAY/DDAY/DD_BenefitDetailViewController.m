@@ -8,6 +8,8 @@
 
 #import "DD_BenefitDetailViewController.h"
 
+#import "DD_LoginViewController.h"
+
 #import "DD_BenefitDetailModel.h"
 
 @interface DD_BenefitDetailViewController ()
@@ -19,6 +21,8 @@
     DD_BenefitDetailModel *_benefitDetailModel;
     UIScrollView *_scrollView;
     UIView *container;
+    
+    UIButton *loginBtn;
 }
 
 - (void)viewDidLoad {
@@ -85,8 +89,8 @@
     if(![DD_UserModel isLogin])
     {
         // 270 70
-        UIButton *loginBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"立即注册" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
-        [_backImg addSubview:loginBtn];
+        loginBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"立即注册" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+        [container addSubview:loginBtn];
         loginBtn.backgroundColor=_define_white_color;
         loginBtn.titleLabel.font=[regular getSemiboldFont:15.0f];
         [loginBtn addTarget:self action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
@@ -125,6 +129,7 @@
     }];
     
 }
+
 #pragma mark - RequestData
 -(void)RequestData
 {
@@ -145,8 +150,23 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-
-
+#pragma mark - SomeAction
+/**
+ * 跳转登录界面
+ */
+-(void)pushLoginView
+{
+    if(![DD_UserModel isLogin])
+    {
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                loginBtn.hidden=YES;
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+    }
+}
 #pragma mark - other
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

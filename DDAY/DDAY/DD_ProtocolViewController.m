@@ -45,7 +45,7 @@
     _webview.backgroundColor =  _define_clear_color;
     _webview.opaque = NO;
     _webview.dataDetectorTypes = UIDataDetectorTypeNone;
-    [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,@"user/getProtocolPage.htm"]]]];
+    [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],@"user/getProtocolPage.htm"]]]];
     [_webview sizeToFit];
     
     [_webview mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -16,7 +16,8 @@
 
 -(NSString *)getUrl:(NSString *)url
 {
-    return [[NSString alloc] initWithFormat:@"%@%@",DNS,url];
+    NSLog(@"%@",[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],url]);
+    return [[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],url];
 }
 -(void)NETWorkingData:(id )responseObject WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
 {

@@ -497,12 +497,7 @@
             [self mengban_dismiss_share];
         }
     }];
-//    shareView=[[DD_ShareView alloc] initWithTitle:nowListModel.userName Content:nowListModel.shareAdvise WithImg:pic WithUrl:[[NSString alloc] initWithFormat:@"%@%@",DNS,nowListModel.appUrl] WithBlock:^(NSString *type) {
-//        if([type isEqualToString:@"cancel"])
-//        {
-//            [self mengban_dismiss_share];
-//        }
-//    }];
+
     [mengban_share addSubview:shareView];
     CGFloat _height=[DD_ShareTool getHeight];
     shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);

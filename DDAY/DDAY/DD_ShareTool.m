@@ -22,7 +22,7 @@
     if([type isEqualToString:@"goods_detail"])
     {
         DD_GoodsDetailModel *_DetailModel=[params objectForKey:@"detailModel"];
-        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
         
         DD_ColorsModel *colorModel=[_DetailModel getColorsModel];
         
@@ -42,7 +42,7 @@
         {
             //        朋友圈
             // 定制微信好友的分享内容
-            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\n%@",_DetailModel.item.itemName,_DetailModel.designer.brandName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\n%@",_DetailModel.item.itemName,_DetailModel.designer.brandName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博
@@ -60,7 +60,7 @@
     }else if([type isEqualToString:@"dday_detail"])
     {
         DD_DDayDetailModel *_DetailModel=[params objectForKey:@"detailModel"];
-        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
         NSString *pic=nil;
         if(_DetailModel.seriesFrontPic.pic)
         {
@@ -76,7 +76,7 @@
         {
             //        朋友圈
             // 定制微信好友的分享内容
-            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\n%@ | %@",_DetailModel.name,_DetailModel.designerName,_DetailModel.brandName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\n%@ | %@",_DetailModel.name,_DetailModel.designerName,_DetailModel.brandName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博
@@ -106,7 +106,7 @@
     }else if([type isEqualToString:@"circle_detail"])
     {
         DD_CircleListModel *_DetailModel=[params objectForKey:@"detailModel"];
-        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
         NSString *pic=nil;
         if(_DetailModel.pics.count)
         {
@@ -122,7 +122,7 @@
         {
             //        朋友圈
             // 定制微信好友的分享内容
-            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\nfrom %@ @YCO SPACE",_DetailModel.shareAdvise,_DetailModel.userName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",DNS,[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\nfrom %@ @YCO SPACE",_DetailModel.shareAdvise,_DetailModel.userName] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_DetailModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博

@@ -14,6 +14,11 @@
 #import "DD_forgetViewController.h"
 #import "DD_LoginTextView.h"
 
+#define devAccount @"#ycospace_dev"
+#define devPSW @"yun888"
+#define proAccount @"#ycospace_pro"
+#define proPSW @"yun888"
+
 @interface DD_LoginViewController ()<UITextFieldDelegate>
 
 @end
@@ -186,31 +191,84 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
-
+/**
+ * 是否切换到开发
+ */
+-(void)changeToDev:(BOOL )isDev
+{
+    if(isDev)
+    {
+        [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+                [_default setObject:[NSNumber numberWithBool:isDev] forKey:@"isdev"];
+                [_default setObject:[data objectForKey:@"localAddress"] forKey:@"devDNS"];
+                _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
+                [_phoneTextfiled resignFirstResponder];
+                [self presentViewController:[regular alertTitle_Simple:@"已成功切换到开发环境"] animated:YES completion:nil];
+            }else
+            {
+                [self presentViewController:successAlert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            [self presentViewController:failureAlert animated:YES completion:nil];
+        }];
+    }else
+    {
+        //标记为生产，并且删除生产的dns
+        NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+        [_default setObject:[NSNumber numberWithBool:isDev] forKey:@"isdev"];
+        [_default setObject:nil forKey:@"devDNS"];
+        _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
+        [_phoneTextfiled resignFirstResponder];
+        [self presentViewController:[regular alertTitle_Simple:@"已成功切换到生产环境"] animated:YES completion:nil];
+        
+    }
+    
+}
 /**
  * 登录验证
  */
 -(void)loginAction
 {
-    if([NSString isNilOrEmpty:_phoneTextfiled.text]||[NSString isNilOrEmpty:_PSWTextfiled.text])
+    if([_phoneTextfiled.text isEqualToString:@"145000568"])
     {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
+        //切换键盘
+        _phoneTextfiled.keyboardType=UIKeyboardTypeDefault;
+        _phoneTextfiled.text=@"";
+        [_phoneTextfiled resignFirstResponder];
+        [_phoneTextfiled becomeFirstResponder];
+    }else if([_phoneTextfiled.text isEqualToString:devAccount]&&[_PSWTextfiled.text isEqualToString:devPSW])
+    {
+        //切换到开发状态
+        [self changeToDev:YES];
+    }else if([_phoneTextfiled.text isEqualToString:proAccount]&&[_PSWTextfiled.text isEqualToString:proPSW])
+    {
+        //切换到生产状态
+        [self changeToDev:NO];
     }else
     {
-        if([regular phoneVerify:_phoneTextfiled.text])
+        if([NSString isNilOrEmpty:_phoneTextfiled.text]||[NSString isNilOrEmpty:_PSWTextfiled.text])
         {
-            if([regular checkPassword:_PSWTextfiled.text])
-            {
-                [self enterloginAction];
-            }else
-            {
-
-                [self presentViewController:[regular alertTitle_Simple:@"用户名或密码错误"] animated:YES completion:nil];
-            }
-            
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"content_empty", @"")] animated:YES completion:nil];
         }else
         {
-            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_phone_flase", @"")] animated:YES completion:nil];
+            if([regular phoneVerify:_phoneTextfiled.text])
+            {
+                if([regular checkPassword:_PSWTextfiled.text])
+                {
+                    [self enterloginAction];
+                }else
+                {
+                    
+                    [self presentViewController:[regular alertTitle_Simple:@"用户名或密码错误"] animated:YES completion:nil];
+                }
+                
+            }else
+            {
+                [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"login_phone_flase", @"")] animated:YES completion:nil];
+            }
         }
     }
 }

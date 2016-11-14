@@ -10,6 +10,8 @@
 
 @interface regular : NSObject
 
++(NSString *)getDNS;
+
 + (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
 
 + (NSString *)getRoundNum:(CGFloat )num;

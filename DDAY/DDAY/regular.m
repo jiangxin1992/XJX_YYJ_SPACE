@@ -26,6 +26,29 @@ static regular *_t = nil;
     }
     return _t;
 }
++(NSString *)getDNS
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    if(![_default objectForKey:@"isdev"])
+    {
+        return DNS;
+    }else{
+        if([_default objectForKey:@"devDNS"])
+        {
+            if([[_default objectForKey:@"devDNS"] isKindOfClass:[NSString class]])
+            {
+                NSLog(@"%@",[_default objectForKey:@"devDNS"]);
+                return [_default objectForKey:@"devDNS"];
+            }else
+            {
+                return DNS;
+            }
+        }else
+        {
+            return DNS;
+        }
+    }
+}
 +(NSArray *)getGifImg
 {
     NSMutableArray *refreshingImages=[[NSMutableArray alloc] init];
