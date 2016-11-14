@@ -21,6 +21,7 @@
 #import "DD_BenefitListViewController.h"
 
 #import "DD_UserItemBtn.h"
+#import "DD_DailyIntegralView.h"
 
 #import "DD_UserTool.h"
 #import "DD_UnReadMsgModel.h"
@@ -41,7 +42,8 @@
     UILabel *_userName;
     
     DD_UnReadMsgModel *_unReadMsgModel;
-    
+    DD_DailyIntegralView *_dailyIntegralView;
+    BOOL _firstLoad;
 }
 
 - (void)viewDidLoad {
@@ -63,6 +65,7 @@
 -(void)PrepareData
 {
     _datadict=[DD_UserTool getUserListMap];
+    _firstLoad=YES;
 }
 -(void)PrepareUI
 {
@@ -105,9 +108,17 @@
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(_headBack.mas_bottom).with.offset(15);
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(200);
     }];
+    
+    _dailyIntegralView=[[DD_DailyIntegralView alloc] initDailyIntegralView];
+    [self.view addSubview:_dailyIntegralView];
+    [_dailyIntegralView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_userName.mas_right).with.offset(12);
+        make.centerY.mas_equalTo(_userName.mas_top);
+        make.height.mas_equalTo([regular getHeightWithWidth:9999 WithContent:@"wqdqd" WithFont:[regular getFont:15.0f]]*2);
+        make.right.mas_equalTo(0);
+    }];
+    
     
     CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
     CGFloat _offset=kIiPhone6?25:15;
@@ -120,6 +131,7 @@
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -150,6 +162,8 @@
                     _userName.textColor=_define_black_color;
                     _userName.text=_usermodel.nickName;
                     [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:94/2.0f];
+                    
+                    [self startAnimation];
                 }
             }else
             {
@@ -223,7 +237,13 @@
     }];
 }
 #pragma mark - SomeAction
-
+-(void)startAnimation
+{
+    if(_dailyIntegralView)
+    {
+        [_dailyIntegralView startAnimation];
+    }
+}
 /**
  * 点击事件
  */
@@ -415,6 +435,7 @@
             if([type isEqualToString:@"success"])
             {
                 [self UpdateUI];
+                [regular SigninAction];
             }
         }];
         [self.navigationController pushViewController:_login animated:YES];
@@ -433,7 +454,7 @@
             {
                 if(_usermodel.rewardPoints)
                 {
-                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"（%ld）",_usermodel.rewardPoints];
+                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"%ld",_usermodel.rewardPoints];
                 }else
                 {
                     _UserItemBtn.rewardPoints_label.text=@"";
@@ -494,10 +515,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(_userHeadImg)
+    if(!_firstLoad)
     {
         [self RequestData];
         [self Has_readMessage];
+    }else
+    {
+        _firstLoad=NO;
     }
     [[DD_CustomViewController sharedManager] tabbarAppear];
 }

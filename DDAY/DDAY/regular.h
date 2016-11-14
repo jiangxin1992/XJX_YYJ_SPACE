@@ -16,6 +16,8 @@
 
 + (NSString *)getRoundNum:(CGFloat )num;
 
++(void)SigninAction;
+
 /**
  * 固定内容 字体下
  * 获取高度

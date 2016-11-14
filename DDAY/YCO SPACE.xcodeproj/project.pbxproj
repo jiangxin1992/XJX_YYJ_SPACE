@@ -208,6 +208,7 @@
 		3F7647C41D77D17B00843F43 /* DD_SexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7647C31D77D17B00843F43 /* DD_SexViewController.m */; };
 		3F77CAEB1D956BBB0086C49B /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F77CAE91D956BBB0086C49B /* AlipaySDK.bundle */; };
 		3F77CAEC1D956BBB0086C49B /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F77CAEA1D956BBB0086C49B /* AlipaySDK.framework */; };
+		3F7BA1031DD98CF300E6B69A /* DD_DailyIntegralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BA1021DD98CF300E6B69A /* DD_DailyIntegralView.m */; };
 		3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */; };
 		3F7C51C71CF3707100D3565D /* DD_ChooseSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C61CF3707100D3565D /* DD_ChooseSizeView.m */; };
 		3F7C51CA1CF42B2C00D3565D /* DD_ClearingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */; };
@@ -833,6 +834,8 @@
 		3F7647C31D77D17B00843F43 /* DD_SexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SexViewController.m; sourceTree = "<group>"; };
 		3F77CAE91D956BBB0086C49B /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		3F77CAEA1D956BBB0086C49B /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		3F7BA1011DD98CF300E6B69A /* DD_DailyIntegralView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DailyIntegralView.h; sourceTree = "<group>"; };
+		3F7BA1021DD98CF300E6B69A /* DD_DailyIntegralView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DailyIntegralView.m; sourceTree = "<group>"; };
 		3F7C51C21CF3613C00D3565D /* DD_GoodsDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_GoodsDesignerView.h; sourceTree = "<group>"; };
 		3F7C51C31CF3613C00D3565D /* DD_GoodsDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_GoodsDesignerView.m; sourceTree = "<group>"; };
 		3F7C51C51CF3707100D3565D /* DD_ChooseSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseSizeView.h; sourceTree = "<group>"; };
@@ -1979,6 +1982,8 @@
 		3F49388B1D0EAE8E000D213B /* 我的主页 */ = {
 			isa = PBXGroup;
 			children = (
+				3F7BA1011DD98CF300E6B69A /* DD_DailyIntegralView.h */,
+				3F7BA1021DD98CF300E6B69A /* DD_DailyIntegralView.m */,
 				3F0AE1001D55D12200AD7EFD /* DD_UserItemBtn.h */,
 				3F0AE1011D55D12200AD7EFD /* DD_UserItemBtn.m */,
 				3F9B8B091CEFFBE3008EC460 /* DD_UserHeadView.h */,
@@ -3679,6 +3684,7 @@
 				3F4187EF1CEEFF1A001BCA3D /* DD_CityTool.m in Sources */,
 				3FBCD9B01D98FF59002155F9 /* DD_ProtocolViewController.m in Sources */,
 				3FA39EBF1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m in Sources */,
+				3F7BA1031DD98CF300E6B69A /* DD_DailyIntegralView.m in Sources */,
 				3F8228FC1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m in Sources */,
 				3F14013B1CF7E28C0093474A /* DD_ShopModel.m in Sources */,
 				3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */,

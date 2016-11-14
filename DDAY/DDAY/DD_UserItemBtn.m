@@ -17,11 +17,6 @@
         shopBtn.frame=frame;
         shopBtn.kframe=frame;
         shopBtn.size=size;
-//        shopBtn.titleLabel.font=[regular getFont:15.0f];
-//        shopBtn.titleLabel.textAlignment = 0;
-//        [shopBtn setTitleColor:_define_black_color forState:UIControlStateNormal];
-//        [shopBtn setImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
-//        [shopBtn setTitle:title forState:UIControlStateNormal];
         UIImageView *img=[UIImageView getImgWithImageStr:imgStr];
         [shopBtn addSubview:img];
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -48,10 +43,10 @@
         
         shopBtn.rewardPoints_label=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
         [shopBtn addSubview:shopBtn.rewardPoints_label];
-        shopBtn.rewardPoints_label.font=[regular get_en_Font:12.0f];
+        shopBtn.rewardPoints_label.font=[regular get_en_Font:13.0f];
         [shopBtn.rewardPoints_label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(shopBtn);
-            make.left.mas_equalTo(titleL_label.mas_right).with.offset(3);
+            make.left.mas_equalTo(titleL_label.mas_right).with.offset(4);
         }];
 
     }

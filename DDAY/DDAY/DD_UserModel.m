@@ -196,5 +196,29 @@
     //    NSString *jsonstr_user=[_User mj_JSONString];
     //    [_default setObject:jsonstr_user forKey:@"user"];
 }
++(void)setDailyIntegral
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:[NSNumber numberWithBool:YES] forKey:@"dailyIntegral"];
+    
+    DD_CustomViewController *custom=[DD_CustomViewController sharedManager];
+    [custom.userCtn startAnimation];
+}
 
++(BOOL)getDailyIntegral
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    if([_default objectForKey:@"dailyIntegral"])
+    {
+        return [[_default objectForKey:@"dailyIntegral"] boolValue];
+    }else
+    {
+        return NO;
+    }
+}
++(void)regisnDailyIntegral
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:nil forKey:@"dailyIntegral"];
+}
 @end

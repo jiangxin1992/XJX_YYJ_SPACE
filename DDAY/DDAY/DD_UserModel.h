@@ -139,4 +139,10 @@ __string(weight);
  */
 +(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel;
 
++(void)setDailyIntegral;
+
++(BOOL)getDailyIntegral;
+
++(void)regisnDailyIntegral;
+
 @end

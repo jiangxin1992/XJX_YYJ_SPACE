@@ -192,7 +192,7 @@
     [GeTuiSdk resetBadge]; //重置角标计数
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; // APP 清空角标
-    [self SigninAction];
+    [regular SigninAction];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -264,21 +264,7 @@
         [self connectedDeviceToken:token];
 //    }
 }
--(void)SigninAction
-{
-    if([DD_UserModel isLogin])
-    {
-        [[JX_AFNetworking alloc] GET:@"user/signUpWithRewardsPoints.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-            }else
-            {
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            
-        }];
-    }
-}
+
 -(void)connectedDeviceToken:(NSString *)deviceToken
 {
 

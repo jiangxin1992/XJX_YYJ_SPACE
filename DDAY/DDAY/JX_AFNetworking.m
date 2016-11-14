@@ -45,8 +45,8 @@
     manager.securityPolicy.allowInvalidCertificates = YES;//忽略https证书
     
     manager.securityPolicy.validatesDomainName = NO;//是否验证域名
-    
-    [manager GET:[self getUrl:url] parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *urlstr=[self getUrl:url];
+    [manager GET:urlstr parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {

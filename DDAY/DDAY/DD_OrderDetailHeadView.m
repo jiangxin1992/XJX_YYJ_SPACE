@@ -344,7 +344,7 @@
      * public static Integer ORDER_STATUS_YSC = 9; //已删除
      */
     long _status=_orderDetailModel.orderInfo.orderStatus;
-    _stateLabel.text=_status==0?(_orderDetailModel.orderInfo.expire?@"已过期":@"待付款"):_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易完成":_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":_status==7?@"拒绝退款":_status==8?@"订单已取消":@"订单已删除";
+    _stateLabel.text=_status==0?(_orderDetailModel.orderInfo.expire?@"订单已取消":@"待付款"):_status==1?@"待发货":_status==2?@"待收货":_status==3?@"交易完成":_status==4?@"退款申请中":_status==5?@"退款处理中":_status==6?@"已退款":_status==7?@"拒绝退款":_status==8?@"订单已取消":@"订单已删除";
     
     _stateLabel.textAlignment=_status?1:(_orderDetailModel.orderInfo.expire?1:2);
     [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

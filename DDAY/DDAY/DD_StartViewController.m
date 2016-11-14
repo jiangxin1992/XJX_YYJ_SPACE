@@ -41,13 +41,12 @@ static DD_StartViewController *startController = nil;
 #pragma mark - 创建单例
 +(id)sharedManager
 {
-    long time=[NSDate nowTime];
-    JXLOG(@"111");
+//    long time=[NSDate nowTime];
+//    JXLOG(@"111");
     //    创建CustomTabbarController的单例，并通过此方法调用
     //    互斥锁，确保单例只能被创建一次
     @synchronized(self)
     {
-        
         if (!startController) {
             startController = [[DD_StartViewController alloc]init];
         }

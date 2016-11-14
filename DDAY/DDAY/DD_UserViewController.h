@@ -12,4 +12,10 @@
 
 -(void)PushFansView;
 
+/**
+ * 动画开始
+ * 每日登录送1积分
+ */
+-(void)startAnimation;
+
 @end

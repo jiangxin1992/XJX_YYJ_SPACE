@@ -67,7 +67,7 @@
         [_integralRuleBtn addSubview:_integralRuleLabel];
         [_integralRuleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(21);
-            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
         }];
         
         UILabel *_integralTitleLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"积分明细" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];

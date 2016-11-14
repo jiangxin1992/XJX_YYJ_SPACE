@@ -102,7 +102,7 @@
             if(_orderModel.expire)
             {
                 //已过期
-                stateLabel.text=@"已过期";
+                stateLabel.text=@"订单已取消";
             }else
             {
                 //未过期

@@ -26,6 +26,24 @@ static regular *_t = nil;
     }
     return _t;
 }
++(void)SigninAction
+{
+    
+    if([DD_UserModel isLogin])
+    {
+        [[JX_AFNetworking alloc] GET:@"user/signUpWithRewardsPoints.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+            if(success)
+            {
+                [DD_UserModel setDailyIntegral];
+            }else
+            {
+                [DD_UserModel regisnDailyIntegral];
+            }
+        } failure:^(NSError *error, UIAlertController *failureAlert) {
+            
+        }];
+    }
+}
 +(NSString *)getDNS
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
