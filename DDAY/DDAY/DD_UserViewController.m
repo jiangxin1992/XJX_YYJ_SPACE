@@ -139,6 +139,7 @@
     
     
     CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
+    _y_p=_y_p-64;
     CGFloat _offset=kIiPhone6?25:15;
     CGFloat _bianju=kIiPhone6?43:33;
     CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
