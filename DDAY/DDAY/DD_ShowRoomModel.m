@@ -16,7 +16,6 @@
     DD_ShowRoomModel *_ShowRoomModel=[DD_ShowRoomModel mj_objectWithKeyValues:dict];
     _ShowRoomModel.s_id=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] longValue]];
     _ShowRoomModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
-//    _ShowRoomModel.pics=[DD_ImageModel getRandomImageModelArr:[dict objectForKey:@"pics"]];
     
     return _ShowRoomModel;
 }
@@ -25,7 +24,6 @@
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
     for (NSDictionary *dict in arr) {
         [itemsArr addObject:[self getShowRoomModel:dict]];
-        
     }
     return itemsArr;
 }

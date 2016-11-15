@@ -366,7 +366,7 @@
                                     @"token":[DD_UserModel getToken]
                                     ,@"orderInfo":[[DD_ClearingTool getPayOrderInfoWithDataDict:_dataDict WithDataArr:_dataArr WithRemarks:remarksStr WithFreight:_Clearingmodel.freight] mj_JSONString]
                                     ,@"benefitId":_Clearingmodel.choosedBenefitId?_Clearingmodel.choosedBenefitId:@""
-                                    ,@"deduction":[NSNumber numberWithLong:_Clearingmodel.employ_rewardPoints]
+                                    ,@"deduction":_Clearingmodel.use_rewardPoints?[NSNumber numberWithLong:_Clearingmodel.employ_rewardPoints]:[NSNumber numberWithLong:0]
                                     ,@"actuallyPay":[NSNumber numberWithFloat:_price]
                                     };
         [[JX_AFNetworking alloc] GET:@"order/v1_0_7/createOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {

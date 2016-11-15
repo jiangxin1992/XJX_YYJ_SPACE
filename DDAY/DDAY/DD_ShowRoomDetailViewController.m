@@ -324,6 +324,7 @@
 }
 -(void)locationAction
 {
+//    double qdw=[_showRoomModel.latitude doubleValue];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:[_showRoomModel.latitude doubleValue] longitude:[_showRoomModel.longitude doubleValue]];
     CLLocationCoordinate2D coord = [loc coordinate];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
@@ -338,7 +339,7 @@
 
 - (void)openGaoDeMap{
     
-    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&poiname=%@&lat=%f&lon=%f&dev=1&style=2",@"YCO SPACE", @"YCO", _showRoomModel.storeName, [_showRoomModel.latitude doubleValue], [_showRoomModel.longitude doubleValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&poiname=%@&lat=%@&lon=%@&dev=1&style=2",@"YCO SPACE", @"YCO", _showRoomModel.storeName, _showRoomModel.latitude, _showRoomModel.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
     
@@ -349,7 +350,8 @@
 - (void)openBaiDuMap{
     
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%f,%f|name:我的位置&destination=latlng:%f,%f|name:%@&mode=driving",[_showRoomModel.latitude doubleValue],[_showRoomModel.longitude doubleValue],currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude,_showRoomModel.storeName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
+    NSString *url=[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%@,%@|name:我的位置&destination=latlng:%f,%f|name:%@&mode=driving",_showRoomModel.latitude,_showRoomModel.longitude,currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude,_showRoomModel.baiduMapName];
+    NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
     

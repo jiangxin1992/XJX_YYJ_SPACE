@@ -27,8 +27,11 @@ __string(height);
 /** 用户ID*/
 __string(u_id);
 
-/*** 用户积分*/
+/** 用户积分*/
 __long(rewardPoints);
+
+/** 优惠券数量*/
+__int(benefitNumber);
 
 /** 用户昵称*/
 __string(nickName);

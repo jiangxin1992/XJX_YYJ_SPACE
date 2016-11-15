@@ -38,6 +38,8 @@
     
     BOOL _isShow;
     
+    UIImageView *_chooseImg;
+    
     
 }
 #pragma mark - 初始化方法
@@ -124,7 +126,7 @@
         make.top.mas_equalTo(line2.mas_bottom).with.offset(0);
         make.height.mas_equalTo(50);
     }];
-    UIImageView *_chooseImg=[UIImageView getImgWithImageStr:@"System_Arrow"];
+    _chooseImg=[UIImageView getImgWithImageStr:@"System_Arrow"];
     [_chooseCouponBtn addSubview:_chooseImg];
     [_chooseImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_chooseCouponBtn);
@@ -132,6 +134,8 @@
         make.width.mas_equalTo(10);
         make.height.mas_equalTo(18);
     }];
+    
+//    有XX个红包可用
     UILabel *_couponLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"优惠" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [_chooseCouponBtn addSubview:_couponLabel];
     [_couponLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -278,25 +282,33 @@
     }
     
 }
+#pragma mark - SetState
 -(void)SetState
 {
+    NSInteger _count=[_clearingModel.benefitInfo count];
+    if(_count)
+    {
+        _chooseImg.hidden=NO;
+    }else
+    {
+        _chooseImg.hidden=YES;
+    }
+    
     if(!_clearingModel.rewardPoints)
     {
         _switch.on=NO;
         _switch.userInteractionEnabled=NO;
         _integralLabel.text=@"无积分";
     }else{
-//        if(_clearingModel.employ_rewardPoints)
-//        {
-//            _switch.on=_clearingModel.use_rewardPoints;
-//            _switch.userInteractionEnabled=YES;
-//        }else
-//        {
-//            _switch.on=NO;
-//            _switch.userInteractionEnabled=NO;
-//        }
-        _switch.on=_clearingModel.use_rewardPoints;
-        _switch.userInteractionEnabled=YES;
+        if(_clearingModel.employ_rewardPoints)
+        {
+            _switch.on=_clearingModel.use_rewardPoints;
+            _switch.userInteractionEnabled=YES;
+        }else
+        {
+            _switch.on=NO;
+            _switch.userInteractionEnabled=NO;
+        }
         _integralLabel.text=[[NSString alloc] initWithFormat:@"可用%ld积分抵扣%ld元",_clearingModel.employ_rewardPoints,_clearingModel.employ_rewardPoints];
     }
     
@@ -306,7 +318,13 @@
         _couponDesLabel.text=_benefitModel.name;
     }else
     {
-        _couponDesLabel.text=@"";
+        if(_count)
+        {
+            _couponDesLabel.text=[[NSString alloc] initWithFormat:@"有%lu个优惠券可用",(unsigned long)[_clearingModel.benefitInfo count]];
+        }else
+        {
+            _couponDesLabel.text=@"暂无可用优惠券";
+        }
     }
 }
 #pragma mark - SomeAction
@@ -323,7 +341,12 @@
 
 -(void)chooseCouponAction
 {
-    _block(@"choose_coupon",0,_payWay);
+    NSInteger _count=[_clearingModel.benefitInfo count];
+    if(_count)
+    {
+        _block(@"choose_coupon",0,_payWay);
+    }
+    
 }
 /**
  * 获取结算页面的订单个数

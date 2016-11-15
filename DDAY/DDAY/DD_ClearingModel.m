@@ -19,82 +19,11 @@
     _Clearing.address=[DD_AddressModel getAddressModel:[dict objectForKey:@"address"]];
     _Clearing.orders=[DD_ClearingOrderModel getClearingOrderModelArray:[dict objectForKey:@"orders"]];
     _Clearing.benefitInfo=[DD_BenefitInfoModel getBenefitInfoModelArr:[dict objectForKey:@"benefitInfo"]];
-//    _Clearing.rewardPoints=500;
     
-    NSMutableDictionary *_dataDict=[[NSMutableDictionary alloc] init];
-    NSMutableArray *_dataArr=[[NSMutableArray alloc] init];
-    [_dataDict setDictionary:[_Clearing getOrderInfo]];
-    [_dataArr addObjectsFromArray:[[_dataDict objectForKey:@"orders"] objectForKey:@"remain"]];
-    [_dataArr addObjectsFromArray:[[_dataDict objectForKey:@"orders"] objectForKey:@"saleing"]];
-    NSInteger _freight=[_Clearing.freight integerValue];
-    CGFloat _Freight=_dataArr.count*_freight;
-    CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
-    CGFloat _countPrice=_count+_Freight;
-    
-    
-    DD_BenefitInfoModel *_benefitModel=[_Clearing getChoosedBenefitInfo];
-    if(_Clearing.rewardPoints)
-    {
-        CGFloat _price=_countPrice;
-        if(_Clearing.benefitInfo)
-        {
-            //有优惠券时
-            if(_benefitModel.amount>_price)
-            {
-                _price=0;
-                _Clearing.use_rewardPoints=NO;
-                _Clearing.employ_rewardPoints=0;
-            }else
-            {
-                _price=_price-_benefitModel.amount;
-                _Clearing.use_rewardPoints=YES;
-            }
-        }else
-        {
-            //没有优惠券时
-            _Clearing.use_rewardPoints=YES;
-        }
-        
-        if(_price&&_Clearing.use_rewardPoints)
-        {
-            if(_Clearing.rewardPoints>50)
-            {
-                if(_Clearing.rewardPoints>_price)
-                {
-                    //积分大于剩余金额时候
-                    if(_price>50)
-                    {
-                         _Clearing.employ_rewardPoints=50;
-                    }else
-                    {
-                         _Clearing.employ_rewardPoints=ceil(_price);
-                    }
-                }else
-                {
-                    //积分小于剩余金额时候
-                    _Clearing.employ_rewardPoints=50;
-                }
-            }else
-            {
-                if(_Clearing.rewardPoints>_price)
-                {
-                    //积分大于剩余金额时候
-                    _Clearing.employ_rewardPoints=ceil(_price);
-                }else
-                {
-                    //积分小于剩余金额时候
-                    _Clearing.employ_rewardPoints=_Clearing.rewardPoints;
-                }
-            }
-            
-        }
-    }else
-    {
-        //没有积分时候 为未使用／使用数量为0
-        _Clearing.use_rewardPoints=NO;
-        _Clearing.employ_rewardPoints=0;
-    }
-    
+    _Clearing.use_rewardPoints=NO;
+    _Clearing.employ_rewardPoints=0;
+    [_Clearing IntegralUpdate];
+
     return _Clearing;
 }
 
@@ -111,81 +40,67 @@
     CGFloat _countPrice=_count+_Freight;
     
     DD_BenefitInfoModel *_benefitModel=[self getChoosedBenefitInfo];
-    if(self.use_rewardPoints)
+
+    if(self.rewardPoints)
     {
-    
-        if(self.rewardPoints)
+        CGFloat _price=_countPrice;
+        if(self.benefitInfo)
         {
-            CGFloat _price=_countPrice;
-            if(self.benefitInfo)
+            //有优惠券时
+            if(_benefitModel.amount>_price)
             {
-                //有优惠券时
-                if(_benefitModel.amount>_price)
-                {
-                    _price=0;
-                }else
-                {
-                    _price=_price-_benefitModel.amount;
-                }
+                _price=0;
             }else
             {
-                //没有优惠券时
-            }
-            
-            if(_price)
-            {
-                if(self.rewardPoints>50)
-                {
-                    if(self.rewardPoints>_price)
-                    {
-                        //积分大于剩余金额时候
-                        if(_price>50)
-                        {
-                            self.employ_rewardPoints=50;
-                        }else
-                        {
-                            self.employ_rewardPoints=ceil(_price);
-                        }
-                    }else
-                    {
-                        //积分小于剩余金额时候
-                        self.employ_rewardPoints=50;
-                    }
-                }else
-                {
-                    if(self.rewardPoints>_price)
-                    {
-                        //积分大于剩余金额时候
-                        self.employ_rewardPoints=ceil(_price);
-                    }else
-                    {
-                        //积分小于剩余金额时候
-                        self.employ_rewardPoints=self.rewardPoints;
-                    }
-                }
-                
-            }else
-            {
-//                self.use_rewardPoints=NO;
-                self.employ_rewardPoints=0;
+                _price=_price-_benefitModel.amount;
             }
         }else
         {
-            //没有积分时候 为未使用／使用数量为0
-//            self.use_rewardPoints=NO;
+            //没有优惠券时
+        }
+        
+        if(_price)
+        {
+            if(self.rewardPoints>50)
+            {
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    if(_price>50)
+                    {
+                        self.employ_rewardPoints=50;
+                    }else
+                    {
+                        self.employ_rewardPoints=ceil(_price);
+                    }
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=50;
+                }
+            }else
+            {
+                if(self.rewardPoints>_price)
+                {
+                    //积分大于剩余金额时候
+                    self.employ_rewardPoints=ceil(_price);
+                }else
+                {
+                    //积分小于剩余金额时候
+                    self.employ_rewardPoints=self.rewardPoints;
+                }
+            }
+            
+        }else
+        {
+//                self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }else
     {
-        self.employ_rewardPoints=0;
-//        if(self.rewardPoints)
-//        {
-//        }else
-//        {
-//            //没有积分时候 为未使用／使用数量为0
+        //没有积分时候 为未使用／使用数量为0
 //            self.use_rewardPoints=NO;
-//            self.employ_rewardPoints=0;
-//        }
+        self.employ_rewardPoints=0;
     }
 }
 -(void)BenefitUpdate
@@ -216,7 +131,7 @@
             _price=_price-_benefitModel.amount;
         }
         
-        if(self.rewardPoints&&self.use_rewardPoints)
+        if(self.rewardPoints)
         {
             if(self.rewardPoints>50)
             {
@@ -259,7 +174,6 @@
     }else
     {
         //没有优惠券的时候
-//        if(self.rewardPoints&&self.use_rewardPoints)
         if(self.rewardPoints)
         {
             if(self.rewardPoints>50)

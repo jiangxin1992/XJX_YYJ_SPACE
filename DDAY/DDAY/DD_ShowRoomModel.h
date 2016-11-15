@@ -26,6 +26,9 @@ __array(pics);
 /** 店名*/
 __string(storeName);
 
+/** 百度名称*/
+__string(baiduMapName);
+
 /** 维度*/
 __string(latitude);
 

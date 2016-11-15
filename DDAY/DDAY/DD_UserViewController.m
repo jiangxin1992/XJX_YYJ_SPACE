@@ -44,12 +44,16 @@
     DD_UnReadMsgModel *_unReadMsgModel;
     DD_DailyIntegralView *_dailyIntegralView;
     BOOL _firstLoad;
+    
+    UIScrollView *_scrollView;
+    UIView *container;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self SomePrepare];
     [self SetDataArr];
+    [self CreateScrollView];
     [self UIConfig];
     [self RequestData];
     [self Has_readMessage];
@@ -72,15 +76,29 @@
     [self setNotBtnWithExist:NO];
 }
 #pragma mark - UIConfig
+-(void)CreateScrollView
+{
+    _scrollView=[[UIScrollView alloc] init];
+    [self.view addSubview:_scrollView];
+    container = [UIView new];
+    [_scrollView addSubview:container];
+    [container mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_scrollView);
+        make.width.equalTo(_scrollView);
+    }];
+    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
+}
 -(void)UIConfig
 {
     UIButton *_headBack=[UIButton getCustomBtn];
-    [self.view addSubview:_headBack];
+    [container addSubview:_headBack];
     [_headBack addTarget:self action:@selector(pushLoginView) forControlEvents:UIControlEventTouchUpInside];
     [_headBack mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(98);
         make.centerX.mas_equalTo(self.view);
-        make.top.mas_equalTo(13+64);
+        make.top.mas_equalTo(13);
     }];
     _headBack.layer.masksToBounds=YES;
     _headBack.layer.cornerRadius=97/2.0f;
@@ -89,7 +107,7 @@
     [_headBack setEnlargeEdgeWithTop:0 right:50 bottom:60 left:50];
     
     _userHeadImg=[UIImageView getCornerRadiusImg];
-    [self.view addSubview:_userHeadImg];
+    [container addSubview:_userHeadImg];
     _userHeadImg.contentMode=2;
     [_userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(84);
@@ -103,7 +121,7 @@
     }];
     
     _userName=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-    [self.view addSubview:_userName];
+    [container addSubview:_userName];
     _userName.font=[regular getSemiboldFont:15.0f];
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
@@ -111,7 +129,7 @@
     }];
     
     _dailyIntegralView=[[DD_DailyIntegralView alloc] initDailyIntegralView];
-    [self.view addSubview:_dailyIntegralView];
+    [container addSubview:_dailyIntegralView];
     [_dailyIntegralView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_userName.mas_right).with.offset(12);
         make.centerY.mas_equalTo(_userName.mas_top);
@@ -125,13 +143,18 @@
     CGFloat _bianju=kIiPhone6?43:33;
     CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
     CGFloat _height=IsPhone5_gt?60:50;
+    CGFloat _end_y = 0;
     for (int i=0; i<_dataArr.count; i++) {
         DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]] isBig:[[_dataArr objectAtIndex:i] isEqualToString:@"benefit"]];
-        [self.view addSubview:item];
+        [container addSubview:item];
         item.type=[_dataArr objectAtIndex:i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
+        _end_y=CGRectGetMaxY(item.frame)+20;
     }
-    
+    [container mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(_end_y);
+    }];
+
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -146,7 +169,7 @@
                 if(_userHeadImg)
                 {
                     [self MonitorRootChangeAction];
-                    for (UIView *view in self.view.subviews) {
+                    for (UIView *view in container.subviews) {
                         [view removeFromSuperview];
                     }
                     [self UIConfig];
@@ -446,7 +469,7 @@
  */
 -(void)updateRewardPoints
 {
-    for (id obj in self.view.subviews) {
+    for (id obj in container.subviews) {
         if([obj isKindOfClass:[DD_UserItemBtn class]])
         {
             DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
@@ -455,6 +478,15 @@
                 if(_usermodel.rewardPoints)
                 {
                     _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"%ld",_usermodel.rewardPoints];
+                }else
+                {
+                    _UserItemBtn.rewardPoints_label.text=@"";
+                }
+            }else if([_UserItemBtn.type isEqualToString:@"benefit"])
+            {
+                if(_usermodel.benefitNumber)
+                {
+                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"%ld",_usermodel.benefitNumber];
                 }else
                 {
                     _UserItemBtn.rewardPoints_label.text=@"";
@@ -495,7 +527,7 @@
 -(void)UpdateUI
 {
     [self SetDataArr];
-    for (UIView *view in self.view.subviews) {
+    for (UIView *view in container.subviews) {
         [view removeFromSuperview];
     }
     [self UIConfig];
