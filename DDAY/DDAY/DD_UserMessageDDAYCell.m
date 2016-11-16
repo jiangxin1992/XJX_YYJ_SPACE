@@ -38,6 +38,7 @@
     _userHead=[UIImageView getCustomImg];
     [self.contentView addSubview:_userHead];
     [regular setZeroBorder:_userHead];
+    _userHead.contentMode=2;
     [_userHead mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(self.contentView);

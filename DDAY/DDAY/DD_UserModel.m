@@ -199,26 +199,61 @@
 +(void)setDailyIntegral
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    [_default setObject:[NSNumber numberWithBool:YES] forKey:@"dailyIntegral"];
-    
+    NSDictionary *dict=[_default objectForKey:@"dailyIntegral"];
+    long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
+    if(dict)
+    {
+        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        {
+            
+        }else
+        {
+            [_default setObject:@{@"isread":[NSNumber numberWithBool:NO],@"time":[NSNumber numberWithLong:nowFirstTime]} forKey:@"dailyIntegral"];
+        }
+    }else
+    {
+        [_default setObject:@{@"isread":[NSNumber numberWithBool:NO],@"time":[NSNumber numberWithLong:nowFirstTime]} forKey:@"dailyIntegral"];
+    }
     DD_CustomViewController *custom=[DD_CustomViewController sharedManager];
     [custom.userCtn startAnimation];
 }
 
-+(BOOL)getDailyIntegral
++(BOOL)haveDailyIntegral
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    if([_default objectForKey:@"dailyIntegral"])
+    NSDictionary *dict=[_default objectForKey:@"dailyIntegral"];
+    long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
+    if(dict)
     {
-        return [[_default objectForKey:@"dailyIntegral"] boolValue];
+        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        {
+            return [[dict objectForKey:@"isread"] boolValue];
+        }else
+        {
+            return YES;
+        }
     }else
     {
-        return NO;
+        return YES;
     }
 }
 +(void)regisnDailyIntegral
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    [_default setObject:nil forKey:@"dailyIntegral"];
+    NSDictionary *dict=[_default objectForKey:@"dailyIntegral"];
+    long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
+    if(dict)
+    {
+        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        {
+            [_default setObject:@{@"isread":[NSNumber numberWithBool:YES],@"time":[dict objectForKey:@"time"]} forKey:@"dailyIntegral"];
+        }else
+        {
+            [_default setObject:nil forKey:@"dailyIntegral"];
+        }
+    }else
+    {
+        [_default setObject:nil forKey:@"dailyIntegral"];
+    }
 }
 @end

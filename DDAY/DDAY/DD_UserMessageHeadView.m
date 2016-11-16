@@ -41,6 +41,7 @@
             _pulldownBtn = [UIButton getCustomBackImgBtnWithImageStr:@"System_Triangle" WithSelectedImageStr:@"System_UpTriangle"];
         }
         [self addSubview:_pulldownBtn];
+        _pulldownBtn.userInteractionEnabled=NO;
         _pulldownBtn.selected=_messageModel.is_expand;
         [_pulldownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-kEdge);

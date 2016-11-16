@@ -49,7 +49,7 @@
 
 -(void)startAnimation
 {
-    if([DD_UserModel getDailyIntegral])
+    if(![DD_UserModel haveDailyIntegral])
     {
         if(!_animationStarting)
         {

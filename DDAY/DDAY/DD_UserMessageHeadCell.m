@@ -36,6 +36,7 @@
     _userHead=[UIImageView getCornerRadiusImg];
     [self.contentView addSubview:_userHead];
     _userHead.userInteractionEnabled=YES;
+    _userHead.contentMode=2;
     [_userHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
     [_userHead mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);

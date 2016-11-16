@@ -87,7 +87,7 @@
  */
 +(void)setDailyIntegral;
 
-+(BOOL)getDailyIntegral;
++(BOOL)haveDailyIntegral;
 
 +(void)regisnDailyIntegral;
 
