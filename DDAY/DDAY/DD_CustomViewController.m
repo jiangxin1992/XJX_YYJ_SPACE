@@ -8,9 +8,8 @@
 
 #import "DD_CustomViewController.h"
 
-#import "DD_StartView.h"
-
 #import "DD_TabbarItem.h"
+#import "DD_SignInAnimationView.h"
 
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {
@@ -49,8 +48,31 @@ static DD_CustomViewController *tabbarController = nil;
     [self UpdateNoReadMessageState];
     
     [self Notifications];
+    
 }
-
+-(void)startSignInAnimation
+{
+    DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithBlock:^(NSString *type) {
+        if([type isEqualToString:@"end"])
+        {
+            for (id obj in self.view.window.subviews) {
+                if([obj isKindOfClass:[DD_SignInAnimationView class]])
+                {
+                    DD_SignInAnimationView *sss=(DD_SignInAnimationView *)obj;
+                    [sss removeFromSuperview];
+                }
+            }
+        }
+    }];
+    if(![DD_UserModel haveDailyIntegral])
+    {
+        if(!_animationView.animationStarting)
+        {
+            [self.view.window addSubview:_animationView];
+            [_animationView startAnimation];
+        }
+    }
+}
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {

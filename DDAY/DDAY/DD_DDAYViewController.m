@@ -34,21 +34,6 @@
     [self SomePrepare];
     [self UIConfig];
     [self SomeBlock];
-    NSMutableArray *fontNames = [[NSMutableArray alloc] init];
-    
-    NSArray *fontFamilyNames = [UIFont familyNames];
-    
-    for (NSString *familyName in fontFamilyNames) {
-        
-        //        JXLOG(@"Font Family Name = %@", familyName);
-        
-        NSArray *names = [UIFont fontNamesForFamilyName:familyName];
-        
-        //        JXLOG(@"Font Names = %@", fontNames);
-        
-        [fontNames addObjectsFromArray:names];
-        
-    }
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare

@@ -214,8 +214,8 @@
     {
         [_default setObject:@{@"isread":[NSNumber numberWithBool:NO],@"time":[NSNumber numberWithLong:nowFirstTime]} forKey:@"dailyIntegral"];
     }
-    DD_CustomViewController *custom=[DD_CustomViewController sharedManager];
-    [custom.userCtn startAnimation];
+
+    [[DD_CustomViewController sharedManager] startSignInAnimation];
 }
 
 +(BOOL)haveDailyIntegral

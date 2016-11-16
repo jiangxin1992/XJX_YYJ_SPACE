@@ -21,7 +21,6 @@
 #import "DD_BenefitListViewController.h"
 
 #import "DD_UserItemBtn.h"
-#import "DD_DailyIntegralView.h"
 
 #import "DD_UserTool.h"
 #import "DD_UnReadMsgModel.h"
@@ -42,7 +41,6 @@
     UILabel *_userName;
     
     DD_UnReadMsgModel *_unReadMsgModel;
-    DD_DailyIntegralView *_dailyIntegralView;
     BOOL _firstLoad;
     
     UIScrollView *_scrollView;
@@ -128,16 +126,6 @@
         make.top.mas_equalTo(_headBack.mas_bottom).with.offset(15);
     }];
     
-    _dailyIntegralView=[[DD_DailyIntegralView alloc] initDailyIntegralView];
-    [container addSubview:_dailyIntegralView];
-    [_dailyIntegralView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_userName.mas_right).with.offset(12);
-        make.centerY.mas_equalTo(_userName.mas_top);
-        make.height.mas_equalTo([regular getHeightWithWidth:9999 WithContent:@"wqdqd" WithFont:[regular getFont:15.0f]]*2);
-        make.right.mas_equalTo(0);
-    }];
-    
-    
     CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
     _y_p=_y_p-64;
     CGFloat _offset=kIiPhone6?25:15;
@@ -187,7 +175,7 @@
                     _userName.text=_usermodel.nickName;
                     [_userHeadImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:94/2.0f];
                     
-                    [self startAnimation];
+//                    [self startAnimation];
                 }
             }else
             {
@@ -261,13 +249,13 @@
     }];
 }
 #pragma mark - SomeAction
--(void)startAnimation
-{
-    if(_dailyIntegralView)
-    {
-        [_dailyIntegralView startAnimation];
-    }
-}
+//-(void)startAnimation
+//{
+//    if(_dailyIntegralView)
+//    {
+//        [_dailyIntegralView startAnimation];
+//    }
+//}
 /**
  * 点击事件
  */

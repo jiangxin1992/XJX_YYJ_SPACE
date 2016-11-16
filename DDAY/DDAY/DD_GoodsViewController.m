@@ -48,6 +48,8 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
+    
+    [regular SigninAction];
 }
 
 #pragma mark - SomePrepare

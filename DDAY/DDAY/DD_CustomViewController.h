@@ -39,6 +39,11 @@
 -(void)cleanCache;
 
 /**
+ * 每日登录送1积分
+ */
+-(void)startSignInAnimation;
+
+/**
  * 更新unReadMsgModel
  * 并更新当前tabbar 用户item的状态
  */
