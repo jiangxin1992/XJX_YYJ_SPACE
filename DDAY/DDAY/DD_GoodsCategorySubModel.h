@@ -12,8 +12,10 @@
 
 +(NSArray *)getGoodsCategorySubModelArr:(NSArray *)arr;
 
+/** 二级目录名*/
 __string(catTwoName);
 
+/** 二级目录ID*/
 __string(catTwoId);
 
 @end

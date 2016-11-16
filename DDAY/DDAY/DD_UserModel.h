@@ -15,6 +15,91 @@
 
 @interface DD_UserModel : NSObject
 
+/*********************************用户信息*********************************/
+/**
+ * 获取model
+ */
++(DD_UserModel *)getUserModel:(NSDictionary *)dict;
+
+/**
+ * 登出
+ */
++(void)logout;
+
+/**
+ * 获取性别（0 男/1 女 /2 未知）
+ */
+-(NSString *)getSexStr;
+
+/**
+ * 获取当前登录用户权限
+ * 1 管理员 2 设计师 3 普通用户 4 达人
+ */
++(NSInteger )getUserType;
+
+/**
+ * 获取用户的登陆渠道 (1:手机号码登陆/ 2:微信登录/ 3:qq登陆/ 4:sina登陆)
+ */
++(NSInteger )getThirdPartLogin;
+
+/**
+ * 用户是否登录
+ */
++(BOOL )isLogin;
+
+/**
+ * 获取用户token
+ */
++(NSString *)getToken;
+
+/**
+ * 更新本地用户权限
+ */
++(void)UpdateUserType:(NSInteger )userType;
+
+/*********************************一些存取*********************************/
+
+/**
+ * 用户信息本地存取
+ */
++(void)setLocalUserInfo:(NSDictionary *)data;
+
++(DD_UserModel *)getLocalUserInfo;
+
+/**
+ * DeviceToken存取
+ */
++(void)setDeviceToken:(NSString *)token;
+
++(NSString *)getDeviceToken;
+
+/**
+ * 订单号存取
+ */
++(void)setTradeOrderCode:(NSString *)tradeOrderCode;
+
++(void)removeTradeOrderCode;
+
++(NSString *)getTradeOrderCode;
+
+/**
+ * 每日登录积分状态存取
+ */
++(void)setDailyIntegral;
+
++(BOOL)getDailyIntegral;
+
++(void)regisnDailyIntegral;
+
+/**
+ * 首单立减红包未登录状态下的存取
+ */
++(BOOL)isReadWithBenefitID:(NSString *)benefitID;
+
++(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel;
+
+/*********************************参数*********************************/
+
 /** 职业*/
 __string(career);
 
@@ -50,102 +135,5 @@ __string(userType);
 
 /** 体重*/
 __string(weight);
-
-
-/**
- * 登出
- */
-+(void)logout;
-
-/**
- * 存入订单号
- */
-+(void)setTradeOrderCode:(NSString *)tradeOrderCode;
-
-/**
- * 移除订单号
- */
-+(void)removeTradeOrderCode;
-
-/**
- * 获取订单号
- */
-+(NSString *)getTradeOrderCode;
-
-/**
- * 获取model
- */
-+(DD_UserModel *)getUserModel:(NSDictionary *)dict;
-
-/**
- * 设置本地用户信息
- */
-+(void)setLocalUserInfo:(NSDictionary *)data;
-
-/**
- * 获取本地用户信息
- */
-+(DD_UserModel *)getLocalUserInfo;
-
-/**
- * 获取当前登录用户权限
- * 1 管理员 2 设计师 3 普通用户 4 达人
- */
-+(NSInteger )getUserType;
-
-/**
- * 获取用户的登陆渠道
- * public static final int USER_LOGIN_PHONE = 1;//手机号码登陆
- * public static final int USER_LOGIN_WEIXIN = 2;//微信登录
- * public static final int USER_LOGIN_QQ = 3;//qq登陆
- * public static final int USER_LOGIN_SINA = 4;//sina登陆
- */
-+(NSInteger )getThirdPartLogin;
-
-/**
- * 用户是否登录
- */
-+(BOOL )isLogin;
-
-/**
- * 获取用户token
- */
-+(NSString *)getToken;
-
-/**
- * 获取性别
- */
--(NSString *)getSexStr;
-
-/**
- * 更新本地用户权限
- */
-+(void)UpdateUserType:(NSInteger )userType;
-
-/**
- * 将DeviceToken存入本地
- */
-+(void)setDeviceToken:(NSString *)token;
-
-/**
- * 获取本地存放的DeviceToken
- */
-+(NSString *)getDeviceToken;
-
-/**
- * 首单立减红包是否已读（未登录状态下）
- */
-+(BOOL)isReadWithBenefitID:(NSString *)benefitID;
-
-/**
- * 设置首单立减红包在未登录状态下的（已读／未读）状态
- */
-+(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel;
-
-+(void)setDailyIntegral;
-
-+(BOOL)getDailyIntegral;
-
-+(void)regisnDailyIntegral;
 
 @end

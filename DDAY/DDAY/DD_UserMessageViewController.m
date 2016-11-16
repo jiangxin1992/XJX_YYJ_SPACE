@@ -220,6 +220,7 @@
                             if(success)
                             {
                                 _userModel.readStatus=YES;
+                                [_tableview reloadData];
                             }else
                             {
                                 [self presentViewController:successAlert animated:YES completion:nil];

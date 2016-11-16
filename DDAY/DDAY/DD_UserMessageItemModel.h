@@ -23,7 +23,7 @@
 +(NSMutableArray *)getUserMessageItemModelArr:(NSArray *)arr;
 
 /**
- * 动作类型
+ * 前端动作类型（根据动作）
  * 1 跳转物流详情页（orderCode）
  * 2 跳转订单详情页 以支付（orderCode）未支付（tradeOrderCode） 还需要是否支付
  * 3 跳转发布品详情页 (itemId,colorCode)
@@ -35,7 +35,7 @@
 __int(paramType);
 
 /**
- * 后台的类型
+ * 后台类型
  * 1 订单更新
  * 2 关注动态
  * 3 发布会

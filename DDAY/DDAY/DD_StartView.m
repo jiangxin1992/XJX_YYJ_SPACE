@@ -27,7 +27,8 @@
         _block=block;
         [regular getRoundNum:0];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
-        NSURL *urlMovie1 = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"]];
+        NSString *urlstr=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
+        NSURL *urlMovie1 = [NSURL fileURLWithPath:urlstr];
         AVURLAsset *asset1 = [AVURLAsset URLAssetWithURL:urlMovie1 options:nil];
         _playerItem1 = [AVPlayerItem playerItemWithAsset:asset1];
         _avPlayer1 = [AVPlayer playerWithPlayerItem: _playerItem1];

@@ -37,22 +37,31 @@
  */
 -(DD_ColorsModel *)getColorModelNameWithID:(NSString *)colorID;
 
-__bool(shoucang);
-
-__bool(guanzhu);
-
+/** 设计师model*/
 @property (nonatomic,strong)DD_GoodsDesignerModel *designer;
 
+/** 商品信息model*/
 @property (nonatomic,strong)DD_GoodsItemModel *item;
 
+/** 相关搭配model*/
 @property (nonatomic,strong)DD_CircleListModel *circle;
 
+/** 用户是否收藏*/
+__bool(shoucang);
+
+/** 用户是否关注*/
+__bool(guanzhu);
+
+/** 分享网页url*/
 __string(appUrl);
 
+/** app下载地址*/
 __string(downLoadUrl);
 
+/** 体验店数组*/
 __array(physicalStore);
 
+/** 相似单品*/
 __array(similarItems);
 
 @end

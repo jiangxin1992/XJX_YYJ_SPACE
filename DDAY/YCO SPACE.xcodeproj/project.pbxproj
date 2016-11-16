@@ -140,7 +140,6 @@
 		3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */; };
 		3F5003471D9E3152001551C1 /* DD_StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5003451D9E3152001551C1 /* DD_StartViewController.m */; };
 		3F50034F1D9E37B0001551C1 /* DD_StartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F50034E1D9E37B0001551C1 /* DD_StartView.m */; };
-		3F5003511D9E3BE6001551C1 /* loading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5003501D9E3BE6001551C1 /* loading.mp4 */; };
 		3F5306DC1D124E5C000C9EC0 /* DD_CricleShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306DA1D124E5C000C9EC0 /* DD_CricleShowViewController.m */; };
 		3F5306E11D126A0A000C9EC0 /* DD_CircleTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306E01D126A0A000C9EC0 /* DD_CircleTagModel.m */; };
 		3F5306E41D126AEE000C9EC0 /* DD_CricleTagItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5306E31D126AEE000C9EC0 /* DD_CricleTagItemModel.m */; };
@@ -177,6 +176,7 @@
 		3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57173C1D6F0713006E1940 /* NSDate+Custom.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
+		3F5828A41DDC1E4000A35C6B /* loading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5828A31DDC1E4000A35C6B /* loading.mp4 */; };
 		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
 		3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */; };
 		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
@@ -707,7 +707,6 @@
 		3F5003451D9E3152001551C1 /* DD_StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartViewController.m; sourceTree = "<group>"; };
 		3F50034D1D9E37B0001551C1 /* DD_StartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_StartView.h; sourceTree = "<group>"; };
 		3F50034E1D9E37B0001551C1 /* DD_StartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartView.m; sourceTree = "<group>"; };
-		3F5003501D9E3BE6001551C1 /* loading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loading.mp4; sourceTree = "<group>"; };
 		3F5306D91D124E5C000C9EC0 /* DD_CricleShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CricleShowViewController.h; sourceTree = "<group>"; };
 		3F5306DA1D124E5C000C9EC0 /* DD_CricleShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CricleShowViewController.m; sourceTree = "<group>"; };
 		3F5306DF1D126A0A000C9EC0 /* DD_CircleTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleTagModel.h; sourceTree = "<group>"; };
@@ -774,6 +773,7 @@
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
 		3F576F301D3795580061602A /* UIButton+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Custom.m"; sourceTree = "<group>"; };
+		3F5828A31DDC1E4000A35C6B /* loading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loading.mp4; sourceTree = "<group>"; };
 		3F5888E11D58168C00AFD0A3 /* DD_UserDDAYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserDDAYCell.h; sourceTree = "<group>"; };
 		3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserDDAYCell.m; sourceTree = "<group>"; };
 		3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYContainerView.h; sourceTree = "<group>"; };
@@ -1671,8 +1671,8 @@
 		3F4187731CEEFB24001BCA3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F5828A31DDC1E4000A35C6B /* loading.mp4 */,
 				3FE98D4F1DC8767B00F273E8 /* gif */,
-				3F5003501D9E3BE6001551C1 /* loading.mp4 */,
 				3F4187AD1CEEFD02001BCA3D /* area.json */,
 				3F4187741CEEFB24001BCA3D /* main.m */,
 				3F4187AA1CEEFBF0001BCA3D /* Localizable.strings */,
@@ -3550,7 +3550,6 @@
 				3FE98DB31DC8767B00F273E8 /* 图层-9@2x.png in Resources */,
 				3FE98DB11DC8767B00F273E8 /* 图层-7@2x.png in Resources */,
 				3FE98DB21DC8767B00F273E8 /* 图层-8@2x.png in Resources */,
-				3F5003511D9E3BE6001551C1 /* loading.mp4 in Resources */,
 				3FE98D9F1DC8767B00F273E8 /* 图层-37@2x.png in Resources */,
 				3F4187801CEEFB24001BCA3D /* Assets.xcassets in Resources */,
 				3FE98DAC1DC8767B00F273E8 /* 图层-49@2x.png in Resources */,
@@ -3560,6 +3559,7 @@
 				3FE98DA81DC8767B00F273E8 /* 图层-45@2x.png in Resources */,
 				3FE98DA91DC8767B00F273E8 /* 图层-46@2x.png in Resources */,
 				3FE98D8F1DC8767B00F273E8 /* 图层-22@2x.png in Resources */,
+				3F5828A41DDC1E4000A35C6B /* loading.mp4 in Resources */,
 				3FE98D8B1DC8767B00F273E8 /* 图层-19@2x.png in Resources */,
 				3FE98D961DC8767B00F273E8 /* 图层-29@2x.png in Resources */,
 				3FE98D891DC8767B00F273E8 /* 图层-17@2x.png in Resources */,

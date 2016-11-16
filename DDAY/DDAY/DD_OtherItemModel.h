@@ -12,14 +12,19 @@
 
 +(NSArray *)getOtherItemModelArr:(NSArray *)arr;
 
+/** 单品pic*/
 __string(itemPic);
 
+/** 单品名*/
 __string(itemName);
 
+/** 单品ID*/
 __string(itemId);
 
+/** 单品对应colorId*/
 __string(colorId);
 
+/** 单品对应colorCode*/
 __string(colorCode);
 
 @end

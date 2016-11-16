@@ -20,6 +20,13 @@
  */
 +(NSMutableArray *)getUserMessageModelArr:(NSArray *)arr;
 
+/**
+ * 后台使用
+ * user/queryMessage.do(获取消息列表) 中传入
+ * user/readUserMessage.do（标记已读） 中原封不动还给后台
+ */
+__array(unReadIds);
+
 /** 是否已读*/
 __bool(readStatus);
 
@@ -38,8 +45,7 @@ __array(type);
 /** 是否展开*/
 __bool(is_expand);
 
-__array(unReadIds);
-
+/** 该消息组未读消息的数量*/
 __int(unReadMessageNumber);
 
 @end

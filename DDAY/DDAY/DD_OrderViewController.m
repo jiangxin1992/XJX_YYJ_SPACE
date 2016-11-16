@@ -76,7 +76,7 @@
             [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
                 if([type isEqualToString:@"reload"])
                 {
-                    NSLog(@"ddasdads=%ld",((DD_OrderModel *)[__dataArr objectAtIndex:indexPath.section]).orderStatus);
+                    JXLOG(@"ddasdads=%ld",((DD_OrderModel *)[__dataArr objectAtIndex:indexPath.section]).orderStatus);
                     [__tableview reloadData];
                     
                 }else if([type isEqualToString:@"refresh"])

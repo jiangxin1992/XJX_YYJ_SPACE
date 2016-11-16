@@ -12,8 +12,10 @@
 
 +(DD_GoodSeriesModel *)getGoodSeriesModel:(NSDictionary *)dict;
 
+/** 系列ID*/
 __string(s_id);
 
+/** 系列名称*/
 __string(name);
 
 @end

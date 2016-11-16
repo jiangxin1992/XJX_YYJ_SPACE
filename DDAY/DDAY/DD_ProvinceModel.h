@@ -16,14 +16,19 @@
 
 +(DD_ProvinceModel *)getProvinceModel:(NSDictionary *)dict;
 
-__string(name);
-
-__string(en_name);
-
-__string(code);
-
+/** 省ID*/
 __string(p_id);
 
+/** 省名称*/
+__string(name);
+
+/** 省英文名称*/
+__string(en_name);
+
+/** 省code*/
+__string(code);
+
+/** 省下对应的城市数组*/
 __array(City);
 
 @end

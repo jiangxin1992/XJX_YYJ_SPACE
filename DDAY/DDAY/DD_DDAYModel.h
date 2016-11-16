@@ -50,14 +50,22 @@ __long(signEndTime);
 /** 报名开始时间*/
 __long(signStartTime);
 
+/** 日历中是否被锁定*/
 __bool(is_select);
 
 /** 系列对应颜色*/
 __string(seriesColor);
 
-@property (nonatomic,strong) NSDate *signStartDate;
-@property (nonatomic,strong) NSDate *saleEndDate;
+/** 发布会结束时间（date）*/
 @property (nonatomic,strong) NSDate *signEndDate;
+
+/** 发布会开始时间（date）*/
+@property (nonatomic,strong) NSDate *signStartDate;
+
+/** 报名结束时间（date）*/
+@property (nonatomic,strong) NSDate *saleEndDate;
+
+/** 报名开始时间（date）*/
 @property (nonatomic,strong) NSDate *saleStartDate;
 
 @end

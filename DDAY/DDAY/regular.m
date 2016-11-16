@@ -55,7 +55,7 @@ static regular *_t = nil;
         {
             if([[_default objectForKey:@"devDNS"] isKindOfClass:[NSString class]])
             {
-                NSLog(@"%@",[_default objectForKey:@"devDNS"]);
+//                JXLOG(@"%@",[_default objectForKey:@"devDNS"]);
                 return [_default objectForKey:@"devDNS"];
             }else
             {

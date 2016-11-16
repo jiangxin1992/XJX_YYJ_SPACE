@@ -20,12 +20,16 @@
  */
 +(NSArray *)getSizeAlertModelArr:(NSArray *)arr;
 
+/** 当前商品对应的尺寸数组*/
 __array(size);
 
+/** 尺寸说明图*/
 __string(sizeBriefPic);
 
+/** 尺寸说明图高度*/
 __long(sizeBriefPicHeight);
 
+/** 尺寸说明图宽度*/
 __long(sizeBriefPicWidth);
 
 @end

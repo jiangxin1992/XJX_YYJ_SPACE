@@ -18,8 +18,13 @@
  */
 +(DD_OrderDetailModel *)getOrderDetailModel:(NSDictionary *)dict;
 
+/** 订单信息*/
 @property (nonatomic,strong)DD_OrderDetailInfoModel *orderInfo;
+
+/** 订单地址*/
 @property (nonatomic,strong)DD_AddressModel *address;
+
+/** 订单物流信息*/
 @property (nonatomic,strong)DD_OrderLogisticsModel *logisticsModel;
 
 @end

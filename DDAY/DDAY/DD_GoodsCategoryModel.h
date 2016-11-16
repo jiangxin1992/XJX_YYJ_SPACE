@@ -16,10 +16,13 @@
 
 +(NSArray *)getGoodsCategoryModelArr:(NSArray *)arr;
 
+/** 一级目录名*/
 __string(catOneName);
 
+/** 二级目录列表*/
 __array(catTwoList);
 
+/** 是否是（全部）目录类型*/
 __bool(isAll);
 
 @end
