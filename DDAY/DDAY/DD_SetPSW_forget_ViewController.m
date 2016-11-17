@@ -123,7 +123,7 @@
  */
 -(void)enterDoneAction
 {
-    NSDictionary *_parameters=@{@"phone":_phone,@"":[regular md5:_PSWTextfield.text]};
+    NSDictionary *_parameters=@{@"phone":_phone,@"password":[regular md5:_PSWTextfield.text]};
     [[JX_AFNetworking alloc] GET:@"user/resetPasswrod.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
