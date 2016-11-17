@@ -36,7 +36,8 @@
     BOOL _isReadBenefit;
     DD_headViewBenefitView *_headView;
     
-    NSString *_categoryName;
+    NSString *_categoryOneName;
+    NSString *_categoryTwoName;
     NSString *_categoryID;
     
     DD_GoodsListTableView *listTableView;
@@ -68,7 +69,8 @@
     _page=1;
     _dataArr=[[NSMutableArray alloc] init];
     _categoryArr=[[NSMutableArray alloc] init];
-    _categoryName=@"";
+    _categoryOneName=@"";
+    _categoryTwoName=@"";
     _categoryID=@"";
     _isReadBenefit=NO;
     _benefitHeight=0;
@@ -117,21 +119,25 @@
     }else
     {
         btn.selected=YES;
-        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryName,NSString *categoryID) {
+        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID) {
             
             btn.selected=NO;
             if([type isEqualToString:@"click"])
             {
-                //                [titleView setTitle:categoryName forState:UIControlStateNormal];
-                self.navigationItem.titleView=[regular returnNavView:categoryName withmaxwidth:200];
-                
+                if(![categoryID isEqualToString:@""])
+                {
+                    self.navigationItem.titleView=[regular returnNavView:categoryTwoName withmaxwidth:200];
+                }else
+                {
+                    self.navigationItem.titleView=[regular returnNavView:categoryOneName withmaxwidth:200];
+                }
             }else if([type isEqualToString:@"all"])
             {
-                //                [titleView setTitle:@"类别" forState:UIControlStateNormal];
                 self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
                 
             }
-            _categoryName=categoryName;
+            _categoryOneName=categoryOneName;
+            _categoryTwoName=categoryTwoName;
             _categoryID=categoryID;
             [mywaterflow.mj_header beginRefreshing];
             [self listTableViewHide];
@@ -155,17 +161,18 @@
 {
     
     NSMutableDictionary *_parameters=[[NSMutableDictionary alloc] initWithDictionary:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]}];
-    if(![_categoryName isEqualToString:@""])
+    if(![_categoryOneName isEqualToString:@""])
     {
         if([_categoryID isEqualToString:@""])
         {
-            [_parameters setObject:_categoryName forKey:@"catOneName"];
+            [_parameters setObject:_categoryOneName forKey:@"catOneName"];
         }else
         {
-            [_parameters setObject:_categoryID forKey:@"catTwoId"];
+            [_parameters setObject:_categoryOneName forKey:@"catOneName"];
+            [_parameters setObject:_categoryTwoName forKey:@"catTwoName"];
         }
     }
-    [[JX_AFNetworking alloc] GET:@"item/queryColorItemsByCategory.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"item/v1_0_7/queryColorItemsByCategory.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_ItemsModel getItemsModelArr:[data objectForKey:@"items"]];
@@ -530,43 +537,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 弃用代码
-//-(void)ChooseCategoryAction:(UIButton *)btn
-//{
-//    if(btn.selected)
-//    {
-//        btn.selected=NO;
-//        //        hide
-//        [UIView animateWithDuration:0.5 animations:^{
-//            listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
-//        } completion:^(BOOL finished) {
-//            [self listTableViewHide];
-//        }];
-//
-//    }else
-//    {
-//        btn.selected=YES;
-//        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryName,NSString *categoryID) {
-//
-//            btn.selected=NO;
-//            if([type isEqualToString:@"click"])
-//            {
-//                [titleView setTitle:categoryName forState:UIControlStateNormal];
-//            }else if([type isEqualToString:@"all"])
-//            {
-//                [titleView setTitle:@"类别" forState:UIControlStateNormal];
-//            }
-//            _categoryName=categoryName;
-//            _categoryID=categoryID;
-//            [mywaterflow.header beginRefreshing];
-//            [self listTableViewHide];
-//
-//        }];
-//        [self.view addSubview:listTableView];
-//        [UIView animateWithDuration:0.5 animations:^{
-//            listTableView.frame=CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
-//        }];
-//        [self RequestListData];
-//    }
-//}
+
 @end

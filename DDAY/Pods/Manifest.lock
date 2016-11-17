@@ -31,6 +31,7 @@ PODS:
     - ShareSDK3/ShareSDK (= 3.5.1)
   - ShareSDK3/ShareSDK (3.5.1)
   - ShareSDK3/ShareSDKExtension (3.5.1)
+  - ShareSDK3/ShareSDKPlatforms/Copy (3.5.1)
   - ShareSDK3/ShareSDKPlatforms/QQ (3.5.1)
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.5.1)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.1)
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8.2)
   - ShareSDK3 (~> 3.5.0)
   - ShareSDK3/ShareSDKExtension
+  - ShareSDK3/ShareSDKPlatforms/Copy
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -72,6 +74,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 72237e6189f0b6e43e723ba60928994bf8d31915
+PODFILE CHECKSUM: d10167c90cff4fc654bdc562df44ee40b582de61
 
 COCOAPODS: 1.0.0

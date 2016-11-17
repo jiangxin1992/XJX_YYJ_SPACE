@@ -10,6 +10,7 @@
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKExtension/ShareSDK+Extension.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
 
 #import "DD_CustomBtn.h"
 

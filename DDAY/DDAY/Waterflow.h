@@ -84,8 +84,4 @@ typedef NS_ENUM(NSUInteger,WaterflowMarginType){
  */
 - (WaterflowCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
-
-
-
-
 @end

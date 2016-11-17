@@ -22,6 +22,7 @@ pod 'Bugly'
  pod 'ShareSDK3/ShareSDKPlatforms/QQ'
  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
  pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+ pod 'ShareSDK3/ShareSDKPlatforms/Copy'
 
  pod 'ShareSDK3/ShareSDKExtension'
  

@@ -197,7 +197,7 @@
 -(void)changeDevState
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    if(![_default objectForKey:@"isdev"])
+    if(![_default objectForKey:@"devDNS"])
     {
         [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)

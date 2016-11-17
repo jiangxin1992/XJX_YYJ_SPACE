@@ -21,7 +21,7 @@
 {
     NSMutableArray *_btnArr;
 }
--(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryName,NSString *categoryID))block
+-(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID))block
 {
     self=[super initWithFrame:frame style:style];
     if (self) {
@@ -60,10 +60,10 @@
             }else if([type isEqualToString:@"click"])
             {
                 DD_GoodsCategoryModel *CategoryModel=[_categoryArr objectAtIndex:index];
-                _block(type,CategoryModel.catOneName,@"");
+                _block(type,CategoryModel.catOneName,@"",@"");
             }else if([type isEqualToString:@"all"])
             {
-                _block(type,@"",@"");
+                _block(type,@"",@"",@"");
             }
             
         }];
@@ -139,7 +139,7 @@
 {
     DD_GoodsCategoryModel *_categoryModel=[_categoryArr objectAtIndex:indexPath.section];
     DD_GoodsCategorySubModel *_categorySubModel=[_categoryModel.catTwoList objectAtIndex:indexPath.row];
-    _block(@"click",_categorySubModel.catTwoName,_categorySubModel.catTwoId);
+    _block(@"click",_categoryModel.catOneName,_categorySubModel.catTwoName,_categorySubModel.catTwoId);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

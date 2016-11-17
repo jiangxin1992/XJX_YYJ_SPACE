@@ -12,8 +12,8 @@
 
 __array(categoryArr);
 
--(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryName,NSString *categoryID))block;
+-(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style WithBlock:(void (^)(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID))block;
 
-@property(nonatomic,copy) void (^block)(NSString *type,NSString *categoryName,NSString *categoryID);
+@property(nonatomic,copy) void (^block)(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID);
 
 @end

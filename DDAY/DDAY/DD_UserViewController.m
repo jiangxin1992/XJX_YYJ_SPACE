@@ -420,7 +420,16 @@
  */
 -(void)messageAction
 {
-    [self.navigationController pushViewController:[DD_UserMessageViewController new] animated:YES];
+    if([DD_UserModel isLogin])
+    {
+        [self.navigationController pushViewController:[DD_UserMessageViewController new] animated:YES];
+    }else
+    {
+        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+            [self pushLoginView];
+        }] animated:YES completion:nil];
+    }
+   
 }
 /**
  * 跳转设置界面
