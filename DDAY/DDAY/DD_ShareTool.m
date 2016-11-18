@@ -143,11 +143,11 @@
 +(NSDictionary *)getShareListMap
 {
     return @{
-             @"wechat":@"System_Weixin"
-             ,@"wechat_friend":@"System_Friendcircle"
-             ,@"sina":@"System_Weibo"
-             ,@"qq":@"System_QQ"
-             ,@"copy":@"System_Copylink"
+             @"wechat":@"Share_Weixin"
+             ,@"wechat_friend":@"Share_Friendcircle"
+             ,@"sina":@"Share_Weibo"
+             ,@"qq":@"Share_QQ"
+             ,@"copy":@"Share_Copylink"
              };
 }
 +(NSArray *)getShareListArr

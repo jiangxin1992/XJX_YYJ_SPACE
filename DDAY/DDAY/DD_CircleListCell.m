@@ -185,7 +185,7 @@
             [goods addSubview:pricebtn];
             pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
             pricebtn.userInteractionEnabled=NO;
-            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
             //        pricebtn.frame=CGRectMake(0, CGRectGetHeight(goods.frame)-18,CGRectGetWidth(goods.frame) , 18);
             [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
@@ -433,7 +433,7 @@
             [goods addSubview:pricebtn];
             pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
             pricebtn.userInteractionEnabled=NO;
-            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
             [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
             [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);

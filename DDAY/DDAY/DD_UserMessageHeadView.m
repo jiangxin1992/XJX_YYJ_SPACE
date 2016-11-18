@@ -22,9 +22,6 @@
     if(self)
     {
         _messageModel=messageModel;
-//        _messageModel.is_expand
-//        System_Triangle
-//        System_Item_Select
         _block=block;
         _section=section;
         self.backgroundColor=_define_white_color;
@@ -55,7 +52,7 @@
             // 23 18
             if(!_notBtn)
             {
-                _notBtn=[UIButton getCustomBackImgBtnWithImageStr:@"System_Trumpet_Normal" WithSelectedImageStr:@"System_Trumpet_Select"];
+                _notBtn=[UIButton getCustomBackImgBtnWithImageStr:@"User_Trumpet_Normal" WithSelectedImageStr:@"User_Trumpet_Select"];
             }
             [self addSubview:_notBtn];
             [_notBtn mas_makeConstraints:^(MASConstraintMaker *make) {

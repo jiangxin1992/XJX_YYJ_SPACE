@@ -290,7 +290,7 @@
     
     if(_orderDetailModel.logisticsModel)
     {
-        _logisticsImgView.image=[UIImage imageNamed:@"System_Logistics"];
+        _logisticsImgView.image=[UIImage imageNamed:@"Order_Logistics"];
         
         
         //设置段落，文字样式

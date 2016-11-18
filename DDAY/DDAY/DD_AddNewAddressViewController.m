@@ -104,12 +104,6 @@
             make.width.mas_equalTo([self getWeight:titlearr[i]]);
         }];
         
-//        UIButton *editBtn=[UIButton getCustomImgBtnWithImageStr:@"System_diagonal" WithSelectedImageStr:@"System_diagonal"];
-//        [cellview addSubview:editBtn];
-//        editBtn.tag=200+i;
-//        [editBtn setEnlargeEdge:10];
-//        [editBtn addTarget:self action:@selector(editBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//        editBtn.frame=CGRectMake(ScreenWidth-11-kEdge, (41-11)/2.0f, 11, 11);
         
         
         CGFloat _width=ScreenWidth-5-kEdge-15-kEdge-[self getWeight:titlearr[i]];

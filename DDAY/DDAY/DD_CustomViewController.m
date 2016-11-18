@@ -195,17 +195,17 @@ static DD_CustomViewController *tabbarController = nil;
                         ,NSLocalizedString(@"user_title", @"")
                         ];
     NSArray *normalImgArr=@[
-                            @"System_Item_Normal"
-                            ,@"System_Designer_Normal"
-                            ,@"System_DDAY_Normal"
-                            ,@"System_Circle_Normal"
-                            ,@"System_User_Normal"];
+                            @"Item_Tabbar_Normal"
+                            ,@"Designer_Tabbar_Normal"
+                            ,@"DDAY_Tabbar_Normal"
+                            ,@"Circle_Tabbar_Normal"
+                            ,@"User_Tabar_Normal"];
     NSArray *selectImgArr=@[
-                            @"System_Item_Select"
-                            ,@"System_Designer_Select"
-                            ,@"System_DDAY_Select"
-                            ,@"System_Circle_Select"
-                            ,@"System_User_Select"];
+                            @"Item_Tabbar_Select"
+                            ,@"Designer_Tabbar_Select"
+                            ,@"DDAY_Tabbar_Select"
+                            ,@"Circle_Tabbar_Select"
+                            ,@"User_Tabbar_Select"];
     
     CGFloat buttonWidth =ScreenWidth/5;
     for (int i = 0; i<titleArr.count; i++) {
@@ -320,12 +320,12 @@ static DD_CustomViewController *tabbarController = nil;
 {
     if(haveUnRead)
     {
-        [_userItem setImage:[UIImage imageNamed:@"System_User_Not_Normal"] forState:UIControlStateNormal];
-        [_userItem setImage:[UIImage imageNamed:@"System_User_Not_Select"] forState:UIControlStateSelected];
+        [_userItem setImage:[UIImage imageNamed:@"User_Tabbar_Not_Normal"] forState:UIControlStateNormal];
+        [_userItem setImage:[UIImage imageNamed:@"User_Tabbar_Not_Select"] forState:UIControlStateSelected];
     }else
     {
-        [_userItem setImage:[UIImage imageNamed:@"System_User_Normal"] forState:UIControlStateNormal];
-        [_userItem setImage:[UIImage imageNamed:@"System_User_Select"] forState:UIControlStateSelected];
+        [_userItem setImage:[UIImage imageNamed:@"User_Tabar_Normal"] forState:UIControlStateNormal];
+        [_userItem setImage:[UIImage imageNamed:@"User_Tabbar_Select"] forState:UIControlStateSelected];
     }
 }
 

@@ -77,7 +77,7 @@
     [cell addSubview:price_label];
     //    price_label.backgroundColor=[UIColor blueColor];
     price_label.font=[regular getSemiboldFont:15.0f];
-    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
     //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -139,7 +139,7 @@
     [cell addSubview:price_label];
 //        price_label.backgroundColor=[UIColor blueColor];
     price_label.font=[regular getSemiboldFont:15.0f];
-    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Circle_PriceFrame"] forState:UIControlStateNormal];
+    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
     //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);

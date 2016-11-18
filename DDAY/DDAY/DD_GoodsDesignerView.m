@@ -160,7 +160,7 @@
         UIButton *imageview_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         imageview_btn.frame=CGRectMake(108*i, 0,102, 102);
         [_scrollview addSubview:imageview_btn];
-        [imageview_btn sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:_OtherItem.itemPic WithSize:200]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"headImg_login1"]];
+        [imageview_btn sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:_OtherItem.itemPic WithSize:200]] forState:UIControlStateNormal placeholderImage:nil];
         imageview_btn.tag=100+i;
         [imageview_btn addTarget:self action:@selector(ItemAction:) forControlEvents:UIControlEventTouchUpInside];
         [regular setBorder:imageview_btn];

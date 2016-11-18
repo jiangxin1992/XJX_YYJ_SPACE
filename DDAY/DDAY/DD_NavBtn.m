@@ -55,8 +55,8 @@
     if(shopBtn)
     {
         shopBtn.frame=CGRectMake(0, 0, 30, 44);
-        [shopBtn setImage:[UIImage imageNamed:@"System_Buy"] forState:UIControlStateNormal];
-        [shopBtn setImage:[UIImage imageNamed:@"System_Buy"] forState:UIControlStateSelected];
+        [shopBtn setImage:[UIImage imageNamed:@"Order_Buy"] forState:UIControlStateNormal];
+        [shopBtn setImage:[UIImage imageNamed:@"Order_Buy"] forState:UIControlStateSelected];
         shopBtn.isLeft=NO;
         shopBtn.size=CGSizeMake(25, 25);
     }

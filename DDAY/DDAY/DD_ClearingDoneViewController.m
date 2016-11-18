@@ -71,17 +71,16 @@
  */
 -(void)UIConfig
 {
-//    System_paid
     NSString *title=nil;
     NSString *imgStr=nil;
     if([_code integerValue]==9000)
     {
         title=@"支付成功";
-        imgStr=@"System_paid";
+        imgStr=@"Order_paid";
     }else
     {
         title=@"支付失败";
-        imgStr=@"System_Fail_pay";
+        imgStr=@"Order_Fail_Pay";
     }
     UIButton *btn=[UIButton getCustomBackImgBtnWithImageStr:imgStr WithSelectedImageStr:nil];
     [self.view addSubview:btn];

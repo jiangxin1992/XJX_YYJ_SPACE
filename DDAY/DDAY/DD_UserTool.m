@@ -36,38 +36,38 @@
     {
         //        3/0 未登录或普通用户
         
-        return @[@"System_Conference"
+        return @[@"User_Conference"
                  ,@"System_Notcollection"
-                 ,@"System_Order"
-                 ,@"System_Discount"
-                 ,@"System_Score"
-                 ,@"System_showroom"
-                 ,@"System_set_up"
+                 ,@"User_Order"
+                 ,@"User_Discount"
+                 ,@"User_Score"
+                 ,@"User_ShowRoom"
+                 ,@"User_SetUp"
                  ];
     }else if(_usertype==2)
     {
         //        2 设计师
-        return @[@"System_Home"
-                 ,@"System_Fans"
-                 ,@"System_Order"
-                 ,@"System_Conference"
+        return @[@"User_Home"
+                 ,@"User_Fans"
+                 ,@"User_Order"
+                 ,@"User_Conference"
                  ,@"System_Notcollection"
-                 ,@"System_Discount"
-                 ,@"System_Score"
-                 ,@"System_showroom"
-                 ,@"System_set_up"
+                 ,@"User_Discount"
+                 ,@"User_Score"
+                 ,@"User_ShowRoom"
+                 ,@"User_SetUp"
                  ];
     }else
     {
         //        4 达人
-        return @[@"System_Home"
-                 ,@"System_Conference"
-                 ,@"System_Order"
+        return @[@"User_Home"
+                 ,@"User_Conference"
+                 ,@"User_Order"
                  ,@"System_Notcollection"
-                 ,@"System_Discount"
-                 ,@"System_Score"
-                 ,@"System_showroom"
-                 ,@"System_set_up"
+                 ,@"User_Discount"
+                 ,@"User_Score"
+                 ,@"User_ShowRoom"
+                 ,@"User_SetUp"
                  ];
     }
 }

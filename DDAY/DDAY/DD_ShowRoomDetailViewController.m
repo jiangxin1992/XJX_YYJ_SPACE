@@ -96,7 +96,7 @@
 }
 -(void)CreateContent
 {
-    UIImageView *_head=[UIImageView getImgWithImageStr:@"System_showroom"];
+    UIImageView *_head=[UIImageView getImgWithImageStr:@"User_ShowRoom"];
     [container addSubview:_head];
     [_head mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -168,7 +168,7 @@
         make.right.mas_equalTo(-kEdge);
     }];
     
-    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"System_location" WithSelectedImageStr:@"System_location"];
+    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"User_location" WithSelectedImageStr:@"User_location"];
     [_mapView addSubview:locationBtn];
     [locationBtn setEnlargeEdge:20];
     [locationBtn addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];

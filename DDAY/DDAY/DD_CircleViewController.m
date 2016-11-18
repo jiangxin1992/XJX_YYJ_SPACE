@@ -59,7 +59,7 @@
     NSInteger _userType=[DD_UserModel getUserType];
     if(_userType==3)
     {
-        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
+        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"Circle_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.leftBarButtonItem=nil;
@@ -532,7 +532,7 @@
     //     1 管理员 2 设计师 3 普通用户 4 达人
     if(_userType==3)
     {
-        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"System_Apply"];
+        DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"Circle_Apply"];
         [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
         self.navigationItem.leftBarButtonItem=nil;

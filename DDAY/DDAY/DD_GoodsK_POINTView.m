@@ -90,7 +90,7 @@
             make.left.right.mas_equalTo(0);
         }];
         
-        UIImageView *_head=[UIImageView getImgWithImageStr:@"System_showroom"];
+        UIImageView *_head=[UIImageView getImgWithImageStr:@"User_ShowRoom"];
         [backView addSubview:_head];
         [_head mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);

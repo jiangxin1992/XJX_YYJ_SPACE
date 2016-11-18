@@ -501,10 +501,10 @@
     NSString *_img=nil;
     if(is_exist)
     {
-        _img=@"System_News";
+        _img=@"User_News";
     }else
     {
-        _img=@"System_NoNews";
+        _img=@"User_NoNews";
     }
     
     DD_NavBtn *message=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(23, 28) WithImgeStr:_img];

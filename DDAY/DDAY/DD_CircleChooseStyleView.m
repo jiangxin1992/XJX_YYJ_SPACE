@@ -224,7 +224,7 @@
 //        
 //        DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
 //        
-//        [view sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:item.pic WithSize:200]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"headImg_login1"]];
+//        [view sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:item.pic WithSize:200]] forState:UIControlStateNormal placeholderImage:nil];
 //        
 //        [view addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
 //        
