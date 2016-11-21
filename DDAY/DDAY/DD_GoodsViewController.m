@@ -313,59 +313,59 @@
 {
     if(_benefitInfoModel)
     {
-        if([DD_UserModel isLogin])
-        {
-            _isReadBenefit=_benefitInfoModel.isReadBenefit;
-            //登陆
-            //                            mywaterflow
-            if(_benefitInfoModel.isReadBenefit)
-            {
-                //隐藏headview
-                [_headView removeFromSuperview];
-                _headView=nil;
-            }else
-            {
-                if(!_headView)
-                {
-                    //显示headview
-                    _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
-                        if([type isEqualToString:@"close"]||[type isEqualToString:@"enter"])
-                        {
-                            //关闭
-                            [[JX_AFNetworking alloc] GET:@"user/readBenefit.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                                if(success)
-                                {
-                                    _benefitInfoModel.isReadBenefit=YES;
-                                    _isReadBenefit=YES;
-                                    [_headView removeFromSuperview];
-                                    _headView=nil;
-                                    [mywaterflow reloadData];
-                                }else
-                                {
-                                    [self presentViewController:successAlert animated:YES completion:nil];
-                                }
-                            } failure:^(NSError *error, UIAlertController *failureAlert) {
-                                [self presentViewController:failureAlert animated:YES completion:nil];
-                            }];
-                            
-                            if([type isEqualToString:@"enter"])
-                            {
-                                [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
-                                }] animated:YES];
-                            }
-                        }
-                    }];
-                    [mywaterflow addSubview:_headView];
-                }else
-                {
-                    _headView.benefitInfoModel=_benefitInfoModel;
-                }
-            }
-            [mywaterflow reloadData];
-        }else
-        {
+//        if([DD_UserModel isLogin])
+//        {
+//            _isReadBenefit=_benefitInfoModel.isReadBenefit;
+//            //登陆
+//            //                            mywaterflow
+//            if(_benefitInfoModel.isReadBenefit)
+//            {
+//                //隐藏headview
+//                [_headView removeFromSuperview];
+//                _headView=nil;
+//            }else
+//            {
+//                if(!_headView)
+//                {
+//                    //显示headview
+//                    _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
+//                        if([type isEqualToString:@"close"])
+//                        {
+//                            //关闭
+//                            [[JX_AFNetworking alloc] GET:@"user/readBenefit.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//                                if(success)
+//                                {
+//                                    _benefitInfoModel.isReadBenefit=YES;
+//                                    _isReadBenefit=YES;
+//                                    [_headView removeFromSuperview];
+//                                    _headView=nil;
+//                                    [mywaterflow reloadData];
+//                                }else
+//                                {
+//                                    [self presentViewController:successAlert animated:YES completion:nil];
+//                                }
+//                            } failure:^(NSError *error, UIAlertController *failureAlert) {
+//                                [self presentViewController:failureAlert animated:YES completion:nil];
+//                            }];
+//                            
+//                            
+//                        }else if([type isEqualToString:@"enter"])
+//                        {
+//                            [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
+//                            }] animated:YES];
+//                        }
+//                    }];
+//                    [mywaterflow addSubview:_headView];
+//                }else
+//                {
+//                    _headView.benefitInfoModel=_benefitInfoModel;
+//                }
+//            }
+//            [mywaterflow reloadData];
+//        }else
+//        {
             [self unLoginAction];
-        }
+//        }
     }else
     {
         _isReadBenefit=YES;
@@ -376,44 +376,57 @@
 }
 -(void)unLoginAction
 {
-    //未登陆
-    _isReadBenefit=[DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId];
-
-    if([DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId])
+    if([DD_UserModel isLogin])
     {
-        //隐藏headview
-        [_headView removeFromSuperview];
-        _headView=nil;
-        [mywaterflow reloadData];
+        if(_headView)
+        {
+            //隐藏headview
+            [_headView removeFromSuperview];
+            _headView=nil;
+            [mywaterflow reloadData];
+        }
+
     }else
     {
-        if(!_headView)
+        //未登陆
+        _isReadBenefit=[DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId];
+        if([DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId])
         {
-            //显示headview
-            _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
-                if([type isEqualToString:@"close"]||[type isEqualToString:@"enter"])
-                {
-                    //关闭
-                    _benefitInfoModel.localRead=YES;
-                    [DD_UserModel setReadBenefit:YES WithBenefitInfoModel:_benefitInfoModel];
-                    _isReadBenefit=[DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId];
-                    [_headView removeFromSuperview];
-                    _headView=nil;
-                    [mywaterflow reloadData];
-                    if([type isEqualToString:@"enter"])
+            //隐藏headview
+            [_headView removeFromSuperview];
+            _headView=nil;
+            [mywaterflow reloadData];
+        }else
+        {
+            if(!_headView)
+            {
+                //显示headview
+                _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
+                    if([type isEqualToString:@"close"])
+                    {
+                        //关闭
+                        _benefitInfoModel.localRead=YES;
+                        [DD_UserModel setReadBenefit:YES WithBenefitInfoModel:_benefitInfoModel];
+                        _isReadBenefit=[DD_UserModel isReadWithBenefitID:_benefitInfoModel.benefitId];
+                        [_headView removeFromSuperview];
+                        _headView=nil;
+                        [mywaterflow reloadData];
+                        
+                    }else if([type isEqualToString:@"enter"])
                     {
                         [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
                         }] animated:YES];
                     }
-                }
-            }];
-            [mywaterflow addSubview:_headView];
-        }else
-        {
-            _headView.benefitInfoModel=_benefitInfoModel;
+                }];
+                [mywaterflow addSubview:_headView];
+            }else
+            {
+                _headView.benefitInfoModel=_benefitInfoModel;
+            }
+            [mywaterflow reloadData];
         }
-        [mywaterflow reloadData];
     }
+    
 }
 -(void)loadNewData
 {

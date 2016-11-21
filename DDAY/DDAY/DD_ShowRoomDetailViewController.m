@@ -57,8 +57,13 @@
 -(void)PrepareUI{}
 -(void)setTitle:(NSString *)title
 {
-    self.navigationItem.titleView=[regular returnNavView:title withmaxwidth:200];
-
+    UIView *returnView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 40)];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(returnView.frame), CGRectGetHeight(returnView.frame))];
+    titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
+    titleLabel.textAlignment=1;
+    titleLabel.text=title;
+    [returnView addSubview:titleLabel];
+    self.navigationItem.titleView=returnView;
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -114,6 +119,8 @@
     
     UILabel *businessHoursLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"商店营业时间：%@",_showRoomModel.businessHours] WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [container addSubview:businessHoursLabel];
+    businessHoursLabel.lineBreakMode=NSLineBreakByCharWrapping;
+    businessHoursLabel.numberOfLines=0;
     [businessHoursLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);

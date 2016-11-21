@@ -200,7 +200,7 @@
 -(void)CreatePageViewCtn
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
-    _pageVc.view.frame = CGRectMake(0, 171+kNavHeight+21, 1000, 1000);
+    _pageVc.view.frame = CGRectMake(0, 145+kNavHeight+28, 1000, 1000);
     if(ctn1==nil)
     {
         ctn1=[[DD_DesignerItemViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_ItemsModel *model) {

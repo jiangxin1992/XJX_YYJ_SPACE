@@ -378,7 +378,6 @@ static regular *_t = nil;
 +(UIView *)returnNavView:(NSString *)title withmaxwidth:(CGFloat )maxwidth
 {
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, IsPhone6_gt?180:130, 40)];
-    
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
     titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
     titleLabel.textAlignment=1;

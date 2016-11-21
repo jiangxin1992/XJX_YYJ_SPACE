@@ -101,9 +101,10 @@
 }
 -(void)CreateTableview
 {
+
     mywaterflow = [[Waterflow alloc] init];
     
-    mywaterflow.frame = CGRectMake(0, -21, ScreenWidth,ScreenHeight-kNavHeight-171);
+    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-145-28);
     
     mywaterflow.dataSource = self;
     
