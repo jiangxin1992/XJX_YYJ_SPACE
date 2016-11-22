@@ -215,7 +215,7 @@
         [_default setObject:@{@"isread":[NSNumber numberWithBool:NO],@"time":[NSNumber numberWithLong:nowFirstTime]} forKey:@"dailyIntegral"];
     }
 
-    [[DD_CustomViewController sharedManager] startSignInAnimation];
+    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"每日登录积分 +1" WithType:@"integral"];
 }
 
 +(BOOL)haveDailyIntegral

@@ -61,6 +61,7 @@
 		3F2F765F1D1D0259002E22A6 /* DD_CircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */; };
 		3F2F76621D1D1968002E22A6 /* DD_CirclePublishTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F76611D1D1968002E22A6 /* DD_CirclePublishTool.m */; };
 		3F3462361D4B4A7700B96D86 /* DD_ColorBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */; };
+		3F35FD0F1DE419E4008CE0E0 /* DD_BenefitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F35FD0E1DE419E4008CE0E0 /* DD_BenefitView.m */; };
 		3F3810C71CF5460B007154F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810C61CF5460B007154F1 /* Foundation.framework */; };
 		3F3810C91CF54630007154F1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810C81CF54630007154F1 /* libc++.tbd */; };
 		3F3810CB1CF5463D007154F1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3810CA1CF5463D007154F1 /* CoreMotion.framework */; };
@@ -485,6 +486,8 @@
 		3F31E7E81DB89A9E0096655A /* YCO SPACE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YCO SPACE.entitlements"; sourceTree = "<group>"; };
 		3F3462341D4B4A7700B96D86 /* DD_ColorBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ColorBtn.h; sourceTree = "<group>"; };
 		3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ColorBtn.m; sourceTree = "<group>"; };
+		3F35FD0D1DE419E4008CE0E0 /* DD_BenefitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BenefitView.h; sourceTree = "<group>"; };
+		3F35FD0E1DE419E4008CE0E0 /* DD_BenefitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BenefitView.m; sourceTree = "<group>"; };
 		3F3810C61CF5460B007154F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F3810C81CF54630007154F1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3F3810CA1CF5463D007154F1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1396,6 +1399,15 @@
 			name = "设计师列表";
 			sourceTree = "<group>";
 		};
+		3F35FD0C1DE419C3008CE0E0 /* BenefitView */ = {
+			isa = PBXGroup;
+			children = (
+				3F35FD0D1DE419E4008CE0E0 /* DD_BenefitView.h */,
+				3F35FD0E1DE419E4008CE0E0 /* DD_BenefitView.m */,
+			);
+			name = BenefitView;
+			sourceTree = "<group>";
+		};
 		3F3811441CF54F7C007154F1 /* ZFB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1713,6 +1725,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3F35FD0C1DE419C3008CE0E0 /* BenefitView */,
 				3FEC780D1DDC558E0047FDB2 /* SignInAnimationView */,
 				3F6F0F801D6BF0590074EAF4 /* DD_CustomBtn */,
 				3F85BAD51D66ED4000820018 /* MyPoint */,
@@ -3921,6 +3934,7 @@
 				3F4187DC1CEEFF0B001BCA3D /* DD_AddressViewController.m in Sources */,
 				3F4187BB1CEEFE4B001BCA3D /* regular.m in Sources */,
 				3F9B8B291CF04923008EC460 /* DD_SetPSW_forget_ViewController.m in Sources */,
+				3F35FD0F1DE419E4008CE0E0 /* DD_BenefitView.m in Sources */,
 				3FFE38B51D7D090400B46768 /* DD_CircleTagView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

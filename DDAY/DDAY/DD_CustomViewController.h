@@ -39,9 +39,14 @@
 -(void)cleanCache;
 
 /**
- * 每日登录送1积分
+ * toast提示弹框
  */
--(void)startSignInAnimation;
+-(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type;
+
+/**
+ * 红包toast
+ */
+-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model;
 
 /**
  * 更新unReadMsgModel

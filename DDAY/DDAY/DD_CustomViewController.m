@@ -8,8 +8,11 @@
 
 #import "DD_CustomViewController.h"
 
+#import "DD_BenefitDetailViewController.h"
+
 #import "DD_TabbarItem.h"
 #import "DD_SignInAnimationView.h"
+#import "DD_BenefitView.h"
 
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {
@@ -50,9 +53,36 @@ static DD_CustomViewController *tabbarController = nil;
     [self Notifications];
     
 }
--(void)startSignInAnimation
+-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
 {
-    DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithBlock:^(NSString *type) {
+    DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
+        for (id obj in self.view.window.subviews) {
+            if([obj isKindOfClass:[DD_BenefitView class]])
+            {
+                DD_BenefitView *sss=(DD_BenefitView *)obj;
+                [sss removeFromSuperview];
+            }
+        }
+        if([type isEqualToString:@"close"])
+        {
+            
+        }else if([type isEqualToString:@"enter"])
+        {
+            [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:model WithBlock:^(NSString *type) {
+                if([type isEqualToString:@"markread"])
+                {
+                    
+                }
+                
+            }] animated:YES];
+        }
+    }];
+    [self.view.window addSubview:_benefitView];
+}
+-(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type
+{
+//    @"integral"
+    DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithTitle:title WithBlock:^(NSString *type) {
         if([type isEqualToString:@"end"])
         {
             for (id obj in self.view.window.subviews) {
@@ -64,7 +94,17 @@ static DD_CustomViewController *tabbarController = nil;
             }
         }
     }];
-    if(![DD_UserModel haveDailyIntegral])
+    if([type isEqualToString:@"integral"])
+    {
+        if(![DD_UserModel haveDailyIntegral])
+        {
+            if(!_animationView.animationStarting)
+            {
+                [self.view.window addSubview:_animationView];
+                [_animationView startAnimation];
+            }
+        }
+    }else
     {
         if(!_animationView.animationStarting)
         {

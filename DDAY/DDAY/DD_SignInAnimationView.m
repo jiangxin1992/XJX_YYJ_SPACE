@@ -12,39 +12,42 @@
 {
     CGRect _startRect;
     CGRect _endRect;
-    
-    UILabel *_labelView;
 }
 
 static DD_SignInAnimationView *animationView = nil;
 
 #pragma mark - 创建单例
-+(id)sharedManagerWithBlock:(void (^)(NSString *))block
++(id)sharedManagerWithTitle:(NSString *)title WithBlock:(void (^)(NSString *type))block
 {
     //    创建CustomTabbarController的单例，并通过此方法调用
     //    互斥锁，确保单例只能被创建一次
     @synchronized(self)
     {
         if (!animationView) {
-            animationView = [[DD_SignInAnimationView alloc]initWithBlock:block];
+            animationView = [[DD_SignInAnimationView alloc]initWithTitle:title WithBlock:block];
+        }else
+        {
+            animationView.labelView.text=title;
         }
     }
     return animationView;
 }
 
 
-- (instancetype)initWithBlock:(void (^)(NSString *))block
+- (instancetype)initWithTitle:(NSString *)title WithBlock:(void (^)(NSString *))block
 {
     self = [super initWithFrame:[[UIScreen mainScreen] bounds]];
     if (self) {
+        _title=title;
         _block=block;
         _animationStarting=NO;
         _startRect=CGRectMake(ScreenWidth, kNavHeight+24, 144, 62);
         _endRect=CGRectMake((ScreenWidth-144)/2.0f, kNavHeight+24, 144, 62);
         
-        _labelView=[UILabel getLabelWithAlignment:1 WithTitle:@"每日登录积分 +1" WithFont:14.0f WithTextColor:nil WithSpacing:0];
+        _labelView=[UILabel getLabelWithAlignment:1 WithTitle:_title WithFont:14.0f WithTextColor:nil WithSpacing:0];
         [self addSubview:_labelView];
         _labelView.backgroundColor=_define_white_color;
+        _labelView.numberOfLines=0;
         _labelView.alpha=1;
         _labelView.hidden=YES;
     }

@@ -13,12 +13,21 @@
 /**
  * 创建单例
  */
-+(id)sharedManagerWithBlock:(void (^)(NSString *type))block;
++(id)sharedManagerWithTitle:(NSString *)title WithBlock:(void (^)(NSString *type))block;
 
+/** 开始动画*/
 -(void)startAnimation;
 
+/** block回调*/
 __block_type(block, type);
 
+/** 动画是否结束*/
 __bool(animationStarting);
+
+/** 标题*/
+__string(title);
+
+/** 内容*/
+__label(labelView);
 
 @end

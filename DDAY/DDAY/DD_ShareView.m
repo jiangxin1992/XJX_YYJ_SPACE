@@ -24,7 +24,7 @@
 {
     NSDictionary *ListMap;
     NSArray *ListArr;
-    BOOL _is_show;
+//    BOOL _is_show;
 }
 
 #pragma mark - 初始化
@@ -68,7 +68,7 @@
 {
     ListMap=[DD_ShareTool getShareListMap];
     ListArr=[DD_ShareTool getShareListArr];
-    _is_show=NO;
+//    _is_show=NO;
 }
 -(void)PrepareUI{}
 
@@ -227,87 +227,136 @@
                 }else if(platformType==SSDKPlatformTypeCopy)
                 {
                     title=@"已复制";
+                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
                     
                 }else
                 {
                     title=@"分享成功";
+                    if([DD_UserModel isLogin])
+                    {
+                        if(platformType==SSDKPlatformSubTypeWechatTimeline||platformType==SSDKPlatformTypeSinaWeibo)
+                        {
+                            NSDictionary *_subparams=[DD_ShareTool getShareParamsWithType:_type WithShareParams:_params];
+                            NSDictionary *__params=@{@"token":[DD_UserModel getToken],@"outShareInfo":[_subparams mj_JSONString]};
+                            [[JX_AFNetworking alloc] GET:@"user/getOutShareBenefit.do" parameters:__params success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                                if(success)
+                                {
+                                    if([[data objectForKey:@"giveSign"] boolValue])
+                                    {
+//                                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享成功 送你五块钱" WithType:@"share"];
+                                        //有红包
+                                        DD_BenefitInfoModel *_benefitModel=[DD_BenefitInfoModel getBenefitInfoModel:[data objectForKey:@"benefitInfo"]];
+                                        if(_benefitModel)
+                                        {
+                                             [[DD_CustomViewController sharedManager] showBenefitWithModel:_benefitModel];
+                                        }else
+                                        {
+                                             [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                                        }
+                                        
+                                    }else
+                                    {
+                                        //没有红包
+                                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                                    }
+                                }else
+                                {
+                                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                                }
+                            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                                [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                            }];
+                        }else
+                        {
+                            [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                        }
+                    }else
+                    {
+                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                    }
                     
                 }
-                if(!_is_show)
-                {
-                    _is_show=YES;
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                                        message:nil
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"确定"
-                                                              otherButtonTitles:nil];
-                    alertView.delegate=self;
-                    [alertView show];
-                }
+                
+//                if(!_is_show)
+//                {
+//                    _is_show=YES;
+//                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+//                                                                        message:nil
+//                                                                       delegate:nil
+//                                                              cancelButtonTitle:@"确定"
+//                                                              otherButtonTitles:nil];
+//                    alertView.delegate=self;
+//                    [alertView show];
+//                }
+                
                 break;
             }
             case SSDKResponseStateFail:
             {
                 if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
                 {
-                    if(!_is_show)
-                    {
-                        _is_show=YES;
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                        message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil, nil];
-                        alert.delegate=self;
-                        [alert show];
-                    }
+//                    if(!_is_show)
+//                    {
+//                        _is_show=YES;
+//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                        message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
+//                                                                       delegate:nil
+//                                                              cancelButtonTitle:@"OK"
+//                                                              otherButtonTitles:nil, nil];
+//                        alert.delegate=self;
+//                        [alert show];
+//                    }
+                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
                 else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
                 {
-                    if(!_is_show)
-                    {
-                        _is_show=YES;
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                        message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil, nil];
-                        alert.delegate=self;
-                        [alert show];
-                    }
+//                    if(!_is_show)
+//                    {
+//                        _is_show=YES;
+//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                        message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
+//                                                                       delegate:nil
+//                                                              cancelButtonTitle:@"OK"
+//                                                              otherButtonTitles:nil, nil];
+//                        alert.delegate=self;
+//                        [alert show];
+//                    }
+                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
                 else
                 {
-                    if(!_is_show)
-                    {
-                        _is_show=YES;
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                        message:[NSString stringWithFormat:@"%@",error]
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil, nil];
-                        alert.delegate=self;
-                        [alert show];
-                    }
+//                    if(!_is_show)
+//                    {
+//                        _is_show=YES;
+//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                        message:[NSString stringWithFormat:@"%@",error]
+//                                                                       delegate:nil
+//                                                              cancelButtonTitle:@"OK"
+//                                                              otherButtonTitles:nil, nil];
+//                        alert.delegate=self;
+//                        [alert show];
+//                    }
+                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
                 break;
             }
             case SSDKResponseStateCancel:
             {
-                if(!_is_show)
-                {
-                    _is_show=YES;
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
-                                                                        message:nil
-                                                                       delegate:nil
-                                                              cancelButtonTitle:@"确定"
-                                                              otherButtonTitles:nil];
-                    alertView.delegate=self;
-                    [alertView show];
-                }
+//                if(!_is_show)
+//                {
+//                    _is_show=YES;
+//                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+//                                                                        message:nil
+//                                                                       delegate:nil
+//                                                              cancelButtonTitle:@"确定"
+//                                                              otherButtonTitles:nil];
+//                    alertView.delegate=self;
+//                    [alertView show];
+//                }
+                [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享已取消" WithType:@"share"];
                 break;
             }
             default:
@@ -315,11 +364,11 @@
         }
     }];
 }
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex==0)
-    {
-        _is_show=NO;
-    }
-}
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if(buttonIndex==0)
+//    {
+//        _is_show=NO;
+//    }
+//}
 @end

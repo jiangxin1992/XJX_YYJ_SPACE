@@ -35,4 +35,8 @@
  */
 +(NSMutableDictionary *)getShareParamsWithType:(NSString *)type WithShare_type:(SSDKPlatformType )platformType WithShareParams:(NSDictionary *)params;
 
+/**
+ * 获取分享成功后  请求是否有分享红包的参数（分享信息）
+ */
++(NSDictionary *)getShareParamsWithType:(NSString *)type WithShareParams:(NSDictionary *)params;
 @end

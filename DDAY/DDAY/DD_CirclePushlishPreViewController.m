@@ -343,6 +343,17 @@
             {
                 //                回调、搭配列表下拉刷新数据
                 _block(@"refresh");
+                if([data objectForKey:@"isGetPoint"])
+                {
+                    if([[data objectForKey:@"isGetPoint"] boolValue])
+                    {
+                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:[[NSString alloc] initWithFormat:@"积分 +%ld",[[data objectForKey:@"points"] longValue]] WithType:@"getIntegral"];
+                    }else
+                    {
+                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:[data objectForKey:@"message"] WithType:@"getIntegral"];
+                    }
+                }
+                
                 //                返回搭配列表界面
                 NSArray *controllers=self.navigationController.viewControllers;
                 for (int i=0; i<controllers.count; i++) {

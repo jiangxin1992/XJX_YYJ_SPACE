@@ -14,7 +14,29 @@
 #import "DD_CircleListModel.h"
 
 @implementation DD_ShareTool
-
++(NSDictionary *)getShareParamsWithType:(NSString *)type WithShareParams:(NSDictionary *)params
+{
+    if([type isEqualToString:@"goods_detail"])
+    {
+        
+        DD_GoodsDetailModel *_DetailModel=[params objectForKey:@"detailModel"];
+        return @{@"type":@"goodsDetail",@"itemId":_DetailModel.item.itemId,@"colorId":_DetailModel.item.colorId};
+        
+    }else if([type isEqualToString:@"dday_detail"])
+    {
+        
+        DD_DDayDetailModel *_DetailModel=[params objectForKey:@"detailModel"];
+        return @{@"type":@"ddayDetail",@"ddayId":_DetailModel.s_id};
+        
+    }else if([type isEqualToString:@"circle_detail"])
+    {
+        
+        DD_CircleListModel *_DetailModel=[params objectForKey:@"detailModel"];
+        return @{@"type":@"circleDetail",@"shareId":_DetailModel.shareId};
+        
+    }
+    return @{};
+}
 +(NSMutableDictionary *)getShareParamsWithType:(NSString *)type WithShare_type:(SSDKPlatformType )platformType WithShareParams:(NSDictionary *)params
 {
     //1、创建分享参数（必要）

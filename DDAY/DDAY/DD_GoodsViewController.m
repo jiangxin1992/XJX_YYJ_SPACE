@@ -378,13 +378,11 @@
 {
     if([DD_UserModel isLogin])
     {
-        if(_headView)
-        {
-            //隐藏headview
-            [_headView removeFromSuperview];
-            _headView=nil;
-            [mywaterflow reloadData];
-        }
+        //隐藏headview
+        _isReadBenefit=YES;
+        [_headView removeFromSuperview];
+        _headView=nil;
+        [mywaterflow reloadData];
 
     }else
     {
