@@ -137,7 +137,7 @@
     if(_localBenefitArr)
     {
         for (int i=0; i<_localBenefitArr.count; i++) {
-            NSString *obj=[_localBenefitArr objectAtIndex:i];
+            NSString *obj=_localBenefitArr[i];
             DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
             if([_model.benefitId isEqualToString:benefitID])
             {
@@ -168,7 +168,7 @@
         BOOL _have_model=NO;
         BOOL _model_index=0;
         for (int i=0; i<_localBenefitArr.count; i++) {
-            NSString *obj=[_localBenefitArr objectAtIndex:i];
+            NSString *obj=_localBenefitArr[i];
             DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
             if([_model.benefitId isEqualToString:benefitInfoModel.benefitId])
             {

@@ -130,13 +130,13 @@
     {
         cell=[[DD_BenefitListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.benefitInfoModel=[_clearingModel.benefitInfo objectAtIndex:indexPath.section];
+    cell.benefitInfoModel=_clearingModel.benefitInfo[indexPath.section];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_BenefitInfoModel *_benefitInfoModel=[_clearingModel.benefitInfo objectAtIndex:indexPath.section];
+    DD_BenefitInfoModel *_benefitInfoModel=_clearingModel.benefitInfo[indexPath.section];
     _clearingModel.choosedBenefitId=_benefitInfoModel.benefitId;
     _block(@"choose_benefit");
     [self.navigationController popViewControllerAnimated:YES];

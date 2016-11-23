@@ -522,10 +522,10 @@
 {
     NSArray *array = [result componentsSeparatedByString:@"\""];
     for (int i=0; i<array.count; i++) {
-        NSString *str=[array objectAtIndex:i];
+        NSString *str=array[i];
         if([str isEqualToString:@"&out_trade_no="])
         {
-            return [array objectAtIndex:i+1];
+            return array[i+1];
             break;
         }
     }

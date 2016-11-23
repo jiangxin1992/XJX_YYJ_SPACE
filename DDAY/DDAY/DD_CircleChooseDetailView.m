@@ -200,7 +200,7 @@
         _scrollView.contentSize=CGSizeMake((_circleModel.chooseItem.count-1)*intes+_width*_circleModel.chooseItem.count, _width);
         CGFloat _x_p=0;
         for (int i=0; i<_circleModel.chooseItem.count; i++) {
-            DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
+            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
             
             UIView *backView=[UIView getCustomViewWithColor:nil];
             [_scrollView addSubview:backView];
@@ -336,16 +336,16 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+        DD_CricleChooseItemModel *item=_dataArr[index-1];
         CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
         return [[DD_CirclePublishTool alloc] getCustomWaterflowCell:waterflow cellAtIndex:index-1 WithItemsModel:item WithHeight:_height WithBlock:^(NSString *type,NSInteger _index) {
-            DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:_index];
+            DD_CricleChooseItemModel *_itemModel=_dataArr[_index];
             if(!_itemModel.isSelect)
             {
                 _itemModel.isSelect=YES;
                 if(_circleModel.chooseItem.count<_num)
                 {
-                    [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:_index]];
+                    [_circleModel.chooseItem addObject:_dataArr[_index]];
                     //                _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",___num-___chooseItem.count];
                 }else
                 {
@@ -373,7 +373,7 @@
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+        DD_CricleChooseItemModel *item=_dataArr[index-1];
         CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
         return _height+56+water_Top;
     }else
@@ -399,14 +399,14 @@
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:index-1];
+        DD_CricleChooseItemModel *_itemModel=_dataArr[index-1];
         if(!_itemModel.isSelect)
         {
             
             if(_circleModel.chooseItem.count<_num)
             {
                 _itemModel.isSelect=YES;
-                [_circleModel.chooseItem addObject:[_dataArr objectAtIndex:index-1]];
+                [_circleModel.chooseItem addObject:_dataArr[index-1]];
                 //                _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",___num-___chooseItem.count];
             }else
             {
@@ -416,7 +416,7 @@
         }else
         {
             //            删除已选款式
-            DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:index-1];
+            DD_CricleChooseItemModel *item=_dataArr[index-1];
             item.isSelect=NO;
             //    删除item 对应的已选款式
             [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
@@ -497,7 +497,7 @@
 -(void)deleteAction:(UIButton *)btn
 {
     //            删除已选款式
-    DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:btn.tag-150];
+    DD_CricleChooseItemModel *item=_circleModel.chooseItem[btn.tag-150];
     item.isSelect=NO;
     //    删除item 对应的已选款式
     [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];

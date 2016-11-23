@@ -171,7 +171,7 @@
  */
 -(void)seriesBtnAction:(UIButton *)btn
 {
-    DD_DDAYModel *seriesModel=[_monthArr objectAtIndex:btn.tag-100];
+    DD_DDAYModel *seriesModel=_monthArr[btn.tag-100];
     [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
         
     }] animated:YES];
@@ -305,7 +305,7 @@
     {
         UIView *lastView=nil;
         for (int i=0; i<_monthArr.count; i++) {
-            DD_DDAYModel *seriesModel = [_monthArr objectAtIndex:i];
+            DD_DDAYModel *seriesModel = _monthArr[i];
             UIView *_backView_s=[UIView getCustomViewWithColor:nil];
             [_scrollView addSubview:_backView_s];
             
@@ -321,7 +321,7 @@
                 }
             }];
             
-            DD_DDAYModel *dday=[_monthArr objectAtIndex:i];
+            DD_DDAYModel *dday=_monthArr[i];
             UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:dday.name WithNormalColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
             [_backView_s addSubview:seriesBtn];
             if(seriesModel.is_select)

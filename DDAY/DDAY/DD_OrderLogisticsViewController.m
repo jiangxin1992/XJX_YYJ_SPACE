@@ -160,7 +160,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [DD_OrderLogisticsCell heightWithModel:[LogisticsManageModel.Traces objectAtIndex:indexPath.section]];
+    return [DD_OrderLogisticsCell heightWithModel:LogisticsManageModel.Traces[indexPath.section]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -204,12 +204,12 @@
         }];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    [cell setLogisticsModel:[LogisticsManageModel.Traces objectAtIndex:indexPath.section] IsFirst:indexPath.section==0 IsLast:indexPath.section==LogisticsManageModel.Traces.count-1];
+    [cell setLogisticsModel:LogisticsManageModel.Traces[indexPath.section] IsFirst:indexPath.section==0 IsLast:indexPath.section==LogisticsManageModel.Traces.count-1];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    _block(@"choose_design",[_dataArr objectAtIndex:indexPath.section]);
+//    _block(@"choose_design",_dataArr[indexPath.section]);
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark  ---------------UIAlertViewDelegate--------------

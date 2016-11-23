@@ -286,7 +286,7 @@
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
     
-    DD_OrderItemModel *_item=[_listModel.items objectAtIndex:ges.view.tag-100];
+    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
     _cellBlock(@"item_click",_index,_item);
 }
 /**
@@ -317,7 +317,7 @@
     
     if(_listModel.pics.count)
     {
-        DD_ImageModel *imgModel=[_listModel.pics objectAtIndex:0];
+        DD_ImageModel *imgModel=_listModel.pics[0];
         [goodImgView JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     

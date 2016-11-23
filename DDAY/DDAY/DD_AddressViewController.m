@@ -172,7 +172,7 @@
 {
 
     for (int i=0; i<_dataArr.count; i++) {
-        DD_AddressModel *_model=[_dataArr objectAtIndex:i];
+        DD_AddressModel *_model=_dataArr[i];
         if([_model.udaId isEqualToString:model.udaId])
         {
             _dataArr[i]=model;
@@ -289,7 +289,7 @@
 {
     if([_type isEqualToString:@"address"])
     {
-        _touchBlock(@"choose_address",[_dataArr objectAtIndex:indexPath.section]);
+        _touchBlock(@"choose_address",_dataArr[indexPath.section]);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

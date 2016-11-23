@@ -54,7 +54,7 @@
         NSString *pic=nil;
         if(colorModel.pics.count)
         {
-            DD_ImageModel *img=[colorModel.pics objectAtIndex:0];
+            DD_ImageModel *img=colorModel.pics[0];
             pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
         }
         
@@ -135,7 +135,7 @@
         NSString *pic=nil;
         if(_DetailModel.pics.count)
         {
-            DD_ImageModel *img=[_DetailModel.pics objectAtIndex:0];
+            DD_ImageModel *img=_DetailModel.pics[0];
             pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",img.pic];
         }
         if(platformType==SSDKPlatformSubTypeWechatSession)

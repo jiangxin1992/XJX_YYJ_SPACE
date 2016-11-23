@@ -311,7 +311,7 @@
 {
     //    子订单数量
     NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:section];
+    DD_OrderModel *__OrderModel=_orderList[section];
     return __OrderModel.itemList.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -343,8 +343,8 @@
         cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:YES WithBlock:nil];
     }
     NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
-    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
+    DD_OrderModel *__OrderModel=_orderList[indexPath.section];
+    DD_OrderItemModel *_item=__OrderModel.itemList[indexPath.row];
     cell.ClearingModel=[DD_OrderTool getClearingOrderModel:_item];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
@@ -352,8 +352,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *_orderList=_OrderDetailModel.orderInfo.orderList;
-    DD_OrderModel *__OrderModel=[_orderList objectAtIndex:indexPath.section];
-    DD_OrderItemModel *_item=[__OrderModel.itemList objectAtIndex:indexPath.row];
+    DD_OrderModel *__OrderModel=_orderList[indexPath.section];
+    DD_OrderItemModel *_item=__OrderModel.itemList[indexPath.row];
     
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
     _ItemsModel.g_id=_item.itemId;
@@ -470,7 +470,7 @@
 {
     if(_OrderDetailModel.orderInfo.orderList.count)
     {
-        DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
+        DD_OrderModel *_order=_OrderDetailModel.orderInfo.orderList[0];
         [self.navigationController pushViewController:[[DD_OrderLogisticsViewController alloc] initWithModel:_order WithBlock:nil] animated:YES];
     }
 }
@@ -539,7 +539,7 @@
     [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"order_if_confirm", @"") WithBlock:^{
         if(_OrderDetailModel.orderInfo.orderList.count)
         {
-            DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
+            DD_OrderModel *_order=_OrderDetailModel.orderInfo.orderList[0];
             [[JX_AFNetworking alloc] GET:@"order/confirmOrder.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                 if(success)
                 {
@@ -610,7 +610,7 @@
             long _status=_OrderDetailModel.orderInfo.orderStatus;
             if(_status==3||_status==8||_status==6||_status==7||(_status==0&&_OrderDetailModel.orderInfo.expire))
             {
-                DD_OrderModel *_order=[_OrderDetailModel.orderInfo.orderList objectAtIndex:0];
+                DD_OrderModel *_order=_OrderDetailModel.orderInfo.orderList[0];
                 NSDictionary *_parameters=nil;
                 NSString *_url=nil;
                 if(_status==8||(_status==0&&_OrderDetailModel.orderInfo.expire))

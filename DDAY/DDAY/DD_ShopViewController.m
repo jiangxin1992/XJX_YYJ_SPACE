@@ -440,7 +440,7 @@
 {
     DD_ShopSeriesModel *seriesModel=[DD_ShopTool getNumberSection:indexPath.section WithModel:_shopModel];
     for (int i=0; i<seriesModel.items.count; i++) {
-        DD_ShopItemModel *_item=[seriesModel.items objectAtIndex:i];
+        DD_ShopItemModel *_item=seriesModel.items[i];
         if([_item.sizeId isEqualToString:sizeid]&&[_item.colorId isEqualToString:colorid]&&i!=indexPath.row)
         {
             return YES;

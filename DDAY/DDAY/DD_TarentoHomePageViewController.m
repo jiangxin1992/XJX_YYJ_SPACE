@@ -96,7 +96,7 @@
     __block NSMutableArray *___dataArr=_dataArr;
     cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
-        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
+        DD_CircleListModel *listModel=___dataArr[index];
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
@@ -244,10 +244,10 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_CircleListModel *listModel=_dataArr[indexPath.section];
 //    CGFloat _height=[DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
 //    return _height;
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_CircleListModel *listModel=_dataArr[indexPath.section];
     return listModel.height-72;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -272,7 +272,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_CircleListModel *listModel=_dataArr[indexPath.section];
     if([listModel.shareType longValue]==4)
     {
         //获取到数据以后
@@ -381,7 +381,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
     
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除该搭配" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+        DD_CircleListModel *listModel=_dataArr[index];
         [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -404,8 +404,8 @@
  */
 -(void)PushCommentViewWithIndex:(NSInteger )index
 {
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
-    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:[_dataArr objectAtIndex:index] WithShareID:listModel.shareId IsHomePage:YES WithBlock:^(NSString *type) {
+    DD_CircleListModel *listModel=_dataArr[index];
+    [self.navigationController pushViewController:[[DD_CircleDetailViewController alloc] initWithCircleListModel:_dataArr[index] WithShareID:listModel.shareId IsHomePage:YES WithBlock:^(NSString *type) {
         if([type isEqualToString:@"reload"])
         {
             [_tableview reloadData];
@@ -431,7 +431,7 @@
     {
         url=@"share/likeShare.do";
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    DD_CircleListModel *listModel=_dataArr[index];
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId};
     [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -460,7 +460,7 @@
     {
         url=@"share/collectShare.do";
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    DD_CircleListModel *listModel=_dataArr[index];
     [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

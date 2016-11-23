@@ -167,7 +167,7 @@
         }];
         CGFloat _x_p=0;
         for (int i=0; i<Designer.items.count; i++) {
-            DD_ImageModel *imgModel=[Designer.items objectAtIndex:i];
+            DD_ImageModel *imgModel=Designer.items[i];
             NSString *imgStr=imgModel.pic;
             UIImageView *img=[UIImageView getCustomImg];
             [_scrollview addSubview:img];

@@ -40,7 +40,7 @@
 //    NSInteger count = [arr count];
 //    for (int i = 0; i < count; i++) {
 //        for (int j = 0; j < count - i - 1; j++) {
-//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[arr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)arr[j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)arr[j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
 //                [arr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
 //            }
 //        }
@@ -69,7 +69,7 @@
             }
         }else
         {
-            DD_DDAYModel *ddayModel_right=[getArr objectAtIndex:1];
+            DD_DDAYModel *ddayModel_right=getArr[1];
             long _now_time=[[monthModel.dateValue getFirstTime] getTime];
             long _right_start_time=[[[regular zoneChange:ddayModel_right.signStartTime] getFirstTime] getTime];
             long _right_end_time=[[[regular zoneChange:ddayModel_right.saleEndTime] getFirstTime] getTime];
@@ -163,7 +163,7 @@
         NSInteger _num=(week-1)*7+j;
         if(_num<(days+_week-1))
         {
-            id mon = [dataArr objectAtIndex:_num];
+            id mon = dataArr[_num];
             if ([mon isKindOfClass:[DD_MonthModel class]]) {
                 DD_MonthModel *m_mon=(DD_MonthModel *)mon;
                 NSInteger nowTime=[[m_mon.dateValue getFirstTime] getTime];
@@ -196,7 +196,7 @@
 //    NSInteger count = [weekArr count];
 //    for (int i = 0; i < count; i++) {
 //        for (int j = 0; j < count - i - 1; j++) {
-//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[weekArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)weekArr[j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)weekArr[j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
 //                [weekArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
 //            }
 //        }
@@ -219,7 +219,7 @@
         NSInteger _num=(week-1)*7+j;
         if(_num<(days+_week-1))
         {
-            id mon = [dataArr objectAtIndex:_num];
+            id mon = dataArr[_num];
             if ([mon isKindOfClass:[DD_MonthModel class]]) {
                 DD_MonthModel *m_mon=(DD_MonthModel *)mon;
                 if(!_week_start_time)
@@ -244,12 +244,12 @@
         NSInteger _left_s_index=-1;
         NSInteger _right_s_index=-1;
         //        NSInteger
-        DD_DDAYModel *seriesModel=[weekArr objectAtIndex:i];
+        DD_DDAYModel *seriesModel=weekArr[i];
         for (int j=0; j<7; j++) {
             NSInteger _num=(week-1)*7+j;
             if(_num<(days+_week-1))
             {
-                id mon = [dataArr objectAtIndex:_num];
+                id mon = dataArr[_num];
                 if ([mon isKindOfClass:[DD_MonthModel class]]) {
                     DD_MonthModel *m_mon=(DD_MonthModel *)mon;
                     long _series_start_time=[[[regular zoneChange:seriesModel.signStartTime] getFirstTime] getTime];
@@ -373,7 +373,7 @@
     NSMutableArray *monthArr=[[NSMutableArray alloc] init];
     
     for (int i=0; i<dataArr.count; i++) {
-        id mon = [dataArr objectAtIndex:i];
+        id mon = dataArr[i];
         if ([mon isKindOfClass:[DD_MonthModel class]])
         {
             DD_MonthModel *m_mon=(DD_MonthModel *)mon;
@@ -405,7 +405,7 @@
 //    NSInteger count = [monthArr count];
 //    for (int i = 0; i < count; i++) {
 //        for (int j = 0; j < count - i - 1; j++) {
-//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+//            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)monthArr[j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)monthArr[j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
 //                [monthArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
 //            }
 //        }
@@ -448,7 +448,7 @@
     NSInteger count = [monthArr count];
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < count - i - 1; j++) {
-            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)[monthArr objectAtIndex:j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
+            if([[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)monthArr[j]).signStartTime] compare:[[NSString alloc] initWithFormat:@"%ld",((DD_DDAYModel *)monthArr[j+1]).signStartTime] options:NSNumericSearch] == 1){  //同上potions  NSNumericSearch = 64,
                 [monthArr exchangeObjectAtIndex:j withObjectAtIndex:(j + 1)];  //这里可以用exchangeObjectAtIndex:方法来交换两个位置的数组元素。
             }
         }

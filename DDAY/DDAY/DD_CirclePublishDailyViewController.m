@@ -230,7 +230,7 @@
 }
 -(void)DeleteImgWithIndex:(long )index
 {
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_CircleModel.picArr objectAtIndex:index] objectForKey:@"key"]};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[_CircleModel.picArr[index] objectForKey:@"key"]};
     [[JX_AFNetworking alloc] GET:@"file/deleteQiNiuFile.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

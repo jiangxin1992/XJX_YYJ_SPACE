@@ -24,7 +24,7 @@
     UIImageView *imageview=nil;
     if(item.pics&&item.pics.count)
     {
-        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        DD_ImageModel *imgModel=item.pics[0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
         imageview.contentMode=2;
@@ -63,7 +63,7 @@
     UIImageView *imageview=nil;
     if(item.pics&&item.pics.count)
     {
-        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        DD_ImageModel *imgModel=item.pics[0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
         imageview.contentMode=2;
@@ -108,7 +108,7 @@
     UIImageView *imageview=nil;
     if(item.pics&&item.pics.count)
     {
-        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        DD_ImageModel *imgModel=item.pics[0];
         imageview=[[UIImageView alloc] init];
         [cell addSubview:imageview];
         imageview.contentMode=2;

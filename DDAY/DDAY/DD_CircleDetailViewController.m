@@ -441,7 +441,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat _height=[DD_CircleCommentCell heightWithModel:[_dataArr objectAtIndex:indexPath.section]];
+    CGFloat _height=[DD_CircleCommentCell heightWithModel:_dataArr[indexPath.section]];
     return _height;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -473,7 +473,7 @@
     {
         cell=[[DD_CircleCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.CommentModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.CommentModel=_dataArr[indexPath.section];
     cell.index=indexPath.section;
     cell.cellBlock=cellBlock;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -739,7 +739,7 @@
         {
             url=@"share/likeComment.do";
         }
-        DD_CircleCommentModel *CommentModel=[_dataArr objectAtIndex:index];
+        DD_CircleCommentModel *CommentModel=_dataArr[index];
         NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"commentId":CommentModel.commId};
         [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
@@ -831,7 +831,7 @@
         }] animated:YES completion:nil];
     }else
     {
-        DD_CircleCommentModel *commentModel=[_dataArr objectAtIndex:index];
+        DD_CircleCommentModel *commentModel=_dataArr[index];
         commToId=@"";
         [[JX_AFNetworking alloc] GET:@"share/deleteCommentShare.do" parameters:@{@"token":[DD_UserModel getToken],@"commentId":commentModel.commId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
@@ -852,7 +852,7 @@
  */
 -(void)cellClickActionWithIndex:(NSInteger )index
 {
-    DD_CircleCommentModel *commentModel=[_dataArr objectAtIndex:index];
+    DD_CircleCommentModel *commentModel=_dataArr[index];
     DD_UserModel *loc=[DD_UserModel getLocalUserInfo];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];

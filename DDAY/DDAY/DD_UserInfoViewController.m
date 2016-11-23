@@ -390,7 +390,7 @@
         return cell;
     }
 
-    NSString *_key=[_dataArr objectAtIndex:indexPath.section];
+    NSString *_key=_dataArr[indexPath.section];
     if([_key isEqualToString:@"head"])
     {
         //获取到数据以后
@@ -401,7 +401,7 @@
             cell=[[DD_UserCell alloc] initWithImageStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         }
         cell.image=_usermodel.head;
-        cell.title=[_datadict objectForKey:[_dataArr objectAtIndex:indexPath.section]];
+        cell.title=[_datadict objectForKey:_dataArr[indexPath.section]];
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
@@ -414,7 +414,7 @@
     {
         cell=[[DD_UserCell alloc] initWithF_titleStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.title=[_datadict objectForKey:[_dataArr objectAtIndex:indexPath.section]];
+    cell.title=[_datadict objectForKey:_dataArr[indexPath.section]];
     NSString *_f_title=nil;
     if([_key isEqualToString:@"nickname"])
     {
@@ -449,7 +449,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    NSString *_key=[_dataArr objectAtIndex:indexPath.section];
+    NSString *_key=_dataArr[indexPath.section];
     if([_key isEqualToString:@"head"])
     {
         //        更换头像

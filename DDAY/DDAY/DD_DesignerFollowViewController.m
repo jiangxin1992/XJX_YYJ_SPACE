@@ -51,7 +51,7 @@
     {
         if([type isEqualToString:@"click"])
         {
-            DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
+            DD_DesignerModel *_model=__dataArr[index];
             ___block(@"click",_model);
         }else
         {
@@ -60,7 +60,7 @@
                 ___block(@"login",nil);
             }else
             {
-                DD_DesignerModel *_model=[__dataArr objectAtIndex:index];
+                DD_DesignerModel *_model=__dataArr[index];
                 NSString *url=nil;
                 if([type isEqualToString:@"unfollow"])
                 {
@@ -221,7 +221,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [DD_DesignerCell heightWithModel:[_dataArr objectAtIndex:indexPath.section]];
+    return [DD_DesignerCell heightWithModel:_dataArr[indexPath.section]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -254,12 +254,12 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.followblock=followblock;
     cell.index=indexPath.section;
-    cell.Designer=[_dataArr objectAtIndex:indexPath.section];
+    cell.Designer=_dataArr[indexPath.section];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_DesignerModel *_model=[_dataArr objectAtIndex:indexPath.section];
+    DD_DesignerModel *_model=_dataArr[indexPath.section];
     _block(@"select",_model);
 }
 

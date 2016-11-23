@@ -194,7 +194,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:indexPath.section];
+    DD_CricleChooseItemModel *item=_dataArr[indexPath.section];
     //    数据还未获取时候
     if(_dataArr.count==indexPath.section)
     {
@@ -220,7 +220,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_CricleChooseItemModel *item=[_dataArr objectAtIndex:indexPath.section];
+    DD_CricleChooseItemModel *item=_dataArr[indexPath.section];
     _block(@"search",item.name);
 }
 

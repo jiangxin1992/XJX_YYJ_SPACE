@@ -163,8 +163,8 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
-        DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+        DD_ItemsModel *item=_dataArr[index-1];
+        DD_ImageModel *imgModel=item.pics[0];
         CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
         return [DD_ItemTool getColCustomWaterflowCell:waterflow cellAtIndex:index-1 WithItemsModel:item WithHeight:_height];
     }else
@@ -181,10 +181,10 @@
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_ItemsModel *item=[_dataArr objectAtIndex:index-1];
+        DD_ItemsModel *item=_dataArr[index-1];
         if(item.pics)
         {
-            DD_ImageModel *imgModel=[item.pics objectAtIndex:0];
+            DD_ImageModel *imgModel=item.pics[0];
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
             return _height+56+water_Top;
         }
@@ -213,7 +213,7 @@
     
     if(index)
     {
-        DD_ItemsModel *_model=[_dataArr objectAtIndex:index-1];
+        DD_ItemsModel *_model=_dataArr[index-1];
         _block(@"detail",_model);
     }
    

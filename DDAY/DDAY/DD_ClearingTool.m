@@ -132,7 +132,7 @@
                 
             }else
             {
-                arr=[_saleingArr objectAtIndex:_section-1];
+                arr=_saleingArr[_section-1];
                 
             }
         }else
@@ -149,7 +149,7 @@
     {
         if([self have_saleingWithDict:_dataDict])
         {
-            arr=[_saleingArr objectAtIndex:_section];
+            arr=_saleingArr[_section];
         }else
         {
             return 0;
@@ -192,7 +192,7 @@
 +(DD_ClearingOrderModel *)getRemainModelWithSection:(NSIndexPath *)indexPath WithDict:(NSDictionary *)_dataDict
 {
     NSArray *remainArr=[_dataDict objectForKey:@"remain"];
-    return [remainArr objectAtIndex:indexPath.row];
+    return remainArr[indexPath.row];
 }
 +(DD_ClearingOrderModel *)getSaleingModelWithRow:(NSIndexPath *)indexPath WithDict:(NSDictionary *)_dataDict
 {
@@ -206,7 +206,8 @@
     }
     
     NSArray *saleingArr=[_dataDict objectForKey:@"saleing"];
-    return [((NSArray *)[saleingArr objectAtIndex:_section]) objectAtIndex:indexPath.row];
+    DD_ClearingOrderModel *model=saleingArr[_section][indexPath.row];
+    return model;
 }
 +(NSInteger )getAllSectionNumWithDict:(NSDictionary *)_dataDict
 {
@@ -230,7 +231,7 @@
                 return ((NSArray *)[_dataDict objectForKey:@"remain"]).count;
             }else
             {
-                return ((NSArray *)[_data_arr objectAtIndex:_section-1]).count;
+                return ((NSArray *)_data_arr[_section-1]).count;
             }
         }else
         {
@@ -241,7 +242,7 @@
     {
         if([self have_saleingWithDict:_dataDict])
         {
-            return ((NSArray *)[_data_arr objectAtIndex:_section]).count;
+            return ((NSArray *)_data_arr[_section]).count;
         }else
         {
             return 0;

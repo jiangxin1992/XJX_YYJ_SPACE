@@ -444,7 +444,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    DD_ClearingSeriesModel *_Series=[_dataArr objectAtIndex:section];
+    DD_ClearingSeriesModel *_Series=_dataArr[section];
     return _Series.items.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -473,8 +473,8 @@
     {
         cell=[[DD_ClearingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid IsOrderDetail:NO WithBlock:nil];
     }
-    DD_ClearingSeriesModel *_Series=[_dataArr objectAtIndex:indexPath.section];
-    cell.ClearingModel=[_Series.items objectAtIndex:indexPath.row];
+    DD_ClearingSeriesModel *_Series=_dataArr[indexPath.section];
+    cell.ClearingModel=_Series.items[indexPath.row];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }

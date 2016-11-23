@@ -74,7 +74,7 @@
     int num = 0;
     CGFloat _x_p=kEdge;
     for (int i=0; i<_SizeAlertModel.size.count; i++) {
-        DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
+        DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
         UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
         [self addSubview:_btn];
         
@@ -191,7 +191,7 @@
 -(NSInteger )getSelectSize
 {
     for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+        UIButton *_btn=_sizeBtnArr[i];
         if(_btn.selected)
         {
             return i;
@@ -203,14 +203,14 @@
 {
     NSInteger _index=btn.tag-100;
     
-    DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:_index];
+    DD_SizeModel *_sizeModel=_SizeAlertModel.size[_index];
     if(_sizeModel.stock)
     {
         for (int i=0; i<_sizeBtnArr.count; i++) {
-            UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+            UIButton *_btn=_sizeBtnArr[i];
             if(_index==i)
             {
-                DD_SizeModel *_sizeModel=[_SizeAlertModel.size objectAtIndex:i];
+                DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
                 if(_btn.selected)
                 {
                     _btn.selected=NO;

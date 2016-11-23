@@ -21,7 +21,7 @@
     if(Section<_seriesNormalCount)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:Section];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[Section];
         NSMutableArray *itemArr=[[NSMutableArray alloc] initWithArray:_SeriesModel.items];
         [itemArr removeObjectAtIndex:indexPath.row];
         if(itemArr.count)
@@ -38,7 +38,7 @@
     }else if(Section<_seriesInvalidCount)
     {
         //        处于下架处
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-Section-1];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-Section-1];
         NSMutableArray *itemArr=[[NSMutableArray alloc] initWithArray:_SeriesModel.items];
         [itemArr removeObjectAtIndex:indexPath.row];
         if(itemArr.count)
@@ -64,7 +64,7 @@
     if(Section<_seriesNormalCount)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:Section];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[Section];
         NSMutableArray *itemArr=[[NSMutableArray alloc] initWithArray:_SeriesModel.items];
         itemArr[indexPath.row]=ItemModel;
         _SeriesModel.items=itemArr;
@@ -72,7 +72,7 @@
     }else if(Section<_seriesInvalidCount)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-Section-1];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-Section-1];
         NSMutableArray *itemArr=[[NSMutableArray alloc] initWithArray:_SeriesModel.items];
         itemArr[indexPath.row]=ItemModel;
         _SeriesModel.items=itemArr;
@@ -106,14 +106,14 @@
     if(Section<_seriesNormalCount)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:Section];
-        return [_SeriesModel.items objectAtIndex:indexPath.row];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[Section];
+        return _SeriesModel.items[indexPath.row];
         
     }else if(Section<_seriesInvalidCount)
     {
         //        处于下架处
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-Section-1];
-        return [_SeriesModel.items objectAtIndex:indexPath.row];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-Section-1];
+        return _SeriesModel.items[indexPath.row];
         
     }
     return nil;
@@ -185,7 +185,7 @@
     if(section<_seriesNormal)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:section];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[section];
         for (DD_ShopItemModel *item in _SeriesModel.items) {
             
             item.is_select=is_select;
@@ -194,7 +194,7 @@
     }else if(section<_seriesInvalidCount)
     {
         //        处于下架处
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-section-1];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-section-1];
         for (DD_ShopItemModel *item in _SeriesModel.items) {
             
             item.is_select=is_select;
@@ -209,7 +209,7 @@
     if(section<_seriesNormal)
     {
         //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:section];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[section];
         BOOL _select=YES;
         for (DD_ShopItemModel *item in _SeriesModel.items) {
             if(!item.is_select)
@@ -223,7 +223,7 @@
     }else if(section<_seriesInvalidCount)
     {
         //        处于下架处
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-section-1];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-section-1];
         BOOL _select=YES;
         for (DD_ShopItemModel *item in _SeriesModel.items) {
             if(!item.is_select)
@@ -263,13 +263,13 @@
     if(section<_seriesNormal)
     {
         //        处于上架中（发布中/发布结束中）
-        return [ShopModel.seriesNormal objectAtIndex:section];
+        return ShopModel.seriesNormal[section];
         
         
     }else if(section<_seriesInvalidCount)
     {
         //        处于下架处
-        return [ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-section-1];
+        return ShopModel.seriesInvalid[_seriesInvalidCount-section-1];
         
     }
     return nil;
@@ -285,13 +285,13 @@
     if(Section<_seriesNormal)
     {
 //        处于上架中（发布中/发布结束中）
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesNormal objectAtIndex:Section];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesNormal[Section];
         return _SeriesModel.items.count;
         
     }else if(Section<_seriesInvalidCount)
     {
 //        处于下架处
-        DD_ShopSeriesModel *_SeriesModel=[ShopModel.seriesInvalid objectAtIndex:_seriesInvalidCount-Section-1];
+        DD_ShopSeriesModel *_SeriesModel=ShopModel.seriesInvalid[_seriesInvalidCount-Section-1];
         return _SeriesModel.items.count;
         
     }

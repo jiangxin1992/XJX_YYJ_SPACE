@@ -64,7 +64,7 @@
 //    __block NSMutableArray *___dataArr=_dataArr;
     cellBlock=^(NSString *type,NSInteger index,DD_OrderItemModel *item)
     {
-//        DD_CircleListModel *listModel=[___dataArr objectAtIndex:index];
+//        DD_CircleListModel *listModel=___dataArr[index];
         if([type isEqualToString:@"show_item_list"])
         {
             //            显示商品列表
@@ -162,10 +162,10 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_CircleListModel *listModel=_dataArr[indexPath.section];
 ////    return 454+listModel.suggestHeight;
 //    return [DD_CircleListCell heightWithModel:listModel IsUserHomePage:YES];
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_CircleListModel *listModel=_dataArr[indexPath.section];
     return listModel.height-72;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -190,7 +190,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_CircleListModel *listModel=_dataArr[indexPath.section];
     if([listModel.shareType longValue]==4)
     {
         //获取到数据以后
@@ -229,7 +229,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _block(@"push_comment",[_dataArr objectAtIndex:indexPath.section]);
+    _block(@"push_comment",_dataArr[indexPath.section]);
 }
 ////section头部间距
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -305,7 +305,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
     
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除该搭配" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+        DD_CircleListModel *listModel=_dataArr[index];
         [[JX_AFNetworking alloc] GET:@"share/deleteShare.do" parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -332,7 +332,7 @@
  */
 -(void)PushCommentViewWithIndex:(NSInteger )index
 {
-    _block(@"push_comment",[_dataArr objectAtIndex:index]);
+    _block(@"push_comment",_dataArr[index]);
 }
 /**
  * 跳转用户主页
@@ -354,7 +354,7 @@
     {
         url=@"share/likeShare.do";
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    DD_CircleListModel *listModel=_dataArr[index];
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId};
     [[JX_AFNetworking alloc] GET:url parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
@@ -383,7 +383,7 @@
     {
         url=@"share/collectShare.do";
     }
-    DD_CircleListModel *listModel=[_dataArr objectAtIndex:index];
+    DD_CircleListModel *listModel=_dataArr[index];
     [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

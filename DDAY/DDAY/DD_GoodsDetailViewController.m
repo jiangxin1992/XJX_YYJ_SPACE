@@ -759,7 +759,7 @@ __bool(isExpanded);
 //跳转单品详情页
 -(void)PushItemView:(NSInteger )index
 {
-    DD_OtherItemModel *_OtherItem=[_DetailModel.item.otherItems objectAtIndex:index];
+    DD_OtherItemModel *_OtherItem=_DetailModel.item.otherItems[index];
     DD_ItemsModel *_ItemsModel=[[DD_ItemsModel alloc] init];
     _ItemsModel.g_id=_OtherItem.itemId;
     _ItemsModel.colorCode=_OtherItem.colorCode;

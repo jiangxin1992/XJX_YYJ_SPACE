@@ -37,7 +37,7 @@
         int intes = 10;
         for (int i=0; i<_tagArr.count; i++) {
 
-            DD_CricleTagItemModel *item=[_tagArr objectAtIndex:i];
+            DD_CricleTagItemModel *item=_tagArr[i];
             UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:item.tagName WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
             [self addSubview:label];
             label.backgroundColor=_define_black_color;

@@ -135,7 +135,7 @@
 - (WaterflowCell *)waterflow:(Waterflow *)waterflow cellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index-1];
+        DD_CricleChooseItemModel *choose_item=_dataArr[index-1];
         CGFloat _height=0;
         if(choose_item.pic)
         {
@@ -156,7 +156,7 @@
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CricleChooseItemModel *choose_item=[_dataArr objectAtIndex:index-1];
+        DD_CricleChooseItemModel *choose_item=_dataArr[index-1];
         if(choose_item.pic)
         {
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
@@ -185,7 +185,7 @@
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_ItemsModel *_item=[_dataArr objectAtIndex:index-1];
+        DD_ItemsModel *_item=_dataArr[index-1];
         DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
             //        if(type)
         }];
@@ -230,7 +230,7 @@
 //    }
 //    DD_ItemCell *cell = (DD_ItemCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-//    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_CricleChooseItemModel *_itemModel=_dataArr[indexPath.section];
 //    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
 //    _item.price=_itemModel.price;
 //    _item.name=_itemModel.name;
@@ -242,7 +242,7 @@
 //}
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    DD_CricleChooseItemModel *_itemModel=[_dataArr objectAtIndex:indexPath.section];
+//    DD_CricleChooseItemModel *_itemModel=_dataArr[indexPath.section];
 //    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
 //    _item.g_id=_itemModel.g_id;
 //    _item.colorCode=_itemModel.colorCode;

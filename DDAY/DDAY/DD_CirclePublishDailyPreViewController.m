@@ -331,11 +331,11 @@
         count_index=items.count;
     }
     for (int i=0; i<goodsImgArr.count; i++) {
-        UIImageView *goods=[goodsImgArr objectAtIndex:i];
+        UIImageView *goods=goodsImgArr[i];
         UIButton *goodsPrice=(UIButton *)[self.view viewWithTag:150+i];
         if(i<count_index)
         {
-            DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
+            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
             goods.hidden=NO;
             [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
@@ -348,7 +348,7 @@
 }
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
-    DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:ges.view.tag-100];
+    DD_CricleChooseItemModel *item=_circleModel.chooseItem[ges.view.tag-100];
     DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
     _item.g_id=item.g_id;
     _item.colorCode=item.colorCode;

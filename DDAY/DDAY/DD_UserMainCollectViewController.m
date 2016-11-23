@@ -192,7 +192,7 @@
 -(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
 {
     for (int i=0; i<btnarr.count; i++) {
-        UIButton *_btn=[btnarr objectAtIndex:i];
+        UIButton *_btn=btnarr[i];
         if(_btn.tag==btnTag)
         {
             _btn.selected=YES;

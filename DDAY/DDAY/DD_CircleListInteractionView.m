@@ -107,7 +107,7 @@
     NSArray *viewArr=@[praiseLabel,praiseBtn,commentLabel,commentBtn,shareBtn];
     UIView *lastView=nil;
     for (int i=0; i<viewArr.count; i++) {
-        UIView *view=[viewArr objectAtIndex:i];
+        UIView *view=viewArr[i];
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {

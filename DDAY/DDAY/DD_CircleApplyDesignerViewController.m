@@ -185,13 +185,13 @@
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.textLabel.tintColor=_define_black_color;
-    DD_CircleApplyDesignerModel *model=[_dataArr objectAtIndex:indexPath.section];
+    DD_CircleApplyDesignerModel *model=_dataArr[indexPath.section];
     cell.textLabel.text=model.designerName;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _block(@"choose_design",[_dataArr objectAtIndex:indexPath.section]);
+    _block(@"choose_design",_dataArr[indexPath.section]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 

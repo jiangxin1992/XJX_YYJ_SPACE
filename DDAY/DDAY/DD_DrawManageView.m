@@ -21,7 +21,7 @@
         viewArr=[[NSMutableArray alloc] init];
         _imgCount=imgCount;
         [self UIConfig];
-        
+
     }
     return self;
 }
@@ -58,7 +58,7 @@
 -(void)changeSelectNum:(NSInteger )selectNum{
     CGFloat _x_p=((IsPhone6_gt?60:49)-16)/2.0f;
     for (int i=0; i<viewArr.count; i++) {
-        DrawView *drawView=[viewArr objectAtIndex:i];
+        DrawView *drawView=viewArr[i];
         if(selectNum==i)
         {
             if(drawView.type==1)

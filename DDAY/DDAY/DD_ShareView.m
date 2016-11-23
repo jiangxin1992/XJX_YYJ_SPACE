@@ -90,9 +90,9 @@
     CGFloat _jiange_x=(ScreenWidth-50*4-(IsPhone6_gt?35:25)*2)/3.0f;
     UIView *lastView=nil;
     for (int i=0; i<ListArr.count; i++) {
-        DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:[ListArr objectAtIndex:i]] WithSelectedImageStr:nil];
+        DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:ListArr[i]] WithSelectedImageStr:nil];
         [self addSubview:btn];
-        btn.type=[ListArr objectAtIndex:i];
+        btn.type=ListArr[i];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         if(i==ListArr.count-1)
         {

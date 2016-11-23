@@ -98,7 +98,7 @@
     }];
     
 //    //            删除已选款式
-//    DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:btn.tag-150];
+//    DD_CricleChooseItemModel *item=_circleModel.chooseItem[btn.tag-150];
 //    item.isSelect=NO;
 //    //    删除item 对应的已选款式
 //    [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_circleModel];
@@ -133,7 +133,7 @@
         
         CGFloat _x_p=0;
         for (int i=0; i<_circleModel.chooseItem.count; i++) {
-            DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
+            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
             
             UIView *backView=[UIView getCustomViewWithColor:nil];
             [_scrollView addSubview:backView];
@@ -224,7 +224,7 @@
 //        [_downView addSubview:view];
 //        
 //        
-//        DD_CricleChooseItemModel *item=[_circleModel.chooseItem objectAtIndex:i];
+//        DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
 //        
 //        [view sd_setImageWithURL:[NSURL URLWithString:[regular getImgUrl:item.pic WithSize:200]] forState:UIControlStateNormal placeholderImage:nil];
 //        

@@ -120,7 +120,7 @@
     
     if(_ItemModel.pics.count)
     {
-        [itemImg JX_ScaleAspectFill_loadImageUrlStr:[_ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+        [itemImg JX_ScaleAspectFill_loadImageUrlStr:_ItemModel.pics[0] WithSize:800 placeHolderImageName:nil radius:0];
     }
     
     if(_ItemModel.saleEndTime>[NSDate nowTime])

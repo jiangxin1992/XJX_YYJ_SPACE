@@ -78,7 +78,7 @@
     int num = 0;
     CGFloat _x_p=kEdge;
     for (int i=0; i<_sizeArr.count; i++) {
-        DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:i];
+        DD_SizeModel *_sizeModel=_sizeArr[i];
         UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_btn];
         _btn.titleLabel.font=[regular getFont:15.0f];
@@ -222,7 +222,7 @@
         [countBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_count] forState:UIControlStateNormal];
     }else
     {
-        DD_SizeModel *sizeModel=[_sizeArr objectAtIndex:[self getSelectSize]];
+        DD_SizeModel *sizeModel=_sizeArr[[self getSelectSize]];
         if(_count<sizeModel.stock)
         {
             _count++;
@@ -257,7 +257,7 @@
 -(NSInteger )getSelectSize
 {
     for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+        UIButton *_btn=_sizeBtnArr[i];
         if(_btn.selected)
         {
             return i;
@@ -268,11 +268,11 @@
 -(void)chooseSizeAction:(UIButton *)btn
 {
     NSInteger _index=btn.tag-100;
-    DD_SizeModel *_sizeModel=[_sizeArr objectAtIndex:_index];
+    DD_SizeModel *_sizeModel=_sizeArr[_index];
     if(_sizeModel.stock)
     {
         for (int i=0; i<_sizeBtnArr.count; i++) {
-            UIButton *_btn=[_sizeBtnArr objectAtIndex:i];
+            UIButton *_btn=_sizeBtnArr[i];
             if(_index==i)
             {
                 if(_btn.selected)

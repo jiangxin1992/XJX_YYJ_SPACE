@@ -160,7 +160,7 @@
     NSInteger _item_count=_detailModel.item.otherItems.count;
     _scrollview.contentSize=CGSizeMake(102*_item_count+6*(_item_count-1), 102);
     for (int i=0; i<_item_count; i++) {
-        DD_OtherItemModel *_OtherItem=[_detailModel.item.otherItems objectAtIndex:i];
+        DD_OtherItemModel *_OtherItem=_detailModel.item.otherItems[i];
         UIButton *imageview_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         imageview_btn.frame=CGRectMake(108*i, 0,102, 102);
         [_scrollview addSubview:imageview_btn];

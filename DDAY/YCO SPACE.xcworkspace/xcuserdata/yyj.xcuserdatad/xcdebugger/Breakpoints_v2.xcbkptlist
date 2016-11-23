@@ -6,32 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CirclePushlishPreViewController.m"
-            timestampString = "501564518.67031"
+            filePath = "DDAY/DD_ClearingTool.m"
+            timestampString = "501579780.945176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
-            landmarkName = "-submitPublishAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_CirclePublishDailyPreViewController.m"
-            timestampString = "501564454.034597"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "-submitPublishAction"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "+getSaleingModelWithRow:WithDict:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

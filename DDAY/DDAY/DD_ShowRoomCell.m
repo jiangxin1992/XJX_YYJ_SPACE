@@ -126,7 +126,7 @@
     UIView *lastView=nil;
     CGFloat _y_p=20;
     for (int i=0; i<_showRoomModel.pics.count; i++) {
-        DD_ImageModel *imgModel=[_showRoomModel.pics objectAtIndex:i];
+        DD_ImageModel *imgModel=_showRoomModel.pics[i];
         UIImageView *img=[UIImageView getCustomImg];
         [_img_back_view addSubview:img];
         img.contentMode=2;

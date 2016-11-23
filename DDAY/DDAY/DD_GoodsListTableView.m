@@ -47,7 +47,7 @@
 -(void)setupBtn
 {
     for (int i=0; i<_categoryArr.count; i++) {
-        DD_GoodsCategoryModel *_categoryModel=[_categoryArr objectAtIndex:i];
+        DD_GoodsCategoryModel *_categoryModel=_categoryArr[i];
         DD_GoodsListBtn *listBtn=[DD_GoodsListBtn buttonWithType:UIButtonTypeCustom];
         [listBtn setFrame:CGRectMake(0, 0, ScreenWidth, 50) WithIndex:i WithCategoryModel:_categoryModel WithBlock:^(NSString *type, NSInteger index) {
             
@@ -60,7 +60,7 @@
                 [self btnIsFade:YES WithIndex:index];
             }else if([type isEqualToString:@"click"])
             {
-                DD_GoodsCategoryModel *CategoryModel=[_categoryArr objectAtIndex:index];
+                DD_GoodsCategoryModel *CategoryModel=_categoryArr[index];
                 _block(type,CategoryModel.catOneName,@"",@"");
             }else if([type isEqualToString:@"all"])
             {
@@ -75,7 +75,7 @@
 }
 -(void)btnIsFade:(BOOL )isFade WithIndex:(NSInteger )index
 {
-    DD_GoodsListBtn *__btn=[_btnArr objectAtIndex:index];
+    DD_GoodsListBtn *__btn=_btnArr[index];
     if (isFade) {
         __btn.selected=NO;
         NSIndexSet *set = [NSIndexSet indexSetWithIndex:index];
@@ -93,9 +93,9 @@
 {
     if(_categoryArr.count)
     {
-        DD_GoodsListBtn *_btn=[_btnArr objectAtIndex:section];
+        DD_GoodsListBtn *_btn=_btnArr[section];
         
-        DD_GoodsCategoryModel *_categoryModel=[_categoryArr objectAtIndex:section];
+        DD_GoodsCategoryModel *_categoryModel=_categoryArr[section];
         
         if(_btn.selected==NO)
         {
@@ -129,8 +129,8 @@
     if (!cell) {
         cell = [[DD_GoodsListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] ;
     }
-    DD_GoodsCategoryModel *_categoryModel=[_categoryArr objectAtIndex:indexPath.section];
-    DD_GoodsCategorySubModel *_categorySubModel=[_categoryModel.catTwoList objectAtIndex:indexPath.row];
+    DD_GoodsCategoryModel *_categoryModel=_categoryArr[indexPath.section];
+    DD_GoodsCategorySubModel *_categorySubModel=_categoryModel.catTwoList[indexPath.row];
     cell.CategoryModel=_categorySubModel;    
     return cell;
 }
@@ -138,15 +138,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_GoodsCategoryModel *_categoryModel=[_categoryArr objectAtIndex:indexPath.section];
-    DD_GoodsCategorySubModel *_categorySubModel=[_categoryModel.catTwoList objectAtIndex:indexPath.row];
+    DD_GoodsCategoryModel *_categoryModel=_categoryArr[indexPath.section];
+    DD_GoodsCategorySubModel *_categorySubModel=_categoryModel.catTwoList[indexPath.row];
     _block(@"click",_categoryModel.catOneName,_categorySubModel.catTwoName,_categorySubModel.catTwoId);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if(_categoryArr.count)
     {
-        return [_btnArr objectAtIndex:section];
+        return _btnArr[section];
     }
     return [UIView new];
 }

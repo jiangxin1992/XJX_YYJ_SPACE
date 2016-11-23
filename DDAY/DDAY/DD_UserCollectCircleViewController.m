@@ -168,10 +168,10 @@
     if(index)
     {
         WaterflowCell *cell = [WaterflowCell waterflowCellWithWaterflow:waterflow];
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        DD_CircleListModel *listModel=_dataArr[index-1];
         if(listModel.pics.count)
         {
-            DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
+            DD_ImageModel *imgModel=listModel.pics[0];
             UIImageView *img=[UIImageView getCustomImg];
             [cell addSubview:img];
             img.contentMode=2;
@@ -197,10 +197,10 @@
 - (CGFloat)waterflow:(Waterflow *)waterflow heightAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        DD_CircleListModel *listModel=_dataArr[index-1];
         if(listModel.pics.count)
         {
-            DD_ImageModel *imgModel=[listModel.pics objectAtIndex:0];
+            DD_ImageModel *imgModel=listModel.pics[0];
             CGFloat _height=([imgModel.height floatValue]/[imgModel.width floatValue])*((ScreenWidth-water_margin*2-water_Spacing)/2);
             return _height+water_Top;
         }
@@ -224,7 +224,7 @@
 - (void)waterflow:(Waterflow *)waterflow didSelectCellAtIndex:(NSUInteger)index{
     if(index)
     {
-        DD_CircleListModel *listModel=[_dataArr objectAtIndex:index-1];
+        DD_CircleListModel *listModel=_dataArr[index-1];
         _block(@"push_circle_detail",listModel,nil);
     }
    

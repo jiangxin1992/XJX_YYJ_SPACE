@@ -45,7 +45,7 @@
 {
     if(_OrderModel.orderInfo.orderList.count)
     {
-        DD_OrderModel *_order=[_OrderModel.orderInfo.orderList objectAtIndex:0];
+        DD_OrderModel *_order=_OrderModel.orderInfo.orderList[0];
         [[JX_AFNetworking alloc] GET:@"order/queryOrderStatus.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
@@ -167,7 +167,7 @@
     {
         if(_OrderModel.orderInfo.orderList.count)
         {
-            DD_OrderModel *_order=[_OrderModel.orderInfo.orderList objectAtIndex:0];
+            DD_OrderModel *_order=_OrderModel.orderInfo.orderList[0];
             //        提交建议
             NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"reason":_textView.text,@"orderCode":_order.subOrderCode};
             [[JX_AFNetworking alloc] GET:@"order/applyCancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {

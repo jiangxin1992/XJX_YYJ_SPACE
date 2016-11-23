@@ -154,7 +154,7 @@
     NSArray *_colorsArr=_detailModel.item.colors;
     UIView *lastview=nil;
     for (int i=0; i<_colorsArr.count;i++) {
-        DD_ColorsModel *_colorModel=[_colorsArr objectAtIndex:i];
+        DD_ColorsModel *_colorModel=_colorsArr[i];
         
         UIButton *backBtn=[UIButton getCustomBtn];
         [upview addSubview:backBtn];
@@ -278,7 +278,7 @@
 {
     NSArray *_colorArr=_detailModel.item.colors;
     for (int i=0; i<_colorArr.count; i++) {
-        DD_ColorsModel *_color=[_colorArr objectAtIndex:i];
+        DD_ColorsModel *_color=_colorArr[i];
         if([_color.colorId isEqualToString:_detailModel.item.colorId])
         {
             [self setSelectState:i];
@@ -322,13 +322,13 @@
 -(void)setSelectState:(NSInteger )index
 {
     for (int i=0; i<_imageArr.count; i++) {
-        UIButton  *imageBtn=[_imageArr objectAtIndex:i];
+        UIButton  *imageBtn=_imageArr[i];
         NSArray *_color=_detailModel.item.colors;
         if(index==i)
         {
             imageBtn.selected=YES;
             [regular setBorder:imageBtn];
-            DD_ColorsModel *_colorModel=[_color objectAtIndex:i];
+            DD_ColorsModel *_colorModel=_color[i];
             _detailModel.item.colorId=_colorModel.colorId;
             
         }else
@@ -361,7 +361,7 @@
 //        }
 //        btn.frame=CGRectMake(10, 280+60*i, ScreenWidth-20, 50);
 //        btn.backgroundColor=_define_black_color;
-//        [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
+//        [btn setTitle:titleArr[i] forState:UIControlStateNormal];
 //    }
 //    upview.frame=CGRectMake(0,0,ScreenWidth, 410);
 //}

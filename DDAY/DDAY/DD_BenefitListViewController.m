@@ -153,13 +153,13 @@
     {
         cell=[[DD_BenefitListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.benefitInfoModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.benefitInfoModel=_dataArr[indexPath.section];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type) {
+    [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_dataArr[indexPath.section] WithBlock:^(NSString *type) {
         if([type isEqualToString:@"markread"])
         {
         }

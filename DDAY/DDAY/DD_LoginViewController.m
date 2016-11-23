@@ -361,7 +361,7 @@
                  _works=@"";
              }else
              {
-                 _works=[user.works objectAtIndex:0];
+                 _works=user.works[0];
              }
              NSString *_aboutMe=nil;
              if([NSString isNilOrEmpty:user.aboutMe])

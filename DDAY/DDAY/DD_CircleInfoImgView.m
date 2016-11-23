@@ -160,7 +160,7 @@
             {
                 if(i<_count-1)
                 {
-                    NSDictionary *dict=[_circleModel.picArr objectAtIndex:i];
+                    NSDictionary *dict=_circleModel.picArr[i];
                     [imgBtn setImage:[dict objectForKey:@"data"] forState:UIControlStateNormal];
                     [imgBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 0, 0, 16)];
                     imgBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -176,7 +176,7 @@
                 }
             }else
             {
-                NSDictionary *dict=[_circleModel.picArr objectAtIndex:i];
+                NSDictionary *dict=_circleModel.picArr[i];
                 [imgBtn setImage:[dict objectForKey:@"data"] forState:UIControlStateNormal];
                 [imgBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 0, 0, 16)];
                 [imgBtn addTarget:self action:@selector(showAction:) forControlEvents:UIControlEventTouchUpInside];

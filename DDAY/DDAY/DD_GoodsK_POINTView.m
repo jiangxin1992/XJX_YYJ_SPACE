@@ -74,7 +74,7 @@
         make.height.mas_equalTo(48);
     }];
     for (int i=0; i<_showroomArr.count; i++) {
-        DD_ShowRoomModel *model=[_showroomArr objectAtIndex:i];
+        DD_ShowRoomModel *model=_showroomArr[i];
         UIView *backView=[UIView getCustomViewWithColor:nil];
         [backBtn addSubview:backView];
         backView.userInteractionEnabled=YES;
@@ -127,7 +127,7 @@
 -(void)ChooseAction:(UIGestureRecognizer *)ges
 {
     NSInteger index = ges.view.tag-100;
-    DD_ShowRoomModel *model=[_showroomArr objectAtIndex:index];
+    DD_ShowRoomModel *model=_showroomArr[index];
     _block(@"choose",model);
     
 }

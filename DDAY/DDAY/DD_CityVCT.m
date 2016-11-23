@@ -45,7 +45,7 @@
     _dataArr=[[NSArray alloc] init];
     NSArray *_all_data=[DD_CityTool getCityModelArr];
     for (int i=0; i<_all_data.count; i++) {
-        DD_ProvinceModel *_p_model=[_all_data objectAtIndex:i];
+        DD_ProvinceModel *_p_model=_all_data[i];
         if([_p_model.p_id isEqualToString:_p_id])
         {
             _dataArr=_p_model.City;

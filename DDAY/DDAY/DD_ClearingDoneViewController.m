@@ -140,7 +140,7 @@
                     [self.navigationController pushViewController:[[DD_ClearingOrderViewController alloc] initWithDataArr:[[NSMutableArray alloc] initWithArray:getArr] WithTradeOrderCode:_tradeOrderCode] animated:YES];
                 }else
                 {
-                    DD_OrderModel *order=[getArr objectAtIndex:0];
+                    DD_OrderModel *order=getArr[0];
                     [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:order WithBlock:^(NSString *type, NSDictionary *resultDic) {
                         
                     }] animated:YES];

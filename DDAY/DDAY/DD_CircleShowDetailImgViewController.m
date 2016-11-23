@@ -57,10 +57,10 @@
     if([_type isEqualToString:@"data"])
     {
         
-        [_pho setImage:[_picArrs objectAtIndex:_index]];
+        [_pho setImage:_picArrs[_index]];
     }else if([_type isEqualToString:@"model"])
     {
-        DD_ImageModel *imgModel=[_picArrs objectAtIndex:_index];
+        DD_ImageModel *imgModel=_picArrs[_index];
         [_pho JX_ScaleAspectFit_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     _pho.userInteractionEnabled=YES;

@@ -52,7 +52,7 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    UIImage *img=[[_circleModel.picArr objectAtIndex:_index] objectForKey:@"data"];
+    UIImage *img=[_circleModel.picArr[_index] objectForKey:@"data"];
     CGFloat _width=0;
     CGFloat _height=0;
     _width=ScreenWidth;
@@ -110,7 +110,7 @@
  */
 -(void)deleteAction
 {
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_circleModel.picArr objectAtIndex:_index] objectForKey:@"key"]};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[_circleModel.picArr[_index] objectForKey:@"key"]};
     [[JX_AFNetworking alloc] GET:@"file/deleteQiNiuFile.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {

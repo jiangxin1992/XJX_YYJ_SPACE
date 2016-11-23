@@ -289,7 +289,7 @@
 }
 -(void)DeleteImgWithIndex:(long )index
 {
-    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[[_CircleModel.picArr objectAtIndex:index] objectForKey:@"key"]};
+    NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"key":[_CircleModel.picArr[index] objectForKey:@"key"]};
     [[JX_AFNetworking alloc] GET:@"file/deleteQiNiuFile.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
@@ -451,7 +451,7 @@
 -(void)deleteChooseItem:(NSInteger )index
 {   
     //            删除已选款式
-    DD_CricleChooseItemModel *item=[_CircleModel.chooseItem objectAtIndex:index];
+    DD_CricleChooseItemModel *item=_CircleModel.chooseItem[index];
     //    删除item 对应的已选款式
     item.isSelect=NO;
     [DD_CirclePublishTool delChooseItemModel:item WithCircleModel:_CircleModel];

@@ -143,7 +143,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_IntegralModel *_integralModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_IntegralModel *_integralModel=_dataArr[indexPath.section];
     if(_integralModel.type==2)
     {
         static NSString *cellid=@"DD_IntegralTitleCell";
@@ -152,7 +152,7 @@
         {
             cell=[[DD_IntegralTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         }
-        cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
+        cell.integralModel=_dataArr[indexPath.section];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else
@@ -163,7 +163,7 @@
         {
             cell=[[DD_IntegralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         }
-        cell.integralModel=[_dataArr objectAtIndex:indexPath.section];
+        cell.integralModel=_dataArr[indexPath.section];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }

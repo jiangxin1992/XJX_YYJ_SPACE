@@ -154,7 +154,7 @@
     
     CGFloat _x_p=0;
     for (int i=0; i<_showRoomModel.pics.count; i++) {
-        DD_ImageModel *imgModel=[_showRoomModel.pics objectAtIndex:i];
+        DD_ImageModel *imgModel=_showRoomModel.pics[i];
         UIImageView *img=[UIImageView getCustomImg];
         [scrollview_pic addSubview:img];
         [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];

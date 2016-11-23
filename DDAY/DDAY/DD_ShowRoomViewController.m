@@ -115,7 +115,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_ShowRoomModel *model=[_dataArr objectAtIndex:indexPath.section];
+    DD_ShowRoomModel *model=_dataArr[indexPath.section];
     CGFloat height=[DD_ShowRoomSimpleCell heightWithModel:model];
     return height;
 }
@@ -149,13 +149,13 @@
     }
 
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.showRoomModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.showRoomModel=_dataArr[indexPath.section];
     return cell;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_ShowRoomModel *roomModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_ShowRoomModel *roomModel=_dataArr[indexPath.section];
     DD_ShowRoomDetailViewController *showroom=[[DD_ShowRoomDetailViewController alloc] initWithShowRoomID:roomModel.s_id];
     showroom.title=roomModel.storeName;
     [self.navigationController pushViewController:showroom animated:YES];

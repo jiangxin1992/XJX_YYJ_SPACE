@@ -78,7 +78,7 @@
                 }] animated:YES completion:nil];
             }else
             {
-                DD_DDAYModel *dayModel=[__dataArr objectAtIndex:index];
+                DD_DDAYModel *dayModel=__dataArr[index];
                 NSString *url=nil;
                 if([type isEqualToString:@"cancel"])
                 {
@@ -104,7 +104,7 @@
             }
         }else if([type isEqualToString:@"push_detail"])
         {
-            DD_DDAYModel *ddaymodel=[__dataArr objectAtIndex:index];
+            DD_DDAYModel *ddaymodel=__dataArr[index];
             [_dayView.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
                 if([type isEqualToString:@"update"])
                 {
@@ -212,7 +212,7 @@
     {
         cell=[[DD_DDAYCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
+    DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
     cell.DDAYModel=ddaymodel;
     cell.ddayblock=ddayblock;
     cell.index=indexPath.section;
@@ -221,7 +221,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_DDAYModel *ddaymodel=[_dataArr objectAtIndex:indexPath.section];
+    DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
     [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
         if([type isEqualToString:@"update"])
         {

@@ -397,7 +397,7 @@ static DD_CustomViewController *tabbarController = nil;
         }
     }
     self.selectedIndex=index;
-    UIButton *btn=[btnarr objectAtIndex:index];
+    UIButton *btn=btnarr[index];
     btn.selected=YES;
 }
 -(void)selectItem:(UIButton *)btn

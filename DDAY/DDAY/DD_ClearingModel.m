@@ -268,7 +268,7 @@
     NSMutableArray *saleingArr=[[NSMutableArray alloc] init];
     NSMutableArray *saleingRemainArr=[[NSMutableArray alloc] init];
     for (int i=0; i<__orders.count; i++) {
-        DD_ClearingOrderModel *ordermodel=[__orders objectAtIndex:i];
+        DD_ClearingOrderModel *ordermodel=__orders[i];
         if(nowtime<ordermodel.saleEndTime&&nowtime>=ordermodel.saleStartTime)
         {
             [saleingArr addObject:ordermodel];
@@ -284,7 +284,7 @@
     if(saleingArr.count)
     {
         for (int i=0; i<saleingArr.count; i++) {
-            DD_ClearingOrderModel *ordermodel=[saleingArr objectAtIndex:i];
+            DD_ClearingOrderModel *ordermodel=saleingArr[i];
             BOOL _isequal=NO;
             for (NSString *sid in _sid_arr) {
                 if([sid isEqualToString:ordermodel.seriesId])
@@ -304,8 +304,8 @@
     for (int i=0; i<_sid_arr.count; i++) {
         NSMutableArray *arr=[[NSMutableArray alloc] init];
         for (int j=0; j<saleingArr.count; j++) {
-            DD_ClearingOrderModel *ordermodel=[saleingArr objectAtIndex:j];
-            if([ordermodel.seriesId isEqualToString:[_sid_arr objectAtIndex:i]])
+            DD_ClearingOrderModel *ordermodel=saleingArr[j];
+            if([ordermodel.seriesId isEqualToString:_sid_arr[i]])
             {
                 [arr addObject:ordermodel];
             }
@@ -342,11 +342,11 @@
     NSMutableArray *_endSaleingArr=[[NSMutableArray alloc] init];
     for (int i=0; i<saleingArr.count; i++) {
         DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
-        NSArray *itemArr=[saleingArr objectAtIndex:i];
+        NSArray *itemArr=saleingArr[i];
         CGFloat _totalMoney=0;
         NSInteger _num=0;
         for (int j=0; j<itemArr.count; j++) {
-            DD_ClearingOrderModel *ordermodel=[itemArr objectAtIndex:j];
+            DD_ClearingOrderModel *ordermodel=itemArr[j];
             if(!_Series.seriesId)
             {
                 _Series.seriesId=ordermodel.seriesId;
@@ -387,12 +387,12 @@
     //    获取当前的所有系列id
     NSMutableArray *allkeyArr=[[NSMutableArray alloc] init];
     for (int i=0; i<remainArr.count; i++) {
-        DD_ClearingOrderModel *ordermodel=[remainArr objectAtIndex:i];
+        DD_ClearingOrderModel *ordermodel=remainArr[i];
         if(allkeyArr.count)
         {
             BOOL _is_exist=NO;
             for (int j=0; j<allkeyArr.count; j++) {
-                NSString *_key=[allkeyArr objectAtIndex:j];
+                NSString *_key=allkeyArr[j];
                 if([_key isEqualToString:ordermodel.seriesId])
                 {
                     _is_exist=YES;
@@ -411,11 +411,11 @@
     }
     //    整理当前的单品
     for (int i=0; i<allkeyArr.count; i++) {
-        NSString *_key=[allkeyArr objectAtIndex:i];
+        NSString *_key=allkeyArr[i];
         DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
         NSMutableArray *items=[[NSMutableArray alloc] init];
         for (int j=0; j<remainArr.count; j++) {
-            DD_ClearingOrderModel *ordermodel=[remainArr objectAtIndex:j];
+            DD_ClearingOrderModel *ordermodel=remainArr[j];
             if([_key isEqualToString:ordermodel.seriesId])
             {
                 [items addObject:ordermodel];
@@ -449,7 +449,7 @@
         NSInteger _num=0;
         //        数量
         for (int i=0; i<items.count; i++) {
-            DD_ClearingOrderModel *ordermodel=[items objectAtIndex:i];
+            DD_ClearingOrderModel *ordermodel=items[i];
             _num+=[ordermodel.numbers integerValue];
             _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
         }

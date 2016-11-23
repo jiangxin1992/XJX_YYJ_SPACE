@@ -144,14 +144,14 @@
     {
         cell=[[DD_FansCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.fansModel=[_dataArr objectAtIndex:indexPath.section];
+    cell.fansModel=_dataArr[indexPath.section];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_FansModel *fanModel=[_dataArr objectAtIndex:indexPath.section];
+    DD_FansModel *fanModel=_dataArr[indexPath.section];
     
     if([fanModel.userType integerValue]==2)
     {

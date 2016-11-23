@@ -98,8 +98,8 @@
 #pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_UserMessageModel *_messageModel=[_dataArr objectAtIndex:indexPath.section];
-    DD_UserMessageItemModel *_itemModel=[_messageModel.messages objectAtIndex:indexPath.row];
+    DD_UserMessageModel *_messageModel=_dataArr[indexPath.section];
+    DD_UserMessageItemModel *_itemModel=_messageModel.messages[indexPath.row];
     if(_itemModel.type==3)
     {
         return 120;
@@ -111,7 +111,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    DD_UserMessageModel *_userModel=[_dataArr objectAtIndex:section];
+    DD_UserMessageModel *_userModel=_dataArr[section];
     if(_userModel.is_expand)
     {
         return _userModel.messages.count;
@@ -136,8 +136,8 @@
         cell.textLabel.text=[[NSString alloc] initWithFormat:@"%ld-%ld",indexPath.section,indexPath.row];
         return cell;
     }
-    DD_UserMessageModel *_messageModel=[_dataArr objectAtIndex:indexPath.section];
-    DD_UserMessageItemModel *_itemModel=[_messageModel.messages objectAtIndex:indexPath.row];
+    DD_UserMessageModel *_messageModel=_dataArr[indexPath.section];
+    DD_UserMessageItemModel *_itemModel=_messageModel.messages[indexPath.row];
     if(_itemModel.type==4||_itemModel.type==5||_itemModel.type==6||_itemModel.type==7||_itemModel.type==8)
     {
         static NSString *cellid=@"DD_UserMessageHeadCell";
@@ -207,7 +207,7 @@
 //section头部视图
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    DD_UserMessageModel *_userModel=[_dataArr objectAtIndex:section];
+    DD_UserMessageModel *_userModel=_dataArr[section];
     DD_UserMessageHeadView *head=[[DD_UserMessageHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 45) WithUserMessageModel:_userModel WithSection:section WithBlock:^(NSString *type, NSInteger section) {
         if([type isEqualToString:@"click"])
         {
@@ -245,8 +245,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_UserMessageModel *_userModel=[_dataArr objectAtIndex:indexPath.section];
-    DD_UserMessageItemModel *_itemModel=[_userModel.messages objectAtIndex:indexPath.row];
+    DD_UserMessageModel *_userModel=_dataArr[indexPath.section];
+    DD_UserMessageItemModel *_itemModel=_userModel.messages[indexPath.row];
     
     if(_itemModel.paramType==1)
     {

@@ -119,7 +119,7 @@
             [choose_p addTarget:self action:@selector(chooseProvince) forControlEvents:UIControlEventTouchUpInside];
             if(_AddressModel)
             {
-                [choose_p setTitle:[dataarr objectAtIndex:i] forState:UIControlStateNormal];
+                [choose_p setTitle:dataarr[i] forState:UIControlStateNormal];
             }
             [choose_p addSubview:upline];
         }else
@@ -138,7 +138,7 @@
             textFiled.frame=CGRectMake(kEdge+[self getWeight:titlearr[i]]+15, 0, _width, 41);
             if(_AddressModel)
             {
-                textFiled.text=[dataarr objectAtIndex:i];
+                textFiled.text=dataarr[i];
             }
             [textFiled addSubview:upline];
         }
@@ -317,7 +317,7 @@
     if([type isEqualToString:@"province"])
     {
         for (int i=0; i<_all_data.count; i++) {
-            DD_ProvinceModel *_p_model=[_all_data objectAtIndex:i];
+            DD_ProvinceModel *_p_model=_all_data[i];
             if([_p_model.p_id isEqualToString:_p_id])
             {
                 return _p_model.name;
@@ -329,7 +329,7 @@
         NSArray *_dataArr_city=[[NSArray alloc] init];
         NSArray *_all_data=[DD_CityTool getCityModelArr];
         for (int i=0; i<_all_data.count; i++) {
-            DD_ProvinceModel *_p_model=[_all_data objectAtIndex:i];
+            DD_ProvinceModel *_p_model=_all_data[i];
             if([_p_model.p_id isEqualToString:_p_id])
             {
                 _dataArr_city=_p_model.City;

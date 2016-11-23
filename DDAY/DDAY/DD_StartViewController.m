@@ -10,7 +10,6 @@
 
 #import "DD_StartView.h"
 
-
 @interface DD_StartViewController ()
 
 @end
@@ -24,6 +23,10 @@ static DD_StartViewController *startController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    DD_DDAYModel *model=[[DD_DDAYModel alloc] init];
+//    model.s_id=@"100212";
+//    NSArray *arr=@[model];
+//    JXLOG(@"s_id=%@",((DD_DDAYModel *)arr[0]).s_id);
     _StartView=[[DD_StartView alloc] initWithBlock:^(NSString *type) {
         if([type isEqualToString:@"remove"])
         {

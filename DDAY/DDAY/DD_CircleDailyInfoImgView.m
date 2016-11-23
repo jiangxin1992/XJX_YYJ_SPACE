@@ -106,7 +106,7 @@
     }else
     {
         imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        NSDictionary *dict=[_circleModel.picArr objectAtIndex:0];
+        NSDictionary *dict=_circleModel.picArr[0];
         [imgBtn setImage:[dict objectForKey:@"data"] forState:UIControlStateNormal];
         [imgBtn setImageEdgeInsets:UIEdgeInsetsMake(16, 0, 0, 16)];
         imgBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;

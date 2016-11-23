@@ -114,7 +114,7 @@
     {
         cell=[[DD_SetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.title=[_datadict objectForKey:[_dataArr objectAtIndex:indexPath.section]];
+    cell.title=[_datadict objectForKey:_dataArr[indexPath.section]];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
@@ -124,7 +124,7 @@
 {
 
     NSInteger _index=indexPath.section;
-    NSString *_key_str=[_dataArr objectAtIndex:_index];
+    NSString *_key_str=_dataArr[_index];
     if([_key_str isEqualToString:@"information"]||[_key_str isEqualToString:@"alertPSW"]||[_key_str isEqualToString:@"address"])
     {
         

@@ -134,9 +134,9 @@
     CGFloat _height=IsPhone5_gt?60:50;
     CGFloat _end_y = 0;
     for (int i=0; i<_dataArr.count; i++) {
-        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:[_dataArr objectAtIndex:i]] isBig:[[_dataArr objectAtIndex:i] isEqualToString:@"benefit"]];
+        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:_dataArr[i]] isBig:[_dataArr[i] isEqualToString:@"benefit"]];
         [container addSubview:item];
-        item.type=[_dataArr objectAtIndex:i];
+        item.type=_dataArr[i];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
         _end_y=CGRectGetMaxY(item.frame)+20;
     }

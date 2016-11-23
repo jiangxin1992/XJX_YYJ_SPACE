@@ -167,7 +167,7 @@
     
     if(ItemModel.pics.count)
     {
-        [_itemImg JX_ScaleAspectFill_loadImageUrlStr:[ItemModel.pics objectAtIndex:0] WithSize:800 placeHolderImageName:nil radius:0];
+        [_itemImg JX_ScaleAspectFill_loadImageUrlStr:ItemModel.pics[0] WithSize:800 placeHolderImageName:nil radius:0];
     }
     _colorView.backgroundColor=[UIColor colorWithHexString:_ItemModel.colorCode];
     _itemNameLabel.text=ItemModel.itemName;

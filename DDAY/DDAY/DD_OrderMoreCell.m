@@ -134,7 +134,7 @@
         
         UIView *lastView=nil;
         for (int i=0; i<_OrderModel.itemList.count; i++) {
-            DD_OrderItemModel *_itemModel=[_OrderModel.itemList objectAtIndex:i];
+            DD_OrderItemModel *_itemModel=_OrderModel.itemList[i];
             //    款式照片
             UIImageView *_itemImg=[UIImageView getCustomImg];
             [_scrollview addSubview:_itemImg];

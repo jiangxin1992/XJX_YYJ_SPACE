@@ -169,21 +169,21 @@
 {
     NSInteger index1=index/100;
     NSInteger index2=index%100;
-    DD_CircleTagModel *_tagModel=[CircleModel.personTags objectAtIndex:index1];
+    DD_CircleTagModel *_tagModel=CircleModel.personTags[index1];
     if(type==1)
     {
-        _tagModel=[CircleModel.shareTags objectAtIndex:index1];
+        _tagModel=CircleModel.shareTags[index1];
     }else if(type==2)
     {
-        _tagModel=[CircleModel.personTags objectAtIndex:index1];
+        _tagModel=CircleModel.personTags[index1];
     }
     if(_tagModel)
     {
-        DD_CricleTagItemModel *_tagItemModel=[_tagModel.tags objectAtIndex:index2];
+        DD_CricleTagItemModel *_tagItemModel=_tagModel.tags[index2];
         NSMutableArray *mut_arr=[CircleModel.tagMap objectForKey:_tagModel.parameterName];
         
         for (int i=0; i<mut_arr.count; i++) {
-            NSString *str=[mut_arr objectAtIndex:i];
+            NSString *str=mut_arr[i];
             if([str isEqualToString:_tagItemModel.tagName])
             {
                 if(type==1)
@@ -219,14 +219,14 @@
     DD_CircleTagModel *_tagModel=nil;
     if(type==1)
     {
-        _tagModel=[CircleModel.shareTags objectAtIndex:index1];
+        _tagModel=CircleModel.shareTags[index1];
     }else if(type==2)
     {
-        _tagModel=[CircleModel.personTags objectAtIndex:index1];
+        _tagModel=CircleModel.personTags[index1];
     }
     if(_tagModel)
     {
-        DD_CricleTagItemModel *_tagItemModel=[_tagModel.tags objectAtIndex:index2];
+        DD_CricleTagItemModel *_tagItemModel=_tagModel.tags[index2];
         NSMutableArray *mut_arr=[CircleModel.tagMap objectForKey:_tagModel.parameterName];
         if(type==1)
         {
@@ -306,7 +306,7 @@
 {
     NSInteger _index=0;
     for (int i=0; i<CircleModel.chooseItem.count; i++) {
-        DD_CricleChooseItemModel *_model=[CircleModel.chooseItem objectAtIndex:i];
+        DD_CricleChooseItemModel *_model=CircleModel.chooseItem[i];
         if([_model.colorId isEqualToString:model.colorId]&&[_model.g_id isEqualToString:model.g_id])
         {
             _index=i;
@@ -319,7 +319,7 @@
 {
     NSMutableArray *mutArr=[[NSMutableArray alloc] init];
     for (int i=0; i<CircleModel.chooseItem.count; i++) {
-        DD_CricleChooseItemModel *_model=[CircleModel.chooseItem objectAtIndex:i];
+        DD_CricleChooseItemModel *_model=CircleModel.chooseItem[i];
         [mutArr addObject:@{
                             @"itemId":_model.g_id
                             ,@"colorId":_model.colorId

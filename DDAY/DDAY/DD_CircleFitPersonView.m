@@ -104,7 +104,7 @@
     
     for (int i=0; i<_circleModel.personTags.count; i++)
     {
-        DD_CircleTagModel *_tagModel=[_circleModel.personTags objectAtIndex:i];
+        DD_CircleTagModel *_tagModel=_circleModel.personTags[i];
         UIView *backView=[[UIView alloc] init];
         [_downView addSubview:backView];
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -133,7 +133,7 @@
         CGFloat _x_p=0;
         // 循环创建view
         for (int j=0; j<_tagModel.tags.count; j++) {
-            DD_CricleTagItemModel *item=[_tagModel.tags objectAtIndex:j];
+            DD_CricleTagItemModel *item=_tagModel.tags[j];
             UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:item.tagName WithNormalColor:_define_black_color WithSelectedTitle:item.tagName WithSelectedColor:_define_white_color];
             [backView addSubview:btn];
             btn.tag=100*i+j;
@@ -210,8 +210,8 @@
 {
     NSInteger _index=btn.tag/100;
     NSInteger _row=btn.tag%100;
-    DD_CircleTagModel *_tagModel=[_circleModel.personTags objectAtIndex:_index];
-    DD_CricleTagItemModel *item=[_tagModel.tags objectAtIndex:_row];
+    DD_CircleTagModel *_tagModel=_circleModel.personTags[_index];
+    DD_CricleTagItemModel *item=_tagModel.tags[_row];
     if(btn.selected)
     {
         item.is_select=NO;

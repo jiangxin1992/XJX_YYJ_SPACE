@@ -230,7 +230,7 @@
     }
     //    删除 评论 收藏 点赞
     for (int i=0; i<imgArr_normal.count; i++) {
-        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:[imgArr_normal objectAtIndex:i] WithSelectedImageStr:[imgArr_select objectAtIndex:i]];
+        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:imgArr_normal[i] WithSelectedImageStr:imgArr_select[i]];
         [_contentView addSubview:btn];
         btn.tag=200+i;
         
@@ -376,7 +376,7 @@
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
     
-    DD_OrderItemModel *_item=[_listModel.items objectAtIndex:ges.view.tag-100];
+    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
     _block(@"item_click",0,_item);
 }
 /**
@@ -412,12 +412,12 @@
             count_index=_listModel.items.count;
         }
         for (int i=0; i<goodsImgArr.count; i++) {
-            UIImageView *goods=[goodsImgArr objectAtIndex:i];
+            UIImageView *goods=goodsImgArr[i];
             
             UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
             if(i<count_index)
             {
-                DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
+                DD_OrderItemModel *_order=_listModel.items[i];
                 [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
                 goods.hidden=NO;
                 [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
@@ -447,7 +447,7 @@
             goods.userInteractionEnabled=YES;
             [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             goods.tag=100+i;
-            DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
+            DD_OrderItemModel *_order=_listModel.items[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             
             

@@ -77,13 +77,13 @@
 //            CGContextSetLineWidth(context,_width);//直线宽度
 //            CGContextBeginPath(context);//开始绘制
 //            for (int i=0; i<_pointArr.count; i++) {
-//                NSDictionary *_line_dict=[_pointArr objectAtIndex:i];
+//                NSDictionary *_line_dict=_pointArr[i];
 //                DD_RGBModel *RGBModel=[DD_RGBModel initWithColorCode:[_line_dict objectForKey:@"colorCode"]];
 //                CGContextSetRGBStrokeColor(context,RGBModel.R/255.0 ,RGBModel.G/255.0 ,RGBModel.B/255.0 , 1.0);
 //                NSArray *_point_arr=[_line_dict objectForKey:@"pointarr"];
 //                for (int j=0; j<_point_arr.count; j++)
 //                {
-//                    NSDictionary *_point=[_point_arr objectAtIndex:j];
+//                    NSDictionary *_point=_point_arr[j];
 //                    if(j==0)
 //                    {
 //                        CGContextMoveToPoint(context,[[_point objectForKey:@"x_p"] integerValue], [[_point objectForKey:@"y_p"] integerValue]);//画笔移动到点(31,170)

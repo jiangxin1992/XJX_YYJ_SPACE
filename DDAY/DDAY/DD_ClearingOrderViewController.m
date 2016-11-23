@@ -58,29 +58,29 @@
         if([type isEqualToString:@"pay"])
         {
             //            支付 1
-            [_orderView PayActionWithModel:[__dataArr objectAtIndex:indexPath.section]];
+            [_orderView PayActionWithModel:__dataArr[indexPath.section]];
             
         }else if([type isEqualToString:@"cancel"])
         {
             //            取消订单 1
-            [_orderView CancelActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
+            [_orderView CancelActionWithModel:__dataArr[indexPath.section] WithIndex:indexPath.section];
             
         }else if([type isEqualToString:@"confirm"])
         {
             //            确认收货
-            [_orderView ConfirmActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
+            [_orderView ConfirmActionWithModel:__dataArr[indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"delect"])
         {
             //            删除订单
-            [_orderView DelectActionWithModel:[__dataArr objectAtIndex:indexPath.section] WithIndex:indexPath.section];
+            [_orderView DelectActionWithModel:__dataArr[indexPath.section] WithIndex:indexPath.section];
         }else if([type isEqualToString:@"logistics"])
         {
             //            查看物流
-            [_orderView checkLogisticsInfoWithModel:[__dataArr objectAtIndex:indexPath.section]];
+            [_orderView checkLogisticsInfoWithModel:__dataArr[indexPath.section]];
         }else if([type isEqualToString:@"click"])
         {
             //            跳转订单详情
-            [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[__dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+            [_orderView.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:__dataArr[indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
                 if([type isEqualToString:@"reload"])
                 {
                     [__tableview reloadData];
@@ -350,7 +350,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    DD_OrderModel *_order=[_dataArr objectAtIndex:indexPath.section];
+    DD_OrderModel *_order=_dataArr[indexPath.section];
     if([_order isSingle])
     {
         static NSString *CellIdentifier = @"cell_single";
@@ -391,7 +391,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    跳转订单详情
-    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+    [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:_dataArr[indexPath.section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
         if([type isEqualToString:@"reload"])
         {
             [_tableview reloadData];
@@ -412,10 +412,10 @@
 //section头部视图
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:[_dataArr objectAtIndex:section] WithSection:section WithBlock:^(NSString *type, NSInteger section) {
+    return [[DD_OrderHeadView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 35) WithOrderModel:_dataArr[section] WithSection:section WithBlock:^(NSString *type, NSInteger section) {
         if([type isEqualToString:@"click"])
         {
-            [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:[_dataArr objectAtIndex:section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
+            [self.navigationController pushViewController:[[DD_OrderDetailViewController alloc] initWithModel:_dataArr[section] WithBlock:^(NSString *type, NSDictionary *resultDic) {
                 if([type isEqualToString:@"reload"])
                 {
                     [_tableview reloadData];

@@ -39,7 +39,7 @@
     UIImageView *lastView=nil;
     CGFloat _width=(ScreenWidth-kEdge*2-kEdge)/2.0f;
     for (int i=0; i<_similarArr.count; i++) {
-        DD_OrderItemModel *model=[_similarArr objectAtIndex:i];
+        DD_OrderItemModel *model=_similarArr[i];
         UIImageView *img=[UIImageView getCustomImg];
         [self addSubview:img];
         img.tag=100+i;
@@ -67,7 +67,7 @@
 {
     
     NSInteger index=ges.view.tag-100;
-    DD_OrderItemModel *itemModel=[_similarArr objectAtIndex:index];
+    DD_OrderItemModel *itemModel=_similarArr[index];
     
     _block(@"img_click",itemModel);
 }

@@ -79,7 +79,7 @@
     _imgv.hidden=NO;
     if([_type isEqualToString:@"model"])
     {
-        DD_ImageModel *imgModel=[_array objectAtIndex:_currentPage];
+        DD_ImageModel *imgModel=_array[_currentPage];
         if(_is_fill)
         {
             [_imgv JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
@@ -91,7 +91,7 @@
     }else if([_type isEqualToString:@"data"])
     {
         
-        [_imgv setImage:[_array objectAtIndex:_currentPage]];
+        [_imgv setImage:_array[_currentPage]];
     }
 }
 

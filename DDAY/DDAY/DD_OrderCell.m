@@ -177,7 +177,7 @@
     
     if(_OrderModel.itemList.count)
     {
-        DD_OrderItemModel *_itemModel=[_OrderModel.itemList objectAtIndex:0];
+        DD_OrderItemModel *_itemModel=_OrderModel.itemList[0];
         [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:800 placeHolderImageName:nil radius:0];
         _colorView.backgroundColor=[UIColor colorWithHexString:_itemModel.colorCode];
         _itemNameLabel.text=_itemModel.itemName;

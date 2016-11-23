@@ -351,7 +351,7 @@
 -(void)itemAction:(UIGestureRecognizer *)ges
 {
     
-    DD_OrderItemModel *_item=[_listModel.items objectAtIndex:ges.view.tag-100];
+    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
     _cellBlock(@"item_click",_index,_item);
 }
 /**
@@ -382,7 +382,7 @@
     
     if(_listModel.pics.count)
     {
-        DD_ImageModel *imgModel=[_listModel.pics objectAtIndex:0];
+        DD_ImageModel *imgModel=_listModel.pics[0];
         [goodImgView JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
     
@@ -402,7 +402,7 @@
             UIButton *goodsPrice=i==0?pricebtn1:i==1?pricebtn2:pricebtn3;
             if(i<count_index)
             {
-                DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
+                DD_OrderItemModel *_order=_listModel.items[i];
                 [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
                 goods.hidden=NO;
                 [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
@@ -427,7 +427,7 @@
             goods.userInteractionEnabled=YES;
             [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             goods.tag=100+i;
-            DD_OrderItemModel *_order=[_listModel.items objectAtIndex:i];
+            DD_OrderItemModel *_order=_listModel.items[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             
             
