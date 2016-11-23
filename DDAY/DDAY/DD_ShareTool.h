@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "DD_ShareView.h"
-
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKExtension/ShareSDK+Extension.h>
 

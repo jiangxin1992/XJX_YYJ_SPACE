@@ -11,7 +11,8 @@
 //#import "DD_ClearingTool.h"
 #import "DD_ClearingSeriesModel.h"
 #import "DD_ClearingOrderModel.h"
-
+#import "DD_BenefitInfoModel.h"
+#import "DD_ClearingModel.h"
 
 @interface DD_ClearingView()<UIWebViewDelegate>
 

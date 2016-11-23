@@ -8,7 +8,13 @@
 
 #import "DD_CirclePublishTool.h"
 
+#import "WaterflowCell.h"
+
+#import "DD_CircleModel.h"
+#import "DD_CricleTagItemModel.h"
+#import "DD_CricleChooseItemModel.h"
 #import "DD_CircleTagModel.h"
+#import "DD_ImageModel.h"
 
 @implementation DD_CirclePublishTool
 

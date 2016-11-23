@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_FansModel.h"
+@class DD_FansModel;
 
 @interface DD_FansCell : UITableViewCell
 

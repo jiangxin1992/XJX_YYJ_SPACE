@@ -8,6 +8,8 @@
 
 #import "DD_UserMessageNormalCell.h"
 
+#import "DD_UserMessageItemModel.h"
+
 @implementation DD_UserMessageNormalCell
 {
     UILabel *_titleLabel;

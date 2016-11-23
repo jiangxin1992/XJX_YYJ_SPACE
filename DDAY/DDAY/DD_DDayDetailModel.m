@@ -8,6 +8,8 @@
 
 #import "DD_DDayDetailModel.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_DDayDetailModel
 /**
  * 获取解析model

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WaterflowCell.h"
+@class WaterflowCell;
+@class Waterflow;
 
-#import "DD_ItemsModel.h"
+@class DD_ItemsModel;
 
 @interface DD_ItemTool : NSObject
 

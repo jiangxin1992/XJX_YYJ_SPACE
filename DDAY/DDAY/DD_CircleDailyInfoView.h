@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleInfoSuggestView.h"
-#import "DD_CircleDailyInfoImgView.h"
-
-#import "DD_CircleModel.h"
+@class DD_CircleInfoSuggestView;
+@class DD_CircleDailyInfoImgView;
+@class DD_CircleModel;
 
 @interface DD_CircleDailyInfoView : UIView
 

@@ -8,6 +8,8 @@
 
 #import "DD_UserMessageHeadView.h"
 
+#import "DD_UserMessageModel.h"
+
 @implementation DD_UserMessageHeadView
 {
     UILabel *_title;

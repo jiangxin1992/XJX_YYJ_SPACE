@@ -8,6 +8,9 @@
 
 #import "DD_OrderTool.h"
 
+#import "DD_ClearingOrderModel.h"
+#import "DD_OrderItemModel.h"
+
 @implementation DD_OrderTool
 +(DD_ClearingOrderModel *)getClearingOrderModel:(DD_OrderItemModel *)_item
 {

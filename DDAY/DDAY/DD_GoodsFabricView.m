@@ -8,6 +8,8 @@
 
 #import "DD_GoodsFabricView.h"
 
+#import "DD_GoodsItemModel.h"
+
 @implementation DD_GoodsFabricView
 {
     UIButton *backBtn;

@@ -22,9 +22,15 @@
 
 #import "DD_CircleApplyInfoView.h"
 #import "DD_CircleChooseDetailView.h"
+#import "DD_CircleTagsView.h"
+#import "DD_CircleInfoImgView.h"
+#import "DD_CircleFitPersonView.h"
+#import "DD_CircleChooseStyleView.h"
 
 #import "DD_CirclePublishTool.h"
+#import "DD_CircleFavouriteDesignerModel.h"
 #import "DD_CircleModel.h"
+#import "DD_CricleChooseItemModel.h"
 
 @interface DD_CircleApplyViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

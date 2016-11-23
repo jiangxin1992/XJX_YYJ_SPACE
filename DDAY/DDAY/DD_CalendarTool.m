@@ -10,6 +10,7 @@
 #import "Tools.h"
 #import "DD_MonthModel.h"
 #import "DD_RGBModel.h"
+#import "DD_DDAYModel.h"
 
 #define cellW floor(([UIScreen mainScreen].bounds.size.width-40-12)/7)
 #define cellH floor((([UIScreen mainScreen].bounds.size.width-40-12)/7)-6)

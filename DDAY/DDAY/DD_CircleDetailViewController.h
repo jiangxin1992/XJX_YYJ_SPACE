@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_CircleListModel.h"
+@class DD_CircleListModel;
 
 @interface DD_CircleDetailViewController : DD_BaseViewController
 

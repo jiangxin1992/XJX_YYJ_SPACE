@@ -10,6 +10,4 @@
 
 @interface DD_UserInfo_AlertPSWViewController : DD_BaseViewController
 
-
-
 @end

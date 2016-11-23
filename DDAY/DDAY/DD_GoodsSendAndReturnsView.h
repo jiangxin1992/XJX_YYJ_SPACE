@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_GoodsItemModel.h"
+@class DD_GoodsItemModel;
 
 @interface DD_GoodsSendAndReturnsView : UIView
 

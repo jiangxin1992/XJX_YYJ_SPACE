@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_ClearingModel.h"
+@class DD_ClearingModel;
 
 @interface DD_ChooseBenefitListViewController : DD_BaseViewController
 

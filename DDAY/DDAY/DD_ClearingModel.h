@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_AddressModel.h"
-#import "DD_BenefitInfoModel.h"
+@class DD_AddressModel;
+@class DD_BenefitInfoModel;
 
 @interface DD_ClearingModel : NSObject
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict;

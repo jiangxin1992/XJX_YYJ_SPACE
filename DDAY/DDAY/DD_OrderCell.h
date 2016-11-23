@@ -5,9 +5,10 @@
 //  Created by yyj on 16/6/6.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_OrderModel.h"
-#import "DD_OrderItemModel.h"
 #import <UIKit/UIKit.h>
+
+@class DD_OrderModel;
+@class DD_OrderItemModel;
 
 @interface DD_OrderCell : UITableViewCell
 

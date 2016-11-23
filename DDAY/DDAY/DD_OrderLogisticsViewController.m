@@ -13,6 +13,7 @@
 
 #import "DD_OrderLogisticsModel.h"
 #import "DD_OrderLogisticsManageModel.h"
+#import "DD_OrderModel.h"
 
 @interface DD_OrderLogisticsViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 

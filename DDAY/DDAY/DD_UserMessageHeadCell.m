@@ -8,6 +8,8 @@
 
 #import "DD_UserMessageHeadCell.h"
 
+#import "DD_UserMessageItemModel.h"
+
 @implementation DD_UserMessageHeadCell
 {
     UIImageView *_userHead;

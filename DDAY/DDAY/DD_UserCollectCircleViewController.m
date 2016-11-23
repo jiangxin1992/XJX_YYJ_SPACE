@@ -10,9 +10,11 @@
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
-#import "DD_ImageModel.h"
-
 #import "DD_CircleListCell.h"
+
+#import "DD_OrderItemModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_ImageModel.h"
 
 @interface DD_UserCollectCircleViewController ()<WaterflowDataSource,WaterflowDelegate>
 

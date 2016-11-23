@@ -10,6 +10,9 @@
 
 #import "DD_CustomContentView.h"
 
+#import "DD_OrderDetailInfoModel.h"
+#import "DD_OrderDetailModel.h"
+
 @implementation DD_OrderDetailFootView
 {
     UIView *_countView;

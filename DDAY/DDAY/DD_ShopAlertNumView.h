@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ShopItemModel.h"
+@class DD_ShopItemModel;
 
 @interface DD_ShopAlertNumView : UIView
 

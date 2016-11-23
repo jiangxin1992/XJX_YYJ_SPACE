@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ShopModel.h"
-#import "DD_ShopItemModel.h"
+@class DD_ShopModel;
+@class DD_ShopItemModel;
 
 @interface DD_ShopEditingCell : UITableViewCell
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleFavouriteDesignerModel.h"
+@class DD_CircleFavouriteDesignerModel;
 
 @interface DD_CirlcleApplyDesignerChooseView : UIView
 

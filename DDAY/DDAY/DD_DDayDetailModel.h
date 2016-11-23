@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_ImageModel.h"
+@class DD_ImageModel;
 
 @interface DD_DDayDetailModel : NSObject
 

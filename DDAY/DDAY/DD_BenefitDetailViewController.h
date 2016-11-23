@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_BenefitInfoModel.h"
+@class DD_BenefitInfoModel;
 
 @interface DD_BenefitDetailViewController : DD_BaseViewController
 

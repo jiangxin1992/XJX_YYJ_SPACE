@@ -8,6 +8,9 @@
 
 #import "DD_ClearingTabbar.h"
 
+#import "DD_BenefitInfoModel.h"
+#import "DD_ClearingModel.h"
+
 @implementation DD_ClearingTabbar
 {
     UILabel *countlabel;

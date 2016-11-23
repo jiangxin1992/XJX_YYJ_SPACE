@@ -10,6 +10,7 @@
 
 #import "DD_CircleTagModel.h"
 #import "DD_CricleTagItemModel.h"
+#import "DD_CircleFavouriteDesignerModel.h"
 
 @implementation DD_CircleModel
 +(DD_CircleModel *)getCircleModel;

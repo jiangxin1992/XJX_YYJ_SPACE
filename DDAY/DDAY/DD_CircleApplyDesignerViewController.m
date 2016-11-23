@@ -8,6 +8,8 @@
 
 #import "DD_CircleApplyDesignerViewController.h"
 
+#import "DD_CircleApplyDesignerModel.h"
+
 @interface DD_CircleApplyDesignerViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end

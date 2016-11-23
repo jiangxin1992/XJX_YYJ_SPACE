@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_UserMessageItemModel.h"
+@class DD_UserMessageItemModel;
 
 @interface DD_UserMessageHeadCell : UITableViewCell
 

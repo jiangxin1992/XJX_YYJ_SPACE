@@ -9,6 +9,7 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_DesignerIntroViewController : DD_BaseViewController
+
 -(instancetype)initWithDesignerID:(NSString *)DesignerID WithBlock:(void(^)(NSString *type))block;
 __block_type(block, type);
 __string(DesignerID);

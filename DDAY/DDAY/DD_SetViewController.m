@@ -13,6 +13,7 @@
 #import "DD_UserInfo_AlertPSWViewController.h"
 #import "DD_AboutViewController.h"
 #import "DD_AddressViewController.h"
+#import "DD_GoodsViewController.h"
 
 #import "DD_SetCell.h"
 

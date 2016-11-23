@@ -8,6 +8,8 @@
 
 #import "DD_CircleListInteractionView.h"
 
+#import "DD_CircleListModel.h"
+
 @implementation DD_CircleListInteractionView
 {
     //    交互

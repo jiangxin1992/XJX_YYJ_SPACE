@@ -8,6 +8,10 @@
 
 #import "DD_ShopTool.h"
 
+#import "DD_ShopModel.h"
+#import "DD_ShopItemModel.h"
+#import "DD_ShopSeriesModel.h"
+
 @implementation DD_ShopTool
 +(void)removeItemModelWithIndexPath:(NSIndexPath *)indexPath WithModel:(DD_ShopModel *)ShopModel
 {

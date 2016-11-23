@@ -219,7 +219,6 @@
 		3F8228E91D0D0D8900F95E79 /* DD_DesignerMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228E71D0D0D8900F95E79 /* DD_DesignerMainViewController.m */; };
 		3F8228EF1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228ED1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m */; };
 		3F8228F71D0DA0CC00F95E79 /* DD_DesignerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228F51D0DA0CC00F95E79 /* DD_DesignerItemViewController.m */; };
-		3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8228F61D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib */; };
 		3F8228FC1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FA1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m */; };
 		3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */; };
 		3F82AEE91DD2FBC7004C8219 /* DD_OrderDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */; };
@@ -858,7 +857,6 @@
 		3F8228ED1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerFollowViewController.m; sourceTree = "<group>"; };
 		3F8228F41D0DA0CC00F95E79 /* DD_DesignerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerItemViewController.h; sourceTree = "<group>"; };
 		3F8228F51D0DA0CC00F95E79 /* DD_DesignerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerItemViewController.m; sourceTree = "<group>"; };
-		3F8228F61D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DD_DesignerItemViewController.xib; sourceTree = "<group>"; };
 		3F8228F91D0DA0E700F95E79 /* DD_DesignerCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerCircleViewController.h; sourceTree = "<group>"; };
 		3F8228FA1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DesignerCircleViewController.m; sourceTree = "<group>"; };
 		3F8228FE1D0DA10500F95E79 /* DD_DesignerIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DesignerIntroViewController.h; sourceTree = "<group>"; };
@@ -1778,8 +1776,7 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				3F48D7591D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.h */,
-				3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */,
+				3F4BA4311DE5550E00D80D68 /* YYAnimatedImageView+LoadImage */,
 				3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */,
 				3F4C2F231D76833400C954C4 /* NSDate+Custom */,
 				3F6002041D499A88007E395F /* UIView+Custom */,
@@ -2076,6 +2073,15 @@
 				3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */,
 			);
 			name = "发布会";
+			sourceTree = "<group>";
+		};
+		3F4BA4311DE5550E00D80D68 /* YYAnimatedImageView+LoadImage */ = {
+			isa = PBXGroup;
+			children = (
+				3F48D7591D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.h */,
+				3F48D75A1D7FDBC2006DA934 /* YYAnimatedImageView+LoadImage.m */,
+			);
+			name = "YYAnimatedImageView+LoadImage";
 			sourceTree = "<group>";
 		};
 		3F4C2F231D76833400C954C4 /* NSDate+Custom */ = {
@@ -2573,7 +2579,6 @@
 			children = (
 				3F8228F41D0DA0CC00F95E79 /* DD_DesignerItemViewController.h */,
 				3F8228F51D0DA0CC00F95E79 /* DD_DesignerItemViewController.m */,
-				3F8228F61D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib */,
 			);
 			name = "设计师-发布品";
 			sourceTree = "<group>";
@@ -3565,7 +3570,6 @@
 				3F4187AE1CEEFD02001BCA3D /* area.json in Resources */,
 				3FE98D9B1DC8767B00F273E8 /* 图层-33@2x.png in Resources */,
 				3FE98D921DC8767B00F273E8 /* 图层-25@2x.png in Resources */,
-				3F8228F81D0DA0CC00F95E79 /* DD_DesignerItemViewController.xib in Resources */,
 				3FE98DAE1DC8767B00F273E8 /* 图层-50@2x.png in Resources */,
 				3FE98D9A1DC8767B00F273E8 /* 图层-32@2x.png in Resources */,
 				3FE98DB31DC8767B00F273E8 /* 图层-9@2x.png in Resources */,

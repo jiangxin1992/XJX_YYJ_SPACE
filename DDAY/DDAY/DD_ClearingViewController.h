@@ -6,13 +6,10 @@
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "DD_BaseViewController.h"
 
-#import "DD_ClearingView.h"
-
-#import "DD_ClearingModel.h"
+@class DD_ClearingView;
+@class DD_ClearingModel;
 
 @interface DD_ClearingViewController : DD_BaseViewController
 

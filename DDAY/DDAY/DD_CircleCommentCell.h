@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleCommentModel.h"
+@class DD_CircleCommentModel;
 
 @interface DD_CircleCommentCell : UITableViewCell
 

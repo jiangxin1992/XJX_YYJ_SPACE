@@ -8,6 +8,8 @@
 
 #import "DD_BenefitDetailModel.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_BenefitDetailModel
 
 +(DD_BenefitDetailModel *)getBenefitDetailInfoModel:(NSDictionary *)dict

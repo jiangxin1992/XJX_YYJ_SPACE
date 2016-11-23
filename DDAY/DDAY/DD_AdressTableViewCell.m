@@ -8,6 +8,8 @@
 
 #import "DD_AdressTableViewCell.h"
 
+#import "DD_AddressModel.h"
+
 @implementation DD_AdressTableViewCell
 
 - (void)awakeFromNib {

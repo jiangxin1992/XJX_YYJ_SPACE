@@ -8,6 +8,8 @@
 
 #import "DD_CirlcleApplyDesignerChooseView.h"
 
+#import "DD_CircleFavouriteDesignerModel.h"
+
 @implementation DD_CirlcleApplyDesignerChooseView
 {
     UIButton *_designerBtn;

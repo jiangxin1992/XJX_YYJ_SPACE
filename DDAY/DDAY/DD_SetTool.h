@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_SetTool : NSObject
+
 +(NSDictionary *)getSetListMap;
+
 +(NSArray *)getSetListArr;
+
 @end

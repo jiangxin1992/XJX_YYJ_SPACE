@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_ItemsModel.h"
+@class DD_ItemsModel;
 
 @interface DD_GoodsDetailViewController : DD_BaseViewController
 

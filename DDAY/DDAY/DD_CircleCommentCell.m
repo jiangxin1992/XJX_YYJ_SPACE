@@ -8,6 +8,8 @@
 
 #import "DD_CircleCommentCell.h"
 
+#import "DD_CircleCommentModel.h"
+
 @implementation DD_CircleCommentCell
 {
     UIImageView *icon;

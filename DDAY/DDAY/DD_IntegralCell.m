@@ -8,6 +8,8 @@
 
 #import "DD_IntegralCell.h"
 
+#import "DD_IntegralModel.h"
+
 @implementation DD_IntegralCell{
     UILabel *_content_label;
     UILabel *_intergal_label;

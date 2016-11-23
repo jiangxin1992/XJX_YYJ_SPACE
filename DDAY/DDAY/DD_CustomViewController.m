@@ -9,10 +9,17 @@
 #import "DD_CustomViewController.h"
 
 #import "DD_BenefitDetailViewController.h"
+#import "DD_UserViewController.h"
+#import "DD_CircleViewController.h"
+#import "DD_DesignerMainViewController.h"
+#import "DD_GoodsViewController.h"
+#import "DD_DDAYViewController.h"
 
 #import "DD_TabbarItem.h"
 #import "DD_SignInAnimationView.h"
 #import "DD_BenefitView.h"
+
+#import "DD_UnReadMsgModel.h"
 
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {

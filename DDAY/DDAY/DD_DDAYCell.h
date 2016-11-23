@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_DDAYModel.h"
+@class DD_DDAYModel;
 
 @interface DD_DDAYCell : UITableViewCell
 

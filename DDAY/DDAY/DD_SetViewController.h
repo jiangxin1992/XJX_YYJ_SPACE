@@ -9,7 +9,10 @@
 #import "DD_BaseViewController.h"
 
 @interface DD_SetViewController : DD_BaseViewController
+
 -(instancetype)initWithBlock:(void (^)(NSString *type))successblock;
+
 __block_type(successblock, type);
+
 @end
 

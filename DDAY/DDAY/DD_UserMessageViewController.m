@@ -24,6 +24,11 @@
 
 #import "DD_UserMessageModel.h"
 #import "DD_ItemsModel.h"
+#import "DD_OrderModel.h"
+#import "DD_UserMessageItemModel.h"
+#import "DD_OrderItemModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_DDAYModel.h"
 
 @interface DD_UserMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 

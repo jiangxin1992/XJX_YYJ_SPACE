@@ -8,6 +8,8 @@
 
 #import "DD_CricleShowViewController.h"
 
+#import "DD_CircleModel.h"
+
 @interface DD_CricleShowViewController ()
 
 @end

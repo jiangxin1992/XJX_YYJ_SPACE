@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleChooseStyleView.h"
-#import "DD_CircleInfoSuggestView.h"
-#import "DD_CircleInfoImgView.h"
-#import "DD_CirlcleApplyDesignerChooseView.h"
-#import "DD_CircleTagsView.h"
-#import "DD_CircleFitPersonView.h"
-#import "DD_CircleInfoSuggestSimpleView.h"
+@class DD_CircleChooseStyleView;
+@class DD_CircleInfoSuggestView;
+@class DD_CircleInfoImgView;
+@class DD_CirlcleApplyDesignerChooseView;
+@class DD_CircleTagsView;
+@class DD_CircleFitPersonView;
+@class DD_CircleFitPersonView;
+@class DD_CircleInfoSuggestSimpleView;
 
-#import "DD_CircleModel.h"
+@class DD_CircleModel;
 
 @interface DD_CircleApplyInfoView : UIView
 

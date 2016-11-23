@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_BenefitInfoModel.h"
+@class DD_BenefitInfoModel;
 
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
 #define __long(__k__) @property(nonatomic,assign) long __k__
+#define __int(__k__) @property(nonatomic,assign) NSInteger __k__
 
 @interface DD_UserModel : NSObject
 

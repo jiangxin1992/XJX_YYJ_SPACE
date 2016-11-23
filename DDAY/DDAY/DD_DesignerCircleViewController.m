@@ -11,6 +11,8 @@
 #import "DD_CircleListCell.h"
 #import "DD_CircleDailyListCell.h"
 
+#import "DD_CircleListModel.h"
+
 @interface DD_DesignerCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end

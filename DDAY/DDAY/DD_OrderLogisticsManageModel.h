@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_OrderLogisticsModel.h"
-
 @interface DD_OrderLogisticsManageModel : NSObject
 
 +(DD_OrderLogisticsManageModel *)getLogisticsManageModel:(NSDictionary *)dict;

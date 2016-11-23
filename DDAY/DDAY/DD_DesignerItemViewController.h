@@ -5,8 +5,10 @@
 //  Created by yyj on 16/6/12.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import "DD_ItemsModel.h"
+
 #import "DD_BaseViewController.h"
+
+@class DD_ItemsModel;
 
 @interface DD_DesignerItemViewController : DD_BaseViewController
 -(instancetype)initWithDesignerID:(NSString *)DesignerID WithBlock:(void(^)(NSString *type,DD_ItemsModel *model))block;

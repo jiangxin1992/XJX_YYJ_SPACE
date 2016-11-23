@@ -9,6 +9,9 @@
 #import "DD_CalendarCell.h"
 
 #import "DD_CalendarTool.h"
+#import "DrawView.h"
+
+#import "DD_MonthModel.h"
 
 @implementation DD_CalendarCell
 - (instancetype)initWithFrame:(CGRect)frame{

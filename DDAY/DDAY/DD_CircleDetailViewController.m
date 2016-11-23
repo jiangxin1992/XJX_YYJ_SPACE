@@ -25,6 +25,10 @@
 #import "DD_ItemsModel.h"
 #import "DD_ShareTool.h"
 #import "DD_ImageModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_CircleModel.h"
+#import "DD_OrderItemModel.h"
+
 
 @interface DD_CircleDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 

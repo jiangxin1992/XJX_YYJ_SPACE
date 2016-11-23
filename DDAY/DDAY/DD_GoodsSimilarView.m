@@ -8,6 +8,8 @@
 
 #import "DD_GoodsSimilarView.h"
 
+#import "DD_OrderItemModel.h"
+
 @implementation DD_GoodsSimilarView
 -(instancetype)initWithGoodsSimilarArr:(NSArray *)similarArr WithBlock:(void (^)(NSString *type,DD_OrderItemModel *itemModel))block
 {

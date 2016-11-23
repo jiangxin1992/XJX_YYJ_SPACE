@@ -8,6 +8,8 @@
 
 #import "DD_ClearingTableViewCell.h"
 
+#import "DD_ClearingOrderModel.h"
+
 @implementation DD_ClearingTableViewCell
 {
     UIImageView *itemImg;//图片

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_DesignerModel.h"
+@class DD_DesignerModel;
 
 @interface DD_DesignerCell : UITableViewCell
 

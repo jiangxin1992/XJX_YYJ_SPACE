@@ -8,6 +8,8 @@
 
 #import "DD_GoodsSendAndReturnsView.h"
 
+#import "DD_GoodsItemModel.h"
+
 @implementation DD_GoodsSendAndReturnsView
 {
     UILabel *label;

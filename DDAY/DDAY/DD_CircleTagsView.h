@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleModel.h"
+@class DD_CircleModel;
 
 @interface DD_CircleTagsView : UIView
 

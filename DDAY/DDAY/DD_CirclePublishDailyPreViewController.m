@@ -20,6 +20,10 @@
 #import "DD_CirclePublishTool.h"
 #import "DD_CircleListModel.h"
 #import "DD_ItemsModel.h"
+#import "DD_CircleFavouriteDesignerModel.h"
+#import "DD_ImageModel.h"
+#import "DD_CircleModel.h"
+#import "DD_CricleChooseItemModel.h"
 
 @interface DD_CirclePublishDailyPreViewController ()
 

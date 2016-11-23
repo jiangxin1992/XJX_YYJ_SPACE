@@ -8,6 +8,14 @@
 
 #import "DD_CircleInfoView.h"
 
+#import "DD_CircleChooseStyleView.h"
+#import "DD_CircleInfoSuggestView.h"
+#import "DD_CircleInfoImgView.h"
+#import "DD_CircleTagsView.h"
+#import "DD_CircleFitPersonView.h"
+
+#import "DD_CircleModel.h"
+
 @interface DD_CircleInfoView()<UIWebViewDelegate>
 
 @end

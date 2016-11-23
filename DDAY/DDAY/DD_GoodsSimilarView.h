@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderItemModel.h"
+@class DD_OrderItemModel;
 
 @interface DD_GoodsSimilarView : UIView
 

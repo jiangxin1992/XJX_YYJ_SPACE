@@ -10,6 +10,8 @@
 
 #import "DD_CustomBtn.h"
 
+#import "DD_DDayDetailModel.h"
+
 @implementation DD_DDAYDetailView
 {
     dispatch_source_t _timer;

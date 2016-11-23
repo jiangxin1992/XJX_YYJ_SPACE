@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_CircleListModel.h"
+@class DD_CircleListModel;
 
 @interface DD_DesignerCircleViewController : DD_BaseViewController
 -(instancetype)initWithDesignerID:(NSString *)DesignerID WithBlock:(void(^)(NSString *type,DD_CircleListModel *listModel))block;

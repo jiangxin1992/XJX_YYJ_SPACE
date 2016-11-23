@@ -8,6 +8,8 @@
 
 #import "DD_UserModel.h"
 
+#import "DD_BenefitInfoModel.h"
+
 @implementation DD_UserModel
 
 +(void)setLocalUserInfo:(NSDictionary *)data

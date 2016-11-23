@@ -14,6 +14,7 @@
 #import "DD_BenefitHeadView.h"
 
 #import "DD_BenefitInfoModel.h"
+#import "DD_ClearingModel.h"
 
 @interface DD_ChooseBenefitListViewController ()<UITableViewDataSource,UITableViewDelegate>
 

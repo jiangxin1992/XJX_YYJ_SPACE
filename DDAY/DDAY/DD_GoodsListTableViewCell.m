@@ -8,6 +8,8 @@
 
 #import "DD_GoodsListTableViewCell.h"
 
+#import "DD_GoodsCategorySubModel.h"
+
 @implementation DD_GoodsListTableViewCell
 {
     UILabel *label;

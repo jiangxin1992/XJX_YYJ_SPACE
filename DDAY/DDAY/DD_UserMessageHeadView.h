@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_UserMessageModel.h"
+@class DD_UserMessageModel;
 
 @interface DD_UserMessageHeadView : UIView
 

@@ -8,6 +8,8 @@
 
 #import "DD_CircleTagModel.h"
 
+#import "DD_CricleTagItemModel.h"
+
 @implementation DD_CircleTagModel
 +(DD_CircleTagModel *)getCircleTagModel:(NSDictionary *)dict
 {

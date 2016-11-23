@@ -10,6 +10,10 @@
 
 #import "DD_OrderItemModel.h"
 #import "DD_ShowRoomModel.h"
+#import "DD_GoodsItemModel.h"
+#import "DD_GoodsDesignerModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_ColorsModel.h"
 
 @implementation DD_GoodsDetailModel
 +(DD_GoodsDetailModel *)getGoodsDetailModel:(NSDictionary *)dict

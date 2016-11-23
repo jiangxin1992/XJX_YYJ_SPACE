@@ -11,6 +11,8 @@
 #import "UIButton+WebCache.h"
 
 #import "DD_CricleChooseItemModel.h"
+#import "DD_ImageModel.h"
+#import "DD_CircleModel.h"
 
 @implementation DD_CircleChooseStyleView
 {

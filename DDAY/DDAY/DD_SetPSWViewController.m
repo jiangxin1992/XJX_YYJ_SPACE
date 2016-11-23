@@ -8,8 +8,10 @@
 
 #import "DD_SetPSWViewController.h"
 
-#import "DD_LoginTextView.h"
 #import "DD_LoginViewController.h"
+#import "DD_GoodsViewController.h"
+
+#import "DD_LoginTextView.h"
 
 @interface DD_SetPSWViewController ()<UITextFieldDelegate>
 

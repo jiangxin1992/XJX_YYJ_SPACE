@@ -9,6 +9,8 @@
 #import "DD_CircleDailyListCell.h"
 
 #import "DD_ImageModel.h"
+#import "DD_OrderItemModel.h"
+#import "DD_CircleListModel.h"
 
 @implementation DD_CircleDailyListCell
 {

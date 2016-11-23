@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_OrderDetailModel.h"
+@class DD_OrderDetailModel;
 
 @interface DD_OrderRefundViewController : DD_BaseViewController
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_DDayDetailModel.h"
+@class DD_DDayDetailModel;
 
 @interface DD_DDAYContainerView : UIView
 

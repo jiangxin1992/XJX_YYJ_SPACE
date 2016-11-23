@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_ClearingOrderModel.h"
-#import "DD_OrderItemModel.h"
+@class DD_ClearingOrderModel;
+@class DD_OrderItemModel;
 
 @interface DD_OrderTool : NSObject
 

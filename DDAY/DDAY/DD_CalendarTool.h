@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_DDAYModel.h"
-#import "DD_MonthModel.h"
+@class DD_DDAYModel;
+@class DD_MonthModel;
 
 @interface DD_CalendarTool : NSObject
 

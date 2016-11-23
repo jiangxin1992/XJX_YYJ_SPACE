@@ -18,6 +18,7 @@
 
 #import "DD_ShareTool.h"
 #import "DD_DDayDetailModel.h"
+#import "DD_DDAYModel.h"
 
 @interface DD_DDAYDetailViewController ()
 

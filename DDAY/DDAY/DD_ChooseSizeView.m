@@ -9,6 +9,8 @@
 #import "DD_ChooseSizeView.h"
 
 #import "DD_SizeModel.h"
+#import "DD_ColorsModel.h"
+#import "DD_SizeAlertModel.h"
 
 @implementation DD_ChooseSizeView
 {

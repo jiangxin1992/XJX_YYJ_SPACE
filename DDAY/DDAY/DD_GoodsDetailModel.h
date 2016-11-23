@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_GoodsDesignerModel.h"
-#import "DD_GoodsItemModel.h"
-#import "DD_ColorsModel.h"
-#import "DD_CircleListModel.h"
+@class DD_GoodsDesignerModel;
+@class DD_GoodsItemModel;
+@class DD_ColorsModel;
+@class DD_CircleListModel;
 
 @interface DD_GoodsDetailModel : NSObject
 

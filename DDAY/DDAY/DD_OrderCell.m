@@ -10,6 +10,9 @@
 
 #import "DD_CustomBtn.h"
 
+#import "DD_OrderModel.h"
+#import "DD_OrderItemModel.h"
+
 @implementation DD_OrderCell
 {
     UIImageView *_itemImg;//图片

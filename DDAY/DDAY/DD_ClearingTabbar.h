@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ClearingModel.h"
+@class DD_ClearingModel;
 
 @interface DD_ClearingTabbar : UIView
 

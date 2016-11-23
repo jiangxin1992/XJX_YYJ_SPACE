@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface DD_UserInfoTool : NSObject
+
 +(NSDictionary *)getUserInfoListMap;
+
 +(NSArray *)getUserInfoListArr;
+
 @end

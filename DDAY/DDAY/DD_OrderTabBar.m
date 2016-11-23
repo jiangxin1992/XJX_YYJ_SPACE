@@ -10,6 +10,9 @@
 
 #import "DD_CustomBtn.h"
 
+#import "DD_OrderDetailModel.h"
+#import "DD_OrderDetailInfoModel.h"
+
 @implementation DD_OrderTabBar
 {
     DD_CustomBtn *_ActionBtn;

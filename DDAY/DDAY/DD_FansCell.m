@@ -8,6 +8,8 @@
 
 #import "DD_FansCell.h"
 
+#import "DD_FansModel.h"
+
 @implementation DD_FansCell
 {
     UIImageView *head;

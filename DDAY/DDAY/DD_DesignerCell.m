@@ -9,6 +9,7 @@
 #import "DD_DesignerCell.h"
 
 #import "DD_ImageModel.h"
+#import "DD_DesignerModel.h"
 
 @implementation DD_DesignerCell
 {

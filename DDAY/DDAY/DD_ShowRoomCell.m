@@ -10,6 +10,7 @@
 
 #import "DD_ImageModel.h"
 #import "MyPoint.h"
+#import "DD_ShowRoomModel.h"
 
 @implementation DD_ShowRoomCell
 {

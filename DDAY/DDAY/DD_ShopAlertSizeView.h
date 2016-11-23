@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ShopItemModel.h"
-#import "DD_SizeAlertModel.h"
+@class DD_ShopItemModel;
+@class DD_SizeAlertModel;
 
 @interface DD_ShopAlertSizeView : UIView
 

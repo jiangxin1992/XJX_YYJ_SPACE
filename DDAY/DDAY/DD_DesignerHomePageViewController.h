@@ -11,4 +11,5 @@
 @interface DD_DesignerHomePageViewController : DD_BaseViewController
 
 __string(designerId);
+
 @end

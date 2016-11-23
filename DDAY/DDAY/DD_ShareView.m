@@ -15,6 +15,7 @@
 #import "DD_CustomBtn.h"
 
 #import "DD_ShareTool.h"
+#import "DD_BenefitInfoModel.h"
 
 @interface DD_ShareView()<UIAlertViewDelegate>
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_UserModel.h"
+@class DD_UserModel;
 
 @interface DD_UserMessageItemModel : NSObject
 

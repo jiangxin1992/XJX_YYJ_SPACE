@@ -10,6 +10,8 @@
 
 #import "DD_DesignerCell.h"
 
+#import "DD_DesignerModel.h"
+
 @interface DD_DesignerViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end

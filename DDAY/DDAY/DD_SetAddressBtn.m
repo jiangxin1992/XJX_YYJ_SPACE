@@ -8,6 +8,8 @@
 
 #import "DD_SetAddressBtn.h"
 
+#import "DD_AddressModel.h"
+
 @implementation DD_SetAddressBtn{
     UILabel *_nameLabel;
     UILabel *_phoneLabel;

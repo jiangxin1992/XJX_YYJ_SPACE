@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_GoodsItemModel.h"
-#import "DD_SizeModel.h"
-#import "DD_GoodSeriesModel.h"
+@class DD_GoodsItemModel;
+@class DD_SizeModel;
+@class DD_GoodSeriesModel;
 
 @interface DD_GoodsItemModel : NSObject
 

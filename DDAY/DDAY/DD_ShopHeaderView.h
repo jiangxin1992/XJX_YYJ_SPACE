@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ShopModel.h"
+@class DD_ShopModel;
 
 @interface DD_ShopHeaderView : UIView
 

@@ -11,6 +11,9 @@
 #import "DD_CircleDetailImgView.h"
 #import "DD_CircleTagView.h"
 
+#import "DD_OrderItemModel.h"
+#import "DD_CircleListModel.h"
+
 @implementation DD_CircleDailyDetailHeadView
 {
     

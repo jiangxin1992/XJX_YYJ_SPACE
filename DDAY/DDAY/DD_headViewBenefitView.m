@@ -8,7 +8,8 @@
 
 #import "DD_headViewBenefitView.h"
 
-
+#import "DD_ImageModel.h"
+#import "DD_BenefitInfoModel.h"
 
 @implementation DD_headViewBenefitView
 {

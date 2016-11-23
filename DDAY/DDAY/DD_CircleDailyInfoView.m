@@ -8,6 +8,11 @@
 
 #import "DD_CircleDailyInfoView.h"
 
+#import "DD_CircleInfoSuggestView.h"
+#import "DD_CircleDailyInfoImgView.h"
+
+#import "DD_CircleModel.h"
+
 @implementation DD_CircleDailyInfoView
 
 #pragma mark - 初始化

@@ -9,6 +9,8 @@
 #import "DD_ShopEditingCell.h"
 
 #import "DD_ShopTool.h"
+#import "DD_ShopModel.h"
+#import "DD_ShopItemModel.h"
 
 @implementation DD_ShopEditingCell
 {

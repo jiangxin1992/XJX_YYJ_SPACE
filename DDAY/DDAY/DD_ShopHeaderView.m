@@ -9,6 +9,8 @@
 #import "DD_ShopHeaderView.h"
 
 #import "DD_ShopTool.h"
+#import "DD_ShopModel.h"
+#import "DD_ShopSeriesModel.h"
 
 @implementation DD_ShopHeaderView
 {

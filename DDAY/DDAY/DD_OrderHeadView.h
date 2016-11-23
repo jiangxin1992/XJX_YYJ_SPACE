@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderModel.h"
+@class DD_OrderModel;
 
 @interface DD_OrderHeadView : UIView
 

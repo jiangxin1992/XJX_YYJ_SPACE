@@ -11,6 +11,9 @@
 #import "DD_ColorsModel.h"
 #import "DD_OtherItemModel.h"
 #import "DD_ImageModel.h"
+#import "DD_GoodsItemModel.h"
+#import "DD_SizeModel.h"
+#import "DD_GoodSeriesModel.h"
 
 @implementation DD_GoodsItemModel
 -(NSString *)getSizeNameWithID:(NSString *)sizeID

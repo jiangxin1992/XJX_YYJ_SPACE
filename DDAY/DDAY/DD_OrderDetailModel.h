@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_OrderDetailInfoModel.h"
-#import "DD_AddressModel.h"
-#import "DD_OrderLogisticsModel.h"
+@class DD_OrderDetailInfoModel;
+@class DD_AddressModel;
+@class DD_OrderLogisticsModel;
 
 @interface DD_OrderDetailModel : NSObject
 /**

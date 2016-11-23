@@ -8,7 +8,10 @@
 
 #import "DD_ItemTool.h"
 
+#import "WaterflowCell.h"
+
 #import "DD_ImageModel.h"
+#import "DD_ItemsModel.h"
 
 @implementation DD_ItemTool
 

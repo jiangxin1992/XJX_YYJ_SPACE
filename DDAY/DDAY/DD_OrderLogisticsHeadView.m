@@ -8,6 +8,8 @@
 
 #import "DD_OrderLogisticsHeadView.h"
 
+#import "DD_OrderLogisticsManageModel.h"
+
 @implementation DD_OrderLogisticsHeadView{
     UILabel *log_name;
     UILabel *log_order;

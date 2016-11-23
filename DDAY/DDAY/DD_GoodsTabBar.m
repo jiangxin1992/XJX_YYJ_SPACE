@@ -8,6 +8,8 @@
 
 #import "DD_GoodsTabBar.h"
 
+#import "DD_GoodsItemModel.h"
+
 @implementation DD_GoodsTabBar
 -(instancetype)initWithItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block
 {

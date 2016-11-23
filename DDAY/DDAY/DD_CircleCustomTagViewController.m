@@ -11,6 +11,8 @@
 #import "DrawView.h"
 
 #import "DD_CirclePublishTool.h"
+#import "DD_CircleModel.h"
+#import "DD_CricleTagItemModel.h"
 
 @interface DD_CircleCustomTagViewController ()<UITextFieldDelegate>
 

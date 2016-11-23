@@ -25,6 +25,9 @@
 #import "DD_OrderTool.h"
 #import "DD_OrderDetailModel.h"
 #import "DD_ItemsModel.h"
+#import "DD_OrderDetailInfoModel.h"
+#import "DD_OrderItemModel.h"
+#import "DD_OrderModel.h"
 
 @interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 

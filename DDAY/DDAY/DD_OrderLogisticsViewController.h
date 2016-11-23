@@ -6,10 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "DD_BaseViewController.h"
-#import "DD_OrderModel.h"
+
+@class DD_OrderModel;
 
 @interface DD_OrderLogisticsViewController : DD_BaseViewController
 

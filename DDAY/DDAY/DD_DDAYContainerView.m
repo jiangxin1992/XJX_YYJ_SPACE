@@ -8,6 +8,9 @@
 
 #import "DD_DDAYContainerView.h"
 
+#import "DD_ImageModel.h"
+#import "DD_DDayDetailModel.h"
+
 @implementation DD_DDAYContainerView
 -(instancetype)initWithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block
 {

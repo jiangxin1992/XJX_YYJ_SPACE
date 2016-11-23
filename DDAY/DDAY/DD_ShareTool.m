@@ -12,6 +12,9 @@
 #import "DD_ImageModel.h"
 #import "DD_DDayDetailModel.h"
 #import "DD_CircleListModel.h"
+#import "DD_GoodsItemModel.h"
+#import "DD_GoodsDesignerModel.h"
+#import "DD_ColorsModel.h"
 
 @implementation DD_ShareTool
 +(NSDictionary *)getShareParamsWithType:(NSString *)type WithShareParams:(NSDictionary *)params

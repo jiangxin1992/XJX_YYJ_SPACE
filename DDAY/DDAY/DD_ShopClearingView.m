@@ -9,6 +9,7 @@
 #import "DD_ShopClearingView.h"
 
 #import "DD_ShopTool.h"
+#import "DD_ShopModel.h"
 
 @implementation DD_ShopClearingView
 {

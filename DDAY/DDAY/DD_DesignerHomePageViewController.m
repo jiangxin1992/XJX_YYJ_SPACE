@@ -19,6 +19,7 @@
 
 #import "DD_ShareTool.h"
 #import "DD_DesignerModel.h"
+#import "DD_CircleListModel.h"
 
 @interface DD_DesignerHomePageViewController ()
 

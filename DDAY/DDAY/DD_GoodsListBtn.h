@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_GoodsCategoryModel.h"
+@class DD_GoodsCategoryModel;
 
 @interface DD_GoodsListBtn : UIButton
 

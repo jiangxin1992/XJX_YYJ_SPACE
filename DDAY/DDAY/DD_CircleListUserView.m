@@ -8,6 +8,8 @@
 
 #import "DD_CircleListUserView.h"
 
+#import "DD_CircleListModel.h"
+
 @implementation DD_CircleListUserView
 {
     //    用户

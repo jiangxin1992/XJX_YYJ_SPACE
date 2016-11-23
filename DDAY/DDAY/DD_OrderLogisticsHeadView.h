@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderLogisticsManageModel.h"
+@class DD_OrderLogisticsManageModel;
 
 @interface DD_OrderLogisticsHeadView : UIView
 

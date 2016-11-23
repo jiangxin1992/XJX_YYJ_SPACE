@@ -15,6 +15,7 @@
 
 #import "DD_CirclePublishTool.h"
 #import "DD_CricleChooseItemModel.h"
+#import "DD_ImageModel.h"
 
 @interface DD_CircleItemListViewController ()<WaterflowDataSource,WaterflowDelegate>
 

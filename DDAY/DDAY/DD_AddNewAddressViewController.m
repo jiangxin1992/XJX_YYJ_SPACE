@@ -15,6 +15,7 @@
 #import "DD_CityTool.h"
 #import "DD_ProvinceModel.h"
 #import "DD_CityModel.h"
+#import "DD_AddressModel.h"
 
 @interface DD_AddNewAddressViewController()<UITextFieldDelegate>
 

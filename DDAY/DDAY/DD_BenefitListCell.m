@@ -8,6 +8,9 @@
 
 #import "DD_BenefitListCell.h"
 
+#import "DD_ImageModel.h"
+#import "DD_BenefitInfoModel.h"
+
 @implementation DD_BenefitListCell
 {
     UIImageView *_benefit_img;

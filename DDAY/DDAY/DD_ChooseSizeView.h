@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ColorsModel.h"
-#import "DD_SizeAlertModel.h"
+@class DD_ColorsModel;
+@class DD_SizeAlertModel;
 
 @interface DD_ChooseSizeView : UIView
 

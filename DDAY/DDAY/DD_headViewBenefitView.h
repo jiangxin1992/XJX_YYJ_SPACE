@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_BenefitInfoModel.h"
+@class DD_BenefitInfoModel;
 
 @interface DD_headViewBenefitView : UIView
 

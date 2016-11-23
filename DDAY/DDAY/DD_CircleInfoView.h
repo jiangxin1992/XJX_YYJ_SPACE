@@ -6,13 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_CircleModel.h"
+@class DD_CircleChooseStyleView;
+@class DD_CircleInfoSuggestView;
+@class DD_CircleInfoImgView;
+@class DD_CircleTagsView;
+@class DD_CircleFitPersonView;
 
-#import "DD_CircleChooseStyleView.h"
-#import "DD_CircleInfoSuggestView.h"
-#import "DD_CircleInfoImgView.h"
-#import "DD_CircleTagsView.h"
-#import "DD_CircleFitPersonView.h"
+@class DD_CircleModel;
 
 @interface DD_CircleInfoView : UIView
 

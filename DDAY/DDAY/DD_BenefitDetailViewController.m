@@ -11,6 +11,8 @@
 #import "DD_LoginViewController.h"
 
 #import "DD_BenefitDetailModel.h"
+#import "DD_ImageModel.h"
+#import "DD_BenefitInfoModel.h"
 
 @interface DD_BenefitDetailViewController ()
 

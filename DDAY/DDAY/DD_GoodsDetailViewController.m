@@ -38,6 +38,14 @@
 #import "DD_OtherItemModel.h"
 #import "DD_SizeAlertModel.h"
 #import "DD_ImageModel.h"
+#import "DD_GoodSeriesModel.h"
+#import "DD_GoodsDesignerModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_OrderItemModel.h"
+#import "DD_ShowRoomModel.h"
+#import "DD_GoodsItemModel.h"
+#import "DD_ItemsModel.h"
+
 
 @interface DD_GoodsDetailViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 

@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_DDAYModel.h"
+@class DD_DDAYModel;
 
 @interface DD_DDAYDetailViewController : DD_BaseViewController
 

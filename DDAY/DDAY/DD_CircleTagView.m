@@ -9,6 +9,7 @@
 #import "DD_CircleTagView.h"
 
 #import "DD_CricleTagItemModel.h"
+#import "DD_CircleListModel.h"
 
 @implementation DD_CircleTagView
 

@@ -25,6 +25,9 @@
 #import "DD_ShopModel.h"
 #import "DD_SizeModel.h"
 #import "DD_SizeAlertModel.h"
+#import "DD_ShopSeriesModel.h"
+#import "DD_ShopItemModel.h"
+#import "DD_ClearingModel.h"
 
 @interface DD_ShopViewController ()<UITableViewDataSource,UITableViewDelegate>
 

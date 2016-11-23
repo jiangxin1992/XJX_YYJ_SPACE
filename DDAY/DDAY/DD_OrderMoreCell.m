@@ -10,6 +10,9 @@
 
 #import "DD_CustomBtn.h"
 
+#import "DD_OrderItemModel.h"
+#import "DD_OrderModel.h"
+
 @interface DD_OrderMoreCell()<UIScrollViewDelegate>
 
 @end

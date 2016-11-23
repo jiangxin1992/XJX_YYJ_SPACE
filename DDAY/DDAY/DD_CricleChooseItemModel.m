@@ -8,6 +8,8 @@
 
 #import "DD_CricleChooseItemModel.h"
 
+#import "DD_ImageModel.h"
+
 @implementation DD_CricleChooseItemModel
 +(DD_CricleChooseItemModel *)getCricleChooseItemModel:(NSDictionary *)dict WithDetail:(NSArray *)chooseItem
 {

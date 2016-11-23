@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_CricleTagItemModel.h"
+@class DD_CricleTagItemModel;
 
 @interface DD_CircleTagModel : NSObject
 

@@ -9,6 +9,7 @@
 #import "DD_ShopAlertNumView.h"
 
 #import "DD_SizeModel.h"
+#import "DD_ShopItemModel.h"
 
 @implementation DD_ShopAlertNumView
 {

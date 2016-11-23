@@ -8,6 +8,8 @@
 
 #import "DD_OrderHeadView.h"
 
+#import "DD_OrderModel.h"
+
 @implementation DD_OrderHeadView
 {
     UILabel *stateLabel;

@@ -8,6 +8,8 @@
 
 #import "DD_ShowRoomSimpleCell.h"
 
+#import "DD_ShowRoomModel.h"
+
 @implementation DD_ShowRoomSimpleCell
 {
     UILabel *_storeName;

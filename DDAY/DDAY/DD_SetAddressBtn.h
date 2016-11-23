@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_AddressModel.h"
+@class DD_AddressModel;
 
 @interface DD_SetAddressBtn : UIButton
 

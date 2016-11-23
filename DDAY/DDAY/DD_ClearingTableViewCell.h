@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ClearingOrderModel.h"
+@class DD_ClearingOrderModel;
 
 @interface DD_ClearingTableViewCell : UITableViewCell
 

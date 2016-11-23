@@ -8,6 +8,8 @@
 
 #import "DD_ShopCell.h"
 
+#import "DD_ShopItemModel.h"
+
 @implementation DD_ShopCell
 {
     UIButton *selectBtn;//选中

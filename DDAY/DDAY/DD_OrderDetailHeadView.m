@@ -8,7 +8,18 @@
 
 #import "DD_OrderDetailHeadView.h"
 
+#import "TTTAttributedLabel.h"
+
+#import "DD_OrderDetailModel.h"
+#import "DD_OrderModel.h"
+#import "DD_AddressModel.h"
+#import "DD_OrderLogisticsModel.h"
+#import "DD_OrderDetailInfoModel.h"
+
 #define PHONEREGULAR @"\\d{3,4}[- ]?\\d{7,8}"//匹配10到12位连续数字，或者带连字符/空格的固话号，空格和连字符可以省略。
+@interface DD_OrderDetailHeadView ()<TTTAttributedLabelDelegate>
+
+@end
 
 @implementation DD_OrderDetailHeadView
 {

@@ -11,6 +11,8 @@
 #import "DD_ClearingTool.h"
 #import "DD_ClearingOrderModel.h"
 #import "DD_ClearingSeriesModel.h"
+#import "DD_AddressModel.h"
+#import "DD_BenefitInfoModel.h"
 
 @implementation DD_ClearingModel
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict

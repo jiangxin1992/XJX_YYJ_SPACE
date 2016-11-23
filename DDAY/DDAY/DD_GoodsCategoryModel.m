@@ -8,6 +8,8 @@
 
 #import "DD_GoodsCategoryModel.h"
 
+#import "DD_GoodsCategorySubModel.h"
+
 @implementation DD_GoodsCategoryModel
 +(DD_GoodsCategoryModel *)getGoodsCategoryModel:(NSDictionary *)dict
 {

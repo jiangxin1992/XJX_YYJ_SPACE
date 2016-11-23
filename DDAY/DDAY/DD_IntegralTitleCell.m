@@ -8,6 +8,8 @@
 
 #import "DD_IntegralTitleCell.h"
 
+#import "DD_IntegralModel.h"
+
 @implementation DD_IntegralTitleCell{
     UILabel *_content_label;
 }

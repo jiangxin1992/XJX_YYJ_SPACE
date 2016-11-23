@@ -8,6 +8,8 @@
 
 #import "DD_OrderLogisticsManageModel.h"
 
+#import "DD_OrderLogisticsModel.h"
+
 @implementation DD_OrderLogisticsManageModel
 
 +(DD_OrderLogisticsManageModel *)getLogisticsManageModel:(NSDictionary *)dict

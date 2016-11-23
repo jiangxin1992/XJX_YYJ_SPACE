@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DD_SetCell : UITableViewCell
+
 __string(title);
+
 @end

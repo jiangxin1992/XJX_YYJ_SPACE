@@ -8,8 +8,8 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_CircleModel.h"
-#import "DD_CricleTagItemModel.h"
+@class DD_CircleModel;
+@class DD_CricleTagItemModel;
 
 @interface DD_CircleCustomTagViewController : DD_BaseViewController
 

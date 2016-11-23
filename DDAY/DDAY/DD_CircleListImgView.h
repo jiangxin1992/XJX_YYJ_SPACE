@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_CircleListModel.h"
+@class DD_CircleListModel;
 
 @interface DD_CircleListImgView : UIView
 

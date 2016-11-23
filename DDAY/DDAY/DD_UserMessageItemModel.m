@@ -8,6 +8,8 @@
 
 #import "DD_UserMessageItemModel.h"
 
+#import "DD_UserModel.h"
+
 @implementation DD_UserMessageItemModel
 /**
  * 获取消息列表model

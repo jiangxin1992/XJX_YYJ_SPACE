@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_IntegralModel.h"
+@class DD_IntegralModel;
 
 @interface DD_IntegralCell : UITableViewCell
 

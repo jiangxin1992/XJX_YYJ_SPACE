@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_GoodsCategorySubModel.h"
+@class DD_GoodsCategorySubModel;
 
 @interface DD_GoodsCategoryModel : NSObject
 

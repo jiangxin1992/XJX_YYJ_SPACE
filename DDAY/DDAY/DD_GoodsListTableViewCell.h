@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_GoodsCategorySubModel.h"
+@class DD_GoodsCategorySubModel;
 
 @interface DD_GoodsListTableViewCell : UITableViewCell
 

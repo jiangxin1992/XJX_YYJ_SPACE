@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_ImageModel.h"
+@class DD_ImageModel;
 
 #define __bool(__k__) @property(nonatomic,assign) BOOL __k__
 #define __long(__k__) @property(nonatomic,assign) long __k__

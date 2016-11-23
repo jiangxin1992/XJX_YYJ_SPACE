@@ -17,6 +17,8 @@
 #import "DD_CircleItemListViewController.h"
 
 #import "DD_OrderItemModel.h"
+#import "DD_CircleModel.h"
+#import "DD_CircleListModel.h"
 
 @interface DD_UserMainCollectViewController ()
 

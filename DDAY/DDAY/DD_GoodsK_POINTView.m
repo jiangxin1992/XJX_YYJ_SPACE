@@ -8,6 +8,8 @@
 
 #import "DD_GoodsK_POINTView.h"
 
+#import "DD_ShowRoomModel.h"
+
 @implementation DD_GoodsK_POINTView
 {
     NSMutableArray *viewArr;

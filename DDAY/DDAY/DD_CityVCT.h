@@ -6,8 +6,6 @@
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "DD_BaseViewController.h"
 
 @interface DD_CityVCT : DD_BaseViewController

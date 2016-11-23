@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WaterflowCell.h"
+@class WaterflowCell;
+@class Waterflow;
 
-#import "DD_CircleModel.h"
-#import "DD_CricleTagItemModel.h"
-#import "DD_CricleChooseItemModel.h"
+@class DD_CircleModel;
+@class DD_CricleTagItemModel;
+@class DD_CricleChooseItemModel;
 
 @interface DD_CirclePublishTool : NSObject
 

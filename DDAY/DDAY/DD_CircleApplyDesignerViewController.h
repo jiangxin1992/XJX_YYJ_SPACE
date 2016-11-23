@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_CircleApplyDesignerModel.h"
+@class DD_CircleApplyDesignerModel;
 
 @interface DD_CircleApplyDesignerViewController : DD_BaseViewController
 

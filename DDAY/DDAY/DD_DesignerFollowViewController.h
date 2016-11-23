@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-#import "DD_DesignerModel.h"
+@class DD_DesignerModel;
 
 @interface DD_DesignerFollowViewController : UIViewController
 

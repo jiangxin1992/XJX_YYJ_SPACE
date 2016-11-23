@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderItemModel.h"
-#import "DD_CircleListModel.h"
+@class DD_OrderItemModel;
+@class DD_CircleListModel;
 
 @interface DD_CircleDetailHeadView : UIView
 

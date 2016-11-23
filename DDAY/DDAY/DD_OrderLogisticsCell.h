@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TTTAttributedLabel.h"
+@class DD_OrderLogisticsModel;
 
-#import "DD_OrderLogisticsModel.h"
-
-@interface DD_OrderLogisticsCell : UITableViewCell<TTTAttributedLabelDelegate>
+@interface DD_OrderLogisticsCell : UITableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSString *phoneNum))block;
 

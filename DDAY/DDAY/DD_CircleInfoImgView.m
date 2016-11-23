@@ -8,6 +8,8 @@
 
 #import "DD_CircleInfoImgView.h"
 
+#import "DD_CircleModel.h"
+
 @implementation DD_CircleInfoImgView
 {
     

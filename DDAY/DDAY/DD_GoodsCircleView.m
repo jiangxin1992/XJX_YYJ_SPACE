@@ -9,6 +9,8 @@
 #import "DD_GoodsCircleView.h"
 
 #import "DD_ImageModel.h"
+#import "DD_CircleListModel.h"
+#import "DD_OrderItemModel.h"
 
 @implementation DD_GoodsCircleView
 {

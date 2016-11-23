@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_ShowRoomModel.h"
+@class DD_ShowRoomModel;
 
 @interface DD_GoodsK_POINTView : UIView
 

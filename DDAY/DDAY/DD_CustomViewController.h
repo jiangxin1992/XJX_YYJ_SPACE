@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_UserViewController.h"
-#import "DD_CircleViewController.h"
-#import "DD_DesignerMainViewController.h"
-#import "DD_GoodsViewController.h"
-#import "DD_DDAYViewController.h"
+@class DD_UserViewController;
+@class DD_CircleViewController;
+@class DD_DesignerMainViewController;
+@class DD_GoodsViewController;
+@class DD_DDAYViewController;
 
-#import "DD_UnReadMsgModel.h"
+@class DD_UnReadMsgModel;
 
 @interface DD_CustomViewController : UITabBarController
 

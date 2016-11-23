@@ -16,6 +16,7 @@
 
 #import "DD_ItemTool.h"
 #import "DD_ImageModel.h"
+#import "DD_ItemsModel.h"
 
 @interface DD_DesignerItemViewController ()<WaterflowDataSource,WaterflowDelegate>
 

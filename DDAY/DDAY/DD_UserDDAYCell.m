@@ -8,6 +8,8 @@
 
 #import "DD_UserDDAYCell.h"
 
+#import "DD_DDAYModel.h"
+
 @implementation DD_UserDDAYCell
 {
     UIImageView *imageView;

@@ -8,7 +8,7 @@
 /*********** 总结视图为确认订单页面中的结算视图 ***********/
 #import <UIKit/UIKit.h>
 
-#import "DD_ClearingModel.h"
+@class DD_ClearingModel;
 
 @interface DD_ClearingView : UIView
 

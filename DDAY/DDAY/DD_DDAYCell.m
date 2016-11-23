@@ -9,6 +9,7 @@
 #import "DD_DDAYCell.h"
 
 #import "DD_DDAYTool.h"
+#import "DD_DDAYModel.h"
 
 @implementation DD_DDAYCell
 {

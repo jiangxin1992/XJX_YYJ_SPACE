@@ -8,6 +8,8 @@
 
 #import "DD_CircleListImgView.h"
 
+#import "DD_CircleListModel.h"
+
 @implementation DD_CircleListImgView
 {
     UIImageView *pic;//搭配图片

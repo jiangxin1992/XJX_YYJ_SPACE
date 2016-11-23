@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DD_OrderDetailModel.h"
-#import "DD_OrderModel.h"
+@class DD_OrderDetailModel;
+@class DD_OrderModel;
 
-#import "TTTAttributedLabel.h"
-
-@interface DD_OrderDetailHeadView : UIView<TTTAttributedLabelDelegate>
+@interface DD_OrderDetailHeadView : UIView
 
 /**
  * 初始化方法

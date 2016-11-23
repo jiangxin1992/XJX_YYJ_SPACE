@@ -8,9 +8,15 @@
 
 #import "DD_OrderLogisticsCell.h"
 
+#import "TTTAttributedLabel.h"
+
+#import "DD_OrderLogisticsModel.h"
 #import "Tools.h"
 
 #define PHONEREGULAR @"\\d{3,4}[- ]?\\d{7,8}"//匹配10到12位连续数字，或者带连字符/空格的固话号，空格和连字符可以省略。
+@interface DD_OrderLogisticsCell ()<TTTAttributedLabelDelegate>
+
+@end
 
 @implementation DD_OrderLogisticsCell
 {

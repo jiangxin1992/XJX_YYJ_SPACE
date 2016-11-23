@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DD_ProvinceModel.h"
+@class DD_ProvinceModel;
 
 @interface DD_ProvinceModel : NSObject
 

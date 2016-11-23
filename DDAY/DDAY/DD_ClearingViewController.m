@@ -22,6 +22,10 @@
 #import "DD_ClearingTool.h"
 #import "DD_ClearingSeriesModel.h"
 #import "DD_CityTool.h"
+#import "DD_BenefitInfoModel.h"
+#import "DD_AddressModel.h"
+#import "DD_ClearingView.h"
+#import "DD_ClearingModel.h"
 
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {

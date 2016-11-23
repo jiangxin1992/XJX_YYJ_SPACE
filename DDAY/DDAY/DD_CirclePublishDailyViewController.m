@@ -18,6 +18,7 @@
 #import "DD_CirclePublishDailyPreViewController.h"
 
 #import "DD_CircleDailyInfoView.h"
+#import "DD_CircleDailyInfoImgView.h"
 
 #import "DD_CirclePublishTool.h"
 #import "DD_CircleModel.h"

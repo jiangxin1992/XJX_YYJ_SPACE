@@ -10,6 +10,7 @@
 
 #import "DD_CircleTagModel.h"
 #import "DD_CricleTagItemModel.h"
+#import "DD_CircleModel.h"
 
 @implementation DD_CircleTagsView
 {

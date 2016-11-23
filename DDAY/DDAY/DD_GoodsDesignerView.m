@@ -11,6 +11,10 @@
 #import "UIButton+WebCache.h"
 
 #import "DD_OtherItemModel.h"
+#import "DD_GoodSeriesModel.h"
+#import "DD_GoodsItemModel.h"
+#import "DD_GoodsDesignerModel.h"
+#import "DD_GoodsDetailModel.h"
 
 #define ver_edge 18
 

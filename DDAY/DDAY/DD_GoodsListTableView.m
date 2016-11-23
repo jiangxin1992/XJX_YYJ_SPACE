@@ -12,6 +12,7 @@
 #import "DD_GoodsListBtn.h"
 
 #import "DD_GoodsCategoryModel.h"
+#import "DD_GoodsCategorySubModel.h"
 
 @interface DD_GoodsListTableView()<UITableViewDelegate,UITableViewDataSource>
 

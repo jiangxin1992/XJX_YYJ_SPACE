@@ -8,6 +8,8 @@
 
 #import "DD_GoodsListBtn.h"
 
+#import "DD_GoodsCategoryModel.h"
+
 @implementation DD_GoodsListBtn
 {
     UIView *view;

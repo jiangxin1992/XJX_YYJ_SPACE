@@ -11,6 +11,8 @@
 #import "DD_OrderRefundViewController.h"
 
 #import "DD_OrderModel.h"
+#import "DD_OrderDetailInfoModel.h"
+#import "DD_OrderDetailModel.h"
 
 @interface DD_OrderRefundViewController ()<UITextViewDelegate>
 
