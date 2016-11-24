@@ -25,5 +25,22 @@
         [itemsArr addObject:[self getBenefitInfoModel:dict]];
     }
     return itemsArr;
+//    return [self testdata];
+}
++(NSArray *)testdata
+{
+    NSMutableArray *muArr=[[NSMutableArray alloc] init];
+    for (int i=0; i<50 ; i++) {
+        DD_BenefitInfoModel *model=[[DD_BenefitInfoModel alloc] init];
+        model.amount=arc4random()%100+10;
+        model.effectEndTime=[NSDate nowTime]-50000+arc4random()%100000;
+        NSInteger _yu=arc4random()%2;
+        model.lowLimitDesc=_yu?[[NSString alloc] initWithFormat:@"满%u元使用",arc4random()%2000]:@"";
+        model.useRange=@"所有品牌适用";
+        model.effectStartTime=1477909513;
+        model.name=[[NSString alloc] initWithFormat:@"这是名字 %u",arc4random()%100];
+        [muArr addObject:model];
+    }
+    return muArr;
 }
 @end

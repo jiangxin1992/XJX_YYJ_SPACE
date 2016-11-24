@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class DD_BenefitInfoModel;
+
 @interface DD_ShareView : UIView 
 
--(instancetype)initWithType:(NSString *)type WithParams:(NSDictionary *)params WithBlock:(void(^)(NSString *type))block;
+-(instancetype)initWithType:(NSString *)type WithParams:(NSDictionary *)params WithBlock:(void(^)(NSString *type,DD_BenefitInfoModel *model))block;
 //-(instancetype)initWithTitle:(NSString *)title Content:(NSString *)content WithImg:(NSString *)img WithUrl:(NSString *)url WithBlock:(void(^)(NSString *type))block;
 
-@property (nonatomic,copy) void (^block)(NSString *type);
+@property (nonatomic,copy) void (^block)(NSString *type,DD_BenefitInfoModel *model);
 
 /** 分享标题*/
 __string(title);

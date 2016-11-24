@@ -13,6 +13,7 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
 #import "DD_CustomBtn.h"
+#import "DD_BenefitView.h"
 
 #import "DD_ShareTool.h"
 #import "DD_BenefitInfoModel.h"
@@ -29,7 +30,7 @@
 }
 
 #pragma mark - 初始化
--(instancetype)initWithType:(NSString *)type WithParams:(NSDictionary *)params WithBlock:(void(^)(NSString *type))block
+-(instancetype)initWithType:(NSString *)type WithParams:(NSDictionary *)params WithBlock:(void(^)(NSString *type,DD_BenefitInfoModel *model))block
 {
     self=[super init];
     if(self)
@@ -164,7 +165,7 @@
 }
 -(void)cancelAction
 {
-    _block(@"cancel");
+    _block(@"cancel",nil);
 }
 -(void)btnClick:(DD_CustomBtn *)btn
 {
@@ -210,7 +211,7 @@
     
     //2、分享
     [ShareSDK share:platformType parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-        _block(@"cancel");
+        _block(@"cancel",nil);
 
         switch (state) {
                 
@@ -249,10 +250,10 @@
                                         DD_BenefitInfoModel *_benefitModel=[DD_BenefitInfoModel getBenefitInfoModel:[data objectForKey:@"benefitInfo"]];
                                         if(_benefitModel)
                                         {
-                                             [[DD_CustomViewController sharedManager] showBenefitWithModel:_benefitModel];
+                                            _block(@"benefit",_benefitModel);
                                         }else
                                         {
-                                             [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
+                                            [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:title WithType:@"share"];
                                         }
                                         
                                     }else
@@ -365,6 +366,7 @@
         }
     }];
 }
+
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
 //    if(buttonIndex==0)

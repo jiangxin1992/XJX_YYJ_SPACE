@@ -239,7 +239,7 @@
 //{
 //    return [regular getViewForSection];
 //}
-////section底部间距
+//section底部间距
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //{
 //    return 1;

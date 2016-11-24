@@ -14,6 +14,8 @@
 @implementation DD_BenefitView
 {
     UIImageView *_benefitImg;
+    UILabel *_titleLabel;
+    UILabel *_amountLabel;
 }
 
 static DD_BenefitView *benefitView = nil;
@@ -43,37 +45,61 @@ static DD_BenefitView *benefitView = nil;
         _benefitModel=benefitModel;
         _block=block;
         
-        _benefitImg=[UIImageView getCustomImg];
-        [self addSubview:_benefitImg];
-        _benefitImg.contentMode=0;
-        CGFloat _height = floor(([_benefitModel.picInfo.height floatValue]/[_benefitModel.picInfo.width floatValue])*200);
+        UIImageView *backView=[UIImageView getImgWithImageStr:@"User_Benefit_Mask"];
+        [self addSubview:backView];
+        backView.contentMode=UIViewContentModeScaleToFill;
+        backView.userInteractionEnabled=YES;
+        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction)]];
+        [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self);
+        }];
+        
+        _benefitImg=[UIImageView getImgWithImageStr:@"User_Benefit_Back"];
+        [backView addSubview:_benefitImg];
+        _benefitImg.contentMode=UIViewContentModeScaleToFill;
+        _benefitImg.userInteractionEnabled=YES;
+        [_benefitImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NULLACTION)]];
+        CGFloat _height = floor((373.0f/272.0f)*(ScreenWidth-100));
         [_benefitImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(self);
             make.height.mas_equalTo(_height);
-            make.width.mas_equalTo(200);
+            make.width.mas_equalTo(ScreenWidth-100);
         }];
-        [_benefitImg JX_ScaleToFill_loadImageUrlStr:_benefitModel.picInfo.pic WithSize:800 placeHolderImageName:nil radius:0];
         
+        _titleLabel=[UILabel getLabelWithAlignment:1 WithTitle:_benefitModel.name WithFont:24.0f WithTextColor:_define_white_color WithSpacing:0];
+        [_benefitImg addSubview:_titleLabel];
+        _titleLabel.font=[regular getSemiboldFont:24.0f];
+        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        
+        _amountLabel=[UILabel getLabelWithAlignment:1 WithTitle:[[NSString alloc] initWithFormat:@"%ld",_benefitModel.amount] WithFont:150 WithTextColor:_define_white_color WithSpacing:0];
+        [_benefitImg addSubview:_amountLabel];
+        _amountLabel.font=[UIFont fontWithName:@"DIN-Medium" size:150.0f];
+        [_amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(_benefitImg);
+        }];
         
         UIButton *_checkBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"点击查看红包" WithNormalColor:nil WithSelectedTitle:nil  WithSelectedColor:nil];
         [_benefitImg addSubview:_checkBtn];
-        CGFloat _width=[regular getWidthWithHeight:9999 WithContent:@"点击查看红包" WithFont:[regular getFont:15.0f]]+10;
         [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(30);
+            make.bottom.mas_equalTo(-38);
             make.centerX.mas_equalTo(_benefitImg);
-            make.width.mas_equalTo(_width);
+            make.width.mas_equalTo(135);
+            make.height.mas_equalTo(35);
         }];
         _checkBtn.backgroundColor=_define_white_color;
         [_checkBtn addTarget:self action:@selector(checkAction) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton *closeBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关闭" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
-        [self addSubview:closeBtn];
+        UIButton *closeBtn=[UIButton getCustomBackImgBtnWithImageStr:@"User_Benefit_Close" WithSelectedImageStr:nil];
+        [_benefitImg addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(_benefitImg.mas_top).with.offset(0);
-            make.centerX.mas_equalTo(_benefitImg.mas_right).with.offset(0);
-            make.height.width.mas_equalTo(50);
+            make.top.mas_equalTo(32);
+            make.right.mas_equalTo(-32);
+            make.height.width.mas_equalTo(13);
         }];
-        closeBtn.backgroundColor=_define_white_color;
+        [closeBtn setEnlargeEdge:20];
         [closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -81,13 +107,8 @@ static DD_BenefitView *benefitView = nil;
 }
 -(void)setState
 {
-    CGFloat _height = floor(([_benefitModel.picInfo.height floatValue]/[_benefitModel.picInfo.width floatValue])*200);
-    [_benefitImg mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self);
-        make.height.mas_equalTo(_height);
-        make.width.mas_equalTo(200);
-    }];
-    [_benefitImg JX_ScaleToFill_loadImageUrlStr:_benefitModel.picInfo.pic WithSize:800 placeHolderImageName:nil radius:0];
+    _titleLabel.text=_benefitModel.name;
+    _amountLabel.text=[[NSString alloc] initWithFormat:@"%ld",_benefitModel.amount];
 }
 -(void)checkAction
 {
@@ -97,4 +118,5 @@ static DD_BenefitView *benefitView = nil;
 {
     _block(@"close");
 }
+-(void)NULLACTION{}
 @end

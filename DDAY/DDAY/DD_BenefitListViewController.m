@@ -8,7 +8,7 @@
 
 #import "DD_BenefitListViewController.h"
 
-#import "DD_BenefitDetailViewController.h"
+//#import "DD_BenefitDetailViewController.h"
 #import "DD_BenefitRuleViewController.h"
 
 #import "DD_BenefitListCell.h"
@@ -122,8 +122,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JXLOG(@"height=%lf",floor((ScreenWidth)*240.0f/750.0f));
-    return floor((ScreenWidth)*240.0f/750.0f);
+//    JXLOG(@"height=%lf",floor((ScreenWidth)*240.0f/750.0f));
+    return 120;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -157,15 +157,15 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_dataArr[indexPath.section] WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"markread"])
-        {
-        }
-        
-    }] animated:YES];
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_dataArr[indexPath.section] WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"markread"])
+//        {
+//        }
+//        
+//    }] animated:YES];
+//}
 -(void)MJRefresh
 {
     //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];

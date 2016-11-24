@@ -46,7 +46,7 @@
 /**
  * 红包toast
  */
--(void)showBenefitWithModel:(DD_BenefitInfoModel *)model;
+//-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model;
 
 /**
  * 更新unReadMsgModel

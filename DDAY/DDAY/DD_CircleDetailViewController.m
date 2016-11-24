@@ -14,12 +14,14 @@
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_LoginViewController.h"
 #import "DD_CircleItemListViewController.h"
+#import "DD_BenefitListViewController.h"
 
 #import "DD_CircleDetailHeadView.h"
 #import "DD_CircleComentInputView.h"
 #import "DD_CircleCommentCell.h"
 #import "DD_ShareView.h"
 #import "DD_CircleDailyDetailHeadView.h"
+#import "DD_BenefitView.h"
 
 #import "DD_CircleCommentModel.h"
 #import "DD_ItemsModel.h"
@@ -28,6 +30,7 @@
 #import "DD_CircleListModel.h"
 #import "DD_CircleModel.h"
 #import "DD_OrderItemModel.h"
+#import "DD_BenefitInfoModel.h"
 
 
 @interface DD_CircleDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -489,19 +492,26 @@
 //分享
 -(void)ShareAction
 {
+//    DD_BenefitInfoModel *model=[[DD_BenefitInfoModel alloc] init];
+//    model.name=@"分享成功五块红包！";
+//    model.amount=50;
+//    [self showBenefitWithModel:model];
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     mengban_share=[UIImageView getMaskImageView];
     [self.view addSubview:mengban_share];
     [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
-    
-    shareView=[[DD_ShareView alloc] initWithType:@"circle_detail" WithParams:@{@"detailModel":nowListModel} WithBlock:^(NSString *type) {
+
+    shareView=[[DD_ShareView alloc] initWithType:@"circle_detail" WithParams:@{@"detailModel":nowListModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
+        }else if([type isEqualToString:@"benefit"])
+        {
+            [self showBenefitWithModel:model];
         }
     }];
-
     [mengban_share addSubview:shareView];
     CGFloat _height=[DD_ShareTool getHeight];
     shareView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _height);
@@ -509,6 +519,26 @@
         shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
     }];
     
+}
+-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
+{
+    DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
+        for (id obj in self.view.window.subviews) {
+            if([obj isKindOfClass:[DD_BenefitView class]])
+            {
+                DD_BenefitView *sss=(DD_BenefitView *)obj;
+                [sss removeFromSuperview];
+            }
+        }
+        if([type isEqualToString:@"close"])
+        {
+            
+        }else if([type isEqualToString:@"enter"])
+        {
+            [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+        }
+    }];
+    [self.view.window addSubview:_benefitView];
 }
 //蒙板消失
 -(void)mengban_dismiss_share

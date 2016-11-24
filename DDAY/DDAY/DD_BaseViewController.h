@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+//@class DD_BenefitInfoModel;
+
 @interface DD_BaseViewController : UIViewController
 
 -(void )hideBackNavBtn;
@@ -17,5 +19,6 @@
 -(BOOL )isVisible;
 
 -(void )pushCleaingDoneViewWithResultDic:(NSDictionary *)resultDic WithType:(NSString *)type;
+
 
 @end

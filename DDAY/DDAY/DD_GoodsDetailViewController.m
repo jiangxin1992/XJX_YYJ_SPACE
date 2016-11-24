@@ -18,6 +18,7 @@
 #import "DD_CircleDetailViewController.h"
 #import "DD_MoreCircleViewController.h"
 #import "DD_ShowRoomDetailViewController.h"
+#import "DD_BenefitListViewController.h"
 
 #import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
@@ -30,6 +31,7 @@
 #import "DD_DrawManageView.h"
 #import "DD_GoodsTabBar.h"
 #import "DD_ShareView.h"
+#import "DD_BenefitView.h"
 
 #import "DD_ShareTool.h"
 #import "DD_ColorsModel.h"
@@ -794,10 +796,13 @@ __bool(isExpanded);
     [self.view addSubview:mengban_share];
     [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
     
-    shareView=[[DD_ShareView alloc] initWithType:@"goods_detail" WithParams:@{@"detailModel":_DetailModel} WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithType:@"goods_detail" WithParams:@{@"detailModel":_DetailModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
+        }else if([type isEqualToString:@"benefit"])
+        {
+            [self showBenefitWithModel:model];
         }
     }];
 
@@ -808,6 +813,26 @@ __bool(isExpanded);
     [UIView animateWithDuration:0.5 animations:^{
         shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
     }];
+}
+-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
+{
+    DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
+        for (id obj in self.view.window.subviews) {
+            if([obj isKindOfClass:[DD_BenefitView class]])
+            {
+                DD_BenefitView *sss=(DD_BenefitView *)obj;
+                [sss removeFromSuperview];
+            }
+        }
+        if([type isEqualToString:@"close"])
+        {
+            
+        }else if([type isEqualToString:@"enter"])
+        {
+            [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+        }
+    }];
+    [self.view.window addSubview:_benefitView];
 }
 //跳转购物车视图
 -(void)PushShopView

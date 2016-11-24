@@ -8,12 +8,13 @@
 
 #import "DD_CustomViewController.h"
 
-#import "DD_BenefitDetailViewController.h"
+#import "DD_BenefitListViewController.h"
 #import "DD_UserViewController.h"
 #import "DD_CircleViewController.h"
 #import "DD_DesignerMainViewController.h"
 #import "DD_GoodsViewController.h"
 #import "DD_DDAYViewController.h"
+#import "DD_LoginViewController.h"
 
 #import "DD_TabbarItem.h"
 #import "DD_SignInAnimationView.h"
@@ -60,66 +61,7 @@ static DD_CustomViewController *tabbarController = nil;
     [self Notifications];
     
 }
--(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
-{
-    DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
-        for (id obj in self.view.window.subviews) {
-            if([obj isKindOfClass:[DD_BenefitView class]])
-            {
-                DD_BenefitView *sss=(DD_BenefitView *)obj;
-                [sss removeFromSuperview];
-            }
-        }
-        if([type isEqualToString:@"close"])
-        {
-            
-        }else if([type isEqualToString:@"enter"])
-        {
-            [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:model WithBlock:^(NSString *type) {
-                if([type isEqualToString:@"markread"])
-                {
-                    
-                }
-                
-            }] animated:YES];
-        }
-    }];
-    [self.view.window addSubview:_benefitView];
-}
--(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type
-{
-//    @"integral"
-    DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithTitle:title WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"end"])
-        {
-            for (id obj in self.view.window.subviews) {
-                if([obj isKindOfClass:[DD_SignInAnimationView class]])
-                {
-                    DD_SignInAnimationView *sss=(DD_SignInAnimationView *)obj;
-                    [sss removeFromSuperview];
-                }
-            }
-        }
-    }];
-    if([type isEqualToString:@"integral"])
-    {
-        if(![DD_UserModel haveDailyIntegral])
-        {
-            if(!_animationView.animationStarting)
-            {
-                [self.view.window addSubview:_animationView];
-                [_animationView startAnimation];
-            }
-        }
-    }else
-    {
-        if(!_animationView.animationStarting)
-        {
-            [self.view.window addSubview:_animationView];
-            [_animationView startAnimation];
-        }
-    }
-}
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -312,6 +254,41 @@ static DD_CustomViewController *tabbarController = nil;
     
 }
 #pragma mark - SomeAction
+
+-(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type
+{
+    //    @"integral"
+    DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithTitle:title WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"end"])
+        {
+            for (id obj in self.view.window.subviews) {
+                if([obj isKindOfClass:[DD_SignInAnimationView class]])
+                {
+                    DD_SignInAnimationView *sss=(DD_SignInAnimationView *)obj;
+                    [sss removeFromSuperview];
+                }
+            }
+        }
+    }];
+    if([type isEqualToString:@"integral"])
+    {
+        if(![DD_UserModel haveDailyIntegral])
+        {
+            if(!_animationView.animationStarting)
+            {
+                [self.view.window addSubview:_animationView];
+                [_animationView startAnimation];
+            }
+        }
+    }else
+    {
+        if(!_animationView.animationStarting)
+        {
+            [self.view.window addSubview:_animationView];
+            [_animationView startAnimation];
+        }
+    }
+}
 /**
  * 网络请求
  * 更新当前tabbar 用户item的状态

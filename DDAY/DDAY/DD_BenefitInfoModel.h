@@ -59,4 +59,10 @@ __string(name);
 /** 当前访问用户ID*/
 __string(userId);
 
+/** 使用范围*/
+__string(useRange);
+
+/** 满多少的描述*/
+__string(lowLimitDesc);
+
 @end

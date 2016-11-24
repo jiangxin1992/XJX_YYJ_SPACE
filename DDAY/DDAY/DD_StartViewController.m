@@ -23,10 +23,16 @@ static DD_StartViewController *startController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    DD_DDAYModel *model=[[DD_DDAYModel alloc] init];
-//    model.s_id=@"100212";
-//    NSArray *arr=@[model];
-//    JXLOG(@"s_id=%@",((DD_DDAYModel *)arr[0]).s_id);
+//    NSMutableArray* mListFontName = [[NSMutableArray alloc] init];
+//    NSArray *familyNames = [UIFont familyNames];
+//    for( NSString *familyName in familyNames ){
+//        printf( "Family: %s \n", [familyName UTF8String] );
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+//        for( NSString *fontName in fontNames ){
+//            printf( "\tFont: %s \n", [fontName UTF8String] );
+//            [mListFontName addObject:fontName];
+//        }
+//    }
     _StartView=[[DD_StartView alloc] initWithBlock:^(NSString *type) {
         if([type isEqualToString:@"remove"])
         {

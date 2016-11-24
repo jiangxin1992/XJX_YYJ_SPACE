@@ -11,10 +11,12 @@
 #import "DD_DDAYMeetViewController.h"
 #import "DD_ShopViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+#import "DD_BenefitListViewController.h"
 
 #import "DD_DDAYContainerView.h"
 #import "DD_DDAYDetailView.h"
 #import "DD_ShareView.h"
+#import "DD_BenefitView.h"
 
 #import "DD_ShareTool.h"
 #import "DD_DDayDetailModel.h"
@@ -195,10 +197,13 @@
     [self.view addSubview:mengban];
     [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
     
-    shareView=[[DD_ShareView alloc] initWithType:@"dday_detail" WithParams:@{@"detailModel":_detailModel} WithBlock:^(NSString *type) {
+    shareView=[[DD_ShareView alloc] initWithType:@"dday_detail" WithParams:@{@"detailModel":_detailModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss];
+        }else if([type isEqualToString:@"benefit"])
+        {
+            [self showBenefitWithModel:model];
         }
     }];
 
@@ -210,6 +215,26 @@
         shareView.frame=CGRectMake(0, ScreenHeight-CGRectGetHeight(shareView.frame), ScreenWidth, CGRectGetHeight(shareView.frame));
     }];
 
+}
+-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
+{
+    DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
+        for (id obj in self.view.window.subviews) {
+            if([obj isKindOfClass:[DD_BenefitView class]])
+            {
+                DD_BenefitView *sss=(DD_BenefitView *)obj;
+                [sss removeFromSuperview];
+            }
+        }
+        if([type isEqualToString:@"close"])
+        {
+            
+        }else if([type isEqualToString:@"enter"])
+        {
+            [self.navigationController pushViewController:[[DD_BenefitListViewController alloc] init] animated:YES];
+        }
+    }];
+    [self.view.window addSubview:_benefitView];
 }
 //跳转购物车视图
 -(void)PushShopView
