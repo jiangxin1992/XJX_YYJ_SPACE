@@ -8,6 +8,7 @@
 
 #import "UIImageView+Custom.h"
 
+#import "UIImageView+CornerRadius.h"
 
 @implementation UIImageView (Custom)
 

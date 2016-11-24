@@ -8,6 +8,8 @@
 
 #import "DD_CircleDetailViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_CircleShowDetailImgViewController.h"
 #import "DD_GoodsDetailViewController.h"
 #import "DD_DesignerHomePageViewController.h"

@@ -8,6 +8,8 @@
 
 #import "DD_TarentoHomePageViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_CircleDetailViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 

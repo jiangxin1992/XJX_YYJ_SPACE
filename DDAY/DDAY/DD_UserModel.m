@@ -9,6 +9,7 @@
 #import "DD_UserModel.h"
 
 #import "DD_BenefitInfoModel.h"
+#import "DD_CustomViewController.h"
 
 @implementation DD_UserModel
 

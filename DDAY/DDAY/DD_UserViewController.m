@@ -19,6 +19,7 @@
 #import "DD_ShowRoomViewController.h"
 #import "DD_IntegralViewController.h"
 #import "DD_BenefitListViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_UserItemBtn.h"
 

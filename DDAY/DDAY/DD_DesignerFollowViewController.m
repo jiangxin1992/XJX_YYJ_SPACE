@@ -8,6 +8,8 @@
 
 #import "DD_DesignerFollowViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_DesignerCell.h"
 
 #import "DD_DesignerModel.h"

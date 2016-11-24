@@ -8,6 +8,8 @@
 
 #import "DD_DesignerCircleViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_CircleListCell.h"
 #import "DD_CircleDailyListCell.h"
 

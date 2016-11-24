@@ -8,6 +8,8 @@
 
 #import "DD_ShowRoomViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_ShowRoomDetailViewController.h"
 
 #import "DD_ShowRoomSimpleCell.h"

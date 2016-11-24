@@ -8,6 +8,8 @@
 
 #import "YYAnimatedImageView+LoadImage.h"
 
+#import "UIImageView+CornerRadius.h"
+
 @implementation YYAnimatedImageView (LoadImage)
 - (void)JX_ScaleToFill_loadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius
 {

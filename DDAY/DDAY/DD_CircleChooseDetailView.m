@@ -9,6 +9,7 @@
 #import "DD_CircleChooseDetailView.h"
 
 //#import "DD_GoodsDetailViewController.h"
+#import "MJRefresh.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"

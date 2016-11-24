@@ -8,6 +8,8 @@
 
 #import "DD_CircleViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_CircleApplyViewController.h"
@@ -15,6 +17,7 @@
 #import "DD_CircleDetailViewController.h"
 #import "DD_GoodsDetailViewController.h"
 #import "DD_CirclePublishDailyViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_CircleListCell.h"
 #import "DD_CircleDailyListCell.h"
@@ -22,6 +25,7 @@
 #import "DD_CircleListModel.h"
 #import "DD_OrderItemModel.h"
 #import "DD_ItemsModel.h"
+#import "DD_NOTInformClass.h"
 
 @interface DD_CircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 

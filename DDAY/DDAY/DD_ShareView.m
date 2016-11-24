@@ -12,6 +12,8 @@
 #import <ShareSDKExtension/ShareSDK+Extension.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
+#import "DD_CustomViewController.h"
+
 #import "DD_CustomBtn.h"
 #import "DD_BenefitView.h"
 

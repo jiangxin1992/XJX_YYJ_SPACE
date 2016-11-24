@@ -63,6 +63,7 @@
 
 #import <Bugly/Bugly.h>
 
+#import "DD_NOTInformClass.h"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 @property (strong, nonatomic) UIImageView *splashView;

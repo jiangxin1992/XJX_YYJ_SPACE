@@ -11,6 +11,7 @@
 #import "DD_DesignerViewController.h"
 #import "DD_DesignerFollowViewController.h"
 #import "DD_DesignerHomePageViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_DesignerModel.h"
 

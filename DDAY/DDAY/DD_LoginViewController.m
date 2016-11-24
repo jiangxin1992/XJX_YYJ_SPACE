@@ -13,6 +13,7 @@
 #import "DD_RegisterViewController.h"
 #import "DD_forgetViewController.h"
 #import "DD_GoodsViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_LoginTextView.h"
 

@@ -8,6 +8,8 @@
 
 #import "DD_UserCollectCircleViewController.h"
 
+#import "MJRefresh.h"
+
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 #import "DD_CircleListCell.h"

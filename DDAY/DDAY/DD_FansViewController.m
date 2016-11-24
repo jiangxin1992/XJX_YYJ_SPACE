@@ -8,6 +8,8 @@
 
 #import "DD_FansViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_TarentoHomePageViewController.h"
 

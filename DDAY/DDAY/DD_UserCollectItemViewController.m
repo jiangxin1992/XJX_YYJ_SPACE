@@ -8,6 +8,8 @@
 
 #import "DD_UserCollectItemViewController.h"
 
+#import "MJRefresh.h"
+
 #import "Waterflow.h"
 #import "WaterflowCell.h"
 

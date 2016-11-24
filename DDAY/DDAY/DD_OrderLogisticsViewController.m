@@ -8,6 +8,8 @@
 
 #import "DD_OrderLogisticsViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_OrderLogisticsCell.h"
 #import "DD_OrderLogisticsHeadView.h"
 

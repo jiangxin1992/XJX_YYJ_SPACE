@@ -8,6 +8,8 @@
 
 #import "DD_ShopViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_GoodsDetailViewController.h"
 #import "DD_LoginViewController.h"
 #import "DD_ClearingDoneViewController.h"

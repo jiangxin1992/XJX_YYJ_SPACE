@@ -7,9 +7,12 @@
 //
 #import "DD_GoodsDetailViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_GoodsViewController.h"
 #import "DD_ShopViewController.h"
 #import "DD_BenefitDetailViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"

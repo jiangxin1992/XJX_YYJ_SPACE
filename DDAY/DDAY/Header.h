@@ -10,19 +10,19 @@
 #define Header_h
 
 /*************** 第三方 ***************/
+//#import "MJRefresh.h"
+//#import "ReactiveCocoa.h"
+//#import <YYKit/YYKit.h>
 #import "JX_AFNetworking.h"
 #import "Masonry.h"
 #import "MJExtension.h"
-#import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
-//#import "ReactiveCocoa.h"
-#import <YYKit/YYKit.h>
 
 /*************** Category ***************/
-#import "UIImageView+CornerRadius.h"
+//#import "UIImageView+CornerRadius.h"
+//#import "UIView+Frame.h"
 #import "YYAnimatedImageView+LoadImage.h"
 #import "NSString+extra.h"
-#import "UIView+Frame.h"
 #import "UIImageView+LoadImage.h"
 #import "UIButton+Custom.h"
 #import "UIButton+EnlargeEdge.h"
@@ -35,12 +35,12 @@
 #import "NSDate+Formatter.h"
 
 /*************** Custom ***************/
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
+//#import <Foundation/Foundation.h>
+//#import "DD_CustomViewController.h"
+//#import "DD_NOTInformClass.h"
 #import "regular.h"
 #import "DD_UserModel.h"
-#import "DD_CustomViewController.h"
-#import "DD_NOTInformClass.h"
 #import "DD_NavBtn.h"
 
 #endif /* Header_h */

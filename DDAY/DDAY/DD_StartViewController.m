@@ -8,6 +8,8 @@
 
 #import "DD_StartViewController.h"
 
+#import "DD_CustomViewController.h"
+
 #import "DD_StartView.h"
 
 @interface DD_StartViewController ()

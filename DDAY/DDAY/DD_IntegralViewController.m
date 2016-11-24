@@ -8,6 +8,8 @@
 
 #import "DD_IntegralViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_IntegralRuleViewController.h"
 
 #import "DD_IntegralCell.h"

@@ -8,13 +8,17 @@
 
 #import "DD_DDAYViewController.h"
 
+#import "MJRefresh.h"
+
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
 #import "CalendarViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_DDAYCell.h"
 
 #import "DD_DDAYModel.h"
+#import "DD_NOTInformClass.h"
 
 @interface DD_DDAYViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -240,15 +244,15 @@
 //    return [regular getViewForSection];
 //}
 //section底部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 1;
-//}
-////section底部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
+//section底部视图
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [regular getViewForSection];
+}
 
 #pragma mark - SomeAction
 /**

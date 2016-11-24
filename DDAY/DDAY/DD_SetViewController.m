@@ -14,6 +14,7 @@
 #import "DD_AboutViewController.h"
 #import "DD_AddressViewController.h"
 #import "DD_GoodsViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_SetCell.h"
 

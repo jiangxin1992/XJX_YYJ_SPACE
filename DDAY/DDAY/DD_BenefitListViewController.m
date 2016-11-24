@@ -9,6 +9,8 @@
 #import "DD_BenefitListViewController.h"
 
 //#import "DD_BenefitDetailViewController.h"
+#import "MJRefresh.h"
+
 #import "DD_BenefitRuleViewController.h"
 
 #import "DD_BenefitListCell.h"

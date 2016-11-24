@@ -10,6 +10,7 @@
 
 #import "DD_LoginViewController.h"
 #import "DD_GoodsViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_LoginTextView.h"
 

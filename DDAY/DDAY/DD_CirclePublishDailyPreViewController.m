@@ -13,6 +13,7 @@
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_TarentoHomePageViewController.h"
 #import "DD_CircleViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_CircleDetailImgView.h"
 #import "DD_CircleTagView.h"
