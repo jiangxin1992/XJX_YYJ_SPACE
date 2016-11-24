@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_ShopModel;
 
-@interface DD_ShopClearingView : UIView
+@interface DD_ShopClearingView : DD_BaseView
 
 -(instancetype)initWithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *type))block;
 

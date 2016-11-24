@@ -6,11 +6,11 @@
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_AddressModel;
 
-@interface DD_AdressTableViewCell : UITableViewCell
+@interface DD_AdressTableViewCell : DD_BaseCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
 

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_OrderDetailModel;
 
-@interface DD_OrderTabBar : UIView
+@interface DD_OrderTabBar : DD_BaseView
 
 /**
  * 初始化方法

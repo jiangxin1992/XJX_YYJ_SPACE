@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
 @class DD_GoodsCategoryModel;
 
-@interface DD_GoodsListBtn : UIButton
+@interface DD_GoodsListBtn : DD_BaseButton
 
 -(void)setFrame:(CGRect)frame WithIndex:(NSInteger )index WithCategoryModel:(DD_GoodsCategoryModel *)categoryMode WithBlock:(void (^)(NSString *type,NSInteger index))block;
 

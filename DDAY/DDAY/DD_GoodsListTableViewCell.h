@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_GoodsCategorySubModel;
 
-@interface DD_GoodsListTableViewCell : UITableViewCell
+@interface DD_GoodsListTableViewCell : DD_BaseCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 

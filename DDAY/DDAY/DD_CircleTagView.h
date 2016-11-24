@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_CircleListModel;
 
-@interface DD_CircleTagView : UIView
+@interface DD_CircleTagView : DD_BaseView
 
 -(instancetype)initWithTagArr:(NSArray *)tagArr;
 

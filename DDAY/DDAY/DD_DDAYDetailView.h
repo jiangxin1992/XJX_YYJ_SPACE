@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_DDayDetailModel;
 
-@interface DD_DDAYDetailView : UIView
+@interface DD_DDAYDetailView : DD_BaseView
 
 -(instancetype)initWithFrame:(CGRect)frame WithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block;
 

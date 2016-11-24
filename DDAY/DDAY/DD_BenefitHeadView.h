@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_BenefitHeadView : UIView
+@interface DD_BenefitHeadView : DD_BaseView
 
 -(instancetype)initWithBlock:(void (^)(NSString *type))block;
 

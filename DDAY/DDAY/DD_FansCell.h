@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_FansModel;
 
-@interface DD_FansCell : UITableViewCell
+@interface DD_FansCell : DD_BaseCell
 
 @property(nonatomic,strong)DD_FansModel *fansModel;
 

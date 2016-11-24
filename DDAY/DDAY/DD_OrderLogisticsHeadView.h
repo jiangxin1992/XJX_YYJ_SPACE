@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_OrderLogisticsManageModel;
 
-@interface DD_OrderLogisticsHeadView : UIView
+@interface DD_OrderLogisticsHeadView : DD_BaseView
 
 /**
  * 初始化

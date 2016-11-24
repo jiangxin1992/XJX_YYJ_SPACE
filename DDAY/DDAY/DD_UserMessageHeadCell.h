@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_UserMessageItemModel;
 
-@interface DD_UserMessageHeadCell : UITableViewCell
+@interface DD_UserMessageHeadCell : DD_BaseCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,DD_UserModel *user))block;
 

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 /*********** 总结视图为确认订单页面中的结算视图 ***********/
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_ClearingModel;
 
-@interface DD_ClearingView : UIView
+@interface DD_ClearingView : DD_BaseView
 
 /**
  * 初始化方法

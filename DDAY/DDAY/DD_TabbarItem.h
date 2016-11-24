@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
-@interface DD_TabbarItem : UIButton
+@interface DD_TabbarItem : DD_BaseButton
 
 __int(type);
 

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_StartView : UIView
+@interface DD_StartView : DD_BaseView
 
 -(instancetype)initWithBlock:(void (^)(NSString *type))block;
 

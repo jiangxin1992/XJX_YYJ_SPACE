@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_LoginTextView : UIView
+@interface DD_LoginTextView : DD_BaseView
 
 -(instancetype)initWithFrame:(CGRect )_frame WithImgStr:(NSString *)_imgStr WithSize:(CGSize )_size isLeft:(BOOL)_isLeft WithBlock:(void (^)(NSString *type))block;
 

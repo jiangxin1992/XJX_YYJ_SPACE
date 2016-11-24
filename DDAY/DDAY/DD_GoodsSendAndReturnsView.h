@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_GoodsItemModel;
 
-@interface DD_GoodsSendAndReturnsView : UIView
+@interface DD_GoodsSendAndReturnsView : DD_BaseView
 
 -(instancetype)initWithGoodsItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block;
 

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_DDAYModel;
 
-@interface DD_UserDDAYCell : UITableViewCell
+@interface DD_UserDDAYCell : DD_BaseCell
 
 @property (nonatomic,copy) void (^ddayblock)(NSInteger index,NSString *type);
 

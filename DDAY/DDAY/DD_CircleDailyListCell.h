@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_OrderItemModel;
 @class DD_CircleListModel;
 
-@interface DD_CircleDailyListCell : UITableViewCell
+@interface DD_CircleDailyListCell : DD_BaseCell
 
 /**
  * 初始化

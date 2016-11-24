@@ -6,11 +6,11 @@
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_ClearingOrderModel;
 
-@interface DD_ClearingTableViewCell : UITableViewCell
+@interface DD_ClearingTableViewCell : DD_BaseCell
 
 /**
  * 初始化方法

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_DrawManageView : UIView
+@interface DD_DrawManageView : DD_BaseView
 
 -(instancetype)initWithImgCount:(NSInteger )imgCount;
 

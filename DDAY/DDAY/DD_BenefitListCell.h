@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_BenefitInfoModel;
 
-@interface DD_BenefitListCell : UITableViewCell
+@interface DD_BenefitListCell : DD_BaseCell
 
 @property(nonatomic,strong)DD_BenefitInfoModel *benefitInfoModel;
 

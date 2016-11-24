@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_ShowRoomModel;
 
-@interface DD_ShowRoomCell : UITableViewCell<MKMapViewDelegate>
+@interface DD_ShowRoomCell : DD_BaseCell<MKMapViewDelegate>
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type))block;
 

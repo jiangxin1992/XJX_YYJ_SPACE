@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_CircleInfoSuggestSimpleView : UIView<UITextFieldDelegate>
+@interface DD_CircleInfoSuggestSimpleView : DD_BaseView<UITextFieldDelegate>
 
 /**
  * 初始化

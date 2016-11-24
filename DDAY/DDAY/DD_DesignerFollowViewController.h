@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import "DD_BaseViewController.h"
+#import <UIKit/UIKit.h>
 
 @class DD_DesignerModel;
 

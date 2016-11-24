@@ -118,6 +118,9 @@
 		3F41880B1CEEFF5A001BCA3D /* DD_ClearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4188061CEEFF5A001BCA3D /* DD_ClearingViewController.m */; };
 		3F41880D1CEEFF5A001BCA3D /* DD_ClearingTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4188091CEEFF5A001BCA3D /* DD_ClearingTool.m */; };
 		3F43B6BB1DE6C180006D259C /* DIN-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F43B6BA1DE6C180006D259C /* DIN-Medium.otf */; };
+		3F43B6BF1DE6E5A3006D259C /* DD_BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43B6BE1DE6E5A3006D259C /* DD_BaseCell.m */; };
+		3F43B6C31DE6E8E5006D259C /* DD_BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43B6C21DE6E8E5006D259C /* DD_BaseView.m */; };
+		3F43B6C71DE6EB91006D259C /* DD_BaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43B6C61DE6EB91006D259C /* DD_BaseButton.m */; };
 		3F4553001D2104B400524738 /* DD_TarentoHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4552FE1D2104B400524738 /* DD_TarentoHomePageViewController.m */; };
 		3F4553051D21081E00524738 /* DD_TarentoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553041D21081E00524738 /* DD_TarentoHeadView.m */; };
 		3F45530A1D21312300524738 /* DD_FansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4553081D21312300524738 /* DD_FansViewController.m */; };
@@ -665,6 +668,12 @@
 		3F4188081CEEFF5A001BCA3D /* DD_ClearingTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingTool.h; sourceTree = "<group>"; };
 		3F4188091CEEFF5A001BCA3D /* DD_ClearingTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingTool.m; sourceTree = "<group>"; };
 		3F43B6BA1DE6C180006D259C /* DIN-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.otf"; sourceTree = "<group>"; };
+		3F43B6BD1DE6E5A3006D259C /* DD_BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BaseCell.h; sourceTree = "<group>"; };
+		3F43B6BE1DE6E5A3006D259C /* DD_BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BaseCell.m; sourceTree = "<group>"; };
+		3F43B6C11DE6E8E5006D259C /* DD_BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BaseView.h; sourceTree = "<group>"; };
+		3F43B6C21DE6E8E5006D259C /* DD_BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BaseView.m; sourceTree = "<group>"; };
+		3F43B6C51DE6EB91006D259C /* DD_BaseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BaseButton.h; sourceTree = "<group>"; };
+		3F43B6C61DE6EB91006D259C /* DD_BaseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BaseButton.m; sourceTree = "<group>"; };
 		3F4552FD1D2104B400524738 /* DD_TarentoHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_TarentoHomePageViewController.h; sourceTree = "<group>"; };
 		3F4552FE1D2104B400524738 /* DD_TarentoHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_TarentoHomePageViewController.m; sourceTree = "<group>"; };
 		3F4553031D21081E00524738 /* DD_TarentoHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_TarentoHeadView.h; sourceTree = "<group>"; };
@@ -1809,6 +1818,9 @@
 			isa = PBXGroup;
 			children = (
 				3F9B8ACA1CEF54E2008EC460 /* Tabbar */,
+				3F43B6C41DE6EB7E006D259C /* baseButton */,
+				3F43B6C01DE6E8D4006D259C /* baseView */,
+				3F43B6BC1DE6E583006D259C /* baseCell */,
 				3F23A96A1CEF1A2700579A3B /* baseModel */,
 				3F4187C71CEEFECE001BCA3D /* baseController */,
 			);
@@ -1909,6 +1921,33 @@
 				3F4187FF1CEEFF48001BCA3D /* DD_ClearingTableViewCell.m */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		3F43B6BC1DE6E583006D259C /* baseCell */ = {
+			isa = PBXGroup;
+			children = (
+				3F43B6BD1DE6E5A3006D259C /* DD_BaseCell.h */,
+				3F43B6BE1DE6E5A3006D259C /* DD_BaseCell.m */,
+			);
+			name = baseCell;
+			sourceTree = "<group>";
+		};
+		3F43B6C01DE6E8D4006D259C /* baseView */ = {
+			isa = PBXGroup;
+			children = (
+				3F43B6C11DE6E8E5006D259C /* DD_BaseView.h */,
+				3F43B6C21DE6E8E5006D259C /* DD_BaseView.m */,
+			);
+			name = baseView;
+			sourceTree = "<group>";
+		};
+		3F43B6C41DE6EB7E006D259C /* baseButton */ = {
+			isa = PBXGroup;
+			children = (
+				3F43B6C51DE6EB91006D259C /* DD_BaseButton.h */,
+				3F43B6C61DE6EB91006D259C /* DD_BaseButton.m */,
+			);
+			name = baseButton;
 			sourceTree = "<group>";
 		};
 		3F4552F61D21035D00524738 /* 个人主页 */ = {
@@ -3812,6 +3851,7 @@
 				3F5306E91D129D82000C9EC0 /* DD_CircleCustomTagViewController.m in Sources */,
 				3F7647C41D77D17B00843F43 /* DD_SexViewController.m in Sources */,
 				3F6002491D49EEB5007E395F /* DrawView.m in Sources */,
+				3F43B6BF1DE6E5A3006D259C /* DD_BaseCell.m in Sources */,
 				3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */,
 				3F9B8B1B1CF01F8D008EC460 /* DD_SetPSWViewController.m in Sources */,
 				3F7C51C41CF3613C00D3565D /* DD_GoodsDesignerView.m in Sources */,
@@ -3926,6 +3966,7 @@
 				3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */,
 				3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */,
 				3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */,
+				3F43B6C31DE6E8E5006D259C /* DD_BaseView.m in Sources */,
 				3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */,
 				3F3462361D4B4A7700B96D86 /* DD_ColorBtn.m in Sources */,
 				3F4187751CEEFB24001BCA3D /* main.m in Sources */,
@@ -3943,6 +3984,7 @@
 				3F4187BB1CEEFE4B001BCA3D /* regular.m in Sources */,
 				3F9B8B291CF04923008EC460 /* DD_SetPSW_forget_ViewController.m in Sources */,
 				3F35FD0F1DE419E4008CE0E0 /* DD_BenefitView.m in Sources */,
+				3F43B6C71DE6EB91006D259C /* DD_BaseButton.m in Sources */,
 				3FFE38B51D7D090400B46768 /* DD_CircleTagView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -5,9 +5,9 @@
 //  Created by yyj on 16/6/27.
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_TarentoHeadView : UIView
+@interface DD_TarentoHeadView : DD_BaseView
 /**
  * 初始化
  */

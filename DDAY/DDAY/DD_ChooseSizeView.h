@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_ColorsModel;
 @class DD_SizeAlertModel;
 
-@interface DD_ChooseSizeView : UIView
+@interface DD_ChooseSizeView : DD_BaseView
 
 -(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithSizeAlertModel:(DD_SizeAlertModel *)sizeAlertModel WithBlock:(void (^)(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count))block;
 

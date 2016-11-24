@@ -6,13 +6,13 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_CircleInfoSuggestView;
 @class DD_CircleDailyInfoImgView;
 @class DD_CircleModel;
 
-@interface DD_CircleDailyInfoView : UIView
+@interface DD_CircleDailyInfoView : DD_BaseView
 
 /**
  * 初始化

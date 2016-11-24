@@ -6,8 +6,8 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
-@interface DD_GoodsListView : UIButton
+@interface DD_GoodsListView : DD_BaseButton
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_CircleCommentModel;
 
-@interface DD_CircleCommentCell : UITableViewCell
+@interface DD_CircleCommentCell : DD_BaseCell
 
 /**
  * 初始化

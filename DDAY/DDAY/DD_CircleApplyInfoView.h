@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_CircleChooseStyleView;
 @class DD_CircleInfoSuggestView;
@@ -19,7 +19,7 @@
 
 @class DD_CircleModel;
 
-@interface DD_CircleApplyInfoView : UIView
+@interface DD_CircleApplyInfoView : DD_BaseView
 
 /**
  * 初始化

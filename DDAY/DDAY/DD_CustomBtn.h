@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
-@interface DD_CustomBtn : UIButton
+@interface DD_CustomBtn : DD_BaseButton
 
 /**
  * 创建带title 的自定义 btn

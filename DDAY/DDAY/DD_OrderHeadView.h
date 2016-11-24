@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_OrderModel;
 
-@interface DD_OrderHeadView : UIView
+@interface DD_OrderHeadView : DD_BaseView
 
 -(instancetype)initWithFrame:(CGRect)frame WithOrderModel:(DD_OrderModel *)orderModel WithSection:(NSInteger )Section WithBlock:(void(^)(NSString *type,NSInteger Section))block;
 

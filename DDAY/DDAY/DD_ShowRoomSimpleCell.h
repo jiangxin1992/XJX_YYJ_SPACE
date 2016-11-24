@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_ShowRoomModel;
 
-@interface DD_ShowRoomSimpleCell : UITableViewCell
+@interface DD_ShowRoomSimpleCell : DD_BaseCell
 
 @property (nonatomic,strong) DD_ShowRoomModel *showRoomModel;
 

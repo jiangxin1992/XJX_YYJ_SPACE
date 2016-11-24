@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_SignInAnimationView : UIView
+@interface DD_SignInAnimationView : DD_BaseView
 
 /**
  * 创建单例

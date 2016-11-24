@@ -7,9 +7,9 @@
 //
 
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_CircleComentInputView : UIView
+@interface DD_CircleComentInputView : DD_BaseView
 
 /**
  * 初始化

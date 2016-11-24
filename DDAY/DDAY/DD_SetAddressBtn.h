@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
 @class DD_AddressModel;
 
-@interface DD_SetAddressBtn : UIButton
+@interface DD_SetAddressBtn : DD_BaseButton
 
 /**
  * 初始化方法

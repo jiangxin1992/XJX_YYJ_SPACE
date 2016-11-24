@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_OrderLogisticsModel;
 
-@interface DD_OrderLogisticsCell : UITableViewCell
+@interface DD_OrderLogisticsCell : DD_BaseCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSString *phoneNum))block;
 

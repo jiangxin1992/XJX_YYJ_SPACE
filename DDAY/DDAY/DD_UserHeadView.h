@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
-@interface DD_UserHeadView : UIButton
+@interface DD_UserHeadView : DD_BaseButton
 
 +(instancetype)buttonWithType:(UIButtonType)buttonType WithModel:(DD_UserModel *)usermodel WithBlock:(void(^)(NSString *type))block;
 

@@ -6,6 +6,8 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
+#import "DD_BaseView.h"
+
 @class DD_CircleChooseStyleView;
 @class DD_CircleInfoSuggestView;
 @class DD_CircleInfoImgView;
@@ -14,7 +16,7 @@
 
 @class DD_CircleModel;
 
-@interface DD_CircleInfoView : UIView
+@interface DD_CircleInfoView : DD_BaseView
 
 /**
  * 初始化

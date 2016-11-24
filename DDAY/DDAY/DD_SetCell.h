@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
-@interface DD_SetCell : UITableViewCell
+@interface DD_SetCell : DD_BaseCell
 
 __string(title);
 

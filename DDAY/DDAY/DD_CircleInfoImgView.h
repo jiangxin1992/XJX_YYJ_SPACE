@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_CircleModel;
 
-@interface DD_CircleInfoImgView : UIView
+@interface DD_CircleInfoImgView : DD_BaseView
 
 /**
  * 初始化

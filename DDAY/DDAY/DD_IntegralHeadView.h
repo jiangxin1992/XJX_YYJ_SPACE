@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_IntegralHeadView : UIView
+@interface DD_IntegralHeadView : DD_BaseView
 
 -(instancetype)initWithIntegralCount:(NSInteger )integralCount WithDeductionCount:(NSInteger )deductionCount WithBlock:(void(^)(NSString *type))block;
 

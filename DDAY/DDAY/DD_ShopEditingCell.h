@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
 @class DD_ShopModel;
 @class DD_ShopItemModel;
 
-@interface DD_ShopEditingCell : UITableViewCell
+@interface DD_ShopEditingCell : DD_BaseCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath,DD_ShopModel *shopModel))block;
 

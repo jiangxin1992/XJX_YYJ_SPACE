@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_BenefitInfoModel;
 
-@interface DD_headViewBenefitView : UIView
+@interface DD_headViewBenefitView : DD_BaseView
 
 -(instancetype)initWithModel:(DD_BenefitInfoModel *)benefitInfoModel WithBlock:(void (^)(NSString *type))block;
 

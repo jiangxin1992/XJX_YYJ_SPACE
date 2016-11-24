@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_ShopModel;
 
-@interface DD_ShopHeaderView : UIView
+@interface DD_ShopHeaderView : DD_BaseView
 
 -(instancetype)initWithFrame:(CGRect)frame WithSection:(NSInteger )section WithShopModel:(DD_ShopModel *)shopModel WithBlock:(void (^)(NSString *type,NSInteger section))block;
 

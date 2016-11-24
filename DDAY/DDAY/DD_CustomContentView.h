@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_CustomContentView : UIView
+@interface DD_CustomContentView : DD_BaseView
 
 -(instancetype)initCustomViewWithTitle:(NSString *)title WithImg:(NSString *)img;
 

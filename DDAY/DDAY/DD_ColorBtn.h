@@ -6,8 +6,8 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseButton.h"
 
-@interface DD_ColorBtn : UIButton
+@interface DD_ColorBtn : DD_BaseButton
 
 @end

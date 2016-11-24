@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_CircleListModel;
 @class DD_OrderItemModel;
 
-@interface DD_GoodsCircleView : UIView
+@interface DD_GoodsCircleView : DD_BaseView
 
 -(instancetype)initWithGoodsItem:(DD_CircleListModel *)circle WithBlock:(void (^)(NSString *type,DD_OrderItemModel *item))block;
 

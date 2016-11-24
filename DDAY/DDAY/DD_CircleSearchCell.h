@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
-@interface DD_CircleSearchCell : UITableViewCell
+@interface DD_CircleSearchCell : DD_BaseCell
 
 __string(content);
 

@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_ShopItemModel;
 
-@interface DD_ShopAlertNumView : UIView
+@interface DD_ShopAlertNumView : DD_BaseView
 
 -(instancetype)initWithSizeArr:(NSArray *)sizeArr WithItem:(DD_ShopItemModel *)ItemModel WithBlock:(void (^)(NSString *type,NSInteger count))block;
 

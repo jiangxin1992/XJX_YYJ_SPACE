@@ -6,11 +6,11 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_GoodsDetailModel;
 
-@interface DD_GoodsDesignerView : UIView
+@interface DD_GoodsDesignerView : DD_BaseView
 
 -(instancetype)initWithGoodsDetailModel:(DD_GoodsDetailModel *)model WithBlock:(void (^)(NSString *type,NSInteger index))block;
 

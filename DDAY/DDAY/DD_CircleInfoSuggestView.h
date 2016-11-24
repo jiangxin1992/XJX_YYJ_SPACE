@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
-@interface DD_CircleInfoSuggestView : UIView
+@interface DD_CircleInfoSuggestView : DD_BaseView
 
 /**
  * 初始化

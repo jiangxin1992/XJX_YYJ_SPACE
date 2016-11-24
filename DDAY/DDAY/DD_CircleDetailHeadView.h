@@ -6,12 +6,12 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseView.h"
 
 @class DD_OrderItemModel;
 @class DD_CircleListModel;
 
-@interface DD_CircleDetailHeadView : UIView
+@interface DD_CircleDetailHeadView : DD_BaseView
 
 /**
  * 初始化

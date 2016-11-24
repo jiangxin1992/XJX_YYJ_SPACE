@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DD_BaseCell.h"
 
-@interface DD_UserCell : UITableViewCell
+@interface DD_UserCell : DD_BaseCell
 
 -(id)initWithImageStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
