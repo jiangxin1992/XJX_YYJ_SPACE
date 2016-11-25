@@ -195,51 +195,125 @@
     
 }
 /**
- * 是否切换到开发
+ * 环境切换
+ * 0、生产 1、展示 2、本地
  */
--(void)changeDevState
+-(void)changeDevState:(NSInteger )State
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    if(![_default objectForKey:@"devDNS"])
+    id _devState=[_default objectForKey:@"devState"];
+    if(_devState)
     {
-        [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
+        //曾经改过
+        if([_devState integerValue]!=State)
+        {
+            if(State==0)
             {
-                NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-                [_default setObject:[NSNumber numberWithBool:YES] forKey:@"isdev"];
-                [_default setObject:[data objectForKey:@"localAddress"] forKey:@"devDNS"];
+//                0、生产
+                [_default setObject:@0 forKey:@"devState"];
+                [_default setObject:nil forKey:@"devDNS"];
                 [_phoneTextfiled resignFirstResponder];
-                [self presentViewController:[regular alertTitle_Simple:@"已成功切换到开发环境"] animated:YES completion:nil];
-            }else
+                [self presentViewController:[regular alertTitle_Simple:@"已成功切换到生产"] animated:YES completion:nil];
+            }else if(State==1)
             {
-                [self presentViewController:successAlert animated:YES completion:nil];
+//                1、展示
+                [_default setObject:@1 forKey:@"devState"];
+                [_default setObject:@"http://show.ycospace.com:8051/dday-web/service/" forKey:@"devDNS"];
+                [_phoneTextfiled resignFirstResponder];
+                [self presentViewController:[regular alertTitle_Simple:@"已成功切换到展示"] animated:YES completion:nil];
+            }else if(State==2)
+            {
+//                2、本地
+                [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        [_default setObject:@2 forKey:@"devState"];
+                        [_default setObject:[data objectForKey:@"localAddress"] forKey:@"devDNS"];
+                        [_phoneTextfiled resignFirstResponder];
+                        [self presentViewController:[regular alertTitle_Simple:@"已成功切换到本地"] animated:YES completion:nil];
+                    }else
+                    {
+                        [self presentViewController:successAlert animated:YES completion:nil];
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                    [self presentViewController:failureAlert animated:YES completion:nil];
+                }];
             }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
-            [self presentViewController:failureAlert animated:YES completion:nil];
-        }];
+        }else
+        {
+            if(State==0)
+            {
+                [self presentViewController:[regular alertTitle_Simple:@"现在已经是生产了"] animated:YES completion:nil];
+            }else if(State==1)
+            {
+                [self presentViewController:[regular alertTitle_Simple:@"现在已经是展示了"] animated:YES completion:nil];
+            }else if(State==2)
+            {
+                [self presentViewController:[regular alertTitle_Simple:@"现在已经是本地了"] animated:YES completion:nil];
+            }
+        }
     }else
     {
-        //标记为生产，并且删除生产的dns
-        NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-        [_default setObject:[NSNumber numberWithBool:NO] forKey:@"isdev"];
-        [_default setObject:nil forKey:@"devDNS"];
-        [_phoneTextfiled resignFirstResponder];
-        [self presentViewController:[regular alertTitle_Simple:@"已成功切换到生产环境"] animated:YES completion:nil];
-        
+        if(State==0)
+        {
+            //                0、生产
+            [_default setObject:@0 forKey:@"devState"];
+            [_default setObject:nil forKey:@"devDNS"];
+            [_phoneTextfiled resignFirstResponder];
+            [self presentViewController:[regular alertTitle_Simple:@"已成功切换到生产"] animated:YES completion:nil];
+        }else if(State==1)
+        {
+            //                1、展示
+            [_default setObject:@1 forKey:@"devState"];
+            [_default setObject:@"http://show.ycospace.com:8051/dday-web/service/" forKey:@"devDNS"];
+            [_phoneTextfiled resignFirstResponder];
+            [self presentViewController:[regular alertTitle_Simple:@"已成功切换到展示"] animated:YES completion:nil];
+        }else if(State==2)
+        {
+            //                2、本地
+            [[JX_AFNetworking alloc] GET:@"user/getLocalAddress.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                if(success)
+                {
+                    [_default setObject:@2 forKey:@"devState"];
+                    [_default setObject:[data objectForKey:@"localAddress"] forKey:@"devDNS"];
+                    [_phoneTextfiled resignFirstResponder];
+                    [self presentViewController:[regular alertTitle_Simple:@"已成功切换到本地"] animated:YES completion:nil];
+                }else
+                {
+                    [self presentViewController:successAlert animated:YES completion:nil];
+                }
+            } failure:^(NSError *error, UIAlertController *failureAlert) {
+                [self presentViewController:failureAlert animated:YES completion:nil];
+            }];
+        }
     }
+    
     
 }
 /**
  * 登录验证
+ * 0、生产 1、展示 2、本地
  */
 -(void)loginAction
 {
     if([_phoneTextfiled.text isEqualToString:@"145000568"])
     {
-        //切换键盘
+        //生产
         _phoneTextfiled.text=@"";
         [_phoneTextfiled resignFirstResponder];
-        [self changeDevState];
+        [self changeDevState:0];
+    }else if([_phoneTextfiled.text isEqualToString:@"145000569"])
+    {
+        //展示
+        _phoneTextfiled.text=@"";
+        [_phoneTextfiled resignFirstResponder];
+        [self changeDevState:1];
+    }else if([_phoneTextfiled.text isEqualToString:@"145000570"])
+    {
+        //本地
+        _phoneTextfiled.text=@"";
+        [_phoneTextfiled resignFirstResponder];
+        [self changeDevState:2];
     }else
     {
         if([NSString isNilOrEmpty:_phoneTextfiled.text]||[NSString isNilOrEmpty:_PSWTextfiled.text])

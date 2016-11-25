@@ -21,7 +21,6 @@
 }
 -(void)NETWorkingData:(id )responseObject WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
 {
-    
     NSDictionary *dict=responseObject;
     NSDictionary *_data=[dict objectForKey:@"data"];
     if([[dict objectForKey:@"status"] integerValue]==100)

@@ -44,26 +44,38 @@ static regular *_t = nil;
         }];
     }
 }
+// * 0、生产 1、展示 2、本地
 +(NSString *)getDNS
 {
+    NSString *_ProDNS=@"http://app.ycospace.com/";
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
-    if(![_default objectForKey:@"isdev"])
+    id _devState=[_default objectForKey:@"devState"];
+    if(!_devState)
     {
         return DNS;
     }else{
-        if([_default objectForKey:@"devDNS"])
+        NSString *devDNS=[_default objectForKey:@"devDNS"];
+        if(devDNS)
         {
-            if([[_default objectForKey:@"devDNS"] isKindOfClass:[NSString class]])
+            if([_devState integerValue]==0)
             {
-//                JXLOG(@"%@",[_default objectForKey:@"devDNS"]);
-                return [_default objectForKey:@"devDNS"];
+                //            0、生产
+                return _ProDNS;
+            }else if([_devState integerValue]==1)
+            {
+                //            1、展示
+                return devDNS;
+            }else if([_devState integerValue]==2)
+            {
+                //            2、本地
+                return devDNS;
             }else
             {
-                return DNS;
+                return _ProDNS;
             }
         }else
         {
-            return DNS;
+            return _ProDNS;
         }
     }
 }
