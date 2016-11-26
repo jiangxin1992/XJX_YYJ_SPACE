@@ -307,7 +307,8 @@
         userNameLabel.text=_listModel.userName;
         if([NSString isNilOrEmpty:_listModel.career])
         {
-            userCareerLabel.text=@"貌似来自火星";
+//            userCareerLabel.text=@"貌似来自火星";
+            userCareerLabel.text=@"";
         }else
         {
             userCareerLabel.text=_listModel.career;

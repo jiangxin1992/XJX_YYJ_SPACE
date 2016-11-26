@@ -8,13 +8,15 @@
 
 #import "DD_DesignerIntroViewController.h"
 
+#import <WebKit/WebKit.h>
+
 @interface DD_DesignerIntroViewController ()<UIWebViewDelegate>
 
 @end
 
 @implementation DD_DesignerIntroViewController
 {
-    UIWebView *_webView;
+    WKWebView *_webView;
     UIScrollView *_scrollView;
 }
 #pragma mark - 初始化
@@ -57,13 +59,13 @@
 }
 -(void)CreateWebView
 {
-    _webView=[[UIWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kNavHeight-145-28)];
+    _webView=[[WKWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kNavHeight-145-28)];
     [_scrollView addSubview:_webView];
-    _webView.userInteractionEnabled=YES;
-    _webView.backgroundColor =  _define_clear_color;
-    _webView.delegate=self;
-    _webView.opaque = NO;
-    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+//    _webView.userInteractionEnabled=YES;
+//    _webView.backgroundColor =  _define_clear_color;
+//    _webView.delegate=self;
+//    _webView.opaque = NO;
+//    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     
 }
 #pragma mark - RequestData

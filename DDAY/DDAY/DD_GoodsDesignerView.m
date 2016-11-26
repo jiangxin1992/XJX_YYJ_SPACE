@@ -96,24 +96,6 @@
     }];
     [_brandImge JX_ScaleAspectFit_loadImageUrlStr:_detailModel.designer.brandIcon WithSize:200 placeHolderImageName:nil radius:0];
     
-    UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
-    [upView addSubview:userName];
-    [userName mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.top.mas_equalTo(_headImge);
-        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
-    }];
-    [userName sizeToFit];
-    
-    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
-    [upView addSubview:brandName];
-    [brandName mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.bottom.mas_equalTo(_headImge);
-        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
-    }];
-    [brandName sizeToFit];
-    
     guanzhu=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"关注" WithNormalColor:_define_white_color WithSelectedTitle:@"已关注" WithSelectedColor:_define_black_color];
     [upView addSubview:guanzhu];
     [regular setBorder:guanzhu];
@@ -124,6 +106,28 @@
         make.height.mas_equalTo(25);
         make.centerY.mas_equalTo(upView);
     }];
+    
+    UILabel *userName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.designerName WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
+    [upView addSubview:userName];
+    [userName mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.top.mas_equalTo(_headImge);
+        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
+        make.right.mas_equalTo(guanzhu.mas_left).with.offset(0);
+    }];
+    [userName sizeToFit];
+    
+    UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    [upView addSubview:brandName];
+    [brandName mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.bottom.mas_equalTo(_headImge);
+        make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
+        make.right.mas_equalTo(guanzhu.mas_left).with.offset(0);
+    }];
+    [brandName sizeToFit];
+    
+    
     [self UpdateFollowBtnState];
 }
 

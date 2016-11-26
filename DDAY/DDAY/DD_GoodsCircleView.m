@@ -251,7 +251,8 @@
     userNameLabel.text=_circle.userName;
     if([NSString isNilOrEmpty:_circle.career])
     {
-        userCareerLabel.text=@"貌似来自火星";
+//        userCareerLabel.text=@"貌似来自火星";
+        userCareerLabel.text=@"";
     }else
     {
         userCareerLabel.text=_circle.career;

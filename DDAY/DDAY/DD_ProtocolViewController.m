@@ -8,13 +8,15 @@
 
 #import "DD_ProtocolViewController.h"
 
+#import <WebKit/WebKit.h>
+
 @interface DD_ProtocolViewController ()
 
 @end
 
 @implementation DD_ProtocolViewController
 {
-    UIWebView *_webview;
+    WKWebView *_webview;
 }
 
 - (void)viewDidLoad {
@@ -39,14 +41,14 @@
         make.centerX.mas_equalTo(self.view);
     }];
     
-    _webview=[[UIWebView alloc] init];
+    _webview=[[WKWebView alloc] init];
     [self.view addSubview:_webview];
-    _webview.userInteractionEnabled=YES;
-    _webview.backgroundColor =  _define_clear_color;
-    _webview.opaque = NO;
-    _webview.dataDetectorTypes = UIDataDetectorTypeNone;
+//    _webview.userInteractionEnabled=YES;
+//    _webview.backgroundColor =  _define_clear_color;
+//    _webview.opaque = NO;
+//    _webview.dataDetectorTypes = UIDataDetectorTypeNone;
     [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],@"user/getProtocolPage.htm"]]]];
-    [_webview sizeToFit];
+//    [_webview sizeToFit];
     
     [_webview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(kNavHeight);

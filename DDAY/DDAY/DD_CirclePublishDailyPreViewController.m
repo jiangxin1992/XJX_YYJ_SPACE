@@ -310,7 +310,8 @@
     userNameLabel.text=_usermodel.nickName;
     if([NSString isNilOrEmpty:_usermodel.career])
     {
-        userCareerLabel.text=@"貌似来自火星";
+//        userCareerLabel.text=@"貌似来自火星";
+        userCareerLabel.text=@"";
     }else
     {
         userCareerLabel.text=_usermodel.career;

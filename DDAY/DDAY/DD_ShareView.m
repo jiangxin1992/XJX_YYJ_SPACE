@@ -360,7 +360,12 @@
 //                    alertView.delegate=self;
 //                    [alertView show];
 //                }
-                [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享已取消" WithType:@"share"];
+//
+                if(platformType!=SSDKPlatformSubTypeWechatSession&&platformType!=SSDKPlatformSubTypeQQFriend)
+                {
+                    [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享已取消" WithType:@"share"];
+                }
+                
                 break;
             }
             default:

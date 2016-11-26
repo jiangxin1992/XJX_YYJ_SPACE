@@ -8,13 +8,14 @@
 
 #import "DD_IntegralRuleViewController.h"
 
-@interface DD_IntegralRuleViewController ()
+#import <WebKit/WebKit.h>
 
+@interface DD_IntegralRuleViewController ()
 @end
 
 @implementation DD_IntegralRuleViewController
 {
-    UIWebView *_webView;
+    WKWebView *_webView;
 }
 
 - (void)viewDidLoad {
@@ -42,12 +43,13 @@
 }
 -(void)CreateWebView
 {
-    _webView=[[UIWebView alloc] init];
+    _webView=[[WKWebView alloc] init];
     [self.view addSubview:_webView];
-    _webView.userInteractionEnabled=YES;
-    _webView.backgroundColor =  _define_clear_color;
-    _webView.opaque = NO;
-    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    _webView.allowsBackForwardNavigationGestures=NO;
+//    _webView.userInteractionEnabled=YES;
+//    _webView.backgroundColor =  _define_clear_color;
+//    _webView.opaque = NO;
+//    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
         make.bottom.mas_equalTo(ktabbarHeight);
@@ -63,6 +65,7 @@
             if([data objectForKey:@"ruleLink"])
             {
                 [_webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[data objectForKey:@"ruleLink"]]]];
+//                [_webView loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"http://www.baidu.com"]]];
                 [_webView sizeToFit];
             }
             
