@@ -90,7 +90,6 @@
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
-    //    titleLabel.backgroundColor=[UIColor yellowColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);
@@ -152,7 +151,6 @@
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
-//        titleLabel.backgroundColor=[UIColor yellowColor];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);

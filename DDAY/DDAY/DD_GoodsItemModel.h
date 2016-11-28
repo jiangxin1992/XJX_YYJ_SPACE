@@ -83,10 +83,10 @@ __long(saleEndTime);
 /** 寄送与退换*/
 __string(deliverDeclaration);
 
-/** 面料*/
+/** 材质*/
 __string(material);
 
-/** 洗涤说明*/
+/** 护理说明*/
 __string(washCare);
 
 /** 商品对应的系列信息*/

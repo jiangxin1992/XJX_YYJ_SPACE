@@ -223,7 +223,6 @@
 {
     _type_label=[UILabel getLabelWithAlignment:0 WithTitle:@"款式信息" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [downView addSubview:_type_label];
-//    _type_label.backgroundColor=[UIColor redColor];
     [_type_label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(ver_edge);
         make.left.mas_equalTo(downView).with.offset(kEdge);

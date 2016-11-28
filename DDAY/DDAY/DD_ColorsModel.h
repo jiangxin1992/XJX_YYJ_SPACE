@@ -44,4 +44,7 @@ __string(sizeBriefPicHeight);
 /** 尺寸图宽度*/
 __string(sizeBriefPicWidth);
 
+/** 分享链接*/
+__string(appUrl);
+
 @end

@@ -22,6 +22,9 @@
  */
 -(DD_ColorsModel *)getColorsModel;
 
+/** 获取分享链接*/
+-(NSString *)getAppUrl;
+
 /**
  * 获取当前单品价格
  */
@@ -52,9 +55,6 @@ __bool(shoucang);
 /** 用户是否关注*/
 __bool(guanzhu);
 
-/** 分享网页url*/
-__string(appUrl);
-
 /** app下载地址*/
 __string(downLoadUrl);
 
@@ -63,5 +63,7 @@ __array(physicalStore);
 
 /** 相似单品*/
 __array(similarItems);
+
+
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_ImageModel.h"
+
 @interface DD_ShowRoomModel : NSObject
 /**
  * 获取体验店model
@@ -18,10 +20,11 @@
  */
 +(NSArray *)getShowRoomModelArr:(NSArray *)arr;
 
-/**
- * 店面展示图片数组
- */
+/** 店面展示图片数组*/
 __array(pics);
+
+/** 列表图片*/
+@property (nonatomic,strong)DD_ImageModel *listImg;
 
 /** 店名*/
 __string(storeName);

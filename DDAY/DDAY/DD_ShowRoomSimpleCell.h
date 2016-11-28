@@ -14,8 +14,7 @@
 
 @property (nonatomic,strong) DD_ShowRoomModel *showRoomModel;
 
-+ (CGFloat)heightWithModel:(DD_ShowRoomModel *)model;
-
-__label(address);
+/** 是否有多个体验店（区别为黑线）*/
+__bool(showDownLine);
 
 @end

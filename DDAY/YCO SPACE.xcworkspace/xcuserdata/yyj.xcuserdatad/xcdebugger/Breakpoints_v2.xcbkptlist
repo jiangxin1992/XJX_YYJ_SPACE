@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_ShareView.m"
-            timestampString = "501867374.862379"
+            filePath = "DDAY/DD_GoodsDetailViewController.m"
+            timestampString = "502013802.085487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "-ShareActionWithType:"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "-RequestData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

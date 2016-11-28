@@ -67,7 +67,7 @@ __bool(isExpanded);
     DD_GoodsInformView *_InformView;//信息视图
     DD_GoodsDesignerView *_DesignerView;//设计师系列视图
     DD_GoodsCircleView *_CircleView;//搭配师说
-    DD_GoodsFabricView *_FabricView;//面料与洗涤
+    DD_GoodsFabricView *_FabricView;//材质与护理
     DD_GoodsSendAndReturnsView *_ReturnView;//寄送与退换
     DD_GoodsK_POINTView *_K_PonitView;//YCO SPACE 体验店
     DD_GoodsSimilarView *_SimilarView;//相似款式
@@ -445,7 +445,7 @@ __bool(isExpanded);
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"item/queryItemDetailByColorCode.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_model.g_id,@"colorCode":_model.colorCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"item/v1_0_7/queryItemDetailByColorCode.do" parameters:@{@"token":[DD_UserModel getToken],@"itemId":_model.g_id,@"colorCode":_model.colorCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             _DetailModel=[DD_GoodsDetailModel getGoodsDetailModel:data];

@@ -27,7 +27,8 @@
     UIView *container;
     MKMapView *_mapView;
     UIView *mengban;
-    UIScrollView *scrollview_pic;
+    UIButton *contactPhoneBtn;
+
 }
 
 - (void)viewDidLoad {
@@ -127,7 +128,7 @@
         make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
     }];
     
-    UIButton *contactPhoneBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"联系方式：%@",_showRoomModel.contactPhone] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
+    contactPhoneBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"联系方式：%@",_showRoomModel.contactPhone] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     [container addSubview:contactPhoneBtn];
     [contactPhoneBtn addTarget:self action:@selector(phoneAction) forControlEvents:UIControlEventTouchUpInside];
     [contactPhoneBtn setEnlargeEdgeWithTop:15 right:0 bottom:15 left:0];
@@ -139,40 +140,15 @@
         make.height.mas_equalTo(_height);
     }];
     
-    scrollview_pic=[[UIScrollView alloc] init];
-    [container addSubview:scrollview_pic];
-    scrollview_pic.alwaysBounceHorizontal=YES;
-    scrollview_pic.alwaysBounceVertical=NO;
-    scrollview_pic.showsHorizontalScrollIndicator=NO;
-    scrollview_pic.scrollEnabled=YES;
-    [scrollview_pic mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(8);
-        make.height.mas_equalTo(202);
-    }];
-    
-    CGFloat _x_p=0;
-    for (int i=0; i<_showRoomModel.pics.count; i++) {
-        DD_ImageModel *imgModel=_showRoomModel.pics[i];
-        UIImageView *img=[UIImageView getCustomImg];
-        [scrollview_pic addSubview:img];
-        [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-        CGFloat _width=floor(([imgModel.width floatValue]/[imgModel.height floatValue])*202);
-        img.frame=CGRectMake(_x_p, 0, _width, 202);
-        _x_p+=22+_width;
-    }
-    scrollview_pic.contentSize=CGSizeMake(_x_p-22, 202);
-    
     _mapView=[[MKMapView alloc] init];
     [container addSubview:_mapView];
     [_mapView setShowsUserLocation:YES];
     _mapView.delegate = self;
     [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(scrollview_pic.mas_bottom).with.offset(22);
+        make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(18);
         make.left.mas_equalTo(kEdge);
-        make.height.mas_equalTo(202);
         make.right.mas_equalTo(-kEdge);
+        make.height.mas_equalTo(202);
     }];
     
     UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"User_location" WithSelectedImageStr:@"User_location"];
@@ -186,10 +162,32 @@
     
     [self locationAction];
     
+    UIImageView *lastView=nil;
+    for (int i=0; i<_showRoomModel.pics.count; i++) {
+        DD_ImageModel *imgModel=_showRoomModel.pics[i];
+        UIImageView *img=[UIImageView getCustomImg];
+        [container addSubview:img];
+        [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
+        CGFloat _height=floor(([imgModel.height floatValue]/[imgModel.width floatValue])*(ScreenWidth-2*kEdge));
+        [img mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(!lastView)
+            {
+                make.top.mas_equalTo(_mapView.mas_bottom).with.offset(15);
+            }else
+            {
+                make.top.mas_equalTo(lastView.mas_bottom).with.offset(15);
+            }
+            make.left.mas_equalTo(kEdge);
+            make.right.mas_equalTo(-kEdge);
+            make.height.mas_equalTo(_height);
+
+        }];
+        lastView=img;
+    }
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
         // 让scrollview的contentSize随着内容的增多而变化
-        make.bottom.mas_equalTo(_mapView.mas_bottom).with.offset(40);
+        make.bottom.mas_equalTo(lastView.mas_bottom).with.offset(60);
     }];
 }
 -(void)CreateTabbar
@@ -253,7 +251,7 @@
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         [container addSubview:_mapView];
         [_mapView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(scrollview_pic.mas_bottom).with.offset(22);
+            make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(18);
             make.left.mas_equalTo(kEdge);
             make.height.mas_equalTo(202);
             make.right.mas_equalTo(-kEdge);

@@ -253,6 +253,16 @@
     {
 //        userCareerLabel.text=@"貌似来自火星";
         userCareerLabel.text=@"";
+        [userNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(userHeadImg);
+            make.right.mas_equalTo(-kEdge);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+        }];
+        [userCareerLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
+            make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+            make.height.mas_equalTo(0);
+        }];
     }else
     {
         userCareerLabel.text=_circle.career;

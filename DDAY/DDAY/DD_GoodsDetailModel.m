@@ -38,6 +38,18 @@
     return nil;
 }
 
+-(NSString *)getAppUrl
+{
+    NSString *_colorId=self.item.colorId;
+    for (DD_ColorsModel *_color in self.item.colors) {
+        if([_color.colorId isEqualToString:_colorId])
+        {
+            return _color.appUrl;
+        }
+    }
+    return nil;
+}
+
 -(NSString *)getPrice
 {
     long _nowTime=[NSDate nowTime];

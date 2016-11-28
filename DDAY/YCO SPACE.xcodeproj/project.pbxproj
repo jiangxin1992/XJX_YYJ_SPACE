@@ -229,7 +229,6 @@
 		3F82E78D1D81417100EA4950 /* DD_UserMessageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F82E78C1D81417100EA4950 /* DD_UserMessageTool.m */; };
 		3F83EEA21D38916A0051C89E /* UILabel+DD_Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */; };
 		3F85BACA1D66AFB300820018 /* DD_ShowRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */; };
-		3F85BACD1D66D12500820018 /* DD_ShowRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */; };
 		3F85BAD11D66D1FA00820018 /* DD_ShowRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAD01D66D1FA00820018 /* DD_ShowRoomModel.m */; };
 		3F85BAD41D66ED3C00820018 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85BAD31D66ED3C00820018 /* MyPoint.m */; };
 		3F85E8161D5186A40077F848 /* DD_SizeAlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F85E8151D5186A40077F848 /* DD_SizeAlertModel.m */; };
@@ -880,8 +879,6 @@
 		3F83EEA11D38916A0051C89E /* UILabel+DD_Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DD_Custom.m"; sourceTree = "<group>"; };
 		3F85BAC81D66AFB300820018 /* DD_ShowRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomViewController.h; sourceTree = "<group>"; };
 		3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomViewController.m; sourceTree = "<group>"; };
-		3F85BACB1D66D12500820018 /* DD_ShowRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomCell.h; sourceTree = "<group>"; };
-		3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomCell.m; sourceTree = "<group>"; };
 		3F85BACF1D66D1FA00820018 /* DD_ShowRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShowRoomModel.h; sourceTree = "<group>"; };
 		3F85BAD01D66D1FA00820018 /* DD_ShowRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShowRoomModel.m; sourceTree = "<group>"; };
 		3F85BAD21D66ED3C00820018 /* MyPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
@@ -1256,8 +1253,6 @@
 			children = (
 				3F17B81D1D863B4400209675 /* DD_ShowRoomSimpleCell.h */,
 				3F17B81E1D863B4400209675 /* DD_ShowRoomSimpleCell.m */,
-				3F85BACB1D66D12500820018 /* DD_ShowRoomCell.h */,
-				3F85BACC1D66D12500820018 /* DD_ShowRoomCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -3915,7 +3910,6 @@
 				3F50034F1D9E37B0001551C1 /* DD_StartView.m in Sources */,
 				3FA8367E1D051E1D006D2919 /* DD_OrderCell.m in Sources */,
 				3F4904E51D18E12E009F4CD3 /* DD_CircleListImgView.m in Sources */,
-				3F85BACD1D66D12500820018 /* DD_ShowRoomCell.m in Sources */,
 				3F4904DC1D18D4C4009F4CD3 /* DD_CircleListModel.m in Sources */,
 				3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */,
 				3F17B8251D86583300209675 /* DD_ShowRoomDetailViewController.m in Sources */,

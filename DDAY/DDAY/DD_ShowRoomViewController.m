@@ -117,9 +117,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DD_ShowRoomModel *model=_dataArr[indexPath.section];
-    CGFloat height=[DD_ShowRoomSimpleCell heightWithModel:model];
-    return height;
+
+    return 101;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -152,6 +151,7 @@
 
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.showRoomModel=_dataArr[indexPath.section];
+    cell.showDownLine=_dataArr.count>1?YES:NO;
     return cell;
     
 }

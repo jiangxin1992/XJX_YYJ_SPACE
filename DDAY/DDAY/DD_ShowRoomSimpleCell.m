@@ -13,12 +13,13 @@
 @implementation DD_ShowRoomSimpleCell
 {
     UILabel *_storeName;
-    
+    UILabel *_address;
+    UIImageView *_imageview;
+    UIView *_downLine;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -47,10 +48,21 @@
         make.width.height.mas_equalTo(23);
     }];
     
+    _imageview=[UIImageView getCustomImg];
+    [self.contentView addSubview:_imageview];
+    _imageview.contentMode=2;
+    [regular setZeroBorder:_imageview];
+    [_imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kEdge);
+        make.top.mas_equalTo(20);
+        make.height.width.mas_equalTo(60);
+    }];
+    
     _storeName=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_storeName];
     [_storeName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_head.mas_right).with.offset(10);
+        make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
         make.bottom.mas_equalTo(_head);
     }];
     [_storeName sizeToFit];
@@ -60,14 +72,15 @@
     _address.numberOfLines=1;
     [_address mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.right.mas_equalTo(-kEdge);
+        make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
         make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
     }];
     [_address sizeToFit];
     
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-    [self.contentView addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+    _downLine=[UIView getCustomViewWithColor:_define_black_color];
+    [self.contentView addSubview:_downLine];
+    _downLine.hidden=YES;
+    [_downLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
@@ -80,15 +93,12 @@
     _showRoomModel=showRoomModel;
     _storeName.text=_showRoomModel.storeName;
     _address.text=_showRoomModel.address;
+    [_imageview JX_ScaleAspectFill_loadImageUrlStr:_showRoomModel.listImg.pic WithSize:400 placeHolderImageName:nil radius:0];
 }
-
-+ (CGFloat)heightWithModel:(DD_ShowRoomModel *)model{
-    DD_ShowRoomSimpleCell *cell = [[DD_ShowRoomSimpleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-    cell.showRoomModel=model;
-    [cell.contentView layoutIfNeeded];
-    CGRect frame =  cell.address.frame;
-    CGFloat _height=frame.origin.y + frame.size.height+25;
-    return _height;
+-(void)setShowDownLine:(BOOL)showDownLine
+{
+    _showDownLine=showDownLine;
+    _downLine.hidden=!_showDownLine;
 }
 
 @end

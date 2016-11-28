@@ -96,14 +96,26 @@
         [backView addSubview:_head];
         [_head mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(5);
             make.width.height.mas_equalTo(23);
         }];
+        
+        UIImageView *_imageview=[UIImageView getCustomImg];
+        [backView addSubview:_imageview];
+        _imageview.contentMode=2;
+        [regular setZeroBorder:_imageview];
+        [_imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-kEdge);
+            make.top.mas_equalTo(0);
+            make.height.width.mas_equalTo(60);
+        }];
+        [_imageview JX_ScaleAspectFill_loadImageUrlStr:model.listImg.pic WithSize:400 placeHolderImageName:nil radius:0];
         
         UILabel *storeName=[UILabel getLabelWithAlignment:0 WithTitle:model.storeName WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:storeName];
         [storeName mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_head.mas_right).with.offset(10);
+            make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
             make.centerY.mas_equalTo(_head);
         }];
         [storeName sizeToFit];
@@ -113,7 +125,7 @@
         address.numberOfLines=1;
         [address mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
-            make.right.mas_equalTo(-kEdge);
+            make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
             make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
             make.bottom.mas_equalTo(backView.mas_bottom).with.offset(0);
         }];

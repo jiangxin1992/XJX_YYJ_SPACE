@@ -62,7 +62,7 @@
     }];
     
     
-    UILabel *fabric_title=[UILabel getLabelWithAlignment:0 WithTitle:@"面料" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    UILabel *fabric_title=[UILabel getLabelWithAlignment:0 WithTitle:@"材质" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:fabric_title];
     [viewArr addObject:fabric_title];
     [fabric_title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,7 +85,7 @@
     
 
     
-    UILabel *washing_title=[UILabel getLabelWithAlignment:0 WithTitle:@"洗涤说明" WithFont:15.0f WithTextColor:nil WithSpacing:0];
+    UILabel *washing_title=[UILabel getLabelWithAlignment:0 WithTitle:@"护理说明" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:washing_title];
     [viewArr addObject:washing_title];
     [washing_title mas_makeConstraints:^(MASConstraintMaker *make) {

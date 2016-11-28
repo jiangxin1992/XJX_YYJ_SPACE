@@ -70,6 +70,7 @@
 }
 -(void)PrepareData
 {
+    _isNameCenterFit=NO;
     
     goods1=[UIImageView getCustomImg];
     goods2=[UIImageView getCustomImg];
@@ -112,7 +113,6 @@
         userNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:IsPhone6_gt?15.0f:14.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:userNameLabel];
         //        userNameLabel.frame=CGRectMake(CGRectGetMaxX(userHeadImg.frame)+6, CGRectGetMinY(userHeadImg.frame), 100, 22);
-        //        userNameLabel.backgroundColor=[UIColor redColor];
         [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(userHeadImg);
             make.height.mas_equalTo(44/2.0f);
@@ -309,9 +309,38 @@
         {
 //            userCareerLabel.text=@"貌似来自火星";
             userCareerLabel.text=@"";
+            if(!_isNameCenterFit)
+            {
+                [userNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.centerY.mas_equalTo(userHeadImg);
+                    make.right.mas_equalTo(-kEdge);
+                    make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+                }];
+                [userCareerLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
+                    make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+                    make.height.mas_equalTo(0);
+                }];
+                _isNameCenterFit=YES;
+            }
+             
         }else
         {
             userCareerLabel.text=_listModel.career;
+            if(_isNameCenterFit)
+            {
+                [userNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(userHeadImg);
+                    make.height.mas_equalTo(44/2.0f);
+                    make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+                }];
+                [userCareerLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
+                    make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
+                }];
+                
+                _isNameCenterFit=NO;
+            }
         }
         
     }
