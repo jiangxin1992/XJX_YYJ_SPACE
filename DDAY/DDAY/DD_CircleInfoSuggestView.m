@@ -101,7 +101,7 @@
     [_numlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.right.mas_equalTo(-11);
     }];
-    [_numlabel sizeToFit];
+//    [_numlabel sizeToFit];
     
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])

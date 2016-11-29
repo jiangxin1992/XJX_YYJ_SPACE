@@ -44,7 +44,7 @@
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
-    [price_label sizeToFit];
+//    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
@@ -86,7 +86,7 @@
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
-    [price_label sizeToFit];
+//    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
@@ -147,7 +147,7 @@
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
-    [price_label sizeToFit];
+//    [price_label sizeToFit];
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];

@@ -89,7 +89,7 @@
             make.width.mas_equalTo(_width);
             
         }];
-        [timelabel sizeToFit];
+//        [timelabel sizeToFit];
         
         
         UILabel *daylabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"MM . dd"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"HH : mm"] WithFont:i==0?18:15 WithTextColor:nil WithSpacing:0];
@@ -107,7 +107,7 @@
                 make.bottom.mas_equalTo(0);
             }
         }];
-        [daylabel sizeToFit];
+//        [daylabel sizeToFit];
         
         //        今年
         //        横跨两个年
@@ -181,7 +181,7 @@
         }
         
     }];
-    [seriesTipsLabel sizeToFit];
+//    [seriesTipsLabel sizeToFit];
     
     UIView *upline=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [self addSubview:upline];
@@ -293,7 +293,7 @@
         make.width.mas_equalTo(250);
         make.bottom.mas_equalTo(-28);
     }];
-    [seriesBriefLabel sizeToFit];
+//    [seriesBriefLabel sizeToFit];
     
 }
 -(void)designerAction

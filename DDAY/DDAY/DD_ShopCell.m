@@ -92,7 +92,7 @@
         make.right.mas_equalTo(-kEdge);
         //        make.right.mas_equalTo(-kEdge);
     }];
-    [_itemNameLabel sizeToFit];
+//    [_itemNameLabel sizeToFit];
     
     _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
@@ -135,7 +135,7 @@
         make.left.mas_equalTo(_itemNameLabel);
         //        make.right.mas_equalTo(_itemNameLabel);
     }];
-    [_priceLabel sizeToFit];
+//    [_priceLabel sizeToFit];
     
     //    失效
     if(_isInvalid)

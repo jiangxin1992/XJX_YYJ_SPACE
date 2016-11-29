@@ -73,7 +73,7 @@
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(headBackView.mas_bottom).with.offset(6);
     }];
-    [nickName sizeToFit];
+//    [nickName sizeToFit];
     
     _des=[UILabel getLabelWithAlignment:1 WithTitle:_usermodel.career WithFont:12.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:_des];
@@ -83,7 +83,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
-    [_des sizeToFit];
+//    [_des sizeToFit];
 }
 -(void)headClick
 {

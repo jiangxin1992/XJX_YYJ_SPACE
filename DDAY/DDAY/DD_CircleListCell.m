@@ -120,7 +120,7 @@
             make.height.mas_equalTo(44/2.0f);
             make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
         }];
-        [userNameLabel sizeToFit];
+//        [userNameLabel sizeToFit];
         
         
         userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
@@ -130,7 +130,7 @@
             make.top.mas_equalTo(userNameLabel.mas_bottom).with.offset(0);
             make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
         }];
-        [userCareerLabel sizeToFit];
+//        [userCareerLabel sizeToFit];
     }
     
     
@@ -295,7 +295,7 @@
         make.left.mas_equalTo(kEdge);
         make.centerY.mas_equalTo(_lastView_state.mas_centerY);
     }];
-    [timeLabel sizeToFit];
+//    [timeLabel sizeToFit];
     
 }
 

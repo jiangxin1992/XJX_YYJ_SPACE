@@ -66,7 +66,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
-    [return_content sizeToFit];
+//    [return_content sizeToFit];
 }
 -(void)setIs_show:(BOOL)is_show
 {

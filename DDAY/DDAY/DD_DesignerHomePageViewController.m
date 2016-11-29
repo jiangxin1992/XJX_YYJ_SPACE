@@ -380,7 +380,7 @@
             make.top.mas_equalTo(imageView.mas_bottom).with.offset(11);
             make.centerX.mas_equalTo(imageView);
         }];
-        [label sizeToFit];
+//        [label sizeToFit];
     }
 }
 /**

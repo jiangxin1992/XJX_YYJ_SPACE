@@ -71,7 +71,7 @@
     //    款式信息
     itemNameLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:itemNameLabel];
-    [itemNameLabel sizeToFit];
+//    [itemNameLabel sizeToFit];
     [itemNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(itemImg.mas_right).with.offset(17);
         make.top.mas_equalTo(itemImg);
@@ -80,7 +80,7 @@
     
     priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13 WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:priceLabel];
-    [priceLabel sizeToFit];
+//    [priceLabel sizeToFit];
     priceLabel.font=[regular getSemiboldFont:13.0f];
     [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(itemNameLabel.mas_bottom).with.offset(8);

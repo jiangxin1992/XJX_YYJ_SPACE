@@ -79,7 +79,7 @@
         make.right.mas_equalTo(-kEdge);
         make.top.mas_equalTo(17);
     }];
-    [_itemNameLabel sizeToFit];
+//    [_itemNameLabel sizeToFit];
     
     _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
@@ -119,7 +119,7 @@
         make.bottom.mas_equalTo(_colorView.mas_top).with.offset(-11);
         make.left.mas_equalTo(_itemNameLabel);
     }];
-    [_priceLabel sizeToFit];
+//    [_priceLabel sizeToFit];
     
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:downLine];

@@ -116,7 +116,7 @@
         make.left.mas_equalTo(_head.mas_right).with.offset(10);
         make.bottom.mas_equalTo(_head);
     }];
-    [_address sizeToFit];
+//    [_address sizeToFit];
     
     UILabel *businessHoursLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"商店营业时间：%@",_showRoomModel.businessHours] WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [container addSubview:businessHoursLabel];

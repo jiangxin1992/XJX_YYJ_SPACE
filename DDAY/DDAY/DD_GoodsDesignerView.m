@@ -115,7 +115,7 @@
         make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
         make.right.mas_equalTo(guanzhu.mas_left).with.offset(0);
     }];
-    [userName sizeToFit];
+//    [userName sizeToFit];
     
     UILabel *brandName=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.designer.brandName WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
     [upView addSubview:brandName];
@@ -125,7 +125,7 @@
         make.left.mas_equalTo(_brandImge.mas_right).with.offset(8);
         make.right.mas_equalTo(guanzhu.mas_left).with.offset(0);
     }];
-    [brandName sizeToFit];
+//    [brandName sizeToFit];
     
     
     [self UpdateFollowBtnState];

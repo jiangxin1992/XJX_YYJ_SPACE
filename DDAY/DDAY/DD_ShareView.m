@@ -87,7 +87,7 @@
         make.width.mas_equalTo(83);
         make.left.mas_equalTo(0);
     }];
-    [labelTitle sizeToFit];
+//    [labelTitle sizeToFit];
     
     
     CGFloat _jiange_x=(ScreenWidth-50*4-(IsPhone6_gt?35:25)*2)/3.0f;

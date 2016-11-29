@@ -97,7 +97,7 @@
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(btn.mas_bottom).with.offset(10);
     }];
-    [titleLabel sizeToFit];
+//    [titleLabel sizeToFit];
     
     CGFloat _jiange=(ScreenWidth-121*2)/3.0f;
     NSArray *titleArr=@[@"查看订单",@"其他发布品"];

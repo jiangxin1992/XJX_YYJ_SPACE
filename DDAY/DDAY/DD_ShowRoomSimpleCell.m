@@ -65,7 +65,7 @@
         make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
         make.bottom.mas_equalTo(_head);
     }];
-    [_storeName sizeToFit];
+//    [_storeName sizeToFit];
     
     _address=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [self.contentView addSubview:_address];
@@ -75,7 +75,7 @@
         make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
         make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
     }];
-    [_address sizeToFit];
+//    [_address sizeToFit];
     
     _downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:_downLine];

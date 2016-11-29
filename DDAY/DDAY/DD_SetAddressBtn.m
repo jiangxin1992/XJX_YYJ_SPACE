@@ -62,7 +62,7 @@
         make.top.mas_equalTo(_jianju);
         make.left.mas_equalTo(kEdge);
     }];
-    [_nameLabel sizeToFit];
+//    [_nameLabel sizeToFit];
     
     addressImg=[UIImageView getImgWithImageStr:@"System_address"];
     [self addSubview:addressImg];
@@ -82,7 +82,7 @@
         make.top.mas_equalTo(_nameLabel.mas_bottom).with.offset(_jianju);
         make.width.mas_equalTo(200);
     }];
-    [_phoneLabel sizeToFit];
+//    [_phoneLabel sizeToFit];
     
     NSString *addressContent=[[NSString alloc] initWithFormat:@"%@ %@ %@",_AddressModel.provinceName,_AddressModel.cityName,_AddressModel.detailAddress];
     _addressLabel=[UILabel getLabelWithAlignment:0 WithTitle:addressContent WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -95,7 +95,7 @@
         make.right.mas_equalTo(-kEdge);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(-_jianju-10);
     }];
-    [_addressLabel sizeToFit];
+//    [_addressLabel sizeToFit];
     
     
     UIView *dibu=[UIView getCustomViewWithColor:_define_black_color];

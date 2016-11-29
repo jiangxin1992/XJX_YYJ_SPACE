@@ -83,7 +83,7 @@
         make.centerY.mas_equalTo(_addBtn);
         make.left.mas_equalTo(_addBtn.mas_right).with.offset(5);
     }];
-    [title sizeToFit];
+//    [title sizeToFit];
     
 }
 

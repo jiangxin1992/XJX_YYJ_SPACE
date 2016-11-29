@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_GoodsDetailViewController.m"
-            timestampString = "502013802.085487"
+            filePath = "DDAY/DD_CircleInfoSuggestView.m"
+            timestampString = "502016383.320382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-RequestData"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-UIConfig"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

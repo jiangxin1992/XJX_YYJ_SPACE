@@ -69,7 +69,7 @@
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(label.mas_bottom).with.offset(5);
     }];
-    [fabric_title sizeToFit];
+//    [fabric_title sizeToFit];
     
     
     UILabel *fabric_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.material WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -81,7 +81,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
-    [fabric_content sizeToFit];
+//    [fabric_content sizeToFit];
     
 
     
@@ -92,7 +92,7 @@
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(fabric_content.mas_bottom).with.offset(6+20);
     }];
-    [washing_title sizeToFit];
+//    [washing_title sizeToFit];
     
     washing_content=[UILabel getLabelWithAlignment:0 WithTitle:_item.washCare WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [backBtn addSubview:washing_content];
@@ -103,7 +103,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
     }];
-    [washing_content sizeToFit];
+//    [washing_content sizeToFit];
     
 }
 -(void)setIs_show:(BOOL)is_show

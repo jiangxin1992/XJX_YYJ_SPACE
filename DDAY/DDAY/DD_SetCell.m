@@ -23,7 +23,7 @@
             make.left.mas_equalTo(kEdge);
             make.centerY.mas_equalTo(self.contentView);
         }];
-        [titlelabel sizeToFit];
+//        [titlelabel sizeToFit];
         
         UIView *line=[UIView getCustomViewWithColor:_define_black_color];
         [self.contentView addSubview:line];

@@ -118,7 +118,7 @@
             make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
             make.centerY.mas_equalTo(_head);
         }];
-        [storeName sizeToFit];
+//        [storeName sizeToFit];
         
         UILabel *address=[UILabel getLabelWithAlignment:0 WithTitle:model.address WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:address];
@@ -129,7 +129,7 @@
             make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
             make.bottom.mas_equalTo(backView.mas_bottom).with.offset(0);
         }];
-        [address sizeToFit];
+//        [address sizeToFit];
         
         lastView=backView;
     }

@@ -56,7 +56,7 @@
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(head.mas_right).with.offset(12);
     }];
-    [username sizeToFit];
+//    [username sizeToFit];
     
     UIView *line=[UIView getCustomViewWithColor:_define_black_color];
     [self.contentView addSubview:line];

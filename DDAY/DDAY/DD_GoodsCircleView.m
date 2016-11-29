@@ -121,7 +121,7 @@
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
 
     }];
-    [userNameLabel sizeToFit];
+//    [userNameLabel sizeToFit];
     
     
     userCareerLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
@@ -131,7 +131,7 @@
         make.height.mas_equalTo(44/2.0f);
         make.left.mas_equalTo(userHeadImg.mas_right).with.offset(6);
     }];
-    [userCareerLabel sizeToFit];
+//    [userCareerLabel sizeToFit];
     
     goodImgView=[UIImageView getCustomImg];
     [backBtn addSubview:goodImgView];

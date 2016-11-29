@@ -54,7 +54,7 @@
             make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(line);
         }];
-        [titlelabel sizeToFit];
+//        [titlelabel sizeToFit];
         
         startLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:startLabel];
@@ -63,7 +63,7 @@
             make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(titlelabel.mas_bottom).with.offset(12);
         }];
-        [startLabel sizeToFit];
+//        [startLabel sizeToFit];
         
         UIView *middleline=[UIView getCustomViewWithColor:_define_black_color];
         [self.contentView addSubview:middleline];
@@ -81,7 +81,7 @@
             make.right.mas_equalTo(-kEdge);
             make.top.mas_equalTo(middleline.mas_bottom).with.offset(6);
         }];
-        [endLabel sizeToFit];
+//        [endLabel sizeToFit];
         
     }
     return self;

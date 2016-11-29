@@ -60,7 +60,7 @@
         make.left.mas_equalTo(leftLine.mas_right).with.offset(5);
         make.centerY.mas_equalTo(self);
     }];
-    [orderIDLabel sizeToFit];
+//    [orderIDLabel sizeToFit];
 
     
     stateLabel=[UILabel getLabelWithAlignment:2 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -69,7 +69,7 @@
         make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(self);
     }];
-    [stateLabel sizeToFit];
+//    [stateLabel sizeToFit];
     
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:downLine];
