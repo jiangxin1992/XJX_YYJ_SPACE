@@ -26,7 +26,13 @@
         [self addSubview:imgView];
         [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(25);
+            if([img isEqualToString:@"Order_Return"])
+            {
+                make.width.mas_equalTo(floor((26.0f/21.0f)*25.0f));
+            }else
+            {
+                make.width.mas_equalTo(25);
+            }
         }];
         
         titleLabel=[UILabel getLabelWithAlignment:2 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];

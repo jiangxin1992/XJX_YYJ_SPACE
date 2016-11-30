@@ -90,7 +90,7 @@
         _addressView=[UIView getCustomViewWithColor:nil];
         [self addSubview:_addressView];
         
-        _addressImgView=[UIImageView getImgWithImageStr:@"System_address"];
+        _addressImgView=[UIImageView getImgWithImageStr:@"System_Address"];
         [_addressView addSubview:_addressImgView];
         
         

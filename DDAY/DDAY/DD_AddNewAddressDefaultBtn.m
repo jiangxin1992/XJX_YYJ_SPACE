@@ -19,7 +19,7 @@
         //设置select状态下 title的颜色
         [btn setTitleColor:_define_black_color forState:UIControlStateSelected];
         [btn setImage:[UIImage imageNamed:@"System_nocheck"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"System_check"] forState:UIControlStateSelected];
+        [btn setImage:[UIImage imageNamed:@"System_Check"] forState:UIControlStateSelected];
         [btn setTitle:@"设为默认地址" forState:UIControlStateNormal];
         [btn setTitle:@"设为默认地址" forState:UIControlStateSelected];
         //设置字体大小

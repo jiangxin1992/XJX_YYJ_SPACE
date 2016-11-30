@@ -51,7 +51,7 @@
         make.top.left.right.mas_equalTo(0);
     }];
     
-    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_check"];
+    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_Check"];
     [self addSubview:selectBtn];
     [selectBtn addTarget:self action:@selector(chooseAction) forControlEvents:UIControlEventTouchUpInside];
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F41876F1CEEFB24001BCA3D"
-               BuildableName = "YCO SPACE.app"
-               BlueprintName = "YCO SPACE"
-               ReferencedContainer = "container:YCO SPACE.xcodeproj">
+               BuildableName = "YCOSPACE.app"
+               BlueprintName = "YCOSPACE"
+               ReferencedContainer = "container:YCOSPACE.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F41876F1CEEFB24001BCA3D"
-            BuildableName = "YCO SPACE.app"
-            BlueprintName = "YCO SPACE"
-            ReferencedContainer = "container:YCO SPACE.xcodeproj">
+            BuildableName = "YCOSPACE.app"
+            BlueprintName = "YCOSPACE"
+            ReferencedContainer = "container:YCOSPACE.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F41876F1CEEFB24001BCA3D"
-            BuildableName = "YCO SPACE.app"
-            BlueprintName = "YCO SPACE"
-            ReferencedContainer = "container:YCO SPACE.xcodeproj">
+            BuildableName = "YCOSPACE.app"
+            BlueprintName = "YCOSPACE"
+            ReferencedContainer = "container:YCOSPACE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F41876F1CEEFB24001BCA3D"
-            BuildableName = "YCO SPACE.app"
-            BlueprintName = "YCO SPACE"
-            ReferencedContainer = "container:YCO SPACE.xcodeproj">
+            BuildableName = "YCOSPACE.app"
+            BlueprintName = "YCOSPACE"
+            ReferencedContainer = "container:YCOSPACE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

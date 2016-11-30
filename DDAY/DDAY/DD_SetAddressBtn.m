@@ -64,7 +64,7 @@
     }];
 //    [_nameLabel sizeToFit];
     
-    addressImg=[UIImageView getImgWithImageStr:@"System_address"];
+    addressImg=[UIImageView getImgWithImageStr:@"System_Address"];
     [self addSubview:addressImg];
     addressImg.userInteractionEnabled=NO;
     [addressImg mas_remakeConstraints:^(MASConstraintMaker *make) {

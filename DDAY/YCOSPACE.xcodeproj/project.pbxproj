@@ -485,7 +485,6 @@
 		3F2F765E1D1D0259002E22A6 /* DD_CircleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleModel.m; sourceTree = "<group>"; };
 		3F2F76601D1D1968002E22A6 /* DD_CirclePublishTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePublishTool.h; sourceTree = "<group>"; };
 		3F2F76611D1D1968002E22A6 /* DD_CirclePublishTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CirclePublishTool.m; sourceTree = "<group>"; };
-		3F31E7E81DB89A9E0096655A /* YCO SPACE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YCO SPACE.entitlements"; sourceTree = "<group>"; };
 		3F3462341D4B4A7700B96D86 /* DD_ColorBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ColorBtn.h; sourceTree = "<group>"; };
 		3F3462351D4B4A7700B96D86 /* DD_ColorBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ColorBtn.m; sourceTree = "<group>"; };
 		3F35FD0D1DE419E4008CE0E0 /* DD_BenefitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_BenefitView.h; sourceTree = "<group>"; };
@@ -616,17 +615,17 @@
 		3F3C3F081CFEC7F40056CD6B /* DD_DDAYTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYTool.m; sourceTree = "<group>"; };
 		3F4026141D7C76D3005E3A83 /* DD_CircleSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleSearchCell.h; sourceTree = "<group>"; };
 		3F4026151D7C76D3005E3A83 /* DD_CircleSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleSearchCell.m; sourceTree = "<group>"; };
-		3F4187701CEEFB24001BCA3D /* YCO SPACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YCO SPACE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F4187701CEEFB24001BCA3D /* YCOSPACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YCOSPACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4187741CEEFB24001BCA3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3F4187761CEEFB24001BCA3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3F4187771CEEFB24001BCA3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3F41877D1CEEFB24001BCA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F41877F1CEEFB24001BCA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F4187841CEEFB24001BCA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F4187891CEEFB24001BCA3D /* YCO SPACE.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "YCO SPACE.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F4187891CEEFB24001BCA3D /* YCOSPACE.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCOSPACE.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F41878D1CEEFB24001BCA3D /* DDAYTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAYTests.m; sourceTree = "<group>"; };
 		3F41878F1CEEFB24001BCA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F4187941CEEFB24001BCA3D /* YCO SPACE.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "YCO SPACE.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F4187941CEEFB24001BCA3D /* YCOSPACE.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCOSPACE.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4187981CEEFB24001BCA3D /* DDAYUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAYUITests.m; sourceTree = "<group>"; };
 		3F41879A1CEEFB24001BCA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4187A91CEEFBF0001BCA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1069,6 +1068,7 @@
 		3FE98D7F1DC8767B00F273E8 /* 图层-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-7@2x.png"; sourceTree = "<group>"; };
 		3FE98D801DC8767B00F273E8 /* 图层-8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-8@2x.png"; sourceTree = "<group>"; };
 		3FE98D811DC8767B00F273E8 /* 图层-9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-9@2x.png"; sourceTree = "<group>"; };
+		3FEAC2B71DEDD1A2006C93A2 /* YCOSPACE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YCOSPACE.entitlements; sourceTree = "<group>"; };
 		3FEB1F941DC338A000ABB8C9 /* DD_UnReadMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UnReadMsgModel.h; sourceTree = "<group>"; };
 		3FEB1F951DC338A000ABB8C9 /* DD_UnReadMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UnReadMsgModel.m; sourceTree = "<group>"; };
 		3FEC780E1DDC559B0047FDB2 /* DD_SignInAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SignInAnimationView.h; sourceTree = "<group>"; };
@@ -1641,7 +1641,7 @@
 		3F4187671CEEFB24001BCA3D = {
 			isa = PBXGroup;
 			children = (
-				3F31E7E81DB89A9E0096655A /* YCO SPACE.entitlements */,
+				3FEAC2B71DEDD1A2006C93A2 /* YCOSPACE.entitlements */,
 				3F4187721CEEFB24001BCA3D /* DDAY */,
 				3F41878C1CEEFB24001BCA3D /* DDAYTests */,
 				3F4187971CEEFB24001BCA3D /* DDAYUITests */,
@@ -1654,9 +1654,9 @@
 		3F4187711CEEFB24001BCA3D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F4187701CEEFB24001BCA3D /* YCO SPACE.app */,
-				3F4187891CEEFB24001BCA3D /* YCO SPACE.xctest */,
-				3F4187941CEEFB24001BCA3D /* YCO SPACE.xctest */,
+				3F4187701CEEFB24001BCA3D /* YCOSPACE.app */,
+				3F4187891CEEFB24001BCA3D /* YCOSPACE.xctest */,
+				3F4187941CEEFB24001BCA3D /* YCOSPACE.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3465,29 +3465,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F41876F1CEEFB24001BCA3D /* YCO SPACE */ = {
+		3F41876F1CEEFB24001BCA3D /* YCOSPACE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F41879D1CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACE" */;
+			buildConfigurationList = 3F41879D1CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACE" */;
 			buildPhases = (
-				522F9FC9BD76222F4A57B7DE /* 📦 Check Pods Manifest.lock */,
+				522F9FC9BD76222F4A57B7DE /* [CP] Check Pods Manifest.lock */,
 				3F41876C1CEEFB24001BCA3D /* Sources */,
 				3F41876D1CEEFB24001BCA3D /* Frameworks */,
 				3F41876E1CEEFB24001BCA3D /* Resources */,
-				77EB18115C8320535AB8D74E /* 📦 Embed Pods Frameworks */,
-				C51510F94A7D20750B13E0DF /* 📦 Copy Pods Resources */,
+				77EB18115C8320535AB8D74E /* [CP] Embed Pods Frameworks */,
+				C51510F94A7D20750B13E0DF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "YCO SPACE";
+			name = YCOSPACE;
 			productName = DDAY;
-			productReference = 3F4187701CEEFB24001BCA3D /* YCO SPACE.app */;
+			productReference = 3F4187701CEEFB24001BCA3D /* YCOSPACE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3F4187881CEEFB24001BCA3D /* YCO SPACETests */ = {
+		3F4187881CEEFB24001BCA3D /* YCOSPACETests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F4187A01CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACETests" */;
+			buildConfigurationList = 3F4187A01CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACETests" */;
 			buildPhases = (
 				3F4187851CEEFB24001BCA3D /* Sources */,
 				3F4187861CEEFB24001BCA3D /* Frameworks */,
@@ -3498,14 +3498,14 @@
 			dependencies = (
 				3F41878B1CEEFB24001BCA3D /* PBXTargetDependency */,
 			);
-			name = "YCO SPACETests";
+			name = YCOSPACETests;
 			productName = DDAYTests;
-			productReference = 3F4187891CEEFB24001BCA3D /* YCO SPACE.xctest */;
+			productReference = 3F4187891CEEFB24001BCA3D /* YCOSPACE.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3F4187931CEEFB24001BCA3D /* YCO SPACEUITests */ = {
+		3F4187931CEEFB24001BCA3D /* YCOSPACEUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F4187A31CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACEUITests" */;
+			buildConfigurationList = 3F4187A31CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACEUITests" */;
 			buildPhases = (
 				3F4187901CEEFB24001BCA3D /* Sources */,
 				3F4187911CEEFB24001BCA3D /* Frameworks */,
@@ -3516,9 +3516,9 @@
 			dependencies = (
 				3F4187961CEEFB24001BCA3D /* PBXTargetDependency */,
 			);
-			name = "YCO SPACEUITests";
+			name = YCOSPACEUITests;
 			productName = DDAYUITests;
-			productReference = 3F4187941CEEFB24001BCA3D /* YCO SPACE.xctest */;
+			productReference = 3F4187941CEEFB24001BCA3D /* YCOSPACE.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -3556,7 +3556,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3F41876B1CEEFB24001BCA3D /* Build configuration list for PBXProject "YCO SPACE" */;
+			buildConfigurationList = 3F41876B1CEEFB24001BCA3D /* Build configuration list for PBXProject "YCOSPACE" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3570,9 +3570,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F41876F1CEEFB24001BCA3D /* YCO SPACE */,
-				3F4187881CEEFB24001BCA3D /* YCO SPACETests */,
-				3F4187931CEEFB24001BCA3D /* YCO SPACEUITests */,
+				3F41876F1CEEFB24001BCA3D /* YCOSPACE */,
+				3F4187881CEEFB24001BCA3D /* YCOSPACETests */,
+				3F4187931CEEFB24001BCA3D /* YCOSPACEUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3660,29 +3660,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		522F9FC9BD76222F4A57B7DE /* 📦 Check Pods Manifest.lock */ = {
+		522F9FC9BD76222F4A57B7DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		77EB18115C8320535AB8D74E /* 📦 Embed Pods Frameworks */ = {
+		77EB18115C8320535AB8D74E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3690,14 +3690,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C51510F94A7D20750B13E0DF /* 📦 Copy Pods Resources */ = {
+		C51510F94A7D20750B13E0DF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4004,12 +4004,12 @@
 /* Begin PBXTargetDependency section */
 		3F41878B1CEEFB24001BCA3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F41876F1CEEFB24001BCA3D /* YCO SPACE */;
+			target = 3F41876F1CEEFB24001BCA3D /* YCOSPACE */;
 			targetProxy = 3F41878A1CEEFB24001BCA3D /* PBXContainerItemProxy */;
 		};
 		3F4187961CEEFB24001BCA3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F41876F1CEEFB24001BCA3D /* YCO SPACE */;
+			target = 3F41876F1CEEFB24001BCA3D /* YCOSPACE */;
 			targetProxy = 3F4187951CEEFB24001BCA3D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -4137,7 +4137,7 @@
 			baseConfigurationReference = 32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "YCO SPACE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = YCOSPACE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86BC6SR69M;
@@ -4167,12 +4167,14 @@
 					"$(SRCROOT)/DDAY/GtSdkLib",
 					"$(PROJECT_DIR)/DDAY/GtSdkLib",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -4181,7 +4183,7 @@
 			baseConfigurationReference = CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "YCO SPACE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = YCOSPACE.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou YunEJian Co., Ltd. (86BC6SR69M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86BC6SR69M;
@@ -4211,12 +4213,14 @@
 					"$(SRCROOT)/DDAY/GtSdkLib",
 					"$(PROJECT_DIR)/DDAY/GtSdkLib",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = "YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -4231,8 +4235,8 @@
 				INFOPLIST_FILE = DDAYTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y.DDAYTests";
-				PRODUCT_NAME = "YCO SPACE";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YCO SPACE.app/YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YCOSPACE.app/YCOSPACE";
 			};
 			name = Debug;
 		};
@@ -4247,8 +4251,8 @@
 				INFOPLIST_FILE = DDAYTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y.DDAYTests";
-				PRODUCT_NAME = "YCO SPACE";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YCO SPACE.app/YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YCOSPACE.app/YCOSPACE";
 			};
 			name = Release;
 		};
@@ -4258,7 +4262,7 @@
 				INFOPLIST_FILE = DDAYUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y.DDAYUITests";
-				PRODUCT_NAME = "YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
 				TEST_TARGET_NAME = DDAY;
 			};
 			name = Debug;
@@ -4269,7 +4273,7 @@
 				INFOPLIST_FILE = DDAYUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.D-D-A-Y.DDAYUITests";
-				PRODUCT_NAME = "YCO SPACE";
+				PRODUCT_NAME = YCOSPACE;
 				TEST_TARGET_NAME = DDAY;
 			};
 			name = Release;
@@ -4277,7 +4281,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F41876B1CEEFB24001BCA3D /* Build configuration list for PBXProject "YCO SPACE" */ = {
+		3F41876B1CEEFB24001BCA3D /* Build configuration list for PBXProject "YCOSPACE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F41879B1CEEFB24001BCA3D /* Debug */,
@@ -4286,7 +4290,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F41879D1CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACE" */ = {
+		3F41879D1CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F41879E1CEEFB24001BCA3D /* Debug */,
@@ -4295,7 +4299,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F4187A01CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACETests" */ = {
+		3F4187A01CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACETests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F4187A11CEEFB24001BCA3D /* Debug */,
@@ -4304,7 +4308,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F4187A31CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCO SPACEUITests" */ = {
+		3F4187A31CEEFB24001BCA3D /* Build configuration list for PBXNativeTarget "YCOSPACEUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F4187A41CEEFB24001BCA3D /* Debug */,

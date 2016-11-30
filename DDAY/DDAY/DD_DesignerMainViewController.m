@@ -86,7 +86,7 @@
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
 //    designer_follow_title
-    DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(23, 22) WithImgeStr:@"Designer_All"];
+    DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(23, 23) WithImgeStr:@"Designer_All"];
     [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     allBtn.tag=100;
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:allBtn];

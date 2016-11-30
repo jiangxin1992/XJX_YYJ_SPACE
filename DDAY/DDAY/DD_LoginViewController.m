@@ -17,11 +17,6 @@
 
 #import "DD_LoginTextView.h"
 
-#define devAccount @"#ycospace_dev"
-#define devPSW @"yun888"
-#define proAccount @"#ycospace_pro"
-#define proPSW @"yun888"
-
 @interface DD_LoginViewController ()<UITextFieldDelegate>
 
 @end

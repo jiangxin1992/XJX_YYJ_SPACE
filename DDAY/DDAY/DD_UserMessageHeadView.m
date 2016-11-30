@@ -45,8 +45,8 @@
         [_pulldownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-kEdge);
             make.centerY.mas_equalTo(self);
-            make.width.mas_equalTo(17);
-            make.height.mas_equalTo(9);
+            make.height.mas_equalTo(14);
+            make.width.mas_equalTo(15);
         }];
         
         if(_messageModel.isNotice)
@@ -61,7 +61,7 @@
                 make.left.mas_equalTo(_title.mas_right).with.offset(6);
                 make.centerY.mas_equalTo(_title.centerY);
                 make.height.mas_equalTo(18);
-                make.width.mas_equalTo(23);
+                make.width.mas_equalTo(25);
             }];
             if(_messageModel.unReadMessageNumber)
             {

@@ -151,7 +151,7 @@
         make.height.mas_equalTo(202);
     }];
     
-    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"User_location" WithSelectedImageStr:@"User_location"];
+    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Location" WithSelectedImageStr:@"System_Location"];
     [_mapView addSubview:locationBtn];
     [locationBtn setEnlargeEdge:20];
     [locationBtn addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
@@ -387,7 +387,7 @@
 -(MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     MKAnnotationView *newAnnotation=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
-    newAnnotation.image = [UIImage imageNamed:@"System_Map_pin"];
+    newAnnotation.image = [UIImage imageNamed:@"System_Map_Pin"];
     newAnnotation.canShowCallout=YES;
     return newAnnotation;
 }

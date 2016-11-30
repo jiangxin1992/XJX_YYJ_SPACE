@@ -39,7 +39,7 @@
     }];
     [_addressName sizeToFit];
     
-    _alertBtn=[UIButton getCustomImgBtnWithImageStr:@"System_edit" WithSelectedImageStr:@"System_edit"];
+    _alertBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Edit" WithSelectedImageStr:@"System_Edit"];
     [self.contentView addSubview:_alertBtn];
     [_alertBtn addTarget:self action:@selector(alertAction) forControlEvents:UIControlEventTouchUpInside];
     [_alertBtn mas_makeConstraints:^(MASConstraintMaker *make) {

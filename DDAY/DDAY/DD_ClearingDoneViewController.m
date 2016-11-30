@@ -76,7 +76,7 @@
     if([_code integerValue]==9000)
     {
         title=@"支付成功";
-        imgStr=@"Order_paid";
+        imgStr=@"Order_Paid";
     }else
     {
         title=@"支付失败";

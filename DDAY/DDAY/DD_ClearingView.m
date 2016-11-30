@@ -223,8 +223,8 @@
     [pulldowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kEdge);
         make.centerY.mas_equalTo(payWay);
-        make.height.mas_equalTo(9);
-        make.width.mas_equalTo(17);
+        make.height.mas_equalTo(14);
+        make.width.mas_equalTo(15);
     }];
     [pulldowBtn setEnlargeEdge:20];
     
@@ -237,7 +237,7 @@
     
     UIButton *lastview=nil;
     for (int i=0; i<1; i++) {
-        NSString *normalImg=i==0?@"Order_alipay_normal":i==1?@"Order_wechat_normal":@"Order_unionpay_normal";
+        NSString *normalImg=i==0?@"Order_Alipay_Normal":i==1?@"Order_wechat_normal":@"Order_unionpay_normal";
         UIButton *iconBtn=[UIButton getCustomImgBtnWithImageStr:normalImg WithSelectedImageStr:nil];
         [payView addSubview:iconBtn];
         iconBtn.tag=100+i;
@@ -267,8 +267,8 @@
             make.width.mas_equalTo(150);
         }];
     
-//        System_check
-        UIButton *selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_check"];
+//        System_Check
+        UIButton *selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_Check"];
         [payView addSubview:selectBtn];
         selectBtn.hidden=YES;
         selectBtn.tag=300+i;

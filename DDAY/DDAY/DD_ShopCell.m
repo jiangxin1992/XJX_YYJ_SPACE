@@ -54,7 +54,7 @@
 -(void)UIConfig
 {
     
-    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_check"];
+    selectBtn=[UIButton getCustomImgBtnWithImageStr:@"System_nocheck" WithSelectedImageStr:@"System_Check"];
     [self.contentView addSubview:selectBtn];
     [selectBtn addTarget:self action:@selector(chooseAction) forControlEvents:UIControlEventTouchUpInside];
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
