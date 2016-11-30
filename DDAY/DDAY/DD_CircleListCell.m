@@ -105,7 +105,6 @@
         [regular setZeroBorder:userHeadImg];
         userHeadImg.userInteractionEnabled=YES;
         [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
-//        userHeadImg.frame=CGRectMake(kEdge, 9, 44, 44);
         [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.top.mas_equalTo(9);
