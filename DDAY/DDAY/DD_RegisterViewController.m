@@ -13,7 +13,8 @@
 
 #import "DD_LoginTextView.h"
 
-@interface DD_RegisterViewController ()<UITextFieldDelegate>
+@interface DD_RegisterViewController ()
+//<UITextFieldDelegate>
 
 @end
 
@@ -65,7 +66,11 @@
     [self.view addSubview:_phoneTextfield];
     _phoneTextfield.keyboardType=UIKeyboardTypeNumberPad;
     _phoneTextfield.returnKeyType=UIReturnKeyDone;
-    _phoneTextfield.delegate=self;
+//    _phoneTextfield.delegate=self;
+    [_phoneTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textField) {
+        [textField resignFirstResponder];
+        return YES;
+    }];
     [_phoneTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -93,7 +98,13 @@
     }] WithRightView:_yanzheng WithSecureTextEntry:NO];
     [self.view addSubview:_codeTextfield];
     _codeTextfield.returnKeyType=UIReturnKeyNext;
-    _codeTextfield.delegate=self;
+//    _codeTextfield.delegate=self;
+    __block DD_RegisterViewController *registerVC=self;
+    [_codeTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textField) {
+        [textField resignFirstResponder];
+        [registerVC verifyAction];
+        return YES;
+    }];
     [_codeTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -256,16 +267,7 @@
     [regular dispatch_cancel:_timer];
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    if(textField == _codeTextfield)
-    {
-        [self verifyAction];
-    }
-    return YES;
-}
+
 
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -285,4 +287,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - UITextFieldDelegate
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    if(textField == _codeTextfield)
+//    {
+//        [self verifyAction];
+//    }
+//    return YES;
+//}
 @end

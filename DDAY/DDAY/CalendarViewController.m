@@ -73,8 +73,21 @@
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"dday_calendar", @"") withmaxwidth:200];
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
-    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+//    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
+    [shopBtn bk_addEventHandler:^(id sender) {
+//        跳转购物车
+        if(![DD_UserModel isLogin])
+        {
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
+        }else
+        {
+            DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+            [self.navigationController pushViewController:_shop animated:YES];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -176,20 +189,20 @@
         
     }] animated:YES];
 }
-//跳转购物车
--(void)PushShopView
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-        [self.navigationController pushViewController:_shop animated:YES];
-    }
-}
+////跳转购物车
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
 /**
  * 上个月
  */

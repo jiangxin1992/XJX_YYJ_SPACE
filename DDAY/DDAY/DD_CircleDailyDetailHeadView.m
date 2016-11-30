@@ -77,7 +77,11 @@
     userHeadImg.contentMode=2;
     [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [userHeadImg bk_whenTapped:^{
+//        头像点击
+        _block(@"head_click",0,nil);
+    }];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
@@ -237,13 +241,13 @@
 {
     _block(@"show_item_list",0,nil);
 }
-/**
- * 点击头像
- */
--(void)headClick
-{
-    _block(@"head_click",0,nil);
-}
+///**
+// * 点击头像
+// */
+//-(void)headClick
+//{
+//    _block(@"head_click",0,nil);
+//}
 /**
  * 点赞评论...
  */

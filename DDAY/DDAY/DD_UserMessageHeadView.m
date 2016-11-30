@@ -28,7 +28,10 @@
         _section=section;
         self.backgroundColor=_define_white_color;
         self.userInteractionEnabled=YES;
-        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)]];
+//        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)]];
+        [self bk_whenTapped:^{
+            _block(@"click",_section);
+        }];
         _title=[UILabel getLabelWithAlignment:0 WithTitle:_messageModel.messageCategory WithFont:15.0f WithTextColor:nil WithSpacing:0];
         [self addSubview:_title];
         [_title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,8 +97,8 @@
     }
     return self;
 }
--(void)clickAction:(UIGestureRecognizer *)ges
-{
-    _block(@"click",_section);
-}
+//-(void)clickAction:(UIGestureRecognizer *)ges
+//{
+//    _block(@"click",_section);
+//}
 @end

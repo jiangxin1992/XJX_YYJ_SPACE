@@ -9,7 +9,8 @@
 
 #import "DD_AlertViewController.h"
 
-@interface DD_AlertViewController ()<UITextFieldDelegate>
+@interface DD_AlertViewController ()
+//<UITextFieldDelegate>
 
 @end
 
@@ -46,8 +47,11 @@
 -(void)PrepareUI
 {
     DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
-    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
+//    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
+    [confirmBtn bk_addEventHandler:^(id sender) {
+        [self DoneAction];
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -65,7 +69,13 @@
     }
     _inputTextfield.font=[regular getFont:13.0f];
     _inputTextfield.textAlignment=0;
-    _inputTextfield.delegate=self;
+//    _inputTextfield.delegate=self;
+    __block DD_AlertViewController *AlertVC=self;
+    [_inputTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+        [textfield resignFirstResponder];
+        [AlertVC DoneAction];
+        return YES;
+    }];
     _inputTextfield.returnKeyType=UIReturnKeyDone;
     _inputTextfield.clearButtonMode=UITextFieldViewModeAlways;
     [regular setBorder:_inputTextfield];
@@ -82,12 +92,7 @@
         make.height.mas_equalTo(32);
     }];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    [self DoneAction];
-    return YES;
-}
+
 #pragma mark - SomeAction
 -(void)setTitle:(NSString *)title
 {
@@ -155,5 +160,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    [self DoneAction];
+//    return YES;
+//}
 @end

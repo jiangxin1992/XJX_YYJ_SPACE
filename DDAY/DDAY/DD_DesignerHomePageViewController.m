@@ -70,7 +70,7 @@
 {
     
     DD_NavBtn *backBtn=[DD_NavBtn getNavBtnWithSize:CGSizeMake(11, 19) WithImgeStr:@"System_Back"];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(kStatusBarHeight);
@@ -249,7 +249,10 @@
 {
     mengban_share=[UIImageView getMaskImageView];
     [self.view addSubview:mengban_share];
-    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+//    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+    [mengban_share bk_whenTapped:^{
+        [self mengban_dismiss_share];
+    }];
     
     shareView=[[DD_ShareView alloc] initWithType:@"circle_detail" WithParams:@{@"detailModel":[DD_CircleListModel new]} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])

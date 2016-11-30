@@ -43,7 +43,16 @@
         [self.view addSubview:_textFiled];
         _textFiled.tag=100+i;
         _textFiled.returnKeyType=UIReturnKeyDone;
-        _textFiled.delegate=self;
+//        _textFiled.delegate=self;
+        __block DD_UserInfo_AlertPSWViewController *infoVC=self;
+        [_textFiled setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+            [textfield resignFirstResponder];
+            if(textfield.tag==102)
+            {
+                [infoVC SaveAction];
+            }
+            return YES;
+        }];
         if(i==0)
         {
             [_textFiled becomeFirstResponder];
@@ -74,15 +83,7 @@
         make.top.mas_equalTo(lastView.mas_bottom).with.offset(50);
     }];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    if(textField.tag==102)
-    {
-        [self SaveAction];
-    }
-    return YES;
-}
+
 #pragma mark - SomeAction
 -(void)setTitle:(NSString *)title
 {
@@ -157,5 +158,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    if(textField.tag==102)
+//    {
+//        [self SaveAction];
+//    }
+//    return YES;
+//}
 
 @end

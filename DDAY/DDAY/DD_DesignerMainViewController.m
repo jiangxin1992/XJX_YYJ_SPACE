@@ -87,15 +87,21 @@
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
 //    designer_follow_title
     DD_NavBtn *allBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(23, 23) WithImgeStr:@"Designer_All"];
-    [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
+//    [allBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     allBtn.tag=100;
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:allBtn];
+    [allBtn bk_addEventHandler:^(id sender) {
+        [self qiehuan:allBtn];
+    } forControlEvents:UIControlEventTouchUpInside];
     [btnarr addObject:allBtn];
     
     DD_NavBtn *followBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(34, 19) WithImgeStr:@"Designer_Eyes"];
-    [followBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
+//    [followBtn addTarget:self action:@selector(qiehuan:) forControlEvents:UIControlEventTouchUpInside];
     followBtn.tag=101;
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:followBtn];
+    [followBtn bk_addEventHandler:^(id sender) {
+        [self qiehuan:followBtn];
+    } forControlEvents:UIControlEventTouchUpInside];
     [btnarr addObject:followBtn];
     
 }

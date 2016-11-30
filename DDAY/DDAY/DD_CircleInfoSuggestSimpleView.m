@@ -52,7 +52,6 @@
 {
     self.backgroundColor=_define_white_color;
     self.userInteractionEnabled=YES;
-//    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
 }
 //给键盘加上监听，捕获他的隐藏和显示
 - (void)createNotification

@@ -52,7 +52,11 @@
     icon.contentMode=2;
     [regular setZeroBorder:icon];
     icon.userInteractionEnabled=YES;
-    [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
+//    [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
+    [icon bk_whenTapped:^{
+//        头像点击
+        _block(@"head_click");
+    }];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
         make.top.mas_equalTo(10);
@@ -147,11 +151,11 @@
 {
     _block(@"delete");
 }
-/**
- * 头像点击
- */
--(void)headAction
-{
-    _block(@"head_click");
-}
+///**
+// * 头像点击
+// */
+//-(void)headAction
+//{
+//    _block(@"head_click");
+//}
 @end

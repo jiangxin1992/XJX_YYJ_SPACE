@@ -153,7 +153,24 @@
     userHeadImg.contentMode=2;
     [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [userHeadImg bk_whenTapped:^{
+//        点击头像
+        if([_usermodel.userType integerValue]==2)
+        {
+            //                设计师
+            DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+            _DesignerHomePage.designerId=_usermodel.u_id;
+            [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+        }else if([_usermodel.userType integerValue]==4)
+        {
+            //                达人
+            [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+        }else
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+        }
+    }];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
@@ -216,7 +233,18 @@
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
             goods.tag=100+i;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods bk_whenTapped:^{
+                //点击单品
+                DD_CricleChooseItemModel *item=_circleModel.chooseItem[goods.tag-100];
+                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                _item.g_id=item.g_id;
+                _item.colorCode=item.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    //        if(type)
+                }];
+                [self.navigationController pushViewController:_GoodsDetail animated:YES];
+            }];
             [goods mas_makeConstraints:^(MASConstraintMaker *make) {
                 //            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
                 make.right.mas_equalTo(-kEdge);
@@ -446,7 +474,18 @@
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods bk_whenTapped:^{
+                //点击单品
+                DD_CricleChooseItemModel *item=_circleModel.chooseItem[goods.tag-100];
+                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                _item.g_id=item.g_id;
+                _item.colorCode=item.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    //        if(type)
+                }];
+                [self.navigationController pushViewController:_GoodsDetail animated:YES];
+            }];
             goods.tag=100+i;
             DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
@@ -468,37 +507,37 @@
     
     conentLabel.text=_circleModel.remark;
 }
--(void)itemAction:(UIGestureRecognizer *)ges
-{
-    DD_CricleChooseItemModel *item=_circleModel.chooseItem[ges.view.tag-100];
-    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-    _item.g_id=item.g_id;
-    _item.colorCode=item.colorCode;
-    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-        //        if(type)
-    }];
-    [self.navigationController pushViewController:_GoodsDetail animated:YES];
-}
-/**
- * 点击头像
- */
--(void)headClick
-{
-    if([_usermodel.userType integerValue]==2)
-    {
-        //                设计师
-        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-        _DesignerHomePage.designerId=_usermodel.u_id;
-        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-    }else if([_usermodel.userType integerValue]==4)
-    {
-        //                达人
-        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
-    }else
-    {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
-    }
-}
+//-(void)itemAction:(UIGestureRecognizer *)ges
+//{
+//    DD_CricleChooseItemModel *item=_circleModel.chooseItem[ges.view.tag-100];
+//    DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+//    _item.g_id=item.g_id;
+//    _item.colorCode=item.colorCode;
+//    DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+//        //        if(type)
+//    }];
+//    [self.navigationController pushViewController:_GoodsDetail animated:YES];
+//}
+///**
+// * 点击头像
+// */
+//-(void)headClick
+//{
+//    if([_usermodel.userType integerValue]==2)
+//    {
+//        //                设计师
+//        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+//        _DesignerHomePage.designerId=_usermodel.u_id;
+//        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+//    }else if([_usermodel.userType integerValue]==4)
+//    {
+//        //                达人
+//        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+//    }else
+//    {
+//        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+//    }
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

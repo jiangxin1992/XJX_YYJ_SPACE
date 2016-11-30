@@ -72,7 +72,11 @@
 {
     _upView=[UIView getCustomViewWithColor:nil];
     [self addSubview:_upView];
-    [_upView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseStyle)]];
+//    [_upView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseStyle)]];
+    [_upView bk_whenTapped:^{
+//        款式选择
+        _block(@"chooseStyle",0);
+    }];
     [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.right.left.mas_equalTo(0);
         make.height.mas_equalTo(40);
@@ -186,13 +190,13 @@
     NSInteger _index=btn.tag-150;
     _block(@"delete_choose_item",_index);
 }
-/**
- * 款式选择
- */
--(void)chooseStyle
-{
-    _block(@"chooseStyle",0);
-}
+///**
+// * 款式选择
+// */
+//-(void)chooseStyle
+//{
+//    _block(@"chooseStyle",0);
+//}
 //-(void)CreateScrollView
 //{
 //    //    110

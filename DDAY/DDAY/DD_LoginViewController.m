@@ -17,7 +17,7 @@
 
 #import "DD_LoginTextView.h"
 
-@interface DD_LoginViewController ()<UITextFieldDelegate>
+@interface DD_LoginViewController ()
 
 @end
 
@@ -75,7 +75,6 @@
     [self.view addSubview:_phoneTextfiled];
     _phoneTextfiled.returnKeyType=UIReturnKeyDone;
     _phoneTextfiled.keyboardType=UIKeyboardTypeNumberPad;
-    _phoneTextfiled.delegate=self;
     [_phoneTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -92,7 +91,12 @@
     }] WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfiled];
     _PSWTextfiled.returnKeyType=UIReturnKeyGo;
-    _PSWTextfiled.delegate=self;
+    __block DD_LoginViewController *loginVC=self;
+    [_PSWTextfiled setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+        [textfield resignFirstResponder];
+        [loginVC loginAction];
+        return YES;
+    }];
     [_PSWTextfiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -518,16 +522,7 @@
 {
     [self GetUserInfo:SSDKPlatformTypeSinaWeibo];
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    if(textField == _PSWTextfiled)
-    {
-        [self loginAction];
-    }
-    return YES;
-}
+
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -546,6 +541,15 @@
     [super didReceiveMemoryWarning];
 }
 
-
+//#pragma mark - UITextFieldDelegate
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    if(textField == _PSWTextfiled)
+//    {
+//        [self loginAction];
+//    }
+//    return YES;
+//}
 
 @end

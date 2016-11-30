@@ -25,7 +25,10 @@
         CGFloat _pic_height=floor(([benefitInfoModel.picInfo.height floatValue]/[benefitInfoModel.picInfo.width floatValue])*ScreenWidth);
         self.frame=CGRectMake(0, 0, ScreenWidth, _pic_height);
         self.userInteractionEnabled=YES;
-        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterAction)]];
+//        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterAction)]];
+        [self bk_whenTapped:^{
+            _block(@"enter");
+        }];
         
         benefitImg=[UIImageView getCustomImg];
         [self addSubview:benefitImg];
@@ -52,8 +55,8 @@
 {
     _block(@"close");
 }
--(void)enterAction
-{
-    _block(@"enter");
-}
+//-(void)enterAction
+//{
+//    _block(@"enter");
+//}
 @end

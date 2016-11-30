@@ -37,10 +37,10 @@
     }
     return self;
 }
--(void)NULLAction
-{
-    
-}
+//-(void)NULLAction
+//{
+//    
+//}
 +(CGFloat )getHeightWithColorModel:(DD_ColorsModel *)colorModel WithSizeAlertModel:(DD_SizeAlertModel *)sizeAlertModel
 {
     DD_ChooseSizeView *_sizeView = [[DD_ChooseSizeView alloc] initWithColorModel:colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type, NSString *sizeid, NSString *colorid, NSInteger count) {
@@ -65,7 +65,10 @@
 -(void)PrepareUI
 {
     self.userInteractionEnabled=YES;
-    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NULLAction)]];
+//    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NULLAction)]];
+    [self bk_whenTapped:^{
+//        NULLAction
+    }];
     self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig

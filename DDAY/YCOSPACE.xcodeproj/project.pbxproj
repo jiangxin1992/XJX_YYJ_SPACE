@@ -363,6 +363,7 @@
 		3FFE38B51D7D090400B46768 /* DD_CircleTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE38B41D7D090400B46768 /* DD_CircleTagView.m */; };
 		3FFE38B81D7D6D9400B46768 /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */; };
 		3FFF77941D5256D60002665D /* DD_ClearingTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */; };
+		73204A97EBF94290DAD083D9 /* Pods_YCOSPACE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A89C171A6FBB6731D7E0A9E8 /* Pods_YCOSPACE.framework */; };
 		F4DB50141276DD44E4BCEF24 /* Pods_YCO_SPACE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26B9372E7FA886611FAF22A /* Pods_YCO_SPACE.framework */; };
 /* End PBXBuildFile section */
 
@@ -385,6 +386,7 @@
 
 /* Begin PBXFileReference section */
 		18D380941DA2569700EBE436 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		1BFE0D32344C247BCFB794AD /* Pods-YCOSPACE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCOSPACE.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE.release.xcconfig"; sourceTree = "<group>"; };
 		32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.debug.xcconfig"; sourceTree = "<group>"; };
 		3F00D4151D5A4CA000896ED5 /* DD_UserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageViewController.h; sourceTree = "<group>"; };
 		3F00D4161D5A4CA000896ED5 /* DD_UserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserMessageViewController.m; sourceTree = "<group>"; };
@@ -1095,6 +1097,8 @@
 		3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingTabbar.h; sourceTree = "<group>"; };
 		3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingTabbar.m; sourceTree = "<group>"; };
+		90692A05EB725AE5D37E75E3 /* Pods-YCOSPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCOSPACE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE.debug.xcconfig"; sourceTree = "<group>"; };
+		A89C171A6FBB6731D7E0A9E8 /* Pods_YCOSPACE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YCOSPACE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCO SPACE.release.xcconfig"; path = "Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE.release.xcconfig"; sourceTree = "<group>"; };
 		D26B9372E7FA886611FAF22A /* Pods_YCO_SPACE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YCO_SPACE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1133,6 +1137,7 @@
 				3F552E6E1CF1C83200BC5E33 /* MessageUI.framework in Frameworks */,
 				3F552E6A1CF1C80400BC5E33 /* ImageIO.framework in Frameworks */,
 				F4DB50141276DD44E4BCEF24 /* Pods_YCO_SPACE.framework in Frameworks */,
+				73204A97EBF94290DAD083D9 /* Pods_YCOSPACE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3426,6 +3431,8 @@
 			children = (
 				32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */,
 				CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */,
+				90692A05EB725AE5D37E75E3 /* Pods-YCOSPACE.debug.xcconfig */,
+				1BFE0D32344C247BCFB794AD /* Pods-YCOSPACE.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3458,6 +3465,7 @@
 				3F552E631CF1C7EB00BC5E33 /* libz.tbd */,
 				3F552E611CF1C7E100BC5E33 /* libicucore.tbd */,
 				D26B9372E7FA886611FAF22A /* Pods_YCO_SPACE.framework */,
+				A89C171A6FBB6731D7E0A9E8 /* Pods_YCOSPACE.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3687,7 +3695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C51510F94A7D20750B13E0DF /* [CP] Copy Pods Resources */ = {
@@ -3702,7 +3710,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCO SPACE/Pods-YCO SPACE-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4134,7 +4142,7 @@
 		};
 		3F41879E1CEEFB24001BCA3D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32AD244966C3260475E4B323 /* Pods-YCO SPACE.debug.xcconfig */;
+			baseConfigurationReference = 90692A05EB725AE5D37E75E3 /* Pods-YCOSPACE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YCOSPACE.entitlements;
@@ -4180,7 +4188,7 @@
 		};
 		3F41879F1CEEFB24001BCA3D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC3A2138CF963E52AE756BC6 /* Pods-YCO SPACE.release.xcconfig */;
+			baseConfigurationReference = 1BFE0D32344C247BCFB794AD /* Pods-YCOSPACE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YCOSPACE.entitlements;

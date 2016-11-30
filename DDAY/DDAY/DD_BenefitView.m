@@ -49,7 +49,11 @@ static DD_BenefitView *benefitView = nil;
         [self addSubview:backView];
         backView.contentMode=UIViewContentModeScaleToFill;
         backView.userInteractionEnabled=YES;
-        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction)]];
+//        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction)]];
+        [backView bk_whenTapped:^{
+//            关闭
+            [self closeAction];
+        }];
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self);
         }];

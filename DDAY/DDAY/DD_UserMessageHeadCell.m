@@ -39,7 +39,11 @@
     [self.contentView addSubview:_userHead];
     _userHead.userInteractionEnabled=YES;
     _userHead.contentMode=2;
-    [_userHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [_userHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [_userHead bk_whenTapped:^{
+//        头像点击
+        _block(@"headClick",_messageItem.fromUser);
+    }];
     [_userHead mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.width.height.mas_equalTo(50);
@@ -74,10 +78,10 @@
     _view.hidden=YES;
 }
 #pragma mark - setter
--(void)headClick
-{
-    _block(@"headClick",_messageItem.fromUser);
-}
+//-(void)headClick
+//{
+//    _block(@"headClick",_messageItem.fromUser);
+//}
 
 -(void)setMessageItem:(DD_UserMessageItemModel *)messageItem
 {

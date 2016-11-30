@@ -38,7 +38,7 @@
     }
     return self;
 }
--(void)NULLAction{}
+//-(void)NULLAction{}
 +(CGFloat )getHeightWithSizeAlertModel:(DD_SizeAlertModel *)SizeAlertModel WithItem:(DD_ShopItemModel *)ItemModel
 {
     DD_ShopAlertSizeView *_sizeView = [[DD_ShopAlertSizeView alloc] initWithSizeAlertModel:SizeAlertModel WithItem:ItemModel WithBlock:^(NSString *type, NSString *sizeId, NSString *sizeName, NSInteger count) {
@@ -61,7 +61,10 @@
 -(void)PrepareUI
 {
     self.userInteractionEnabled=YES;
-    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NULLAction)]];
+//    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NULLAction)]];
+    [self bk_whenTapped:^{
+//        NULLAction
+    }];
     self.backgroundColor=_define_white_color;
 }
 #pragma mark - UIConfig

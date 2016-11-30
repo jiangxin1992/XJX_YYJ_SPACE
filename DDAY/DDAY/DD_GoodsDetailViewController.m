@@ -116,10 +116,26 @@ __bool(isExpanded);
 {
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
-    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+//    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    [shopBtn bk_addEventHandler:^(id sender) {
+//        跳转购物车
+        if(![DD_UserModel isLogin])
+        {
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
+        }else
+        {
+            DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+            [self.navigationController pushViewController:_shop animated:YES];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
     
     DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"Share_Navbar"];
-    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    [shareBtn bk_addEventHandler:^(id sender) {
+        [self ShareAction];
+    } forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItems=@[[[UIBarButtonItem alloc] initWithCustomView:shopBtn]
                                               ,[[UIBarButtonItem alloc] initWithCustomView:shareBtn]
@@ -619,7 +635,10 @@ __bool(isExpanded);
                     [self.navigationController setNavigationBarHidden:YES animated:YES];
                     mengban=[UIImageView getMaskImageView];
                     [self.view addSubview:mengban];
-                    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+//                    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+                    [mengban bk_whenTapped:^{
+                        [self mengban_dismiss];
+                    }];
                     sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
                         if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
                         {
@@ -794,8 +813,10 @@ __bool(isExpanded);
     
     mengban_share=[UIImageView getMaskImageView];
     [self.view addSubview:mengban_share];
-    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
-    
+//    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+    [mengban_share bk_whenTapped:^{
+        [self mengban_dismiss_share];
+    }];
     shareView=[[DD_ShareView alloc] initWithType:@"goods_detail" WithParams:@{@"detailModel":_DetailModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
         {
@@ -835,19 +856,19 @@ __bool(isExpanded);
     [self.view.window addSubview:_benefitView];
 }
 //跳转购物车视图
--(void)PushShopView
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-        [self.navigationController pushViewController:_shop animated:YES];
-    }
-}
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
 
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated

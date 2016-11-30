@@ -17,7 +17,8 @@
 #import "DD_CityModel.h"
 #import "DD_AddressModel.h"
 
-@interface DD_AddNewAddressViewController()<UITextFieldDelegate>
+@interface DD_AddNewAddressViewController()
+//<UITextFieldDelegate>
 
 @end
 
@@ -127,7 +128,11 @@
             UITextField *textFiled=[[UITextField alloc] init];
             [cellview addSubview:textFiled];
             textFiled.tag=100+i;
-            textFiled.delegate=self;
+//            textFiled.delegate=self;
+            [textFiled setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+                [textfield resignFirstResponder];
+                return YES;
+            }];
             textFiled.returnKeyType=UIReturnKeyDone;
             if(i==1||i==2){
                 textFiled.keyboardType=UIKeyboardTypeNumberPad;
@@ -345,11 +350,6 @@
     }
     return @"";
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -385,5 +385,9 @@
 //        _Default_btn.selected=_AddressModel.isDefault;
 //    }
 //}
-
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 @end

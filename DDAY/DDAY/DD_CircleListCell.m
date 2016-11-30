@@ -104,7 +104,11 @@
         userHeadImg.contentMode=2;
         [regular setZeroBorder:userHeadImg];
         userHeadImg.userInteractionEnabled=YES;
-        [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//        [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+        [userHeadImg bk_whenTapped:^{
+//            点击头像
+            _cellBlock(@"head_click",_index,nil);
+        }];
         [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
             make.top.mas_equalTo(9);
@@ -166,8 +170,13 @@
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             goods.tag=100+i;
+            [goods bk_whenTapped:^{
+//                点击单品
+                DD_OrderItemModel *_item=_listModel.items[goods.tag-100];
+                _cellBlock(@"item_click",_index,_item);
+            }];
             //        goods.frame=CGRectMake(ScreenWidth-2*kEdge-66,CGRectGetMaxY(goodImgView.frame)+(66+24)*i , 66, 66);
             [goods mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.mas_equalTo(-kEdge);
@@ -347,19 +356,19 @@
     //        _cellBlock(@"delete",_index,nil);
     //    }
 }
--(void)itemAction:(UIGestureRecognizer *)ges
-{
-    
-    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
-    _cellBlock(@"item_click",_index,_item);
-}
-/**
- * 头像点击
- */
--(void)headClick
-{
-    _cellBlock(@"head_click",_index,nil);
-}
+//-(void)itemAction:(UIGestureRecognizer *)ges
+//{
+//    
+//    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
+//    _cellBlock(@"item_click",_index,_item);
+//}
+///**
+// * 头像点击
+// */
+//-(void)headClick
+//{
+//    _cellBlock(@"head_click",_index,nil);
+//}
 /**
  * 更新
  */
@@ -452,8 +461,13 @@
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             goods.tag=100+i;
+            [goods bk_whenTapped:^{
+                //                点击单品
+                DD_OrderItemModel *_item=_listModel.items[goods.tag-100];
+                _cellBlock(@"item_click",_index,_item);
+            }];
             DD_OrderItemModel *_order=_listModel.items[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             

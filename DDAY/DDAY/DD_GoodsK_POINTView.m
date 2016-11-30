@@ -79,7 +79,12 @@
         [backBtn addSubview:backView];
         backView.userInteractionEnabled=YES;
         backView.tag=100+i;
-        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
+//        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
+        [backView bk_whenTapped:^{
+            NSInteger index = backView.tag-100;
+            DD_ShowRoomModel *model=_showroomArr[index];
+            _block(@"choose",model);
+        }];
         [viewArr addObject:backView];
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
@@ -136,13 +141,13 @@
     
 }
 #pragma mark - SomeAction
--(void)ChooseAction:(UIGestureRecognizer *)ges
-{
-    NSInteger index = ges.view.tag-100;
-    DD_ShowRoomModel *model=_showroomArr[index];
-    _block(@"choose",model);
-    
-}
+//-(void)ChooseAction:(UIGestureRecognizer *)ges
+//{
+//    NSInteger index = ges.view.tag-100;
+//    DD_ShowRoomModel *model=_showroomArr[index];
+//    _block(@"choose",model);
+//    
+//}
 -(void)setIs_show:(BOOL)is_show
 {
     _is_show=is_show;

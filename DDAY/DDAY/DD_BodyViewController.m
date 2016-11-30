@@ -8,7 +8,8 @@
 
 #import "DD_BodyViewController.h"
 
-@interface DD_BodyViewController ()<UITextFieldDelegate>
+@interface DD_BodyViewController ()
+//<UITextFieldDelegate>
 
 @end
 
@@ -48,8 +49,11 @@
 -(void)PrepareUI
 {
     DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
-    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
+//    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
+    [confirmBtn bk_addEventHandler:^(id sender) {
+        [self DoneAction];
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -77,7 +81,12 @@
         textfield.placeholder=i==0?@"快来填写身高(cm)吧":@"快来填写体重(kg)吧";
         textfield.font=[regular getFont:13.0f];
         textfield.textAlignment=0;
-        textfield.delegate=self;
+        textfield.keyboardType=UIKeyboardTypeNumberPad;
+//        textfield.delegate=self;
+        [textfield setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+            [textfield resignFirstResponder];
+            return YES;
+        }];
         textfield.returnKeyType=UIReturnKeyDone;
         textfield.clearButtonMode=UITextFieldViewModeAlways;
         [regular setBorder:textfield];
@@ -96,11 +105,7 @@
         lastView=titleLabel;
     }
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
+
 #pragma mark - SomeAction
 -(void)setTitle:(NSString *)title
 {
@@ -144,6 +149,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [regular dismissKeyborad];
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -158,5 +164,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 @end

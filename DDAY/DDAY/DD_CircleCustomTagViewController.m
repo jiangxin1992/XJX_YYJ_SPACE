@@ -14,7 +14,8 @@
 #import "DD_CircleModel.h"
 #import "DD_CricleTagItemModel.h"
 
-@interface DD_CircleCustomTagViewController ()<UITextFieldDelegate>
+@interface DD_CircleCustomTagViewController ()
+//<UITextFieldDelegate>
 
 
 @end
@@ -52,8 +53,11 @@
 {
     self.navigationItem.titleView=[regular returnNavView:@"添加标签" withmaxwidth:200];
     DD_NavBtn *confirmBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(24, 24) WithImgeStr:@"System_Confirm"];
-    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
+//    [confirmBtn addTarget:self action:@selector(DoneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:confirmBtn];
+    [confirmBtn bk_addEventHandler:^(id sender) {
+        [self DoneAction];
+    } forControlEvents:UIControlEventTouchUpInside];
     
 }
 #pragma mark - UIConfig
@@ -66,7 +70,12 @@
     _tagTextField.clearButtonMode = UITextFieldViewModeAlways;
     _tagTextField.returnKeyType=UIReturnKeyDone;
     _tagTextField.borderStyle= UITextBorderStyleNone;
-    _tagTextField.delegate=self;
+//    _tagTextField.delegate=self;
+    __block DD_CircleCustomTagViewController *CircleVC=self;
+    [_tagTextField setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
+        [CircleVC DoneAction];
+        return YES;
+    }];
     _tagTextField.placeholder=@"添加标签";
     _tagTextField.textColor=_define_black_color;
     _tagTextField.font=[regular getFont:13.0f];
@@ -79,11 +88,7 @@
         make.height.mas_equalTo(32);
     }];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self DoneAction];
-    return YES;
-}
+
 #pragma mark - doneAction
 -(void)DoneAction
 {
@@ -136,6 +141,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [self DoneAction];
+//    return YES;
+//}
 
 @end

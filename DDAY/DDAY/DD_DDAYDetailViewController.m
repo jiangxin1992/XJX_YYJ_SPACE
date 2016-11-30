@@ -74,11 +74,26 @@
 {
     self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:180];
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
-    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+//    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    [shopBtn bk_addEventHandler:^(id sender) {
+//        跳转购物车
+        if(![DD_UserModel isLogin])
+        {
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
+        }else
+        {
+            DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+            [self.navigationController pushViewController:_shop animated:YES];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
     
     DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"Share_Navbar"];
-    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
-    
+//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+    [shareBtn bk_addEventHandler:^(id sender) {
+        [self ShareAction];
+    } forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItems=@[[[UIBarButtonItem alloc] initWithCustomView:shopBtn]
                                               ,[[UIBarButtonItem alloc] initWithCustomView:shareBtn]
                                               ];
@@ -195,7 +210,10 @@
     
     mengban=[UIImageView getMaskImageView];
     [self.view addSubview:mengban];
-    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+//    [mengban addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss)]];
+    [mengban bk_whenTapped:^{
+        [self mengban_dismiss];
+    }];
     
     shareView=[[DD_ShareView alloc] initWithType:@"dday_detail" WithParams:@{@"detailModel":_detailModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
@@ -236,20 +254,20 @@
     }];
     [self.view.window addSubview:_benefitView];
 }
-//跳转购物车视图
--(void)PushShopView
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-        [self.navigationController pushViewController:_shop animated:YES];
-    }
-}
+////跳转购物车视图
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
 #pragma mark - RequestData
 -(void)RequestData
 {

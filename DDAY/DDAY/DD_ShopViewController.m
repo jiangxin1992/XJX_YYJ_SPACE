@@ -74,8 +74,13 @@
 {
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"shop_title", @"") withmaxwidth:200];//设置标题
     DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(popAction) forControlEvents:UIControlEventTouchDown];
+//    [backBtn addTarget:self action:@selector(popAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [backBtn bk_addEventHandler:^(id sender) {
+//        返回
+        [self.navigationController popViewControllerAnimated:YES];
+        [self cancelAllTimer];
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 #pragma mark - UIConfig
 -(void)UIConfig
@@ -167,7 +172,10 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_size=[UIImageView getMaskImageView];
         [self.view addSubview:mengban_size];
-        [mengban_size addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_size_dismiss)]];
+//        [mengban_size addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_size_dismiss)]];
+        [mengban_size bk_whenTapped:^{
+            [self mengban_size_dismiss];
+        }];
         DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         _alertSizeView=[[DD_ShopAlertSizeView alloc] initWithSizeAlertModel:sizeAlertModel WithItem:itemModel WithBlock:^(NSString *type,NSString *sizeId,NSString *sizeName,NSInteger count) {
             if([type isEqualToString:@"alert"])
@@ -285,7 +293,10 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_num=[UIImageView getMaskImageView];
         [self.view addSubview:mengban_num];
-        [mengban_num addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_num_dismiss)]];
+//        [mengban_num addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_num_dismiss)]];
+        [mengban_num bk_whenTapped:^{
+            [self mengban_num_dismiss];
+        }];
         
         DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
         _alertNumView=[[DD_ShopAlertNumView alloc] initWithSizeArr:sizeAlertModel.size WithItem:itemModel WithBlock:^(NSString *type,NSInteger count) {
@@ -410,16 +421,16 @@
 
 #pragma mark - SomeActions
 
-/**
- * 返回
- * 取消所有定时器
- */
--(void)popAction
-{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    [self cancelAllTimer];
-}
+///**
+// * 返回
+// * 取消所有定时器
+// */
+//-(void)popAction
+//{
+//    
+//    [self.navigationController popViewControllerAnimated:YES];
+//    [self cancelAllTimer];
+//}
 /**
  * 取消所有定时器
  */

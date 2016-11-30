@@ -55,7 +55,10 @@
     icon.contentMode=2;
     [regular setZeroBorder:icon];
     icon.userInteractionEnabled=YES;
-    [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
+//    [icon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headAction)]];
+    [icon bk_whenTapped:^{
+//        头像点击
+    }];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(19);
@@ -149,12 +152,12 @@
         _cellBlock(@"praise",_index);
     }
 }
-/**
- * 头像点击
- */
--(void)headAction
-{
-}
+///**
+// * 头像点击
+// */
+//-(void)headAction
+//{
+//}
 /**
  * 更新
  */

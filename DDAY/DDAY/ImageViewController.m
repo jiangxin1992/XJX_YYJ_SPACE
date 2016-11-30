@@ -57,15 +57,19 @@
         }
         
     }];
-    [_imgv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchAction)]];
+//    [_imgv addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchAction)]];
+    [_imgv bk_whenTapped:^{
+        JXLOG(@"_currentPage=%ld",_currentPage);
+        _block(@"show_img",_currentPage);
+    }];
     _imgv.hidden=YES;
     
 }
--(void)touchAction
-{
-    JXLOG(@"_currentPage=%ld",_currentPage);
-    _block(@"show_img",_currentPage);
-}
+//-(void)touchAction
+//{
+//    JXLOG(@"_currentPage=%ld",_currentPage);
+//    _block(@"show_img",_currentPage);
+//}
 
 -(void)setCurrentPage:(NSInteger)currentPage
 {

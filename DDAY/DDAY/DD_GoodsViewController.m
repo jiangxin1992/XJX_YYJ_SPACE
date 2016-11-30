@@ -83,12 +83,28 @@
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"goods_title", @"") withmaxwidth:200];
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
-    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+//    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
+    [shopBtn bk_addEventHandler:^(id sender) {
+//        跳转购物车
+        if(![DD_UserModel isLogin])
+        {
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
+        }else
+        {
+            DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+            [self.navigationController pushViewController:_shop animated:YES];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
     
     DD_NavBtn *listBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 17) WithImgeStr:@"Item_List"];
-    [listBtn addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [listBtn addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:listBtn];
+    [listBtn bk_addEventHandler:^(id sender) {
+        [self ChooseCategoryAction:listBtn];
+    } forControlEvents:UIControlEventTouchUpInside];
     
     //
     //    titleView=[[DD_GoodsListView alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
@@ -103,8 +119,12 @@
     if(_noTabbar)
     {
         DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-        [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+//        [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [backBtn bk_addEventHandler:^(id sender) {
+//            返回
+            [self.navigationController popViewControllerAnimated:YES];
+        } forControlEvents:UIControlEventTouchUpInside];
     }
 }
 -(void)ChooseCategoryAction:(UIButton *)btn
@@ -442,24 +462,24 @@
 /**
  * 返回
  */
--(void)backAction
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//-(void)backAction
+//{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 //跳转购物车
--(void)PushShopView
-{
-    if(![DD_UserModel isLogin])
-    {
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-            [self pushLoginView];
-        }] animated:YES completion:nil];
-    }else
-    {
-        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-        [self.navigationController pushViewController:_shop animated:YES];
-    }
-}
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
 
 #pragma mark - UITableViewDelegate
 // cell的个数，必须实现

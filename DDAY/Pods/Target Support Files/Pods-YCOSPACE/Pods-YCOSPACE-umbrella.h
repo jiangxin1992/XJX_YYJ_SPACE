@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_YCO_SPACEVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_YCO_SPACEVersionString[];
+FOUNDATION_EXPORT double Pods_YCOSPACEVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_YCOSPACEVersionString[];
 

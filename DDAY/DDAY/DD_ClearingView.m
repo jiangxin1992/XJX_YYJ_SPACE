@@ -78,7 +78,11 @@
     remarksView=[[UIView alloc] initWithFrame:CGRectMake(kEdge,CGRectGetMaxY(freightLabel.frame)+5 , ScreenWidth-kEdge*2, 1)];
     [self addSubview:remarksView];
     remarksView.userInteractionEnabled=YES;
-    [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
+//    [remarksView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remarksAction)]];
+    [remarksView bk_whenTapped:^{
+//        填写备注
+        _block(@"remarks",0,_payWay);
+    }];
     
     _webView=[[UIWebView alloc] initWithFrame:CGRectMake(0 ,0 , ScreenWidth-kEdge*2, 1)];
     [remarksView addSubview:_webView];
@@ -424,12 +428,12 @@
     [self layoutIfNeeded];
     _block(@"height",payView.origin.y + payView.size.height,_payWay);
 }
-/**
- * 添加备注
- */
--(void)remarksAction{
-    _block(@"remarks",0,_payWay);
-}
+///**
+// * 添加备注
+// */
+//-(void)remarksAction{
+//    _block(@"remarks",0,_payWay);
+//}
 /**
  * 备注填写完毕之后，回调更新备注视图的内容
  */

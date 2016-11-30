@@ -43,7 +43,10 @@
 -(void)UIConfig{
     self.backgroundColor=_define_white_color;
     self.userInteractionEnabled=YES;
-    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+//    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+    [self bk_whenTapped:^{
+        _block(@"click",_Section);
+    }];
     
     UIView *leftLine=[UIView getCustomViewWithColor:_define_black_color];
     [self addSubview:leftLine];
@@ -81,10 +84,10 @@
     }];
     
 }
--(void)clickAction
-{
-    _block(@"click",_Section);
-}
+//-(void)clickAction
+//{
+//    _block(@"click",_Section);
+//}
 #pragma mark - SetState
 -(void)SetState
 {

@@ -105,7 +105,11 @@
     userHeadImg.contentMode=2;
     [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [userHeadImg bk_whenTapped:^{
+//        点击头像
+        _block(@"head_click",nil);
+    }];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_equalTo(IsPhone6_gt?34:15);
         make.left.mas_equalTo(kEdge);
@@ -159,7 +163,11 @@
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
             goods.tag=100+i;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods bk_whenTapped:^{
+                DD_OrderItemModel *_item=_circle.items[goods.tag-100];
+                _block(@"item_click",_item);
+            }];
             [goods mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.mas_equalTo(-kEdge);
                 make.width.height.mas_equalTo(66);
@@ -204,7 +212,11 @@
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods bk_whenTapped:^{
+                DD_OrderItemModel *_item=_circle.items[goods.tag-100];
+                _block(@"item_click",_item);
+            }];
             goods.tag=100+i;
             DD_OrderItemModel *_order=_circle.items[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
@@ -299,19 +311,19 @@
 
 }
 
-/**
- * 头像点击
- */
--(void)headClick
-{
-    _block(@"head_click",nil);
-}
--(void)itemAction:(UIGestureRecognizer *)ges
-{
-    
-    DD_OrderItemModel *_item=_circle.items[ges.view.tag-100];
-    _block(@"item_click",_item);
-}
+///**
+// * 头像点击
+// */
+//-(void)headClick
+//{
+//    _block(@"head_click",nil);
+//}
+//-(void)itemAction:(UIGestureRecognizer *)ges
+//{
+//    
+//    DD_OrderItemModel *_item=_circle.items[ges.view.tag-100];
+//    _block(@"item_click",_item);
+//}
 -(void)clickAction
 {
     _block(@"enter_detail",nil);

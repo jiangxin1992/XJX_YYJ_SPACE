@@ -43,7 +43,11 @@
     
     UIImageView *backimg=[UIImageView getMaskImageView];
     [self addSubview:backimg];
-    [backimg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+//    [backimg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+    [backimg bk_whenTapped:^{
+        _block(@"resign",_commentField.text,0);
+        [_commentField resignFirstResponder];
+    }];
     [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
@@ -87,11 +91,11 @@
 
 }
 #pragma mark - OtherAction
--(void)clickAction
-{
-    _block(@"resign",_commentField.text,0);
-    [_commentField resignFirstResponder];
-}
+//-(void)clickAction
+//{
+//    _block(@"resign",_commentField.text,0);
+//    [_commentField resignFirstResponder];
+//}
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     textView.textColor=_define_black_color;

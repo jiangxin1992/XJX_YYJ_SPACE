@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>BlocksKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HappyDNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +34,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-YCO SPACE.xcscheme</key>
+		<key>Pods-YCOSPACE.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,22 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26F02EA2D20069BCF1119D48C881CC49</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>522AA58AC3FECE8853141F976344968D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5AA17C95E926B760FD08E0B487DAEFA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8449F79F84EF3A00C82D824976613C4C</key>
+		<key>ABA840BED540216FD44E9BB9668177F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C060DB5BB5ABEF16284AA1E2AB432CB0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C8998FADF780D31EF37819CEE8206CE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CF9F9296C47B28F0C0E2F25D7474001C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D2ED55AC4AB00D5099D5D71F2387231F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +98,21 @@
 			<true/>
 		</dict>
 		<key>E14A62900910444707A5504D25EC98DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8C3E05DCE3431DAA78A058434B0A361</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAC4DBB4F79DBE0FA8D0658CF4970DD0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FFBC80270798237231623DCCD213A5FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

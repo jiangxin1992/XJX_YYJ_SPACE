@@ -152,7 +152,24 @@
     userHeadImg.contentMode=2;
     [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [userHeadImg bk_whenTapped:^{
+//        点击头像
+        if([_usermodel.userType integerValue]==2)
+        {
+            //                设计师
+            DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+            _DesignerHomePage.designerId=_usermodel.u_id;
+            [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+        }else if([_usermodel.userType integerValue]==4)
+        {
+            //                达人
+            [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+        }else
+        {
+            [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+        }
+    }];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
@@ -369,26 +386,26 @@
     }];
     [self.navigationController pushViewController:_GoodsDetail animated:YES];
 }
-/**
- * 点击头像
- */
--(void)headClick
-{
-    if([_usermodel.userType integerValue]==2)
-    {
-        //                设计师
-        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
-        _DesignerHomePage.designerId=_usermodel.u_id;
-        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
-    }else if([_usermodel.userType integerValue]==4)
-    {
-        //                达人
-        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
-    }else
-    {
-        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
-    }
-}
+///**
+// * 点击头像
+// */
+//-(void)headClick
+//{
+//    if([_usermodel.userType integerValue]==2)
+//    {
+//        //                设计师
+//        DD_DesignerHomePageViewController *_DesignerHomePage=[[DD_DesignerHomePageViewController alloc] init];
+//        _DesignerHomePage.designerId=_usermodel.u_id;
+//        [self.navigationController pushViewController:_DesignerHomePage animated:YES];
+//    }else if([_usermodel.userType integerValue]==4)
+//    {
+//        //                达人
+//        [self.navigationController pushViewController:[[DD_TarentoHomePageViewController alloc] initWithUserId:_usermodel.u_id] animated:YES];
+//    }else
+//    {
+//        [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(@"no_homepage", @"")] animated:YES completion:nil];
+//    }
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

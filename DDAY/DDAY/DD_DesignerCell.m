@@ -109,7 +109,10 @@
     _scrollview.alwaysBounceVertical=NO;
     _scrollview.showsHorizontalScrollIndicator=NO;
     _scrollview.scrollEnabled=YES;
-    [_scrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+//    [_scrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+    [_scrollview bk_whenTapped:^{
+        _followblock(_index,@"click");
+    }];
     [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
@@ -194,10 +197,10 @@
         _scrollview.contentSize=CGSizeMake(0,CGRectGetHeight(_scrollview.frame));
     }
 }
--(void)clickAction
-{
-    _followblock(_index,@"click");
-}
+//-(void)clickAction
+//{
+//    _followblock(_index,@"click");
+//}
 -(void)followAction:(UIButton *)btn
 {
     if(btn.selected)

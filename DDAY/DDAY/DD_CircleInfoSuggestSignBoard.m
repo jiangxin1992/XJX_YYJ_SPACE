@@ -43,7 +43,18 @@
 {
     UIImageView *backimg=[UIImageView getMaskImageView];
     [self addSubview:backimg];
-    [backimg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+//    [backimg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+    [backimg bk_whenTapped:^{
+        if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
+            _commentField.text = _holdStr;
+            _commentField.textColor=_define_light_gray_color1;
+        }else
+        {
+            _commentField.textColor=_define_black_color;
+        }
+        _block(@"resign",_commentField.text);
+        [_commentField resignFirstResponder];
+    }];
     [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
@@ -86,18 +97,18 @@
     }];
 }
 #pragma mark - OtherAction
--(void)clickAction
-{
-    if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
-        _commentField.text = _holdStr;
-        _commentField.textColor=_define_light_gray_color1;
-    }else
-    {
-        _commentField.textColor=_define_black_color;
-    }
-    _block(@"resign",_commentField.text);
-    [_commentField resignFirstResponder];
-}
+//-(void)clickAction
+//{
+//    if ([_commentField.text isEqualToString:_holdStr]||[_commentField.text isEqualToString:@""]) {
+//        _commentField.text = _holdStr;
+//        _commentField.textColor=_define_light_gray_color1;
+//    }else
+//    {
+//        _commentField.textColor=_define_black_color;
+//    }
+//    _block(@"resign",_commentField.text);
+//    [_commentField resignFirstResponder];
+//}
 /**
  * 取消
  */

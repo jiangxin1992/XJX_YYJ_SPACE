@@ -14,7 +14,8 @@
 
 #import "DD_LoginTextView.h"
 
-@interface DD_SetPSWViewController ()<UITextFieldDelegate>
+@interface DD_SetPSWViewController ()
+//<UITextFieldDelegate>
 
 @end
 
@@ -65,7 +66,13 @@
     }] WithRightView:nil WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfield];
     _PSWTextfield.returnKeyType=UIReturnKeyDone;
-    _PSWTextfield.delegate=self;
+//    _PSWTextfield.delegate=self;
+    __block DD_SetPSWViewController *setVC=self;
+    [_PSWTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textField) {
+        [textField resignFirstResponder];
+        [setVC registerAction];
+        return YES;
+    }];
     [_PSWTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -203,17 +210,7 @@
         }
     }
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    if(textField == _PSWTextfield)
-    {
-        
-        [self registerAction];
-    }
-    return YES;
-}
+
 #pragma mark - Other
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -231,5 +228,15 @@
     [super didReceiveMemoryWarning];
     
 }
-
+//#pragma mark - UITextFieldDelegate
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    if(textField == _PSWTextfield)
+//    {
+//
+//        [self registerAction];
+//    }
+//    return YES;
+//}
 @end

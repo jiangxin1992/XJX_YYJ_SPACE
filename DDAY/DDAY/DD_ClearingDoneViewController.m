@@ -51,8 +51,38 @@
 -(void)PrepareUI
 {
     DD_NavBtn *backBtn=[DD_NavBtn getBackBtn];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchDown];
+//    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [backBtn bk_addEventHandler:^(id sender) {
+        /**
+         * 返回结算界面之前的那个界面
+         * type 类型 clear（结算页面处） order（订单列表处） detail_order（订单详情处）
+         * 每个类型的返回页面有所差别 故分开处理
+         */
+        if([_type isEqualToString:@"clear"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if([_type isEqualToString:@"order"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if([_type isEqualToString:@"detail_order_have_clearing_done"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if([_type isEqualToString:@"detail_order_havenot_clearing_done"])
+        {
+            NSArray *controllers=self.navigationController.viewControllers;
+            for (int i=0; i<controllers.count; i++) {
+                id obj=controllers[i];
+                if([obj isKindOfClass:[DD_OrderDetailViewController class]])
+                {
+                    if(i>0)
+                    {
+                        [self.navigationController popToViewController:controllers[i] animated:YES];
+                    }
+                }
+            }
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
     
     NSString *title=nil;
     if([_code integerValue]==9000)
@@ -163,38 +193,38 @@
     goodView.noTabbar=YES;
     [self.navigationController pushViewController:goodView animated:YES];
 }
-/**
- * 返回结算界面之前的那个界面
- * type 类型 clear（结算页面处） order（订单列表处） detail_order（订单详情处）
- * 每个类型的返回页面有所差别 故分开处理
- */
--(void)backAction
-{
-    JXLOG(@"type=%@",_type);
-    if([_type isEqualToString:@"clear"])
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else if([_type isEqualToString:@"order"])
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else if([_type isEqualToString:@"detail_order_have_clearing_done"])
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else if([_type isEqualToString:@"detail_order_havenot_clearing_done"])
-    {
-        NSArray *controllers=self.navigationController.viewControllers;
-        for (int i=0; i<controllers.count; i++) {
-            id obj=controllers[i];
-            if([obj isKindOfClass:[DD_OrderDetailViewController class]])
-            {
-                if(i>0)
-                {
-                    [self.navigationController popToViewController:controllers[i] animated:YES];
-                }
-            }
-        }
-    }
-}
+///**
+// * 返回结算界面之前的那个界面
+// * type 类型 clear（结算页面处） order（订单列表处） detail_order（订单详情处）
+// * 每个类型的返回页面有所差别 故分开处理
+// */
+//-(void)backAction
+//{
+//    JXLOG(@"type=%@",_type);
+//    if([_type isEqualToString:@"clear"])
+//    {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else if([_type isEqualToString:@"order"])
+//    {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else if([_type isEqualToString:@"detail_order_have_clearing_done"])
+//    {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }else if([_type isEqualToString:@"detail_order_havenot_clearing_done"])
+//    {
+//        NSArray *controllers=self.navigationController.viewControllers;
+//        for (int i=0; i<controllers.count; i++) {
+//            id obj=controllers[i];
+//            if([obj isKindOfClass:[DD_OrderDetailViewController class]])
+//            {
+//                if(i>0)
+//                {
+//                    [self.navigationController popToViewController:controllers[i] animated:YES];
+//                }
+//            }
+//        }
+//    }
+//}
 #pragma mark - Other
 - (void)viewWillAppear:(BOOL)animated
 {

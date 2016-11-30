@@ -44,7 +44,13 @@
         [self addSubview:img];
         img.tag=100+i;
         img.userInteractionEnabled=YES;
-        [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
+//        [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
+        [img bk_whenTapped:^{
+//            图片点击
+            NSInteger index=img.tag-100;
+            DD_OrderItemModel *itemModel=_similarArr[index];
+            _block(@"img_click",itemModel);
+        }];
         [img JX_ScaleAspectFill_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
         img.contentMode=1;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,12 +69,12 @@
         lastView=img;
     }
 }
--(void)imgClick:(UIGestureRecognizer *)ges
-{
-    
-    NSInteger index=ges.view.tag-100;
-    DD_OrderItemModel *itemModel=_similarArr[index];
-    
-    _block(@"img_click",itemModel);
-}
+//-(void)imgClick:(UIGestureRecognizer *)ges
+//{
+//    
+//    NSInteger index=ges.view.tag-100;
+//    DD_OrderItemModel *itemModel=_similarArr[index];
+//    
+//    _block(@"img_click",itemModel);
+//}
 @end

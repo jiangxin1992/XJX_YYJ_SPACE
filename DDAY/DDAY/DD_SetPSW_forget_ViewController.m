@@ -11,7 +11,8 @@
 #import "DD_LoginTextView.h"
 #import "DD_LoginViewController.h"
 
-@interface DD_SetPSW_forget_ViewController ()<UITextFieldDelegate>
+@interface DD_SetPSW_forget_ViewController ()
+//<UITextFieldDelegate>
 
 @end
 
@@ -49,7 +50,11 @@
     }] WithRightView:nil WithSecureTextEntry:YES];
     [self.view addSubview:_PSWTextfield];
     _PSWTextfield.returnKeyType=UIReturnKeyDone;
-    _PSWTextfield.delegate=self;
+//    _PSWTextfield.delegate=self;
+    [_PSWTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textField) {
+        [textField resignFirstResponder];
+        return YES;
+    }];
     [_PSWTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -62,7 +67,13 @@
     }] WithRightView:nil WithSecureTextEntry:YES];
     [self.view addSubview:_repeatPSWTextfield];
     _repeatPSWTextfield.returnKeyType=UIReturnKeyDone;
-    _repeatPSWTextfield.delegate=self;
+//    _repeatPSWTextfield.delegate=self;
+    __block DD_SetPSW_forget_ViewController *forgetVC=self;
+    [_repeatPSWTextfield setBk_shouldReturnBlock:^BOOL(UITextField *textField) {
+        [textField resignFirstResponder];
+        [forgetVC doneAction];
+        return YES;
+    }];
     [_repeatPSWTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(50);
         make.right.mas_equalTo(-50);
@@ -143,17 +154,7 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    if(textField==_repeatPSWTextfield)
-    {
-        [self doneAction];
-    }
-    
-    return YES;
-}
+
 #pragma mark - Ohers
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -171,5 +172,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UITextFieldDelegate
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    if(textField==_repeatPSWTextfield)
+//    {
+//        [self doneAction];
+//    }
+//
+//    return YES;
+//}
 
 @end

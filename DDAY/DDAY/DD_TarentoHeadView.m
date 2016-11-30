@@ -60,7 +60,11 @@
     [regular setZeroBorder:headImg];
     [headImg JX_ScaleAspectFill_loadImageUrlStr:_usermodel.head WithSize:800 placeHolderImageName:nil radius:69/2.0f];
     headImg.userInteractionEnabled=YES;
-    [headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [headImg bk_whenTapped:^{
+//       头像点击
+        _block(@"head_click");
+    }];
     [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(headBackView);
         make.width.and.height.mas_equalTo(69);
@@ -85,8 +89,8 @@
     }];
 //    [_des sizeToFit];
 }
--(void)headClick
-{
-    _block(@"head_click");
-}
+//-(void)headClick
+//{
+//    _block(@"head_click");
+//}
 @end

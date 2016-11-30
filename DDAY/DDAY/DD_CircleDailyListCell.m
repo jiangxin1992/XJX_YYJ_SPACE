@@ -102,7 +102,11 @@
         userHeadImg.contentMode=2;
         [regular setZeroBorder:userHeadImg];
         userHeadImg.userInteractionEnabled=YES;
-        [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//        [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+        [userHeadImg bk_whenTapped:^{
+//            头像点击
+            _cellBlock(@"head_click",_index,nil);
+        }];
         //        userHeadImg.frame=CGRectMake(kEdge, 9, 44, 44);
         [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kEdge);
@@ -289,13 +293,13 @@
     DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
     _cellBlock(@"item_click",_index,_item);
 }
-/**
- * 头像点击
- */
--(void)headClick
-{
-    _cellBlock(@"head_click",_index,nil);
-}
+///**
+// * 头像点击
+// */
+//-(void)headClick
+//{
+//    _cellBlock(@"head_click",_index,nil);
+//}
 /**
  * 更新
  */

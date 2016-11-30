@@ -97,9 +97,12 @@
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"circle_detail_title", @"") withmaxwidth:200];
     
     DD_NavBtn *shareBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"Share_Navbar"];
-    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
+//    [shareBtn addTarget:self action:@selector(ShareAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
+    [shareBtn bk_addEventHandler:^(id sender) {
+        [self ShareAction];
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)SomeBlocks
@@ -236,7 +239,11 @@
         _headView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         JXLOG(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         _headView.userInteractionEnabled=YES;
-        [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+//        [_headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+        [_headView bk_whenTapped:^{
+//            键盘消失
+            [_commentview return_KeyBoard];
+        }];
         
         _tableview.tableHeaderView=_headView;
     }else
@@ -310,7 +317,12 @@
         _dailyHeadView.frame=CGRectMake(0, 0, ScreenWidth,[DD_CircleDailyDetailHeadView heightWithModel:nowListModel]);
         JXLOG(@"height=%lf",[DD_CircleDetailHeadView heightWithModel:nowListModel]);
         _dailyHeadView.userInteractionEnabled=YES;
-        [_dailyHeadView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+//        [_dailyHeadView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(KeyBoardDismiss)]];
+        [_dailyHeadView bk_whenTapped:^{
+            //            键盘消失
+            [_commentview return_KeyBoard];
+        }];
+
         _tableview.tableHeaderView=_dailyHeadView;
     }
     
@@ -494,16 +506,15 @@
 //分享
 -(void)ShareAction
 {
-//    DD_BenefitInfoModel *model=[[DD_BenefitInfoModel alloc] init];
-//    model.name=@"分享成功五块红包！";
-//    model.amount=50;
-//    [self showBenefitWithModel:model];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     mengban_share=[UIImageView getMaskImageView];
     [self.view addSubview:mengban_share];
-    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+//    [mengban_share addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_dismiss_share)]];
+    [mengban_share bk_whenTapped:^{
+        [self mengban_dismiss_share];
+    }];
 
     shareView=[[DD_ShareView alloc] initWithType:@"circle_detail" WithParams:@{@"detailModel":nowListModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
@@ -561,10 +572,10 @@
 {
     [_commentview return_KeyBoard];
 }
--(void)KeyBoardDismiss
-{
-    [_commentview return_KeyBoard];
-}
+//-(void)KeyBoardDismiss
+//{
+//    [_commentview return_KeyBoard];
+//}
 /**
  * 跳转登录界面
  */

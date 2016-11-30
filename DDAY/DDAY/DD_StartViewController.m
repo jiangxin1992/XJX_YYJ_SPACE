@@ -25,16 +25,6 @@ static DD_StartViewController *startController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSMutableArray* mListFontName = [[NSMutableArray alloc] init];
-//    NSArray *familyNames = [UIFont familyNames];
-//    for( NSString *familyName in familyNames ){
-//        printf( "Family: %s \n", [familyName UTF8String] );
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-//        for( NSString *fontName in fontNames ){
-//            printf( "\tFont: %s \n", [fontName UTF8String] );
-//            [mListFontName addObject:fontName];
-//        }
-//    }
     _StartView=[[DD_StartView alloc] initWithBlock:^(NSString *type) {
         if([type isEqualToString:@"remove"])
         {

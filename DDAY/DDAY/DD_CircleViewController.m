@@ -66,23 +66,32 @@
     if(_userType==3)
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"Circle_Apply"];
-        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
+//        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
+        [apply_btn bk_addEventHandler:^(id sender) {
+            [self ApplyAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }else if(_userType==2||_userType==4)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+//        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        [submit_btn bk_addEventHandler:^(id sender) {
+            [self PublishAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }else
     {
         JXLOG(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+//        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        [submit_btn bk_addEventHandler:^(id sender) {
+            [self PublishAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }
 }
@@ -539,23 +548,32 @@
     if(_userType==3)
     {
         DD_NavBtn *apply_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(20, 25) WithImgeStr:@"Circle_Apply"];
-        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
+//        [apply_btn addTarget:self action:@selector(ApplyAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:apply_btn];
+        [apply_btn bk_addEventHandler:^(id sender) {
+            [self ApplyAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }else if(_userType==2||_userType==4)
     {
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+//        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        [submit_btn bk_addEventHandler:^(id sender) {
+            [self PublishAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }else
     {
          JXLOG(@"UserType=%ld",_userType);
         self.navigationItem.leftBarButtonItem=nil;
         DD_NavBtn *submit_btn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(22, 22) WithImgeStr:@"System_Issue"];
-        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
+//        [submit_btn addTarget:self action:@selector(PublishAction) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:submit_btn];
+        [submit_btn bk_addEventHandler:^(id sender) {
+            [self PublishAction];
+        } forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem=nil;
     }
     if([not.object isEqualToString:@"login"]||[not.object isEqualToString:@"logout"])

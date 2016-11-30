@@ -77,7 +77,11 @@
     userHeadImg.contentMode=2;
     [regular setZeroBorder:userHeadImg];
     userHeadImg.userInteractionEnabled=YES;
-    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+//    [userHeadImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    [userHeadImg bk_whenTapped:^{
+//        头像点击
+        _block(@"head_click",0,nil);
+    }];
     [userHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.top.mas_equalTo(9);
@@ -132,7 +136,12 @@
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
             goods.tag=100+i;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            [goods bk_whenTapped:^{
+//                点击单品
+                DD_OrderItemModel *_item=_listModel.items[goods.tag-100];
+                _block(@"item_click",0,_item);
+            }];
             [goods mas_makeConstraints:^(MASConstraintMaker *make) {
                 //            make.right.mas_equalTo(-(IsPhone6_gt?34:15));
                 make.right.mas_equalTo(-kEdge);
@@ -324,13 +333,13 @@
 {
     _block(@"show_item_list",0,nil);
 }
-/**
- * 点击头像
- */
--(void)headClick
-{
-    _block(@"head_click",0,nil);
-}
+///**
+// * 点击头像
+// */
+//-(void)headClick
+//{
+//    _block(@"head_click",0,nil);
+//}
 /**
  * 点赞评论...
  */
@@ -370,15 +379,15 @@
         _block(@"delete",0,nil);
     }
 }
-/**
- * 点击单品
- */
--(void)itemAction:(UIGestureRecognizer *)ges
-{
-    
-    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
-    _block(@"item_click",0,_item);
-}
+///**
+// * 点击单品
+// */
+//-(void)itemAction:(UIGestureRecognizer *)ges
+//{
+//    
+//    DD_OrderItemModel *_item=_listModel.items[ges.view.tag-100];
+//    _block(@"item_click",0,_item);
+//}
 /**
  * 计算高度
  */
@@ -456,8 +465,13 @@
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             goods.tag=100+i;
+            [goods bk_whenTapped:^{
+//                点击单品
+                DD_OrderItemModel *_item=_listModel.items[goods.tag-100];
+                _block(@"item_click",0,_item);
+            }];
             DD_OrderItemModel *_order=_listModel.items[i];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             

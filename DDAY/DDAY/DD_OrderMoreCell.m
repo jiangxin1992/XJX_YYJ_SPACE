@@ -65,7 +65,10 @@
     _scrollview.alwaysBounceVertical=NO;
     _scrollview.showsHorizontalScrollIndicator=NO;
     _scrollview.scrollEnabled=YES;
-    [_scrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+//    [_scrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
+    [_scrollview bk_whenTapped:^{
+        _cellblock(@"click",_indexPath);
+    }];
     
     
     UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
@@ -220,10 +223,10 @@
 
 
 #pragma mark - SomeAction
--(void)clickAction
-{
-    _cellblock(@"click",_indexPath);
-}
+//-(void)clickAction
+//{
+//    _cellblock(@"click",_indexPath);
+//}
 -(void)btnAction:(DD_CustomBtn *)btn
 {
     if([btn.type isEqualToString:@"cancel"])
