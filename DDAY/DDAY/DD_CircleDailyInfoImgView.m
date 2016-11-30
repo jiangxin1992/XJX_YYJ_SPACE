@@ -90,7 +90,7 @@
     {
         if(!middleBtn)
         {
-            middleBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Big_Issue" WithSelectedImageStr:@"System_Big_Issue"];
+            middleBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Big_Issue" WithSelectedImageStr:nil];
             [_downView addSubview:middleBtn];
             [middleBtn setEnlargeEdge:50];
             [middleBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];

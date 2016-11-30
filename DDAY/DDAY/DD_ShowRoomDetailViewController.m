@@ -151,7 +151,7 @@
         make.height.mas_equalTo(202);
     }];
     
-    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Location" WithSelectedImageStr:@"System_Location"];
+    UIButton *locationBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Location" WithSelectedImageStr:nil];
     [_mapView addSubview:locationBtn];
     [locationBtn setEnlargeEdge:20];
     [locationBtn addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];

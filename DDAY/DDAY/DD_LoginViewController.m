@@ -490,7 +490,7 @@
          {
              if(error)
              {
-                  [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(error.description, @"")] animated:YES completion:nil];
+//                  [self presentViewController:[regular alertTitle_Simple:NSLocalizedString(error.description, @"")] animated:YES completion:nil];
              }
          }
      }];

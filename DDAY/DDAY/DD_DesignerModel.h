@@ -17,6 +17,12 @@
 /** 设计师ID*/
 __string(designerId);
 
+/** 分享网页*/
+__string(appUrl);
+
+/** App Store下载地址*/
+__string(downLoadUrl);
+
 /** 用户是否已关注*/
 __bool(guanzhu);
 
