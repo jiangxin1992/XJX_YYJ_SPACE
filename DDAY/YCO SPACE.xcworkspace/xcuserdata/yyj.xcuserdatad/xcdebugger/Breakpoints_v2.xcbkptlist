@@ -19,5 +19,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DDAY/DD_ShowRoomDetailViewController.m"
+            timestampString = "502194285.622721"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "-zoomAction:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DD_ShowRoomDetailViewController zoomAction:]"
+                  moduleName = "YCOSPACE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_ShowRoomDetailViewController.m"
+                  timestampString = "502194164.08396"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "279"
+                  endingLineNumber = "279"
+                  offsetFromSymbolStart = "968">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[DD_ShowRoomDetailViewController zoomAction:]_block_invoke.292"
+                  moduleName = "YCOSPACE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yyj/Desktop/DDAY/DDAY/DD_ShowRoomDetailViewController.m"
+                  timestampString = "502194164.085994"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "280"
+                  endingLineNumber = "280"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

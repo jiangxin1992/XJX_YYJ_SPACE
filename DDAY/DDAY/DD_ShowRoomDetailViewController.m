@@ -28,6 +28,9 @@
     MKMapView *_mapView;
     UIView *mengban;
     UIButton *contactPhoneBtn;
+    
+    UIImageView *lastView;
+    UIImageView *firstView;
 
 }
 
@@ -162,7 +165,8 @@
     
     [self locationAction];
     
-    UIImageView *lastView=nil;
+    firstView=nil;
+    lastView=nil;
     for (int i=0; i<_showRoomModel.pics.count; i++) {
         DD_ImageModel *imgModel=_showRoomModel.pics[i];
         UIImageView *img=[UIImageView getCustomImg];
@@ -182,6 +186,10 @@
             make.height.mas_equalTo(_height);
 
         }];
+        if(i==0)
+        {
+            firstView=img;
+        }
         lastView=img;
     }
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -256,10 +264,18 @@
             make.height.mas_equalTo(202);
             make.right.mas_equalTo(-kEdge);
         }];
-        [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        if(firstView)
+        {
+            [firstView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(_mapView.mas_bottom).with.offset(15);
+            }];
+        }
+        
+        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
             // 让scrollview的contentSize随着内容的增多而变化
-            make.bottom.mas_equalTo(_mapView.mas_bottom).with.offset(40);
+            make.bottom.mas_equalTo(lastView.mas_bottom).with.offset(60);
         }];
         [mengban removeFromSuperview];
         
@@ -267,6 +283,12 @@
     {
         btn.selected=YES;
         [self.navigationController setNavigationBarHidden:YES animated:NO];
+        if(firstView)
+        {
+            [firstView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(contactPhoneBtn.mas_bottom).with.offset(18);
+            }];
+        }
         if(!mengban)
         {
             mengban=[UIView getCustomViewWithColor:_define_white_color];
