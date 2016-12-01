@@ -72,7 +72,15 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    self.navigationItem.titleView=[regular returnNavView:_model.name withmaxwidth:180];
+    UIView *navView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, IsPhone6_gt?200:130, 40)];
+//    navView.backgroundColor=[UIColor redColor];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(navView.frame), CGRectGetHeight(navView.frame))];
+    titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
+    titleLabel.textAlignment=1;
+    titleLabel.text=_model.name;
+    [navView addSubview:titleLabel];
+    self.navigationItem.titleView=navView;
+    
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
 //    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     [shopBtn bk_addEventHandler:^(id sender) {
@@ -254,20 +262,7 @@
     }];
     [self.view.window addSubview:_benefitView];
 }
-////跳转购物车视图
-//-(void)PushShopView
-//{
-//    if(![DD_UserModel isLogin])
-//    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-//            [self pushLoginView];
-//        }] animated:YES completion:nil];
-//    }else
-//    {
-//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-//        [self.navigationController pushViewController:_shop animated:YES];
-//    }
-//}
+
 #pragma mark - RequestData
 -(void)RequestData
 {
@@ -289,7 +284,6 @@
             [_container addSubview:_DDAYContainerView];
             [_DDAYContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.mas_equalTo(0);
-                make.top.mas_equalTo(kNavHeight);
             }];
             [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(self.view);
@@ -319,5 +313,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+////跳转购物车视图
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
 @end

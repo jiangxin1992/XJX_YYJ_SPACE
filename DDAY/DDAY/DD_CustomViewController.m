@@ -18,9 +18,10 @@
 
 #import "DD_TabbarItem.h"
 #import "DD_SignInAnimationView.h"
-#import "DD_BenefitView.h"
+#import "DD_VersionView.h"
 
 #import "DD_UnReadMsgModel.h"
+#import "DD_VersionModel.h"
 
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {
@@ -288,6 +289,25 @@ static DD_CustomViewController *tabbarController = nil;
             [_animationView startAnimation];
         }
     }
+}
+-(void)showVersionViewWithVersonModel:(DD_VersionModel *)versionModel
+{
+    DD_VersionView *_versionView=[DD_VersionView sharedManagerWithModel:versionModel WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"update"])
+        {
+            JXLOG(@"update");
+        }else if([type isEqualToString:@"close"])
+        {
+            for (id obj in self.view.window.subviews) {
+                if([obj isKindOfClass:[DD_VersionView class]])
+                {
+                    DD_VersionView *versionView=(DD_VersionView *)obj;
+                    [versionView removeFromSuperview];
+                }
+            }
+        }
+    }];
+    [self.view.window addSubview:_versionView];
 }
 /**
  * 网络请求

@@ -268,6 +268,8 @@
 		3F9B8B4C1CF1A652008EC460 /* DD_AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4A1CF1A652008EC460 /* DD_AlertViewController.m */; };
 		3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */; };
 		3F9B8B5A1CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */; };
+		3FA321A91DEFFA9A008FB672 /* DD_VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA321A81DEFFA9A008FB672 /* DD_VersionModel.m */; };
+		3FA321AD1DF003B4008FB672 /* DD_VersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA321AC1DF003B4008FB672 /* DD_VersionView.m */; };
 		3FA32FF51D5998E200311A6A /* DD_ClearingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */; };
 		3FA39EAC1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EAB1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m */; };
 		3FA39EAF1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA39EAE1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m */; };
@@ -959,6 +961,10 @@
 		3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_BodyViewController.m; sourceTree = "<group>"; };
 		3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserInfo_AlertPSWViewController.h; sourceTree = "<group>"; };
 		3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserInfo_AlertPSWViewController.m; sourceTree = "<group>"; };
+		3FA321A71DEFFA9A008FB672 /* DD_VersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_VersionModel.h; sourceTree = "<group>"; };
+		3FA321A81DEFFA9A008FB672 /* DD_VersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_VersionModel.m; sourceTree = "<group>"; };
+		3FA321AB1DF003B4008FB672 /* DD_VersionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_VersionView.h; sourceTree = "<group>"; };
+		3FA321AC1DF003B4008FB672 /* DD_VersionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_VersionView.m; sourceTree = "<group>"; };
 		3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingOrderViewController.h; sourceTree = "<group>"; };
 		3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingOrderViewController.m; sourceTree = "<group>"; };
 		3FA39EAA1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CirclePublishDailyViewController.h; sourceTree = "<group>"; };
@@ -1735,6 +1741,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3FA321AA1DF0039B008FB672 /* VersionView */,
 				3F35FD0C1DE419C3008CE0E0 /* BenefitView */,
 				3FEC780D1DDC558E0047FDB2 /* SignInAnimationView */,
 				3F6F0F801D6BF0590074EAF4 /* DD_CustomBtn */,
@@ -2244,6 +2251,7 @@
 		3F6001F71D499748007E395F /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				3FA321A61DEFFA74008FB672 /* 版本更新 */,
 				3F24B28E1DCCBA910050C2F3 /* 我的消息 */,
 				3F1A5C9C1DC1F6B800E9765F /* 优惠券 */,
 				3F85BACE1D66D1E200820018 /* 体验店 */,
@@ -3045,6 +3053,24 @@
 				3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */,
 			);
 			name = "修改登录密码";
+			sourceTree = "<group>";
+		};
+		3FA321A61DEFFA74008FB672 /* 版本更新 */ = {
+			isa = PBXGroup;
+			children = (
+				3FA321A71DEFFA9A008FB672 /* DD_VersionModel.h */,
+				3FA321A81DEFFA9A008FB672 /* DD_VersionModel.m */,
+			);
+			name = "版本更新";
+			sourceTree = "<group>";
+		};
+		3FA321AA1DF0039B008FB672 /* VersionView */ = {
+			isa = PBXGroup;
+			children = (
+				3FA321AB1DF003B4008FB672 /* DD_VersionView.h */,
+				3FA321AC1DF003B4008FB672 /* DD_VersionView.m */,
+			);
+			name = VersionView;
 			sourceTree = "<group>";
 		};
 		3FA32FF21D59989700311A6A /* 结算成功订单列表 */ = {
@@ -3925,6 +3951,7 @@
 				3F2DDABC1DCC36680094C841 /* DD_BenefitRuleViewController.m in Sources */,
 				3F11436F1DC70F530036DE41 /* DD_IntegralCell.m in Sources */,
 				3F5003471D9E3152001551C1 /* DD_StartViewController.m in Sources */,
+				3FA321A91DEFFA9A008FB672 /* DD_VersionModel.m in Sources */,
 				3F3A0BEA1D37C7A5006CD46F /* UIImageView+Custom.m in Sources */,
 				3F2F63851DD4431100F9D947 /* DD_CustomContentView.m in Sources */,
 				3F4187781CEEFB24001BCA3D /* AppDelegate.m in Sources */,
@@ -3988,6 +4015,7 @@
 				3F35FD0F1DE419E4008CE0E0 /* DD_BenefitView.m in Sources */,
 				3F43B6C71DE6EB91006D259C /* DD_BaseButton.m in Sources */,
 				3FFE38B51D7D090400B46768 /* DD_CircleTagView.m in Sources */,
+				3FA321AD1DF003B4008FB672 /* DD_VersionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

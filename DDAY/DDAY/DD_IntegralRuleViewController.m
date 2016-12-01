@@ -46,10 +46,6 @@
     _webView=[[WKWebView alloc] init];
     [self.view addSubview:_webView];
     _webView.allowsBackForwardNavigationGestures=NO;
-//    _webView.userInteractionEnabled=YES;
-//    _webView.backgroundColor =  _define_clear_color;
-//    _webView.opaque = NO;
-//    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
         make.bottom.mas_equalTo(ktabbarHeight);

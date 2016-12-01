@@ -10,13 +10,13 @@
 
 @interface regular : NSObject
 
-+(NSString *)getDNS;
++ (NSString *)getDNS;
 
 + (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
 
 + (NSString *)getRoundNum:(CGFloat )num;
 
-+(void)SigninAction;
++ (NSString *)getHTMLStringWithContent:(NSString *)content WithFont:(NSString *)font WithColorCode:(NSString *)color;
 
 /**
  * 固定内容 字体下

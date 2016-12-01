@@ -8,6 +8,8 @@
 
 #import "DD_GoodsInformView.h"
 
+#import <WebKit/WebKit.h>
+
 #import "UIButton+WebCache.h"
 
 #import "DD_ColorsModel.h"
@@ -17,7 +19,7 @@
 
 #define ver_edge 16
 
-@interface DD_GoodsInformView()<UIWebViewDelegate>
+@interface DD_GoodsInformView()<WKNavigationDelegate>
 
 @end
 
@@ -230,13 +232,10 @@
 }
 -(void)loadWebview
 {
-    UIWebView *_web=[[UIWebView alloc] init];
-    _web.delegate=self;
-    NSString *font=@"13px/17px";
-    
-    [_web loadHTMLString:[NSString stringWithFormat:@"<style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:#000000}</style><div align='justify'>%@<div>",font,_detailModel.item.itemBrief] baseURL:nil];
-    _web.opaque = NO;
-    _web.dataDetectorTypes = UIDataDetectorTypeNone;
+    WKWebView *_web=[[WKWebView alloc] init];
+    _web.navigationDelegate = self;
+    [_web loadHTMLString:[regular getHTMLStringWithContent:_detailModel.item.itemBrief WithFont:@"13px/17px" WithColorCode:@"#000000"] baseURL:nil];
+//    _web.opaque = NO;
     [_web sizeToFit];
     [downView addSubview:_web];
     [_web mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -249,14 +248,15 @@
     _web.backgroundColor= _define_clear_color;
 }
 
-#pragma mark - UIWebViewDelegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView { //webview 自适应高度
-    CGRect frame = webView.frame;
-    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-    frame.size = fittingSize;
-    webView.frame = frame;
-    [webView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(webView.frame.size.height);
+#pragma mark - WKNavigationDelegate
+
+//加载完成时调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        CGFloat height = [result doubleValue];
+        [webView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
     }];
 }
 

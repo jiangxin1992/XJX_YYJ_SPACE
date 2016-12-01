@@ -8,13 +8,15 @@
 
 #import "DD_ClearingView.h"
 
+#import <WebKit/WebKit.h>
+
 //#import "DD_ClearingTool.h"
 #import "DD_ClearingSeriesModel.h"
 #import "DD_ClearingOrderModel.h"
 #import "DD_BenefitInfoModel.h"
 #import "DD_ClearingModel.h"
 
-@interface DD_ClearingView()<UIWebViewDelegate>
+@interface DD_ClearingView()<WKNavigationDelegate>
 
 @end
 
@@ -23,7 +25,7 @@
 //    UIView *totalView;// 总结视图(小计)
 
     UIView *remarksView;// 备注的背景视图
-    UIWebView *_webView;// 备注视图 remarksView子视图
+    WKWebView *_webView;// 备注视图 remarksView子视图
     UIView *line1;
     
 //    UIView *middleLine;
@@ -84,12 +86,10 @@
         _block(@"remarks",0,_payWay);
     }];
     
-    _webView=[[UIWebView alloc] initWithFrame:CGRectMake(0 ,0 , ScreenWidth-kEdge*2, 1)];
+    _webView=[[WKWebView alloc] initWithFrame:CGRectMake(0 ,0 , ScreenWidth-kEdge*2, 1)];
     [remarksView addSubview:_webView];
     _webView.userInteractionEnabled=NO;
-    _webView.delegate=self;
-    _webView.opaque = NO;
-    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
+    _webView.navigationDelegate = self;
     [self setRemarksWithWebView:@"添加订单备注："];
     
     line1=[UIView getCustomViewWithColor:_define_light_gray_color1];
@@ -439,25 +439,25 @@
  */
 -(void)setRemarksWithWebView:(NSString *)content
 {
-    NSString *font=@"12px/15px";
-    [_webView loadHTMLString:[NSString stringWithFormat:@"<style>body{word-wrap:break-word;margin:0;background-color:#ffffff;font:%@ Custom-Font-Name;align:justify;color:#a8a7a7}</style><div align='justify'>%@<div>",font,content] baseURL:nil];
+    [_webView loadHTMLString:[regular getHTMLStringWithContent:content WithFont:@"12px/15px" WithColorCode:@"#A8A7A7"] baseURL:nil];
+    
     [_webView sizeToFit];
 }
-#pragma mark - UIWebViewDelegate
-/**
- * 适应
- */
-- (void)webViewDidFinishLoad:(UIWebView *)webView { //webview 自适应高度
-    CGRect frame = webView.frame;
-    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-    frame.size = fittingSize;
-    webView.frame = frame;
-    
-    remarksView.frame=CGRectMake(CGRectGetMinX(remarksView.frame), CGRectGetMinY(remarksView.frame), CGRectGetWidth(remarksView.frame), frame.size.height);
-    line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth-2*kEdge, 1);
-    [self layoutIfNeeded];
-    CGFloat _y_p=payView.origin.y + payView.size.height;
-    _block(@"height",_y_p,_payWay);
+
+#pragma mark - WKNavigationDelegate
+
+//加载完成时调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        CGRect frame =webView.frame;
+        frame.size.height =[result doubleValue];
+        webView.frame = frame;
+        remarksView.frame=CGRectMake(CGRectGetMinX(remarksView.frame), CGRectGetMinY(remarksView.frame), CGRectGetWidth(remarksView.frame), frame.size.height);
+        line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth-2*kEdge, 1);
+        [self layoutIfNeeded];
+        CGFloat _y_p=payView.origin.y + payView.size.height;
+        _block(@"height",_y_p,_payWay);
+    }];
 }
 
 #pragma mark - 弃用代码

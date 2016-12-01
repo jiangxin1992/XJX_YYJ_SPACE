@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class DD_BenefitInfoModel;
+@class DD_VersionModel;
 
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
 #define __long(__k__) @property(nonatomic,assign) long __k__
@@ -86,6 +87,8 @@
 /**
  * 每日登录积分状态存取
  */
++(void)SigninAction;
+
 +(void)setDailyIntegral;
 
 +(BOOL)haveDailyIntegral;
@@ -98,6 +101,16 @@
 +(BOOL)isReadWithBenefitID:(NSString *)benefitID;
 
 +(void)setReadBenefit:(BOOL)read WithBenefitInfoModel:(DD_BenefitInfoModel *)benefitInfoModel;
+
+/**
+ * 版本更新状态的存取
+ * 获取到的版本与本地的版本做比较
+ * 关闭弹窗，当前版本不在提示，直到下个版本上新的时候再做提示
+ */
++(NSString *)GetVersion;
++(void)CheckVersion;
++(void)setCheckVersionWithVersionModel:(DD_VersionModel *)versionModel;
+
 
 /*********************************参数*********************************/
 

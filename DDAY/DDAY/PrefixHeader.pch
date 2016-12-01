@@ -51,6 +51,8 @@
 
 #define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]
 
+#define _define_light_orange_color [UIColor colorWithHexString:@"#FC9706"]
+
 /*************** SIZE ***************/
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 

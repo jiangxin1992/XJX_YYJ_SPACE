@@ -192,7 +192,7 @@
    
     [GeTuiSdk resetBadge]; //重置角标计数
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; // APP 清空角标
-    [regular SigninAction];
+    [DD_UserModel SigninAction];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

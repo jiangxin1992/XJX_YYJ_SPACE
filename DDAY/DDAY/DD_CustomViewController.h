@@ -15,6 +15,7 @@
 @class DD_DDAYViewController;
 
 @class DD_UnReadMsgModel;
+@class DD_VersionModel;
 
 @interface DD_CustomViewController : UITabBarController
 
@@ -42,6 +43,11 @@
  * toast提示弹框
  */
 -(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type;
+
+/**
+ * 显示版本更新试图
+ */
+-(void)showVersionViewWithVersonModel:(DD_VersionModel *)versionModel;
 
 /**
  * 红包toast

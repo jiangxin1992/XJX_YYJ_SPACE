@@ -43,10 +43,7 @@
     
     _webview=[[WKWebView alloc] init];
     [self.view addSubview:_webview];
-//    _webview.userInteractionEnabled=YES;
-//    _webview.backgroundColor =  _define_clear_color;
-//    _webview.opaque = NO;
-//    _webview.dataDetectorTypes = UIDataDetectorTypeNone;
+
     [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],@"user/getProtocolPage.htm"]]]];
 //    [_webview sizeToFit];
     

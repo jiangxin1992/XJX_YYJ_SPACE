@@ -457,7 +457,7 @@
             if([type isEqualToString:@"success"])
             {
                 [self UpdateUI];
-                [regular SigninAction];
+                [DD_UserModel SigninAction];
             }
         }];
         [self.navigationController pushViewController:_login animated:YES];

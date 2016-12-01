@@ -26,24 +26,28 @@ static regular *_t = nil;
     }
     return _t;
 }
-+(void)SigninAction
++ (NSString *)getHTMLStringWithContent:(NSString *)content WithFont:(NSString *)font WithColorCode:(NSString *)color
 {
-    
-    if([DD_UserModel isLogin])
+    if(!content)content=@"";
+    if(!font)font=@"15px/20px";
+    if(!color)color=@"#000000";
+    NSString *temp = nil;
+    NSMutableString *mut=[[NSMutableString alloc] init];
+    for(int i =0; i < [content length]; i++)
     {
-        [[JX_AFNetworking alloc] GET:@"user/signUpWithRewardsPoints.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-            if(success)
-            {
-                [DD_UserModel setDailyIntegral];
-            }else
-            {
-                [DD_UserModel regisnDailyIntegral];
-            }
-        } failure:^(NSError *error, UIAlertController *failureAlert) {
+        temp = [content substringWithRange:NSMakeRange(i, 1)];
+        if([temp isEqualToString:@"\n"])
+        {
+            [mut appendString:@"<br>"];
             
-        }];
+        }else
+        {
+            [mut appendString:temp];
+        }
     }
+    return [NSString stringWithFormat:@"<!DOCTYPE HTML><html><head><meta charset=utf-8><meta name=viewport content=width=device-width, initial-scale=1><style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:%@}</style><div align='justify'>%@<div>",font,color,mut];
 }
+
 // * 0、生产 1、展示 2、本地
 +(NSString *)getDNS
 {

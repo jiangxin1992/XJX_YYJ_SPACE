@@ -57,6 +57,7 @@
     
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"dday_title", @"") withmaxwidth:200];
     
+    
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
 //    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
@@ -250,17 +251,7 @@
         }
     }] animated:YES];
 }
-////section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 1;//section头部高度
-//}
-////section头部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-//section底部间距
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 1;
@@ -342,20 +333,7 @@
     }
    
 }
-////跳转购物车
-//-(void)PushShopView
-//{
-//    if(![DD_UserModel isLogin])
-//    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-//            [self pushLoginView];
-//        }] animated:YES completion:nil];
-//    }else
-//    {
-//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-//        [self.navigationController pushViewController:_shop animated:YES];
-//    }
-//}
+
 -(void)MJRefresh
 {
     //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -413,5 +391,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+////跳转购物车
+//-(void)PushShopView
+//{
+//    if(![DD_UserModel isLogin])
+//    {
+//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+//            [self pushLoginView];
+//        }] animated:YES completion:nil];
+//    }else
+//    {
+//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+//        [self.navigationController pushViewController:_shop animated:YES];
+//    }
+//}
+////section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 1;//section头部高度
+//}
+////section头部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return [regular getViewForSection];
+//}
+//section底部间距
 @end

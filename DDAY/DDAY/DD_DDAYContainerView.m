@@ -8,10 +8,17 @@
 
 #import "DD_DDAYContainerView.h"
 
+#import <WebKit/WebKit.h>
+
 #import "DD_ImageModel.h"
 #import "DD_DDayDetailModel.h"
 
+@interface DD_DDAYContainerView()<WKNavigationDelegate>
+
+@end
+
 @implementation DD_DDAYContainerView
+
 -(instancetype)initWithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block
 {
     self=[super init];
@@ -25,17 +32,6 @@
 }
 -(void)UIConfig
 {
-//[NSDate ise]
-//    UIView *imgBackView=[UIView getCustomViewWithColor:nil];
-//    [self addSubview:imgBackView];
-//    [regular setBorder:imgBackView WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:2];
-//    [imgBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(kEdge);
-//        make.right.mas_equalTo(-kEdge);
-//        make.top.mas_equalTo(7);
-//        make.height.width.mas_equalTo(imgBackView.mas_width);
-//        
-//    }];
     
     UIImageView *seriesImg=[UIImageView getCustomImg];
     [self addSubview:seriesImg];
@@ -58,18 +54,10 @@
         make.top.mas_equalTo(seriesImg.mas_bottom).with.offset(0);
     }];
     
-//            _detailModel.saleStartTime=[regular getTimeWithTimeStr:@"2015-2-1 10:00"];
-//            _detailModel.saleEndTime=[regular getTimeWithTimeStr:@"2015-10-1 10:00"];
-    //
-//    _detailModel.saleStartTime=[regular getTimeWithTimeStr:@"2015-2-1 10:00"];
-//    _detailModel.saleEndTime=[regular getTimeWithTimeStr:@"2016-4-1 10:00"];
-//    NSInteger _now_year=[[regular getTimeStr:[NSDate nowTime] WithFormatter:@"YYYY"] integerValue];
     NSString *_s_year=[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY"];
     NSString *_e_year=[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY"];
-//    NSInteger _s_start_year=[_s_year integerValue];
-//    NSInteger _e_start_year=[_e_year integerValue];
+
     for (int i=0; i<2; i++) {
-//        YYYY
         UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"HH : mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"MM . dd"] WithFont:i==0?15:18 WithTextColor:nil WithSpacing:0];
         [timeBackView addSubview:timelabel];
         timelabel.font=[regular get_en_Font:i==0?15:18];
@@ -89,7 +77,6 @@
             make.width.mas_equalTo(_width);
             
         }];
-//        [timelabel sizeToFit];
         
         
         UILabel *daylabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"MM . dd"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"HH : mm"] WithFont:i==0?18:15 WithTextColor:nil WithSpacing:0];
@@ -166,7 +153,7 @@
         make.height.mas_equalTo(5);
         make.width.mas_equalTo(16);
     }];
-//
+
     UILabel *seriesTipsLabel=[UILabel getLabelWithAlignment:1 WithTitle:_detailModel.seriesTips WithFont:12.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:seriesTipsLabel];
     [seriesTipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -181,7 +168,6 @@
         }
         
     }];
-//    [seriesTipsLabel sizeToFit];
     
     UIView *upline=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [self addSubview:upline];
@@ -283,19 +269,44 @@
         make.height.mas_equalTo(([_detailModel.seriesBannerPic.height floatValue]/[_detailModel.seriesBannerPic.width floatValue])*(ScreenWidth-2*kEdge));
     }];
 
-    UILabel *seriesBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:seriesBriefLabel];
-    seriesBriefLabel.numberOfLines=0;
-    [seriesBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UILabel *seriesBriefLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesBrief WithFont:13.0f WithTextColor:nil WithSpacing:0];
+//    [self addSubview:seriesBriefLabel];
+//    seriesBriefLabel.numberOfLines=0;
+//    seriesBriefLabel.lineBreakMode=NSLineBreakByCharWrapping;
+//    [seriesBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kEdge);
+//        make.right.mas_offset(-kEdge);
+//        make.top.mas_equalTo(seriesBannerPicImg.mas_bottom).with.offset(30);
+//        make.width.mas_equalTo(250);
+//        make.bottom.mas_equalTo(-28);
+//    }];
+
+    WKWebView *seriesBriefWebView=[[WKWebView alloc] init];
+    [self addSubview:seriesBriefWebView];
+    seriesBriefWebView.userInteractionEnabled=NO;
+    seriesBriefWebView.navigationDelegate = self;
+    [seriesBriefWebView loadHTMLString:[regular getHTMLStringWithContent:_detailModel.seriesBrief WithFont:@"13px/16px" WithColorCode:@"#000000"] baseURL:nil];
+    [seriesBriefWebView sizeToFit];
+    [seriesBriefWebView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_offset(-kEdge);
         make.top.mas_equalTo(seriesBannerPicImg.mas_bottom).with.offset(30);
-        make.width.mas_equalTo(250);
+        make.height.mas_equalTo(0);
         make.bottom.mas_equalTo(-28);
     }];
-//    [seriesBriefLabel sizeToFit];
-    
 }
+#pragma mark - WKNavigationDelegate
+
+//加载完成时调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        CGFloat height = [result doubleValue];
+        [webView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+    }];
+}
+
 -(void)designerAction
 {
     _block(@"enter_designer_homepage");

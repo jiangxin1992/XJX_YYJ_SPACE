@@ -52,8 +52,7 @@
     [super viewDidLoad];
     [self SomePrepare];
     [self UIConfig];
-    
-    [regular SigninAction];
+    [DD_UserModel SigninAction];
 }
 
 #pragma mark - SomePrepare
@@ -453,6 +452,7 @@
 {
     _page=1;
     [self RequestData];
+    [DD_UserModel CheckVersion];
 }
 -(void)loadMoreData
 {
