@@ -296,8 +296,10 @@ static DD_CustomViewController *tabbarController = nil;
         if([type isEqualToString:@"update"])
         {
             JXLOG(@"update");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:versionModel.downLoadUrl]];
         }else if([type isEqualToString:@"close"])
         {
+            
             for (id obj in self.view.window.subviews) {
                 if([obj isKindOfClass:[DD_VersionView class]])
                 {
