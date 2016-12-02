@@ -421,6 +421,16 @@ static DD_CustomViewController *tabbarController = nil;
 {
     _tabbar.hidden=YES;
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    _isVisible=YES;
+    [super viewWillAppear:animated];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    _isVisible=NO;
+    [super viewWillDisappear:animated];
+}
 #pragma mark - Others
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

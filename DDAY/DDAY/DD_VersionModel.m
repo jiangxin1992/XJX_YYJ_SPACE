@@ -12,12 +12,16 @@
 
 +(DD_VersionModel *)getVersionModel:(NSDictionary *)dict
 {
-    DD_VersionModel *_Viersion=[DD_VersionModel mj_objectWithKeyValues:dict];
-    if(!_Viersion.updateInfo)
+    DD_VersionModel *_Version=[DD_VersionModel mj_objectWithKeyValues:dict];
+    if(!_Version.updateInfo)
     {
-        _Viersion.updateInfo=@"";
+        _Version.updateInfo=@"";
     }
-    return _Viersion;
+    if(!_Version.appBundleVersion)
+    {
+        _Version.appBundleVersion=@"";
+    }
+    return _Version;
 }
 
 @end

@@ -53,6 +53,7 @@
     [self SomePrepare];
     [self UIConfig];
     [DD_UserModel SigninAction];
+    [DD_UserModel CheckVersion];
 }
 
 #pragma mark - SomePrepare
@@ -452,7 +453,6 @@
 {
     _page=1;
     [self RequestData];
-    [DD_UserModel CheckVersion];
 }
 -(void)loadMoreData
 {

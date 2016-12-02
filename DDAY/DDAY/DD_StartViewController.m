@@ -25,6 +25,9 @@ static DD_StartViewController *startController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    NSString *str=@"1.2.9";
+//    double strDouble=[str doubleValue];
+//    NSLog(@"CFBundleShortVersionString=%@,CFBundleShortVersionString=%@,CFBundleVersion=%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]);
     _StartView=[[DD_StartView alloc] initWithBlock:^(NSString *type) {
         if([type isEqualToString:@"remove"])
         {

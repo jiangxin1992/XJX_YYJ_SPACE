@@ -70,4 +70,6 @@
 
 @property (nonatomic,strong) DD_DDAYViewController *ddayCtn;
 
+__bool(isVisible);
+
 @end

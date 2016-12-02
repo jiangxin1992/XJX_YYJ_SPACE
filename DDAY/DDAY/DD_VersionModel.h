@@ -27,4 +27,7 @@ __string(updateInfo);
 /** App Store下载地址*/
 __string(downLoadUrl);
 
+/** APP构建版本*/
+__string(appBundleVersion);
+
 @end

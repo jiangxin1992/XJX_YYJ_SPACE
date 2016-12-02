@@ -24,6 +24,7 @@
     self=[super init];
     if(self)
     {
+        
         _block=block;
         [regular getRoundNum:0];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];

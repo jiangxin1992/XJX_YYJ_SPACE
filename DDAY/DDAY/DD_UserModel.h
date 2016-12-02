@@ -108,6 +108,7 @@
  * 关闭弹窗，当前版本不在提示，直到下个版本上新的时候再做提示
  */
 +(NSString *)GetVersion;
++(NSString *)GetBundleVersion;
 +(void)CheckVersion;
 +(void)setCheckVersionWithVersionModel:(DD_VersionModel *)versionModel;
 

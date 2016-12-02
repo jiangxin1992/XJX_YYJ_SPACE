@@ -192,7 +192,13 @@
    
     [GeTuiSdk resetBadge]; //重置角标计数
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; // APP 清空角标
-    [DD_UserModel SigninAction];
+    //DD_CustomViewController出现的时候调用
+    if(((DD_CustomViewController *)[DD_CustomViewController sharedManager]).isVisible)
+    {
+        [DD_UserModel SigninAction];
+        [DD_UserModel CheckVersion];
+    }
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -302,6 +302,10 @@
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
++(NSString *)GetBundleVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
 +(void)CheckVersion
 {
     [[JX_AFNetworking alloc] GET:@"user/getAppVersionInfo.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
@@ -319,31 +323,30 @@
 }
 +(void)setCheckVersionWithVersionModel:(DD_VersionModel *)versionModel
 {
-//    [[DD_CustomViewController sharedManager] showVersionViewWithVersonModel:versionModel];
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     NSDictionary *_versionKVLoc=[_default objectForKey:@"versionKV"];
-    NSString *nowVersion=[DD_UserModel GetVersion];
+    NSString *nowVersion=[DD_UserModel GetBundleVersion];
 // versionKV appVersion isRead
-    if([nowVersion floatValue]<[versionModel.appVersion floatValue])
+    if([nowVersion longValue]<[versionModel.appBundleVersion longValue])
     {
         //当前版本小于App Store版本时候
         //本地是否有数据
         if(_versionKVLoc)
         {
             //本地有数据时
-            if([[_versionKVLoc objectForKey:@"appVersion"] floatValue]<[versionModel.appVersion floatValue])
+            if([[_versionKVLoc objectForKey:@"appBundleVersion"] longValue]<[versionModel.appBundleVersion longValue])
             {
                 //显示版本更新视图
-                [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES]} forKey:@"versionKV"];
+                [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES],@"appBundleVersion":versionModel.appBundleVersion} forKey:@"versionKV"];
                 [[DD_CustomViewController sharedManager] showVersionViewWithVersonModel:versionModel];
             }else
             {
-                if([[_versionKVLoc objectForKey:@"appVersion"] floatValue]==[versionModel.appVersion floatValue])
+                if([[_versionKVLoc objectForKey:@"appBundleVersion"] longValue]==[versionModel.appBundleVersion longValue])
                 {
                     if(![[_versionKVLoc objectForKey:@"isRead"] boolValue])
                     {
                         //显示版本更新视图
-                        [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES]} forKey:@"versionKV"];
+                        [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES],@"appBundleVersion":versionModel.appBundleVersion} forKey:@"versionKV"];
                         [[DD_CustomViewController sharedManager] showVersionViewWithVersonModel:versionModel];
                     }
                 }
@@ -351,13 +354,14 @@
         }else
         {
             //本地无数据时
-            [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES]} forKey:@"versionKV"];
+            [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES],@"appBundleVersion":versionModel.appBundleVersion} forKey:@"versionKV"];
             //显示版本更新视图
             [[DD_CustomViewController sharedManager] showVersionViewWithVersonModel:versionModel];
         }
     }else
     {
 //        当前版本大于等于App Store版本时候(不需要更新时候)
+        JXLOG(@"111");
     }
 }
 
