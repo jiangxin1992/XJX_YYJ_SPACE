@@ -17,6 +17,9 @@
 /** 设计师ID*/
 __string(designerId);
 
+/** 设计师简介*/
+__string(designerBrief);
+
 /** 分享网页*/
 __string(appUrl);
 

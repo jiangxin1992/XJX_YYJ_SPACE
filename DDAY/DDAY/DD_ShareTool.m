@@ -15,6 +15,7 @@
 #import "DD_GoodsItemModel.h"
 #import "DD_GoodsDesignerModel.h"
 #import "DD_ColorsModel.h"
+#import "DD_DesignerModel.h"
 
 @implementation DD_ShareTool
 +(NSDictionary *)getShareParamsWithType:(NSString *)type WithShareParams:(NSDictionary *)params
@@ -42,6 +43,7 @@
 }
 +(NSMutableDictionary *)getShareParamsWithType:(NSString *)type WithShare_type:(SSDKPlatformType )platformType WithShareParams:(NSDictionary *)params
 {
+
     //1、创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     if([type isEqualToString:@"goods_detail"])
@@ -71,7 +73,7 @@
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博
-            [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ @YCO SPACE，让设计步入日常。%@",_DetailModel.item.itemName,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+            [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ @YCOSPACE，让设计步入日常。%@",_DetailModel.item.itemName,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
             
         }else if(platformType==SSDKPlatformSubTypeQQFriend)
         {
@@ -109,15 +111,15 @@
             if(nowTime<_DetailModel.saleStartTime)
             {
                 //        发布会开始之前;报名开始之前;报名结束之前
-                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ 即将发布，马上到YCO SPACE app中报名发布会,参与限时优惠,名额有限哦! @YCO SPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ 即将发布，马上到YCO SPACE app中报名发布会,参与限时优惠,名额有限哦! @YCOSPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
             }else if(nowTime<_DetailModel.saleEndTime)
             {
                 //         发布中
-                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ 发布会正在进行中，报名发布会的用户可享限时优惠! 到YCO SPACE app中查看更多。@YCO SPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ 发布会正在进行中，报名发布会的用户可享限时优惠! 到YCO SPACE app中查看更多。@YCOSPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
             }else if(nowTime>=_DetailModel.saleEndTime)
             {
                 //        发布会结束
-                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@，马上到 YCO SPACE app中查看! @YCO SPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+                [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@，马上到 YCO SPACE app中查看! @YCOSPACE,让设计步入日常。%@",_DetailModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
             }
         }else if(platformType==SSDKPlatformSubTypeQQFriend)
         {
@@ -151,7 +153,7 @@
         }else if(platformType==SSDKPlatformTypeSinaWeibo)
         {
             //        微博
-            [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@：%@ @YCO SPACE，让设计步入日常。%@",_DetailModel.userName,_DetailModel.shareAdvise,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+            [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@：%@ @YCOSPACE，让设计步入日常。%@",_DetailModel.userName,_DetailModel.shareAdvise,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
             
         }else if(platformType==SSDKPlatformSubTypeQQFriend)
         {
@@ -162,6 +164,38 @@
             //        复制
             [shareParams SSDKSetupCopyParamsByText:[[NSString alloc] initWithFormat:@"%@的共享带 @YCO SPACE，让设计步入日常。点击%@ 下载！",_DetailModel.userName,_DetailModel.downLoadUrl] images:pic url:[NSURL URLWithString:url] type:SSDKContentTypeText];
         }
+    }else if([type isEqualToString:@"designer_detail"])
+    {
+        DD_DesignerModel *_designerModel=[params objectForKey:@"detailModel"];
+        NSString *url=[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_designerModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        NSString *pic=[[NSString alloc] initWithFormat:@"%@-z400.jpg",_designerModel.brandIcon];
+        if(platformType==SSDKPlatformSubTypeWechatSession)
+        {
+            //        微信
+            // 定制微信好友的分享内容
+            [shareParams SSDKSetupWeChatParamsByText:_designerModel.designerBrief title:_designerModel.brandName url:[NSURL URLWithString:url] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+        }else if(platformType==SSDKPlatformSubTypeWechatTimeline)
+        {
+            //        朋友圈
+            // 定制微信好友的分享内容
+//
+            [shareParams SSDKSetupWeChatParamsByText:nil title:[[NSString alloc] initWithFormat:@"%@\n%@",_designerModel.brandName,_designerModel.name] url:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],[_designerModel.appUrl stringByReplacingOccurrencesOfString:@"#" withString:@""]]] thumbImage:nil image:pic musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:platformType];// 微信好友子平台
+        }else if(platformType==SSDKPlatformTypeSinaWeibo)
+        {
+            //        微博
+            [shareParams SSDKSetupSinaWeiboShareParamsByText:[[NSString alloc] initWithFormat:@" / %@ | %@ 的品牌主页，马上到 YCO SPACE app中查看!@YCOSPACE,让设计步入日常。%@",_designerModel.brandName,_designerModel.name,url] title:nil image:pic url:[NSURL URLWithString:url] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+            
+            
+        }else if(platformType==SSDKPlatformSubTypeQQFriend)
+        {
+            //        QQ
+            [shareParams SSDKSetupQQParamsByText:_designerModel.designerBrief title:_designerModel.brandName url:[NSURL URLWithString:url] thumbImage:nil image:pic type:SSDKContentTypeAuto forPlatformSubType:platformType];
+        }else if(platformType==SSDKPlatformTypeCopy)
+        {
+            //        复制
+            [shareParams SSDKSetupCopyParamsByText:[[NSString alloc] initWithFormat:@" %@ | %@ 的品牌主页@YCO SPACE，让设计步入日常。点击%@下载",_designerModel.brandName,_designerModel.name,url] images:pic url:[NSURL URLWithString:url] type:SSDKContentTypeText];
+        }
+        
     }
     return shareParams;
 }

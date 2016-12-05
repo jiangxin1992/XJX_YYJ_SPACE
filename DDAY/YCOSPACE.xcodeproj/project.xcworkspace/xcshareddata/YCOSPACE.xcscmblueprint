@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7A4E943CD4A62D2936B54498103D552C301A1EEA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0FB51998ACC3F10655D51AC99E648853D133908D" : 9223372036854775807,
+    "7A4E943CD4A62D2936B54498103D552C301A1EEA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1130BC57-2F9F-4B6C-9EAA-7C88AA4A357D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0FB51998ACC3F10655D51AC99E648853D133908D" : "",
+    "7A4E943CD4A62D2936B54498103D552C301A1EEA" : "DDAY\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "YCOSPACE",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "YCOSPACE.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "121.40.57.9:yco-space-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0FB51998ACC3F10655D51AC99E648853D133908D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jiangxin1992\/DDAY.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7A4E943CD4A62D2936B54498103D552C301A1EEA"
+    }
+  ]
+}

@@ -30,26 +30,26 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - Bugly (2.4.2)
-  - GTSDK (1.5.0)
+  - GTSDK (1.5.3)
   - HappyDNS (0.3.10)
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
-  - MOBFoundation_IDFA (2.2.1)
-  - Qiniu (7.1.1):
+  - MOBFoundation_IDFA (2.2.3)
+  - Qiniu (7.1.4):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - ShareSDK3 (3.5.1):
-    - ShareSDK3/ShareSDK (= 3.5.1)
-  - ShareSDK3/ShareSDK (3.5.1)
-  - ShareSDK3/ShareSDKExtension (3.5.1)
-  - ShareSDK3/ShareSDKPlatforms/Copy (3.5.1)
-  - ShareSDK3/ShareSDKPlatforms/QQ (3.5.1)
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.5.1)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.1)
+  - ShareSDK3 (3.5.2):
+    - ShareSDK3/ShareSDK (= 3.5.2)
+  - ShareSDK3/ShareSDK (3.5.2)
+  - ShareSDK3/ShareSDKExtension (3.5.2)
+  - ShareSDK3/ShareSDKPlatforms/Copy (3.5.2)
+  - ShareSDK3/ShareSDKPlatforms/QQ (3.5.2)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.5.2)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.2)
   - TTTAttributedLabel (1.13.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -79,15 +79,15 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
-  GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
+  GTSDK: 1b55fc5b0f29c7ea9061946f07aeee49ef70c90e
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  MOBFoundation_IDFA: 6566349199a5eba13e03f6dbcd47ef1abff1d15a
-  Qiniu: 5e5d7d759d22393bb4b87cdfacf8fab951260f3e
+  MOBFoundation_IDFA: bdc119aa1dd48c741d913695dcecfbef350555df
+  Qiniu: a4c962782035ee25b9da3e195181d8c384bb75be
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  ShareSDK3: dc051268317cd144acbd7d48d6bc7867ff58bc04
+  ShareSDK3: 08ed714e2bbdcd97ab60f58cb398227341dfc20a
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 

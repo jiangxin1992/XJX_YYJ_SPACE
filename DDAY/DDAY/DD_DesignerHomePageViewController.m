@@ -254,7 +254,7 @@
         [self mengban_dismiss_share];
     }];
     
-    shareView=[[DD_ShareView alloc] initWithType:@"circle_detail" WithParams:@{@"detailModel":[DD_CircleListModel new]} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
+    shareView=[[DD_ShareView alloc] initWithType:@"designer_detail" WithParams:@{@"detailModel":_DesignerModel} WithBlock:^(NSString *type,DD_BenefitInfoModel *model) {
         if([type isEqualToString:@"cancel"])
         {
             [self mengban_dismiss_share];
