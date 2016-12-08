@@ -46,6 +46,8 @@
 		3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */; };
 		3F21E20B1D17954800FE7ADF /* DD_CricleChooseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */; };
 		3F21E2121D17ACB500FE7ADF /* DD_CricleCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21E2111D17ACB500FE7ADF /* DD_CricleCategoryModel.m */; };
+		3F2309981DF93B3600CA1E10 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2309971DF93B3600CA1E10 /* AVPlayerManager.m */; };
+		3F23099B1DF945CC00CA1E10 /* DD_StartViewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */; };
 		3F23A96D1CEF1A6F00579A3B /* DD_baseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23A96C1CEF1A6F00579A3B /* DD_baseModel.m */; };
 		3F24B28D1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F24B28C1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.m */; };
 		3F24B2921DCCBD080050C2F3 /* DD_IntegralTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F24B2911DCCBD080050C2F3 /* DD_IntegralTitleCell.m */; };
@@ -460,6 +462,10 @@
 		3F21E20A1D17954800FE7ADF /* DD_CricleChooseItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CricleChooseItemModel.m; sourceTree = "<group>"; };
 		3F21E2101D17ACB500FE7ADF /* DD_CricleCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CricleCategoryModel.h; sourceTree = "<group>"; };
 		3F21E2111D17ACB500FE7ADF /* DD_CricleCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CricleCategoryModel.m; sourceTree = "<group>"; };
+		3F2309961DF93B3600CA1E10 /* AVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerManager.h; sourceTree = "<group>"; };
+		3F2309971DF93B3600CA1E10 /* AVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerManager.m; sourceTree = "<group>"; };
+		3F2309991DF945CC00CA1E10 /* DD_StartViewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_StartViewPlayer.h; sourceTree = "<group>"; };
+		3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartViewPlayer.m; sourceTree = "<group>"; };
 		3F23A96B1CEF1A6F00579A3B /* DD_baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_baseModel.h; sourceTree = "<group>"; };
 		3F23A96C1CEF1A6F00579A3B /* DD_baseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_baseModel.m; sourceTree = "<group>"; };
 		3F24B28B1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageDDAYCell.h; sourceTree = "<group>"; };
@@ -1290,6 +1296,15 @@
 			name = "款式选择视图";
 			sourceTree = "<group>";
 		};
+		3F2309951DF93B0100CA1E10 /* AVPlayerManager */ = {
+			isa = PBXGroup;
+			children = (
+				3F2309961DF93B3600CA1E10 /* AVPlayerManager.h */,
+				3F2309971DF93B3600CA1E10 /* AVPlayerManager.m */,
+			);
+			name = AVPlayerManager;
+			sourceTree = "<group>";
+		};
 		3F23A96A1CEF1A2700579A3B /* baseModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1683,6 +1698,8 @@
 				3F50034E1D9E37B0001551C1 /* DD_StartView.m */,
 				3F5003441D9E3152001551C1 /* DD_StartViewController.h */,
 				3F5003451D9E3152001551C1 /* DD_StartViewController.m */,
+				3F2309991DF945CC00CA1E10 /* DD_StartViewPlayer.h */,
+				3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */,
 				3F41877C1CEEFB24001BCA3D /* Main.storyboard */,
 				18D380941DA2569700EBE436 /* LaunchScreen.xib */,
 				3F41877F1CEEFB24001BCA3D /* Assets.xcassets */,
@@ -1739,6 +1756,7 @@
 		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
 			isa = PBXGroup;
 			children = (
+				3F2309951DF93B0100CA1E10 /* AVPlayerManager */,
 				3FA321AA1DF0039B008FB672 /* VersionView */,
 				3F35FD0C1DE419C3008CE0E0 /* BenefitView */,
 				3FEC780D1DDC558E0047FDB2 /* SignInAnimationView */,
@@ -3852,6 +3870,7 @@
 				3F3C3F091CFEC7F40056CD6B /* DD_DDAYTool.m in Sources */,
 				3F7C51CE1CF434C200D3565D /* DD_RemarksViewController.m in Sources */,
 				3F0A6DFB1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m in Sources */,
+				3F23099B1DF945CC00CA1E10 /* DD_StartViewPlayer.m in Sources */,
 				3F9B8B0F1CF0019B008EC460 /* DD_LoginViewController.m in Sources */,
 				3F0A8CE91D07F6E8005549BE /* DD_OrderRefundViewController.m in Sources */,
 				3FE8D7B41DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m in Sources */,
@@ -3977,6 +3996,7 @@
 				3F85E8191D51930B0077F848 /* DD_NavBtn.m in Sources */,
 				3F8229011D0DA10500F95E79 /* DD_DesignerIntroViewController.m in Sources */,
 				3F2DDAC11DCC3C2E0094C841 /* DD_IntegralRuleViewController.m in Sources */,
+				3F2309981DF93B3600CA1E10 /* AVPlayerManager.m in Sources */,
 				3F8E76661D1B926900722FDA /* DD_CircleDetailHeadView.m in Sources */,
 				3F4187FC1CEEFF35001BCA3D /* DD_ClearingOrderModel.m in Sources */,
 				3FFE38B81D7D6D9400B46768 /* UIImageView+CornerRadius.m in Sources */,

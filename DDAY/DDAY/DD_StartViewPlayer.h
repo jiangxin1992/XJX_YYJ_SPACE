@@ -8,7 +8,7 @@
 
 #import "DD_BaseViewController.h"
 
-@interface DD_StartViewController : DD_BaseViewController
+@interface DD_StartViewPlayer : DD_BaseViewController
 
 /**
  * 创建单例

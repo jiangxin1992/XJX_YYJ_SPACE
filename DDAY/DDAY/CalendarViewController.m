@@ -241,7 +241,6 @@
     NSInteger week = [date startDayOfWeek];
     self.dayModelArray = [[NSMutableArray alloc] initWithCapacity:42];
     int day = 1;
-//    for (int i= 1; i<days+week; i++) {
     for (int i= 1; i<43; i++) {
         if (i<week) {
             [self.dayModelArray addObject:@""];

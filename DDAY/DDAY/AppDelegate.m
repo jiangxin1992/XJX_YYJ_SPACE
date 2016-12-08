@@ -40,6 +40,7 @@
 #import "AppDelegate.h"
 
 #import "DD_StartViewController.h"
+#import "DD_StartViewPlayer.h"
 #import "DD_CustomViewController.h"
 
 //支付宝
@@ -66,12 +67,14 @@
 #import "DD_NOTInformClass.h"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
-@property (strong, nonatomic) UIImageView *splashView;
+
 @end
 
 @implementation AppDelegate
 {
     BOOL _is_first_register;//是否是第一次提交设备token
+    DD_StartViewController *_startController;
+    DD_StartViewPlayer *_startPlayer;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -162,8 +165,11 @@
     }
     //1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    _startController=[[DD_StartViewController alloc] init];
+//    self.window.rootViewController = _startController ;
     
-    self.window.rootViewController = [DD_StartViewController sharedManager] ;
+    _startPlayer=[[DD_StartViewPlayer alloc] init];
+    self.window.rootViewController = _startPlayer ;
 //    self.window.rootViewController = [DD_CustomViewController sharedManager];
     
     [self.window makeKeyAndVisible];
@@ -180,7 +186,7 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    [[DD_StartViewController sharedManager] pushMainView];
+    [_startPlayer pushMainView];
     
 }
 

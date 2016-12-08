@@ -24,9 +24,7 @@
     self=[super init];
     if(self)
     {
-        
         _block=block;
-        [regular getRoundNum:0];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
         NSString *urlstr=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
         NSURL *urlMovie1 = [NSURL fileURLWithPath:urlstr];

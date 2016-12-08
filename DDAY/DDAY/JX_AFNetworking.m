@@ -87,16 +87,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager DELETE:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//            successBlock(success,data,successAlert);
-//        }];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        failureBlock(error,[regular alert_NONETWORKING]);
-//    }];
 }
 -(void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
