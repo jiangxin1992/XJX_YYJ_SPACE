@@ -13,9 +13,12 @@
 +(NSArray *)getIntegralModelArr:(NSArray *)arr
 {
     NSMutableArray *integralArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [integralArr addObject:[self getIntegralModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [integralArr addObject:[self getIntegralModel:dict]];
+//    }
     return integralArr;
 }
 

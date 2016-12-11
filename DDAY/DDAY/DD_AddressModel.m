@@ -17,9 +17,12 @@
 +(NSArray *)getAddressModelArray:(NSArray *)arrdata
 {
     NSMutableArray *mutable_arr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arrdata) {
+    [arrdata enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [mutable_arr addObject:[self getAddressModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arrdata) {
+//        [mutable_arr addObject:[self getAddressModel:dict]];
+//    }
     return mutable_arr;
 }
 

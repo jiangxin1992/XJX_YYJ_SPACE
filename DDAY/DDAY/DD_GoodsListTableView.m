@@ -42,14 +42,20 @@
         _categoryArr=categoryArr;
         [self setupBtn];
         [self reloadData];
+        [self createHeadView];
     }
+}
+-(void)createHeadView
+{
+    UIView *headview=[UIView getCustomViewWithColor:_define_white_color];
+    headview.frame=CGRectMake(0, 0, ScreenWidth, kNavHeight);
+    self.tableHeaderView=headview;
 }
 -(void)setupBtn
 {
-    for (int i=0; i<_categoryArr.count; i++) {
-        DD_GoodsCategoryModel *_categoryModel=_categoryArr[i];
+    [_categoryArr enumerateObjectsUsingBlock:^(DD_GoodsCategoryModel *_categoryModel, NSUInteger idx, BOOL * _Nonnull stop) {
         DD_GoodsListBtn *listBtn=[DD_GoodsListBtn buttonWithType:UIButtonTypeCustom];
-        [listBtn setFrame:CGRectMake(0, 0, ScreenWidth, 50) WithIndex:i WithCategoryModel:_categoryModel WithBlock:^(NSString *type, NSInteger index) {
+        [listBtn setFrame:CGRectMake(0, 0, ScreenWidth, 50) WithIndex:idx WithCategoryModel:_categoryModel WithBlock:^(NSString *type, NSInteger index) {
             
             if([type isEqualToString:@"show"])
             {
@@ -69,8 +75,33 @@
             
         }];
         [_btnArr addObject:listBtn];
-        listBtn.tag=200+i;
-    }
+        listBtn.tag=200+idx;
+    }];
+//    for (int i=0; i<_categoryArr.count; i++) {
+//        DD_GoodsCategoryModel *_categoryModel=_categoryArr[i];
+//        DD_GoodsListBtn *listBtn=[DD_GoodsListBtn buttonWithType:UIButtonTypeCustom];
+//        [listBtn setFrame:CGRectMake(0, 0, ScreenWidth, 50) WithIndex:i WithCategoryModel:_categoryModel WithBlock:^(NSString *type, NSInteger index) {
+//            
+//            if([type isEqualToString:@"show"])
+//            {
+//                [self btnIsFade:NO WithIndex:index];
+//                
+//            }else if([type isEqualToString:@"fade"])
+//            {
+//                [self btnIsFade:YES WithIndex:index];
+//            }else if([type isEqualToString:@"click"])
+//            {
+//                DD_GoodsCategoryModel *CategoryModel=_categoryArr[index];
+//                _block(type,CategoryModel.catOneName,@"",@"");
+//            }else if([type isEqualToString:@"all"])
+//            {
+//                _block(type,@"",@"",@"");
+//            }
+//            
+//        }];
+//        [_btnArr addObject:listBtn];
+//        listBtn.tag=200+i;
+//    }
  
 }
 -(void)btnIsFade:(BOOL )isFade WithIndex:(NSInteger )index

@@ -358,20 +358,29 @@
  */
 -(NSInteger )getGoodsCount
 {
-    NSInteger _num=0;
-    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+    __block NSInteger _num=0;
+    [_dataArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *_Series, NSUInteger idx, BOOL * _Nonnull stop) {
         _num+=_Series.items.count;
-    }
+    }];
+//    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+//        _num+=_Series.items.count;
+//    }
     return _num;
 }
 -(CGFloat )getAllCountPriceWithArr:(NSArray *)dataArr
 {
-    CGFloat _price=0;
-    for (DD_ClearingSeriesModel *Series in dataArr) {
-        for (DD_ClearingOrderModel *order in Series.items) {
+    __block CGFloat _price=0;
+    [dataArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *Series, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [Series.items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *order, NSUInteger idx2, BOOL * _Nonnull stop2) {
             _price+=[order.price floatValue]*[order.numbers integerValue];
-        }
-    }
+        }];
+    }];
+//    for (DD_ClearingSeriesModel *Series in dataArr) {
+//        for (DD_ClearingOrderModel *order in Series.items) {
+//            _price+=[order.price floatValue]*[order.numbers integerValue];
+//        }
+//    }
     return _price;
 }
 

@@ -204,21 +204,21 @@
             make.top.mas_equalTo(goodImgView.mas_bottom).with.offset(20);
         }];
         _scrollview.contentSize=CGSizeMake(66*_circle.items.count+20*(_circle.items.count-1), 66);
-        CGFloat _x_p=0;
-        for (int i=0; i<_circle.items.count; i++) {
+        __block CGFloat _x_p=0;
+        
+        [_circle.items enumerateObjectsUsingBlock:^(DD_OrderItemModel *_order, NSUInteger idx, BOOL * _Nonnull stop) {
             UIImageView *goods=[UIImageView getCustomImg];;
             [_scrollview addSubview:goods];
             goods.frame=CGRectMake(_x_p, 0, 66, 66);
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            //            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             [goods bk_whenTapped:^{
                 DD_OrderItemModel *_item=_circle.items[goods.tag-100];
                 _block(@"item_click",_item);
             }];
-            goods.tag=100+i;
-            DD_OrderItemModel *_order=_circle.items[i];
+            goods.tag=100+idx;
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             
             
@@ -233,7 +233,36 @@
                 make.height.mas_equalTo(18);
             }];
             _x_p+=CGRectGetWidth(goods.frame)+20;
-        }
+        }];
+//        for (int i=0; i<_circle.items.count; i++) {
+//            UIImageView *goods=[UIImageView getCustomImg];;
+//            [_scrollview addSubview:goods];
+//            goods.frame=CGRectMake(_x_p, 0, 66, 66);
+//            goods.contentMode=2;
+//            [regular setZeroBorder:goods];
+//            goods.userInteractionEnabled=YES;
+////            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods bk_whenTapped:^{
+//                DD_OrderItemModel *_item=_circle.items[goods.tag-100];
+//                _block(@"item_click",_item);
+//            }];
+//            goods.tag=100+i;
+//            DD_OrderItemModel *_order=_circle.items[i];
+//            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+//            
+//            
+//            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];;
+//            [goods addSubview:pricebtn];
+//            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+//            pricebtn.userInteractionEnabled=NO;
+//            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
+//            [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
+//            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.right.bottom.mas_equalTo(0);
+//                make.height.mas_equalTo(18);
+//            }];
+//            _x_p+=CGRectGetWidth(goods.frame)+20;
+//        }
     }
     
     
@@ -293,12 +322,12 @@
     {
         count_index=_circle.items.count;
     }
-    for (int i=0; i<goodsImgArr.count; i++) {
-        UIImageView *goods=goodsImgArr[i];
-        UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
-        if(i<count_index)
+    
+    [goodsImgArr enumerateObjectsUsingBlock:^(UIImageView *goods, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+idx];
+        if(idx<count_index)
         {
-            DD_OrderItemModel *_order=_circle.items[i];
+            DD_OrderItemModel *_order=_circle.items[idx];
             [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
             goods.hidden=NO;
             [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
@@ -306,7 +335,21 @@
         {
             goods.hidden=YES;
         }
-    }
+    }];
+//    for (int i=0; i<goodsImgArr.count; i++) {
+//        UIImageView *goods=goodsImgArr[i];
+//        UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
+//        if(i<count_index)
+//        {
+//            DD_OrderItemModel *_order=_circle.items[i];
+//            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
+//            goods.hidden=NO;
+//            [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
+//        }else
+//        {
+//            goods.hidden=YES;
+//        }
+//    }
     conentLabel.text=_circle.shareAdvise;
 
 }

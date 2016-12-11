@@ -436,12 +436,18 @@
  */
 -(void)cancelAllTimer
 {
-    for (DD_ShopSeriesModel *_series in _shopModel.seriesNormal) {
+    [_shopModel.seriesNormal enumerateObjectsUsingBlock:^(DD_ShopSeriesModel *_series, NSUInteger idx, BOOL * _Nonnull stop) {
         [regular dispatch_cancel:_series.timer];
-    }
-    for (DD_ShopSeriesModel *_series in _shopModel.seriesInvalid) {
+    }];
+    [_shopModel.seriesInvalid enumerateObjectsUsingBlock:^(DD_ShopSeriesModel *_series, NSUInteger idx, BOOL * _Nonnull stop) {
         [regular dispatch_cancel:_series.timer];
-    }
+    }];
+//    for (DD_ShopSeriesModel *_series in _shopModel.seriesNormal) {
+//        [regular dispatch_cancel:_series.timer];
+//    }
+//    for (DD_ShopSeriesModel *_series in _shopModel.seriesInvalid) {
+//        [regular dispatch_cancel:_series.timer];
+//    }
 }
 /**
  * 遍历当前系列。
@@ -451,28 +457,43 @@
  */
 -(BOOL )haveSameItemWithIndexPath:(NSIndexPath *)indexPath WithSizeID:(NSString *)sizeid WithColorID:(NSString *)colorid
 {
+    __block BOOL haveSame=NO;
     DD_ShopSeriesModel *seriesModel=[DD_ShopTool getNumberSection:indexPath.section WithModel:_shopModel];
-    for (int i=0; i<seriesModel.items.count; i++) {
-        DD_ShopItemModel *_item=seriesModel.items[i];
-        if([_item.sizeId isEqualToString:sizeid]&&[_item.colorId isEqualToString:colorid]&&i!=indexPath.row)
+    [seriesModel.items enumerateObjectsUsingBlock:^(DD_ShopItemModel *_item, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([_item.sizeId isEqualToString:sizeid]&&[_item.colorId isEqualToString:colorid]&&idx!=indexPath.row)
         {
-            return YES;
+            haveSame=YES;
+            *stop=YES;
         }
-    }
-    return NO;
+    }];
+//    for (int i=0; i<seriesModel.items.count; i++) {
+//        DD_ShopItemModel *_item=seriesModel.items[i];
+//        if([_item.sizeId isEqualToString:sizeid]&&[_item.colorId isEqualToString:colorid]&&i!=indexPath.row)
+//        {
+//            return YES;
+//        }
+//    }
+    return haveSame;
 }
 /**
  * 根据当前选择的sizeid获取sizename
  */
 -(NSString *)GetSizeNameWithID:(NSString *)sizeID WithSizeArr:(NSArray *)sizeArr
 {
-    for (DD_SizeModel *sizeModel in sizeArr) {
+    __block NSString *getSizeID=@"";
+    [sizeArr enumerateObjectsUsingBlock:^(DD_SizeModel *sizeModel, NSUInteger idx, BOOL * _Nonnull stop) {
         if([sizeModel.sizeId isEqualToString:sizeID])
         {
-            return sizeModel.sizeName;
+            getSizeID=sizeModel.sizeName;
         }
-    }
-    return @"";
+    }];
+//    for (DD_SizeModel *sizeModel in sizeArr) {
+//        if([sizeModel.sizeId isEqualToString:sizeID])
+//        {
+//            return sizeModel.sizeName;
+//        }
+//    }
+    return getSizeID;
 }
 /**
  * 选择尺寸

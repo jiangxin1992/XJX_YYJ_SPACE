@@ -43,9 +43,12 @@
 {
     {
         NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-        for (NSDictionary *dict in arr) {
+        [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
             [TagsArr addObject:[self getUserMessageItemModel:dict]];
-        }
+        }];
+//        for (NSDictionary *dict in arr) {
+//            [TagsArr addObject:[self getUserMessageItemModel:dict]];
+//        }
         return TagsArr;
     }
 }

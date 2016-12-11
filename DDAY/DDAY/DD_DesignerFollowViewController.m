@@ -8,6 +8,8 @@
 
 #import "DD_DesignerFollowViewController.h"
 
+#import "DD_CustomViewController.h"
+
 #import "MJRefresh.h"
 
 #import "DD_DesignerCell.h"
@@ -24,7 +26,6 @@
     NSMutableArray *_dataArr;
     NSInteger _page;
     void (^followblock)(NSInteger index,NSString *type);
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,13 +79,17 @@
                 [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                     if(success)
                     {
+                        BOOL isFollow=[[data objectForKey:@"guanzhu"] boolValue];
+                        
+                        [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) updateLeftDesignerListDataWithID:_model.designerId WithFollowState:isFollow];
+                        
                         if([type isEqualToString:@"unfollow"])
                         {
                             [__dataArr removeObjectAtIndex:index];
                             
                         }else if([type isEqualToString:@"follow"])
                         {
-                            _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                            _model.guanzhu=isFollow;
                         }
                         [__tableview reloadData];
                     }else
@@ -100,6 +105,17 @@
     };
 }
 #pragma mark - SomeAction
+/**
+ * 更新我关注的设计师数据
+ * 因为无法保证数据的一致性  所以目前处理方式是页面出现的时候重新获取数据
+ */
+-(void)updateListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_tableview)
+    {
+        [self updateDesigner];
+    }
+}
 -(void)updateDesigner
 {
     //    如果设计师状态发生改变
@@ -120,7 +136,7 @@
 {
     _page=1;
     _dataArr=[[NSMutableArray alloc] init];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNewData) name:@"rootChange" object:nil];
 }
 -(void)PrepareUI{}
 #pragma mark - RequestData

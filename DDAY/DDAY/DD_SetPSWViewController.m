@@ -146,16 +146,25 @@
                     _successblock(@"success");
                     //            回到登录发起页面
                     NSArray *controllers=self.navigationController.viewControllers;
-                    for (int i=0; i<controllers.count; i++) {
-                        id obj=controllers[i];
+                    [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if([obj isKindOfClass:[DD_LoginViewController class]])
                         {
-                            if(i>0)
+                            if(idx>0)
                             {
-                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                                [self.navigationController popToViewController:controllers[idx-1] animated:YES];
                             }
                         }
-                    }
+                    }];
+//                    for (int i=0; i<controllers.count; i++) {
+//                        id obj=controllers[i];
+//                        if([obj isKindOfClass:[DD_LoginViewController class]])
+//                        {
+//                            if(i>0)
+//                            {
+//                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+//                            }
+//                        }
+//                    }
                     
                 }else
                 {
@@ -188,16 +197,25 @@
                     _successblock(@"success");
                     //            回到登录发起页面
                     NSArray *controllers=self.navigationController.viewControllers;
-                    for (int i=0; i<controllers.count; i++) {
-                        id obj=controllers[i];
+                    [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if([obj isKindOfClass:[DD_LoginViewController class]])
                         {
-                            if(i>0)
+                            if(idx>0)
                             {
-                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+                                [self.navigationController popToViewController:controllers[idx-1] animated:YES];
                             }
                         }
-                    }
+                    }];
+//                    for (int i=0; i<controllers.count; i++) {
+//                        id obj=controllers[i];
+//                        if([obj isKindOfClass:[DD_LoginViewController class]])
+//                        {
+//                            if(i>0)
+//                            {
+//                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
+//                            }
+//                        }
+//                    }
                     
                 }else
                 {

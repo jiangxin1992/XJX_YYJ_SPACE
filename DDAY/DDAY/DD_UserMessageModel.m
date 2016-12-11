@@ -27,9 +27,12 @@
 +(NSMutableArray *)getUserMessageModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getUserMessageModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getUserMessageModel:dict]];
+//    }
     return TagsArr;
 }
 

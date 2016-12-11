@@ -44,14 +44,21 @@
 {
     _dataArr=[[NSArray alloc] init];
     NSArray *_all_data=[DD_CityTool getCityModelArr];
-    for (int i=0; i<_all_data.count; i++) {
-        DD_ProvinceModel *_p_model=_all_data[i];
+    [_all_data enumerateObjectsUsingBlock:^(DD_ProvinceModel *_p_model, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_p_model.p_id isEqualToString:_p_id])
         {
             _dataArr=_p_model.City;
-            break;
+            *stop=YES;
         }
-    }
+    }];
+//    for (int i=0; i<_all_data.count; i++) {
+//        DD_ProvinceModel *_p_model=_all_data[i];
+//        if([_p_model.p_id isEqualToString:_p_id])
+//        {
+//            _dataArr=_p_model.City;
+//            break;
+//        }
+//    }
 
 }
 -(void)CreateTableView
@@ -112,13 +119,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CityModel *_c_model=_dataArr[indexPath.section];
-    for (id _obj in self.navigationController.viewControllers) {
-        if([_obj isKindOfClass:[DD_AddNewAddressViewController class]])
+    [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[DD_AddNewAddressViewController class]])
         {
             self.chooseblock(_p_id,_c_model.c_id);
-            [self.navigationController popToViewController:_obj animated:YES];
+            [self.navigationController popToViewController:obj animated:YES];
         }
-    } 
+    }];
+//    for (id _obj in self.navigationController.viewControllers) {
+//        if([_obj isKindOfClass:[DD_AddNewAddressViewController class]])
+//        {
+//            self.chooseblock(_p_id,_c_model.c_id);
+//            [self.navigationController popToViewController:_obj animated:YES];
+//        }
+//    } 
 }
 
 #pragma mark - Other

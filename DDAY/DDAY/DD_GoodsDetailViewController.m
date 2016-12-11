@@ -19,6 +19,7 @@
 #import "DD_MoreCircleViewController.h"
 #import "DD_ShowRoomDetailViewController.h"
 #import "DD_BenefitListViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_GoodsInformView.h"
 #import "DD_GoodsDesignerView.h"
@@ -604,6 +605,8 @@ __bool(isExpanded);
             _DesignerView.detailModel=_DetailModel;
             [_DesignerView UpdateFollowBtnState];
             
+            [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) updateDesignerListDataWithID:_DetailModel.designer.designerId WithFollowState:_DetailModel.guanzhu];
+            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
@@ -838,13 +841,22 @@ __bool(isExpanded);
 -(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
 {
     DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
-        for (id obj in self.view.window.subviews) {
+        
+        [self.view.window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if([obj isKindOfClass:[DD_BenefitView class]])
             {
                 DD_BenefitView *sss=(DD_BenefitView *)obj;
                 [sss removeFromSuperview];
             }
-        }
+        }];
+        
+//        for (id obj in self.view.window.subviews) {
+//            if([obj isKindOfClass:[DD_BenefitView class]])
+//            {
+//                DD_BenefitView *sss=(DD_BenefitView *)obj;
+//                [sss removeFromSuperview];
+//            }
+//        }
         if([type isEqualToString:@"close"])
         {
             

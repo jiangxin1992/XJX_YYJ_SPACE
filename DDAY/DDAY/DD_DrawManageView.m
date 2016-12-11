@@ -57,30 +57,53 @@
 #pragma mark - Action
 -(void)changeSelectNum:(NSInteger )selectNum{
     CGFloat _x_p=((IsPhone6_gt?60:49)-16)/2.0f;
-    for (int i=0; i<viewArr.count; i++) {
-        DrawView *drawView=viewArr[i];
-        if(selectNum==i)
+    [viewArr enumerateObjectsUsingBlock:^(DrawView *drawView, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(selectNum==idx)
         {
             if(drawView.type==1)
             {
                 [drawView removeFromSuperview];
-                [viewArr removeObjectAtIndex:i];
-                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(2, 2) WithEndP:CGPointMake(14, 10) WithLineWidth:3 WithColorType:2];
+                [viewArr removeObjectAtIndex:idx];
+                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, idx*17,16, 12) WithStartP:CGPointMake(2, 2) WithEndP:CGPointMake(14, 10) WithLineWidth:3 WithColorType:2];
                 [backview addSubview:drawView];
-                [viewArr insertObject:drawView atIndex:i];
+                [viewArr insertObject:drawView atIndex:idx];
             }
         }else
         {
             if(drawView.type==2)
             {
                 [drawView removeFromSuperview];
-                [viewArr removeObjectAtIndex:i];
-                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
+                [viewArr removeObjectAtIndex:idx];
+                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, idx*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
                 [backview addSubview:drawView];
-                [viewArr insertObject:drawView atIndex:i];
+                [viewArr insertObject:drawView atIndex:idx];
             }
         }
-    }
+    }];
+//    for (int i=0; i<viewArr.count; i++) {
+//        DrawView *drawView=viewArr[i];
+//        if(selectNum==i)
+//        {
+//            if(drawView.type==1)
+//            {
+//                [drawView removeFromSuperview];
+//                [viewArr removeObjectAtIndex:i];
+//                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(2, 2) WithEndP:CGPointMake(14, 10) WithLineWidth:3 WithColorType:2];
+//                [backview addSubview:drawView];
+//                [viewArr insertObject:drawView atIndex:i];
+//            }
+//        }else
+//        {
+//            if(drawView.type==2)
+//            {
+//                [drawView removeFromSuperview];
+//                [viewArr removeObjectAtIndex:i];
+//                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
+//                [backview addSubview:drawView];
+//                [viewArr insertObject:drawView atIndex:i];
+//            }
+//        }
+//    }
 }
 
 

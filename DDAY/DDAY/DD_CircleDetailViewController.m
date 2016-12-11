@@ -536,13 +536,20 @@
 -(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
 {
     DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
-        for (id obj in self.view.window.subviews) {
+        [self.view.window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if([obj isKindOfClass:[DD_BenefitView class]])
             {
                 DD_BenefitView *sss=(DD_BenefitView *)obj;
                 [sss removeFromSuperview];
             }
-        }
+        }];
+//        for (id obj in self.view.window.subviews) {
+//            if([obj isKindOfClass:[DD_BenefitView class]])
+//            {
+//                DD_BenefitView *sss=(DD_BenefitView *)obj;
+//                [sss removeFromSuperview];
+//            }
+//        }
         if([type isEqualToString:@"close"])
         {
             

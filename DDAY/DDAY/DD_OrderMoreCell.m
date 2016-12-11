@@ -126,29 +126,45 @@
 {
     _OrderModel=OrderModel;
     
-    for (UIImageView *img in itemArr) {
+    [itemArr enumerateObjectsUsingBlock:^(UIImageView *img, NSUInteger idx, BOOL * _Nonnull stop) {
         [img removeFromSuperview];
-    }
+    }];
+//    for (UIImageView *img in itemArr) {
+//        [img removeFromSuperview];
+//    }
     [itemArr removeAllObjects];
     if(_OrderModel.itemList.count)
     {
         _goodNumLabel.text=[[NSString alloc] initWithFormat:@"共%ld件商品",_OrderModel.itemList.count];
         _totalPriceLabel.text=[[NSString alloc] initWithFormat:@"总计￥%@",[regular getRoundNum:[_OrderModel.totalAmount floatValue]+_OrderModel.allFreight]];
         
-        UIView *lastView=nil;
-        for (int i=0; i<_OrderModel.itemList.count; i++) {
-            DD_OrderItemModel *_itemModel=_OrderModel.itemList[i];
+        __block UIView *lastView=nil;
+        
+        [_OrderModel.itemList enumerateObjectsUsingBlock:^(DD_OrderItemModel *_itemModel, NSUInteger idx, BOOL * _Nonnull stop) {
             //    款式照片
             UIImageView *_itemImg=[UIImageView getCustomImg];
             [_scrollview addSubview:_itemImg];
             _itemImg.contentMode=2;
             [regular setZeroBorder:_itemImg];
             _itemImg.userInteractionEnabled=NO;
-            _itemImg.frame=CGRectMake(i*(15+90), 20, 90, 90);
+            _itemImg.frame=CGRectMake(idx*(15+90), 20, 90, 90);
             [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:400 placeHolderImageName:nil radius:0];
             lastView=_itemImg;
             [itemArr addObject:_itemImg];
-        }
+        }];
+//        for (int i=0; i<_OrderModel.itemList.count; i++) {
+//            DD_OrderItemModel *_itemModel=_OrderModel.itemList[i];
+//            //    款式照片
+//            UIImageView *_itemImg=[UIImageView getCustomImg];
+//            [_scrollview addSubview:_itemImg];
+//            _itemImg.contentMode=2;
+//            [regular setZeroBorder:_itemImg];
+//            _itemImg.userInteractionEnabled=NO;
+//            _itemImg.frame=CGRectMake(i*(15+90), 20, 90, 90);
+//            [_itemImg JX_ScaleAspectFill_loadImageUrlStr:_itemModel.pic WithSize:400 placeHolderImageName:nil radius:0];
+//            lastView=_itemImg;
+//            [itemArr addObject:_itemImg];
+//        }
         NSInteger _count=_OrderModel.itemList.count;
         CGFloat __w=90*_count+15*(_count-1);
         _scrollview.contentSize=CGSizeMake(__w, 130);

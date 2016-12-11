@@ -33,18 +33,24 @@
 +(NSMutableArray *)getCircleListModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleListModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getCircleListModel:dict]];
+//    }
     return TagsArr;
 }
 
 +(NSMutableArray *)getCircleListImgModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleListImgModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getCircleListImgModel:dict]];
+//    }
     return TagsArr;
 }
 +(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict
@@ -68,9 +74,12 @@
 -(NSMutableArray *)getTagArr
 {
     NSMutableArray *arr=[[NSMutableArray alloc] init];
-    for (DD_CircleTagModel *tag in self.tags) {
+    [self.tags enumerateObjectsUsingBlock:^(DD_CircleTagModel *tag, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObjectsFromArray:tag.tags];
-    }
+    }];
+//    for (DD_CircleTagModel *tag in self.tags) {
+//        [arr addObjectsFromArray:tag.tags];
+//    }
     return arr;
 }
 @end

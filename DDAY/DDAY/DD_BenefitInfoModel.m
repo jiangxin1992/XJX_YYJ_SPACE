@@ -21,9 +21,12 @@
 +(NSArray *)getBenefitInfoModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getBenefitInfoModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getBenefitInfoModel:dict]];
+//    }
     return itemsArr;
 //    return [self testdata];
 }

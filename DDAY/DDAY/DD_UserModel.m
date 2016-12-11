@@ -226,23 +226,35 @@
  */
 +(BOOL)isReadWithBenefitID:(NSString *)benefitID
 {
+    
+    
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     
     NSMutableArray *_localBenefitArr = [_default objectForKey:@"localReadBenefit"];
     
     if(_localBenefitArr)
     {
-        for (int i=0; i<_localBenefitArr.count; i++) {
-            NSString *obj=_localBenefitArr[i];
+        __block BOOL isRead=NO;
+        [_localBenefitArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
             if([_model.benefitId isEqualToString:benefitID])
             {
                 JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
-                return _model.localRead;
+                isRead=_model.localRead;
+                *stop=YES;
             }
-        }
+        }];
+//        for (int i=0; i<_localBenefitArr.count; i++) {
+//            NSString *obj=_localBenefitArr[i];
+//            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
+//            if([_model.benefitId isEqualToString:benefitID])
+//            {
+//                JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
+//                return _model.localRead;
+//            }
+//        }
         JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
-        return NO;
+        return isRead;
         
     }else
     {
@@ -260,19 +272,28 @@
     NSMutableArray *_localBenefitArr = [_default objectForKey:@"localReadBenefit"];
     if(_localBenefitArr)
     {
-        BOOL _have_model=NO;
-        BOOL _model_index=0;
-        for (int i=0; i<_localBenefitArr.count; i++) {
-            NSString *obj=_localBenefitArr[i];
+        __block BOOL _have_model=NO;
+        __block BOOL _model_index=0;
+        [_localBenefitArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
             if([_model.benefitId isEqualToString:benefitInfoModel.benefitId])
             {
-                
                 _have_model=YES;
-                _model_index=i;
-                break;
+                _model_index=idx;
+                *stop=YES;
             }
-        }
+        }];
+//        for (int i=0; i<_localBenefitArr.count; i++) {
+//            NSString *obj=_localBenefitArr[i];
+//            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
+//            if([_model.benefitId isEqualToString:benefitInfoModel.benefitId])
+//            {
+//                
+//                _have_model=YES;
+//                _model_index=i;
+//                break;
+//            }
+//        }
         if(_have_model)
         {
             [_localBenefitArr removeObjectAtIndex:_model_index];

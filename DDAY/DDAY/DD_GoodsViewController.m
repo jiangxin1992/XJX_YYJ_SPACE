@@ -133,7 +133,7 @@
     {
         btn.selected=NO;
         [UIView animateWithDuration:0.5 animations:^{
-            listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
+            listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight), ScreenWidth, ScreenHeight-ktabbarHeight);
         } completion:^(BOOL finished) {
             [self listTableViewHide];
         }];
@@ -141,7 +141,7 @@
     }else
     {
         btn.selected=YES;
-        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight-kNavHeight), ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID) {
+        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight), ScreenWidth, ScreenHeight-ktabbarHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID) {
             
             btn.selected=NO;
             if([type isEqualToString:@"click"])
@@ -167,7 +167,7 @@
         }];
         [self.view addSubview:listTableView];
         [UIView animateWithDuration:0.5 animations:^{
-            listTableView.frame=CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight);
+            listTableView.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight-ktabbarHeight);
         }];
         [self RequestListData];
     }

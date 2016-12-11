@@ -80,9 +80,12 @@
 #pragma mark - SomeAction
 -(void)removeUI
 {
-    for (UIView *view in btnArr) {
+    [btnArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         [view removeFromSuperview];
-    }
+    }];
+//    for (UIView *view in btnArr) {
+//        [view removeFromSuperview];
+//    }
     if(middleBtn)
     {
         middleBtn.hidden=YES;

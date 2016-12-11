@@ -11,6 +11,7 @@
 #import "MJRefresh.h"
 
 #import "DD_GoodsDetailViewController.h"
+#import "DD_ShopViewController.h"
 
 #import "Waterflow.h"
 #import "WaterflowCell.h"
@@ -64,11 +65,28 @@
 
     if([_Type isEqualToString:@"meet"])
     {
-        self.navigationItem.titleView=[regular returnNavView:@"查看发布会" withmaxwidth:200];
+        self.navigationItem.titleView=[regular returnNavView:@"发布会" withmaxwidth:200];
     }else if([_Type isEqualToString:@"good"])
     {
-        self.navigationItem.titleView=[regular returnNavView:@"查看发布品" withmaxwidth:200];
+        self.navigationItem.titleView=[regular returnNavView:@"发布品" withmaxwidth:200];
     }
+    
+    DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
+    //    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
+    [shopBtn bk_addEventHandler:^(id sender) {
+        //        跳转购物车
+        if(![DD_UserModel isLogin])
+        {
+            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+                [self pushLoginView];
+            }] animated:YES completion:nil];
+        }else
+        {
+            DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
+            [self.navigationController pushViewController:_shop animated:YES];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
 }
 #pragma mark - RequestData
 -(void)RequestData

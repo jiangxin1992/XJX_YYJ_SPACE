@@ -13,10 +13,14 @@
 +(NSArray *)getSizeModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         DD_SizeModel *_sizeModel=[DD_SizeModel mj_objectWithKeyValues:dict];
         [itemsArr addObject:_sizeModel];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        DD_SizeModel *_sizeModel=[DD_SizeModel mj_objectWithKeyValues:dict];
+//        [itemsArr addObject:_sizeModel];
+//    }
     return itemsArr;
 }
 

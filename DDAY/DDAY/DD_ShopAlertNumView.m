@@ -131,13 +131,21 @@
 }
 -(DD_SizeModel *)getSizeModel
 {
-    for (DD_SizeModel *sizemodel in _sizeArr) {
+    __block DD_SizeModel *getSizeModel=nil;
+    [_sizeArr enumerateObjectsUsingBlock:^(DD_SizeModel *sizemodel, NSUInteger idx, BOOL * _Nonnull stop) {
         if([sizemodel.sizeId isEqualToString:_ItemModel.sizeId])
         {
-            return sizemodel;
+            getSizeModel=sizemodel;
+            *stop=YES;
         }
-    }
-    return nil;
+    }];
+//    for (DD_SizeModel *sizemodel in _sizeArr) {
+//        if([sizemodel.sizeId isEqualToString:_ItemModel.sizeId])
+//        {
+//            return sizemodel;
+//        }
+//    }
+    return getSizeModel;
 }
 
 @end

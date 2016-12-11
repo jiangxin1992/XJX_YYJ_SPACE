@@ -55,6 +55,16 @@
 //-(void)showBenefitWithModel:(DD_BenefitInfoModel *)model;
 
 /**
+ * 更新设计师列表状态
+ * 更新+删除(设计师列表页+我关注的设计师列表)
+ */
+-(void)updateDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow;
+
+-(void)updateLeftDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow;
+
+-(void)updateRightDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow;
+
+/**
  * 更新unReadMsgModel
  * 并更新当前tabbar 用户item的状态
  */

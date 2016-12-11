@@ -198,19 +198,19 @@ static DD_CustomViewController *tabbarController = nil;
                             ,@"User_Tabbar_Select"];
     
     CGFloat buttonWidth =ScreenWidth/5;
-    for (int i = 0; i<titleArr.count; i++) {
-        DD_TabbarItem *item = i==0?_goodsItem:i==1?_designerItem:i==2?_ddayItem:i==3?_circleItem:_userItem;
+    [titleArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        DD_TabbarItem *item = idx==0?_goodsItem:idx==1?_designerItem:idx==2?_ddayItem:idx==3?_circleItem:_userItem;
         //        设置item的frame，标题，normal和select的图片
         //锁定第一个视图为默认出现页面
-        if (i == 0) {
+        if (idx == 0) {
             item.selected = YES;
         }
         //        添加标签
-        item.tag = 100 + i;
+        item.tag = 100 + idx;
         //        添加select响应事件
         [item addTarget:self action:@selector(selectItem:) forControlEvents:UIControlEventTouchUpInside];
-        [item setImage:[UIImage imageNamed:normalImgArr[i]] forState:UIControlStateNormal];
-        [item setImage:[UIImage imageNamed:selectImgArr[i]] forState:UIControlStateSelected];
+        [item setImage:[UIImage imageNamed:normalImgArr[idx]] forState:UIControlStateNormal];
+        [item setImage:[UIImage imageNamed:selectImgArr[idx]] forState:UIControlStateSelected];
         //        再自定义标签栏中加入item
         [_tabbar addSubview:item];
         if(btnarr!=nil)
@@ -218,11 +218,36 @@ static DD_CustomViewController *tabbarController = nil;
             [btnarr addObject:item];
         }
         [item mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(i*buttonWidth);
+            make.left.mas_equalTo(idx*buttonWidth);
             make.bottom.and.top.mas_equalTo(0);
             make.width.mas_equalTo(buttonWidth);
         }];
-    }
+    }];
+//    for (int i = 0; i<titleArr.count; i++) {
+//        DD_TabbarItem *item = i==0?_goodsItem:i==1?_designerItem:i==2?_ddayItem:i==3?_circleItem:_userItem;
+//        //        设置item的frame，标题，normal和select的图片
+//        //锁定第一个视图为默认出现页面
+//        if (i == 0) {
+//            item.selected = YES;
+//        }
+//        //        添加标签
+//        item.tag = 100 + i;
+//        //        添加select响应事件
+//        [item addTarget:self action:@selector(selectItem:) forControlEvents:UIControlEventTouchUpInside];
+//        [item setImage:[UIImage imageNamed:normalImgArr[i]] forState:UIControlStateNormal];
+//        [item setImage:[UIImage imageNamed:selectImgArr[i]] forState:UIControlStateSelected];
+//        //        再自定义标签栏中加入item
+//        [_tabbar addSubview:item];
+//        if(btnarr!=nil)
+//        {
+//            [btnarr addObject:item];
+//        }
+//        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(i*buttonWidth);
+//            make.bottom.and.top.mas_equalTo(0);
+//            make.width.mas_equalTo(buttonWidth);
+//        }];
+//    }
     
 }
 -(void)createTabbar
@@ -241,20 +266,51 @@ static DD_CustomViewController *tabbarController = nil;
 #pragma mark - UITabBarControllerDelegate(点击时候触发)
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    
-    //    遍历标签栏子视图，使他们为normal状态
-    for (UIButton *b in _tabbar.subviews) {
-        
+    [_tabbar.subviews enumerateObjectsUsingBlock:^(UIButton *b, NSUInteger idx, BOOL * _Nonnull stop) {
         if([b isKindOfClass:[UIButton class]])
         {
             ((UIButton *)b).selected=NO;
         }
-    }
+    }];
+    //    遍历标签栏子视图，使他们为normal状态
+//    for (UIButton *b in _tabbar.subviews) {
+//        
+//        if([b isKindOfClass:[UIButton class]])
+//        {
+//            ((UIButton *)b).selected=NO;
+//        }
+//    }
     //    将点击的item变为select状态
     ((DD_TabbarItem*)btnarr[self.selectedIndex]).selected=YES;
     
 }
 #pragma mark - SomeAction
+/**
+ * 更新设计师列表状态
+ * 更新+删除(设计师列表页+我关注的设计师列表)
+ */
+-(void)updateDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_designerCtn)
+    {
+        [_designerCtn updateListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    }
+}
+-(void)updateLeftDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_designerCtn)
+    {
+        [_designerCtn updateLeftListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    }
+}
+
+-(void)updateRightDesignerListDataWithID:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_designerCtn)
+    {
+        [_designerCtn updateRightListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    }
+}
 
 -(void)startSignInAnimationWithTitle:(NSString *)title WithType:(NSString *)type
 {
@@ -262,13 +318,20 @@ static DD_CustomViewController *tabbarController = nil;
     DD_SignInAnimationView *_animationView=[DD_SignInAnimationView sharedManagerWithTitle:title WithBlock:^(NSString *type) {
         if([type isEqualToString:@"end"])
         {
-            for (id obj in self.view.window.subviews) {
+            [self.view.window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj isKindOfClass:[DD_SignInAnimationView class]])
                 {
                     DD_SignInAnimationView *sss=(DD_SignInAnimationView *)obj;
                     [sss removeFromSuperview];
                 }
-            }
+            }];
+//            for (id obj in self.view.window.subviews) {
+//                if([obj isKindOfClass:[DD_SignInAnimationView class]])
+//                {
+//                    DD_SignInAnimationView *sss=(DD_SignInAnimationView *)obj;
+//                    [sss removeFromSuperview];
+//                }
+//            }
         }
     }];
     if([type isEqualToString:@"integral"])
@@ -300,13 +363,20 @@ static DD_CustomViewController *tabbarController = nil;
         }else if([type isEqualToString:@"close"])
         {
             
-            for (id obj in self.view.window.subviews) {
+            [self.view.window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj isKindOfClass:[DD_VersionView class]])
                 {
                     DD_VersionView *versionView=(DD_VersionView *)obj;
                     [versionView removeFromSuperview];
                 }
-            }
+            }];
+//            for (id obj in self.view.window.subviews) {
+//                if([obj isKindOfClass:[DD_VersionView class]])
+//                {
+//                    DD_VersionView *versionView=(DD_VersionView *)obj;
+//                    [versionView removeFromSuperview];
+//                }
+//            }
         }
     }];
     [self.view.window addSubview:_versionView];
@@ -388,13 +458,18 @@ static DD_CustomViewController *tabbarController = nil;
 }
 -(void)updateBtnStatus:(NSInteger )index
 {
-    for (UIButton *b in _tabbar.subviews) {
-        
+    [_tabbar.subviews enumerateObjectsUsingBlock:^(UIButton *b, NSUInteger idx, BOOL * _Nonnull stop) {
         if([b isKindOfClass:[UIButton class]])
         {
             ((UIButton *)b).selected=NO;
         }
-    }
+    }];
+//    for (UIButton *b in _tabbar.subviews) {
+//        if([b isKindOfClass:[UIButton class]])
+//        {
+//            ((UIButton *)b).selected=NO;
+//        }
+//    }
     self.selectedIndex=index;
     UIButton *btn=btnarr[index];
     btn.selected=YES;
@@ -402,12 +477,18 @@ static DD_CustomViewController *tabbarController = nil;
 -(void)selectItem:(UIButton *)btn
 {
     //    遍历标签栏子视图，使他们为normal状态
-    for (UIView *b in _tabbar.subviews) {
+    [_tabbar.subviews enumerateObjectsUsingBlock:^(UIView *b, NSUInteger idx, BOOL * _Nonnull stop) {
         if([b isKindOfClass:[UIButton class]])
         {
             ((UIButton *)b).selected=NO;
         }
-    }
+    }];
+//    for (UIView *b in _tabbar.subviews) {
+//        if([b isKindOfClass:[UIButton class]])
+//        {
+//            ((UIButton *)b).selected=NO;
+//        }
+//    }
     //    将点击的item变为select状态
     btn.selected = YES;
     //    切换到点击item相对应的视图

@@ -139,12 +139,18 @@
         if(success)
         {
             NSArray *controllers=self.navigationController.viewControllers;
-            for (id obj in controllers) {
+            [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj isKindOfClass:[DD_LoginViewController class]])
                 {
                     [self.navigationController popToViewController:obj animated:YES];
                 }
-            }
+            }];
+//            for (id obj in controllers) {
+//                if([obj isKindOfClass:[DD_LoginViewController class]])
+//                {
+//                    [self.navigationController popToViewController:obj animated:YES];
+//                }
+//            }
             
         }else
         {

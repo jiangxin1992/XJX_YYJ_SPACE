@@ -15,6 +15,7 @@
 #import "DD_DesignerIntroViewController.h"
 #import "DD_GoodsDetailViewController.h"
 #import "DD_BenefitListViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_ShareView.h"
 
@@ -243,7 +244,6 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark - SomeAction
 //分享
 -(void)ShareAction
 {
@@ -274,13 +274,21 @@
 -(void)showBenefitWithModel:(DD_BenefitInfoModel *)model
 {
     DD_BenefitView *_benefitView=[DD_BenefitView sharedManagerWithModel:model WithBlock:^(NSString *type) {
-        for (id obj in self.view.window.subviews) {
+        
+        [self.view.window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if([obj isKindOfClass:[DD_BenefitView class]])
             {
                 DD_BenefitView *sss=(DD_BenefitView *)obj;
                 [sss removeFromSuperview];
             }
-        }
+        }];
+//        for (id obj in self.view.window.subviews) {
+//            if([obj isKindOfClass:[DD_BenefitView class]])
+//            {
+//                DD_BenefitView *sss=(DD_BenefitView *)obj;
+//                [sss removeFromSuperview];
+//            }
+//        }
         if([type isEqualToString:@"close"])
         {
             
@@ -397,7 +405,7 @@
         
     }
     
-    for (UIButton *_btn in btnarr) {
+    [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
         if(_btn.tag==btn.tag)
         {
             _btn.selected=YES;
@@ -408,7 +416,19 @@
             _btn.selected=NO;
             _btn.backgroundColor= _define_clear_color;
         }
-    }
+    }];
+//    for (UIButton *_btn in btnarr) {
+//        if(_btn.tag==btn.tag)
+//        {
+//            _btn.selected=YES;
+//            _btn.backgroundColor=_define_black_color;
+//            currentPage=_btn.tag-100;
+//        }else
+//        {
+//            _btn.selected=NO;
+//            _btn.backgroundColor= _define_clear_color;
+//        }
+//    }
     
 }
 /**
@@ -477,6 +497,8 @@
             if(success)
             {
                 _DesignerModel.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                //更新设计师列表数据
+                [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) updateDesignerListDataWithID:_DesignerModel.designerId WithFollowState:_DesignerModel.guanzhu];
                 if(_DesignerModel.guanzhu)
                 {
                     followBtn.selected=YES;

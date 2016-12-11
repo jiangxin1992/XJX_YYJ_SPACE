@@ -191,17 +191,16 @@
 }
 -(void)SetBtnStateWithBtnTag:(NSInteger )btnTag
 {
-    for (int i=0; i<btnarr.count; i++) {
-        UIButton *_btn=btnarr[i];
+    [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
         if(_btn.tag==btnTag)
         {
             _btn.selected=YES;
             currentPage=_btn.tag-100;
-            if(i==0)
+            if(idx==0)
             {
                 dibu_left.backgroundColor=_define_black_color;
                 dibu_right.backgroundColor=_define_light_gray_color1;
-            }else if(i==1)
+            }else if(idx==1)
             {
                 dibu_left.backgroundColor=_define_light_gray_color1;
                 dibu_right.backgroundColor=_define_black_color;
@@ -210,8 +209,27 @@
         {
             _btn.selected=NO;
         }
-        
-    }
+    }];
+//    for (int i=0; i<btnarr.count; i++) {
+//        UIButton *_btn=btnarr[i];
+//        if(_btn.tag==btnTag)
+//        {
+//            _btn.selected=YES;
+//            currentPage=_btn.tag-100;
+//            if(i==0)
+//            {
+//                dibu_left.backgroundColor=_define_black_color;
+//                dibu_right.backgroundColor=_define_light_gray_color1;
+//            }else if(i==1)
+//            {
+//                dibu_left.backgroundColor=_define_light_gray_color1;
+//                dibu_right.backgroundColor=_define_black_color;
+//            }
+//        }else
+//        {
+//            _btn.selected=NO;
+//        }
+//    }
 }
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated

@@ -22,23 +22,34 @@
 +(NSArray *)getOrderModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getOrderModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getOrderModel:dict]];
+//    }
     return itemsArr;
 }
 -(NSArray *)getBuyItems
 {
     NSMutableArray *mut_arr=[[NSMutableArray alloc] init];
-    for (DD_OrderItemModel *_item in self.itemList) {
+    [self.itemList enumerateObjectsUsingBlock:^(DD_OrderItemModel *_item, NSUInteger idx, BOOL * _Nonnull stop) {
         [mut_arr addObject:@{
                              @"itemId":_item.itemId
                              ,@"colorId":_item.colorId
                              ,@"sizeId":_item.sizeId
                              ,@"number":[NSNumber numberWithLong:_item.itemCount]
                              ,@"price":_item.price}];
-        
-    }
+    }];
+//    for (DD_OrderItemModel *_item in self.itemList) {
+//        [mut_arr addObject:@{
+//                             @"itemId":_item.itemId
+//                             ,@"colorId":_item.colorId
+//                             ,@"sizeId":_item.sizeId
+//                             ,@"number":[NSNumber numberWithLong:_item.itemCount]
+//                             ,@"price":_item.price}];
+//        
+//    }
     return mut_arr;
 }
 -(BOOL )isSingle

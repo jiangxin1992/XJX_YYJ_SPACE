@@ -311,17 +311,25 @@
     }
     if(_commentId&&_shareId)
     {
-        BOOL _is_exist=NO;
-        NSInteger _index=0;
-        for (int i=0; i<_dataArr.count; i++) {
-            DD_CircleListModel *listModel=_dataArr[i];
+        __block BOOL _is_exist=NO;
+        __block NSInteger _index=0;
+        [_dataArr enumerateObjectsUsingBlock:^(DD_CircleListModel *listModel, NSUInteger idx, BOOL * _Nonnull stop) {
             if([listModel.shareId isEqualToString:_shareId])
             {
                 _is_exist=YES;
-                _index=i;
-                break;
+                _index=idx;
+                *stop=YES;
             }
-        }
+        }];
+//        for (int i=0; i<_dataArr.count; i++) {
+//            DD_CircleListModel *listModel=_dataArr[i];
+//            if([listModel.shareId isEqualToString:_shareId])
+//            {
+//                _is_exist=YES;
+//                _index=i;
+//                break;
+//            }
+//        }
         if(_is_exist)
         {
             [self PushCommentViewWithIndex:_index];

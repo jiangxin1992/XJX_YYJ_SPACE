@@ -37,22 +37,33 @@
 +(NSMutableArray *)getCircleTagModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleTagModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getCircleTagModel:dict]];
+//    }
     return TagsArr;
 }
 -(void )updateLastSelect
 {
-    BOOL isExist=NO;
-    for (DD_CricleTagItemModel *item in self.tags) {
+    __block BOOL isExist=NO;
+    [self.tags enumerateObjectsUsingBlock:^(DD_CricleTagItemModel *item, NSUInteger idx, BOOL * _Nonnull stop) {
         if(item.is_select)
         {
             self.lastItem=item;
             isExist=YES;
-            break;
+            *stop=YES;
         }
-    }
+    }];
+//    for (DD_CricleTagItemModel *item in self.tags) {
+//        if(item.is_select)
+//        {
+//            self.lastItem=item;
+//            isExist=YES;
+//            break;
+//        }
+//    }
     if(!isExist)
     {
         self.lastItem=nil;

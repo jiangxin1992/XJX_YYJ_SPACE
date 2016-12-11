@@ -298,10 +298,13 @@
  */
 -(NSInteger )getGoodsCount
 {
-    NSInteger _num=0;
-    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+    __block NSInteger _num=0;
+    [_dataArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *_Series, NSUInteger idx, BOOL * _Nonnull stop) {
         _num+=_Series.items.count;
-    }
+    }];
+//    for (DD_ClearingSeriesModel *_Series in _dataArr) {
+//        _num+=_Series.items.count;
+//    }
     return _num;
 }
 /**

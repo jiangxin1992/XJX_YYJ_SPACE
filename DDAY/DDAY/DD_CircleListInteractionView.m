@@ -105,9 +105,8 @@
     
 //    循环约束
     NSArray *viewArr=@[praiseLabel,praiseBtn,commentLabel,commentBtn,shareBtn];
-    UIView *lastView=nil;
-    for (int i=0; i<viewArr.count; i++) {
-        UIView *view=viewArr[i];
+    __block UIView *lastView=nil;
+    [viewArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             if(lastView)
             {
@@ -118,7 +117,7 @@
             }
             
             make.height.mas_equalTo(collectBtn);
-            if(i==1||i==3||i==4)
+            if(idx==1||idx==3||idx==4)
             {
                 make.width.mas_equalTo(collectBtn);
             }else
@@ -128,7 +127,30 @@
             make.top.mas_equalTo(5);
         }];
         lastView=view;
-    }
+    }];
+//    for (int i=0; i<viewArr.count; i++) {
+//        UIView *view=viewArr[i];
+//        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(lastView)
+//            {
+//                make.right.mas_equalTo(lastView.mas_left).with.offset(-5);
+//            }else
+//            {
+//                make.right.mas_equalTo(0);
+//            }
+//            
+//            make.height.mas_equalTo(collectBtn);
+//            if(i==1||i==3||i==4)
+//            {
+//                make.width.mas_equalTo(collectBtn);
+//            }else
+//            {
+//                make.width.mas_equalTo(@20);
+//            }
+//            make.top.mas_equalTo(5);
+//        }];
+//        lastView=view;
+//    }
 }
 -(void)setDetailModel:(DD_CircleListModel *)detailModel
 {

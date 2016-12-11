@@ -389,13 +389,21 @@
                 
                 //                返回搭配列表界面
                 NSArray *controllers=self.navigationController.viewControllers;
-                for (int i=0; i<controllers.count; i++) {
-                    id obj=controllers[i];
+                
+                [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if([obj isKindOfClass:[DD_CircleViewController class]])
                     {
                         [self.navigationController popToViewController:obj animated:YES];
                     }
-                }
+                }];
+                
+//                for (int i=0; i<controllers.count; i++) {
+//                    id obj=controllers[i];
+//                    if([obj isKindOfClass:[DD_CircleViewController class]])
+//                    {
+//                        [self.navigationController popToViewController:obj animated:YES];
+//                    }
+//                }
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -447,12 +455,11 @@
         {
             count_index=items.count;
         }
-        for (int i=0; i<goodsImgArr.count; i++) {
-            UIImageView *goods=goodsImgArr[i];
-            UIButton *goodsPrice=(UIButton *)[self.view viewWithTag:150+i];
-            if(i<count_index)
+        [goodsImgArr enumerateObjectsUsingBlock:^(UIImageView *goods, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIButton *goodsPrice=(UIButton *)[self.view viewWithTag:150+idx];
+            if(idx<count_index)
             {
-                DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
+                DD_CricleChooseItemModel *item=_circleModel.chooseItem[idx];
                 [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
                 goods.hidden=NO;
                 [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
@@ -460,21 +467,36 @@
             {
                 goods.hidden=YES;
             }
-        }
+        }];
+//        for (int i=0; i<goodsImgArr.count; i++) {
+//            UIImageView *goods=goodsImgArr[i];
+//            UIButton *goodsPrice=(UIButton *)[self.view viewWithTag:150+i];
+//            if(i<count_index)
+//            {
+//                DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
+//                [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+//                goods.hidden=NO;
+//                [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
+//            }else
+//            {
+//                goods.hidden=YES;
+//            }
+//        }
     }else
     {
         
         NSArray *items=[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel];
         _item_scrollview.contentSize=CGSizeMake(66*items.count+20*(items.count-1), 66);
-        CGFloat _x_p=0;
-        for (int i=0; i<_circleModel.chooseItem.count; i++) {
+        __block CGFloat _x_p=0;
+        
+        [_circleModel.chooseItem enumerateObjectsUsingBlock:^(DD_CricleChooseItemModel *item, NSUInteger idx, BOOL * _Nonnull stop) {
             UIImageView *goods=[UIImageView getCustomImg];;
             [_item_scrollview addSubview:goods];
             goods.frame=CGRectMake(_x_p, 0, 66, 66);
             goods.contentMode=2;
             [regular setZeroBorder:goods];
             goods.userInteractionEnabled=YES;
-//            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+            //            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
             [goods bk_whenTapped:^{
                 //点击单品
                 DD_CricleChooseItemModel *item=_circleModel.chooseItem[goods.tag-100];
@@ -486,8 +508,7 @@
                 }];
                 [self.navigationController pushViewController:_GoodsDetail animated:YES];
             }];
-            goods.tag=100+i;
-            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
+            goods.tag=100+idx;
             [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
             
             
@@ -502,7 +523,44 @@
                 make.height.mas_equalTo(18);
             }];
             _x_p+=CGRectGetWidth(goods.frame)+20;
-        }
+        }];
+        
+//        for (int i=0; i<_circleModel.chooseItem.count; i++) {
+//            UIImageView *goods=[UIImageView getCustomImg];;
+//            [_item_scrollview addSubview:goods];
+//            goods.frame=CGRectMake(_x_p, 0, 66, 66);
+//            goods.contentMode=2;
+//            [regular setZeroBorder:goods];
+//            goods.userInteractionEnabled=YES;
+////            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
+//            [goods bk_whenTapped:^{
+//                //点击单品
+//                DD_CricleChooseItemModel *item=_circleModel.chooseItem[goods.tag-100];
+//                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+//                _item.g_id=item.g_id;
+//                _item.colorCode=item.colorCode;
+//                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+//                    //        if(type)
+//                }];
+//                [self.navigationController pushViewController:_GoodsDetail animated:YES];
+//            }];
+//            goods.tag=100+i;
+//            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
+//            [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
+//            
+//            
+//            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];;
+//            [goods addSubview:pricebtn];
+//            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
+//            pricebtn.userInteractionEnabled=NO;
+//            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
+//            [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
+//            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.right.bottom.mas_equalTo(0);
+//                make.height.mas_equalTo(18);
+//            }];
+//            _x_p+=CGRectGetWidth(goods.frame)+20;
+//        }
     }
     
     conentLabel.text=_circleModel.remark;

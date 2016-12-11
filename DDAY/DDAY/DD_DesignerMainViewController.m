@@ -16,15 +16,16 @@
 #import "DD_DesignerModel.h"
 
 @interface DD_DesignerMainViewController ()
-
+@property (nonatomic,strong) DD_DesignerViewController *left;
+@property (nonatomic,strong) DD_DesignerFollowViewController *right;
 @end
 
 @implementation DD_DesignerMainViewController
 {
     UIPageViewController *_pageVc;
     NSInteger currentPage;
-    DD_DesignerViewController *left;
-    DD_DesignerFollowViewController *right;
+//    DD_DesignerViewController *left;
+//    DD_DesignerFollowViewController *right;
     UIView *dibu;
     NSMutableArray *btnarr;
     CGRect _rect_left;
@@ -112,9 +113,9 @@
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
     _pageVc.view.frame = CGRectMake(0, 0, 1000 , 1000 );
     _pageVc.view.backgroundColor=_define_white_color;
-    if(left==nil)
+    if(_left==nil)
     {
-        left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
+        _left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
             if([type isEqualToString:@"login"])
             {
                 [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
@@ -130,24 +131,61 @@
             
         }];
     }
-    [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
+    [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
     currentPage=0;
     [self.view addSubview:_pageVc.view];
 }
 #pragma mark - SomeAction
+/**
+ * 更新设计师列表状态
+ * 更新+删除(设计师列表页+我关注的设计师列表)
+ */
+-(void)updateListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    [self updateLeftListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    [self updateRightListDataWithDesignerId:desginerID WithFollowState:isFollow];
+}
+/**
+ * 更新设计师列表数据
+ */
+-(void)updateLeftListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_left)
+    {
+        [_left updateListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    }
+}
+/**
+ * 更新我关注的设计师列表数据
+ */
+-(void)updateRightListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    if(_right)
+    {
+        [_right updateListDataWithDesignerId:desginerID WithFollowState:isFollow];
+    }
+}
 -(void)RootChangeAction:(NSNotification *)not
 {
     if([not.object isEqualToString:@"logout"]||[not.object isEqualToString:@"login"])
     {
-        for (UIButton *_btn in btnarr) {
+        [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
             _btn.selected=NO;
             if(_btn.tag==100)
             {
                 _btn.selected=YES;
                 currentPage=_btn.tag-100;
             }
-        }
-        [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
+        }];
+//        for (UIButton *_btn in btnarr) {
+//            _btn.selected=NO;
+//            if(_btn.tag==100)
+//            {
+//                _btn.selected=YES;
+//                currentPage=_btn.tag-100;
+//            }
+//        }
+        [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
         dibu.frame=_rect_left;
     }
 }
@@ -158,9 +196,9 @@
         if(currentPage>0)
         {
             self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_title", @"") withmaxwidth:100];
-            if(!left)
+            if(!_left)
             {
-                left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type,DD_DesignerModel *model) {
+                _left=[[DD_DesignerViewController alloc] initWithBlock:^(NSString *type,DD_DesignerModel *model) {
                     if([type isEqualToString:@"login"])
                     {
                         [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
@@ -175,7 +213,7 @@
                     }
                 }];
             }
-            [_pageVc setViewControllers:@[left] direction:0 animated:YES completion:nil];
+            [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
             [UIView beginAnimations:@"anmationName1" context:nil];
             [UIView setAnimationDuration:0.5];
             [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
@@ -184,14 +222,22 @@
             [UIView commitAnimations];
         }
         
-        for (UIButton *_btn in btnarr) {
+        [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
             _btn.selected=NO;
             if(_btn.tag==btn.tag)
             {
                 _btn.selected=YES;
                 currentPage=_btn.tag-100;
             }
-        }
+        }];
+//        for (UIButton *_btn in btnarr) {
+//            _btn.selected=NO;
+//            if(_btn.tag==btn.tag)
+//            {
+//                _btn.selected=YES;
+//                currentPage=_btn.tag-100;
+//            }
+//        }
     }else if(btn.tag-100==1)
     {
         
@@ -203,9 +249,9 @@
         }else
         {
             self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"designer_follow_title", @"") withmaxwidth:100];
-            if(!right)
+            if(!_right)
             {
-                right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
+                _right =[[DD_DesignerFollowViewController alloc] initWithBlock:^(NSString *type ,DD_DesignerModel *model) {
                     if([type isEqualToString:@"login"])
                     {
                         [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
@@ -222,7 +268,7 @@
             }
             if(currentPage<1)
             {
-                [_pageVc setViewControllers:@[right] direction:1 animated:YES completion:nil];
+                [_pageVc setViewControllers:@[_right] direction:1 animated:YES completion:nil];
             }
             [UIView beginAnimations:@"anmationName2" context:nil];
             [UIView setAnimationDuration:0.5];
@@ -230,14 +276,23 @@
             [UIView setAnimationDelegate:self];
             dibu.frame=_rect_right;
             [UIView commitAnimations];
-            for (UIButton *_btn in btnarr) {
+            
+            [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
                 _btn.selected=NO;
                 if(_btn.tag==btn.tag)
                 {
                     _btn.selected=YES;
                     currentPage=_btn.tag-100;
                 }
-            }
+            }];
+//            for (UIButton *_btn in btnarr) {
+//                _btn.selected=NO;
+//                if(_btn.tag==btn.tag)
+//                {
+//                    _btn.selected=YES;
+//                    currentPage=_btn.tag-100;
+//                }
+//            }
         }
     }
 }

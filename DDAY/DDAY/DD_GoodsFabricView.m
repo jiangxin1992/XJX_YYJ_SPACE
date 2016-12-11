@@ -110,9 +110,13 @@
 {
     _is_show=is_show;
     
-    for (UIView *view in viewArr) {
+    [viewArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         view.hidden=!_is_show;
-    }
+    }];
+    
+//    for (UIView *view in viewArr) {
+//        view.hidden=!_is_show;
+//    }
     
     if(_is_show)
     {

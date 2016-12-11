@@ -31,9 +31,11 @@
 +(NSArray *)getPayOrderWithDataArr:(NSArray *)dataArr
 {
     NSMutableArray *orderArr=[[NSMutableArray alloc] init];
-    for (DD_ClearingSeriesModel *_Series in dataArr) {
+    
+    [dataArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *_Series, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray *items=[[NSMutableArray alloc] init];
-        for (DD_ClearingOrderModel *order in _Series.items) {
+        
+        [_Series.items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *order, NSUInteger idx2, BOOL * _Nonnull stop2) {
             [items addObject:@{
                                @"pic":order.pic
                                ,@"brandName":order.brandName
@@ -48,7 +50,7 @@
                                ,@"price":order.price
                                ,@"originalPrice":order.originalPrice
                                }];
-        }
+        }];
         [orderArr addObject: @{
                                @"seriesId":_Series.seriesId
                                ,@"seriesName":_Series.seriesName
@@ -57,7 +59,34 @@
                                ,@"totalMoney":_Series.totalMoney
                                ,@"items":items
                                }];
-    }
+    }];
+//    for (DD_ClearingSeriesModel *_Series in dataArr) {
+//        NSMutableArray *items=[[NSMutableArray alloc] init];
+//        for (DD_ClearingOrderModel *order in _Series.items) {
+//            [items addObject:@{
+//                               @"pic":order.pic
+//                               ,@"brandName":order.brandName
+//                               ,@"itemId":order.itemId
+//                               ,@"itemName":order.itemName
+//                               ,@"colorId":order.colorId
+//                               ,@"colorCode":order.colorCode
+//                               ,@"colorName":order.colorName
+//                               ,@"sizeId":order.sizeId
+//                               ,@"sizeName":order.sizeName
+//                               ,@"num":order.numbers
+//                               ,@"price":order.price
+//                               ,@"originalPrice":order.originalPrice
+//                               }];
+//        }
+//        [orderArr addObject: @{
+//                               @"seriesId":_Series.seriesId
+//                               ,@"seriesName":_Series.seriesName
+//                               ,@"status":[NSNumber numberWithInteger:_Series.status]
+//                               ,@"numbers":_Series.numbers
+//                               ,@"totalMoney":_Series.totalMoney
+//                               ,@"items":items
+//                               }];
+//    }
     
     return orderArr;
 }
@@ -68,21 +97,34 @@
 
 +(CGFloat )getAllCountPriceWithDict:(NSDictionary *)_dataDict
 {
-    CGFloat _price=0;
+    __block CGFloat _price=0;
     NSArray *remainArr=[_dataDict objectForKey:@"remain"];
-    for (DD_ClearingSeriesModel *Series in remainArr) {
-        for (DD_ClearingOrderModel *order in Series.items) {
+    [remainArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *Series, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [Series.items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *order, NSUInteger idx2, BOOL * _Nonnull stop2) {
             _price+=[order.price floatValue]*[order.numbers integerValue];
-        }
-    }
+        }];
+    }];
+//    for (DD_ClearingSeriesModel *Series in remainArr) {
+//        for (DD_ClearingOrderModel *order in Series.items) {
+//            _price+=[order.price floatValue]*[order.numbers integerValue];
+//        }
+//    }
     NSArray *saleArr=[_dataDict objectForKey:@"saleing"];
-    for (DD_ClearingSeriesModel *Series in saleArr) {
-        for (DD_ClearingOrderModel *order in Series.items) {
+    [saleArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *Series, NSUInteger idx, BOOL * _Nonnull stop) {
+        [Series.items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *order, NSUInteger idx2, BOOL * _Nonnull stop2) {
             CGFloat _danjia=[order.price floatValue];
             NSInteger _num=[order.numbers integerValue];
             _price+=_danjia*_num;
-        }
-    }
+        }];
+    }];
+//    for (DD_ClearingSeriesModel *Series in saleArr) {
+//        for (DD_ClearingOrderModel *order in Series.items) {
+//            CGFloat _danjia=[order.price floatValue];
+//            NSInteger _num=[order.numbers integerValue];
+//            _price+=_danjia*_num;
+//        }
+//    }
     return _price;
 }
 
@@ -90,10 +132,13 @@
 {
     NSArray *remainArr=[_dataDict objectForKey:@"remain"];
     NSArray *saleArr=[_dataDict objectForKey:@"saleing"];
-    NSInteger _count=0;
-    for (NSArray *_arr in saleArr) {
+    __block NSInteger _count=0;
+    [saleArr enumerateObjectsUsingBlock:^(NSArray *_arr, NSUInteger idx, BOOL * _Nonnull stop) {
         _count+=_arr.count;
-    }
+    }];
+//    for (NSArray *_arr in saleArr) {
+//        _count+=_arr.count;
+//    }
     return _count+remainArr.count;
 }
 +(BOOL)have_saleingWithDict:(NSDictionary *)_dataDict
@@ -118,7 +163,7 @@
 }
 
 +(CGFloat )getSectionPrice:(NSInteger )_section WithDict:(NSDictionary *)_dataDict{
-    CGFloat _price=0;
+    __block CGFloat _price=0;
     NSArray *_saleingArr=[_dataDict objectForKey:@"saleing"];
     NSArray *arr=nil;
     if([self have_remainWithDict:_dataDict])
@@ -155,9 +200,12 @@
             return 0;
         }
     }
-    for (DD_ClearingOrderModel *ordermodel in arr) {
+    [arr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx, BOOL * _Nonnull stop) {
         _price+=[ordermodel.price floatValue];
-    }
+    }];
+//    for (DD_ClearingOrderModel *ordermodel in arr) {
+//        _price+=[ordermodel.price floatValue];
+//    }
     return _price;
 }
 +(DD_ClearingOrderModel *)getModelForCellRow:(NSIndexPath *)indexPath WithDict:(NSDictionary *)_dataDict

@@ -230,12 +230,18 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"rootChange" object:@"logout"];
             [((DD_CustomViewController *)[DD_CustomViewController sharedManager]).goodsCtn loadNewData];
             _successblock(@"logout");
-            for (id obj in self.navigationController.viewControllers) {
+            [self.navigationController.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj isKindOfClass:[DD_UserViewController class]])
                 {
                     [self.navigationController popToViewController:obj animated:YES];
                 }
-            }
+            }];
+//            for (id obj in self.navigationController.viewControllers) {
+//                if([obj isKindOfClass:[DD_UserViewController class]])
+//                {
+//                    [self.navigationController popToViewController:obj animated:YES];
+//                }
+//            }
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

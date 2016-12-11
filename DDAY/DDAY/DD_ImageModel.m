@@ -17,9 +17,12 @@
 +(NSArray *)getImageModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getImageModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getImageModel:dict]];
+//    }
     return itemsArr;
 }
 +(NSArray *)getRandomImageModelArr:(NSArray *)arr

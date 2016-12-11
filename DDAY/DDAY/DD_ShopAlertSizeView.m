@@ -71,13 +71,12 @@
 -(void)UIConfig
 {
     
-    UIView *lastView=nil;
+    __block UIView *lastView=nil;
     // 间距为10
-    int intes = 10;
-    int num = 0;
-    CGFloat _x_p=kEdge;
-    for (int i=0; i<_SizeAlertModel.size.count; i++) {
-        DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
+    __block int intes = 10;
+    __block int num = 0;
+    __block CGFloat _x_p=kEdge;
+    [_SizeAlertModel.size enumerateObjectsUsingBlock:^(DD_SizeModel *_sizeModel, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
         [self addSubview:_btn];
         
@@ -104,7 +103,7 @@
             _btn.userInteractionEnabled=YES;
         }
         [_sizeBtnArr addObject:_btn];
-        _btn.tag=100+i;
+        _btn.tag=100+idx;
         [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
@@ -126,20 +125,84 @@
         {
             _x_p+=__width+intes;
         }
-//        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if(lastView)
+        //        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        //            if(lastView)
+        //            {
+        //                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
+        //            }else
+        //            {
+        //                make.left.mas_equalTo(kEdge);
+        //            }
+        //            make.top.mas_equalTo(IsPhone6_gt?25:15);
+        //            make.width.mas_equalTo(28);
+        //            make.height.mas_equalTo(28);
+        //        }];
+        lastView=_btn;
+    }];
+//    for (int i=0; i<_SizeAlertModel.size.count; i++) {
+//        DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
+//        UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
+//        [self addSubview:_btn];
+//        
+//        if(_sizeModel.stock)
+//        {
+//            [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
+//            _btn.backgroundColor=_define_white_color;
+//            _btn.userInteractionEnabled=YES;
+//            [regular setBorder:_btn];
+//            if([_sizeModel.sizeId isEqualToString:_ItemModel.sizeId])
 //            {
-//                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
+//                _btn.selected=YES;
+//                [_btn setBackgroundColor:_define_black_color];
+//                
 //            }else
 //            {
-//                make.left.mas_equalTo(kEdge);
+//                _btn.selected=NO;
+//                [_btn setBackgroundColor:_define_white_color];
 //            }
-//            make.top.mas_equalTo(IsPhone6_gt?25:15);
-//            make.width.mas_equalTo(28);
+//        }else
+//        {
+//            [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+//            _btn.backgroundColor=_define_white_color;
+//            _btn.userInteractionEnabled=YES;
+//        }
+//        [_sizeBtnArr addObject:_btn];
+//        _btn.tag=100+i;
+//        [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
+//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+//        {
+//            num++;
+//            _x_p=kEdge;
+//        }
+//        
+//        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
+//            make.left.mas_equalTo(_x_p);
+//            make.width.mas_equalTo(__width);
 //            make.height.mas_equalTo(28);
 //        }];
-        lastView=_btn;
-    }
+//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+//        {
+//        }else
+//        {
+//            _x_p+=__width+intes;
+//        }
+////        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+////            if(lastView)
+////            {
+////                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
+////            }else
+////            {
+////                make.left.mas_equalTo(kEdge);
+////            }
+////            make.top.mas_equalTo(IsPhone6_gt?25:15);
+////            make.width.mas_equalTo(28);
+////            make.height.mas_equalTo(28);
+////        }];
+//        lastView=_btn;
+//    }
     
     UIImageView *sizeBriefImg=nil;
     if(_SizeAlertModel.sizeBriefPic&&![_SizeAlertModel.sizeBriefPic isEqualToString:@""])
@@ -193,14 +256,22 @@
  */
 -(NSInteger )getSelectSize
 {
-    for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=_sizeBtnArr[i];
+    __block NSInteger selectIdx=0;
+    [_sizeBtnArr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
         if(_btn.selected)
         {
-            return i;
+            selectIdx=idx;
+            *stop=YES;
         }
-    }
-    return 0;
+    }];
+//    for (int i=0; i<_sizeBtnArr.count; i++) {
+//        UIButton *_btn=_sizeBtnArr[i];
+//        if(_btn.selected)
+//        {
+//            return i;
+//        }
+//    }
+    return selectIdx;
 }
 -(void)chooseSizeAction:(UIButton *)btn
 {
@@ -209,11 +280,10 @@
     DD_SizeModel *_sizeModel=_SizeAlertModel.size[_index];
     if(_sizeModel.stock)
     {
-        for (int i=0; i<_sizeBtnArr.count; i++) {
-            UIButton *_btn=_sizeBtnArr[i];
-            if(_index==i)
+        [_sizeBtnArr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
+            if(_index==idx)
             {
-                DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
+                DD_SizeModel *_sizeModel=_SizeAlertModel.size[idx];
                 if(_btn.selected)
                 {
                     _btn.selected=NO;
@@ -237,7 +307,36 @@
                 _btn.selected=NO;
                 [_btn setBackgroundColor:_define_white_color];
             }
-        }
+        }];
+//        for (int i=0; i<_sizeBtnArr.count; i++) {
+//            UIButton *_btn=_sizeBtnArr[i];
+//            if(_index==i)
+//            {
+//                DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
+//                if(_btn.selected)
+//                {
+//                    _btn.selected=NO;
+//                    _sizeID=@"";
+//                    _sizeName=@"";
+//                    _count=0;
+//                    [_btn setBackgroundColor:_define_white_color];
+//                }else
+//                {
+//                    _btn.selected=YES;
+//                    _sizeID=_sizeModel.sizeId;
+//                    _sizeName=_sizeModel.sizeName;
+//                    [_btn setBackgroundColor:_define_black_color];
+//                    if(_count>_sizeModel.stock)
+//                    {
+//                        _count=_sizeModel.stock;
+//                    }
+//                }
+//            }else
+//            {
+//                _btn.selected=NO;
+//                [_btn setBackgroundColor:_define_white_color];
+//            }
+//        }
     }else
     {
         _block(@"no_stock",_sizeID,_sizeName,_count);

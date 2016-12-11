@@ -8,6 +8,8 @@
 
 #import "DD_DesignerViewController.h"
 
+#import "DD_CustomViewController.h"
+
 #import "MJRefresh.h"
 
 #import "DD_DesignerCell.h"
@@ -77,8 +79,11 @@
                 [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"designerId":_model.designerId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
                     if(success)
                     {
-                        _model.guanzhu=[[data objectForKey:@"guanzhu"] boolValue];
+                        BOOL isFollow=[[data objectForKey:@"guanzhu"] boolValue];
+                        _model.guanzhu=isFollow;
                         [__tableview reloadData];
+                        // 更新
+                        [((DD_CustomViewController *)[DD_CustomViewController sharedManager]) updateRightDesignerListDataWithID:_model.designerId WithFollowState:isFollow];
                     }else
                     {
                         [_desginerView presentViewController:successAlert animated:YES completion:nil];
@@ -93,6 +98,33 @@
     };
 }
 #pragma mark - SomeAction
+/**
+ * 更新设计师列表状态
+ * 更新以获取数据的关注状态
+ */
+-(void)updateListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow
+{
+    //得确保_tableview已经创建
+    if(_tableview)
+    {
+        //登陆状态下才有权限操作这个
+        if([DD_UserModel isLogin])
+        {
+            [_dataArr enumerateObjectsUsingBlock:^(DD_DesignerModel *designerModel, NSUInteger idx, BOOL * _Nonnull stop) {
+                //获取当前修改的model
+                if([designerModel.designerId isEqualToString:desginerID])
+                {
+                    //关注状态不同时才需要更新
+                    if(designerModel.guanzhu!=isFollow)
+                    {
+                        designerModel.guanzhu=isFollow;
+                        [_tableview reloadData];
+                    }
+                }
+            }];
+        }
+    }
+}
 -(void)updateDesigner
 {
     //    如果设计师状态发生改变
@@ -112,6 +144,7 @@
 {
     _page=1;
     _dataArr=[[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNewData) name:@"rootChange" object:nil];
 }
 -(void)PrepareUI{}
 #pragma mark - RequestData
@@ -262,10 +295,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(_tableview)
-    {
-        [self updateDesigner];
-    }
+//    if(_tableview)
+//    {
+//        [self updateDesigner];
+//    }
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

@@ -127,20 +127,27 @@
         make.top.mas_equalTo(_headBack.mas_bottom).with.offset(15);
     }];
     
-    CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
+    __block CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
     _y_p=_y_p-64;
-    CGFloat _offset=kIiPhone6?25:15;
-    CGFloat _bianju=kIiPhone6?43:33;
-    CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
-    CGFloat _height=IsPhone5_gt?60:50;
-    CGFloat _end_y = 0;
-    for (int i=0; i<_dataArr.count; i++) {
-        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:_dataArr[i]] isBig:[_dataArr[i] isEqualToString:@"benefit"]];
+    __block CGFloat _offset=kIiPhone6?25:15;
+    __block CGFloat _bianju=kIiPhone6?43:33;
+    __block CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
+    __block CGFloat _height=IsPhone5_gt?60:50;
+    __block CGFloat _end_y = 0;
+    [_dataArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(idx%2), _y_p+_height*(idx/2), idx%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[idx] WithTitle:[_datadict objectForKey:obj] isBig:[obj isEqualToString:@"benefit"]];
         [container addSubview:item];
-        item.type=_dataArr[i];
+        item.type=_dataArr[idx];
         [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
         _end_y=CGRectGetMaxY(item.frame)+20;
-    }
+    }];
+//    for (int i=0; i<_dataArr.count; i++) {
+//        DD_UserItemBtn *item=[DD_UserItemBtn getUserItemBtnWithFrame:CGRectMake(_bianju+(_width+_offset)*(i%2), _y_p+_height*(i/2), i%2?_width-_offset:_width, _height) WithImgSize:CGSizeMake(21, 21) WithImgeStr:_imgDataArr[i] WithTitle:[_datadict objectForKey:_dataArr[i]] isBig:[_dataArr[i] isEqualToString:@"benefit"]];
+//        [container addSubview:item];
+//        item.type=_dataArr[i];
+//        [item addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
+//        _end_y=CGRectGetMaxY(item.frame)+20;
+//    }
     [container mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_end_y);
     }];
@@ -159,9 +166,12 @@
                 if(_userHeadImg)
                 {
                     [self MonitorRootChangeAction];
-                    for (UIView *view in container.subviews) {
-                        [view removeFromSuperview];
-                    }
+                    [container.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [obj removeFromSuperview];
+                    }];
+//                    for (UIView *view in container.subviews) {
+//                        [view removeFromSuperview];
+//                    }
                     [self UIConfig];
                 }
                 _usermodel=[DD_UserModel getUserModel:[data objectForKey:@"user"]];
@@ -468,7 +478,7 @@
  */
 -(void)updateRewardPoints
 {
-    for (id obj in container.subviews) {
+    [container.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if([obj isKindOfClass:[DD_UserItemBtn class]])
         {
             DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
@@ -492,7 +502,32 @@
                 }
             }
         }
-    }
+    }];
+//    for (id obj in container.subviews) {
+//        if([obj isKindOfClass:[DD_UserItemBtn class]])
+//        {
+//            DD_UserItemBtn *_UserItemBtn=(DD_UserItemBtn *)obj;
+//            if([_UserItemBtn.type isEqualToString:@"integral"])
+//            {
+//                if(_usermodel.rewardPoints)
+//                {
+//                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"%ld",_usermodel.rewardPoints];
+//                }else
+//                {
+//                    _UserItemBtn.rewardPoints_label.text=@"";
+//                }
+//            }else if([_UserItemBtn.type isEqualToString:@"benefit"])
+//            {
+//                if(_usermodel.benefitNumber)
+//                {
+//                    _UserItemBtn.rewardPoints_label.text=[[NSString alloc] initWithFormat:@"%ld",_usermodel.benefitNumber];
+//                }else
+//                {
+//                    _UserItemBtn.rewardPoints_label.text=@"";
+//                }
+//            }
+//        }
+//    }
 }
 /**
  * 设置当前消息已读状态
@@ -527,9 +562,12 @@
 -(void)UpdateUI
 {
     [self SetDataArr];
-    for (UIView *view in container.subviews) {
-        [view removeFromSuperview];
-    }
+    [container.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+//    for (UIView *view in container.subviews) {
+//        [view removeFromSuperview];
+//    }
     [self UIConfig];
     _usermodel=[DD_UserModel getLocalUserInfo];
 }

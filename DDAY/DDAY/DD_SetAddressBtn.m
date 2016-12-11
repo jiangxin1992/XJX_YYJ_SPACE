@@ -125,9 +125,12 @@
 #pragma mark - SetState
 -(void)SetState
 {
-    for (UIView *view in self.subviews) {
-        [view removeFromSuperview];
-    }
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+//    for (UIView *view in self.subviews) {
+//        [view removeFromSuperview];
+//    }
     
     if(_AddressModel)
     {

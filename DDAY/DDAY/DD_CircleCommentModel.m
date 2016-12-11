@@ -22,9 +22,12 @@
 +(NSMutableArray *)getCircleCommentModelArr:(NSArray *)arr
 {
     NSMutableArray *TagsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleCommentModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [TagsArr addObject:[self getCircleCommentModel:dict]];
+//    }
     return TagsArr;
 }
 /**

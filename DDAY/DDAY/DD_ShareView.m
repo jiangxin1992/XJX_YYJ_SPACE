@@ -90,21 +90,21 @@
 //    [labelTitle sizeToFit];
     
     
-    CGFloat _jiange_x=(ScreenWidth-50*4-(IsPhone6_gt?35:25)*2)/3.0f;
-    UIView *lastView=nil;
-    for (int i=0; i<ListArr.count; i++) {
-        DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:ListArr[i]] WithSelectedImageStr:nil];
+    __block CGFloat _jiange_x=(ScreenWidth-50*4-(IsPhone6_gt?35:25)*2)/3.0f;
+    __block UIView *lastView=nil;
+    [ListArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:obj] WithSelectedImageStr:nil];
         [self addSubview:btn];
-        btn.type=ListArr[i];
+        btn.type=obj;
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        if(i==ListArr.count-1)
+        if(idx==ListArr.count-1)
         {
             [btn setEnlargeEdge:5];
         }
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(i%4==0)
+            if(idx%4==0)
             {
-                if(i==ListArr.count-1)
+                if(idx==ListArr.count-1)
                 {
                     make.left.mas_equalTo(IsPhone6_gt?40:30);
                 }else
@@ -114,7 +114,7 @@
                 
             }else
             {
-                if(i==ListArr.count-1)
+                if(idx==ListArr.count-1)
                 {
                     make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x+5);
                 }else
@@ -122,7 +122,7 @@
                     make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x);
                 }
             }
-            if(i==ListArr.count-1)
+            if(idx==ListArr.count-1)
             {
                 make.width.height.mas_equalTo(40);
             }else
@@ -130,19 +130,19 @@
                 make.width.height.mas_equalTo(50);
             }
             
-            if(i/4==0)
+            if(idx/4==0)
             {
-                if(i==ListArr.count-1)
+                if(idx==ListArr.count-1)
                 {
-                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(25);
+                    make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(25);
                 }else
                 {
-                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(20);
+                    make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(20);
                 }
-               
+                
             }else
             {
-                if(i==ListArr.count-1)
+                if(idx==ListArr.count-1)
                 {
                     make.top.mas_equalTo(lastView.mas_bottom).with.offset(25);
                 }else
@@ -153,7 +153,69 @@
             }
         }];
         lastView=btn;
-    }
+    }];
+//    for (int i=0; i<ListArr.count; i++) {
+//        DD_CustomBtn *btn=[DD_CustomBtn getCustomImgBtnWithImageStr:[ListMap objectForKey:ListArr[i]] WithSelectedImageStr:nil];
+//        [self addSubview:btn];
+//        btn.type=ListArr[i];
+//        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        if(i==ListArr.count-1)
+//        {
+//            [btn setEnlargeEdge:5];
+//        }
+//        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(i%4==0)
+//            {
+//                if(i==ListArr.count-1)
+//                {
+//                    make.left.mas_equalTo(IsPhone6_gt?40:30);
+//                }else
+//                {
+//                    make.left.mas_equalTo(IsPhone6_gt?35:25);
+//                }
+//                
+//            }else
+//            {
+//                if(i==ListArr.count-1)
+//                {
+//                    make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x+5);
+//                }else
+//                {
+//                    make.left.mas_equalTo(lastView.mas_right).with.offset(_jiange_x);
+//                }
+//            }
+//            if(i==ListArr.count-1)
+//            {
+//                make.width.height.mas_equalTo(40);
+//            }else
+//            {
+//                make.width.height.mas_equalTo(50);
+//            }
+//            
+//            if(i/4==0)
+//            {
+//                if(i==ListArr.count-1)
+//                {
+//                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(25);
+//                }else
+//                {
+//                     make.top.mas_equalTo(labelTitle.mas_bottom).with.offset(20);
+//                }
+//               
+//            }else
+//            {
+//                if(i==ListArr.count-1)
+//                {
+//                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(25);
+//                }else
+//                {
+//                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(20);
+//                }
+//                
+//            }
+//        }];
+//        lastView=btn;
+//    }
     
     UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"取   消" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:cancelBtn];

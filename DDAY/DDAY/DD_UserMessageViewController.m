@@ -329,14 +329,21 @@
             if(success)
             {
                 _itemModel.readStatus=YES;
-                BOOL _all_readStatus=YES;
-                for (DD_UserMessageItemModel *itemModel in _userModel.messages) {
+                __block BOOL _all_readStatus=YES;
+                [_userModel.messages enumerateObjectsUsingBlock:^(DD_UserMessageItemModel *itemModel, NSUInteger idx, BOOL * _Nonnull stop) {
                     if(!itemModel.readStatus)
                     {
                         _all_readStatus=NO;
-                        break;
+                        *stop=YES;
                     }
-                }
+                }];
+//                for (DD_UserMessageItemModel *itemModel in _userModel.messages) {
+//                    if(!itemModel.readStatus)
+//                    {
+//                        _all_readStatus=NO;
+//                        break;
+//                    }
+//                }
                 _userModel.readStatus=_all_readStatus;
                 if(_userModel.unReadMessageNumber)
                 {

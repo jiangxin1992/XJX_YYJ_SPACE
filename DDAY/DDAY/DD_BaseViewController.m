@@ -105,18 +105,25 @@
 //找到导航栏最下面黑线视图
 - (UIImageView *)getLineViewInNavigationBar:(UIView *)view
 {
+    __block UIImageView *getLine=nil;
     if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
         return (UIImageView *)view;
     }
-    
-    for (UIView *subview in view.subviews) {
-        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIImageView *imageView = [self getLineViewInNavigationBar:obj];
         if (imageView) {
-            return imageView;
+            getLine=imageView;
+            *stop=YES;
         }
-    }
+    }];
+//    for (UIView *subview in view.subviews) {
+//        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
+//        if (imageView) {
+//            return imageView;
+//        }
+//    }
     
-    return nil;
+    return getLine;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -27,32 +27,59 @@
 }
 -(DD_SizeModel *)getSizeModelWithID:(NSString *)sizeID
 {
-    for (DD_ColorsModel *_colorModel in self.colors) {
+    __block DD_SizeModel *sizemodel=nil;
+    
+    [self.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *_colorModel, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_colorModel.colorId isEqualToString:self.colorId])
         {
-            for (DD_SizeModel *_sizeModel in _colorModel.size) {
+            
+            [_colorModel.size enumerateObjectsUsingBlock:^(DD_SizeModel *_sizeModel, NSUInteger idx2, BOOL * _Nonnull stop2) {
                 if([_sizeModel.sizeId isEqualToString:sizeID])
                 {
-                    return _sizeModel;
+                    sizemodel=_sizeModel;
+                    *stop=YES;
                 }
-            }
+            }];
         }
-    }
-    return nil;
+    }];
+//    for (DD_ColorsModel *_colorModel in self.colors) {
+//        if([_colorModel.colorId isEqualToString:self.colorId])
+//        {
+//            for (DD_SizeModel *_sizeModel in _colorModel.size) {
+//                if([_sizeModel.sizeId isEqualToString:sizeID])
+//                {
+//                    return _sizeModel;
+//                }
+//            }
+//        }
+//    }
+    return sizemodel;
 }
 -(NSArray *)getPicsArr
 {
-    for (DD_ColorsModel *_colorModel in self.colors) {
+    __block NSArray *getArr=@[];
+    [self.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *_colorModel, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_colorModel.colorId isEqualToString:self.colorId])
         {
             NSMutableArray *arr=[[NSMutableArray alloc] init];
-            for (DD_ImageModel *img in _colorModel.pics) {
+            [_colorModel.pics enumerateObjectsUsingBlock:^(DD_ImageModel *img, NSUInteger idx2, BOOL * _Nonnull stop2) {
                 [arr addObject:img.pic];
-            }
-            return arr;
+            }];
+            getArr=arr;
+            *stop=YES;
         }
-    }
-    return @[];
+    }];
+//    for (DD_ColorsModel *_colorModel in self.colors) {
+//        if([_colorModel.colorId isEqualToString:self.colorId])
+//        {
+//            NSMutableArray *arr=[[NSMutableArray alloc] init];
+//            for (DD_ImageModel *img in _colorModel.pics) {
+//                [arr addObject:img.pic];
+//            }
+//            return arr;
+//        }
+//    }
+    return getArr;
 }
 
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict
@@ -92,9 +119,12 @@
 +(NSArray *)getGoodsItemModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getGoodsItemModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getGoodsItemModel:dict]];
+//    }
     return itemsArr;
 }
 @end

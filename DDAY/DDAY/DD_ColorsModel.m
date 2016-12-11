@@ -23,9 +23,12 @@
 +(NSArray *)getColorsModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getColorsModel:dict]];
-    }
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getColorsModel:dict]];
+//    }
     return itemsArr;
 }
 

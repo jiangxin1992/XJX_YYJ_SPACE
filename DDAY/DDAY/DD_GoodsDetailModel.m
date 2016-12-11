@@ -28,26 +28,42 @@
 }
 -(DD_ColorsModel *)getColorsModel
 {
+    __block DD_ColorsModel *getColor=nil;
     NSString *_colorId=self.item.colorId;
-    for (DD_ColorsModel *_color in self.item.colors) {
+    [self.item.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *_color, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_color.colorId isEqualToString:_colorId])
         {
-            return _color;
+            getColor=_color;
+            *stop=YES;
         }
-    }
-    return nil;
+    }];
+//    for (DD_ColorsModel *_color in self.item.colors) {
+//        if([_color.colorId isEqualToString:_colorId])
+//        {
+//            return _color;
+//        }
+//    }
+    return getColor;
 }
 
 -(NSString *)getAppUrl
 {
+    __block NSString *appurl=nil;
     NSString *_colorId=self.item.colorId;
-    for (DD_ColorsModel *_color in self.item.colors) {
+    [self.item.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *_color, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_color.colorId isEqualToString:_colorId])
         {
-            return _color.appUrl;
+            appurl=_color.appUrl;
+            *stop=YES;
         }
-    }
-    return nil;
+    }];
+//    for (DD_ColorsModel *_color in self.item.colors) {
+//        if([_color.colorId isEqualToString:_colorId])
+//        {
+//            return _color.appUrl;
+//        }
+//    }
+    return appurl;
 }
 
 -(NSString *)getPrice
@@ -73,13 +89,21 @@
 
 -(DD_ColorsModel *)getColorModelNameWithID:(NSString *)colorID
 {
-    for (DD_ColorsModel *color in self.item.colors) {
+    __block DD_ColorsModel *getColorModel=nil;
+    [self.item.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *color, NSUInteger idx, BOOL * _Nonnull stop) {
         if([color.colorId isEqualToString:colorID])
         {
-            return color;
+            getColorModel=color;
+            *stop=YES;
         }
-    }
-    return nil;
+    }];
+//    for (DD_ColorsModel *color in self.item.colors) {
+//        if([color.colorId isEqualToString:colorID])
+//        {
+//            return color;
+//        }
+//    }
+    return getColorModel;
 }
 
 -(NSString *)getPriceStr

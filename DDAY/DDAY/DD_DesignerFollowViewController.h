@@ -16,4 +16,10 @@
 
 @property(nonatomic,copy) void (^block)(NSString *type ,DD_DesignerModel *model);
 
+/**
+ * 更新我关注的设计师数据
+ * 因为无法保证数据的一致性  所以目前处理方式是页面出现的时候重新获取数据
+ */
+-(void)updateListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow;
+
 @end

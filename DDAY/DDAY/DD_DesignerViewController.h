@@ -16,4 +16,10 @@
 
 @property(nonatomic,copy) void (^block)(NSString *type ,DD_DesignerModel *model);
 
+/**
+ * 更新设计师列表状态
+ * 更新以获取数据的关注状态
+ */
+-(void)updateListDataWithDesignerId:(NSString *)desginerID WithFollowState:(BOOL )isFollow;
+
 @end

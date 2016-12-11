@@ -71,16 +71,25 @@
         }else if([_type isEqualToString:@"detail_order_havenot_clearing_done"])
         {
             NSArray *controllers=self.navigationController.viewControllers;
-            for (int i=0; i<controllers.count; i++) {
-                id obj=controllers[i];
+            [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj isKindOfClass:[DD_OrderDetailViewController class]])
                 {
-                    if(i>0)
+                    if(idx>0)
                     {
-                        [self.navigationController popToViewController:controllers[i] animated:YES];
+                        [self.navigationController popToViewController:controllers[idx] animated:YES];
                     }
                 }
-            }
+            }];
+//            for (int i=0; i<controllers.count; i++) {
+//                id obj=controllers[i];
+//                if([obj isKindOfClass:[DD_OrderDetailViewController class]])
+//                {
+//                    if(i>0)
+//                    {
+//                        [self.navigationController popToViewController:controllers[i] animated:YES];
+//                    }
+//                }
+//            }
         }
     } forControlEvents:UIControlEventTouchUpInside];
     
@@ -131,12 +140,13 @@
     
     CGFloat _jiange=(ScreenWidth-121*2)/3.0f;
     NSArray *titleArr=@[@"查看订单",@"其他发布品"];
-    for (int i=0; i<titleArr.count; i++) {
-        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:titleArr[i] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    
+    [titleArr enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:title WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
         [self.view addSubview:actionbtn];
         actionbtn.backgroundColor=_define_black_color;
         [actionbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(i==0)
+            if(idx==0)
             {
                 [actionbtn addTarget:self action:@selector(checkOrderAction) forControlEvents:UIControlEventTouchUpInside];
                 make.left.mas_equalTo(_jiange);
@@ -149,7 +159,26 @@
             make.height.mas_equalTo(40);
             make.top.mas_equalTo(titleLabel.mas_bottom).with.offset(IsPhone6_gt?94:47);
         }];
-    }
+    }];
+//    for (int i=0; i<titleArr.count; i++) {
+//        UIButton *actionbtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:titleArr[i] WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+//        [self.view addSubview:actionbtn];
+//        actionbtn.backgroundColor=_define_black_color;
+//        [actionbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(i==0)
+//            {
+//                [actionbtn addTarget:self action:@selector(checkOrderAction) forControlEvents:UIControlEventTouchUpInside];
+//                make.left.mas_equalTo(_jiange);
+//            }else
+//            {
+//                [actionbtn addTarget:self action:@selector(otherItemAction) forControlEvents:UIControlEventTouchUpInside];
+//                make.right.mas_equalTo(-_jiange);
+//            }
+//            make.width.mas_equalTo(121);
+//            make.height.mas_equalTo(40);
+//            make.top.mas_equalTo(titleLabel.mas_bottom).with.offset(IsPhone6_gt?94:47);
+//        }];
+//    }
     
 }
 #pragma mark - SomeAction

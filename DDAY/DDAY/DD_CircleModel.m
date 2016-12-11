@@ -27,22 +27,39 @@
 {
     NSMutableArray *arr=[[NSMutableArray alloc] init];
 
-    for (DD_CircleTagModel *tagModel in self.shareTags) {
-        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+    [self.shareTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *tagModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [tagModel.tags enumerateObjectsUsingBlock:^(DD_CricleTagItemModel *tagItemModel, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if(tagItemModel.is_select)
             {
                 [arr addObject:tagItemModel];
             }
-        }
-    }
-    for (DD_CircleTagModel *tagModel in self.personTags) {
-        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+        }];
+    }];
+//    for (DD_CircleTagModel *tagModel in self.shareTags) {
+//        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+//            if(tagItemModel.is_select)
+//            {
+//                [arr addObject:tagItemModel];
+//            }
+//        }
+//    }
+    [self.personTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *tagModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        [tagModel.tags enumerateObjectsUsingBlock:^(DD_CricleTagItemModel *tagItemModel, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if(tagItemModel.is_select)
             {
                 [arr addObject:tagItemModel];
             }
-        }
-    }
+        }];
+    }];
+//    for (DD_CircleTagModel *tagModel in self.personTags) {
+//        for (DD_CricleTagItemModel *tagItemModel in tagModel.tags) {
+//            if(tagItemModel.is_select)
+//            {
+//                [arr addObject:tagItemModel];
+//            }
+//        }
+//    }
     return arr;
 }
 @end

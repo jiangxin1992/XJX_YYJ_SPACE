@@ -500,15 +500,23 @@
  */
 -(BOOL)haveClearingDoneView
 {
+    __block BOOL haveClear=NO;
     NSArray *controllers=self.navigationController.viewControllers;
-    for (int i=0; i<controllers.count; i++) {
-        id obj=controllers[i];
+    [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
         {
-            return YES;
+            haveClear=YES;
+            *stop=YES;
         }
-    }
-    return NO;
+    }];
+//    for (int i=0; i<controllers.count; i++) {
+//        id obj=controllers[i];
+//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+//        {
+//            return YES;
+//        }
+//    }
+    return haveClear;
 }
 /**
  * 跳转到 DD_ClearingDoneViewController的前一页
@@ -516,18 +524,29 @@
 -(void)popToClearingBeforeViewWithResultDic:(NSDictionary *)resultDic
 {
     NSArray *controllers=self.navigationController.viewControllers;
-    for (int i=0; i<controllers.count; i++) {
-        id obj=controllers[i];
+    [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
         {
-            if(i)
+            if(idx)
             {
-                DD_BaseViewController *base=controllers[i-1];
+                DD_BaseViewController *base=controllers[idx-1];
                 [self.navigationController popToViewController:base animated:YES];
                 [base pushCleaingDoneViewWithResultDic:resultDic WithType:@"detail_order_have_clearing_done"];
             }
         }
-    }
+    }];
+//    for (int i=0; i<controllers.count; i++) {
+//        id obj=controllers[i];
+//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+//        {
+//            if(i)
+//            {
+//                DD_BaseViewController *base=controllers[i-1];
+//                [self.navigationController popToViewController:base animated:YES];
+//                [base pushCleaingDoneViewWithResultDic:resultDic WithType:@"detail_order_have_clearing_done"];
+//            }
+//        }
+//    }
 }
 
 
@@ -659,17 +678,28 @@
 -(void)popToClearingBeforeView
 {
     NSArray *controllers=self.navigationController.viewControllers;
-    for (int i=0; i<controllers.count; i++) {
-        id obj=controllers[i];
+    
+    [controllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
         {
-            if(i)
+            if(idx)
             {
-                DD_BaseViewController *base=controllers[i-1];
+                DD_BaseViewController *base=controllers[idx-1];
                 [self.navigationController popToViewController:base animated:YES];
             }
         }
-    }
+    }];
+//    for (int i=0; i<controllers.count; i++) {
+//        id obj=controllers[i];
+//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
+//        {
+//            if(i)
+//            {
+//                DD_BaseViewController *base=controllers[i-1];
+//                [self.navigationController popToViewController:base animated:YES];
+//            }
+//        }
+//    }
 }
 
 /**

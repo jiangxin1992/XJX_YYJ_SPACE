@@ -75,17 +75,16 @@
 -(void)UIConfig
 {
     
-    UIView *lastView=nil;
+    __block UIView *lastView=nil;
     // 间距为10
-    int intes = 10;
-    int num = 0;
-    CGFloat _x_p=kEdge;
-    for (int i=0; i<_sizeArr.count; i++) {
-        DD_SizeModel *_sizeModel=_sizeArr[i];
+    __block int intes = 10;
+    __block int num = 0;
+    __block CGFloat _x_p=kEdge;
+    [_sizeArr enumerateObjectsUsingBlock:^(DD_SizeModel *_sizeModel, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_btn];
         _btn.titleLabel.font=[regular getFont:15.0f];
-//        42 20
+        //        42 20
         if(_sizeModel.stock)
         {
             [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
@@ -105,7 +104,7 @@
         [_btn setTitle:_sizeModel.sizeName forState:UIControlStateSelected];
         [_btn setTitleColor:_define_white_color forState:UIControlStateSelected];
         [_sizeBtnArr addObject:_btn];
-        _btn.tag=100+i;
+        _btn.tag=100+idx;
         [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
@@ -128,7 +127,56 @@
             _x_p+=__width+intes;
         }
         lastView=_btn;
-    }
+    }];
+//    for (int i=0; i<_sizeArr.count; i++) {
+//        DD_SizeModel *_sizeModel=_sizeArr[i];
+//        UIButton *_btn=[UIButton buttonWithType:UIButtonTypeCustom];
+//        [self addSubview:_btn];
+//        _btn.titleLabel.font=[regular getFont:15.0f];
+////        42 20
+//        if(_sizeModel.stock)
+//        {
+//            [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
+//            _btn.backgroundColor=_define_white_color;
+//            _btn.userInteractionEnabled=YES;
+//            _btn.layer.masksToBounds=YES;
+//            _btn.layer.borderColor=[_define_black_color CGColor];
+//            _btn.layer.borderWidth=1;
+//        }else
+//        {
+//            
+//            [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
+//            _btn.backgroundColor=_define_white_color;
+//            _btn.userInteractionEnabled=YES;
+//        }
+//        [_btn setTitle:_sizeModel.sizeName forState:UIControlStateNormal];
+//        [_btn setTitle:_sizeModel.sizeName forState:UIControlStateSelected];
+//        [_btn setTitleColor:_define_white_color forState:UIControlStateSelected];
+//        [_sizeBtnArr addObject:_btn];
+//        _btn.tag=100+i;
+//        [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
+//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+//        {
+//            num++;
+//            _x_p=kEdge;
+//        }
+//        
+//        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
+//            make.left.mas_equalTo(_x_p);
+//            make.width.mas_equalTo(__width);
+//            make.height.mas_equalTo(28);
+//        }];
+//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
+//        {
+//        }else
+//        {
+//            _x_p+=__width+intes;
+//        }
+//        lastView=_btn;
+//    }
     
     UIImageView *sizeBriefImg=nil;
     
@@ -259,14 +307,22 @@
  */
 -(NSInteger )getSelectSize
 {
-    for (int i=0; i<_sizeBtnArr.count; i++) {
-        UIButton *_btn=_sizeBtnArr[i];
+    __block NSUInteger returnIdx=0;
+    [_sizeBtnArr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
         if(_btn.selected)
         {
-            return i;
+            returnIdx=idx;
+            *stop=YES;
         }
-    }
-    return 0;
+    }];
+//    for (int i=0; i<_sizeBtnArr.count; i++) {
+//        UIButton *_btn=_sizeBtnArr[i];
+//        if(_btn.selected)
+//        {
+//            return i;
+//        }
+//    }
+    return returnIdx;
 }
 -(void)chooseSizeAction:(UIButton *)btn
 {
@@ -274,9 +330,8 @@
     DD_SizeModel *_sizeModel=_sizeArr[_index];
     if(_sizeModel.stock)
     {
-        for (int i=0; i<_sizeBtnArr.count; i++) {
-            UIButton *_btn=_sizeBtnArr[i];
-            if(_index==i)
+        [_sizeBtnArr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
+            if(_index==idx)
             {
                 if(_btn.selected)
                 {
@@ -299,13 +354,37 @@
                 _btn.selected=NO;
                 [_btn setBackgroundColor:_define_white_color];
             }
-        }
+        }];
+//        for (int i=0; i<_sizeBtnArr.count; i++) {
+//            UIButton *_btn=_sizeBtnArr[i];
+//            if(_index==i)
+//            {
+//                if(_btn.selected)
+//                {
+//                    _btn.selected=NO;
+//                    _sizeID=@"";
+//                    [_btn setBackgroundColor:_define_white_color];
+//                }else
+//                {
+//                    _btn.selected=YES;
+//                    _sizeID=_sizeModel.sizeId;
+//                    [_btn setBackgroundColor:_define_black_color];
+//                    if(_count>_sizeModel.stock)
+//                    {
+//                        _count=_sizeModel.stock;
+//                        [countBtn setTitle:[[NSString alloc] initWithFormat:@"%ld",_count] forState:UIControlStateNormal];
+//                    }
+//                }
+//            }else
+//            {
+//                _btn.selected=NO;
+//                [_btn setBackgroundColor:_define_white_color];
+//            }
+//        }
     }else
     {
         _block(@"no_stock",_sizeID,_colorid,_count);
     }
-    
-    
 }
 
 //-(void)CreateBuyShopBtn

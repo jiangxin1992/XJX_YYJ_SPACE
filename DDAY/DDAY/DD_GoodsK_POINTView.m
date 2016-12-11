@@ -73,13 +73,13 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(48);
     }];
-    for (int i=0; i<_showroomArr.count; i++) {
-        DD_ShowRoomModel *model=_showroomArr[i];
+    
+    [_showroomArr enumerateObjectsUsingBlock:^(DD_ShowRoomModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *backView=[UIView getCustomViewWithColor:nil];
         [backBtn addSubview:backView];
         backView.userInteractionEnabled=YES;
-        backView.tag=100+i;
-//        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
+        backView.tag=100+idx;
+        //        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
         [backView bk_whenTapped:^{
             NSInteger index = backView.tag-100;
             DD_ShowRoomModel *model=_showroomArr[index];
@@ -123,7 +123,7 @@
             make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
             make.centerY.mas_equalTo(_head);
         }];
-//        [storeName sizeToFit];
+        //        [storeName sizeToFit];
         
         UILabel *address=[UILabel getLabelWithAlignment:0 WithTitle:model.address WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [backView addSubview:address];
@@ -134,10 +134,75 @@
             make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
             make.bottom.mas_equalTo(backView.mas_bottom).with.offset(0);
         }];
-//        [address sizeToFit];
+        //        [address sizeToFit];
         
         lastView=backView;
-    }
+    }];
+//    for (int i=0; i<_showroomArr.count; i++) {
+//        DD_ShowRoomModel *model=_showroomArr[i];
+//        UIView *backView=[UIView getCustomViewWithColor:nil];
+//        [backBtn addSubview:backView];
+//        backView.userInteractionEnabled=YES;
+//        backView.tag=100+i;
+////        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ChooseAction:)]];
+//        [backView bk_whenTapped:^{
+//            NSInteger index = backView.tag-100;
+//            DD_ShowRoomModel *model=_showroomArr[index];
+//            _block(@"choose",model);
+//        }];
+//        [viewArr addObject:backView];
+//        [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            if(lastView)
+//            {
+//                make.top.mas_equalTo(lastView.mas_bottom).with.offset(12);
+//            }else
+//            {
+//                make.top.mas_equalTo(label.mas_bottom).with.offset(5);
+//            }
+//            make.left.right.mas_equalTo(0);
+//        }];
+//        
+//        UIImageView *_head=[UIImageView getImgWithImageStr:@"User_ShowRoom"];
+//        [backView addSubview:_head];
+//        [_head mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(kEdge);
+//            make.top.mas_equalTo(5);
+//            make.width.height.mas_equalTo(23);
+//        }];
+//        
+//        UIImageView *_imageview=[UIImageView getCustomImg];
+//        [backView addSubview:_imageview];
+//        _imageview.contentMode=2;
+//        [regular setZeroBorder:_imageview];
+//        [_imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.mas_equalTo(-kEdge);
+//            make.top.mas_equalTo(0);
+//            make.height.width.mas_equalTo(60);
+//        }];
+//        [_imageview JX_ScaleAspectFill_loadImageUrlStr:model.listImg.pic WithSize:400 placeHolderImageName:nil radius:0];
+//        
+//        UILabel *storeName=[UILabel getLabelWithAlignment:0 WithTitle:model.storeName WithFont:13.0f WithTextColor:nil WithSpacing:0];
+//        [backView addSubview:storeName];
+//        [storeName mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(_head.mas_right).with.offset(10);
+//            make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
+//            make.centerY.mas_equalTo(_head);
+//        }];
+////        [storeName sizeToFit];
+//        
+//        UILabel *address=[UILabel getLabelWithAlignment:0 WithTitle:model.address WithFont:13.0f WithTextColor:nil WithSpacing:0];
+//        [backView addSubview:address];
+//        address.numberOfLines=1;
+//        [address mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(kEdge);
+//            make.right.mas_equalTo(_imageview.mas_left).with.offset(-10);
+//            make.top.mas_equalTo(_head.mas_bottom).with.offset(6);
+//            make.bottom.mas_equalTo(backView.mas_bottom).with.offset(0);
+//        }];
+////        [address sizeToFit];
+//        
+//        lastView=backView;
+//    }
     
 }
 #pragma mark - SomeAction
@@ -151,9 +216,12 @@
 -(void)setIs_show:(BOOL)is_show
 {
     _is_show=is_show;
-    for (UIView *view in viewArr) {
+    [viewArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         view.hidden=!is_show;
-    }
+    }];
+//    for (UIView *view in viewArr) {
+//        view.hidden=!is_show;
+//    }
     if(_is_show)
     {
         [_hide uninstall];

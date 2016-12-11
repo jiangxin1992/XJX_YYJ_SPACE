@@ -24,9 +24,12 @@
 +(NSArray *)getLogisticsModelArr:(NSArray *)arr
 {
     NSMutableArray *itemsArr=[[NSMutableArray alloc] init];
-    for (NSDictionary *dict in arr) {
-        [itemsArr addObject:[self getLogisticsModel:dict]];
-    }
+    [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+       [itemsArr addObject:[self getLogisticsModel:dict]];
+    }];
+//    for (NSDictionary *dict in arr) {
+//        [itemsArr addObject:[self getLogisticsModel:dict]];
+//    }
     return itemsArr;
 }
 @end

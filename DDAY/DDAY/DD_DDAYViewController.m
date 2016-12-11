@@ -309,8 +309,7 @@
         }
         if(_seriesId)
         {
-            for (DD_DDAYModel *_ddaymodel in _dataArr) {
-                
+            [_dataArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddaymodel, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([_ddaymodel.s_id isEqualToString:_seriesId])
                 {
                     [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:_ddaymodel WithBlock:^(NSString *type) {
@@ -320,7 +319,19 @@
                         }
                     }] animated:YES];
                 }
-            }
+            }];
+//            for (DD_DDAYModel *_ddaymodel in _dataArr) {
+//                
+//                if([_ddaymodel.s_id isEqualToString:_seriesId])
+//                {
+//                    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:_ddaymodel WithBlock:^(NSString *type) {
+//                        if([type isEqualToString:@"update"])
+//                        {
+//                            [_tableview reloadData];
+//                        }
+//                    }] animated:YES];
+//                }
+//            }
         }
         if([type isEqualToString:@"NEWSERIES"])
         {
