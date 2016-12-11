@@ -28,36 +28,29 @@
     
     self.view.backgroundColor=_define_white_color;
     
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    NSString *thePath=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
+    NSURL *url=[NSURL fileURLWithPath:thePath];
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+    _player = [AVPlayer playerWithPlayerItem:playerItem];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
     playerLayer.frame = self.view.bounds;   // CGRectMake(0, 0, 100, 100);//
     [self.view.layer addSublayer:playerLayer];  //addsublayer /addsubView
-    [_player play];
-}
--(AVPlayer *)player{
-    if (!_player) {
-        
-        NSString*thePath=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
-        NSURL*url=[NSURL fileURLWithPath:thePath];
-        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
-        _player = [AVPlayer playerWithPlayerItem:playerItem];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-        
+    
+    if(_player)
+    {
+        [_player play];
+    }else
+    {
+        [self pushMainView];
     }
-    return _player;
 }
-
 
 -(void)PlayEndAction
 {
     [self presentViewController:[DD_CustomViewController sharedManager] animated:YES completion:nil];
 }
-
--(void)dealloc{
-    [_player.currentItem removeObserver:self forKeyPath:@"status"];
-    [_player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
 
 -(void)pushMainView
 {
@@ -68,18 +61,32 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
+    [super viewDidAppear:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    _player = nil;
+    [super viewWillDisappear:animated];
     
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+    _player = nil;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)dealloc{
+    [_player.currentItem removeObserver:self forKeyPath:@"status"];
+    [_player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+//-(AVPlayer *)player{
+//    if (!_player) {
+//        NSString*thePath=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
+//        NSURL*url=[NSURL fileURLWithPath:thePath];
+//        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+//        _player = [AVPlayer playerWithPlayerItem:playerItem];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+//    }
+//    return _player;
+//}
 
 @end

@@ -73,7 +73,7 @@
 @implementation AppDelegate
 {
     BOOL _is_first_register;//是否是第一次提交设备token
-    DD_StartViewController *_startController;
+//    DD_StartViewController *_startController;
     DD_StartViewPlayer *_startPlayer;
 }
 

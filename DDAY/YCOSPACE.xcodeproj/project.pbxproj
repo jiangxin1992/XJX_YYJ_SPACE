@@ -1081,7 +1081,6 @@
 		3FE98D7F1DC8767B00F273E8 /* 图层-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-7@2x.png"; sourceTree = "<group>"; };
 		3FE98D801DC8767B00F273E8 /* 图层-8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-8@2x.png"; sourceTree = "<group>"; };
 		3FE98D811DC8767B00F273E8 /* 图层-9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-9@2x.png"; sourceTree = "<group>"; };
-		3FEAC2B71DEDD1A2006C93A2 /* YCOSPACE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YCOSPACE.entitlements; sourceTree = "<group>"; };
 		3FEB1F941DC338A000ABB8C9 /* DD_UnReadMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UnReadMsgModel.h; sourceTree = "<group>"; };
 		3FEB1F951DC338A000ABB8C9 /* DD_UnReadMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UnReadMsgModel.m; sourceTree = "<group>"; };
 		3FEC780E1DDC559B0047FDB2 /* DD_SignInAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SignInAnimationView.h; sourceTree = "<group>"; };
@@ -1106,6 +1105,7 @@
 		3FFE38B41D7D090400B46768 /* DD_CircleTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleTagView.m; sourceTree = "<group>"; };
 		3FFE38B61D7D6D9400B46768 /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		3FFE38B71D7D6D9400B46768 /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
+		3FFEE4B61DFD54FC00A335DD /* YCOSPACE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YCOSPACE.entitlements; sourceTree = "<group>"; };
 		3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ClearingTabbar.h; sourceTree = "<group>"; };
 		3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ClearingTabbar.m; sourceTree = "<group>"; };
 		90692A05EB725AE5D37E75E3 /* Pods-YCOSPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YCOSPACE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1665,7 +1665,7 @@
 		3F4187671CEEFB24001BCA3D = {
 			isa = PBXGroup;
 			children = (
-				3FEAC2B71DEDD1A2006C93A2 /* YCOSPACE.entitlements */,
+				3FFEE4B61DFD54FC00A335DD /* YCOSPACE.entitlements */,
 				3F4187721CEEFB24001BCA3D /* DDAY */,
 				3F41878C1CEEFB24001BCA3D /* DDAYTests */,
 				3F4187971CEEFB24001BCA3D /* DDAYUITests */,
@@ -4282,6 +4282,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 86BC6SR69M;
 				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
