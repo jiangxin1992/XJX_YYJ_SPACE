@@ -17,7 +17,8 @@
     CGFloat _Freight=dataArr.count*[_freight floatValue];
     CGFloat _subTotal=[[dataDict objectForKey:@"subTotal"] floatValue];
     
-    NSString *total=[[regular getDNS] rangeOfString:@"app.ycospace.com"].location !=NSNotFound?[regular getRoundNum:(_subTotal+_Freight)]:@"0.03";
+    //NSString *total=[[regular getDNS] rangeOfString:@"app.ycospace.com"].location !=NSNotFound?[regular getRoundNum:(_subTotal+_Freight)]:@"0.03";
+    NSString *total=[regular getRoundNum:(_subTotal+_Freight)];
     NSDictionary *_dict=@{@"address":[dataDict objectForKey:@"address"]
                           ,@"orders":[self getPayOrderWithDataArr:dataArr]
                           ,@"payApproach":@"1"

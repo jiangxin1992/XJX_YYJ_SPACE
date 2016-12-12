@@ -137,7 +137,6 @@
         [_orderLogisticsBtn addSubview:_logisticsDownLine];
     }
 }
-
 -(void)CreateOrderStateView
 {
     if(!_orderStateView)

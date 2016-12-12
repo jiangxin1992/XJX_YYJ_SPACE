@@ -183,7 +183,6 @@
 		3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57173C1D6F0713006E1940 /* NSDate+Custom.m */; };
 		3F576F2A1D377D4A0061602A /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */; };
 		3F576F311D3795580061602A /* UIButton+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F576F301D3795580061602A /* UIButton+Custom.m */; };
-		3F5828A41DDC1E4000A35C6B /* loading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F5828A31DDC1E4000A35C6B /* loading.mp4 */; };
 		3F5888E31D58168C00AFD0A3 /* DD_UserDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */; };
 		3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */; };
 		3F6002491D49EEB5007E395F /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6002481D49EEB5007E395F /* DrawView.m */; };
@@ -245,6 +244,7 @@
 		3F8E76721D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76701D1BC69000722FDA /* DD_CircleShowDetailImgViewController.m */; };
 		3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */; };
 		3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */; };
+		3F93D1DE1DFE394100749789 /* loading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F93D1DD1DFE394100749789 /* loading.mp4 */; };
 		3F9810E91DB86B2000E84EAE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9810E81DB86B2000E84EAE /* MediaPlayer.framework */; };
 		3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */; };
 		3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8AD61CEF559C008EC460 /* DD_UserViewController.m */; };
@@ -793,7 +793,6 @@
 		3F576F291D377D4A0061602A /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		3F576F2F1D3795580061602A /* UIButton+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Custom.h"; sourceTree = "<group>"; };
 		3F576F301D3795580061602A /* UIButton+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Custom.m"; sourceTree = "<group>"; };
-		3F5828A31DDC1E4000A35C6B /* loading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loading.mp4; sourceTree = "<group>"; };
 		3F5888E11D58168C00AFD0A3 /* DD_UserDDAYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserDDAYCell.h; sourceTree = "<group>"; };
 		3F5888E21D58168C00AFD0A3 /* DD_UserDDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserDDAYCell.m; sourceTree = "<group>"; };
 		3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYContainerView.h; sourceTree = "<group>"; };
@@ -915,6 +914,7 @@
 		3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleApplyViewController.m; sourceTree = "<group>"; };
 		3F9291B01D66F9B300FD7EE2 /* DD_AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AboutViewController.h; sourceTree = "<group>"; };
 		3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AboutViewController.m; sourceTree = "<group>"; };
+		3F93D1DD1DFE394100749789 /* loading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loading.mp4; sourceTree = "<group>"; };
 		3F9810E81DB86B2000E84EAE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3F9B8ABB1CEF1E84008EC460 /* DD_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddressModel.h; sourceTree = "<group>"; };
 		3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddressModel.m; sourceTree = "<group>"; };
@@ -1713,8 +1713,8 @@
 		3F4187731CEEFB24001BCA3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F93D1DD1DFE394100749789 /* loading.mp4 */,
 				3F43B6BA1DE6C180006D259C /* DIN-Medium.otf */,
-				3F5828A31DDC1E4000A35C6B /* loading.mp4 */,
 				3FE98D4F1DC8767B00F273E8 /* gif */,
 				3F4187AD1CEEFD02001BCA3D /* area.json */,
 				3F4187741CEEFB24001BCA3D /* main.m */,
@@ -3521,8 +3521,8 @@
 			buildPhases = (
 				522F9FC9BD76222F4A57B7DE /* [CP] Check Pods Manifest.lock */,
 				3F41876C1CEEFB24001BCA3D /* Sources */,
-				3F41876D1CEEFB24001BCA3D /* Frameworks */,
 				3F41876E1CEEFB24001BCA3D /* Resources */,
+				3F41876D1CEEFB24001BCA3D /* Frameworks */,
 				77EB18115C8320535AB8D74E /* [CP] Embed Pods Frameworks */,
 				C51510F94A7D20750B13E0DF /* [CP] Copy Pods Resources */,
 			);
@@ -3672,7 +3672,7 @@
 				3FE98DA81DC8767B00F273E8 /* 图层-45@2x.png in Resources */,
 				3FE98DA91DC8767B00F273E8 /* 图层-46@2x.png in Resources */,
 				3FE98D8F1DC8767B00F273E8 /* 图层-22@2x.png in Resources */,
-				3F5828A41DDC1E4000A35C6B /* loading.mp4 in Resources */,
+				3F93D1DE1DFE394100749789 /* loading.mp4 in Resources */,
 				3FE98D8B1DC8767B00F273E8 /* 图层-19@2x.png in Resources */,
 				3FE98D961DC8767B00F273E8 /* 图层-29@2x.png in Resources */,
 				3FE98D891DC8767B00F273E8 /* 图层-17@2x.png in Resources */,

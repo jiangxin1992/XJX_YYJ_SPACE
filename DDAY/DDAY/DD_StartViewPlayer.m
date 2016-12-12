@@ -29,29 +29,50 @@
     self.view.backgroundColor=_define_white_color;
     
     NSString *thePath=[[NSBundle mainBundle] pathForResource:@"loading" ofType:@"mp4"];
-    NSURL *url=[NSURL fileURLWithPath:thePath];
-    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
-    _player = [AVPlayer playerWithPlayerItem:playerItem];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-    playerLayer.frame = self.view.bounds;   // CGRectMake(0, 0, 100, 100);//
-    [self.view.layer addSublayer:playerLayer];  //addsublayer /addsubView
-    
-    if(_player)
-    {
-        [_player play];
-    }else
+//    NSString *thePath=@"";
+    //判断本地路径是否为空
+    if([NSString isNilOrEmpty:thePath])
     {
         [self pushMainView];
+    }else
+    {
+        NSURL *url=[NSURL fileURLWithPath:thePath];
+        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+        
+        _player = [AVPlayer playerWithPlayerItem:playerItem];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PlayEndAction) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+        
+//        [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
+    
+        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        
+        playerLayer.frame = self.view.bounds;   // CGRectMake(0, 0, 100, 100);//
+        
+        [self.view.layer addSublayer:playerLayer];  //addsublayer /addsubView
+        
+        if(_player)
+        {
+            [_player play];
+        }else
+        {
+            [self pushMainView];
+        }
     }
 }
+// 实现Observer的回调方法
 
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//    
+//    // 如果改变的属性是"name"
+//    if ([keyPath isEqualToString:@"status"]) {
+//        NSLog(@"_player.status=%ld",_player.status);
+//    }
+//}
 -(void)PlayEndAction
 {
     [self presentViewController:[DD_CustomViewController sharedManager] animated:YES completion:nil];
 }
-
 -(void)pushMainView
 {
     if(!((DD_CustomViewController *)[DD_CustomViewController sharedManager]).isVisible)
