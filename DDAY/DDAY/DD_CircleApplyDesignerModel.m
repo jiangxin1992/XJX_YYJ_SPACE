@@ -16,9 +16,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[DD_CircleApplyDesignerModel mj_objectWithKeyValues:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[DD_CircleApplyDesignerModel mj_objectWithKeyValues:dict]];
-//    }
+
     return itemsArr;
 }
 @end

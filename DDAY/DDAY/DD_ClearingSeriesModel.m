@@ -40,9 +40,7 @@
     [self.items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *_order, NSUInteger idx, BOOL * _Nonnull stop) {
         _price+=[_order.price floatValue]*[_order.numbers integerValue];
     }];
-//    for (DD_ClearingOrderModel *_order in self.items) {
-//        _price+=[_order.price floatValue]*[_order.numbers integerValue];
-//    }
+
     return _price;
 }
 /**

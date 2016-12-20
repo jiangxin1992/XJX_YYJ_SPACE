@@ -59,6 +59,7 @@
  */
 "dday_title"="发布日";
 "dday_calendar"="发布日历";
+"dday_offline_title"="报名活动";
 
 /**
  * 共享带

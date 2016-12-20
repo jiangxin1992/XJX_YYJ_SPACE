@@ -10,6 +10,7 @@
 
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
+#import "DD_DDAYDetailOfflineViewController.h"
 
 #import "DD_CalendarCell.h"
 
@@ -185,9 +186,16 @@
 -(void)seriesBtnAction:(UIButton *)btn
 {
     DD_DDAYModel *seriesModel=_monthArr[btn.tag-100];
-    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
-        
-    }] animated:YES];
+    if(seriesModel.stype)
+    {
+        //线下
+        [self.navigationController pushViewController:[[DD_DDAYDetailOfflineViewController alloc] initWithModel:seriesModel] animated:YES];
+    }else
+    {
+        //线上
+        [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
+        }] animated:YES];
+    }
 }
 ////跳转购物车
 //-(void)PushShopView
@@ -280,9 +288,7 @@
     [blockArr enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-//    for (UIView *view in blockArr) {
-//        [view removeFromSuperview];
-//    }
+
     [blockArr removeAllObjects];
 }
 -(void)SeriesReset
@@ -291,9 +297,7 @@
     [_monthSeriesViewArr enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-//    for (UIView *view in _monthSeriesViewArr) {
-//        [view removeFromSuperview];
-//    }
+
     [_monthSeriesViewArr removeAllObjects];
 }
 /**
@@ -311,10 +315,6 @@
                 [backView addSubview:obj];
                 [blockArr addObject:obj];
             }];
-//            for (UIView *view in viewArr) {
-//                [backView addSubview:view];
-//                [blockArr addObject:view];
-//            }
         }
     }
 }
@@ -369,50 +369,6 @@
             [_monthSeriesViewArr addObject:_backView_s];
             lastView=_backView_s;
         }];
-//        for (int i=0; i<_monthArr.count; i++) {
-//            DD_DDAYModel *seriesModel = _monthArr[i];
-//            UIView *_backView_s=[UIView getCustomViewWithColor:nil];
-//            [_scrollView addSubview:_backView_s];
-//            
-//            [_backView_s mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.mas_equalTo(0);
-//                make.width.mas_equalTo(ScreenWidth);
-//                if(lastView)
-//                {
-//                    make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?26:20);
-//                }else
-//                {
-//                    make.top.mas_equalTo(backView.mas_bottom).with.offset(IsPhone6_gt?26:20);
-//                }
-//            }];
-//            
-//            DD_DDAYModel *dday=_monthArr[i];
-//            UIButton *seriesBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:dday.name WithNormalColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
-//            [_backView_s addSubview:seriesBtn];
-//            if(seriesModel.is_select)
-//            {
-//                seriesBtn.backgroundColor=[UIColor colorWithHexString:seriesModel.seriesColor];
-//                [seriesBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
-//            }else
-//            {
-//                [regular setBorder:seriesBtn WithColor:[UIColor colorWithHexString:seriesModel.seriesColor] WithWidth:2];
-//                seriesBtn.backgroundColor=_define_white_color;
-//                [seriesBtn setTitleColor:[UIColor colorWithHexString:seriesModel.seriesColor] forState:UIControlStateNormal];
-//            }
-//            
-//            [seriesBtn addTarget:self action:@selector(seriesBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//            seriesBtn.tag=100+i;
-//
-//            [seriesBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.mas_equalTo(kEdge);
-//                make.right.mas_equalTo(-kEdge);
-//                make.height.mas_equalTo(IsPhone6_gt?30:25);
-//                make.top.mas_equalTo(0);
-//                make.bottom.mas_equalTo(0);
-//            }];
-//            [_monthSeriesViewArr addObject:_backView_s];
-//            lastView=_backView_s;
-//        }
         NSLog(@"backView=%lf",CGRectGetMaxY(backView.frame));
         _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+((IsPhone6_gt?30:25)+(IsPhone6_gt?26:20))*_monthArr.count+(IsPhone6_gt?26:20));
         
@@ -538,21 +494,7 @@
             weekLabel.text = obj;
             [self addSubview:weekLabel];
         }];
-//        for (int i=0; i<weekArray.count; i++) {
-//            UILabel *weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(i*cellW, 0, cellW, HeaderViewHeight)];
-//            weekLabel.textAlignment = NSTextAlignmentCenter;
-//            if(i==0||i==6)
-//            {
-//                weekLabel.textColor = _define_light_gray_color1;
-//            }else
-//            {
-//                weekLabel.textColor = _define_black_color;
-//            }
-//            weekLabel.font = [UIFont systemFontOfSize:13.0f];
-//            weekLabel.text = weekArray[i];
-//            [self addSubview:weekLabel];
-//        }
-        
+
     }
     return self;
 }

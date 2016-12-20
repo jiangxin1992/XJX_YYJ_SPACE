@@ -36,9 +36,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleListModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [TagsArr addObject:[self getCircleListModel:dict]];
-//    }
+
     return TagsArr;
 }
 
@@ -48,9 +46,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleListImgModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [TagsArr addObject:[self getCircleListImgModel:dict]];
-//    }
+
     return TagsArr;
 }
 +(DD_CircleListModel *)getCircleListImgModel:(NSDictionary *)dict
@@ -77,9 +73,7 @@
     [self.tags enumerateObjectsUsingBlock:^(DD_CircleTagModel *tag, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObjectsFromArray:tag.tags];
     }];
-//    for (DD_CircleTagModel *tag in self.tags) {
-//        [arr addObjectsFromArray:tag.tags];
-//    }
+
     return arr;
 }
 @end

@@ -308,13 +308,7 @@
                         [self.navigationController popToViewController:obj animated:YES];
                     }
                 }];
-//                for (int i=0; i<controllers.count; i++) {
-//                    id obj=controllers[i];
-//                    if([obj isKindOfClass:[DD_CircleViewController class]])
-//                    {
-//                        [self.navigationController popToViewController:obj animated:YES];
-//                    }
-//                }
+
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -378,20 +372,7 @@
             goods.hidden=YES;
         }
     }];
-//    for (int i=0; i<goodsImgArr.count; i++) {
-//        UIImageView *goods=goodsImgArr[i];
-//        UIButton *goodsPrice=(UIButton *)[self.view viewWithTag:150+i];
-//        if(i<count_index)
-//        {
-//            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
-//            [goods JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
-//            goods.hidden=NO;
-//            [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] forState:UIControlStateNormal];
-//        }else
-//        {
-//            goods.hidden=YES;
-//        }
-//    }
+
     conentLabel.text=_circleModel.remark;
 }
 -(void)itemAction:(UIGestureRecognizer *)ges

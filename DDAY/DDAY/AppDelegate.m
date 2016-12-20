@@ -79,7 +79,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
     _is_first_register=YES;
     [Bugly startWithAppId:@"900056338"];
     /**
@@ -332,12 +331,12 @@
             
         }else if([[dict objectForKey:@"type"]isEqualToString:@"NEWSERIES"])
         {
-            //        新的发布会通知
+            //        新的线上发布会通知
             [DD_NOTInformClass SET_NEWSERIES_NOT_SERIESID:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWSERIES_NOT" object:nil];
         }else if([[dict objectForKey:@"type"]isEqualToString:@"STARTSERIES"])
         {
-            //        已报名发布会开始的通知
+            //        已报名线上发布会开始的通知
             [DD_NOTInformClass SET_STARTSERIES_NOT_SERIESID:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTSERIES_NOT" object:nil];
             
@@ -352,6 +351,16 @@
             //        评论的通知
             [DD_NOTInformClass SET_COMMENTSHARE_NOT_COMMENT:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"COMMENTSHARE_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"NEWLIVESERIES"])
+        {
+            //        新的线下发布会通知
+            [DD_NOTInformClass SET_NEWLIVESERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWLIVESERIES_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"STARTLIVESERIES"])
+        {
+            //        已报名线下发布会开始的通知
+            [DD_NOTInformClass SET_STARTLIVESERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTLIVESERIES_NOT" object:nil];
         }
     }
     completionHandler(UIBackgroundFetchResultNewData);
@@ -407,6 +416,16 @@
             //        评论的通知
             [DD_NOTInformClass SET_COMMENTSHARE_NOT_COMMENT:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"COMMENTSHARE_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"NEWLIVESERIES"])
+        {
+            //        新的线下发布会通知
+            [DD_NOTInformClass SET_NEWLIVESERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWLIVESERIES_NOT" object:nil];
+        }else if([[dict objectForKey:@"type"]isEqualToString:@"STARTLIVESERIES"])
+        {
+            //        已报名线下发布会开始的通知
+            [DD_NOTInformClass SET_STARTLIVESERIES_NOT_SERIESID:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTLIVESERIES_NOT" object:nil];
         }
     }
     completionHandler(UIBackgroundFetchResultNewData);

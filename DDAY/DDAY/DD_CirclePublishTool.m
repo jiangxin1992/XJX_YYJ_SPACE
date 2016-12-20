@@ -39,28 +39,39 @@
         }];
         [imageview JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:800 placeHolderImageName:nil radius:0];
     }
-//    UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:_define_white_color WithSpacing:0];
-//    [imageview addSubview:price_label];
-//    price_label.font=[regular getSemiboldFont:15.0f];
-//    [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(8);
-//        make.bottom.mas_equalTo(-8);
-//    }];
-    //    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:price_label];
-    //    price_label.backgroundColor=[UIColor blueColor];
     price_label.font=[regular getSemiboldFont:15.0f];
-    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
-    //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
-//    [price_label sizeToFit];
     
-    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    if([item.price integerValue]!=[item.originalPrice integerValue])
+    {
+        UILabel *original_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.originalPrice] WithFont:15.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [cell addSubview:original_label];
+        
+        NSAttributedString *attrStr =[[NSAttributedString alloc]initWithString:[[NSString alloc] initWithFormat:@"  ￥%@",item.originalPrice] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#A8A7A7"],NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),NSStrikethroughColorAttributeName:[UIColor colorWithHexString:@"#A8A7A7"]}];
+        
+        original_label.attributedText = attrStr;
+        
+        [original_label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(price_label.mas_right).with.offset(0);
+            make.centerY.mas_equalTo(price_label);
+            make.right.mas_equalTo(0);
+        }];
+    }
+    
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
+    if(item.cooperateTag==1)
+    {
+        titleLabel.text=[[NSString alloc] initWithFormat:@"合作款 | %@",item.name];
+    }else
+    {
+        titleLabel.text=item.name;
+    }
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
         make.left.right.mas_equalTo(0);
@@ -106,21 +117,39 @@
         }
     }];
     
-    //    UIButton *price_label=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:15.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:price_label];
-    //    price_label.backgroundColor=[UIColor blueColor];
     price_label.font=[regular getSemiboldFont:15.0f];
-    //    [price_label setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
-    //    price_label.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 5);
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
-//    [price_label sizeToFit];
+
+    if([item.price integerValue]!=[item.originalPrice integerValue])
+    {
+        UILabel *original_label=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.originalPrice] WithFont:15.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [cell addSubview:original_label];
+        
+        NSAttributedString *attrStr =[[NSAttributedString alloc]initWithString:[[NSString alloc] initWithFormat:@"  ￥%@",item.originalPrice] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#A8A7A7"],NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),NSStrikethroughColorAttributeName:[UIColor colorWithHexString:@"#A8A7A7"]}];
+        
+        original_label.attributedText = attrStr;
+        
+        [original_label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(price_label.mas_right).with.offset(0);
+            make.centerY.mas_equalTo(price_label);
+            make.right.mas_equalTo(0);
+        }];
+    }
     
-    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:titleLabel];
+    if(item.cooperateTag==1)
+    {
+        titleLabel.text=[[NSString alloc] initWithFormat:@"合作款 | %@",item.name];
+    }else
+    {
+        titleLabel.text=item.name;
+    }
 
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(price_label.mas_top).with.offset(-4);
@@ -158,9 +187,6 @@
         [CircleModel.tagMap setValue:[[NSMutableArray alloc] init] forKey:key];
     }];
     
-//    for (NSString *key in [self getTagArrWithCircleModel:CircleModel]) {
-//        [CircleModel.tagMap setValue:[[NSMutableArray alloc] init] forKey:key];
-//    }
     [CircleModel.tagMap setValue:[[NSMutableArray alloc] init] forKey:@"customTags"];
 }
 
@@ -209,30 +235,7 @@
             }
         }];
         
-//        for (int i=0; i<mut_arr.count; i++) {
-//            NSString *str=mut_arr[i];
-//            if([str isEqualToString:_tagItemModel.tagName])
-//            {
-//                if(type==1)
-//                {
-//                    if([_tagModel.parameterName isEqualToString:@"customTags"])
-//                    {
-//                        [mut_arr removeAllObjects];
-//                        
-//                    }else
-//                    {
-//                        [mut_arr removeObjectAtIndex:i];
-//                        [_tagModel updateLastSelect];
-//                    }
-//                    
-//                }else if(type==2)
-//                {
-//                    [mut_arr removeAllObjects];
-//                }
-//                
-//                break;
-//            }
-//        }
+
     }
 }
 /**
@@ -271,12 +274,6 @@
                         lastTagName=tagname;
                     }
                 }];
-//                for (NSString *tagname in mut_arr) {
-//                    if([tagname isEqualToString:_tagModel.lastItem.tagName])
-//                    {
-//                        lastTagName=tagname;
-//                    }
-//                }
                 [mut_arr removeAllObjects];
                 [mut_arr addObject:_tagItemModel.tagName];
                 if(lastTagName)
@@ -307,14 +304,6 @@
             }];
         }
     }];
-//    for (DD_CircleTagModel *tm in CircleModel.shareTags) {
-//        if([tm.parameterName isEqualToString:@"customTags"])
-//        {
-//            for (DD_CricleTagItemModel *ttm in tm.tags) {
-//                ttm.is_select=NO;
-//            }
-//        }
-//    }
     
     [CircleModel.shareTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *tm, NSUInteger idx, BOOL * _Nonnull stop) {
         if([tm.parameterName isEqualToString:@"customTags"])
@@ -324,14 +313,7 @@
             *stop=YES;
         }
     }];
-//    for (DD_CircleTagModel *tm in CircleModel.shareTags) {
-//        if([tm.parameterName isEqualToString:@"customTags"])
-//        {
-//            tagModel.is_select=YES;
-//            [tm.tags addObject:tagModel];
-//            break;
-//        }
-//    }
+
     
     [[CircleModel.tagMap objectForKey:@"shareTags"] addObject:tagModel.tagName];
     
@@ -352,18 +334,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_CircleTagModel *tm in CircleModel.shareTags) {
-//        if([tm.parameterName isEqualToString:@"customTags"])
-//        {
-//            for (DD_CricleTagItemModel *item in tm.tags) {
-//                if([item.tagName isEqualToString:tagName])
-//                {
-//                    return YES;
-//                }
-//            }
-//            break;
-//        }
-//    }
     return isExist;
 }
 +(void)delChooseItemModel:(DD_CricleChooseItemModel *)model WithCircleModel:(DD_CircleModel *)CircleModel
@@ -376,14 +346,7 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<CircleModel.chooseItem.count; i++) {
-//        DD_CricleChooseItemModel *_model=CircleModel.chooseItem[i];
-//        if([_model.colorId isEqualToString:model.colorId]&&[_model.g_id isEqualToString:model.g_id])
-//        {
-//            _index=i;
-//            break;
-//        }
-//    }
+
     [CircleModel.chooseItem removeObjectAtIndex:_index];
 }
 +(NSArray *)getParameterItemArrWithCircleModel:(DD_CircleModel *)CircleModel
@@ -402,20 +365,7 @@
                             }
          ];
     }];
-//    for (int i=0; i<CircleModel.chooseItem.count; i++) {
-//        DD_CricleChooseItemModel *_model=CircleModel.chooseItem[i];
-//        [mutArr addObject:@{
-//                            @"itemId":_model.g_id
-//                            ,@"colorId":_model.colorId
-//                            ,@"itemName":_model.name
-//                            ,@"price":_model.price
-//                            ,@"pic":_model.pic.pic
-//                            ,@"height":_model.pic.height
-//                            ,@"width":_model.pic.width
-//                            ,@"colorCode":_model.colorCode
-//                            }
-//         ];
-//    }
+
     return mutArr;
 }
 +(NSInteger)getParameterTagsNumWithCircleModel:(DD_CircleModel *)CircleModel
@@ -426,10 +376,7 @@
         NSArray *arr=[CircleModel.tagMap objectForKey:key];
         _num+=arr.count;
     }];
-//    for (NSString *key in keys) {
-//        NSArray *arr=[CircleModel.tagMap objectForKey:key];
-//        _num+=arr.count;
-//    }
+
     return _num;
 }
 +(NSArray *)getPicArrWithCircleModel:(DD_CircleModel *)CircleModel
@@ -438,9 +385,7 @@
     [CircleModel.picArr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [mu_Arr addObject:[dict objectForKey:@"key"]];
     }];
-//    for (NSDictionary *dict in CircleModel.picArr) {
-//        [mu_Arr addObject:[dict objectForKey:@"key"]];
-//    }
+
     return mu_Arr;
 }
 +(NSArray *)getPicDataArrWithCircleModel:(DD_CircleModel *)CircleModel
@@ -449,9 +394,7 @@
     [CircleModel.picArr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [mu_Arr addObject:[dict objectForKey:@"data"]];
     }];
-//    for (NSDictionary *dict in CircleModel.picArr) {
-//        [mu_Arr addObject:[dict objectForKey:@"data"]];
-//    }
+
     return mu_Arr;
 }
 /**
@@ -464,15 +407,10 @@
     [CircleModel.shareTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *_tag, NSUInteger idx, BOOL * _Nonnull stop) {
         [muArr addObject:_tag.parameterName];
     }];
-//    for (DD_CircleTagModel *_tag in CircleModel.shareTags) {
-//        [muArr addObject:_tag.parameterName];
-//    }
+
     [CircleModel.personTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *_tag, NSUInteger idx, BOOL * _Nonnull stop) {
         [muArr addObject:_tag.parameterName];
     }];
-//    for (DD_CircleTagModel *_tag in CircleModel.personTags) {
-//        [muArr addObject:_tag.parameterName];
-//    }
     return muArr;
 }
 

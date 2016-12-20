@@ -26,6 +26,22 @@
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     [_default setObject:nil forKey:@"NEWSERIES_NOT_SERIESID"];
 }
+//        新的线下发布会通知
++(NSString *)GET_NEWLIVESERIES_NOT_SERIESID
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    return [_default objectForKey:@"NEWLIVESERIES_NOT_SERIESID"];
+}
++(void)SET_NEWLIVESERIES_NOT_SERIESID:(NSDictionary *)dict
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:[dict objectForKey:@"seriesId"] forKey:@"NEWLIVESERIES_NOT_SERIESID"];
+}
++(void)REMOVE_NEWLIVESERIES_NOT_SERIESID
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:nil forKey:@"NEWLIVESERIES_NOT_SERIESID"];
+}
 
 //        已报名发布会开始的通知
 +(NSString *)GET_STARTSERIES_NOT_SERIESID
@@ -42,6 +58,22 @@
 {
     NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
     [_default setObject:nil forKey:@"STARTSERIES_NOT_SERIESID"];
+}
+//        已报名线下开始的通知
++(NSString *)GET_STARTLIVESERIES_NOT_SERIESID
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    return [_default objectForKey:@"STARTLIVESERIES_NOT_SERIESID"];
+}
++(void)SET_STARTLIVESERIES_NOT_SERIESID:(NSDictionary *)dict
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:[dict objectForKey:@"seriesId"] forKey:@"STARTLIVESERIES_NOT_SERIESID"];
+}
++(void)REMOVE_STARTLIVESERIES_NOT_SERIESID
+{
+    NSUserDefaults*_default=[NSUserDefaults standardUserDefaults];
+    [_default setObject:nil forKey:@"STARTLIVESERIES__NOT_SERIESID"];
 }
 
 //        评论回复的通知

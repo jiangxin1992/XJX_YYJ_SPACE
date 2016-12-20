@@ -452,9 +452,7 @@
         [_scrollview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj removeFromSuperview];
         }];
-//        for (UIView *obj in _scrollview.subviews) {
-//            [obj removeFromSuperview];
-//        }
+
         _scrollview.contentSize=CGSizeMake(66*_listModel.items.count+20*(_listModel.items.count-1), 66);
         __block CGFloat _x_p=0;
         [_listModel.items enumerateObjectsUsingBlock:^(DD_OrderItemModel *_order, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -485,36 +483,7 @@
             }];
             _x_p+=CGRectGetWidth(goods.frame)+20;
         }];
-//        for (int i=0; i<_listModel.items.count; i++) {
-//            UIImageView *goods=[UIImageView getCustomImg];;
-//            [_scrollview addSubview:goods];
-//            goods.frame=CGRectMake(_x_p, 0, 66, 66);
-//            goods.contentMode=2;
-//            [regular setZeroBorder:goods];
-//            goods.userInteractionEnabled=YES;
-////            [goods addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemAction:)]];
-//            goods.tag=100+i;
-//            [goods bk_whenTapped:^{
-//                //                点击单品
-//                DD_OrderItemModel *_item=_listModel.items[goods.tag-100];
-//                _cellBlock(@"item_click",_index,_item);
-//            }];
-//            DD_OrderItemModel *_order=_listModel.items[i];
-//            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
-//            
-//            
-//            UIButton *pricebtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:nil];;
-//            [goods addSubview:pricebtn];
-//            pricebtn.titleLabel.font=[regular getSemiboldFont:12.0f];
-//            pricebtn.userInteractionEnabled=NO;
-//            [pricebtn setBackgroundImage:[UIImage imageNamed:@"Item_PriceFrame"] forState:UIControlStateNormal];
-//            [pricebtn setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
-//            [pricebtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.right.bottom.mas_equalTo(0);
-//                make.height.mas_equalTo(18);
-//            }];
-//            _x_p+=CGRectGetWidth(goods.frame)+20;
-//        }
+
     }
     
     [conentLabel mas_updateConstraints:^(MASConstraintMaker *make) {

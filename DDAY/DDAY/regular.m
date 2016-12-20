@@ -26,6 +26,19 @@ static regular *_t = nil;
     }
     return _t;
 }
++(BOOL)isEnableAPNS
+{
+    UIRemoteNotificationType types;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+    }else{
+        // 原来的代码
+        types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        
+    }
+    return (types & UIRemoteNotificationTypeAlert);
+    
+}
 + (NSString *)getHTMLStringWithContent:(NSString *)content WithFont:(NSString *)font WithColorCode:(NSString *)color
 {
     if(!content)content=@"";
@@ -250,9 +263,10 @@ static regular *_t = nil;
 }
 +(void)setZeroBorder:(UIView *)view
 {
-    view.layer.masksToBounds=YES;
-    view.layer.borderColor=[[UIColor blackColor] CGColor];
-    view.layer.borderWidth=0;
+//    view.layer.masksToBounds=YES;
+//    view.layer.borderColor=[[UIColor blackColor] CGColor];
+//    view.layer.borderWidth=0;
+    view.clipsToBounds=YES;
 }
 +(void)setBorder:(UIView *)view WithColor:(UIColor *)color WithWidth:(CGFloat )width
 {

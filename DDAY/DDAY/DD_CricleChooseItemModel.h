@@ -23,11 +23,29 @@
  */
 +(NSArray *)getItemsModelArr:(NSArray *)arr;
 
+/**
+ * public static Integer ITEM_STATUS_WSJ = 0; //未上架
+ * public static Integer ITEM_STATUS_YSJ = 1; //已上架
+ * public static Integer ITEM_STATUS_YXJ = 2; //已下架
+ * public static Integer ITEM_STATUS_YSC = 3; //已删除
+ * public static Integer ITEM_STATUS_YSC = -1; //已售罄
+ */
+__int(status);
+
+/**
+ * public static Integer ITEM_STATUS_WSJ = 0; //非合作款
+ * public static Integer ITEM_STATUS_YSJ = 1; //合作款
+ */
+__int(cooperateTag);
+
 /** 款式名*/
 __string(name);
 
 /** 款式价格*/
 __string(price);
+
+/** 原价**/
+__string(originalPrice);
 
 /** 款式照片*/
 @property (nonatomic,strong)DD_ImageModel *pic;

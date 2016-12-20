@@ -19,6 +19,8 @@
     NSString *_sizeName;
     NSInteger _count;
     
+    UILabel *warnLabel;
+    
 }
 
 #pragma mark - 初始化
@@ -71,6 +73,23 @@
 -(void)UIConfig
 {
     
+//    [regular getRoundNum:[_ItemModel getPrice]]
+    UILabel *priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[_ItemModel getPrice]]] WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
+    [self addSubview:priceLabel];
+    priceLabel.font=[regular getSemiboldFont:15.0f];
+    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(18);
+        make.left.mas_equalTo(kEdge);
+    }];
+    
+    warnLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"库存紧张" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
+    [self addSubview:warnLabel];
+    [warnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(priceLabel.mas_right).with.offset(10);
+        make.centerY.mas_equalTo(priceLabel);
+    }];
+    warnLabel.hidden=YES;
+    
     __block UIView *lastView=nil;
     // 间距为10
     __block int intes = 10;
@@ -88,6 +107,13 @@
             [regular setBorder:_btn];
             if([_sizeModel.sizeId isEqualToString:_ItemModel.sizeId])
             {
+                if(_sizeModel.stock<=2)
+                {
+                    warnLabel.hidden=NO;
+                }else
+                {
+                    warnLabel.hidden=YES;
+                }
                 _btn.selected=YES;
                 [_btn setBackgroundColor:_define_black_color];
                 
@@ -114,7 +140,7 @@
         }
         
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
+            make.top.mas_equalTo(priceLabel.mas_bottom).offset(23+35*num);
             make.left.mas_equalTo(_x_p);
             make.width.mas_equalTo(__width);
             make.height.mas_equalTo(28);
@@ -139,70 +165,6 @@
         //        }];
         lastView=_btn;
     }];
-//    for (int i=0; i<_SizeAlertModel.size.count; i++) {
-//        DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
-//        UIButton *_btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:17.0f WithSpacing:0 WithNormalTitle:_sizeModel.sizeName WithNormalColor:nil WithSelectedTitle:_sizeModel.sizeName WithSelectedColor:_define_white_color];
-//        [self addSubview:_btn];
-//        
-//        if(_sizeModel.stock)
-//        {
-//            [_btn setTitleColor:_define_black_color forState:UIControlStateNormal];
-//            _btn.backgroundColor=_define_white_color;
-//            _btn.userInteractionEnabled=YES;
-//            [regular setBorder:_btn];
-//            if([_sizeModel.sizeId isEqualToString:_ItemModel.sizeId])
-//            {
-//                _btn.selected=YES;
-//                [_btn setBackgroundColor:_define_black_color];
-//                
-//            }else
-//            {
-//                _btn.selected=NO;
-//                [_btn setBackgroundColor:_define_white_color];
-//            }
-//        }else
-//        {
-//            [_btn setTitleColor:_define_light_gray_color1 forState:UIControlStateNormal];
-//            _btn.backgroundColor=_define_white_color;
-//            _btn.userInteractionEnabled=YES;
-//        }
-//        [_sizeBtnArr addObject:_btn];
-//        _btn.tag=100+i;
-//        [_btn addTarget:self action:@selector(chooseSizeAction:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        CGFloat __width=[regular getWidthWithHeight:28 WithContent:_sizeModel.sizeName WithFont:[regular getFont:13.0f]]+25;
-//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
-//        {
-//            num++;
-//            _x_p=kEdge;
-//        }
-//        
-//        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(_btn.superview).offset(40+35*num);
-//            make.left.mas_equalTo(_x_p);
-//            make.width.mas_equalTo(__width);
-//            make.height.mas_equalTo(28);
-//        }];
-//        if((_x_p+__width+intes)>ScreenWidth-kEdge)
-//        {
-//        }else
-//        {
-//            _x_p+=__width+intes;
-//        }
-////        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-////            if(lastView)
-////            {
-////                make.left.mas_equalTo(lastView.mas_right).with.offset(23);
-////            }else
-////            {
-////                make.left.mas_equalTo(kEdge);
-////            }
-////            make.top.mas_equalTo(IsPhone6_gt?25:15);
-////            make.width.mas_equalTo(28);
-////            make.height.mas_equalTo(28);
-////        }];
-//        lastView=_btn;
-//    }
     
     UIImageView *sizeBriefImg=nil;
     if(_SizeAlertModel.sizeBriefPic&&![_SizeAlertModel.sizeBriefPic isEqualToString:@""])
@@ -264,13 +226,6 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<_sizeBtnArr.count; i++) {
-//        UIButton *_btn=_sizeBtnArr[i];
-//        if(_btn.selected)
-//        {
-//            return i;
-//        }
-//    }
     return selectIdx;
 }
 -(void)chooseSizeAction:(UIButton *)btn
@@ -286,6 +241,7 @@
                 DD_SizeModel *_sizeModel=_SizeAlertModel.size[idx];
                 if(_btn.selected)
                 {
+                    warnLabel.hidden=YES;
                     _btn.selected=NO;
                     _sizeID=@"";
                     _sizeName=@"";
@@ -293,6 +249,13 @@
                     [_btn setBackgroundColor:_define_white_color];
                 }else
                 {
+                    if(_sizeModel.stock<=2)
+                    {
+                        warnLabel.hidden=NO;
+                    }else
+                    {
+                        warnLabel.hidden=YES;
+                    }
                     _btn.selected=YES;
                     _sizeID=_sizeModel.sizeId;
                     _sizeName=_sizeModel.sizeName;
@@ -308,35 +271,6 @@
                 [_btn setBackgroundColor:_define_white_color];
             }
         }];
-//        for (int i=0; i<_sizeBtnArr.count; i++) {
-//            UIButton *_btn=_sizeBtnArr[i];
-//            if(_index==i)
-//            {
-//                DD_SizeModel *_sizeModel=_SizeAlertModel.size[i];
-//                if(_btn.selected)
-//                {
-//                    _btn.selected=NO;
-//                    _sizeID=@"";
-//                    _sizeName=@"";
-//                    _count=0;
-//                    [_btn setBackgroundColor:_define_white_color];
-//                }else
-//                {
-//                    _btn.selected=YES;
-//                    _sizeID=_sizeModel.sizeId;
-//                    _sizeName=_sizeModel.sizeName;
-//                    [_btn setBackgroundColor:_define_black_color];
-//                    if(_count>_sizeModel.stock)
-//                    {
-//                        _count=_sizeModel.stock;
-//                    }
-//                }
-//            }else
-//            {
-//                _btn.selected=NO;
-//                [_btn setBackgroundColor:_define_white_color];
-//            }
-//        }
     }else
     {
         _block(@"no_stock",_sizeID,_sizeName,_count);

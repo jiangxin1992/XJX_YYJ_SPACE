@@ -124,12 +124,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_AddressModel *_AddressModel in _dataArr) {
-//        if([_AddressModel.udaId isEqualToString:_defaultID])
-//        {
-//            return _AddressModel;
-//        }
-//    }
     return DefaultModel;
 }
 -(void)DeleteAddressWithIndex:(NSInteger )_index
@@ -185,14 +179,6 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<_dataArr.count; i++) {
-//        DD_AddressModel *_model=_dataArr[i];
-//        if([_model.udaId isEqualToString:model.udaId])
-//        {
-//            _dataArr[i]=model;
-//            break;
-//        }
-//    }
     
 }
 -(void)alertActionWithNum:(NSInteger )_num

@@ -191,31 +191,7 @@
         }
         lastView=img;
     }];
-//    for (int i=0; i<_showRoomModel.pics.count; i++) {
-//        DD_ImageModel *imgModel=_showRoomModel.pics[i];
-//        UIImageView *img=[UIImageView getCustomImg];
-//        [container addSubview:img];
-//        [img JX_ScaleAspectFill_loadImageUrlStr:imgModel.pic WithSize:800 placeHolderImageName:nil radius:0];
-//        CGFloat _height=floor(([imgModel.height floatValue]/[imgModel.width floatValue])*(ScreenWidth-2*kEdge));
-//        [img mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if(!lastView)
-//            {
-//                make.top.mas_equalTo(_mapView.mas_bottom).with.offset(15);
-//            }else
-//            {
-//                make.top.mas_equalTo(lastView.mas_bottom).with.offset(15);
-//            }
-//            make.left.mas_equalTo(kEdge);
-//            make.right.mas_equalTo(-kEdge);
-//            make.height.mas_equalTo(_height);
-//
-//        }];
-//        if(i==0)
-//        {
-//            firstView=img;
-//        }
-//        lastView=img;
-//    }
+
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
         // 让scrollview的contentSize随着内容的增多而变化

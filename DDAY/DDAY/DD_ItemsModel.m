@@ -24,9 +24,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getItemsModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getItemsModel:dict]];
-//    }
+
     return itemsArr;
 }
 @end

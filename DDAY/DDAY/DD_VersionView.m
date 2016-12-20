@@ -145,7 +145,7 @@ static DD_VersionView *versionView = nil;
     [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         //获取页面高度，并重置webview的frame
         
-        CGFloat height = [result doubleValue];
+        CGFloat height = floor([result doubleValue])+2;
         
         [webView mas_updateConstraints:^(MASConstraintMaker *make) {
             if(height>(IsPhone6_gt?200:180))

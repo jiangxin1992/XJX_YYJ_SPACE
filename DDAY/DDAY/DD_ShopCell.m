@@ -143,6 +143,7 @@
         
         UIImageView *invalidImg=[UIImageView getImgWithImageStr:@"System_Mask"];
         [self.contentView addSubview:invalidImg];
+        invalidImg.contentMode=UIViewContentModeScaleToFill;
         [invalidImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.bottom.mas_equalTo(0);
         }];

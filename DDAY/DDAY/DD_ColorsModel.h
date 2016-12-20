@@ -14,6 +14,15 @@
 
 +(NSArray *)getColorsModelArr:(NSArray *)arr;
 
+/**
+ * public static Integer ITEM_STATUS_WSJ = 0; //未上架
+ * public static Integer ITEM_STATUS_YSJ = 1; //已上架
+ * public static Integer ITEM_STATUS_YXJ = 2; //已下架
+ * public static Integer ITEM_STATUS_YSC = 3; //已删除
+ * public static Integer ITEM_STATUS_YSC = -1; //已售罄
+ */
+__int(status);
+
 /** 颜色code*/
 __string(colorCode);
 

@@ -35,9 +35,6 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getShopItemModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getShopItemModel:dict]];
-//    }
     return itemsArr;
 }
 

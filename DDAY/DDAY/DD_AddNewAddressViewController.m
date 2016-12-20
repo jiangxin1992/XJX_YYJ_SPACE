@@ -149,73 +149,6 @@
         }
         lastview=cellview;
     }];
-//    for (int i=0; i<titlearr.count; i++) {
-//        UIView *cellview=[UIView getCustomViewWithColor:nil];
-//        [self.view addSubview:cellview];
-//        [cellview mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if(lastview)
-//            {
-//                make.top.mas_equalTo(lastview.mas_bottom);
-//            }else
-//            {
-//                make.top.mas_equalTo(kNavHeight+20);
-//            }
-//            make.left.right.mas_equalTo(0);
-//            make.height.mas_equalTo(41);
-//        }];
-//        
-//        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:titlearr[i] WithFont:15.0f WithTextColor:nil WithSpacing:0];
-//        [cellview addSubview:titleLabel];
-//        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.mas_equalTo(cellview);
-//            make.left.mas_equalTo(kEdge);
-//            make.width.mas_equalTo([self getWeight:titlearr[i]]);
-//        }];
-//        
-//        
-//        
-//        CGFloat _width=ScreenWidth-5-kEdge-15-kEdge-[self getWeight:titlearr[i]];
-//        UIView *upline=[UIView getCustomViewWithColor:_define_black_color];
-//        upline.frame=CGRectMake(0, 41-((41-[self getHeight:titlearr[i]])/2.0f), _width, 1);
-//        if(i==3)
-//        {
-//            UIButton *choose_p=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:14.0f WithSpacing:0 WithNormalTitle:nil WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
-//            [cellview addSubview:choose_p];
-//            choose_p.tag=100+i;
-//            choose_p.frame=CGRectMake(kEdge+[self getWeight:titlearr[i]]+15, 0, _width, 41);
-//            [choose_p addTarget:self action:@selector(chooseProvince) forControlEvents:UIControlEventTouchUpInside];
-//            if(_AddressModel)
-//            {
-//                [choose_p setTitle:dataarr[i] forState:UIControlStateNormal];
-//            }
-//            [choose_p addSubview:upline];
-//        }else
-//        {
-//            UITextField *textFiled=[[UITextField alloc] init];
-//            [cellview addSubview:textFiled];
-//            textFiled.tag=100+i;
-////            textFiled.delegate=self;
-//            [textFiled setBk_shouldReturnBlock:^BOOL(UITextField *textfield) {
-//                [textfield resignFirstResponder];
-//                return YES;
-//            }];
-//            textFiled.returnKeyType=UIReturnKeyDone;
-//            if(i==1||i==2){
-//                textFiled.keyboardType=UIKeyboardTypeNumberPad;
-//            }
-//            textFiled.font=[regular getFont:14.0f];
-//            textFiled.textColor=_define_black_color;
-//            textFiled.textAlignment=0;
-//            textFiled.frame=CGRectMake(kEdge+[self getWeight:titlearr[i]]+15, 0, _width, 41);
-//            if(_AddressModel)
-//            {
-//                textFiled.text=dataarr[i];
-//            }
-//            [textFiled addSubview:upline];
-//        }
-//        lastview=cellview;
-//    }
-    
 
     _Default_btn=[DD_AddNewAddressDefaultBtn getBtn];
     [self.view addSubview:_Default_btn];
@@ -285,14 +218,7 @@
             *stop=YES;
         }
     }];
-//    for (NSString *str in dataarr) {
-//        if([str isEqualToString:@""])
-//        {
-//            _have_empty=YES;
-//            return YES;
-//            break;
-//        }
-//    }
+
     return _have_empty;
 }
 -(NSString *)getTextFieldStr:(NSInteger )tag
@@ -402,13 +328,6 @@
                 *stop=YES;
             }
         }];
-//        for (int i=0; i<_all_data.count; i++) {
-//            DD_ProvinceModel *_p_model=_all_data[i];
-//            if([_p_model.p_id isEqualToString:_p_id])
-//            {
-//                return _p_model.name;
-//            }
-//        }
         
     }else if([type isEqualToString:@"city"])
     {
@@ -421,14 +340,7 @@
                 *stop=YES;
             }
         }];
-//        for (int i=0; i<_all_data.count; i++) {
-//            DD_ProvinceModel *_p_model=_all_data[i];
-//            if([_p_model.p_id isEqualToString:_p_id])
-//            {
-//                _dataArr_city=_p_model.City;
-//                break;
-//            }
-//        }
+
         [_dataArr_city enumerateObjectsUsingBlock:^(DD_CityModel *_city, NSUInteger idx, BOOL * _Nonnull stop) {
             if([_city.c_id isEqualToString:ID])
             {
@@ -436,12 +348,6 @@
                 *stop=YES;
             }
         }];
-//        for (DD_CityModel *_city in _dataArr_city) {
-//            if([_city.c_id isEqualToString:_id])
-//            {
-//                return _city.name;
-//            }
-//        }
     }
     return returnStr;
 }

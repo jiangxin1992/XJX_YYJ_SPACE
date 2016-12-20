@@ -282,13 +282,7 @@
                 [sss removeFromSuperview];
             }
         }];
-//        for (id obj in self.view.window.subviews) {
-//            if([obj isKindOfClass:[DD_BenefitView class]])
-//            {
-//                DD_BenefitView *sss=(DD_BenefitView *)obj;
-//                [sss removeFromSuperview];
-//            }
-//        }
+
         if([type isEqualToString:@"close"])
         {
             
@@ -416,20 +410,7 @@
             _btn.selected=NO;
             _btn.backgroundColor= _define_clear_color;
         }
-    }];
-//    for (UIButton *_btn in btnarr) {
-//        if(_btn.tag==btn.tag)
-//        {
-//            _btn.selected=YES;
-//            _btn.backgroundColor=_define_black_color;
-//            currentPage=_btn.tag-100;
-//        }else
-//        {
-//            _btn.selected=NO;
-//            _btn.backgroundColor= _define_clear_color;
-//        }
-//    }
-    
+    }];    
 }
 /**
  * 设置upview

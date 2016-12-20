@@ -20,6 +20,18 @@
  */
 +(NSArray *)getDDAYModelArr:(NSArray *)arr;
 
+/** 城市*/
+__string(city);
+
+/** 0表示线上 1表示线下*/
+__long(stype);
+
+/** 系列提示*/
+__string(seriesTips);
+
+/** 折扣*/
+__string(discount);
+
 /** 当前用户是否参加该系列*/
 __bool(isJoin);
 
@@ -67,5 +79,8 @@ __string(seriesColor);
 
 /** 报名开始时间（date）*/
 @property (nonatomic,strong) NSDate *saleStartDate;
+
+/** 活动时间范围str*/
+__string(saleTimeStr);
 
 @end

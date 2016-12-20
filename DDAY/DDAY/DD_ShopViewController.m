@@ -442,12 +442,7 @@
     [_shopModel.seriesInvalid enumerateObjectsUsingBlock:^(DD_ShopSeriesModel *_series, NSUInteger idx, BOOL * _Nonnull stop) {
         [regular dispatch_cancel:_series.timer];
     }];
-//    for (DD_ShopSeriesModel *_series in _shopModel.seriesNormal) {
-//        [regular dispatch_cancel:_series.timer];
-//    }
-//    for (DD_ShopSeriesModel *_series in _shopModel.seriesInvalid) {
-//        [regular dispatch_cancel:_series.timer];
-//    }
+
 }
 /**
  * 遍历当前系列。
@@ -466,13 +461,7 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<seriesModel.items.count; i++) {
-//        DD_ShopItemModel *_item=seriesModel.items[i];
-//        if([_item.sizeId isEqualToString:sizeid]&&[_item.colorId isEqualToString:colorid]&&i!=indexPath.row)
-//        {
-//            return YES;
-//        }
-//    }
+
     return haveSame;
 }
 /**
@@ -487,12 +476,7 @@
             getSizeID=sizeModel.sizeName;
         }
     }];
-//    for (DD_SizeModel *sizeModel in sizeArr) {
-//        if([sizeModel.sizeId isEqualToString:sizeID])
-//        {
-//            return sizeModel.sizeName;
-//        }
-//    }
+
     return getSizeID;
 }
 /**
@@ -500,6 +484,21 @@
  */
 -(void)ChooseSizeWithItem:(DD_ShopItemModel *)_ItemModel WithIndexPath:(NSIndexPath *)indexPath WithType:(NSString *)type
 {
+//    if(ItemModel.saleEndTime>[NSDate nowTime])
+//    {
+//        _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
+//    }else
+//    {
+//        if(ItemModel.discountEnable)
+//        {
+//            _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@ 原价￥%@",ItemModel.price,ItemModel.originalPrice];
+//            
+//        }else
+//        {
+//            _priceLabel.text=[[NSString alloc] initWithFormat:@"￥%@",ItemModel.originalPrice];
+//        }
+//        
+//    }
     NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"itemId":_ItemModel.itemId,@"colorCode":_ItemModel.colorCode};
     [[JX_AFNetworking alloc] GET:@"item/getItemSizeInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)

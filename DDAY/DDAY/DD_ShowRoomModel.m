@@ -25,9 +25,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getShowRoomModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getShowRoomModel:dict]];
-//    }
+
     return itemsArr;
 }
 @end

@@ -145,12 +145,6 @@
                     [self.navigationController popToViewController:obj animated:YES];
                 }
             }];
-//            for (id obj in controllers) {
-//                if([obj isKindOfClass:[DD_LoginViewController class]])
-//                {
-//                    [self.navigationController popToViewController:obj animated:YES];
-//                }
-//            }
             
         }else
         {

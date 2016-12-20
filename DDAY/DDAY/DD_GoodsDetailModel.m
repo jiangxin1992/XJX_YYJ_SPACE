@@ -37,12 +37,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_ColorsModel *_color in self.item.colors) {
-//        if([_color.colorId isEqualToString:_colorId])
-//        {
-//            return _color;
-//        }
-//    }
     return getColor;
 }
 
@@ -57,12 +51,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_ColorsModel *_color in self.item.colors) {
-//        if([_color.colorId isEqualToString:_colorId])
-//        {
-//            return _color.appUrl;
-//        }
-//    }
     return appurl;
 }
 
@@ -97,12 +85,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_ColorsModel *color in self.item.colors) {
-//        if([color.colorId isEqualToString:colorID])
-//        {
-//            return color;
-//        }
-//    }
     return getColorModel;
 }
 
@@ -138,5 +120,42 @@
         
     }
     return _timestr;
+}
+-(NSString *)getDiscountPriceStr
+{
+    NSString *_timestr=nil;
+    long _nowTime=[NSDate nowTime];
+    if(_nowTime>=self.item.saleEndTime)
+    {
+        //        已经结束
+        if(self.item.discountEnable)
+        {
+            
+            _timestr=[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[self.item.price floatValue]]];
+        }else
+        {
+            
+            _timestr=[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[self.item.originalPrice floatValue]]];
+        }
+        
+    }else
+    {
+        //        发布中
+        if([self.item.discount integerValue])
+        {
+            
+            _timestr=[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[self.item.price floatValue]]];
+            
+        }else
+        {
+            _timestr=[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[self.item.originalPrice floatValue]]];
+        }
+        
+    }
+    return _timestr;
+}
+-(NSString *)getOriginalPriceStr
+{
+    return [[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:[self.item.originalPrice floatValue]]];;
 }
 @end

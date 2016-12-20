@@ -34,17 +34,6 @@
             seriesModel.is_select=NO;
         }
     }];
-//    for (DD_DDAYModel *seriesModel in seriesArr) {
-//        
-//        if([[[regular zoneChange:seriesModel.signStartTime] getFirstTime] getTime]<=time_inv&&[[[regular zoneChange:seriesModel.saleEndTime] getFirstTime] getTime]>=time_inv)
-//        {
-//            seriesModel.is_select=YES;
-//            [arr addObject:seriesModel];
-//        }else
-//        {
-//            seriesModel.is_select=NO;
-//        }
-//    }
     
     [self sortWithArr:arr];
 //    NSInteger count = [arr count];
@@ -199,27 +188,6 @@
                     }
                 }];
                 
-//                for (DD_DDAYModel *ddayModel in seriesArr) {
-//                    long firstTime=[[[regular zoneChange:ddayModel.signStartTime] getFirstTime] getTime];
-//                    long lastTime=[[[regular zoneChange:ddayModel.saleEndTime] getFirstTime] getTime];
-//                    JXLOG(@"firstTime%@ lastTime%@",[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:firstTime] stringValue]],[Tools getShowDateByFormatAndTimeInterval:@"YYYY/MM/dd HH:mm" timeInterval:[[[NSNumber alloc] initWithLong:lastTime] stringValue]]);
-//
-//                    if(firstTime<=nowTime&&lastTime>=nowTime)
-//                    {
-//                        BOOL _have=NO;
-//                        for (DD_DDAYModel *_ddayModel in weekArr) {
-//                            if([_ddayModel.s_id isEqualToString:ddayModel.s_id])
-//                            {
-//                                _have=YES;
-//                                break;
-//                            }
-//                        }
-//                        if(!_have)
-//                        {
-//                            [weekArr addObject:ddayModel];
-//                        }
-//                    }
-//                }
             }
         }
     }
@@ -431,34 +399,6 @@
             }];
         }
     }];
-//    for (int i=0; i<dataArr.count; i++) {
-//        id mon = dataArr[i];
-//        if ([mon isKindOfClass:[DD_MonthModel class]])
-//        {
-//            DD_MonthModel *m_mon=(DD_MonthModel *)mon;
-//            NSInteger nowTime=[[m_mon.dateValue getFirstTime] getTime];
-//            for (DD_DDAYModel *ddayModel in seriesArr) {
-//                long firstTime=[[[regular zoneChange:ddayModel.signStartTime] getFirstTime] getTime];
-//                long lastTime=[[[regular zoneChange:ddayModel.saleEndTime] getFirstTime] getTime];
-//                if(firstTime<=nowTime&&lastTime>=nowTime)
-//                {
-//                    BOOL _have=NO;
-//                    for (DD_DDAYModel *_ddayModel in monthArr) {
-//                        if([_ddayModel.s_id isEqualToString:ddayModel.s_id])
-//                        {
-//                            _have=YES;
-//                            break;
-//                        }
-//                    }
-//                    if(!_have)
-//                    {
-//                        [monthArr addObject:ddayModel];
-//                    }
-//                }
-//            }
-//        }
-//        
-//    }
     
     [self sortWithArr:monthArr];
 //    NSInteger count = [monthArr count];
@@ -486,10 +426,7 @@
         [currentArr enumerateObjectsUsingBlock:^(DD_DDAYModel *ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
             [monthSArr1 removeObject:ddayModel];
         }];
-        
-//        for (DD_DDAYModel *ddayModel in currentArr) {
-//            [monthSArr1 removeObject:ddayModel];
-//        }
+
         [self sortWithArr:monthSArr1];
         [monthArr addObjectsFromArray:monthSArr1];
         return monthArr;
@@ -506,9 +443,6 @@
     [monthArr enumerateObjectsUsingBlock:^(DD_DDAYModel *ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
         ddayModel.is_select=NO;
     }];
-//    for (DD_DDAYModel *ddayModel in monthArr) {
-//        ddayModel.is_select=NO;
-//    }
 }
 +(void)sortWithArr:(NSMutableArray *)monthArr
 {

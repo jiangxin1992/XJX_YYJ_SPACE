@@ -17,10 +17,6 @@
         DD_SizeModel *_sizeModel=[DD_SizeModel mj_objectWithKeyValues:dict];
         [itemsArr addObject:_sizeModel];
     }];
-//    for (NSDictionary *dict in arr) {
-//        DD_SizeModel *_sizeModel=[DD_SizeModel mj_objectWithKeyValues:dict];
-//        [itemsArr addObject:_sizeModel];
-//    }
     return itemsArr;
 }
 

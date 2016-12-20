@@ -25,9 +25,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleCommentModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [TagsArr addObject:[self getCircleCommentModel:dict]];
-//    }
+
     return TagsArr;
 }
 /**

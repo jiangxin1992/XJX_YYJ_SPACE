@@ -10,12 +10,24 @@
 
 @interface regular : NSObject
 
+/** 用户是否打开推送开关*/
++ (BOOL)isEnableAPNS;
+
+/** 获取当前DNS*/
 + (NSString *)getDNS;
 
+/** 中国大陆手机号判断*/
 + (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
 
+/** 获取保留小数点后两位数的字符串*/
 + (NSString *)getRoundNum:(CGFloat )num;
 
+/**
+ * 获取html
+ * content 内容
+ * font 字体大小
+ * 字体颜色
+ */
 + (NSString *)getHTMLStringWithContent:(NSString *)content WithFont:(NSString *)font WithColorCode:(NSString *)color;
 
 /**
@@ -30,6 +42,7 @@
  */
 +(CGFloat )getWidthWithHeight:(CGFloat )height WithContent:(NSString *)content WithFont:(UIFont *)font;
 
+/** 获取过去时间的时间区间*/
 +(NSString *)getSpacingTime:(long)createTime;
 
 /**

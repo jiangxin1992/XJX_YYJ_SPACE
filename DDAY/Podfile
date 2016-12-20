@@ -1,4 +1,9 @@
 source ‘https://github.com/CocoaPods/Specs.git’
+
+=begin
+pod 'OLImageView', '~> 1.5.1’
+=end
+
 platform :ios, ‘7.0’
 use_frameworks!
 target “YCOSPACE” do
@@ -13,6 +18,8 @@ pod 'Qiniu', '~> 7.1’
 pod 'BlocksKit', '~> 2.2.5’
 pod 'GTSDK'
 pod 'Bugly'
+
+
 
  # 主模块(必须)
  pod 'ShareSDK3', '~> 3.5.0’

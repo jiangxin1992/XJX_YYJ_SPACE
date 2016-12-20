@@ -543,13 +543,7 @@
                 [sss removeFromSuperview];
             }
         }];
-//        for (id obj in self.view.window.subviews) {
-//            if([obj isKindOfClass:[DD_BenefitView class]])
-//            {
-//                DD_BenefitView *sss=(DD_BenefitView *)obj;
-//                [sss removeFromSuperview];
-//            }
-//        }
+
         if([type isEqualToString:@"close"])
         {
             

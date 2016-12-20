@@ -59,6 +59,7 @@
  */
 "dday_title"="发布日";
 "dday_calendar"="发布日历";
+"dday_offline_title"="报名活动";
 
 /**
  * 共享带
@@ -90,7 +91,7 @@
 "user_benefit"="优惠";
 "user_integral"="积分";
 "user_integral_title"="我的积分";
-"user_benefit_title"="我的优惠";
+"user_benefit_title"="我的优惠券";
 "user_benefit_rule"="优惠券使用规则";
 "user_integral_rule"="积分规则";
 

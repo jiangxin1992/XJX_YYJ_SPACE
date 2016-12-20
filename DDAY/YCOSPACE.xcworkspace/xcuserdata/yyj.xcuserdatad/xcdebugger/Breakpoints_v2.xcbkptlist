@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_StartViewPlayer.m"
-            timestampString = "503206326.315637"
+            filePath = "DDAY/DD_ShopAlertSizeView.m"
+            timestampString = "503940158.266525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "@implementation DD_StartViewPlayer"
-            landmarkType = "3">
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-UIConfig"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DDAY/DD_GoodsViewController.m"
-            timestampString = "503214346.398487"
+            filePath = "DDAY/DD_ShopAlertSizeView.m"
+            timestampString = "503940257.780665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-RequestData"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-chooseSizeAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

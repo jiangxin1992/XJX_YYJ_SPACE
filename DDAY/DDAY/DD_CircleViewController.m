@@ -321,15 +321,7 @@
                 *stop=YES;
             }
         }];
-//        for (int i=0; i<_dataArr.count; i++) {
-//            DD_CircleListModel *listModel=_dataArr[i];
-//            if([listModel.shareId isEqualToString:_shareId])
-//            {
-//                _is_exist=YES;
-//                _index=i;
-//                break;
-//            }
-//        }
+
         if(_is_exist)
         {
             [self PushCommentViewWithIndex:_index];

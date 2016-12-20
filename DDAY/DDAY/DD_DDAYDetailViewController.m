@@ -12,11 +12,14 @@
 #import "DD_ShopViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "DD_BenefitListViewController.h"
+#import "DD_LoginViewController.h"
+#import "DD_CustomViewController.h"
 
 #import "DD_DDAYContainerView.h"
-#import "DD_DDAYDetailView.h"
+#import "DD_DDAYDetailBar.h"
 #import "DD_ShareView.h"
 #import "DD_BenefitView.h"
+#import "DD_CustomChooseView.h"
 
 #import "DD_ShareTool.h"
 #import "DD_DDayDetailModel.h"
@@ -28,13 +31,14 @@
 
 @implementation DD_DDAYDetailViewController
 {
-    DD_DDAYDetailView *_tabBar;
+    DD_DDAYDetailBar *_tabBar;
     DD_DDayDetailModel *_detailModel;
     UIScrollView *_scrollView;
     UIView *_container;
     
     DD_ShareView *shareView;
     UIImageView *mengban;
+
 }
 
 - (void)viewDidLoad {
@@ -54,15 +58,7 @@
     }
     return self;
 }
--(instancetype)initWithBlock:(void (^)(NSString *type))block
-{
-    self=[super init];
-    if(self)
-    {
-        _block=block;
-    }
-    return self;
-}
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
@@ -72,24 +68,20 @@
 -(void)PrepareData{}
 -(void)PrepareUI
 {
-    UIView *navView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, IsPhone6_gt?200:130, 40)];
-//    navView.backgroundColor=[UIColor redColor];
+    UIView *navView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(navView.frame), CGRectGetHeight(navView.frame))];
     titleLabel.font =  [regular getSemiboldFont:IsPhone6_gt?18.0f:15.0f];
     titleLabel.textAlignment=1;
-    titleLabel.text=_model.name;
+    titleLabel.text=@"发布会";
     [navView addSubview:titleLabel];
     self.navigationItem.titleView=navView;
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
-//    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     [shopBtn bk_addEventHandler:^(id sender) {
 //        跳转购物车
         if(![DD_UserModel isLogin])
         {
-            [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                [self pushLoginView];
-            }] animated:YES completion:nil];
+            [self UpdateData];
         }else
         {
             DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
@@ -118,80 +110,101 @@
         make.width.equalTo(_scrollView);
     }];
 }
+-(void)showAPNSAlertview
+{
+    __block UIImageView *mengbanClear=[UIImageView getCustomImg];
+    [self.view.window addSubview:mengbanClear];
+    mengbanClear.image=[UIImage imageNamed:@"System_Transparent_Mask"];
+    mengbanClear.contentMode=UIViewContentModeScaleAspectFill;
+    mengbanClear.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    mengbanClear.userInteractionEnabled=YES;
+    
+    __block DD_CustomChooseView *chooseView=[[DD_CustomChooseView alloc] initWithTitle:@"通知已关闭提醒" message:@"通知为关闭状态，你可能会错过订单和重要活动的消息。\n立即去设置-通知-YCO SPACE中设置" cancelButtonTitle:@"取 消" otherButtonTitles:@"立即开启" WithBlock:^(NSString *type) {
+        if([type isEqualToString:@"cancel"])
+        {
+            [chooseView removeFromSuperview];
+            chooseView=nil;
+            [mengbanClear removeFromSuperview];
+            mengbanClear=nil;
+        }else if([type isEqualToString:@"other"])
+        {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+            }
+        }
+    }];
+    [mengbanClear addSubview:chooseView];
+    [chooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(mengbanClear);
+        make.width.mas_equalTo(295);
+    }];
+}
 -(void)CreateTabbar
 {
-    _tabBar=[[DD_DDAYDetailView alloc] initWithFrame:CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight) WithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"cancel"]||[type isEqualToString:@"join"])
+    _tabBar=[[DD_DDAYDetailBar alloc] initWithFrame:CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight) WithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"cancel"]||[type isEqualToString:@"join"])
+        if([type isEqualToString:@"join"])
         {
             if(![DD_UserModel isLogin])
             {
-                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                    [self pushLoginView];
-                }] animated:YES completion:nil];
-            }else
-            {
-                NSString *url=nil;
-                if([type isEqualToString:@"cancel"])
+                [self UpdateData];
+            }else{
+                if(![regular isEnableAPNS])
                 {
-                    url=@"series/quitSeries.do";
-                }else if([type isEqualToString:@"join"])
+                    [self showAPNSAlertview];
+                }else
                 {
-                    url=@"series/joinSeries.do";
+                    //                NSString *url=nil;
+                    //                if([type isEqualToString:@"cancel"])
+                    //                {
+                    //                    url=@"series/quitSeries.do";
+                    //                }else if([type isEqualToString:@"join"])
+                    //                {
+                    //                    url=@"series/joinSeries.do";
+                    //                }
+                    NSString *url=@"series/joinSeries.do";
+                    [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_detailModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                        if(success)
+                        {
+                            _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
+                            _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
+                            _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                            
+                            _model.isJoin=_detailModel.isJoin;
+                            _model.leftQuota=_detailModel.leftQuota;
+                            _model.isQuotaLimt=_detailModel.isQuotaLimt;
+                            
+                            _block(@"update");
+                            
+                            _tabBar.detailModel=_detailModel;
+                            [_tabBar setState];
+                            
+                            [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"设置成功!" WithType:@"success"];
+                            
+                        }else
+                        {
+                            [self presentViewController:successAlert animated:YES completion:nil];
+                        }
+                    } failure:^(NSError *error, UIAlertController *failureAlert) {
+                        [self presentViewController:failureAlert animated:YES completion:nil];
+                    }];
                 }
-                [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"seriesId":_detailModel.s_id} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-                    if(success)
-                    {
-                        _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
-                        _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                        _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
-                        
-                        _model.isJoin=_detailModel.isJoin;
-                        _model.leftQuota=_detailModel.leftQuota;
-                        _model.isQuotaLimt=_detailModel.isQuotaLimt;
-                        
-                        _block(@"update");
-                        
-                        _tabBar.detailModel=_detailModel;
-                        [_tabBar setState];
-                        
-                    }else
-                    {
-                        [self presentViewController:successAlert animated:YES completion:nil];
-                    }
-                } failure:^(NSError *error, UIAlertController *failureAlert) {
-                    [self presentViewController:failureAlert animated:YES completion:nil];
-                }];
             }
             
         }else if([type isEqualToString:@"enter_meet"])
         {
 //            进入发布会
-            if(![DD_UserModel isLogin])
-            {
-                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                    [self pushLoginView];
-                }] animated:YES completion:nil];
-            }else
-            {
-                [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
-                    
-                }] animated:YES];
-            }
+            [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
+                
+            }] animated:YES];
             
         }else if([type isEqualToString:@"check_good"])
         {
 //            查看发布品
-            if(![DD_UserModel isLogin])
-            {
-                [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-                    [self pushLoginView];
-                }] animated:YES completion:nil];
-            }else
-            {
-                [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"good" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
-                    
-                }] animated:YES];
-            }
+            [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_detailModel.s_id WithBlock:^(NSString *type) {
+                
+            }] animated:YES];
         }
         
     }];
@@ -199,6 +212,32 @@
 
 }
 #pragma mark - SomeAction
+-(void)UpdateData
+{
+    [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
+        DD_LoginViewController *_login=[[DD_LoginViewController alloc] initWithBlock:^(NSString *type) {
+            if([type isEqualToString:@"success"])
+            {
+                NSDictionary *_parameters=@{@"token":[DD_UserModel getToken],@"seriesId":_model.s_id};
+                [[JX_AFNetworking alloc] GET:@"series/querySeriesPageInfo.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+                    if(success)
+                    {
+                        _detailModel=[DD_DDayDetailModel getDDayDetailModel:[data objectForKey:@"seriesPageInfo"]];
+                        if(_tabBar)
+                        {
+                            _tabBar.detailModel=_detailModel;
+                            [_tabBar setState];
+                        }
+                    }
+                } failure:^(NSError *error, UIAlertController *failureAlert) {
+                }];
+            }
+        }];
+        [self.navigationController pushViewController:_login animated:YES];
+
+    }] animated:YES completion:nil];
+    
+}
 //蒙板消失
 -(void)mengban_dismiss
 {
@@ -252,13 +291,6 @@
                 [sss removeFromSuperview];
             }
         }];
-//        for (id obj in self.view.window.subviews) {
-//            if([obj isKindOfClass:[DD_BenefitView class]])
-//            {
-//                DD_BenefitView *sss=(DD_BenefitView *)obj;
-//                [sss removeFromSuperview];
-//            }
-//        }
         if([type isEqualToString:@"close"])
         {
             
@@ -320,18 +352,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-////跳转购物车视图
-//-(void)PushShopView
-//{
-//    if(![DD_UserModel isLogin])
-//    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-//            [self pushLoginView];
-//        }] animated:YES completion:nil];
-//    }else
-//    {
-//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-//        [self.navigationController pushViewController:_shop animated:YES];
-//    }
-//}
+
 @end

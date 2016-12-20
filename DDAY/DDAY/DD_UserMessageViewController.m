@@ -16,6 +16,7 @@
 #import "DD_CircleDetailViewController.h"
 #import "DD_OrderDetailViewController.h"
 #import "DD_GoodsDetailViewController.h"
+#import "DD_DDAYDetailOfflineViewController.h"
 
 #import "DD_UserMessageHeadView.h"
 #import "DD_UserMessageHeadCell.h"
@@ -299,9 +300,16 @@
             DD_DDAYModel *seriesModel=[[DD_DDAYModel alloc] init];
             seriesModel.s_id=[_itemModel.params objectForKey:@"seriesId"];
             seriesModel.name=[_itemModel.params objectForKey:@"seriesName"];
-            [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
-                
-            }] animated:YES];
+            if([[_itemModel.params objectForKey:@"stype"] integerValue])
+            {
+                //线下
+                [self.navigationController pushViewController:[[DD_DDAYDetailOfflineViewController alloc] initWithModel:seriesModel] animated:YES];
+            }else
+            {
+                //线上
+                [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:seriesModel WithBlock:^(NSString *type) {
+                }] animated:YES];
+            }
         }
     }else if(_itemModel.paramType==6)
     {
@@ -337,13 +345,7 @@
                         *stop=YES;
                     }
                 }];
-//                for (DD_UserMessageItemModel *itemModel in _userModel.messages) {
-//                    if(!itemModel.readStatus)
-//                    {
-//                        _all_readStatus=NO;
-//                        break;
-//                    }
-//                }
+
                 _userModel.readStatus=_all_readStatus;
                 if(_userModel.unReadMessageNumber)
                 {

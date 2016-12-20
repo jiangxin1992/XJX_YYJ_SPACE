@@ -42,17 +42,7 @@
             }];
         }
     }];
-//    for (DD_ColorsModel *_colorModel in self.colors) {
-//        if([_colorModel.colorId isEqualToString:self.colorId])
-//        {
-//            for (DD_SizeModel *_sizeModel in _colorModel.size) {
-//                if([_sizeModel.sizeId isEqualToString:sizeID])
-//                {
-//                    return _sizeModel;
-//                }
-//            }
-//        }
-//    }
+
     return sizemodel;
 }
 -(NSArray *)getPicsArr
@@ -69,16 +59,7 @@
             *stop=YES;
         }
     }];
-//    for (DD_ColorsModel *_colorModel in self.colors) {
-//        if([_colorModel.colorId isEqualToString:self.colorId])
-//        {
-//            NSMutableArray *arr=[[NSMutableArray alloc] init];
-//            for (DD_ImageModel *img in _colorModel.pics) {
-//                [arr addObject:img.pic];
-//            }
-//            return arr;
-//        }
-//    }
+
     return getArr;
 }
 
@@ -122,9 +103,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getGoodsItemModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getGoodsItemModel:dict]];
-//    }
+
     return itemsArr;
 }
 @end

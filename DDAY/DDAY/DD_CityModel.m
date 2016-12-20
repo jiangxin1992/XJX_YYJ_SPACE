@@ -15,10 +15,7 @@
     [arrdata enumerateObjectsUsingBlock:^(NSDictionary *_dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObject:[DD_CityModel getCityModel:_dict]];
     }];
-//    for (NSDictionary *_dict in arrdata) {
-//        
-//        [arr addObject:[DD_CityModel getCityModel:_dict]];
-//    }
+
     return arr;
 }
 +(DD_CityModel *)getCityModel:(NSDictionary *)dict

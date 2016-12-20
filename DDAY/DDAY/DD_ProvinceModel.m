@@ -26,10 +26,7 @@
     [arrdata enumerateObjectsUsingBlock:^(NSDictionary *_dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObject:[DD_ProvinceModel getProvinceModel:_dict]];
     }];
-//    for (NSDictionary *_dict in arrdata) {
-//        
-//         [arr addObject:[DD_ProvinceModel getProvinceModel:_dict]];
-//    }
+
     return arr;
 }
 

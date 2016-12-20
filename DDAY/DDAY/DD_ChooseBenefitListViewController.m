@@ -99,8 +99,8 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JXLOG(@"height=%lf",floor((ScreenWidth)*240.0f/750.0f));
-    return floor((ScreenWidth)*240.0f/750.0f);
+    //    JXLOG(@"height=%lf",floor((ScreenWidth)*240.0f/750.0f));
+    return 120;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

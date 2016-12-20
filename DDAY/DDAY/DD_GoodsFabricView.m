@@ -114,10 +114,6 @@
         view.hidden=!_is_show;
     }];
     
-//    for (UIView *view in viewArr) {
-//        view.hidden=!_is_show;
-//    }
-    
     if(_is_show)
     {
         [_hide uninstall];

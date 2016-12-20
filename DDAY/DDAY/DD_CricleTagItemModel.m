@@ -25,9 +25,6 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCricleTagItemModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [TagsArr addObject:[self getCricleTagItemModel:dict]];
-//    }
     return TagsArr;
 }
 @end

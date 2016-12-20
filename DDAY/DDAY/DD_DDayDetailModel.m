@@ -9,6 +9,7 @@
 #import "DD_DDayDetailModel.h"
 
 #import "DD_ImageModel.h"
+#import "DD_ShowRoomModel.h"
 
 @implementation DD_DDayDetailModel
 /**
@@ -22,13 +23,19 @@
     _DDAYModel.signEndTime=[[dict objectForKey:@"signEndTime"] longLongValue]/1000;
     _DDAYModel.saleStartTime=[[dict objectForKey:@"saleStartTime"] longLongValue]/1000;
     _DDAYModel.saleEndTime=[[dict objectForKey:@"saleEndTime"] longLongValue]/1000;
+    _DDAYModel.signStartTimeStr=[[NSString alloc] initWithFormat:@"报名开始时间 %@",[regular getTimeStr:_DDAYModel.signStartTime WithFormatter:@"YYYY/MM/dd HH:mm"]];
+    _DDAYModel.physicalStore=[DD_ShowRoomModel getShowRoomModel:[dict objectForKey:@"physicalStore"]];
+    NSInteger random_discount=arc4random()%9;
+    _DDAYModel.discount=random_discount?[[NSString alloc] initWithFormat:@"%ld折",random_discount]:@"优惠";
 //    _DDAYModel.signStartTime=_DDAYModel.signStartTime/1000;
 //    _DDAYModel.signEndTime=_DDAYModel.signEndTime/1000;
 //    _DDAYModel.saleStartTime=_DDAYModel.saleStartTime/1000;
 //    _DDAYModel.saleEndTime=_DDAYModel.saleEndTime/1000;
-//    _DDAYModel.leftQuota=12;
-//    _DDAYModel.isJoin=YES;
-//    [self testData1:_DDAYModel WithType:4];
+//    _DDAYModel.leftQuota=0;
+//    _DDAYModel.isQuotaLimt=YES;
+//    _DDAYModel.isJoin=NO;
+    
+//    [self testData:_DDAYModel WithType:0];
     return _DDAYModel;
 }
 +(void)testData_Q:(DD_DDayDetailModel *)_DDAYModel WithType:(NSInteger )type
@@ -163,9 +170,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getDDayDetailModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getDDayDetailModel:dict]];
-//    }
+
     return itemsArr;
 }
 @end

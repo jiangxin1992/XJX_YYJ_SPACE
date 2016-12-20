@@ -10,7 +10,7 @@
 
 @class DD_DDayDetailModel;
 
-@interface DD_DDAYDetailView : DD_BaseView
+@interface DD_DDAYDetailBar : DD_BaseView
 
 -(instancetype)initWithFrame:(CGRect)frame WithGoodsDetailModel:(DD_DDayDetailModel *)model WithBlock:(void (^)(NSString *type))block;
 

@@ -222,7 +222,7 @@
  */
 -(void)logout
 {
-    [[JX_AFNetworking alloc] POST:@"user/logout.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"user/v1_0_7/logout" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             [DD_UserModel logout];
@@ -236,12 +236,7 @@
                     [self.navigationController popToViewController:obj animated:YES];
                 }
             }];
-//            for (id obj in self.navigationController.viewControllers) {
-//                if([obj isKindOfClass:[DD_UserViewController class]])
-//                {
-//                    [self.navigationController popToViewController:obj animated:YES];
-//                }
-//            }
+
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];

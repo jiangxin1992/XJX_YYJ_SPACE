@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class DD_ImageModel;
+@class DD_ShowRoomModel;
 
 @interface DD_DDayDetailModel : NSObject
 
@@ -17,6 +18,9 @@
 
 /** 获取解析数组*/
 +(NSArray *)getDDayDetailModelArr:(NSArray *)arr;
+
+/** 0表示线上 1表示线下*/
+__long(stype);
 
 /** 品牌简介*/
 __string(brandBrief);
@@ -27,8 +31,14 @@ __string(brandBrief);
 /** 系列提示*/
 __string(seriesTips);
 
+/** 折扣*/
+__string(discount);
+
 /** 分享网页*/
 __string(appUrl);
+
+/** 后台编辑器网页*/
+__string(seriesBriefUrl);
 
 /** App Store下载地址*/
 __string(downLoadUrl);
@@ -66,6 +76,9 @@ __string(s_id);
 /** 系列baner封面*/
 @property (nonatomic,strong) DD_ImageModel *seriesBannerPic;
 
+/** 体验店*/
+@property (nonatomic,strong) DD_ShowRoomModel *physicalStore;
+
 /** 系列剩余名额*/
 __long(leftQuota);
 
@@ -83,5 +96,8 @@ __string(designerId);
 
 /** 设计师名*/
 __string(designerName);
+
+/** 报名开始时间str*/
+__string(signStartTimeStr);
 
 @end

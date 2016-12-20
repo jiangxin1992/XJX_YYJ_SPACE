@@ -51,15 +51,6 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<_all_data.count; i++) {
-//        DD_ProvinceModel *_p_model=_all_data[i];
-//        if([_p_model.p_id isEqualToString:_p_id])
-//        {
-//            _dataArr=_p_model.City;
-//            break;
-//        }
-//    }
-
 }
 -(void)CreateTableView
 {
@@ -126,13 +117,7 @@
             [self.navigationController popToViewController:obj animated:YES];
         }
     }];
-//    for (id _obj in self.navigationController.viewControllers) {
-//        if([_obj isKindOfClass:[DD_AddNewAddressViewController class]])
-//        {
-//            self.chooseblock(_p_id,_c_model.c_id);
-//            [self.navigationController popToViewController:_obj animated:YES];
-//        }
-//    } 
+
 }
 
 #pragma mark - Other

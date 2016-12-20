@@ -80,30 +80,7 @@
             }
         }
     }];
-//    for (int i=0; i<viewArr.count; i++) {
-//        DrawView *drawView=viewArr[i];
-//        if(selectNum==i)
-//        {
-//            if(drawView.type==1)
-//            {
-//                [drawView removeFromSuperview];
-//                [viewArr removeObjectAtIndex:i];
-//                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(2, 2) WithEndP:CGPointMake(14, 10) WithLineWidth:3 WithColorType:2];
-//                [backview addSubview:drawView];
-//                [viewArr insertObject:drawView atIndex:i];
-//            }
-//        }else
-//        {
-//            if(drawView.type==2)
-//            {
-//                [drawView removeFromSuperview];
-//                [viewArr removeObjectAtIndex:i];
-//                drawView=[[DrawView alloc] initWithFrame:CGRectMake(_x_p, i*17,16, 12) WithStartP:CGPointMake(0, 4.5) WithEndP:CGPointMake(16, 4.5) WithLineWidth:3 WithColorType:1];
-//                [backview addSubview:drawView];
-//                [viewArr insertObject:drawView atIndex:i];
-//            }
-//        }
-//    }
+
 }
 
 

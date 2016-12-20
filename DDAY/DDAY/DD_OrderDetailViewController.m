@@ -509,13 +509,7 @@
             *stop=YES;
         }
     }];
-//    for (int i=0; i<controllers.count; i++) {
-//        id obj=controllers[i];
-//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
-//        {
-//            return YES;
-//        }
-//    }
+
     return haveClear;
 }
 /**
@@ -535,18 +529,6 @@
             }
         }
     }];
-//    for (int i=0; i<controllers.count; i++) {
-//        id obj=controllers[i];
-//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
-//        {
-//            if(i)
-//            {
-//                DD_BaseViewController *base=controllers[i-1];
-//                [self.navigationController popToViewController:base animated:YES];
-//                [base pushCleaingDoneViewWithResultDic:resultDic WithType:@"detail_order_have_clearing_done"];
-//            }
-//        }
-//    }
 }
 
 
@@ -689,17 +671,6 @@
             }
         }
     }];
-//    for (int i=0; i<controllers.count; i++) {
-//        id obj=controllers[i];
-//        if([obj isKindOfClass:[DD_ClearingDoneViewController class]])
-//        {
-//            if(i)
-//            {
-//                DD_BaseViewController *base=controllers[i-1];
-//                [self.navigationController popToViewController:base animated:YES];
-//            }
-//        }
-//    }
 }
 
 /**

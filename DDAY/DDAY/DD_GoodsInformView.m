@@ -16,6 +16,7 @@
 #import "DD_GoodsItemModel.h"
 #import "DD_GoodsDesignerModel.h"
 #import "DD_GoodsDetailModel.h"
+#import "DD_GoodSeriesModel.h"
 
 #define ver_edge 16
 
@@ -106,6 +107,23 @@
  */
 -(void)CreateTitle
 {
+    BOOL _is_discount=NO;
+    long _nowTime=[NSDate nowTime];
+    if(_nowTime>=_detailModel.item.saleEndTime)
+    {
+        //        已经结束
+        if(_detailModel.item.discountEnable)
+        {
+            _is_discount=YES;
+        }
+    }else
+    {
+        //        发布中
+        if([_detailModel.item.discount integerValue])
+        {
+            _is_discount=YES;
+        }
+    }
     
     collect_btn=[UIButton getCustomImgBtnWithImageStr:@"System_Notcollection" WithSelectedImageStr:@"System_Collection"];
     [upview addSubview:collect_btn];
@@ -118,7 +136,7 @@
     }];
     [collect_btn setEnlargeEdge:20];
     
-    NSArray *titleArr=@[_detailModel.designer.brandName,_detailModel.item.itemName,[_detailModel getPriceStr]];
+    NSArray *titleArr=@[_detailModel.designer.brandName,_detailModel.item.itemName,[_detailModel getDiscountPriceStr]];
     
     [titleArr enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
         UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];
@@ -137,43 +155,55 @@
                     make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(10);
                 }else
                 {
-                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(25);
+                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(22);
                 }
-                make.right.mas_equalTo(-kEdge);
+                
             }else{
                 make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
                 make.centerY.mas_equalTo(collect_btn);
             }
         }];
+        if(idx==1)
+        {
+            if(_is_discount)
+            {
+                UIButton *discountLabel=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:[[NSString alloc] initWithFormat:@"%@折",[regular getRoundNum:[_detailModel.item.discount floatValue]]] WithNormalColor:[UIColor colorWithHexString:_detailModel.item.series.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
+                [upview addSubview:discountLabel];
+                discountLabel.backgroundColor=[UIColor colorWithHexString:_detailModel.item.series.seriesColor];
+                discountLabel.titleEdgeInsets=UIEdgeInsetsMake(0, 5, 0, 0);
+                [discountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(label.mas_right).with.offset(11);
+                    make.centerY.mas_equalTo(label);
+                    make.width.mas_equalTo(40);
+                    make.height.mas_equalTo(25);
+                }];
+                [discountLabel setBackgroundImage:[UIImage imageNamed:@"DDAY_Discountframe"] forState:UIControlStateNormal];
+            }
+        }
         titleLastView=label;
     }];
-//    for (int i=0; i<titleArr.count; i++) {
-//        UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:titleArr[i] WithFont:15.0f WithTextColor:nil WithSpacing:0];
-//        [upview addSubview:label];
-//        if(i==2)
-//        {
-//            label.font=[regular getSemiboldFont:15.0f];
-//        }
-//        label.tag=100+i;
-//        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(kEdge);
-//            
-//            if(titleLastView){
-//                if(i==1)
-//                {
-//                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(10);
-//                }else
-//                {
-//                    make.top.mas_equalTo(titleLastView.mas_bottom).with.mas_equalTo(25);
-//                }
-//                make.right.mas_equalTo(-kEdge);
-//            }else{
-//                make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
-//                make.centerY.mas_equalTo(collect_btn);
-//            }
-//        }];
-//        titleLastView=label;
-//    }
+    
+    
+    
+    if(_is_discount)
+    {
+        UILabel *originalLabel=[UILabel getLabelWithAlignment:0 WithTitle:[_detailModel getOriginalPriceStr] WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+        [upview addSubview:originalLabel];
+        [originalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleLastView.mas_right).with.offset(5);
+            make.centerY.mas_equalTo(titleLastView);
+        }];
+        
+        UIView *middleLine=[UIView getCustomViewWithColor:_define_light_gray_color1];
+        [originalLabel addSubview:middleLine];
+        [middleLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(originalLabel);
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(1);
+        }];
+        
+    }
+
 }
 /**
  * 创建颜色视图
@@ -221,45 +251,6 @@
         [_imageArr addObject:backBtn];
         lastview=backBtn;
     }];
-//    for (int i=0; i<_colorsArr.count;i++) {
-//        DD_ColorsModel *_colorModel=_colorsArr[i];
-//        
-//        UIButton *backBtn=[UIButton getCustomBtn];
-//        [upview addSubview:backBtn];
-//        backBtn.tag=200+i;
-//        [backBtn addTarget:self action:@selector(imageBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(42);
-//            make.height.mas_equalTo(20);
-//            make.top.mas_equalTo(titleLastView.mas_bottom).with.offset(18);
-//            if(lastview){
-//                make.left.mas_equalTo(lastview.mas_right).with.offset(11);
-//            }else{
-//                make.left.mas_equalTo(upview).with.offset(kEdge);
-//            }
-//            if(i==_colorsArr.count-1)
-//            {
-//                make.bottom.mas_equalTo(upview).with.offset(-28);
-//            }
-//        }];
-//        
-//        UIView *colorView=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_colorModel.colorCode]];
-//        colorView.userInteractionEnabled=NO;
-//        [backBtn addSubview:colorView];
-//        [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(backBtn).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
-//        }];
-//        
-//        UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-//        [backBtn addSubview:downLine];
-//        [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.mas_equalTo(0);
-//            make.height.mas_equalTo(1);
-//        }];
-//        
-//        [_imageArr addObject:backBtn];
-//        lastview=backBtn;
-//    }
     
 }
 #pragma mark - DownView
@@ -319,7 +310,7 @@
 //加载完成时调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        CGFloat height = [result doubleValue];
+        CGFloat height = floor([result doubleValue])+2;
         [webView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(height);
         }];
@@ -349,13 +340,6 @@
             [self setSelectState:idx];
         }
     }];
-//    for (int i=0; i<_colorArr.count; i++) {
-//        DD_ColorsModel *_color=_colorArr[i];
-//        if([_color.colorId isEqualToString:_detailModel.item.colorId])
-//        {
-//            [self setSelectState:i];
-//        }
-//    }
 }
 /**
  * 颜色按钮点击动作
@@ -408,24 +392,7 @@
             imageBtn.layer.borderWidth=0;
         }
     }];
-//    for (int i=0; i<_imageArr.count; i++) {
-//        UIButton  *imageBtn=_imageArr[i];
-//        NSArray *_color=_detailModel.item.colors;
-//        if(index==i)
-//        {
-//            imageBtn.selected=YES;
-//            [regular setBorder:imageBtn];
-//            DD_ColorsModel *_colorModel=_color[i];
-//            _detailModel.item.colorId=_colorModel.colorId;
-//            
-//        }else
-//        {
-//            imageBtn.selected=NO;
-//            imageBtn.layer.borderColor=[ _define_clear_color CGColor];
-//            imageBtn.layer.borderWidth=0;
-//        }
-//    }
-    
+
 }
 
 

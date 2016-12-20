@@ -209,69 +209,6 @@
         _last_count_view=label;
         _lastView_state=btn;
     }];
-//    for (int i=0; i<imgArr_normal.count; i++) {
-//        UIButton *btn=[UIButton getCustomImgBtnWithImageStr:imgArr_normal[i] WithSelectedImageStr:imgArr_select[i]];
-//        [_contentView addSubview:btn];
-//        btn.tag=200+i;
-//        
-//        if(i==0)
-//        {
-//            [btn setEnlargeEdgeWithTop:0 right:15 bottom:0 left:15];
-//        }else
-//        {
-//            [btn setEnlargeEdge:15];
-//        }
-//        [btn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            //            25.5 23
-//            if(_lastView_state)
-//            {
-//                make.right.mas_equalTo(_lastView_state.mas_left).with.offset(-20);
-//                make.centerY.mas_equalTo(_lastView_state);
-//                if(i==2)
-//                {
-//                    make.width.mas_equalTo(25);
-//                    make.height.mas_equalTo(23);
-//                }else
-//                {
-//                    make.height.width.mas_equalTo(25);
-//                }
-//            }else
-//            {
-//                //                make.right.mas_equalTo(-47);
-//                make.right.mas_equalTo(-kEdge);
-//                make.width.mas_equalTo(25);
-//                make.height.mas_equalTo(44);
-//                if([_listModel getTagArr].count)
-//                {
-//                    make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(8);
-//                }else
-//                {
-//                    make.top.mas_equalTo(_conentLabel.mas_bottom).with.offset(0);
-//                }
-//                
-//            }
-//        }];
-//        [userBtnArr addObject:btn];
-//        
-//        UILabel *label=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-//        [_contentView addSubview:label];
-//        label.font=[regular get_en_Font:12.0f];
-//        label.tag=300+i;
-//        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerX.mas_equalTo(btn);
-//            if(_last_count_view)
-//            {
-//                make.top.mas_equalTo(_last_count_view);
-//            }else
-//            {
-//                make.top.mas_equalTo(btn.mas_bottom).with.offset(0);
-//            }
-//        }];
-//        
-//        _last_count_view=label;
-//        _lastView_state=btn;
-//    }
     
     _timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [_contentView addSubview:_timeLabel];
@@ -414,21 +351,6 @@
             goods.hidden=YES;
         }
     }];
-//    for (int i=0; i<goodsImgArr.count; i++) {
-//        UIImageView *goods=goodsImgArr[i];
-//        
-//        UIButton *goodsPrice=(UIButton *)[self viewWithTag:150+i];
-//        if(i<count_index)
-//        {
-//            DD_OrderItemModel *_order=_listModel.items[i];
-//            [goods JX_ScaleAspectFill_loadImageUrlStr:_order.pic WithSize:400 placeHolderImageName:nil radius:0];
-//            goods.hidden=NO;
-//            [goodsPrice setTitle:[[NSString alloc] initWithFormat:@"￥%@",_order.price] forState:UIControlStateNormal];
-//        }else
-//        {
-//            goods.hidden=YES;
-//        }
-//    }
     if(_listModel.items.count>3)
     {
         moreBtn.hidden=NO;

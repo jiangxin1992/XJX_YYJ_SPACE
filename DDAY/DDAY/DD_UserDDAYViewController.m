@@ -12,6 +12,7 @@
 
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
+#import "DD_DDAYDetailOfflineViewController.h"
 
 #import "DD_UserDDAYCell.h"
 
@@ -108,7 +109,7 @@
 -(void)RequestData
 {
     NSDictionary *_parameters=@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]};
-    [[JX_AFNetworking alloc] GET:@"series/queryParticipantSeries.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"series/v1_0_7/queryParticipantSeries.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_DDAYModel getDDAYModelArr:[data objectForKey:@"series"]];
@@ -135,11 +136,11 @@
             [self presentViewController:successAlert animated:YES completion:nil];
         }
         [_tableview.mj_header endRefreshing];
-        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
         
     } failure:^(NSError *error, UIAlertController *failureAlert) {
         [_tableview.mj_header endRefreshing];
-        [_tableview.mj_header endRefreshing];
+        [_tableview.mj_footer endRefreshing];
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
@@ -187,12 +188,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
-    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"update"])
-        {
-            [_tableview reloadData];
-        }
-    }] animated:YES];
+    if(ddaymodel.stype)
+    {
+        //线下
+        [self.navigationController pushViewController:[[DD_DDAYDetailOfflineViewController alloc] initWithModel:ddaymodel] animated:YES];
+    }else
+    {
+        //线上
+        [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"update"])
+            {
+                [_tableview reloadData];
+            }
+        }] animated:YES];
+    }
+
 }
 
 #pragma mark - SomeAction

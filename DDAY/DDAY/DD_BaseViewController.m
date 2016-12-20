@@ -116,12 +116,6 @@
             *stop=YES;
         }
     }];
-//    for (UIView *subview in view.subviews) {
-//        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
-//        if (imageView) {
-//            return imageView;
-//        }
-//    }
     
     return getLine;
 }

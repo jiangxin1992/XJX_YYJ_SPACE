@@ -30,6 +30,7 @@
 {
     UIImageView *mengban=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     mengban.userInteractionEnabled=YES;
+    mengban.contentMode=UIViewContentModeScaleToFill;
     mengban.image=[UIImage imageNamed:@"System_Mask"];
     return mengban;
 }

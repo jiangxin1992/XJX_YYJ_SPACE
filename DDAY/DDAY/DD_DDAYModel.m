@@ -29,11 +29,16 @@
     _DDAYModel.saleStartDate=[regular zoneChange:_DDAYModel.saleStartTime];
     _DDAYModel.saleEndDate=[regular zoneChange:_DDAYModel.saleEndTime];
     _DDAYModel.is_select=NO;
-
+    _DDAYModel.saleTimeStr=[[NSString alloc] initWithFormat:@"%@ - %@",[regular getTimeStr:_DDAYModel.saleStartTime WithFormatter:@"YYYY.MM.dd"],[regular getTimeStr:_DDAYModel.saleEndTime WithFormatter:@"YYYY.MM.dd"]];
+//    _DDAYModel.name=@"1ddwd1d21d212ddwdqdwqwddqwdwdwqdqwdwq";
+//    _DDAYModel.seriesTips=@"纸现场：让纸约会，让纸发声";
+    NSInteger random_discount=arc4random()%9;
+    _DDAYModel.discount=random_discount?[[NSString alloc] initWithFormat:@"%ld折",random_discount]:@"优惠";
+    
 //    _DDAYModel.leftQuota=12;
 //    _DDAYModel.isJoin=NO;
 //    _DDAYModel.isQuotaLimt=YES;
-//    [self testData1:_DDAYModel WithType:0];
+//    [self testData:_DDAYModel WithType:0];
     
     return _DDAYModel;
 }
@@ -171,9 +176,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getDDAYModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getDDAYModel:dict]];
-//    }
+
     return itemsArr;
 }
 

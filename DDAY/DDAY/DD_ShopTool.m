@@ -127,12 +127,6 @@
             item.is_select=is_select;
         }];
     }];
-//    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            
-//            item.is_select=is_select;
-//        }
-//    }
 }
 +(NSString *)getAllPriceWithModel:(DD_ShopModel *)ShopModel
 {
@@ -145,15 +139,6 @@
             }
         }];
     }];
-//    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(item.is_select)
-//            {
-//                _price+=[item getPrice]*[item.number integerValue];
-//                
-//            }
-//        }
-//    }
     [ShopModel.seriesInvalid enumerateObjectsUsingBlock:^(DD_ShopSeriesModel *_SeriesModel, NSUInteger idx, BOOL * _Nonnull stop) {
         [_SeriesModel.items enumerateObjectsUsingBlock:^(DD_ShopItemModel *item, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if(item.is_select)
@@ -162,15 +147,6 @@
             }
         }];
     }];
-//    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesInvalid) {
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(item.is_select)
-//            {
-//                _price+=[item getPrice]*[item.number integerValue];
-//                
-//            }
-//        }
-//    }
     return [[NSString alloc] initWithFormat:@"总计￥%@",[regular getRoundNum:_price]];
 }
 +(NSArray *)getConfirmArrWithModel:(DD_ShopModel *)ShopModel
@@ -185,16 +161,6 @@
             }
         }];
     }];
-//    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(item.is_select)
-//            {
-//                
-//                [confrimArr addObject:@{@"itemId":item.itemId,@"colorId":item.colorId,@"colorCode":item.colorCode,@"sizeId":item.sizeId,@"number":item.number,@"price":[[NSString alloc] initWithFormat:@"%@",[regular getRoundNum:[item getPrice]]]}];
-//                
-//            }
-//        }
-//    }
     
     [ShopModel.seriesInvalid enumerateObjectsUsingBlock:^(DD_ShopSeriesModel *_SeriesModel, NSUInteger idx, BOOL * _Nonnull stop) {
         [_SeriesModel.items enumerateObjectsUsingBlock:^(DD_ShopItemModel *item, NSUInteger idx2, BOOL * _Nonnull stop2) {
@@ -204,15 +170,7 @@
             }
         }];
     }];
-//    for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesInvalid) {
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(item.is_select)
-//            {
-//                
-//                [confrimArr addObject:@{@"itemId":item.itemId,@"colorId":item.colorId,@"sizeId":item.sizeId,@"number":@"1",@"price":[[NSString alloc] initWithFormat:@"%@",[regular getRoundNum:[item getPrice]]]}];
-//            }
-//        }
-//    }
+
     return confrimArr;
     
 }
@@ -227,11 +185,7 @@
         [_SeriesModel.items enumerateObjectsUsingBlock:^(DD_ShopItemModel *item, NSUInteger idx, BOOL * _Nonnull stop) {
             item.is_select=is_select;
         }];
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            
-//            item.is_select=is_select;
-//            
-//        }
+
     }else if(section<_seriesInvalidCount)
     {
         //        处于下架处
@@ -239,10 +193,7 @@
         [_SeriesModel.items enumerateObjectsUsingBlock:^(DD_ShopItemModel *item, NSUInteger idx, BOOL * _Nonnull stop) {
             item.is_select=is_select;
         }];
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            
-//            item.is_select=is_select;
-//        }
+
     }
 }
 +(BOOL)selectAllWithModel:(DD_ShopModel *)ShopModel WithSection:(NSInteger)section
@@ -261,13 +212,7 @@
                 *stop=YES;
             }
         }];
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(!item.is_select)
-//            {
-//                _select=NO;
-//                break;
-//            }
-//        }
+
     }else if(section<_seriesInvalidCount)
     {
         //        处于下架处
@@ -279,13 +224,7 @@
                 *stop=YES;
             }
         }];
-//        for (DD_ShopItemModel *item in _SeriesModel.items) {
-//            if(!item.is_select)
-//            {
-//                _select=NO;
-//                break;
-//            }
-//        }
+
     }
     return isSelect;
 }
@@ -303,15 +242,7 @@
                 }
             }];
         }];
-//        for (DD_ShopSeriesModel *_SeriesModel in ShopModel.seriesNormal) {
-//            for (DD_ShopItemModel *item in _SeriesModel.items) {
-//                if(!item.is_select)
-//                {
-//                    return NO;
-//                    break;
-//                }
-//            }
-//        }
+
         return isSelect;
     }else
     {

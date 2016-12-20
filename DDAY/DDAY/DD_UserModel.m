@@ -244,15 +244,6 @@
                 *stop=YES;
             }
         }];
-//        for (int i=0; i<_localBenefitArr.count; i++) {
-//            NSString *obj=_localBenefitArr[i];
-//            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
-//            if([_model.benefitId isEqualToString:benefitID])
-//            {
-//                JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
-//                return _model.localRead;
-//            }
-//        }
         JXLOG(@"localReadBenefit=%@",[_default objectForKey:@"localReadBenefit"]);
         return isRead;
         
@@ -283,17 +274,6 @@
                 *stop=YES;
             }
         }];
-//        for (int i=0; i<_localBenefitArr.count; i++) {
-//            NSString *obj=_localBenefitArr[i];
-//            DD_BenefitInfoModel *_model = [DD_BenefitInfoModel mj_objectWithKeyValues:obj];
-//            if([_model.benefitId isEqualToString:benefitInfoModel.benefitId])
-//            {
-//                
-//                _have_model=YES;
-//                _model_index=i;
-//                break;
-//            }
-//        }
         if(_have_model)
         {
             [_localBenefitArr removeObjectAtIndex:_model_index];

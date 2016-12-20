@@ -12,10 +12,12 @@
 
 #import "DD_ShopViewController.h"
 #import "DD_DDAYDetailViewController.h"
+#import "DD_DDAYDetailOfflineViewController.h"
 #import "CalendarViewController.h"
 #import "DD_CustomViewController.h"
 
 #import "DD_DDAYCell.h"
+#import "DD_DDAYOfflineCell.h"
 
 #import "DD_DDAYModel.h"
 #import "DD_NOTInformClass.h"
@@ -54,10 +56,7 @@
 }
 -(void)PrepareUI
 {
-    
     self.navigationItem.titleView=[regular returnNavView:NSLocalizedString(@"dday_title", @"") withmaxwidth:200];
-    
-    
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
 //    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
@@ -127,12 +126,7 @@
         }else if([type isEqualToString:@"push_detail"])
         {
             DD_DDAYModel *ddaymodel=__dataArr[index];
-            [_dayView.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
-                if([type isEqualToString:@"update"])
-                {
-                    [__tableview reloadData];
-                }
-            }] animated:YES];
+            [_dayView enterDDAYDetailView:ddaymodel];
         }
     };
 }
@@ -156,7 +150,7 @@
 #pragma mark - RequestData
 -(void)RequestData
 {
-    [[JX_AFNetworking alloc] GET:@"series/querySeries.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+    [[JX_AFNetworking alloc] GET:@"series/v1_0_7/querySeries.do" parameters:@{@"page":[NSNumber numberWithInteger:_page],@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSArray *modelArr=[DD_DDAYModel getDDAYModelArr:[data objectForKey:@"series"]];
@@ -175,6 +169,15 @@
                 {
                     [self PushNotView:@"STARTSERIES"];
                 }
+                if([DD_NOTInformClass GET_NEWLIVESERIES_NOT_SERIESID])
+                {
+                    [self PushNotView:@"NEWLIVESERIES"];
+                }
+                if([DD_NOTInformClass GET_STARTLIVESERIES_NOT_SERIESID])
+                {
+                    [self PushNotView:@"STARTLIVESERIES"];
+                }
+                
                 [_tableview reloadData];
                 
                 
@@ -228,13 +231,32 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    static NSString *cellid=@"cell_dday";
-    DD_DDAYCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+    
+    DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
+    
+    if(ddaymodel.stype)
+    {
+        static NSString *cellOfflineID=@"cell_offline";
+        DD_DDAYOfflineCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellOfflineID];
+        if(!cell)
+        {
+            cell=[[DD_DDAYOfflineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellOfflineID];
+        }
+        
+        cell.DDAYModel=ddaymodel;
+        cell.ddayblock=ddayblock;
+        cell.index=indexPath.section;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
+    static NSString *cellDDAYID=@"cell_dday";
+    DD_DDAYCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellDDAYID];
     if(!cell)
     {
-        cell=[[DD_DDAYCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell=[[DD_DDAYCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellDDAYID];
     }
-    DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
+    
     cell.DDAYModel=ddaymodel;
     cell.ddayblock=ddayblock;
     cell.index=indexPath.section;
@@ -244,12 +266,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_DDAYModel *ddaymodel=_dataArr[indexPath.section];
-    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddaymodel WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"update"])
-        {
-            [_tableview reloadData];
-        }
-    }] animated:YES];
+    [self enterDDAYDetailView:ddaymodel];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -263,6 +280,23 @@
 }
 
 #pragma mark - SomeAction
+-(void)enterDDAYDetailView:(DD_DDAYModel *)ddayModel
+{
+    if(ddayModel.stype)
+    {
+        //线下
+        [self.navigationController pushViewController:[[DD_DDAYDetailOfflineViewController alloc] initWithModel:ddayModel] animated:YES];
+    }else
+    {
+        //线上
+        [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:ddayModel WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"update"])
+            {
+                [_tableview reloadData];
+            }
+        }] animated:YES];
+    }
+}
 /**
  * 权限发生改变
  */
@@ -274,13 +308,7 @@
         [self RequestData];
     }
 }
-///**
-// * 跳转日历
-// */
-//-(void)PushCalendarView
-//{
-//    [self.navigationController pushViewController:[[CalendarViewController alloc] init] animated:YES];
-//}
+
 /**
  * 发布日详情页
  */
@@ -306,32 +334,22 @@
         }else if([type isEqualToString:@"STARTSERIES"])
         {
             _seriesId=[DD_NOTInformClass GET_STARTSERIES_NOT_SERIESID];
+        }else if ([type isEqualToString:@"NEWLIVESERIES"])
+        {
+            _seriesId=[DD_NOTInformClass GET_NEWLIVESERIES_NOT_SERIESID];
+        }else if([type isEqualToString:@"STARTLIVESERIES"])
+        {
+            _seriesId=[DD_NOTInformClass GET_STARTLIVESERIES_NOT_SERIESID];
         }
+        
         if(_seriesId)
         {
             [_dataArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddaymodel, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([_ddaymodel.s_id isEqualToString:_seriesId])
                 {
-                    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:_ddaymodel WithBlock:^(NSString *type) {
-                        if([type isEqualToString:@"update"])
-                        {
-                            [_tableview reloadData];
-                        }
-                    }] animated:YES];
+                    [self enterDDAYDetailView:_ddaymodel];
                 }
             }];
-//            for (DD_DDAYModel *_ddaymodel in _dataArr) {
-//                
-//                if([_ddaymodel.s_id isEqualToString:_seriesId])
-//                {
-//                    [self.navigationController pushViewController:[[DD_DDAYDetailViewController alloc] initWithModel:_ddaymodel WithBlock:^(NSString *type) {
-//                        if([type isEqualToString:@"update"])
-//                        {
-//                            [_tableview reloadData];
-//                        }
-//                    }] animated:YES];
-//                }
-//            }
         }
         if([type isEqualToString:@"NEWSERIES"])
         {
@@ -339,6 +357,12 @@
         }else if([type isEqualToString:@"STARTSERIES"])
         {
             [DD_NOTInformClass REMOVE_STARTSERIES_NOT_SERIESID];
+        }else if ([type isEqualToString:@"NEWLIVESERIES"])
+        {
+            [DD_NOTInformClass REMOVE_NEWLIVESERIES_NOT_SERIESID];
+        }else if([type isEqualToString:@"STARTLIVESERIES"])
+        {
+            [DD_NOTInformClass REMOVE_STARTLIVESERIES_NOT_SERIESID];
         }
         
     }
@@ -402,29 +426,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-////跳转购物车
-//-(void)PushShopView
-//{
-//    if(![DD_UserModel isLogin])
-//    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-//            [self pushLoginView];
-//        }] animated:YES completion:nil];
-//    }else
-//    {
-//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-//        [self.navigationController pushViewController:_shop animated:YES];
-//    }
-//}
-////section头部间距
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 1;//section头部高度
-//}
-////section头部视图
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    return [regular getViewForSection];
-//}
-//section底部间距
 @end

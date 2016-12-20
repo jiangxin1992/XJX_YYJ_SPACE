@@ -163,32 +163,6 @@
             
         }];
         
-//        for (int i=0; i<_circleModel.chooseItem.count; i++) {
-//            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
-//            
-//            UIView *backView=[UIView getCustomViewWithColor:nil];
-//            [_scrollView addSubview:backView];
-//            backView.frame=CGRectMake(_x_p, 0, _width, _width);
-//            
-//            UIImageView *imgView=[UIImageView getCustomImg];
-//            [backView addSubview:imgView];
-//            imgView.contentMode=2;
-//            [regular setZeroBorder:imgView];
-//            imgView.userInteractionEnabled=YES;
-//            imgView.frame=CGRectMake(0, 16, _width-16, _width-16);
-//            [imgView JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
-//            
-//            UIButton *deleteBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Delete" WithSelectedImageStr:nil];
-//            [backView addSubview:deleteBtn];
-//            deleteBtn.tag=150+i;
-//            [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
-//            [deleteBtn setEnlargeEdge:10];
-//            deleteBtn.frame=CGRectMake(CGRectGetWidth(backView.frame)-25-3.5, 3.5, 25, 25);
-//            
-//            _x_p+=_width+intes;
-//            
-//            [btnArr addObject:backView];
-//        }
     }else
     {
         [_downView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -207,9 +181,7 @@
     [btnArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         [view removeFromSuperview];
     }];
-//    for (UIView *view in btnArr) {
-//        [view removeFromSuperview];
-//    }
+
     [self CreateScrollView];
 }
 /**

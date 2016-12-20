@@ -34,9 +34,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getShopSeriesModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getShopSeriesModel:dict]];
-//    }
+
     return itemsArr;
 }
 +(void)testDate:(DD_ShopSeriesModel *)_ShopItemModel

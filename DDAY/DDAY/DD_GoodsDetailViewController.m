@@ -73,6 +73,8 @@ __bool(isExpanded);
     DD_GoodsK_POINTView *_K_PonitView;//YCO SPACE 体验店
     DD_GoodsSimilarView *_SimilarView;//相似款式
     
+    DD_GoodsTabBar *tabbar;
+    
     UIPageViewController *_pageViewControler;//单品图片浏览
     DD_DrawManageView *ManageView;//自定义pageControler
     
@@ -228,6 +230,7 @@ __bool(isExpanded);
         {
 //            颜色（款式）选择之后的回调
             [self CreateImgScreenView];
+            [tabbar setState];
         }else if([type isEqualToString:@"collect"])
         {
             if(![DD_UserModel isLogin])
@@ -443,21 +446,27 @@ __bool(isExpanded);
 }
 -(void)CreateTabbar
 {
-    DD_GoodsTabBar *tabbar=[[DD_GoodsTabBar alloc] initWithItem:_DetailModel.item WithBlock:^(NSString *type) {
-        if([type isEqualToString:@"buy"])
-        {
-            [self Shop_Buy_Action:@"buy"];
-        }else if([type isEqualToString:@"sold_out"])
-        {
-            [self presentViewController:[regular alertTitle_Simple:@"该商品已下架"] animated:YES completion:nil];
-        }
-    }];
-    [self.view addSubview:tabbar];
-    [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-    }];
-    
+    if(!tabbar)
+    {
+        tabbar=[[DD_GoodsTabBar alloc] initWithColorModel:[_DetailModel getColorsModel] WithBlock:^(NSString *type) {
+            if([type isEqualToString:@"buy"])
+            {
+                [self Shop_Buy_Action:@"buy"];
+            }else if([type isEqualToString:@"cannot_buy"])
+            {
+                JXLOG(@"兄弟 买不了了");
+            }
+        }];
+        [self.view addSubview:tabbar];
+        [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+        }];
+    }else
+    {
+        tabbar.colorModel=[_DetailModel getColorsModel];
+        [tabbar setState];
+    }
 }
 #pragma mark - RequestData
 -(void)RequestData
@@ -633,6 +642,7 @@ __bool(isExpanded);
             {
                 if(!mengban)
                 {
+//                    [_detailModel getDiscountPriceStr]
                     DD_SizeAlertModel *sizeAlertModel=[DD_SizeAlertModel getSizeAlertModel:data];
                     
                     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -642,7 +652,7 @@ __bool(isExpanded);
                     [mengban bk_whenTapped:^{
                         [self mengban_dismiss];
                     }];
-                    sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
+                    sizeView=[[DD_ChooseSizeView alloc] initWithColorModel:_colorModel WithPrice:[_DetailModel getDiscountPriceStr] WithSizeAlertModel:sizeAlertModel WithBlock:^(NSString *type,NSString *sizeid,NSString *colorid,NSInteger count) {
                         if([type isEqualToString:@"shop"]||[type isEqualToString:@"buy"])
                         {
                             
@@ -685,7 +695,7 @@ __bool(isExpanded);
                         
                     }];
                     [mengban addSubview:sizeView];
-                    _mengban_size_Height=[DD_ChooseSizeView getHeightWithColorModel:_colorModel WithSizeAlertModel:sizeAlertModel];
+                    _mengban_size_Height=[DD_ChooseSizeView getHeightWithColorModel:_colorModel WithPrice:[_DetailModel getDiscountPriceStr] WithSizeAlertModel:sizeAlertModel];
                     sizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
                     [UIView animateWithDuration:0.5 animations:^{
                         sizeView.frame=CGRectMake(0, ScreenHeight-_mengban_size_Height, ScreenWidth, _mengban_size_Height);
@@ -850,13 +860,6 @@ __bool(isExpanded);
             }
         }];
         
-//        for (id obj in self.view.window.subviews) {
-//            if([obj isKindOfClass:[DD_BenefitView class]])
-//            {
-//                DD_BenefitView *sss=(DD_BenefitView *)obj;
-//                [sss removeFromSuperview];
-//            }
-//        }
         if([type isEqualToString:@"close"])
         {
             

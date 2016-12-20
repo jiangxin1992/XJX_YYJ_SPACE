@@ -40,9 +40,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [TagsArr addObject:[self getCircleTagModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [TagsArr addObject:[self getCircleTagModel:dict]];
-//    }
+
     return TagsArr;
 }
 -(void )updateLastSelect
@@ -56,14 +54,7 @@
             *stop=YES;
         }
     }];
-//    for (DD_CricleTagItemModel *item in self.tags) {
-//        if(item.is_select)
-//        {
-//            self.lastItem=item;
-//            isExist=YES;
-//            break;
-//        }
-//    }
+
     if(!isExist)
     {
         self.lastItem=nil;

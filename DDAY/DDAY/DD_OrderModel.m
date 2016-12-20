@@ -25,9 +25,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getOrderModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getOrderModel:dict]];
-//    }
+
     return itemsArr;
 }
 -(NSArray *)getBuyItems
@@ -41,15 +39,7 @@
                              ,@"number":[NSNumber numberWithLong:_item.itemCount]
                              ,@"price":_item.price}];
     }];
-//    for (DD_OrderItemModel *_item in self.itemList) {
-//        [mut_arr addObject:@{
-//                             @"itemId":_item.itemId
-//                             ,@"colorId":_item.colorId
-//                             ,@"sizeId":_item.sizeId
-//                             ,@"number":[NSNumber numberWithLong:_item.itemCount]
-//                             ,@"price":_item.price}];
-//        
-//    }
+
     return mut_arr;
 }
 -(BOOL )isSingle

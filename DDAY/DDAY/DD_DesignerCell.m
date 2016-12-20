@@ -163,9 +163,7 @@
     [_scrollview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-//    for (UIView *view in _scrollview.subviews) {
-//        [view removeFromSuperview];
-//    }
+
     if(Designer.items.count)
     {
         [_scrollview mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -189,24 +187,7 @@
                 _x_p+=_width;
             }
         }];
-//        for (int i=0; i<Designer.items.count; i++) {
-//            DD_ImageModel *imgModel=Designer.items[i];
-//            NSString *imgStr=imgModel.pic;
-//            UIImageView *img=[UIImageView getCustomImg];
-//            [_scrollview addSubview:img];
-//            img.contentMode=2;
-//            [regular setZeroBorder:img];
-//            [img JX_ScaleAspectFill_loadImageUrlStr:imgStr WithSize:800 placeHolderImageName:nil radius:0];
-//            CGFloat _width=([imgModel.width floatValue]/[imgModel.height floatValue])*236;
-//            img.frame=CGRectMake(_x_p, 0, _width, 236);
-//            if(i<Designer.items.count-1)
-//            {
-//                _x_p+=17+_width;
-//            }else
-//            {
-//                _x_p+=_width;
-//            }
-//        }
+
         _scrollview.contentSize=CGSizeMake(_x_p,CGRectGetHeight(_scrollview.frame));
         
     }else

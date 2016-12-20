@@ -333,9 +333,7 @@
                 [_scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [obj removeFromSuperview];
                 }];
-//                for (UIView *view in _scrollView.subviews) {
-//                    [view removeFromSuperview];
-//                }
+
                 NSString *nav_title=@"";
                 if(_CircleModel.status==-1)
                 {
@@ -541,7 +539,7 @@
     //设置选取器类型
     picker.sourceType = type;
     //编辑
-    picker.allowsEditing = NO;
+    picker.allowsEditing = YES;
     if ([picker.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
         
@@ -559,23 +557,12 @@
                 
             }
         }];
-        
-//        for (id obj in list) {
-//            if ([obj isKindOfClass:[UIImageView class]]) {
-//                UIImageView *imageView=(UIImageView *)obj;
-//                NSArray *list2=imageView.subviews;
-//                for (id obj2 in list2) {
-//                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-//                        UIImageView *imageView2=(UIImageView *)obj2;
-//                        imageView2.hidden=YES;
-//                    }
-//                }
-//            }
-//        }
     }
     //弹出
     [self presentViewController:picker animated:YES completion:nil];
+
 }
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [regular dismissKeyborad];
@@ -633,6 +620,10 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picke
+{
+    [picke dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];

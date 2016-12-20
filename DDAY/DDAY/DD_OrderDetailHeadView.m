@@ -401,6 +401,8 @@
         }
     }];
     
+    [regular dispatch_cancel:_timer];
+    _timer=nil;
     if(_status==0)
     {
         //代付款

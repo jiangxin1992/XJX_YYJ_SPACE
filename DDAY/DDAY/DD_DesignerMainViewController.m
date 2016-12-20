@@ -177,14 +177,7 @@
                 currentPage=_btn.tag-100;
             }
         }];
-//        for (UIButton *_btn in btnarr) {
-//            _btn.selected=NO;
-//            if(_btn.tag==100)
-//            {
-//                _btn.selected=YES;
-//                currentPage=_btn.tag-100;
-//            }
-//        }
+
         [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
         dibu.frame=_rect_left;
     }
@@ -230,14 +223,6 @@
                 currentPage=_btn.tag-100;
             }
         }];
-//        for (UIButton *_btn in btnarr) {
-//            _btn.selected=NO;
-//            if(_btn.tag==btn.tag)
-//            {
-//                _btn.selected=YES;
-//                currentPage=_btn.tag-100;
-//            }
-//        }
     }else if(btn.tag-100==1)
     {
         
@@ -285,14 +270,6 @@
                     currentPage=_btn.tag-100;
                 }
             }];
-//            for (UIButton *_btn in btnarr) {
-//                _btn.selected=NO;
-//                if(_btn.tag==btn.tag)
-//                {
-//                    _btn.selected=YES;
-//                    currentPage=_btn.tag-100;
-//                }
-//            }
         }
     }
 }

@@ -46,133 +46,65 @@
         make.height.mas_equalTo(_height_s_img);
     }];
     
-    UIView *timeBackView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:timeBackView];
-    [timeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UILabel *brandLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.name WithFont:15.0f WithTextColor:_define_black_color WithSpacing:0];
+    [self addSubview:brandLabel];
+    [brandLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(seriesImg.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(seriesImg.mas_bottom).with.offset(18);
     }];
     
-    NSString *_s_year=[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY"];
-    NSString *_e_year=[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY"];
-
-    for (int i=0; i<2; i++) {
-        UILabel *timelabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"HH : mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"MM . dd"] WithFont:i==0?15:18 WithTextColor:nil WithSpacing:0];
-        [timeBackView addSubview:timelabel];
-        timelabel.font=[regular get_en_Font:i==0?15:18];
-        CGFloat _width=[regular getWidthWithHeight:34 WithContent:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"HH : mm"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"MM . dd"] WithFont:[regular get_en_Font:18.0f]];
-        [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(60);
-            if(i==0)
-            {
-                make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-28);
-                make.bottom.mas_equalTo(0);
-                
-            }else
-            {
-                make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(28);
-                make.bottom.mas_equalTo(0);
-            }
-            make.width.mas_equalTo(_width);
-            
-        }];
-        
-        
-        UILabel *daylabel=[UILabel getLabelWithAlignment:i==0?2:0 WithTitle:i==0?[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"MM . dd"]:[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"HH : mm"] WithFont:i==0?18:15 WithTextColor:nil WithSpacing:0];
-        [timeBackView addSubview:daylabel];
-        daylabel.font=[regular get_en_Font:i==0?18:15];
-        [daylabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(60);
-            if(i==0)
-            {
-                make.right.mas_equalTo(timelabel.mas_left).with.offset(-10);
-                make.bottom.mas_equalTo(0);
-            }else
-            {
-                make.left.mas_equalTo(timelabel.mas_right).with.offset(10);
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-//        [daylabel sizeToFit];
-        
-        //        今年
-        //        横跨两个年
-        //        没横跨 但是不是今年
-//        if(_s_start_year!=_e_start_year)
-//        {
-            //            横跨
-            NSString *_year=i==0?_s_year:_e_year;
-            UILabel *yearLabel=[UILabel getLabelWithAlignment:1 WithTitle:_year WithFont:18.0f WithTextColor:nil WithSpacing:0];
-            [timeBackView addSubview:yearLabel];
-            yearLabel.font=[regular get_en_Font:14.0f];
-            [yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                if(i==0)
-                {
-                    make.right.mas_equalTo(timeBackView.mas_centerX).with.offset(-28);
-                }else
-                {
-                    make.left.mas_equalTo(timeBackView.mas_centerX).with.offset(28);
-                }
-                make.top.mas_equalTo(2);
-                make.height.mas_equalTo(58);
-            }];
-            
-//        }else
-//        {
-//            if(_s_start_year==_now_year)
-//            {
-//                //                今年
-//                
-//            }else
-//            {
-//                if(i==0)
-//                {
-//                    //                没横跨 但是不是今年
-//                    UILabel *yearLabel=[UILabel getLabelWithAlignment:1 WithTitle:_s_year WithFont:18.0f WithTextColor:nil WithSpacing:0];
-//                    [timeBackView addSubview:yearLabel];
-//                    yearLabel.font=[regular get_en_Font:18.0f];
-//                    [yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//                        make.centerX.mas_equalTo(timeBackView);
-//                        make.top.mas_equalTo(0);
-//                        make.height.mas_equalTo(34);
-//                    }];
-//                }
-//                
-//            }
-//        }
-        
-    }
-    
-    
-    UIView *timeMiddleLine=[UIView getCustomViewWithColor:_define_black_color];
-    [timeBackView addSubview:timeMiddleLine];
-    [timeMiddleLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(timeBackView.mas_centerY).with.offset(30);
-        make.centerX.mas_equalTo(timeBackView);
-        make.height.mas_equalTo(5);
-        make.width.mas_equalTo(16);
-    }];
-
-    UILabel *seriesTipsLabel=[UILabel getLabelWithAlignment:1 WithTitle:_detailModel.seriesTips WithFont:12.0f WithTextColor:nil WithSpacing:0];
-    [self addSubview:seriesTipsLabel];
-    [seriesTipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    UILabel *ddayTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:_detailModel.seriesTips WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    [self addSubview:ddayTitleLabel];
+    [ddayTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        if([NSString isNilOrEmpty:_detailModel.seriesTips])
-        {
-            make.top.mas_equalTo(timeBackView.mas_bottom).with.offset(0);
-        }else
-        {
-            make.top.mas_equalTo(timeBackView.mas_bottom).with.offset(19);
-        }
-        
+        make.top.mas_equalTo(brandLabel.mas_bottom).with.offset(9);
     }];
+    
+    UILabel *activeLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"线上发布会" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+    [self addSubview:activeLabel];
+    activeLabel.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
+    [activeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.top.mas_equalTo(ddayTitleLabel.mas_bottom).with.offset(18);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(21);
+    }];
+    
+//    UIButton *discountButton=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:13.0f WithSpacing:0 WithNormalTitle:_detailModel.discount WithNormalColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithSelectedTitle:nil WithSelectedColor:nil];
+//    [self addSubview:discountButton];
+//    discountButton.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
+//    [discountButton setBackgroundImage:[UIImage imageNamed:@"DDAY_Discountframe"] forState:UIControlStateNormal];
+////    discountButton
+//    [discountButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(activeLabel.mas_right).with.offset(11);
+//        make.centerY.mas_equalTo(activeLabel);
+//        make.height.mas_equalTo(21);
+//        make.width.mas_equalTo(45);
+//    }];
+    
+    UIImageView *timeImg=[UIImageView getImgWithImageStr:@"DDAY_Black_Clock"];
+    [self addSubview:timeImg];
+    [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.height.width.mas_equalTo(15);
+        make.top.mas_equalTo(activeLabel.mas_bottom).with.offset(20);
+    }];
+    
+    UILabel *timeLabel=[UILabel getLabelWithAlignment:0 WithTitle:[[NSString alloc] initWithFormat:@"%@ - %@",[regular getTimeStr:_detailModel.saleStartTime WithFormatter:@"YYYY.MM.dd"],[regular getTimeStr:_detailModel.saleEndTime WithFormatter:@"YYYY.MM.dd"]] WithFont:13.0f WithTextColor:_define_black_color WithSpacing:0];
+    [self addSubview:timeLabel];
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(timeImg.mas_right).with.offset(15);
+        make.right.mas_equalTo(-kEdge);
+        make.centerY.mas_equalTo(timeImg);
+    }];
+
     
     UIView *upline=[UIView getCustomViewWithColor:[UIColor colorWithHexString:_detailModel.seriesColor]];
     [self addSubview:upline];
     [upline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(seriesTipsLabel.mas_bottom).with.offset(28);
+        make.top.mas_equalTo(timeLabel.mas_bottom).with.offset(20);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(4);
 
@@ -300,7 +232,7 @@
 //加载完成时调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        CGFloat height = [result doubleValue];
+        CGFloat height = floor([result doubleValue])+2;
         [webView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(height);
         }];

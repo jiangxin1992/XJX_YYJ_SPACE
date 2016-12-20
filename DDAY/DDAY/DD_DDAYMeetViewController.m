@@ -65,7 +65,7 @@
 
     if([_Type isEqualToString:@"meet"])
     {
-        self.navigationItem.titleView=[regular returnNavView:@"发布会" withmaxwidth:200];
+        self.navigationItem.titleView=[regular returnNavView:@"发布品" withmaxwidth:200];
     }else if([_Type isEqualToString:@"good"])
     {
         self.navigationItem.titleView=[regular returnNavView:@"发布品" withmaxwidth:200];

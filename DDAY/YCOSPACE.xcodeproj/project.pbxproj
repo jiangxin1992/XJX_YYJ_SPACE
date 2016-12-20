@@ -49,6 +49,7 @@
 		3F2309981DF93B3600CA1E10 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2309971DF93B3600CA1E10 /* AVPlayerManager.m */; };
 		3F23099B1DF945CC00CA1E10 /* DD_StartViewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */; };
 		3F23A96D1CEF1A6F00579A3B /* DD_baseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23A96C1CEF1A6F00579A3B /* DD_baseModel.m */; };
+		3F2461911E08B43F00F18A44 /* DD_CustomChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2461901E08B43F00F18A44 /* DD_CustomChooseView.m */; };
 		3F24B28D1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F24B28C1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.m */; };
 		3F24B2921DCCBD080050C2F3 /* DD_IntegralTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F24B2911DCCBD080050C2F3 /* DD_IntegralTitleCell.m */; };
 		3F2DDAB81DCC32D60094C841 /* DD_BenefitHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DDAB71DCC32D60094C841 /* DD_BenefitHeadView.m */; };
@@ -139,10 +140,11 @@
 		3F49389B1D0EAF21000D213B /* DD_UserCollectItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4938991D0EAF21000D213B /* DD_UserCollectItemViewController.m */; };
 		3F4938A11D0EB2E0000D213B /* DD_UserCollectCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F49389F1D0EB2E0000D213B /* DD_UserCollectCircleViewController.m */; };
 		3F4938A71D0EB70F000D213B /* DD_UserDDAYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4938A51D0EB70F000D213B /* DD_UserDDAYViewController.m */; };
+		3F4A29151E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4A29141E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.m */; };
 		3F4B7F741D3DB52300E34B98 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B7F731D3DB52300E34B98 /* UIColor+Hex.m */; };
 		3F4B81CD1D004FA100B323E4 /* DD_DDAYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8AEA1CEF5625008EC460 /* DD_DDAYViewController.m */; };
 		3F4B81D21D0052CB00B323E4 /* DD_DDAYDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D01D0052CB00B323E4 /* DD_DDAYDetailViewController.m */; };
-		3F4B81D61D0058B400B323E4 /* DD_DDAYDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */; };
+		3F4B81D61D0058B400B323E4 /* DD_DDAYDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D51D0058B400B323E4 /* DD_DDAYDetailBar.m */; };
 		3F4B81D91D0058D900B323E4 /* DD_DDayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */; };
 		3F4B81E11D0115D800B323E4 /* DD_DDAYMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */; };
 		3F5003471D9E3152001551C1 /* DD_StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5003451D9E3152001551C1 /* DD_StartViewController.m */; };
@@ -245,6 +247,9 @@
 		3F8E76781D1BCE4100722FDA /* DD_CircleApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */; };
 		3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */; };
 		3F93D1DE1DFE394100749789 /* loading.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3F93D1DD1DFE394100749789 /* loading.mp4 */; };
+		3F93D1E31DFE7F5E00749789 /* DD_DDAYOfflineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F93D1E21DFE7F5E00749789 /* DD_DDAYOfflineCell.m */; };
+		3F93D1E61DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F93D1E51DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.m */; };
+		3F93D1ED1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F93D1EC1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m */; };
 		3F9810E91DB86B2000E84EAE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9810E81DB86B2000E84EAE /* MediaPlayer.framework */; };
 		3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */; };
 		3F9B8AD81CEF559C008EC460 /* DD_UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B8AD61CEF559C008EC460 /* DD_UserViewController.m */; };
@@ -303,6 +308,7 @@
 		3FD02DBB1D50F06800E9D6EB /* DD_ShopAlertSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */; };
 		3FD20D961D92B7AF0030FCCA /* Waterflow.a in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E58B21D40666F000FDE5F /* Waterflow.a */; };
 		3FD74B681CF445B400C10C32 /* DD_SetAddressBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */; };
+		3FD788DC1E00E4620062859D /* DD_DDAYOfflineDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD788DB1E00E4620062859D /* DD_DDAYOfflineDetailBar.m */; };
 		3FE8D7B41DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */; };
 		3FE98D821DC8767B00F273E8 /* 图层-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE98D501DC8767B00F273E8 /* 图层-10@2x.png */; };
 		3FE98D831DC8767B00F273E8 /* 图层-11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE98D511DC8767B00F273E8 /* 图层-11@2x.png */; };
@@ -468,6 +474,8 @@
 		3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_StartViewPlayer.m; sourceTree = "<group>"; };
 		3F23A96B1CEF1A6F00579A3B /* DD_baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_baseModel.h; sourceTree = "<group>"; };
 		3F23A96C1CEF1A6F00579A3B /* DD_baseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_baseModel.m; sourceTree = "<group>"; };
+		3F24618F1E08B43F00F18A44 /* DD_CustomChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CustomChooseView.h; sourceTree = "<group>"; };
+		3F2461901E08B43F00F18A44 /* DD_CustomChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CustomChooseView.m; sourceTree = "<group>"; };
 		3F24B28B1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserMessageDDAYCell.h; sourceTree = "<group>"; };
 		3F24B28C1DCCA9F40050C2F3 /* DD_UserMessageDDAYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserMessageDDAYCell.m; sourceTree = "<group>"; };
 		3F24B2901DCCBD080050C2F3 /* DD_IntegralTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_IntegralTitleCell.h; sourceTree = "<group>"; };
@@ -713,12 +721,14 @@
 		3F49389F1D0EB2E0000D213B /* DD_UserCollectCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserCollectCircleViewController.m; sourceTree = "<group>"; };
 		3F4938A41D0EB70F000D213B /* DD_UserDDAYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_UserDDAYViewController.h; sourceTree = "<group>"; };
 		3F4938A51D0EB70F000D213B /* DD_UserDDAYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_UserDDAYViewController.m; sourceTree = "<group>"; };
+		3F4A29131E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYOffllineApplyViewController.h; sourceTree = "<group>"; };
+		3F4A29141E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYOffllineApplyViewController.m; sourceTree = "<group>"; };
 		3F4B7F721D3DB52300E34B98 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		3F4B7F731D3DB52300E34B98 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		3F4B81CF1D0052CB00B323E4 /* DD_DDAYDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYDetailViewController.h; sourceTree = "<group>"; };
 		3F4B81D01D0052CB00B323E4 /* DD_DDAYDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYDetailViewController.m; sourceTree = "<group>"; };
-		3F4B81D41D0058B400B323E4 /* DD_DDAYDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYDetailView.h; sourceTree = "<group>"; };
-		3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYDetailView.m; sourceTree = "<group>"; };
+		3F4B81D41D0058B400B323E4 /* DD_DDAYDetailBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYDetailBar.h; sourceTree = "<group>"; };
+		3F4B81D51D0058B400B323E4 /* DD_DDAYDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYDetailBar.m; sourceTree = "<group>"; };
 		3F4B81D71D0058D900B323E4 /* DD_DDayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDayDetailModel.h; sourceTree = "<group>"; };
 		3F4B81D81D0058D900B323E4 /* DD_DDayDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDayDetailModel.m; sourceTree = "<group>"; };
 		3F4B81DE1D0115D800B323E4 /* DD_DDAYMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYMeetViewController.h; sourceTree = "<group>"; };
@@ -915,6 +925,12 @@
 		3F9291B01D66F9B300FD7EE2 /* DD_AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AboutViewController.h; sourceTree = "<group>"; };
 		3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AboutViewController.m; sourceTree = "<group>"; };
 		3F93D1DD1DFE394100749789 /* loading.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loading.mp4; sourceTree = "<group>"; };
+		3F93D1E11DFE7F5E00749789 /* DD_DDAYOfflineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYOfflineCell.h; sourceTree = "<group>"; };
+		3F93D1E21DFE7F5E00749789 /* DD_DDAYOfflineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYOfflineCell.m; sourceTree = "<group>"; };
+		3F93D1E41DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYDetailOfflineViewController.h; sourceTree = "<group>"; };
+		3F93D1E51DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYDetailOfflineViewController.m; sourceTree = "<group>"; };
+		3F93D1EB1DFE9B9100749789 /* DD_DDAYOfflineContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYOfflineContainerView.h; sourceTree = "<group>"; };
+		3F93D1EC1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYOfflineContainerView.m; sourceTree = "<group>"; };
 		3F9810E81DB86B2000E84EAE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3F9B8ABB1CEF1E84008EC460 /* DD_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_AddressModel.h; sourceTree = "<group>"; };
 		3F9B8ABC1CEF1E84008EC460 /* DD_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddressModel.m; sourceTree = "<group>"; };
@@ -1029,6 +1045,8 @@
 		3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ShopAlertSizeView.m; sourceTree = "<group>"; };
 		3FD74B661CF445B400C10C32 /* DD_SetAddressBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_SetAddressBtn.h; sourceTree = "<group>"; };
 		3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_SetAddressBtn.m; sourceTree = "<group>"; };
+		3FD788DA1E00E4620062859D /* DD_DDAYOfflineDetailBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_DDAYOfflineDetailBar.h; sourceTree = "<group>"; };
+		3FD788DB1E00E4620062859D /* DD_DDAYOfflineDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_DDAYOfflineDetailBar.m; sourceTree = "<group>"; };
 		3FE8D7B21DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ChooseBenefitListViewController.h; sourceTree = "<group>"; };
 		3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ChooseBenefitListViewController.m; sourceTree = "<group>"; };
 		3FE98D501DC8767B00F273E8 /* 图层-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图层-10@2x.png"; sourceTree = "<group>"; };
@@ -1637,8 +1655,8 @@
 		3F3C3F061CFEBCC70056CD6B /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				3F3C3EFF1CFEBCB00056CD6B /* DD_DDAYCell.h */,
-				3F3C3F001CFEBCB00056CD6B /* DD_DDAYCell.m */,
+				3F93D1E01DFE7F3000749789 /* 线下 */,
+				3F93D1DF1DFE7F2700749789 /* 线上 */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -2113,22 +2131,10 @@
 		3F4B81CE1D0052A700B323E4 /* 发布日详情 */ = {
 			isa = PBXGroup;
 			children = (
-				3F4B81DA1D005A9F00B323E4 /* CustomView */,
-				3F4B81CF1D0052CB00B323E4 /* DD_DDAYDetailViewController.h */,
-				3F4B81D01D0052CB00B323E4 /* DD_DDAYDetailViewController.m */,
+				3F93D1E91DFE9AEC00749789 /* 线下 */,
+				3F93D1E81DFE9AE400749789 /* 线上 */,
 			);
 			name = "发布日详情";
-			sourceTree = "<group>";
-		};
-		3F4B81DA1D005A9F00B323E4 /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-				3F4B81D41D0058B400B323E4 /* DD_DDAYDetailView.h */,
-				3F4B81D51D0058B400B323E4 /* DD_DDAYDetailView.m */,
-				3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */,
-				3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */,
-			);
-			name = CustomView;
 			sourceTree = "<group>";
 		};
 		3F4B81DD1D01157100B323E4 /* 发布会 */ = {
@@ -2824,6 +2830,54 @@
 				3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */,
 			);
 			name = "关于";
+			sourceTree = "<group>";
+		};
+		3F93D1DF1DFE7F2700749789 /* 线上 */ = {
+			isa = PBXGroup;
+			children = (
+				3F3C3EFF1CFEBCB00056CD6B /* DD_DDAYCell.h */,
+				3F3C3F001CFEBCB00056CD6B /* DD_DDAYCell.m */,
+			);
+			name = "线上";
+			sourceTree = "<group>";
+		};
+		3F93D1E01DFE7F3000749789 /* 线下 */ = {
+			isa = PBXGroup;
+			children = (
+				3F93D1E11DFE7F5E00749789 /* DD_DDAYOfflineCell.h */,
+				3F93D1E21DFE7F5E00749789 /* DD_DDAYOfflineCell.m */,
+			);
+			name = "线下";
+			sourceTree = "<group>";
+		};
+		3F93D1E81DFE9AE400749789 /* 线上 */ = {
+			isa = PBXGroup;
+			children = (
+				3F4B81CF1D0052CB00B323E4 /* DD_DDAYDetailViewController.h */,
+				3F4B81D01D0052CB00B323E4 /* DD_DDAYDetailViewController.m */,
+				3F4B81D41D0058B400B323E4 /* DD_DDAYDetailBar.h */,
+				3F4B81D51D0058B400B323E4 /* DD_DDAYDetailBar.m */,
+				3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */,
+				3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */,
+			);
+			name = "线上";
+			sourceTree = "<group>";
+		};
+		3F93D1E91DFE9AEC00749789 /* 线下 */ = {
+			isa = PBXGroup;
+			children = (
+				3F24618F1E08B43F00F18A44 /* DD_CustomChooseView.h */,
+				3F2461901E08B43F00F18A44 /* DD_CustomChooseView.m */,
+				3F4A29131E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.h */,
+				3F4A29141E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.m */,
+				3F93D1E41DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.h */,
+				3F93D1E51DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.m */,
+				3F93D1EB1DFE9B9100749789 /* DD_DDAYOfflineContainerView.h */,
+				3F93D1EC1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m */,
+				3FD788DA1E00E4620062859D /* DD_DDAYOfflineDetailBar.h */,
+				3FD788DB1E00E4620062859D /* DD_DDAYOfflineDetailBar.m */,
+			);
+			name = "线下";
 			sourceTree = "<group>";
 		};
 		3F9B8ABE1CEF542E008EC460 /* 登录 */ = {
@@ -3763,6 +3817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FD20D961D92B7AF0030FCCA /* Waterflow.a in Sources */,
+				3F93D1ED1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m in Sources */,
 				3F14014E1CF836C80093474A /* DD_ShopEditingCell.m in Sources */,
 				3F4938A71D0EB70F000D213B /* DD_UserDDAYViewController.m in Sources */,
 				3F552E9B1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m in Sources */,
@@ -3910,7 +3965,7 @@
 				3F9B8AF11CEF5633008EC460 /* DD_GoodsViewController.m in Sources */,
 				3FA551171D4CBC0400528B5F /* DD_GoodsK_POINTView.m in Sources */,
 				3F576F311D3795580061602A /* UIButton+Custom.m in Sources */,
-				3F4B81D61D0058B400B323E4 /* DD_DDAYDetailView.m in Sources */,
+				3F4B81D61D0058B400B323E4 /* DD_DDAYDetailBar.m in Sources */,
 				3F3C3EFE1CFEB92E0056CD6B /* DD_DDAYModel.m in Sources */,
 				3F6813B11D1A6C1D00F4807A /* UIImageView+LoadImage.m in Sources */,
 				3F8228EF1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m in Sources */,
@@ -3923,6 +3978,7 @@
 				3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */,
 				3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */,
 				3F4187F21CEEFF1A001BCA3D /* DD_CityVCT.m in Sources */,
+				3F93D1E31DFE7F5E00749789 /* DD_DDAYOfflineCell.m in Sources */,
 				3F8E76611D1B7EC300722FDA /* DD_CircleComentInputView.m in Sources */,
 				3F7160AA1D4EDD5000E165D2 /* DD_GoodsListView.m in Sources */,
 				3F4553051D21081E00524738 /* DD_TarentoHeadView.m in Sources */,
@@ -3932,6 +3988,7 @@
 				3F6813BC1D1A81B100F4807A /* DD_CircleCommentModel.m in Sources */,
 				3F552EAD1CF21B2400BC5E33 /* ImageViewController.m in Sources */,
 				3F8228F71D0DA0CC00F95E79 /* DD_DesignerItemViewController.m in Sources */,
+				3F2461911E08B43F00F18A44 /* DD_CustomChooseView.m in Sources */,
 				3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */,
 				3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */,
 				3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */,
@@ -3951,6 +4008,7 @@
 				3FC2D17F1D06A272005A1FF0 /* DD_OrderDetailViewController.m in Sources */,
 				3F66CF1C1D115379006A3D3F /* DD_CircleInfoImgView.m in Sources */,
 				3F9B8B481CF160BC008EC460 /* DD_UserInfoTool.m in Sources */,
+				3F4A29151E07D38E00D56A11 /* DD_DDAYOffllineApplyViewController.m in Sources */,
 				3FEEAF571D892A7C008F6EB6 /* DD_UserMessageHeadCell.m in Sources */,
 				3F9B8AE21CEF55DA008EC460 /* DD_CircleViewController.m in Sources */,
 				3F124B461D22213D002B4E87 /* DD_FansModel.m in Sources */,
@@ -4012,6 +4070,7 @@
 				3F552EA11CF210A000BC5E33 /* DD_SizeModel.m in Sources */,
 				3F57173D1D6F0713006E1940 /* NSDate+Custom.m in Sources */,
 				3F552EA91CF214A000BC5E33 /* DD_OtherItemModel.m in Sources */,
+				3FD788DC1E00E4620062859D /* DD_DDAYOfflineDetailBar.m in Sources */,
 				3FA836621D050B86006D2919 /* DD_OrderViewController.m in Sources */,
 				3F43B6C31DE6E8E5006D259C /* DD_BaseView.m in Sources */,
 				3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */,
@@ -4026,6 +4085,7 @@
 				3FFC4FE31D50E1FD00FD6866 /* DD_ShopAlertNumView.m in Sources */,
 				3F0B66D91D23BB3B00A89F33 /* DD_NOTInformClass.m in Sources */,
 				3F5717271D6EAE84006E1940 /* DD_RGBModel.m in Sources */,
+				3F93D1E61DFE95CD00749789 /* DD_DDAYDetailOfflineViewController.m in Sources */,
 				3F1401411CF825B20093474A /* DD_ShopItemModel.m in Sources */,
 				3F4187DC1CEEFF0B001BCA3D /* DD_AddressViewController.m in Sources */,
 				3F4187BB1CEEFE4B001BCA3D /* regular.m in Sources */,

@@ -119,7 +119,7 @@
     con.userInteractionEnabled=NO;
     [con mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
-        make.height.mas_equalTo(39).priorityLow();
+        make.height.mas_equalTo(39);
     }];
 }
 #pragma mark - SetState
@@ -128,10 +128,6 @@
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-//    for (UIView *view in self.subviews) {
-//        [view removeFromSuperview];
-//    }
-    
     if(_AddressModel)
     {
         [self setTitle:@"" forState:UIControlStateNormal];

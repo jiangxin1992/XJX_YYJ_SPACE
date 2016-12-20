@@ -12,6 +12,16 @@
 
 //有人关注了你
 
+//        新的线下发布会通知
++(NSString *)GET_NEWLIVESERIES_NOT_SERIESID;
++(void)SET_NEWLIVESERIES_NOT_SERIESID:(NSDictionary *)dict;
++(void)REMOVE_NEWLIVESERIES_NOT_SERIESID;
+
+//        已报名线下开始的通知
++(NSString *)GET_STARTLIVESERIES_NOT_SERIESID;
++(void)SET_STARTLIVESERIES_NOT_SERIESID:(NSDictionary *)dict;
++(void)REMOVE_STARTLIVESERIES_NOT_SERIESID;
+
 //        新的发布会通知
 +(NSString *)GET_NEWSERIES_NOT_SERIESID;
 +(void)SET_NEWSERIES_NOT_SERIESID:(NSDictionary *)dict;
@@ -21,6 +31,7 @@
 +(NSString *)GET_STARTSERIES_NOT_SERIESID;
 +(void)SET_STARTSERIES_NOT_SERIESID:(NSDictionary *)dict;
 +(void)REMOVE_STARTSERIES_NOT_SERIESID;
+
 
 //        评论回复的通知
 +(NSString *)GET_REPLYCOMMENT_NOT_COMMENTID;

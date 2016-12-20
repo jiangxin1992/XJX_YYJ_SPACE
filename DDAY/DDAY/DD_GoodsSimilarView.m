@@ -68,36 +68,7 @@
         }];
         lastView=img;
     }];
-//    for (int i=0; i<_similarArr.count; i++) {
-//        DD_OrderItemModel *model=_similarArr[i];
-//        UIImageView *img=[UIImageView getCustomImg];
-//        [self addSubview:img];
-//        img.tag=100+i;
-//        img.userInteractionEnabled=YES;
-////        [img addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)]];
-//        [img bk_whenTapped:^{
-////            图片点击
-//            NSInteger index=img.tag-100;
-//            DD_OrderItemModel *itemModel=_similarArr[index];
-//            _block(@"img_click",itemModel);
-//        }];
-//        [img JX_ScaleAspectFill_loadImageUrlStr:model.pic WithSize:800 placeHolderImageName:nil radius:0];
-//        img.contentMode=1;
-//        [img mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if(lastView)
-//            {
-//                make.left.mas_equalTo(lastView.mas_right).with.offset(kEdge);
-//            }else
-//            {
-//                make.left.mas_equalTo(kEdge);
-//                make.bottom.mas_equalTo(self.mas_bottom).with.offset(-20);
-//            }
-//            make.top.mas_equalTo(SimilarTitleLabel.mas_bottom).with.offset(11);
-//            make.width.mas_equalTo(_width);
-//            make.height.mas_equalTo(IsPhone6_gt?205:178);
-//        }];
-//        lastView=img;
-//    }
+
 }
 //-(void)imgClick:(UIGestureRecognizer *)ges
 //{

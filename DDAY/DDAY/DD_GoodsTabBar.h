@@ -8,13 +8,15 @@
 
 #import "DD_BaseView.h"
 
-@class DD_GoodsItemModel;
+@class DD_ColorsModel;
 
 @interface DD_GoodsTabBar : DD_BaseView
 
--(instancetype)initWithItem:(DD_GoodsItemModel *)item WithBlock:(void (^)(NSString *type))block;
+-(instancetype)initWithColorModel:(DD_ColorsModel *)colorModel WithBlock:(void (^)(NSString *type))block;
 
-@property (nonatomic,strong)DD_GoodsItemModel *item;
+-(void)setState;
+
+@property (nonatomic,strong)DD_ColorsModel *colorModel;
 
 __block_type(block, type);
 

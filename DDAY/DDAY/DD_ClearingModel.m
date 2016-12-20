@@ -25,7 +25,7 @@
     _Clearing.use_rewardPoints=NO;
     _Clearing.employ_rewardPoints=0;
     [_Clearing IntegralUpdate];
-
+    
     return _Clearing;
 }
 
@@ -42,7 +42,7 @@
     CGFloat _countPrice=_count+_Freight;
     
     DD_BenefitInfoModel *_benefitModel=[self getChoosedBenefitInfo];
-
+    
     if(self.rewardPoints)
     {
         CGFloat _price=_countPrice;
@@ -95,13 +95,13 @@
             
         }else
         {
-//                self.use_rewardPoints=NO;
+            //                self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }else
     {
         //没有积分时候 为未使用／使用数量为0
-//            self.use_rewardPoints=NO;
+        //            self.use_rewardPoints=NO;
         self.employ_rewardPoints=0;
     }
 }
@@ -126,7 +126,7 @@
         if(_benefitModel.amount>_price)
         {
             _price=0;
-//            self.use_rewardPoints=NO;
+            //            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }else
         {
@@ -170,7 +170,7 @@
         }else
         {
             //没有积分的时候
-//            self.use_rewardPoints=NO;
+            //            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }else
@@ -213,34 +213,26 @@
         }else
         {
             //没有积分的时候
-//            self.use_rewardPoints=NO;
+            //            self.use_rewardPoints=NO;
             self.employ_rewardPoints=0;
         }
     }
 }
 -(DD_BenefitInfoModel *)getChoosedBenefitInfo
 {
-    __block DD_BenefitInfoModel *chooseModel=nil;
-    [self.benefitInfo enumerateObjectsUsingBlock:^(DD_BenefitInfoModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (DD_BenefitInfoModel *obj in self.benefitInfo) {
         if([obj.benefitId isEqualToString:self.choosedBenefitId])
         {
-            chooseModel=obj;
-            *stop=YES;
+            return obj;
         }
-    }];
-//    for (DD_BenefitInfoModel *obj in self.benefitInfo) {
-//        if([obj.benefitId isEqualToString:self.choosedBenefitId])
-//        {
-//            return obj;
-//        }
-//    }
-    return chooseModel;
+    }
+    return nil;
 }
 #pragma mark - getItemsArr
 -(NSArray *)getItemsArr
 {
     NSMutableArray *ItemsArr=[[NSMutableArray alloc] init];
-    [self.orders enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *_orderModel, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (DD_ClearingOrderModel *_orderModel in self.orders) {
         [ItemsArr addObject:@{
                               @"itemId":_orderModel.itemId
                               ,@"colorId":_orderModel.colorId
@@ -249,17 +241,7 @@
                               ,@"price":[_orderModel getPrice]
                               ,@"colorCode":_orderModel.colorCode
                               }];
-    }];
-//    for (DD_ClearingOrderModel *_orderModel in self.orders) {
-//        [ItemsArr addObject:@{
-//                              @"itemId":_orderModel.itemId
-//                              ,@"colorId":_orderModel.colorId
-//                              ,@"sizeId":_orderModel.sizeId
-//                              ,@"number":_orderModel.numbers
-//                              ,@"price":[_orderModel getPrice]
-//                              ,@"colorCode":_orderModel.colorCode
-//                              }];
-//    }
+    }
     return ItemsArr;
 }
 #pragma mark - getOrderInfo
@@ -285,8 +267,8 @@
     //    过滤发布会结束的
     NSMutableArray *saleingArr=[[NSMutableArray alloc] init];
     NSMutableArray *saleingRemainArr=[[NSMutableArray alloc] init];
-    
-    [__orders enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<__orders.count; i++) {
+        DD_ClearingOrderModel *ordermodel=__orders[i];
         if(nowtime<ordermodel.saleEndTime&&nowtime>=ordermodel.saleStartTime)
         {
             [saleingArr addObject:ordermodel];
@@ -294,84 +276,45 @@
         {
             [saleingRemainArr addObject:ordermodel];
         }
-    }];
-//    for (int i=0; i<__orders.count; i++) {
-//        DD_ClearingOrderModel *ordermodel=__orders[i];
-//        if(nowtime<ordermodel.saleEndTime&&nowtime>=ordermodel.saleStartTime)
-//        {
-//            [saleingArr addObject:ordermodel];
-//        }else if(nowtime>=ordermodel.saleEndTime)
-//        {
-//            [saleingRemainArr addObject:ordermodel];
-//        }
-//    }
+    }
     [_dataDict setValue:saleingRemainArr forKey:@"remain"];
     
     //   过滤发布会中的
     NSMutableArray *_sid_arr=[[NSMutableArray alloc] init];
     if(saleingArr.count)
     {
-        [saleingArr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx, BOOL * _Nonnull stop) {
-            __block BOOL _isequal=NO;
-            [_sid_arr enumerateObjectsUsingBlock:^(NSString *sid, NSUInteger idx2, BOOL * _Nonnull stop2) {
+        for (int i=0; i<saleingArr.count; i++) {
+            DD_ClearingOrderModel *ordermodel=saleingArr[i];
+            BOOL _isequal=NO;
+            for (NSString *sid in _sid_arr) {
                 if([sid isEqualToString:ordermodel.seriesId])
                 {
                     _isequal=YES;
-                    *stop=YES;
+                    break;
                 }
-            }];
+            }
             if(!_isequal)
             {
                 [_sid_arr addObject:ordermodel.seriesId];
             }
-        }];
-//        for (int i=0; i<saleingArr.count; i++) {
-//            DD_ClearingOrderModel *ordermodel=saleingArr[i];
-//            BOOL _isequal=NO;
-//            for (NSString *sid in _sid_arr) {
-//                if([sid isEqualToString:ordermodel.seriesId])
-//                {
-//                    _isequal=YES;
-//                    break;
-//                }
-//            }
-//            if(!_isequal)
-//            {
-//                [_sid_arr addObject:ordermodel.seriesId];
-//            }
-//            
-//        }
+            
+        }
     }
     NSMutableArray *_saleingClassArr=[[NSMutableArray alloc] init];
-    
-    [_sid_arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<_sid_arr.count; i++) {
         NSMutableArray *arr=[[NSMutableArray alloc] init];
-        
-        [saleingArr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx2, BOOL * _Nonnull stop2) {
-            if([ordermodel.seriesId isEqualToString:_sid_arr[idx]])
+        for (int j=0; j<saleingArr.count; j++) {
+            DD_ClearingOrderModel *ordermodel=saleingArr[j];
+            if([ordermodel.seriesId isEqualToString:_sid_arr[i]])
             {
                 [arr addObject:ordermodel];
             }
-        }];
+        }
         if(arr.count)
         {
             [_saleingClassArr addObject:arr];
         }
-    }];
-//    for (int i=0; i<_sid_arr.count; i++) {
-//        NSMutableArray *arr=[[NSMutableArray alloc] init];
-//        for (int j=0; j<saleingArr.count; j++) {
-//            DD_ClearingOrderModel *ordermodel=saleingArr[j];
-//            if([ordermodel.seriesId isEqualToString:_sid_arr[i]])
-//            {
-//                [arr addObject:ordermodel];
-//            }
-//        }
-//        if(arr.count)
-//        {
-//            [_saleingClassArr addObject:arr];
-//        }
-//    }
+    }
     [_dataDict setValue:_saleingClassArr forKey:@"saleing"];
     return _dataDict;
 }
@@ -397,13 +340,13 @@
 -(NSArray *)GetCategorySaleing:(NSArray *)saleingArr
 {
     NSMutableArray *_endSaleingArr=[[NSMutableArray alloc] init];
-    
-    [saleingArr enumerateObjectsUsingBlock:^(NSArray *itemArr, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<saleingArr.count; i++) {
         DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
-        __block CGFloat _totalMoney=0;
-        __block NSInteger _num=0;
-        
-        [itemArr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx2, BOOL * _Nonnull stop2) {
+        NSArray *itemArr=saleingArr[i];
+        CGFloat _totalMoney=0;
+        NSInteger _num=0;
+        for (int j=0; j<itemArr.count; j++) {
+            DD_ClearingOrderModel *ordermodel=itemArr[j];
             if(!_Series.seriesId)
             {
                 _Series.seriesId=ordermodel.seriesId;
@@ -428,51 +371,13 @@
             }
             _num+=[ordermodel.numbers integerValue];
             _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
-        }];
+        }
         _Series.items=itemArr;
         _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
         
         _Series.totalMoney=[regular getRoundNum:_totalMoney];
         [_endSaleingArr addObject:_Series];
-    }];
-//    for (int i=0; i<saleingArr.count; i++) {
-//        DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
-//        NSArray *itemArr=saleingArr[i];
-//        CGFloat _totalMoney=0;
-//        NSInteger _num=0;
-//        for (int j=0; j<itemArr.count; j++) {
-//            DD_ClearingOrderModel *ordermodel=itemArr[j];
-//            if(!_Series.seriesId)
-//            {
-//                _Series.seriesId=ordermodel.seriesId;
-//            }
-//            if(!_Series.seriesName)
-//            {
-//                _Series.seriesName=ordermodel.seriesName;
-//            }
-//            if(!_Series.status)
-//            {
-//                long _nowtime=[NSDate nowTime];
-//                if(ordermodel.saleEndTime<_nowtime)
-//                {
-//                    _Series.status=1;
-//                }else if(_nowtime<=ordermodel.saleEndTime&&_nowtime>ordermodel.saleStartTime)
-//                {
-//                    _Series.status=0;
-//                }else
-//                {
-//                    _Series.status=-1;
-//                }
-//            }
-//            _num+=[ordermodel.numbers integerValue];
-//            _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
-//        }
-//        _Series.items=itemArr;
-//        _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
-//        
-//        _Series.totalMoney=[regular getRoundNum:_totalMoney];
-//        [_endSaleingArr addObject:_Series];
-//    }
+    }
     return _endSaleingArr;
 }
 -(NSArray *)GetCategoryRemain:(NSArray *)remainArr
@@ -481,19 +386,19 @@
     NSMutableArray *_endRemainArr=[[NSMutableArray alloc] init];
     //    获取当前的所有系列id
     NSMutableArray *allkeyArr=[[NSMutableArray alloc] init];
-    
-    [remainArr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<remainArr.count; i++) {
+        DD_ClearingOrderModel *ordermodel=remainArr[i];
         if(allkeyArr.count)
         {
-            __block BOOL _is_exist=NO;
-            
-            [allkeyArr enumerateObjectsUsingBlock:^(NSString *_key, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            BOOL _is_exist=NO;
+            for (int j=0; j<allkeyArr.count; j++) {
+                NSString *_key=allkeyArr[j];
                 if([_key isEqualToString:ordermodel.seriesId])
                 {
                     _is_exist=YES;
-                    *stop=YES;
+                    break;
                 }
-            }];
+            }
             if(!_is_exist)
             {
                 [allkeyArr addObject:ordermodel.seriesId];
@@ -502,36 +407,15 @@
         {
             [allkeyArr addObject:ordermodel.seriesId];
         }
-    }];
-//    for (int i=0; i<remainArr.count; i++) {
-//        DD_ClearingOrderModel *ordermodel=remainArr[i];
-//        if(allkeyArr.count)
-//        {
-//            BOOL _is_exist=NO;
-//            for (int j=0; j<allkeyArr.count; j++) {
-//                NSString *_key=allkeyArr[j];
-//                if([_key isEqualToString:ordermodel.seriesId])
-//                {
-//                    _is_exist=YES;
-//                    break;
-//                }
-//            }
-//            if(!_is_exist)
-//            {
-//                [allkeyArr addObject:ordermodel.seriesId];
-//            }
-//        }else
-//        {
-//            [allkeyArr addObject:ordermodel.seriesId];
-//        }
-//        
-//    }
+        
+    }
     //    整理当前的单品
-    [allkeyArr enumerateObjectsUsingBlock:^(NSString *_key, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (int i=0; i<allkeyArr.count; i++) {
+        NSString *_key=allkeyArr[i];
         DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
         NSMutableArray *items=[[NSMutableArray alloc] init];
-        
-        [remainArr enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx2, BOOL * _Nonnull stop2) {
+        for (int j=0; j<remainArr.count; j++) {
+            DD_ClearingOrderModel *ordermodel=remainArr[j];
             if([_key isEqualToString:ordermodel.seriesId])
             {
                 [items addObject:ordermodel];
@@ -558,68 +442,21 @@
                     }
                 }
             }
-        }];
-        
+        }
         //        item
         _Series.items=items;
-        __block CGFloat _totalMoney=0;
-        __block NSInteger _num=0;
+        CGFloat _totalMoney=0;
+        NSInteger _num=0;
         //        数量
-        [items enumerateObjectsUsingBlock:^(DD_ClearingOrderModel *ordermodel, NSUInteger idx3, BOOL * _Nonnull stop3) {
+        for (int i=0; i<items.count; i++) {
+            DD_ClearingOrderModel *ordermodel=items[i];
             _num+=[ordermodel.numbers integerValue];
             _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
-        }];
+        }
         _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
         _Series.totalMoney=[regular getRoundNum:_totalMoney];
         [_endRemainArr addObject:_Series];
-    }];
-//    for (int i=0; i<allkeyArr.count; i++) {
-//        NSString *_key=allkeyArr[i];
-//        DD_ClearingSeriesModel *_Series=[[DD_ClearingSeriesModel alloc] init];
-//        NSMutableArray *items=[[NSMutableArray alloc] init];
-//        for (int j=0; j<remainArr.count; j++) {
-//            DD_ClearingOrderModel *ordermodel=remainArr[j];
-//            if([_key isEqualToString:ordermodel.seriesId])
-//            {
-//                [items addObject:ordermodel];
-//                if(!_Series.seriesId)
-//                {
-//                    _Series.seriesId=ordermodel.seriesId;
-//                }
-//                if(!_Series.seriesName)
-//                {
-//                    _Series.seriesName=ordermodel.seriesName;
-//                }
-//                if(!_Series.status)
-//                {
-//                    long _nowtime=[NSDate nowTime];
-//                    if(ordermodel.saleEndTime<_nowtime)
-//                    {
-//                        _Series.status=1;
-//                    }else if(_nowtime<=ordermodel.saleEndTime&&_nowtime>ordermodel.saleStartTime)
-//                    {
-//                        _Series.status=0;
-//                    }else
-//                    {
-//                        _Series.status=-1;
-//                    }
-//                }
-//            }
-//        }
-//        //        item
-//        _Series.items=items;
-//        CGFloat _totalMoney=0;
-//        NSInteger _num=0;
-//        //        数量
-//        for (int i=0; i<items.count; i++) {
-//            DD_ClearingOrderModel *ordermodel=items[i];
-//            _num+=[ordermodel.numbers integerValue];
-//            _totalMoney+=[ordermodel.price floatValue]*[ordermodel.numbers integerValue];
-//        }
-//        _Series.numbers=[[NSString alloc] initWithFormat:@"%ld",(long)_num];
-//        _Series.totalMoney=[regular getRoundNum:_totalMoney];
-//        [_endRemainArr addObject:_Series];
-//    }
+    }
     return _endRemainArr;
 }
 @end

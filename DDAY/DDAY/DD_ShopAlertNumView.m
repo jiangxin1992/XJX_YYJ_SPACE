@@ -139,12 +139,6 @@
             *stop=YES;
         }
     }];
-//    for (DD_SizeModel *sizemodel in _sizeArr) {
-//        if([sizemodel.sizeId isEqualToString:_ItemModel.sizeId])
-//        {
-//            return sizemodel;
-//        }
-//    }
     return getSizeModel;
 }
 

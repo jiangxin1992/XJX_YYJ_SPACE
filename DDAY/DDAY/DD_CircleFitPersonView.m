@@ -99,9 +99,7 @@
     [backViewArr enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
         [view removeFromSuperview];
     }];
-//    for (UIView *view in backViewArr) {
-//        [view removeFromSuperview];
-//    }
+
     [_downView_h uninstall];//使该约束失效
     __block UIView *lastView=nil;
     [_circleModel.personTags enumerateObjectsUsingBlock:^(DD_CircleTagModel *_tagModel, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -191,93 +189,7 @@
         [backViewArr addObject:backView];
     }];
     
-//    for (int i=0; i<_circleModel.personTags.count; i++)
-//    {
-//        DD_CircleTagModel *_tagModel=_circleModel.personTags[i];
-//        UIView *backView=[[UIView alloc] init];
-//        [_downView addSubview:backView];
-//        [backView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            if(lastView)
-//            {
-//                make.top.mas_equalTo(lastView.mas_bottom).with.offset(0);
-//            }else
-//            {
-//                make.top.mas_equalTo(0);
-//            }
-//            make.left.mas_equalTo(kEdge);
-//            make.right.mas_equalTo(-kEdge);
-//        }];
-//        UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:_tagModel.CategoryName WithFont:14.0f WithTextColor:nil WithSpacing:0];
-//        [backView addSubview:titleLabel];
-//        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.top.and.right.mas_equalTo(0);
-//            make.height.mas_equalTo(30);
-//        }];
-//        // 创建一个空view 代表上一个view
-//        UIButton *lastBtn = nil;
-//        // 间距为10
-//        int intes = 10;
-//        // 第几行
-//        int num = 0;
-//        CGFloat _x_p=0;
-//        // 循环创建view
-//        for (int j=0; j<_tagModel.tags.count; j++) {
-//            DD_CricleTagItemModel *item=_tagModel.tags[j];
-//            UIButton *btn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:12.0f WithSpacing:0 WithNormalTitle:item.tagName WithNormalColor:_define_black_color WithSelectedTitle:item.tagName WithSelectedColor:_define_white_color];
-//            [backView addSubview:btn];
-//            btn.tag=100*i+j;
-//            [regular setBorder:btn];
-//            if(item.is_select)
-//            {
-//                btn.selected=item.is_select;
-//                btn.backgroundColor=_define_black_color;
-//            }else
-//            {
-//                btn.selected=item.is_select;
-//                btn.backgroundColor=_define_white_color;
-//            }
-//            
-//            [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-//            
-//            CGFloat __width=[regular getWidthWithHeight:28 WithContent:item.tagName WithFont:[regular getFont:13.0f]]+25;
-//            
-//            
-//            if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
-//            {
-//                num++;
-//                _x_p=0;
-//            }
-//            
-//            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.top.mas_equalTo(btn.superview).offset(40+35*num);
-//                
-//                make.left.mas_equalTo(_x_p);
-//                make.width.mas_equalTo(__width);
-//                make.height.mas_equalTo(28);
-//            }];
-//            if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
-//            {
-//            }else
-//            {
-//                _x_p+=__width+intes;
-//            }
-//            
-//            lastBtn = btn;
-//        }
-//        if(lastBtn)
-//        {
-//            [lastBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.bottom.mas_equalTo(-10);
-//            }];
-//        }else
-//        {
-//            [backView mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.height.mas_equalTo(0);
-//            }];
-//        }
-//        lastView=backView;
-//        [backViewArr addObject:backView];
-//    }
+
     if(lastView)
     {
         [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -310,9 +222,7 @@
         [_tagModel.tags enumerateObjectsUsingBlock:^(DD_CricleTagItemModel *__item, NSUInteger idx, BOOL * _Nonnull stop) {
             __item.is_select=NO;
         }];
-//        for (DD_CricleTagItemModel *__item in _tagModel.tags) {
-//            __item.is_select=NO;
-//        }
+
         item.is_select=YES;
         _block(@"person_tag_add",btn.tag);
     }

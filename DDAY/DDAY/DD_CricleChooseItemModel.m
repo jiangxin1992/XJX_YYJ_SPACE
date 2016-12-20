@@ -25,13 +25,7 @@
             *stop=YES;
         }
     }];
-//    for (DD_CricleChooseItemModel *_model in chooseItem) {
-//        if([_model.colorId isEqualToString:_ItemsModel.colorId]&&[_model.g_id isEqualToString:_ItemsModel.g_id])
-//        {
-//            _is_exit=YES;
-//            break;
-//        }
-//    }
+
     _ItemsModel.isSelect=_is_exit;
     return _ItemsModel;
 }
@@ -48,9 +42,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getCricleChooseItemModel:dict WithDetail:chooseItem]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getCricleChooseItemModel:dict WithDetail:chooseItem]];
-//    }
+
     return itemsArr;
 }
 +(NSArray *)getItemsModelArr:(NSArray *)arr
@@ -59,9 +51,7 @@
     [arr enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemsArr addObject:[self getCricleChooseItemModel:dict]];
     }];
-//    for (NSDictionary *dict in arr) {
-//        [itemsArr addObject:[self getCricleChooseItemModel:dict]];
-//    }
+
     return itemsArr;
 }
 @end

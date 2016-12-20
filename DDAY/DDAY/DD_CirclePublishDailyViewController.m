@@ -271,7 +271,7 @@
     //设置选取器类型
     picker.sourceType = type;
     //编辑
-    picker.allowsEditing = NO;
+    picker.allowsEditing = YES;
     if ([picker.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
         
@@ -289,22 +289,10 @@
                 
             }
         }];
-        
-//        for (id obj in list) {
-//            if ([obj isKindOfClass:[UIImageView class]]) {
-//                UIImageView *imageView=(UIImageView *)obj;
-//                NSArray *list2=imageView.subviews;
-//                for (id obj2 in list2) {
-//                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-//                        UIImageView *imageView2=(UIImageView *)obj2;
-//                        imageView2.hidden=YES;
-//                    }
-//                }
-//            }
-//        }
     }
     //弹出
     [self presentViewController:picker animated:YES completion:nil];
+
 }
 /**
  * 打开相机/相册
@@ -360,6 +348,10 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picke
+{
+    [picke dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];

@@ -155,16 +155,6 @@
                             }
                         }
                     }];
-//                    for (int i=0; i<controllers.count; i++) {
-//                        id obj=controllers[i];
-//                        if([obj isKindOfClass:[DD_LoginViewController class]])
-//                        {
-//                            if(i>0)
-//                            {
-//                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
-//                            }
-//                        }
-//                    }
                     
                 }else
                 {
@@ -206,16 +196,6 @@
                             }
                         }
                     }];
-//                    for (int i=0; i<controllers.count; i++) {
-//                        id obj=controllers[i];
-//                        if([obj isKindOfClass:[DD_LoginViewController class]])
-//                        {
-//                            if(i>0)
-//                            {
-//                                [self.navigationController popToViewController:controllers[i-1] animated:YES];
-//                            }
-//                        }
-//                    }
                     
                 }else
                 {

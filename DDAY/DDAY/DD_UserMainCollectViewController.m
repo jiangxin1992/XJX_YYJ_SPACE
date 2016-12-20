@@ -210,26 +210,7 @@
             _btn.selected=NO;
         }
     }];
-//    for (int i=0; i<btnarr.count; i++) {
-//        UIButton *_btn=btnarr[i];
-//        if(_btn.tag==btnTag)
-//        {
-//            _btn.selected=YES;
-//            currentPage=_btn.tag-100;
-//            if(i==0)
-//            {
-//                dibu_left.backgroundColor=_define_black_color;
-//                dibu_right.backgroundColor=_define_light_gray_color1;
-//            }else if(i==1)
-//            {
-//                dibu_left.backgroundColor=_define_light_gray_color1;
-//                dibu_right.backgroundColor=_define_black_color;
-//            }
-//        }else
-//        {
-//            _btn.selected=NO;
-//        }
-//    }
+
 }
 #pragma mark - Others
 -(void)viewWillAppear:(BOOL)animated

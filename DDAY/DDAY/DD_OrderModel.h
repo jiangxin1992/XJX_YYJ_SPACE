@@ -76,6 +76,8 @@ __string(seriesName);
 /** 小计 不算运费*/
 __string(totalAmount);
 
+
+
 /** 运费*/
 __long(allFreight);
 

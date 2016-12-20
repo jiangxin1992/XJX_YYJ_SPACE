@@ -160,9 +160,6 @@
     [btnArr enumerateObjectsUsingBlock:^(UIButton *btn, NSUInteger idx, BOOL * _Nonnull stop) {
         [btn removeFromSuperview];
     }];
-//    for (UIButton *btn in btnArr) {
-//        [btn removeFromSuperview];
-//    }
     [self CreateImgSubView];
 //    _numLabel.text=[[NSString alloc] initWithFormat:@"还可选择%ld款",_num-_circleModel.chooseItem.count];
 }
@@ -239,42 +236,6 @@
             [btnArr addObject:backView];
         }];
         
-//        for (int i=0; i<_circleModel.chooseItem.count; i++) {
-//            DD_CricleChooseItemModel *item=_circleModel.chooseItem[i];
-//            
-//            UIView *backView=[UIView getCustomViewWithColor:nil];
-//            [_scrollView addSubview:backView];
-//            backView.frame=CGRectMake(_x_p, 12, _width, _width);
-//            
-//            UIImageView *imgView=[UIImageView getCustomImg];
-//            [backView addSubview:imgView];
-//            imgView.contentMode=2;
-//            [regular setZeroBorder:imgView];
-//            imgView.userInteractionEnabled=YES;
-//            imgView.frame=CGRectMake(0, 16, _width-16, _width-16);
-//            [imgView JX_ScaleAspectFill_loadImageUrlStr:item.pic.pic WithSize:400 placeHolderImageName:nil radius:0];
-//
-//            CGFloat _p_w=[regular getWidthWithHeight:40 WithContent:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:[regular getSemiboldFont:12.0f]];
-//            UILabel *priceLabel=[UILabel getLabelWithAlignment:1 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",item.price] WithFont:12.0f WithTextColor:_define_white_color WithSpacing:0];
-//            [imgView addSubview:priceLabel];
-//            priceLabel.font=[regular getSemiboldFont:12.0f];
-//            priceLabel.backgroundColor=_define_black_color;
-//            [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.bottom.mas_equalTo(0);
-//                make.width.mas_equalTo(_p_w+5);
-//            }];
-//            
-//            UIButton *deleteBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Delete" WithSelectedImageStr:nil];
-//            [backView addSubview:deleteBtn];
-//            deleteBtn.tag=150+i;
-//            [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
-//            [deleteBtn setEnlargeEdge:10];
-//            deleteBtn.frame=CGRectMake(CGRectGetWidth(backView.frame)-25-3.5, 3.5, 25, 25);
-//            
-//            _x_p+=_width+intes;
-//            
-//            [btnArr addObject:backView];
-//        }
     }else
     {
         [_chooseImgBackView mas_updateConstraints:^(MASConstraintMaker *make) {

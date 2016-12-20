@@ -22,6 +22,8 @@
 
 @implementation DD_ClearingView
 {
+    UIButton *_chooseCouponBtn;
+    UILabel *_couponLabel;
 //    UIView *totalView;// 总结视图(小计)
 
     UIView *remarksView;// 备注的背景视图
@@ -123,7 +125,7 @@
         make.height.mas_equalTo(1);
     }];
     
-    UIButton *_chooseCouponBtn=[UIButton getCustomBtn];
+    _chooseCouponBtn=[UIButton getCustomBtn];
     [self addSubview:_chooseCouponBtn];
     [_chooseCouponBtn addTarget:self action:@selector(chooseCouponAction) forControlEvents:UIControlEventTouchUpInside];
     [_chooseCouponBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +143,7 @@
     }];
     
 //    有XX个红包可用
-    UILabel *_couponLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"优惠" WithFont:13.0f WithTextColor:nil WithSpacing:0];
+    _couponLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"优惠" WithFont:13.0f WithTextColor:nil WithSpacing:0];
     [_chooseCouponBtn addSubview:_couponLabel];
     [_couponLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
@@ -294,9 +296,19 @@
     if(_count)
     {
         _chooseImg.hidden=NO;
+        [_couponDesLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(_chooseImg.mas_left).with.offset(-15);
+            make.centerY.mas_equalTo(_chooseCouponBtn);
+            make.left.mas_equalTo(_couponLabel.mas_right).with.offset(10);
+        }];
     }else
     {
         _chooseImg.hidden=YES;
+        [_couponDesLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-kEdge);
+            make.centerY.mas_equalTo(_chooseCouponBtn);
+            make.left.mas_equalTo(_couponLabel.mas_right).with.offset(10);
+        }];
     }
     
     if(!_clearingModel.rewardPoints)
@@ -362,9 +374,7 @@
     [_dataArr enumerateObjectsUsingBlock:^(DD_ClearingSeriesModel *_Series, NSUInteger idx, BOOL * _Nonnull stop) {
         _num+=_Series.items.count;
     }];
-//    for (DD_ClearingSeriesModel *_Series in _dataArr) {
-//        _num+=_Series.items.count;
-//    }
+
     return _num;
 }
 -(CGFloat )getAllCountPriceWithArr:(NSArray *)dataArr
@@ -376,11 +386,7 @@
             _price+=[order.price floatValue]*[order.numbers integerValue];
         }];
     }];
-//    for (DD_ClearingSeriesModel *Series in dataArr) {
-//        for (DD_ClearingOrderModel *order in Series.items) {
-//            _price+=[order.price floatValue]*[order.numbers integerValue];
-//        }
-//    }
+
     return _price;
 }
 

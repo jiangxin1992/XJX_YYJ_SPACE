@@ -18,4 +18,7 @@ __string(s_id);
 /** 系列名称*/
 __string(name);
 
+/** 系列颜色*/
+__string(seriesColor);
+
 @end

@@ -39,9 +39,7 @@
     [arrdata enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         [mutable_arr addObject:[self getClearingOrderModel:dict]];
     }];
-//    for (NSDictionary *dict in arrdata) {
-//        [mutable_arr addObject:[self getClearingOrderModel:dict]];
-//    }
+
     return mutable_arr;
 }
 -(NSString *)getPriceStr
