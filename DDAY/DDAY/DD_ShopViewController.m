@@ -203,6 +203,8 @@
                                 {
                                     [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
                                     [_tableview reloadData];
+                                    _tabbar.shopModel=_shopModel;
+                                    [_tabbar SetState];
                                 }else
                                 {
                                     [self presentViewController:successAlert animated:YES completion:nil];
@@ -249,6 +251,8 @@
                                     itemModel.sizeName=sizeName;
                                     itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
                                     [_tableview reloadData];
+                                    _tabbar.shopModel=_shopModel;
+                                    [_tabbar SetState];
                                 }else
                                 {
                                     [self presentViewController:successAlert animated:YES completion:nil];
@@ -321,6 +325,8 @@
                             {
                                 [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
                                 [_tableview reloadData];
+                                _tabbar.shopModel=_shopModel;
+                                [_tabbar SetState];
                             }else
                             {
                                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -365,6 +371,8 @@
                             {
                                 itemModel.number=[[NSString alloc] initWithFormat:@"%ld",count];
                                 [_tableview reloadData];
+                                _tabbar.shopModel=_shopModel;
+                                [_tabbar SetState];
                             }else
                             {
                                 [self presentViewController:successAlert animated:YES completion:nil];
@@ -623,6 +631,9 @@
         {
             [DD_ShopTool removeItemModelWithIndexPath:indexPath WithModel:_shopModel];
             [_tableview reloadData];
+            _tabbar.shopModel=_shopModel;
+            [_tabbar SetState];
+            
         }else
         {
             [self presentViewController:successAlert animated:YES completion:nil];
