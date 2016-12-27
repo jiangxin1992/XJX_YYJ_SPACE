@@ -174,11 +174,12 @@
                     if(firstTime<=nowTime&&lastTime>=nowTime)
                     {
                         __block BOOL _have=NO;
-                        [weekArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [weekArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddayModel, NSUInteger idx2, BOOL * _Nonnull stop2) {
                             if([_ddayModel.s_id isEqualToString:ddayModel.s_id])
                             {
                                 _have=YES;
                                 *stop=YES;
+                                *stop2=YES;
                             }
                         }];
                         if(!_have)
@@ -384,11 +385,13 @@
                 {
                     __block BOOL _have=NO;
                     
-                    [monthArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [monthArr enumerateObjectsUsingBlock:^(DD_DDAYModel *_ddayModel, NSUInteger idx3, BOOL * _Nonnull stop3) {
                         if([_ddayModel.s_id isEqualToString:ddayModel.s_id])
                         {
                             _have=YES;
                             *stop=YES;
+                            *stop2=YES;
+                            *stop3=YES;
                         }
                     }];
                     if(!_have)

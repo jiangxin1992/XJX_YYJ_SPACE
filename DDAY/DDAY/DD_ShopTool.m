@@ -239,6 +239,7 @@
                 {
                     isSelect=NO;
                     *stop=YES;
+                    *stop2=YES;
                 }
             }];
         }];
