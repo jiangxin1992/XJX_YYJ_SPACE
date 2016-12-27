@@ -279,6 +279,10 @@ static regular *_t = nil;
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
++(BOOL )emailVerify:(NSString *)email
+{
+    return [self Verify:email WithCode:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"];
+}
 +(BOOL )codeVerify:(NSString *)phone
 {
     return [self Verify:phone WithCode:@"^[A-Za-z0-9]+$"];
@@ -303,6 +307,28 @@ static regular *_t = nil;
 {
     return [self Verify:phone WithCode:@"^[0-9]+([.]{0,1}[0-9]+){0,1}$"];
 }
++(BOOL )telephoneAreaCode:(NSString *)telephoneArea
+{
+    // 03xx
+    NSString *fourDigit03 = @"03([157]\\d|35|49|9[1-68])";
+    // 04xx
+    NSString *fourDigit04 = @"04([17]\\d|2[179]|[3,5][1-9]|4[08]|6[4789]|8[23])";
+    // 05xx
+    NSString *fourDigit05 = @"05([1357]\\d|2[37]|4[36]|6[1-6]|80|9[1-9])";
+    // 06xx
+    NSString *fourDigit06 = @"06(3[1-5]|6[0238]|9[12])";
+    // 07xx
+    NSString *fourDigit07 = @"07(01|[13579]\\d|2[248]|4[3-6]|6[023689])";
+    // 08xx
+    NSString *fourDigit08 = @"08(1[23678]|2[567]|[37]\\d)|5[1-9]|8[3678]|9[1-8]";
+    // 09xx
+    NSString *fourDigit09 = @"09(0[123689]|[17][0-79]|[39]\\d|4[13]|5[1-5])";
+    
+    NSString *codeStr = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@",fourDigit03,fourDigit04,fourDigit05,fourDigit06,fourDigit07,fourDigit08,fourDigit09];
+    
+    return [self Verify:telephoneArea WithCode:codeStr]||[self Verify:telephoneArea WithCode:@"010|02[0-57-9]"];
+}
+
 +(BOOL)Verify:(NSString *)content WithCode:(NSString *)code
 {
     NSError *error = NULL;

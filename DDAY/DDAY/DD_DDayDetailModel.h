@@ -36,6 +36,7 @@ __string(discount);
 
 /** 分享网页*/
 __string(appUrl);
+__string(appUrlFull);
 
 /** 后台编辑器网页*/
 __string(seriesBriefUrl);

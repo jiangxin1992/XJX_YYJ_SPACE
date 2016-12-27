@@ -47,7 +47,8 @@
     [self.item.colors enumerateObjectsUsingBlock:^(DD_ColorsModel *_color, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_color.colorId isEqualToString:_colorId])
         {
-            appurl=_color.appUrl;
+//            appurl=_color.appUrl;
+            appurl=_color.appUrlFull;
             *stop=YES;
         }
     }];

@@ -55,5 +55,6 @@ __string(sizeBriefPicWidth);
 
 /** 分享链接*/
 __string(appUrl);
+__string(appUrlFull);
 
 @end

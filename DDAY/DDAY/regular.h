@@ -135,7 +135,10 @@
  * 键盘消失
  */
 +(void)dismissKeyborad;
-
+/**
+ * 电子邮箱正则
+ */
++ (BOOL )emailVerify:(NSString *)email;
 /**
  * 正则匹配用户密码6-15位数字和字母组合
  */
@@ -160,6 +163,11 @@
  * 纯数字验证
  */
 +(BOOL )numberVerift:(NSString *)phone;
+
+/**
+ * 固定电话区号正则
+ */
++(BOOL )telephoneAreaCode:(NSString *)telephoneArea;
 
 /**
  * 图片url

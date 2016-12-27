@@ -28,6 +28,7 @@
 
 /** 分享网页*/
 __string(appUrl);
+__string(appUrlFull);
 
 /** App Store下载地址*/
 __string(downLoadUrl);
