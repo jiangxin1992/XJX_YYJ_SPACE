@@ -12,8 +12,8 @@
 //************** DNS **************
 //#define DNS @"http://10.200.5.73:8080/dday-web/service/" //本地
 //#define DNS @"http://show.ycospace.com:8051/dday-web/service/"//展示环境
-#define DNS @"https://show.ycospace.com/"//展示环境
-//#define DNS @"https://app.ycospace.com/"//正式环境
+//#define DNS @"https://show.ycospace.com/"//展示环境
+#define DNS @"https://app.ycospace.com/"//正式环境
 
 
 

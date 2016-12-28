@@ -239,7 +239,7 @@
                 {
                     isSelect=NO;
                     *stop=YES;
-                    *stop2=YES;
+//                    *stop2=YES;
                 }
             }];
         }];

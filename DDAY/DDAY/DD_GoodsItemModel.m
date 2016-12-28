@@ -38,7 +38,7 @@
                 {
                     sizemodel=_sizeModel;
                     *stop=YES;
-                    *stop2=YES;
+//                    *stop2=YES;
                 }
             }];
         }
