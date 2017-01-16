@@ -19,12 +19,14 @@
 #import "DD_GoodsListView.h"
 #import "DD_GoodsListTableView.h"
 #import "DD_headViewBenefitView.h"
+#import "DD_CircleSearchView.h"
 
 #import "DD_ItemTool.h"
 #import "DD_ItemsModel.h"
 #import "DD_GoodsCategoryModel.h"
 #import "DD_ImageModel.h"
 #import "DD_BenefitInfoModel.h"
+#import "DD_CricleChooseItemModel.h"
 
 @interface DD_GoodsViewController ()<WaterflowDataSource,WaterflowDelegate>
 
@@ -38,6 +40,7 @@
     NSInteger _page;
     BOOL _isReadBenefit;
     DD_headViewBenefitView *_headView;
+    DD_CircleSearchView *_searchView;
     
     NSString *_categoryOneName;
     NSString *_categoryTwoName;
@@ -84,7 +87,6 @@
     
     DD_NavBtn *shopBtn=[DD_NavBtn getShopBtn];
 //    [shopBtn addTarget:self action:@selector(PushShopView) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:shopBtn];
     [shopBtn bk_addEventHandler:^(id sender) {
 //        跳转购物车
         if(![DD_UserModel isLogin])
@@ -99,6 +101,13 @@
         }
     } forControlEvents:UIControlEventTouchUpInside];
     
+    DD_NavBtn *searchBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_Search"];
+    [searchBtn bk_addEventHandler:^(id sender) {
+        [self ShowSearchView];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItems=@[[[UIBarButtonItem alloc] initWithCustomView:shopBtn],[[UIBarButtonItem alloc] initWithCustomView:searchBtn]];
+
     DD_NavBtn *listBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 17) WithImgeStr:@"Item_List"];
 //    [listBtn addTarget:self action:@selector(ChooseCategoryAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:listBtn];
@@ -320,6 +329,30 @@
     [mywaterflow.mj_header beginRefreshing];
 }
 #pragma mark - SomeAction
+-(void)ShowSearchView
+{
+    _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:@"" WithChooseItem:nil WithBlock:^(NSString *type, NSString *_queryStr,DD_CricleChooseItemModel *chooseItemModel) {
+        if([type isEqualToString:@"back"])
+        {
+            
+        }else if([type isEqualToString:@"search"])
+        {
+            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+            _item.g_id=chooseItemModel.g_id;
+            _item.colorCode=chooseItemModel.colorCode;
+            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                //        if(type)
+            }];
+            [self.navigationController pushViewController:_GoodsDetail animated:YES];
+        }
+        [_searchView removeFromSuperview];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [[DD_CustomViewController sharedManager] tabbarAppear];
+    }];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.view addSubview:_searchView];
+    [[DD_CustomViewController sharedManager] tabbarHide];
+}
 -(void)reload
 {
     if(mywaterflow)
@@ -510,14 +543,14 @@
     if(index)
     {
         DD_ItemsModel *item=_dataArr[index-1];
-        if(item.pics)
+        if(item.pics&&item.pics.count)
         {
             
             DD_ImageModel *imgModel=item.pics[0];
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2)*([imgModel.height floatValue]/[imgModel.width floatValue]);
             return _height+56+water_Top;
         }
-        return 56+water_Top;
+        return 56+water_Top+44;
     }else
     {
         return 0;

@@ -11,7 +11,11 @@
 @class DD_ItemsModel;
 
 @interface DD_DesignerItemViewController : DD_BaseViewController
+
 -(instancetype)initWithDesignerID:(NSString *)DesignerID WithBlock:(void(^)(NSString *type,DD_ItemsModel *model))block;
+
 @property(nonatomic,copy) void (^block)(NSString *type,DD_ItemsModel *model);
+
 __string(DesignerID);
+
 @end

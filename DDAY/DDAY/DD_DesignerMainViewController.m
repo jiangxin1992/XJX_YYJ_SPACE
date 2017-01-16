@@ -131,7 +131,7 @@
             
         }];
     }
-    [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
+    [_pageVc setViewControllers:@[_left] direction:1 animated:YES completion:nil];
     currentPage=0;
     [self.view addSubview:_pageVc.view];
 }
@@ -206,7 +206,7 @@
                     }
                 }];
             }
-            [_pageVc setViewControllers:@[_left] direction:0 animated:YES completion:nil];
+            [_pageVc setViewControllers:@[_left] direction:1 animated:YES completion:nil];
             [UIView beginAnimations:@"anmationName1" context:nil];
             [UIView setAnimationDuration:0.5];
             [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
@@ -214,7 +214,6 @@
             dibu.frame=_rect_left;
             [UIView commitAnimations];
         }
-        
         [btnarr enumerateObjectsUsingBlock:^(UIButton *_btn, NSUInteger idx, BOOL * _Nonnull stop) {
             _btn.selected=NO;
             if(_btn.tag==btn.tag)
@@ -253,7 +252,7 @@
             }
             if(currentPage<1)
             {
-                [_pageVc setViewControllers:@[_right] direction:1 animated:YES completion:nil];
+                [_pageVc setViewControllers:@[_right] direction:0 animated:YES completion:nil];
             }
             [UIView beginAnimations:@"anmationName2" context:nil];
             [UIView setAnimationDuration:0.5];

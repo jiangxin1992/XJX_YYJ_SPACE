@@ -43,19 +43,19 @@
      * public static Integer ITEM_STATUS_YSC = 3; //已删除
      * public static Integer ITEM_STATUS_YSC = -1; //已售罄
      */
-    NSString *title=nil;
-    if(item.status==1)
-    {
-        title=[[NSString alloc] initWithFormat:@"￥%@",item.price] ;
-    }else
-    {
-        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
-    }
+    NSString *title=[[NSString alloc] initWithFormat:@"￥%@",item.price];
+//    if(item.status==1)
+//    {
+//        title=[[NSString alloc] initWithFormat:@"￥%@",item.price];
+//    }else
+//    {
+//        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
+//    }
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:price_label];
     price_label.font=[regular getSemiboldFont:15.0f];
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
 
@@ -78,6 +78,32 @@
                 make.height.mas_equalTo(1);
             }];
         }
+    }else
+    {
+        UIImageView *imageBar=[UIImageView getImgWithImageStr:@"Item_State_Bar"];
+        imageBar.contentMode=UIViewContentModeScaleToFill;
+        if(imageview)
+        {
+            [imageview addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }else
+        {
+            [cell addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }
+        UILabel *stateLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+        [imageBar addSubview:stateLabel];
+        [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.mas_equalTo(0);
+            make.left.mas_equalTo(8);
+        }];
+        
     }
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -123,14 +149,14 @@
      * public static Integer ITEM_STATUS_YSC = 3; //已删除
      * public static Integer ITEM_STATUS_YSC = -1; //已售罄
      */
-    NSString *title=nil;
-    if(item.status==1)
-    {
-        title=[[NSString alloc] initWithFormat:@"￥%@",item.price] ;
-    }else
-    {
-        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
-    }
+    NSString *title=[[NSString alloc] initWithFormat:@"￥%@",item.price];
+//    if(item.status==1)
+//    {
+//        title=[[NSString alloc] initWithFormat:@"￥%@",item.price] ;
+//    }else
+//    {
+//        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
+//    }
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:price_label];
     price_label.font=[regular getSemiboldFont:15.0f];
@@ -158,6 +184,32 @@
                 make.height.mas_equalTo(1);
             }];
         }
+    }else
+    {
+        UIImageView *imageBar=[UIImageView getImgWithImageStr:@"Item_State_Bar"];
+        imageBar.contentMode=UIViewContentModeScaleToFill;
+        if(imageview)
+        {
+            [imageview addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }else
+        {
+            [cell addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }
+        UILabel *stateLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+        [imageBar addSubview:stateLabel];
+        [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.mas_equalTo(0);
+            make.left.mas_equalTo(8);
+        }];
+        
     }
     
     UILabel *titleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
@@ -207,14 +259,14 @@
      * public static Integer ITEM_STATUS_YSC = 3; //已删除
      * public static Integer ITEM_STATUS_YSC = -1; //已售罄
      */
-    NSString *title=nil;
-    if(item.status==1)
-    {
-        title=[[NSString alloc] initWithFormat:@"￥%@",item.price] ;
-    }else
-    {
-        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
-    }
+    NSString *title=[[NSString alloc] initWithFormat:@"￥%@",item.price];
+//    if(item.status==1)
+//    {
+//        title=[[NSString alloc] initWithFormat:@"￥%@",item.price] ;
+//    }else
+//    {
+//        title=item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"";
+//    }
     
     UILabel *price_label=[UILabel getLabelWithAlignment:0 WithTitle:title WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [cell addSubview:price_label];
@@ -243,6 +295,32 @@
                 make.height.mas_equalTo(1);
             }];
         }
+    }else
+    {
+        UIImageView *imageBar=[UIImageView getImgWithImageStr:@"Item_State_Bar"];
+        imageBar.contentMode=UIViewContentModeScaleToFill;
+        if(imageview)
+        {
+            [imageview addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }else
+        {
+            [cell addSubview:imageBar];
+            [imageBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.mas_equalTo(0);
+                make.height.mas_equalTo(22);
+            }];
+        }
+        UILabel *stateLabel=[UILabel getLabelWithAlignment:0 WithTitle:item.status==0?@"未上架":item.status==2?@"已下架":item.status==3?@"已删除":item.status==-1?@"已售罄":@"" WithFont:13.0f WithTextColor:_define_white_color WithSpacing:0];
+        [imageBar addSubview:stateLabel];
+        [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.mas_equalTo(0);
+            make.left.mas_equalTo(8);
+        }];
+        
     }
     
     

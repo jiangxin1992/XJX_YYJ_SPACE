@@ -426,13 +426,14 @@
         
         NSMutableArray *monthSArr1=[[NSMutableArray alloc] initWithArray:monthSArr];
         
-        [currentArr enumerateObjectsUsingBlock:^(DD_DDAYModel *ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
-            [monthSArr1 removeObject:ddayModel];
-        }];
-
-        [self sortWithArr:monthSArr1];
-        [monthArr addObjectsFromArray:monthSArr1];
-        return monthArr;
+//        [currentArr enumerateObjectsUsingBlock:^(DD_DDAYModel *ddayModel, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [monthSArr1 removeObject:ddayModel];
+//        }];
+//
+//        [self sortWithArr:monthSArr1];
+//        [monthArr addObjectsFromArray:monthSArr1];
+//        return monthArr;
+        return monthSArr1;
     }else
     {
         NSMutableArray *monthArr=[[NSMutableArray alloc] initWithArray:monthSArr];

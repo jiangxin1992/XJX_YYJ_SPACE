@@ -23,9 +23,10 @@
     UIView *searchView;
     NSMutableArray *_dataArr;
     NSInteger _page;
+    UIView *_noDataView;
 }
 
--(instancetype)initWithQueryStr:(NSString *)queryStr WithChooseItem:(NSArray *)chooseItem WithBlock:(void(^)(NSString *type,NSString *queryStr))block
+-(instancetype)initWithQueryStr:(NSString *)queryStr WithChooseItem:(NSArray *)chooseItem WithBlock:(void(^)(NSString *type,NSString *queryStr,DD_CricleChooseItemModel *chooseItemModel))block
 {
     _block=block;
     _queryStr=queryStr;
@@ -59,6 +60,7 @@
 {
     [self CreateSearchBar];
     [self CreateTableView];
+    [self CreateNoDataView];
 }
 -(void)CreateSearchBar
 {
@@ -74,7 +76,7 @@
     _searchBar = [[UISearchBar alloc] init];
     [searchView addSubview:_searchBar];
     _searchBar.delegate=self;
-    _searchBar.placeholder=@"搜索款式、设计师、品牌";
+    _searchBar.placeholder=@"请输入设计师、品牌、款式名称";
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.backgroundColor=_define_white_color;
     imageView.frame=CGRectMake(0, 0, ScreenWidth-40, 43);
@@ -83,43 +85,33 @@
     _searchBar.text=_queryStr;
     [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.mas_equalTo(0);
-        make.right.mas_equalTo(-40);
+        make.right.mas_equalTo(-60);
     }];
     [_searchBar becomeFirstResponder];
     
-    UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:14.0f WithSpacing:0 WithNormalTitle:@"取消" WithNormalColor:_define_light_gray_color1 WithSelectedTitle:nil WithSelectedColor:nil];
+    UITextField * searchField = [_searchBar valueForKey:@"_searchField"];
+    searchField.backgroundColor=[UIColor clearColor];
+    [searchField setValue:[regular getFont:12.0f] forKeyPath:@"_placeholderLabel.font"];
+    UIView *leftview=[UIView getCustomViewWithColor:nil];
+    leftview.frame=CGRectMake(0, 0, 24+10, 30);
+    UIImageView *img=[UIImageView getImgWithImageStr:@"System_Search"];
+    [leftview addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.centerY.mas_equalTo(leftview);
+        make.width.height.mas_equalTo(24);
+    }];
+    searchField.leftView=leftview;
+    
+    UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"取消" WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
     [searchView addSubview:cancelBtn];
     [cancelBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.mas_equalTo(0);
-        make.left.mas_equalTo(_searchBar.mas_right).with.offset(0);
+        make.left.mas_equalTo(_searchBar.mas_right).with.offset(10);
     }];
+//    _searchBar.showsSearchResultsButton=NO;
     
-    
-//    UIView *leftView=[UIView getCustomViewWithColor:_define_white_color];
-//    [searchView addSubview:leftView];
-//    leftView.frame=CGRectMake(16, 0, 35, 43);
-//    
-//    UIButton *leftBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
-//    [leftView addSubview:leftBtn];
-//    leftBtn.frame=CGRectMake(0, (CGRectGetHeight(leftView.frame)-26)/2.0f, 26, 26);
-//    [leftBtn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIView *rightView=[UIView getCustomViewWithColor:_define_white_color];
-//    [searchView addSubview:rightView];
-//    rightView.frame=CGRectMake(ScreenWidth-16-35, 0, 35, 43);
-//    UIButton *rightBtn=[UIButton getCustomImgBtnWithImageStr:@"System_Search" WithSelectedImageStr:nil];
-//    [rightView addSubview:rightBtn];
-//    rightBtn.frame=CGRectMake(CGRectGetWidth(rightView.frame)-26,(CGRectGetHeight(rightView.frame)-26)/2.0f, 26, 26);
-//    [rightBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-    [searchView addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(1);
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-    }];
 }
 -(void)CreateTableView
 {
@@ -134,6 +126,31 @@
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(searchView.mas_bottom).with.offset(0);
     }];
+}
+-(void)CreateNoDataView
+{
+    _noDataView=[UIView getCustomViewWithColor:nil];
+    [_tableview addSubview:_noDataView];
+    [_noDataView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(_tableview);
+    }];
+    
+    UIImageView *img=[UIImageView getImgWithImageStr:@"System_Search_NoData"];
+    [_noDataView addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.mas_equalTo(0);
+        make.centerY.mas_equalTo(_noDataView);
+        make.width.height.mas_equalTo(24);
+    }];
+    
+    UILabel *label=[UILabel getLabelWithAlignment:0 WithTitle:@"未找到相关款式" WithFont:13.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
+    [_noDataView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(img.mas_right).with.offset(5);
+        make.right.mas_equalTo(0);
+        make.centerY.mas_equalTo(_noDataView);
+    }];
+    _noDataView.hidden=NO;
 }
 #pragma mark - someAction
 -(void)searchAction
@@ -150,14 +167,14 @@
                 }
                 NSArray *getarr=[DD_CricleChooseItemModel getItemsModelArr:[data objectForKey:@"items"] WithDetail:_chooseItem];
                 [_dataArr addObjectsFromArray:getarr];
-                [_tableview reloadData];
+                [self reload];
             }else
             {
                 if(_page==1)
                 {
                     [_dataArr removeAllObjects];//删除所有数据
                 }
-                [_tableview reloadData];
+                [self reload];
             }
         } failure:^(NSError *error, UIAlertController *failureAlert) {
         }];
@@ -165,7 +182,18 @@
     {
         [_dataArr removeAllObjects];
         _page=1;
-        [_tableview reloadData];
+        [self reload];
+    }
+}
+-(void)reload
+{
+    [_tableview reloadData];
+    if(_dataArr.count)
+    {
+        _noDataView.hidden=YES;
+    }else
+    {
+        _noDataView.hidden=NO;
     }
 }
 //-(void)leftAction
@@ -174,7 +202,7 @@
 //}
 -(void)rightAction
 {
-    _block(@"back",@"");
+    _block(@"back",@"",nil);
 //    _queryStr=@"";
 //    searchField.text=_queryStr;
 }
@@ -221,7 +249,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_CricleChooseItemModel *item=_dataArr[indexPath.section];
-    _block(@"search",item.name);
+    _block(@"search",item.name,item);
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -236,11 +264,32 @@
     [self searchAction];
     JXLOG(@"DidChange");
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    _block(@"search",_searchBar.text);
-
+    
+    [searchBar.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(!idx)
+        {
+            UIView *backView = [UIView getCustomViewWithColor:_define_light_gray_color3];
+            [obj addSubview:backView];
+            [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(20+24+5);
+                make.centerY.mas_equalTo(obj);
+                make.right.mas_equalTo(-10);
+                make.height.mas_equalTo(30);
+            }];
+            backView.layer.masksToBounds=YES;
+            backView.layer.cornerRadius=4;
+            [_searchBar insertSubview:backView atIndex:2];
+        }
+    }];
+    
 }
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//    _block(@"search",_searchBar.text,nil);
+//
+//}
 
 //- (BOOL)textFieldShouldReturn:(UITextField *)textField{
 //    _block(@"search",_searchBar.text);

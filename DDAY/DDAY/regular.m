@@ -58,7 +58,7 @@ static regular *_t = nil;
             [mut appendString:temp];
         }
     }
-    return [NSString stringWithFormat:@"<!DOCTYPE HTML><html><head><meta charset=utf-8><meta name=viewport content=width=device-width, initial-scale=1><style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Custom-Font-Name;align:justify;color:%@}</style><div align='justify'>%@<div>",font,color,mut];
+    return [NSString stringWithFormat:@"<!DOCTYPE HTML><html><head><meta charset=utf-8><meta name=viewport content=width=device-width, initial-scale=1><style>body{word-wrap:break-word;margin:0;background-color:transparent;font:%@ Helvetica;align:justify;color:%@}</style><div align='justify'>%@<div>",font,color,mut];
 }
 
 // * 0、生产 1、展示 2、本地

@@ -164,7 +164,7 @@
             CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([choose_item.pic.height floatValue]/[choose_item.pic.width floatValue]);
             return _height+56+water_Top;
         }
-        return 56+water_Top;
+        return 56+water_Top+44;
     }else
     {
         return 0;

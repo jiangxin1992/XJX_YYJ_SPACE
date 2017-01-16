@@ -48,6 +48,10 @@
 
 #define _define_light_gray_color1 [UIColor colorWithHexString:@"#A8A7A7"]//最深-1
 
+#define _define_light_gray_color2 [UIColor colorWithHexString:@"#D3D3D3"]//最深-2
+
+#define _define_light_gray_color3 [UIColor colorWithHexString:@"#EFEFEF"]//最深-3
+
 //#define _define_light_gray_color2 [UIColor colorWithHexString:@"#EAEAEA"]//最深-2
 
 #define _define_light_red_color [UIColor colorWithHexString:@"#FF2A43"]

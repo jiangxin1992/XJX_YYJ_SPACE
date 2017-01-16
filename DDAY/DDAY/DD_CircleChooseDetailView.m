@@ -120,7 +120,7 @@
         make.left.mas_equalTo(0);
         make.width.mas_equalTo(ScreenWidth);
         make.top.mas_equalTo(64);
-        make.height.mas_equalTo(37);
+        make.height.mas_equalTo(42);
     }];
 }
 -(void)CreateSearchBar
@@ -129,30 +129,31 @@
     [_upView addSubview:searchView];
     [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(5);
-        make.height.mas_equalTo(25);
+        make.top.mas_equalTo(6);
+        make.height.mas_equalTo(30);
     }];
+    
+    UIView *backView = [UIView getCustomViewWithColor:_define_light_gray_color3];
+    [searchView addSubview:backView];
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(20+25+10);
+        make.top.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(-20);
+    }];
+    backView.layer.masksToBounds=YES;
+    backView.layer.cornerRadius=4;
+    
 //    31 22
-    searchBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:[queryStr isEqualToString:@""]?@"搜索款式、设计师、品牌":queryStr WithNormalColor:_define_light_gray_color1 WithSelectedTitle:nil WithSelectedColor:nil];
+    searchBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:[queryStr isEqualToString:@""]?@"请输入设计师、品牌、款式名称":queryStr WithNormalColor:_define_light_gray_color1 WithSelectedTitle:nil WithSelectedColor:nil];
     [searchView addSubview:searchBtn];
-    [searchBtn setImage:[UIImage imageNamed:@"System_Nosearch"] forState:UIControlStateNormal];
-    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake((25-22)/2.0f, 20, (25-22)/2.0f, ScreenWidth-31-20-kEdge)];
-    [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [searchBtn setImage:[UIImage imageNamed:@"System_Search"] forState:UIControlStateNormal];
+    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(3, 20, 3, ScreenWidth-19-25-kEdge)];
+    [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
     [searchBtn addTarget:self action:@selector(ShowSearchView) forControlEvents:UIControlEventTouchUpInside];
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.mas_equalTo(0);
         make.right.mas_equalTo(-kEdge);
     }];
-    
-    UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
-    [searchView addSubview:downLine];
-    [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.right.mas_equalTo(0);
-        make.height.mas_equalTo(1);
-        make.left.mas_equalTo(55);
-        make.right.mas_equalTo(-water_margin);
-    }];
-    
     
 }
 -(void)UpdateImgView
@@ -375,8 +376,12 @@
     if(index)
     {
         DD_CricleChooseItemModel *item=_dataArr[index-1];
-        CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
-        return _height+56+water_Top;
+        if(item.pic)
+        {
+            CGFloat _height=((ScreenWidth-water_margin*2-water_Spacing)/2.0f)*([item.pic.height floatValue]/[item.pic.width floatValue]);
+            return _height+56+water_Top;
+        }
+        return 56+water_Top+44;
     }else
     {
         return 0;
@@ -435,7 +440,7 @@
 }
 -(void)ShowSearchView
 {
-    _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:queryStr WithChooseItem:_circleModel.chooseItem WithBlock:^(NSString *type, NSString *_queryStr) {
+    _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:queryStr WithChooseItem:_circleModel.chooseItem WithBlock:^(NSString *type, NSString *_queryStr,DD_CricleChooseItemModel *chooseItemModel) {
         if([type isEqualToString:@"back"])
         {
             [_searchView removeFromSuperview];

@@ -16,9 +16,6 @@
 /** 获取当前DNS*/
 + (NSString *)getDNS;
 
-/** 中国大陆手机号判断*/
-+ (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
-
 /** 获取保留小数点后两位数的字符串*/
 + (NSString *)getRoundNum:(CGFloat )num;
 
@@ -135,6 +132,10 @@
  * 键盘消失
  */
 +(void)dismissKeyborad;
+
+/** 中国大陆手机号判断*/
++ (BOOL)isMobilePhoneOrtelePhone:(NSString *)mobileNum ;
+
 /**
  * 电子邮箱正则
  */

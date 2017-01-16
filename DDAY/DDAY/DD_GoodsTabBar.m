@@ -54,8 +54,8 @@
     {
         title=_colorModel.status==0?@"未 上 架":_colorModel.status==2?@"已 下 架":_colorModel.status==3?@"已 删 除":_colorModel.status==-1?@"已 售 罄":@"";
         buyBtn.userInteractionEnabled=NO;
-        buyBtn.backgroundColor=_define_light_gray_color1;
-        [buyBtn setTitleColor:_define_light_gray_color forState:UIControlStateNormal];
+        buyBtn.backgroundColor=_define_light_gray_color2;
+        [buyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
     }
     [buyBtn setTitle:title forState:UIControlStateNormal];
     
