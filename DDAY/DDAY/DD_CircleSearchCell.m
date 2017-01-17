@@ -25,18 +25,18 @@
         content_label=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:13.0f WithTextColor:nil WithSpacing:0];
         [self.contentView addSubview:content_label];
         [content_label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(kEdge);
+            make.left.mas_equalTo(20);
             make.top.mas_equalTo(0);
-            make.right.mas_equalTo(-kEdge);
+            make.right.mas_equalTo(-20);
             make.bottom.mas_equalTo(-1);
         }];
         
-        UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
+        UIView *downLine=[UIView getCustomViewWithColor:_define_light_gray_color1];
         [self.contentView addSubview:downLine];
         [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(kEdge);
+            make.left.mas_equalTo(20);
             make.height.mas_equalTo(1);
-            make.right.mas_equalTo(-kEdge);
+            make.right.mas_equalTo(-20);
             make.bottom.mas_equalTo(0);
         }];
     }

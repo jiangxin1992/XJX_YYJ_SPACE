@@ -91,7 +91,7 @@
     
     if([_AddressModel.udaId isEqualToString:_defaultID])
     {
-        _detailAddress.text=[[NSString alloc] initWithFormat:@"[默认地址]%@",_AddressModel.detailAddress];
+        _detailAddress.text=[[NSString alloc] initWithFormat:@"[默认地址] %@",_AddressModel.detailAddress];
     }else
     {
         _detailAddress.text=_AddressModel.detailAddress;

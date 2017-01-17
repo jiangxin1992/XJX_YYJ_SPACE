@@ -69,7 +69,7 @@
     [self addSubview:searchView];
     [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(20);
+        make.top.mas_equalTo(kStatusBarHeight+15);
         make.height.mas_equalTo(43);
     }];
     
@@ -93,11 +93,11 @@
     searchField.backgroundColor=[UIColor clearColor];
     [searchField setValue:[regular getFont:12.0f] forKeyPath:@"_placeholderLabel.font"];
     UIView *leftview=[UIView getCustomViewWithColor:nil];
-    leftview.frame=CGRectMake(0, 0, 24+10, 30);
+    leftview.frame=CGRectMake(0, 0, 24+20, 30);
     UIImageView *img=[UIImageView getImgWithImageStr:@"System_Search"];
     [leftview addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
+        make.left.mas_equalTo(5);
         make.centerY.mas_equalTo(leftview);
         make.width.height.mas_equalTo(24);
     }];
@@ -105,12 +105,12 @@
     
     UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"取消" WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
     [searchView addSubview:cancelBtn];
+    [cancelBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:15];
     [cancelBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.mas_equalTo(0);
-        make.left.mas_equalTo(_searchBar.mas_right).with.offset(10);
+        make.left.mas_equalTo(_searchBar.mas_right).with.offset(15);
     }];
-//    _searchBar.showsSearchResultsButton=NO;
     
 }
 -(void)CreateTableView
@@ -193,7 +193,13 @@
         _noDataView.hidden=YES;
     }else
     {
-        _noDataView.hidden=NO;
+        if([NSString isNilOrEmpty:_searchBar.text])
+        {
+            _noDataView.hidden=YES;
+        }else
+        {
+            _noDataView.hidden=NO;
+        }
     }
 }
 //-(void)leftAction
@@ -273,9 +279,9 @@
             UIView *backView = [UIView getCustomViewWithColor:_define_light_gray_color3];
             [obj addSubview:backView];
             [backView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(20+24+5);
+                make.left.mas_equalTo(20+24+5+10);
                 make.centerY.mas_equalTo(obj);
-                make.right.mas_equalTo(-10);
+                make.right.mas_equalTo(0);
                 make.height.mas_equalTo(30);
             }];
             backView.layer.masksToBounds=YES;

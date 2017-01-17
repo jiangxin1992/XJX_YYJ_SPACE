@@ -172,13 +172,21 @@
 -(void)updateDataArr:(DD_AddressModel *)model
 {
 
+    __block BOOL isalert=NO;
+    __block NSInteger alertidx=0;
     [_dataArr enumerateObjectsUsingBlock:^(DD_AddressModel *_model, NSUInteger idx, BOOL * _Nonnull stop) {
         if([_model.udaId isEqualToString:model.udaId])
         {
+            isalert=YES;
+            alertidx=idx;
             _model=model;
             *stop=YES;
         }
     }];
+    if(isalert)
+    {
+        _dataArr[alertidx]=model;
+    }
     
 }
 -(void)alertActionWithNum:(NSInteger )_num
@@ -188,7 +196,7 @@
     DD_AddNewAddressViewController *AddNewAddress=[[DD_AddNewAddressViewController alloc] initWithModel:addressModel isDefault:addressModel.isDefault WithBlock:^(NSString *type, DD_AddressModel *model,NSString *defaultID) {
         if([type isEqualToString:@"modify"])
         {
-            
+
                 //            修改地址
                 [self updateDataArr:model];
                 _defaultID=defaultID;

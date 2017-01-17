@@ -101,7 +101,7 @@
         }
     } forControlEvents:UIControlEventTouchUpInside];
     
-    DD_NavBtn *searchBtn=[DD_NavBtn getNavBtnIsLeft:YES WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_Search"];
+    DD_NavBtn *searchBtn=[DD_NavBtn getNavBtnIsLeft:NO WithSize:CGSizeMake(25, 25) WithImgeStr:@"System_Search"];
     [searchBtn bk_addEventHandler:^(id sender) {
         [self ShowSearchView];
     } forControlEvents:UIControlEventTouchUpInside];
@@ -331,24 +331,27 @@
 #pragma mark - SomeAction
 -(void)ShowSearchView
 {
-    _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:@"" WithChooseItem:nil WithBlock:^(NSString *type, NSString *_queryStr,DD_CricleChooseItemModel *chooseItemModel) {
-        if([type isEqualToString:@"back"])
-        {
-            
-        }else if([type isEqualToString:@"search"])
-        {
-            DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
-            _item.g_id=chooseItemModel.g_id;
-            _item.colorCode=chooseItemModel.colorCode;
-            DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
-                //        if(type)
-            }];
-            [self.navigationController pushViewController:_GoodsDetail animated:YES];
-        }
-        [_searchView removeFromSuperview];
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-        [[DD_CustomViewController sharedManager] tabbarAppear];
-    }];
+    if(!_searchView)
+    {
+        _searchView=[[DD_CircleSearchView alloc] initWithQueryStr:@"" WithChooseItem:nil WithBlock:^(NSString *type, NSString *_queryStr,DD_CricleChooseItemModel *chooseItemModel) {
+            if([type isEqualToString:@"back"])
+            {
+                [_searchView removeFromSuperview];
+                _searchView=nil;
+            }else if([type isEqualToString:@"search"])
+            {
+                DD_ItemsModel *_item=[[DD_ItemsModel alloc] init];
+                _item.g_id=chooseItemModel.g_id;
+                _item.colorCode=chooseItemModel.colorCode;
+                DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_item WithBlock:^(DD_ItemsModel *model, NSString *type) {
+                    //        if(type)
+                }];
+                [self.navigationController pushViewController:_GoodsDetail animated:YES];
+            }
+            [self.navigationController setNavigationBarHidden:NO animated:NO];
+            [[DD_CustomViewController sharedManager] tabbarAppear];
+        }];
+    }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.view addSubview:_searchView];
     [[DD_CustomViewController sharedManager] tabbarHide];
@@ -369,59 +372,7 @@
 {
     if(_benefitInfoModel)
     {
-//        if([DD_UserModel isLogin])
-//        {
-//            _isReadBenefit=_benefitInfoModel.isReadBenefit;
-//            //登陆
-//            //                            mywaterflow
-//            if(_benefitInfoModel.isReadBenefit)
-//            {
-//                //隐藏headview
-//                [_headView removeFromSuperview];
-//                _headView=nil;
-//            }else
-//            {
-//                if(!_headView)
-//                {
-//                    //显示headview
-//                    _headView=[[DD_headViewBenefitView alloc] initWithModel:_benefitInfoModel WithBlock:^(NSString *type) {
-//                        if([type isEqualToString:@"close"])
-//                        {
-//                            //关闭
-//                            [[JX_AFNetworking alloc] GET:@"user/readBenefit.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//                                if(success)
-//                                {
-//                                    _benefitInfoModel.isReadBenefit=YES;
-//                                    _isReadBenefit=YES;
-//                                    [_headView removeFromSuperview];
-//                                    _headView=nil;
-//                                    [mywaterflow reloadData];
-//                                }else
-//                                {
-//                                    [self presentViewController:successAlert animated:YES completion:nil];
-//                                }
-//                            } failure:^(NSError *error, UIAlertController *failureAlert) {
-//                                [self presentViewController:failureAlert animated:YES completion:nil];
-//                            }];
-//                            
-//                            
-//                        }else if([type isEqualToString:@"enter"])
-//                        {
-//                            [self.navigationController pushViewController:[[DD_BenefitDetailViewController alloc] initWithBenefitInfoModel:_benefitInfoModel WithBlock:^(NSString *type) {
-//                            }] animated:YES];
-//                        }
-//                    }];
-//                    [mywaterflow addSubview:_headView];
-//                }else
-//                {
-//                    _headView.benefitInfoModel=_benefitInfoModel;
-//                }
-//            }
-//            [mywaterflow reloadData];
-//        }else
-//        {
             [self unLoginAction];
-//        }
     }else
     {
         _isReadBenefit=YES;
@@ -492,27 +443,6 @@
     _page+=1;
     [self RequestData];
 }
-/**
- * 返回
- */
-//-(void)backAction
-//{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//跳转购物车
-//-(void)PushShopView
-//{
-//    if(![DD_UserModel isLogin])
-//    {
-//        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
-//            [self pushLoginView];
-//        }] animated:YES completion:nil];
-//    }else
-//    {
-//        DD_ShopViewController *_shop=[[DD_ShopViewController alloc] init];
-//        [self.navigationController pushViewController:_shop animated:YES];
-//    }
-//}
 
 #pragma mark - UITableViewDelegate
 // cell的个数，必须实现
@@ -587,13 +517,22 @@
 {
     
     [super viewWillAppear:animated];
-    if(_noTabbar)
+    if(_searchView)
     {
         [[DD_CustomViewController sharedManager] tabbarHide];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
     }else
     {
-        [[DD_CustomViewController sharedManager] tabbarAppear];
+        if(_noTabbar)
+        {
+            [[DD_CustomViewController sharedManager] tabbarHide];
+        }else
+        {
+            [[DD_CustomViewController sharedManager] tabbarAppear];
+        }
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
+    
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

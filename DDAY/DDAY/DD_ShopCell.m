@@ -96,21 +96,23 @@
     
     _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
+//    _sizeNameBtn.backgroundColor=[UIColor redColor];
     [_sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
     [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(24);
-        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(22);
+        make.width.mas_equalTo(44);
         make.bottom.mas_equalTo(imageBack);
         make.left.mas_equalTo(_itemNameLabel);
     }];
     [_sizeNameBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:20];
     
     _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+//    _numBtn.backgroundColor=[UIColor redColor];
     [self.contentView addSubview:_numBtn];
     [_numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
     [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(24);
-        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(22);
+        make.width.mas_equalTo(44);
         make.bottom.mas_equalTo(imageBack);
         make.right.mas_equalTo(-kEdge);
     }];

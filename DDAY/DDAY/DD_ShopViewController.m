@@ -40,6 +40,7 @@
     UITableView *_tableview;//tableview
     DD_ShopClearingView *_tabbar;//自定义tabbar
     
+    MJRefreshGifHeader *_mj_header;//刷新头
     
     DD_ShopModel *_shopModel;//购物车model
 //    BOOL _isEditing;//cell样式切换，是否是编辑状态
@@ -93,19 +94,19 @@
 -(void)MJRefresh
 {
     //    MJRefreshNormalHeader *header= [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    _mj_header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     NSArray *refreshingImages=[regular getGifImg];
     
     //     Set the ordinary state of animated images
-    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateIdle];
+    [_mj_header setImages:refreshingImages duration:1.5 forState:MJRefreshStateIdle];
     //     Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
-    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStatePulling];
+    [_mj_header setImages:refreshingImages duration:1.5 forState:MJRefreshStatePulling];
     //     Set the refreshing state of animated images
-    [header setImages:refreshingImages duration:1.5 forState:MJRefreshStateRefreshing];
+    [_mj_header setImages:refreshingImages duration:1.5 forState:MJRefreshStateRefreshing];
     
-    header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
-    _tableview.mj_header = header;
+    _mj_header.lastUpdatedTimeLabel.hidden = YES;
+    _mj_header.stateLabel.hidden = YES;
+    _tableview.mj_header = _mj_header;
     [_tableview.mj_header beginRefreshing];
     
 }
@@ -169,10 +170,10 @@
 {
     if(!mengban_num&&!mengban_size)
     {
+        [self MJ_Hide];
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_size=[UIImageView getMaskImageView];
         [self.view addSubview:mengban_size];
-//        [mengban_size addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_size_dismiss)]];
         [mengban_size bk_whenTapped:^{
             [self mengban_size_dismiss];
         }];
@@ -294,10 +295,10 @@
 {
     if(!mengban_num&&!mengban_size)
     {
+        [self MJ_Hide];
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         mengban_num=[UIImageView getMaskImageView];
         [self.view addSubview:mengban_num];
-//        [mengban_num addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mengban_num_dismiss)]];
         [mengban_num bk_whenTapped:^{
             [self mengban_num_dismiss];
         }];
@@ -557,6 +558,7 @@
     [UIView animateWithDuration:0.5 animations:^{
         _alertSizeView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_size_Height);
     } completion:^(BOOL finished) {
+        [self MJ_Appear];
         [mengban_size removeFromSuperview];
         mengban_size=nil;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -567,12 +569,26 @@
     [UIView animateWithDuration:0.3 animations:^{
         _alertNumView.frame=CGRectMake(0, ScreenHeight, ScreenWidth, _mengban_num_Height);
     } completion:^(BOOL finished) {
+        [self MJ_Appear];
         [mengban_num removeFromSuperview];
         mengban_num=nil;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }];
 }
-
+-(void)MJ_Hide
+{
+    if(_mj_header)
+    {
+        _mj_header.hidden=YES;
+    }
+}
+-(void)MJ_Appear
+{
+    if(_mj_header)
+    {
+        _mj_header.hidden=NO;
+    }
+}
 /**
  * 结算
  */

@@ -52,7 +52,8 @@
         [buyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];
     }else
     {
-        title=_colorModel.status==0?@"未 上 架":_colorModel.status==2?@"已 下 架":_colorModel.status==3?@"已 删 除":_colorModel.status==-1?@"已 售 罄":@"";
+        //@"已 售 罄" 状态显示改为 @"购   买" 为了促发消费性
+        title=_colorModel.status==0?@"未 上 架":_colorModel.status==2?@"已 下 架":_colorModel.status==3?@"已 删 除":_colorModel.status==-1?@"购   买":@"";
         buyBtn.userInteractionEnabled=NO;
         buyBtn.backgroundColor=_define_light_gray_color2;
         [buyBtn setTitleColor:_define_white_color forState:UIControlStateNormal];

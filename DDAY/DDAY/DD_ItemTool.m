@@ -55,7 +55,7 @@
     [cell addSubview:price_label];
     price_label.font=[regular getSemiboldFont:15.0f];
     [price_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(-2);
     }];
 
