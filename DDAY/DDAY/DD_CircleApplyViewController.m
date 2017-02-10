@@ -473,8 +473,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 //打开相机
                 [self loadImageWithType:UIImagePickerControllerSourceTypeCamera];
-            }
-            else
+            }else
             {
                 JXLOG(@"不能打开相机");
             }
@@ -483,8 +482,7 @@
         UIAlertAction *archiveAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"open_album", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 [self loadImageWithType:UIImagePickerControllerSourceTypePhotoLibrary];
-            }
-            else
+            }else
             {
                 JXLOG(@"无法打开相册");
             }
