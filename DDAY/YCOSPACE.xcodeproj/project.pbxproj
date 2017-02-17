@@ -1829,6 +1829,7 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3F90A8731E53268200DBEF1A /* NSDate+Formatter */,
 				3F4BA4311DE5550E00D80D68 /* YYAnimatedImageView+LoadImage */,
 				3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */,
 				3F4C2F231D76833400C954C4 /* NSDate+Custom */,
@@ -2241,8 +2242,6 @@
 		3F5717281D6EBBC2006E1940 /* 日历 */ = {
 			isa = PBXGroup;
 			children = (
-				3F5717321D6EC01E006E1940 /* NSDate+Formatter.h */,
-				3F5717331D6EC01E006E1940 /* NSDate+Formatter.m */,
 				3F5717381D6EE9DE006E1940 /* DD_CalendarTool.h */,
 				3F5717391D6EE9DE006E1940 /* DD_CalendarTool.m */,
 				3FFA8B261D73452400DD51C1 /* cell */,
@@ -2821,6 +2820,15 @@
 				3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */,
 			);
 			name = "申请成为达人";
+			sourceTree = "<group>";
+		};
+		3F90A8731E53268200DBEF1A /* NSDate+Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				3F5717321D6EC01E006E1940 /* NSDate+Formatter.h */,
+				3F5717331D6EC01E006E1940 /* NSDate+Formatter.m */,
+			);
+			name = "NSDate+Formatter";
 			sourceTree = "<group>";
 		};
 		3F9291AF1D66F99E00FD7EE2 /* 关于 */ = {

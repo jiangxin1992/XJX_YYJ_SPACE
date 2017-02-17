@@ -308,7 +308,10 @@
 /** APP已经接收到“远程”通知(推送) - 透传推送消息  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     
-    if(application.applicationState!=UIApplicationStateActive)
+    //    后台运行 applicationState = UIApplicationStateBackground
+    //    点击横条 applicationState = UIApplicationStateInactive
+    //    app打开的情况下 applicationState = UIApplicationStateActive
+    if(application.applicationState==UIApplicationStateInactive)
     {
         JXLOG(@"applicationState=%ld",application.applicationState);
         // 处理APN

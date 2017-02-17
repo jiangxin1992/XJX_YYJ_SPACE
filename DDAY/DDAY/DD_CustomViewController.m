@@ -23,6 +23,8 @@
 #import "DD_UnReadMsgModel.h"
 #import "DD_VersionModel.h"
 
+#import "DD_ShareTool.h"
+
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {
     //    自定义的标签栏
@@ -60,6 +62,10 @@ static DD_CustomViewController *tabbarController = nil;
     [self UpdateNoReadMessageState];
     
     [self Notifications];
+    
+    BOOL app1 = [DD_ShareTool isInstallQQ];
+    BOOL app2 = [DD_ShareTool isInstallWeChat];
+    NSLog(@"app1=%d app2=%d",app1,app2);
     
 }
 

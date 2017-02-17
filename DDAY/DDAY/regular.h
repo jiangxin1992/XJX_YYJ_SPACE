@@ -10,6 +10,11 @@
 
 @interface regular : NSObject
 
+/**
+ * 单例
+ */
++(id)sharedManager;
+
 /** 用户是否打开推送开关*/
 + (BOOL)isEnableAPNS;
 
@@ -174,11 +179,6 @@
  * 图片url
  */
 +(NSString *)getImgUrl:(NSString *)img WithSize:(NSInteger )_size;
-
-/**
- * 单例
- */
-+(id)sharedManager;
 
 /**
  * 加密
