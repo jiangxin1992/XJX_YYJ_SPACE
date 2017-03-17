@@ -67,7 +67,7 @@
     
     // 如果改变的属性是"name"
     if ([keyPath isEqualToString:@"status"]) {
-        NSLog(@"_player.status=%ld",(long)_player.status);
+        JXLOG(@"_player.status=%ld",(long)_player.status);
         if(_player.status==AVPlayerStatusReadyToPlay)
         {
             if(_player)

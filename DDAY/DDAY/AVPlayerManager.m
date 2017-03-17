@@ -64,10 +64,10 @@
             [self play];
             break;
         case AVPlayerItemStatusFailed:
-            NSLog(@"加载失败");
+            JXLOG(@"加载失败");
             break;
         case AVPlayerItemStatusUnknown:
-            NSLog(@"未知资源");
+            JXLOG(@"未知资源");
             break;
         default:
             break;

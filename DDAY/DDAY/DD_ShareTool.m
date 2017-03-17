@@ -310,7 +310,7 @@
  */
 +(BOOL)isInstallWeChat
 {
-    return [ShareSDK isClientInstalled:SSDKPlatformSubTypeWechatSession];
+    return [ShareSDK isClientInstalled:SSDKPlatformTypeWechat];
 }
 
 @end

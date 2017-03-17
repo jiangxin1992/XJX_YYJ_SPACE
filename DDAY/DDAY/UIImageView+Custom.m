@@ -24,8 +24,6 @@
     return imageview;
 }
 
-
-
 +(UIImageView *)getMaskImageView
 {
     UIImageView *mengban=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
@@ -46,6 +44,7 @@
     imageView.contentMode=1;
     return imageView;
 }
+
 //+(UIImageView *)getloadImageUrlStr:(NSString *)_urlStr WithSize:(NSInteger )size placeHolderImageName:(NSString *)placeHolderStr radius:(CGFloat)radius WithContentMode:(NSInteger )contentModel
 //{
 //    UIImageView *imageview=[UIImageView getCornerRadiusImg];

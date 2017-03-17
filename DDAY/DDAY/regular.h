@@ -15,6 +15,9 @@
  */
 +(id)sharedManager;
 
+/** 图片压缩到指定大小*/
++ (NSData*)getImageForSize:(CGFloat)size WithImage:(UIImage *)image;
+
 /** 用户是否打开推送开关*/
 + (BOOL)isEnableAPNS;
 

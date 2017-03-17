@@ -369,7 +369,7 @@
             [_monthSeriesViewArr addObject:_backView_s];
             lastView=_backView_s;
         }];
-        NSLog(@"backView=%lf",CGRectGetMaxY(backView.frame));
+        JXLOG(@"backView=%lf",CGRectGetMaxY(backView.frame));
         _scrollView.contentSize=CGSizeMake(ScreenWidth, CGRectGetMaxY(backView.frame)+((IsPhone6_gt?30:25)+(IsPhone6_gt?26:20))*_monthArr.count+(IsPhone6_gt?26:20));
         
     }else

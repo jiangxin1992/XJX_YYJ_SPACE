@@ -269,7 +269,7 @@
     //设置选取器类型
     picker.sourceType = type;
     //编辑
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     if ([picker.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
         

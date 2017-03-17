@@ -65,7 +65,7 @@ static DD_CustomViewController *tabbarController = nil;
     
     BOOL app1 = [DD_ShareTool isInstallQQ];
     BOOL app2 = [DD_ShareTool isInstallWeChat];
-    NSLog(@"app1=%d app2=%d",app1,app2);
+    JXLOG(@"app1=%d app2=%d",app1,app2);
     
 }
 

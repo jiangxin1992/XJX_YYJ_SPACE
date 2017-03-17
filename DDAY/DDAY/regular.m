@@ -26,6 +26,33 @@ static regular *_t = nil;
     }
     return _t;
 }
+//图片压缩到指定大小
++ (NSData*)getImageForSize:(CGFloat)size WithImage:(UIImage *)image
+{
+    NSData *tempData = UIImageJPEGRepresentation(image, 1);
+    NSLog(@"原图大小=%lu %lfM",(unsigned long)tempData.length,[regular getSizeMWithBytes:tempData.length]);
+    NSLog(@"原图0.1大小=%lu %lfM",(unsigned long)(UIImageJPEGRepresentation(image, 0.1)).length,[regular getSizeMWithBytes:(UIImageJPEGRepresentation(image, 0.1)).length]);
+    if([regular getSizeMWithBytes:tempData.length]<size)
+    {
+        return tempData;
+    }else
+    {
+        NSArray *tempArr = @[@(0.9),@(0.8),@(0.7),@(0.6),@(0.5),@(0.4),@(0.3),@(0.2),@(0.1)];
+        for (int i=0; i<tempArr.count; i++) {
+            NSData *tempData1 = UIImageJPEGRepresentation(image, [[tempArr objectAtIndex:i] floatValue]);
+            NSLog(@"处理%d次后的大小%lu %lfM",i+1,(unsigned long)tempData1.length,[regular getSizeMWithBytes:tempData1.length]);
+            if([regular getSizeMWithBytes:tempData1.length]<size)
+            {
+                return tempData1;
+            }
+        }
+        return UIImageJPEGRepresentation(image, 0.1);
+    }
+}
++(CGFloat )getSizeMWithBytes:(long)bytes
+{
+    return (bytes/1024.0f)/1024.0f;
+}
 +(BOOL)isEnableAPNS
 {
     UIRemoteNotificationType types;

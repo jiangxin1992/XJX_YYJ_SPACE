@@ -297,6 +297,7 @@
             }
             case SSDKResponseStateFail:
             {
+                
                 if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
                 {
 //                    if(!_is_show)
