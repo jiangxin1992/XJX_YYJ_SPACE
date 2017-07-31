@@ -13,8 +13,6 @@
 #import "DD_CustomViewController.h"
 
 #import "DD_StartView.h"
-
-
 @interface DD_StartViewPlayer ()
 
 @property(nonatomic,strong)AVPlayer *player;
@@ -28,9 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //    [NSThread sleepForTimeInterval:1];
-    
+
     _repeatAction=0;
     
     self.view.backgroundColor=_define_white_color;

@@ -111,8 +111,8 @@
 		3F4187DA1CEEFF0B001BCA3D /* DD_AdressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187D41CEEFF0B001BCA3D /* DD_AdressTableViewCell.m */; };
 		3F4187DC1CEEFF0B001BCA3D /* DD_AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187D71CEEFF0B001BCA3D /* DD_AddressViewController.m */; };
 		3F4187EF1CEEFF1A001BCA3D /* DD_CityTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E41CEEFF1A001BCA3D /* DD_CityTool.m */; };
-		3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E61CEEFF1A001BCA3D /* DD_ProvinceVCT.m */; };
-		3F4187F21CEEFF1A001BCA3D /* DD_CityVCT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E91CEEFF1A001BCA3D /* DD_CityVCT.m */; };
+		3F4187F01CEEFF1A001BCA3D /* DD_ProvinceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E61CEEFF1A001BCA3D /* DD_ProvinceViewController.m */; };
+		3F4187F21CEEFF1A001BCA3D /* DD_CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187E91CEEFF1A001BCA3D /* DD_CityViewController.m */; };
 		3F4187F41CEEFF1A001BCA3D /* DD_ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187EC1CEEFF1A001BCA3D /* DD_ProvinceModel.m */; };
 		3F4187F51CEEFF1A001BCA3D /* DD_CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187EE1CEEFF1A001BCA3D /* DD_CityModel.m */; };
 		3F4187FB1CEEFF35001BCA3D /* DD_ClearingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4187F81CEEFF35001BCA3D /* DD_ClearingModel.m */; };
@@ -664,10 +664,10 @@
 		3F4187D71CEEFF0B001BCA3D /* DD_AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_AddressViewController.m; sourceTree = "<group>"; };
 		3F4187E31CEEFF1A001BCA3D /* DD_CityTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CityTool.h; sourceTree = "<group>"; };
 		3F4187E41CEEFF1A001BCA3D /* DD_CityTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CityTool.m; sourceTree = "<group>"; };
-		3F4187E51CEEFF1A001BCA3D /* DD_ProvinceVCT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ProvinceVCT.h; sourceTree = "<group>"; };
-		3F4187E61CEEFF1A001BCA3D /* DD_ProvinceVCT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ProvinceVCT.m; sourceTree = "<group>"; };
-		3F4187E81CEEFF1A001BCA3D /* DD_CityVCT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CityVCT.h; sourceTree = "<group>"; };
-		3F4187E91CEEFF1A001BCA3D /* DD_CityVCT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CityVCT.m; sourceTree = "<group>"; };
+		3F4187E51CEEFF1A001BCA3D /* DD_ProvinceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ProvinceViewController.h; sourceTree = "<group>"; };
+		3F4187E61CEEFF1A001BCA3D /* DD_ProvinceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ProvinceViewController.m; sourceTree = "<group>"; };
+		3F4187E81CEEFF1A001BCA3D /* DD_CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CityViewController.h; sourceTree = "<group>"; };
+		3F4187E91CEEFF1A001BCA3D /* DD_CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CityViewController.m; sourceTree = "<group>"; };
 		3F4187EB1CEEFF1A001BCA3D /* DD_ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ProvinceModel.h; sourceTree = "<group>"; };
 		3F4187EC1CEEFF1A001BCA3D /* DD_ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_ProvinceModel.m; sourceTree = "<group>"; };
 		3F4187ED1CEEFF1A001BCA3D /* DD_CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CityModel.h; sourceTree = "<group>"; };
@@ -1186,7 +1186,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F00D4111D5A4C1E00896ED5 /* 我的消息 */ = {
+		3F00D4111D5A4C1E00896ED5 /* Message */ = {
 			isa = PBXGroup;
 			children = (
 				3F82E78B1D81417100EA4950 /* DD_UserMessageTool.h */,
@@ -1195,7 +1195,7 @@
 				3F00D4151D5A4CA000896ED5 /* DD_UserMessageViewController.h */,
 				3F00D4161D5A4CA000896ED5 /* DD_UserMessageViewController.m */,
 			);
-			name = "我的消息";
+			name = Message;
 			sourceTree = "<group>";
 		};
 		3F07DB9F1D6B4365005C8022 /* Share */ = {
@@ -1212,26 +1212,26 @@
 		3F0A6DF11D11034A00CDCBC5 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
-				3FFCCF5B1D6211AE00E1DC7C /* 预览 */,
-				3F66CF251D115D3E006A3D3F /* 适合人群 */,
-				3F66CF1E1D115B91006A3D3F /* 标签 */,
-				3F66CF191D115353006A3D3F /* 搭配图 */,
-				3F7729251D1151BD008A184F /* 款式选择 */,
-				3F0A6DF21D11035300CDCBC5 /* 搭配建议 */,
+				3FFCCF5B1D6211AE00E1DC7C /* PushlishPreView */,
+				3F66CF251D115D3E006A3D3F /* FitPersonView */,
+				3F66CF1E1D115B91006A3D3F /* TagView */,
+				3F66CF191D115353006A3D3F /* InfoImg */,
+				3F7729251D1151BD008A184F /* ChooseStyle */,
+				3F0A6DF21D11035300CDCBC5 /* InfoSuggest */,
 				3FB342641D1001DB00C9A682 /* DD_CircleInfoView.h */,
 				3FB342651D1001DB00C9A682 /* DD_CircleInfoView.m */,
 			);
 			name = InfoView;
 			sourceTree = "<group>";
 		};
-		3F0A6DF21D11035300CDCBC5 /* 搭配建议 */ = {
+		3F0A6DF21D11035300CDCBC5 /* InfoSuggest */ = {
 			isa = PBXGroup;
 			children = (
-				3F6163531D5D9DA3003F8AC3 /* 键盘上视图 */,
+				3F6163531D5D9DA3003F8AC3 /* SuggestSignBoard */,
 				3F0A6DF61D11056100CDCBC5 /* DD_CircleInfoSuggestView.h */,
 				3F0A6DF71D11056100CDCBC5 /* DD_CircleInfoSuggestView.m */,
 			);
-			name = "搭配建议";
+			name = InfoSuggest;
 			sourceTree = "<group>";
 		};
 		3F0A6DFF1D1127B300CDCBC5 /* UIView+Frame */ = {
@@ -1243,13 +1243,13 @@
 			name = "UIView+Frame";
 			sourceTree = "<group>";
 		};
-		3F0A8CE51D07F6CE005549BE /* 退款界面 */ = {
+		3F0A8CE51D07F6CE005549BE /* OrderRefund */ = {
 			isa = PBXGroup;
 			children = (
 				3F0A8CE61D07F6E8005549BE /* DD_OrderRefundViewController.h */,
 				3F0A8CE71D07F6E8005549BE /* DD_OrderRefundViewController.m */,
 			);
-			name = "退款界面";
+			name = OrderRefund;
 			sourceTree = "<group>";
 		};
 		3F0B66D61D23BB0700A89F33 /* NotObj */ = {
@@ -1270,7 +1270,7 @@
 			name = "积分";
 			sourceTree = "<group>";
 		};
-		3F1401501CF836CE0093474A /* cell */ = {
+		3F1401501CF836CE0093474A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F14014B1CF836C80093474A /* DD_ShopEditingCell.h */,
@@ -1278,16 +1278,16 @@
 				3F1401461CF836B30093474A /* DD_ShopCell.h */,
 				3F1401471CF836B30093474A /* DD_ShopCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
-		3F17B8261D86583700209675 /* cell */ = {
+		3F17B8261D86583700209675 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F17B81D1D863B4400209675 /* DD_ShowRoomSimpleCell.h */,
 				3F17B81E1D863B4400209675 /* DD_ShowRoomSimpleCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3F1A5C9C1DC1F6B800E9765F /* 优惠券 */ = {
@@ -1301,7 +1301,7 @@
 			name = "优惠券";
 			sourceTree = "<group>";
 		};
-		3F21E1FD1D177E2D00FE7ADF /* 款式选择视图 */ = {
+		3F21E1FD1D177E2D00FE7ADF /* ChooseStyleView(款式选择视图) */ = {
 			isa = PBXGroup;
 			children = (
 				3F4026141D7C76D3005E3A83 /* DD_CircleSearchCell.h */,
@@ -1311,7 +1311,7 @@
 				3F21E1FE1D177E5000FE7ADF /* DD_CircleChooseDetailView.h */,
 				3F21E1FF1D177E5000FE7ADF /* DD_CircleChooseDetailView.m */,
 			);
-			name = "款式选择视图";
+			name = "ChooseStyleView(款式选择视图)";
 			sourceTree = "<group>";
 		};
 		3F2309951DF93B0100CA1E10 /* AVPlayerManager */ = {
@@ -1358,7 +1358,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		3F2DDAB11DCC32540094C841 /* 优惠券列表 */ = {
+		3F2DDAB11DCC32540094C841 /* BenefitList */ = {
 			isa = PBXGroup;
 			children = (
 				3F2DDAB61DCC32D60094C841 /* DD_BenefitHeadView.h */,
@@ -1368,37 +1368,37 @@
 				3F1143761DC732F20036DE41 /* DD_BenefitListCell.h */,
 				3F1143771DC732F20036DE41 /* DD_BenefitListCell.m */,
 			);
-			name = "优惠券列表";
+			name = BenefitList;
 			sourceTree = "<group>";
 		};
-		3F2DDAB21DCC325F0094C841 /* 优惠券详情 */ = {
+		3F2DDAB21DCC325F0094C841 /* BenefitDetail */ = {
 			isa = PBXGroup;
 			children = (
 				3F0E07DA1DCB354800F225DE /* DD_BenefitDetailViewController.h */,
 				3F0E07DB1DCB354800F225DE /* DD_BenefitDetailViewController.m */,
 			);
-			name = "优惠券详情";
+			name = BenefitDetail;
 			sourceTree = "<group>";
 		};
-		3F2DDAB91DCC36520094C841 /* 使用规则 */ = {
+		3F2DDAB91DCC36520094C841 /* BenefitRule */ = {
 			isa = PBXGroup;
 			children = (
 				3F2DDABA1DCC36680094C841 /* DD_BenefitRuleViewController.h */,
 				3F2DDABB1DCC36680094C841 /* DD_BenefitRuleViewController.m */,
 			);
-			name = "使用规则";
+			name = BenefitRule;
 			sourceTree = "<group>";
 		};
-		3F2DDABD1DCC3BFA0094C841 /* 使用规则 */ = {
+		3F2DDABD1DCC3BFA0094C841 /* IntegralRule */ = {
 			isa = PBXGroup;
 			children = (
 				3F2DDABF1DCC3C2E0094C841 /* DD_IntegralRuleViewController.h */,
 				3F2DDAC01DCC3C2E0094C841 /* DD_IntegralRuleViewController.m */,
 			);
-			name = "使用规则";
+			name = IntegralRule;
 			sourceTree = "<group>";
 		};
-		3F2DDABE1DCC3C130094C841 /* 积分详情 */ = {
+		3F2DDABE1DCC3C130094C841 /* IntegralDetail */ = {
 			isa = PBXGroup;
 			children = (
 				3F1143701DC721950036DE41 /* DD_IntegralHeadView.h */,
@@ -1410,13 +1410,13 @@
 				3F11436D1DC70F530036DE41 /* DD_IntegralCell.h */,
 				3F11436E1DC70F530036DE41 /* DD_IntegralCell.m */,
 			);
-			name = "积分详情";
+			name = IntegralDetail;
 			sourceTree = "<group>";
 		};
 		3F2F76451D1CC529002E22A6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
-				3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */,
+				3F2F764D1D1CE1F1002E22A6 /* ApplyDesignerChoose */,
 				3F5717311D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.h */,
 				3F5717321D62DD720097D1A5 /* DD_CircleInfoSuggestSimpleView.m */,
 				3F2F76461D1CC55C002E22A6 /* DD_CircleApplyInfoView.h */,
@@ -1425,16 +1425,16 @@
 			name = InfoView;
 			sourceTree = "<group>";
 		};
-		3F2F764D1D1CE1F1002E22A6 /* 选择设计师 */ = {
+		3F2F764D1D1CE1F1002E22A6 /* ApplyDesignerChoose */ = {
 			isa = PBXGroup;
 			children = (
 				3F2F76511D1CE365002E22A6 /* DD_CirlcleApplyDesignerChooseView.h */,
 				3F2F76521D1CE365002E22A6 /* DD_CirlcleApplyDesignerChooseView.m */,
 			);
-			name = "选择设计师";
+			name = ApplyDesignerChoose;
 			sourceTree = "<group>";
 		};
-		3F2F76591D1CF03C002E22A6 /* 设计师列表 */ = {
+		3F2F76591D1CF03C002E22A6 /* ApplyDesignerList */ = {
 			isa = PBXGroup;
 			children = (
 				3F2F76541D1CEFED002E22A6 /* DD_CircleApplyDesignerViewController.h */,
@@ -1442,7 +1442,7 @@
 				3F2F765A1D1CF3C3002E22A6 /* DD_CircleApplyDesignerModel.h */,
 				3F2F765B1D1CF3C3002E22A6 /* DD_CircleApplyDesignerModel.m */,
 			);
-			name = "设计师列表";
+			name = ApplyDesignerList;
 			sourceTree = "<group>";
 		};
 		3F35FD0C1DE419C3008CE0E0 /* BenefitView */ = {
@@ -1602,24 +1602,15 @@
 			name = CustomView;
 			sourceTree = "<group>";
 		};
-		3F3811BA1CF5D209007154F1 /* 购物车 */ = {
+		3F3811BA1CF5D209007154F1 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
-				3FD02DB91D50F06800E9D6EB /* DD_ShopAlertSizeView.h */,
-				3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */,
-				3FFC4FE11D50E1FD00FD6866 /* DD_ShopAlertNumView.h */,
-				3FFC4FE21D50E1FD00FD6866 /* DD_ShopAlertNumView.m */,
-				3FCB11531CFC33BC00FBB018 /* DD_ShopClearingView.h */,
-				3FCB11541CFC33BC00FBB018 /* DD_ShopClearingView.m */,
-				3F1401511CFC0AD70093474A /* DD_ShopHeaderView.h */,
-				3F1401521CFC0AD70093474A /* DD_ShopHeaderView.m */,
-				3F1401431CF82B2A0093474A /* DD_ShopTool.h */,
-				3F1401441CF82B2A0093474A /* DD_ShopTool.m */,
-				3F1401501CF836CE0093474A /* cell */,
+				3FC8B5B61F2F235400A1150A /* CustomView */,
+				3F1401501CF836CE0093474A /* Cell */,
 				3F3811BB1CF5D223007154F1 /* DD_ShopViewController.h */,
 				3F3811BC1CF5D223007154F1 /* DD_ShopViewController.m */,
 			);
-			name = "购物车";
+			name = ShoppingCart;
 			sourceTree = "<group>";
 		};
 		3F39E0331D52EC2B00B31333 /* Custom */ = {
@@ -1640,44 +1631,44 @@
 			name = "UIImageView+Custom";
 			sourceTree = "<group>";
 		};
-		3F3C3F051CFEBCBB0056CD6B /* 发布日首页 */ = {
+		3F3C3F051CFEBCBB0056CD6B /* DDAYList */ = {
 			isa = PBXGroup;
 			children = (
 				3F3C3F071CFEC7F40056CD6B /* DD_DDAYTool.h */,
 				3F3C3F081CFEC7F40056CD6B /* DD_DDAYTool.m */,
-				3F3C3F061CFEBCC70056CD6B /* cell */,
+				3F3C3F061CFEBCC70056CD6B /* Cell */,
 				3F9B8AE91CEF5625008EC460 /* DD_DDAYViewController.h */,
 				3F9B8AEA1CEF5625008EC460 /* DD_DDAYViewController.m */,
 			);
-			name = "发布日首页";
+			name = DDAYList;
 			sourceTree = "<group>";
 		};
-		3F3C3F061CFEBCC70056CD6B /* cell */ = {
+		3F3C3F061CFEBCC70056CD6B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3F93D1E01DFE7F3000749789 /* 线下 */,
-				3F93D1DF1DFE7F2700749789 /* 线上 */,
+				3F93D1E01DFE7F3000749789 /* Offline(线下) */,
+				3F93D1DF1DFE7F2700749789 /* Onlline(线上) */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
-		3F3DDAD01DC2F57200E11ED8 /* 优惠 */ = {
+		3F3DDAD01DC2F57200E11ED8 /* Benefit */ = {
 			isa = PBXGroup;
 			children = (
-				3F2DDAB91DCC36520094C841 /* 使用规则 */,
-				3F2DDAB21DCC325F0094C841 /* 优惠券详情 */,
-				3F2DDAB11DCC32540094C841 /* 优惠券列表 */,
+				3F2DDAB91DCC36520094C841 /* BenefitRule */,
+				3F2DDAB21DCC325F0094C841 /* BenefitDetail */,
+				3F2DDAB11DCC32540094C841 /* BenefitList */,
 			);
-			name = "优惠";
+			name = Benefit;
 			sourceTree = "<group>";
 		};
-		3F3DDAD11DC2F57A00E11ED8 /* 积分 */ = {
+		3F3DDAD11DC2F57A00E11ED8 /* Integral */ = {
 			isa = PBXGroup;
 			children = (
-				3F2DDABE1DCC3C130094C841 /* 积分详情 */,
-				3F2DDABD1DCC3BFA0094C841 /* 使用规则 */,
+				3F2DDABE1DCC3C130094C841 /* IntegralDetail */,
+				3F2DDABD1DCC3BFA0094C841 /* IntegralRule */,
 			);
-			name = "积分";
+			name = Integral;
 			sourceTree = "<group>";
 		};
 		3F4187671CEEFB24001BCA3D = {
@@ -1710,20 +1701,8 @@
 				3F4187CB1CEEFEDE001BCA3D /* Controllers */,
 				3F4187C11CEEFE9F001BCA3D /* Category */,
 				3F4187B11CEEFDA8001BCA3D /* Class */,
-				3F4187761CEEFB24001BCA3D /* AppDelegate.h */,
-				3F4187771CEEFB24001BCA3D /* AppDelegate.m */,
-				3F50034D1D9E37B0001551C1 /* DD_StartView.h */,
-				3F50034E1D9E37B0001551C1 /* DD_StartView.m */,
-				3F5003441D9E3152001551C1 /* DD_StartViewController.h */,
-				3F5003451D9E3152001551C1 /* DD_StartViewController.m */,
-				3F2309991DF945CC00CA1E10 /* DD_StartViewPlayer.h */,
-				3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */,
-				3F41877C1CEEFB24001BCA3D /* Main.storyboard */,
-				18D380941DA2569700EBE436 /* LaunchScreen.xib */,
-				3F41877F1CEEFB24001BCA3D /* Assets.xcassets */,
-				3F4187841CEEFB24001BCA3D /* Info.plist */,
+				3FC8B5B51F2F21D400A1150A /* Resource */,
 				3F4187731CEEFB24001BCA3D /* Supporting Files */,
-				3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */,
 			);
 			path = DDAY;
 			sourceTree = "<group>";
@@ -1731,13 +1710,15 @@
 		3F4187731CEEFB24001BCA3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3F93D1DD1DFE394100749789 /* loading.mp4 */,
-				3F43B6BA1DE6C180006D259C /* DIN-Medium.otf */,
-				3FE98D4F1DC8767B00F273E8 /* gif */,
-				3F4187AD1CEEFD02001BCA3D /* area.json */,
+				3F4187B01CEEFD98001BCA3D /* Header.h */,
+				3F5532ED1CEF047A004453E5 /* PrefixHeader.pch */,
+				3F4187841CEEFB24001BCA3D /* Info.plist */,
+				3F4187761CEEFB24001BCA3D /* AppDelegate.h */,
+				3F4187771CEEFB24001BCA3D /* AppDelegate.m */,
+				3F41877C1CEEFB24001BCA3D /* Main.storyboard */,
+				18D380941DA2569700EBE436 /* LaunchScreen.xib */,
 				3F4187741CEEFB24001BCA3D /* main.m */,
 				3F4187AA1CEEFBF0001BCA3D /* Localizable.strings */,
-				3F4187B01CEEFD98001BCA3D /* Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1763,15 +1744,14 @@
 		3F4187B11CEEFDA8001BCA3D /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				3F4187B21CEEFE1A001BCA3D /* View */,
+				3F4187C01CEEFE70001BCA3D /* Common */,
 				3F4187C61CEEFEBF001BCA3D /* Base */,
-				3F4187C01CEEFE70001BCA3D /* 常用类 */,
-				3F4187B31CEEFE21001BCA3D /* 工具类 */,
-				3F4187B21CEEFE1A001BCA3D /* 视图类 */,
 			);
 			name = Class;
 			sourceTree = "<group>";
 		};
-		3F4187B21CEEFE1A001BCA3D /* 视图类 */ = {
+		3F4187B21CEEFE1A001BCA3D /* View */ = {
 			isa = PBXGroup;
 			children = (
 				3F2309951DF93B0100CA1E10 /* AVPlayerManager */,
@@ -1784,14 +1764,7 @@
 				3F60024A1D49EEB9007E395F /* drawView */,
 				3F7E58B41D40667D000FDE5F /* Waterflow */,
 			);
-			name = "视图类";
-			sourceTree = "<group>";
-		};
-		3F4187B31CEEFE21001BCA3D /* 工具类 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "工具类";
+			name = View;
 			sourceTree = "<group>";
 		};
 		3F4187B41CEEFE29001BCA3D /* JX_AFNetworking */ = {
@@ -1812,7 +1785,7 @@
 			name = regular;
 			sourceTree = "<group>";
 		};
-		3F4187C01CEEFE70001BCA3D /* 常用类 */ = {
+		3F4187C01CEEFE70001BCA3D /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				3F07DB9F1D6B4365005C8022 /* Share */,
@@ -1823,7 +1796,7 @@
 				3F4187B81CEEFE42001BCA3D /* regular */,
 				3F4187B41CEEFE29001BCA3D /* JX_AFNetworking */,
 			);
-			name = "常用类";
+			name = Common;
 			sourceTree = "<group>";
 		};
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
@@ -1881,71 +1854,70 @@
 		3F4187CB1CEEFEDE001BCA3D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F9B8B031CEF6C58008EC460 /* DD_UserCell.h */,
-				3F9B8B041CEF6C58008EC460 /* DD_UserCell.m */,
-				3FA8365E1D050B73006D2919 /* 我的订单 */,
-				3F3811BA1CF5D209007154F1 /* 购物车 */,
-				3F9B8ABE1CEF542E008EC460 /* 登录 */,
-				3F9B8AC41CEF5479008EC460 /* 我的 */,
-				3F9B8AC31CEF5472008EC460 /* 共享带 */,
-				3F9B8AC21CEF546B008EC460 /* 设计师 */,
-				3F9B8AC11CEF545D008EC460 /* 发布品 */,
-				3F9B8AC01CEF5457008EC460 /* 发布日 */,
-				3F4187CD1CEEFEED001BCA3D /* 收货地址 */,
-				3F4187CC1CEEFEE5001BCA3D /* 结算 */,
+				3FA8365E1D050B73006D2919 /* Order */,
+				3F3811BA1CF5D209007154F1 /* ShoppingCart */,
+				3F9B8ABE1CEF542E008EC460 /* Login */,
+				3F9B8AC41CEF5479008EC460 /* User */,
+				3F9B8AC31CEF5472008EC460 /* Circle */,
+				3F9B8AC21CEF546B008EC460 /* Designer */,
+				3F9B8AC11CEF545D008EC460 /* Goods */,
+				3F9B8AC01CEF5457008EC460 /* DDAY */,
+				3F4187CD1CEEFEED001BCA3D /* Address */,
+				3F4187CC1CEEFEE5001BCA3D /* Clearing */,
+				3FC8B5B31F2F215300A1150A /* Other */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		3F4187CC1CEEFEE5001BCA3D /* 结算 */ = {
+		3F4187CC1CEEFEE5001BCA3D /* Clearing */ = {
 			isa = PBXGroup;
 			children = (
-				3FA32FF21D59989700311A6A /* 结算成功订单列表 */,
+				3FA32FF21D59989700311A6A /* ClearingDone */,
 				3F8924361CF6A6A300B76E6E /* DD_ClearingDoneViewController.h */,
 				3F8924371CF6A6A300B76E6E /* DD_ClearingDoneViewController.m */,
 				3F4188081CEEFF5A001BCA3D /* DD_ClearingTool.h */,
 				3F4188091CEEFF5A001BCA3D /* DD_ClearingTool.m */,
-				3F7C51D41CF43B3900D3565D /* 确认订单页面 */,
-				3F7C51D31CF43B0700D3565D /* 填写备注 */,
-				3F4187FD1CEEFF40001BCA3D /* cell */,
+				3F7C51D41CF43B3900D3565D /* ConfirmOrder */,
+				3F7C51D31CF43B0700D3565D /* Remarks */,
+				3F4187FD1CEEFF40001BCA3D /* Cell */,
 			);
-			name = "结算";
+			name = Clearing;
 			sourceTree = "<group>";
 		};
-		3F4187CD1CEEFEED001BCA3D /* 收货地址 */ = {
+		3F4187CD1CEEFEED001BCA3D /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				3F4187D01CEEFF02001BCA3D /* 收货地址 */,
-				3F4187CF1CEEFEFB001BCA3D /* 添加收获地址 */,
-				3F4187CE1CEEFEF5001BCA3D /* 城市省列表 */,
+				3F4187D01CEEFF02001BCA3D /* AddressList */,
+				3F4187CF1CEEFEFB001BCA3D /* AddAddress */,
+				3F4187CE1CEEFEF5001BCA3D /* Province&CityList */,
 			);
-			name = "收货地址";
+			name = Address;
 			sourceTree = "<group>";
 		};
-		3F4187CE1CEEFEF5001BCA3D /* 城市省列表 */ = {
+		3F4187CE1CEEFEF5001BCA3D /* Province&CityList */ = {
 			isa = PBXGroup;
 			children = (
 				3F4187E31CEEFF1A001BCA3D /* DD_CityTool.h */,
 				3F4187E41CEEFF1A001BCA3D /* DD_CityTool.m */,
-				3F4187E51CEEFF1A001BCA3D /* DD_ProvinceVCT.h */,
-				3F4187E61CEEFF1A001BCA3D /* DD_ProvinceVCT.m */,
-				3F4187E81CEEFF1A001BCA3D /* DD_CityVCT.h */,
-				3F4187E91CEEFF1A001BCA3D /* DD_CityVCT.m */,
+				3F4187E51CEEFF1A001BCA3D /* DD_ProvinceViewController.h */,
+				3F4187E61CEEFF1A001BCA3D /* DD_ProvinceViewController.m */,
+				3F4187E81CEEFF1A001BCA3D /* DD_CityViewController.h */,
+				3F4187E91CEEFF1A001BCA3D /* DD_CityViewController.m */,
 			);
-			name = "城市省列表";
+			name = "Province&CityList";
 			sourceTree = "<group>";
 		};
-		3F4187CF1CEEFEFB001BCA3D /* 添加收获地址 */ = {
+		3F4187CF1CEEFEFB001BCA3D /* AddAddress */ = {
 			isa = PBXGroup;
 			children = (
 				3F39E0331D52EC2B00B31333 /* Custom */,
 				3F85E81B1D51B0990077F848 /* DD_AddNewAddressViewController.h */,
 				3F85E81C1D51B0990077F848 /* DD_AddNewAddressViewController.m */,
 			);
-			name = "添加收获地址";
+			name = AddAddress;
 			sourceTree = "<group>";
 		};
-		3F4187D01CEEFF02001BCA3D /* 收货地址 */ = {
+		3F4187D01CEEFF02001BCA3D /* AddressList */ = {
 			isa = PBXGroup;
 			children = (
 				3F4187D31CEEFF0B001BCA3D /* DD_AdressTableViewCell.h */,
@@ -1953,16 +1925,16 @@
 				3F4187D61CEEFF0B001BCA3D /* DD_AddressViewController.h */,
 				3F4187D71CEEFF0B001BCA3D /* DD_AddressViewController.m */,
 			);
-			name = "收货地址";
+			name = AddressList;
 			sourceTree = "<group>";
 		};
-		3F4187FD1CEEFF40001BCA3D /* cell */ = {
+		3F4187FD1CEEFF40001BCA3D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F4187FE1CEEFF48001BCA3D /* DD_ClearingTableViewCell.h */,
 				3F4187FF1CEEFF48001BCA3D /* DD_ClearingTableViewCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3F43B6BC1DE6E583006D259C /* baseCell */ = {
@@ -1992,23 +1964,23 @@
 			name = baseButton;
 			sourceTree = "<group>";
 		};
-		3F4552F61D21035D00524738 /* 个人主页 */ = {
+		3F4552F61D21035D00524738 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				3F4552F71D21037000524738 /* 达人主页 */,
-				3F552E851CF1FF3B00BC5E33 /* 设计师主页 */,
+				3F4552F71D21037000524738 /* TarentoHomePage(达人主页) */,
+				3F552E851CF1FF3B00BC5E33 /* DesignerHomePage(设计师主页) */,
 			);
-			name = "个人主页";
+			name = HomePage;
 			sourceTree = "<group>";
 		};
-		3F4552F71D21037000524738 /* 达人主页 */ = {
+		3F4552F71D21037000524738 /* TarentoHomePage(达人主页) */ = {
 			isa = PBXGroup;
 			children = (
 				3F4553021D21080000524738 /* headview */,
 				3F4552FD1D2104B400524738 /* DD_TarentoHomePageViewController.h */,
 				3F4552FE1D2104B400524738 /* DD_TarentoHomePageViewController.m */,
 			);
-			name = "达人主页";
+			name = "TarentoHomePage(达人主页)";
 			sourceTree = "<group>";
 		};
 		3F4553021D21080000524738 /* headview */ = {
@@ -2020,7 +1992,7 @@
 			name = headview;
 			sourceTree = "<group>";
 		};
-		3F4553061D21310700524738 /* 我的粉丝 */ = {
+		3F4553061D21310700524738 /* Fans */ = {
 			isa = PBXGroup;
 			children = (
 				3F4553071D21312300524738 /* DD_FansViewController.h */,
@@ -2028,10 +2000,10 @@
 				3F124B471D2225B8002B4E87 /* DD_FansCell.h */,
 				3F124B481D2225B8002B4E87 /* DD_FansCell.m */,
 			);
-			name = "我的粉丝";
+			name = Fans;
 			sourceTree = "<group>";
 		};
-		3F4904D81D18D33E009F4CD3 /* cell */ = {
+		3F4904D81D18D33E009F4CD3 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F4904E21D18E10C009F4CD3 /* CustomView */,
@@ -2040,7 +2012,7 @@
 				3FA39EB71D87E28100CA9A3C /* DD_CircleDailyListCell.h */,
 				3FA39EB81D87E28100CA9A3C /* DD_CircleDailyListCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3F4904E21D18E10C009F4CD3 /* CustomView */ = {
@@ -2065,16 +2037,16 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
-		3F4904F41D19228D009F4CD3 /* 搭配商品列表 */ = {
+		3F4904F41D19228D009F4CD3 /* ItemList */ = {
 			isa = PBXGroup;
 			children = (
 				3F4904F51D1922B8009F4CD3 /* DD_CircleItemListViewController.h */,
 				3F4904F61D1922B8009F4CD3 /* DD_CircleItemListViewController.m */,
 			);
-			name = "搭配商品列表";
+			name = ItemList;
 			sourceTree = "<group>";
 		};
-		3F49388B1D0EAE8E000D213B /* 我的主页 */ = {
+		3F49388B1D0EAE8E000D213B /* UserView */ = {
 			isa = PBXGroup;
 			children = (
 				3F0AE1001D55D12200AD7EFD /* DD_UserItemBtn.h */,
@@ -2086,39 +2058,39 @@
 				3F9B8AD51CEF559C008EC460 /* DD_UserViewController.h */,
 				3F9B8AD61CEF559C008EC460 /* DD_UserViewController.m */,
 			);
-			name = "我的主页";
+			name = UserView;
 			sourceTree = "<group>";
 		};
-		3F49388C1D0EAE9D000D213B /* 收藏 */ = {
+		3F49388C1D0EAE9D000D213B /* UserCollect */ = {
 			isa = PBXGroup;
 			children = (
-				3F49389D1D0EB2AC000D213B /* 共享 */,
-				3F4938971D0EAF0A000D213B /* 发布品 */,
+				3F49389D1D0EB2AC000D213B /* CollectCircle */,
+				3F4938971D0EAF0A000D213B /* CollectItem */,
 				3F4938921D0EAEF7000D213B /* DD_UserMainCollectViewController.h */,
 				3F4938931D0EAEF7000D213B /* DD_UserMainCollectViewController.m */,
 			);
-			name = "收藏";
+			name = UserCollect;
 			sourceTree = "<group>";
 		};
-		3F4938971D0EAF0A000D213B /* 发布品 */ = {
+		3F4938971D0EAF0A000D213B /* CollectItem */ = {
 			isa = PBXGroup;
 			children = (
 				3F4938981D0EAF21000D213B /* DD_UserCollectItemViewController.h */,
 				3F4938991D0EAF21000D213B /* DD_UserCollectItemViewController.m */,
 			);
-			name = "发布品";
+			name = CollectItem;
 			sourceTree = "<group>";
 		};
-		3F49389D1D0EB2AC000D213B /* 共享 */ = {
+		3F49389D1D0EB2AC000D213B /* CollectCircle */ = {
 			isa = PBXGroup;
 			children = (
 				3F49389E1D0EB2E0000D213B /* DD_UserCollectCircleViewController.h */,
 				3F49389F1D0EB2E0000D213B /* DD_UserCollectCircleViewController.m */,
 			);
-			name = "共享";
+			name = CollectCircle;
 			sourceTree = "<group>";
 		};
-		3F4938A31D0EB6DB000D213B /* 我参与的发布会 */ = {
+		3F4938A31D0EB6DB000D213B /* UserDDAY */ = {
 			isa = PBXGroup;
 			children = (
 				3F5888E11D58168C00AFD0A3 /* DD_UserDDAYCell.h */,
@@ -2126,25 +2098,25 @@
 				3F4938A41D0EB70F000D213B /* DD_UserDDAYViewController.h */,
 				3F4938A51D0EB70F000D213B /* DD_UserDDAYViewController.m */,
 			);
-			name = "我参与的发布会";
+			name = UserDDAY;
 			sourceTree = "<group>";
 		};
-		3F4B81CE1D0052A700B323E4 /* 发布日详情 */ = {
+		3F4B81CE1D0052A700B323E4 /* DDAYDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3F93D1E91DFE9AEC00749789 /* 线下 */,
-				3F93D1E81DFE9AE400749789 /* 线上 */,
+				3F93D1E91DFE9AEC00749789 /* Offline */,
+				3F93D1E81DFE9AE400749789 /* Onlline */,
 			);
-			name = "发布日详情";
+			name = DDAYDetail;
 			sourceTree = "<group>";
 		};
-		3F4B81DD1D01157100B323E4 /* 发布会 */ = {
+		3F4B81DD1D01157100B323E4 /* Meet */ = {
 			isa = PBXGroup;
 			children = (
 				3F4B81DE1D0115D800B323E4 /* DD_DDAYMeetViewController.h */,
 				3F4B81DF1D0115D800B323E4 /* DD_DDAYMeetViewController.m */,
 			);
-			name = "发布会";
+			name = Meet;
 			sourceTree = "<group>";
 		};
 		3F4BA4311DE5550E00D80D68 /* YYAnimatedImageView+LoadImage */ = {
@@ -2165,25 +2137,25 @@
 			name = "NSDate+Custom";
 			sourceTree = "<group>";
 		};
-		3F5306D81D124E44000C9EC0 /* 搭配图放大 */ = {
+		3F5306D81D124E44000C9EC0 /* ShowInfoImg */ = {
 			isa = PBXGroup;
 			children = (
 				3F5306D91D124E5C000C9EC0 /* DD_CricleShowViewController.h */,
 				3F5306DA1D124E5C000C9EC0 /* DD_CricleShowViewController.m */,
 			);
-			name = "搭配图放大";
+			name = ShowInfoImg;
 			sourceTree = "<group>";
 		};
-		3F5306E51D129D5E000C9EC0 /* 自定义标签 */ = {
+		3F5306E51D129D5E000C9EC0 /* CustomTagView(自定义标签) */ = {
 			isa = PBXGroup;
 			children = (
 				3F5306E61D129D82000C9EC0 /* DD_CircleCustomTagViewController.h */,
 				3F5306E71D129D82000C9EC0 /* DD_CircleCustomTagViewController.m */,
 			);
-			name = "自定义标签";
+			name = "CustomTagView(自定义标签)";
 			sourceTree = "<group>";
 		};
-		3F552E841CF1FF1E00BC5E33 /* 设计师列表 */ = {
+		3F552E841CF1FF1E00BC5E33 /* DesignerList */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8AE41CEF55F6008EC460 /* DD_DesignerViewController.h */,
@@ -2191,64 +2163,64 @@
 				3F552E7C1CF1F58C00BC5E33 /* DD_DesignerCell.h */,
 				3F552E7D1CF1F58C00BC5E33 /* DD_DesignerCell.m */,
 			);
-			name = "设计师列表";
+			name = DesignerList;
 			sourceTree = "<group>";
 		};
-		3F552E851CF1FF3B00BC5E33 /* 设计师主页 */ = {
+		3F552E851CF1FF3B00BC5E33 /* DesignerHomePage(设计师主页) */ = {
 			isa = PBXGroup;
 			children = (
-				3F8228F31D0DA0AB00F95E79 /* 设计师-故事 */,
-				3F8228F21D0DA09B00F95E79 /* 设计师-共享带 */,
-				3F8228F11D0DA09300F95E79 /* 设计师-发布品 */,
+				3F8228F31D0DA0AB00F95E79 /* DesignerIntro(设计师-故事) */,
+				3F8228F21D0DA09B00F95E79 /* DesignerCircle(设计师-共享带) */,
+				3F8228F11D0DA09300F95E79 /* DesignerItem(设计师-发布品) */,
 				3F552E861CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.h */,
 				3F552E871CF1FF6200BC5E33 /* DD_DesignerHomePageViewController.m */,
 			);
-			name = "设计师主页";
+			name = "DesignerHomePage(设计师主页)";
 			sourceTree = "<group>";
 		};
-		3F552E8B1CF201D500BC5E33 /* 发布品列表 */ = {
+		3F552E8B1CF201D500BC5E33 /* GoodsList */ = {
 			isa = PBXGroup;
 			children = (
 				3F1C72CD1DC2475600FF7451 /* DD_headViewBenefitView.h */,
 				3F1C72CE1DC2475600FF7451 /* DD_headViewBenefitView.m */,
-				3F7160A41D4EDCEE00E165D2 /* 下拉选择 */,
+				3F7160A41D4EDCEE00E165D2 /* DropdownView */,
 				3F9B8AEE1CEF5633008EC460 /* DD_GoodsViewController.h */,
 				3F9B8AEF1CEF5633008EC460 /* DD_GoodsViewController.m */,
 			);
-			name = "发布品列表";
+			name = GoodsList;
 			sourceTree = "<group>";
 		};
-		3F552E8C1CF201EC00BC5E33 /* 单品详情页 */ = {
+		3F552E8C1CF201EC00BC5E33 /* GoodsDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3F6F0F841D6C45910074EAF4 /* 更多搭配 */,
+				3F6F0F841D6C45910074EAF4 /* MoreCircle */,
 				3F3811B61CF56A3B007154F1 /* CustomView */,
-				3F552EAA1CF21B1C00BC5E33 /* pagecontroller */,
+				3F552EAA1CF21B1C00BC5E33 /* Pagecontroller */,
 				3F552E8D1CF2020500BC5E33 /* DD_GoodsDetailViewController.h */,
 				3F552E8E1CF2020500BC5E33 /* DD_GoodsDetailViewController.m */,
 			);
-			name = "单品详情页";
+			name = GoodsDetail;
 			sourceTree = "<group>";
 		};
-		3F552EAA1CF21B1C00BC5E33 /* pagecontroller */ = {
+		3F552EAA1CF21B1C00BC5E33 /* Pagecontroller */ = {
 			isa = PBXGroup;
 			children = (
 				3F552EAB1CF21B2400BC5E33 /* ImageViewController.h */,
 				3F552EAC1CF21B2400BC5E33 /* ImageViewController.m */,
 			);
-			name = pagecontroller;
+			name = Pagecontroller;
 			sourceTree = "<group>";
 		};
-		3F5717281D6EBBC2006E1940 /* 日历 */ = {
+		3F5717281D6EBBC2006E1940 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				3F5717381D6EE9DE006E1940 /* DD_CalendarTool.h */,
 				3F5717391D6EE9DE006E1940 /* DD_CalendarTool.m */,
-				3FFA8B261D73452400DD51C1 /* cell */,
+				3FFA8B261D73452400DD51C1 /* Cell */,
 				3F5717351D6ED356006E1940 /* CalendarViewController.h */,
 				3F5717361D6ED356006E1940 /* CalendarViewController.m */,
 			);
-			name = "日历";
+			name = Calendar;
 			sourceTree = "<group>";
 		};
 		3F576F2E1D377E790061602A /* UIButton+EnlargeEdge */ = {
@@ -2431,16 +2403,16 @@
 			name = "UIColor+Hex";
 			sourceTree = "<group>";
 		};
-		3F6163531D5D9DA3003F8AC3 /* 键盘上视图 */ = {
+		3F6163531D5D9DA3003F8AC3 /* SuggestSignBoard */ = {
 			isa = PBXGroup;
 			children = (
 				3F6163501D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.h */,
 				3F6163511D5D9716003F8AC3 /* DD_CircleInfoSuggestSignBoard.m */,
 			);
-			name = "键盘上视图";
+			name = SuggestSignBoard;
 			sourceTree = "<group>";
 		};
-		3F6457391D547F78003B4E1A /* cell */ = {
+		3F6457391D547F78003B4E1A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3FA8367B1D051E1D006D2919 /* DD_OrderCell.h */,
@@ -2448,47 +2420,47 @@
 				3FA836801D054656006D2919 /* DD_OrderMoreCell.h */,
 				3FA836811D054656006D2919 /* DD_OrderMoreCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
-		3F66CF191D115353006A3D3F /* 搭配图 */ = {
+		3F66CF191D115353006A3D3F /* InfoImg */ = {
 			isa = PBXGroup;
 			children = (
-				3F5306D81D124E44000C9EC0 /* 搭配图放大 */,
+				3F5306D81D124E44000C9EC0 /* ShowInfoImg */,
 				3F66CF1A1D115379006A3D3F /* DD_CircleInfoImgView.h */,
 				3F66CF1B1D115379006A3D3F /* DD_CircleInfoImgView.m */,
 			);
-			name = "搭配图";
+			name = InfoImg;
 			sourceTree = "<group>";
 		};
-		3F66CF1E1D115B91006A3D3F /* 标签 */ = {
+		3F66CF1E1D115B91006A3D3F /* TagView */ = {
 			isa = PBXGroup;
 			children = (
-				3F5306E51D129D5E000C9EC0 /* 自定义标签 */,
+				3F5306E51D129D5E000C9EC0 /* CustomTagView(自定义标签) */,
 				3F66CF221D115BDF006A3D3F /* DD_CircleTagsView.h */,
 				3F66CF231D115BDF006A3D3F /* DD_CircleTagsView.m */,
 			);
-			name = "标签";
+			name = TagView;
 			sourceTree = "<group>";
 		};
-		3F66CF251D115D3E006A3D3F /* 适合人群 */ = {
+		3F66CF251D115D3E006A3D3F /* FitPersonView */ = {
 			isa = PBXGroup;
 			children = (
 				3F66CF261D115D55006A3D3F /* DD_CircleFitPersonView.h */,
 				3F66CF271D115D55006A3D3F /* DD_CircleFitPersonView.m */,
 			);
-			name = "适合人群";
+			name = FitPersonView;
 			sourceTree = "<group>";
 		};
-		3F6813A51D1A378200F4807A /* 搭配详情页 */ = {
+		3F6813A51D1A378200F4807A /* CircleDetail */ = {
 			isa = PBXGroup;
 			children = (
 				3F8E76591D1B779300722FDA /* CustomView */,
-				3F6813B31D1A767100F4807A /* cell */,
+				3F6813B31D1A767100F4807A /* Cell */,
 				3F6813A61D1A379C00F4807A /* DD_CircleDetailViewController.h */,
 				3F6813A71D1A379C00F4807A /* DD_CircleDetailViewController.m */,
 			);
-			name = "搭配详情页";
+			name = CircleDetail;
 			sourceTree = "<group>";
 		};
 		3F6813B21D1A6CD800F4807A /* UIImageView+LoadImage */ = {
@@ -2502,13 +2474,13 @@
 			name = "UIImageView+LoadImage";
 			sourceTree = "<group>";
 		};
-		3F6813B31D1A767100F4807A /* cell */ = {
+		3F6813B31D1A767100F4807A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F6813B41D1A813300F4807A /* DD_CircleCommentCell.h */,
 				3F6813B51D1A813300F4807A /* DD_CircleCommentCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3F6F0F801D6BF0590074EAF4 /* DD_CustomBtn */ = {
@@ -2520,16 +2492,16 @@
 			name = DD_CustomBtn;
 			sourceTree = "<group>";
 		};
-		3F6F0F841D6C45910074EAF4 /* 更多搭配 */ = {
+		3F6F0F841D6C45910074EAF4 /* MoreCircle */ = {
 			isa = PBXGroup;
 			children = (
 				3F6F0F851D6C45D30074EAF4 /* DD_MoreCircleViewController.h */,
 				3F6F0F861D6C45D30074EAF4 /* DD_MoreCircleViewController.m */,
 			);
-			name = "更多搭配";
+			name = MoreCircle;
 			sourceTree = "<group>";
 		};
-		3F7160A41D4EDCEE00E165D2 /* 下拉选择 */ = {
+		3F7160A41D4EDCEE00E165D2 /* DropdownView */ = {
 			isa = PBXGroup;
 			children = (
 				3F7160BB1D4F2BBA00E165D2 /* DD_GoodsListBtn.h */,
@@ -2541,7 +2513,7 @@
 				3F7160A81D4EDD5000E165D2 /* DD_GoodsListView.h */,
 				3F7160A91D4EDD5000E165D2 /* DD_GoodsListView.m */,
 			);
-			name = "下拉选择";
+			name = DropdownView;
 			sourceTree = "<group>";
 		};
 		3F7160B11D4F20C400E165D2 /* 类别 */ = {
@@ -2566,64 +2538,64 @@
 			name = "物流信息";
 			sourceTree = "<group>";
 		};
-		3F7647C11D77D16200843F43 /* 性别修改 */ = {
+		3F7647C11D77D16200843F43 /* Sex(性别修改) */ = {
 			isa = PBXGroup;
 			children = (
 				3F7647C21D77D17B00843F43 /* DD_SexViewController.h */,
 				3F7647C31D77D17B00843F43 /* DD_SexViewController.m */,
 			);
-			name = "性别修改";
+			name = "Sex(性别修改)";
 			sourceTree = "<group>";
 		};
-		3F7729251D1151BD008A184F /* 款式选择 */ = {
+		3F7729251D1151BD008A184F /* ChooseStyle */ = {
 			isa = PBXGroup;
 			children = (
-				3F21E1FD1D177E2D00FE7ADF /* 款式选择视图 */,
+				3F21E1FD1D177E2D00FE7ADF /* ChooseStyleView(款式选择视图) */,
 				3F0A6DF91D1123F000CDCBC5 /* DD_CircleChooseStyleView.h */,
 				3F0A6DFA1D1123F000CDCBC5 /* DD_CircleChooseStyleView.m */,
 			);
-			name = "款式选择";
+			name = ChooseStyle;
 			sourceTree = "<group>";
 		};
-		3F7C51D31CF43B0700D3565D /* 填写备注 */ = {
+		3F7C51D31CF43B0700D3565D /* Remarks */ = {
 			isa = PBXGroup;
 			children = (
 				3F7C51CB1CF434C200D3565D /* DD_RemarksViewController.h */,
 				3F7C51CC1CF434C200D3565D /* DD_RemarksViewController.m */,
 			);
-			name = "填写备注";
+			name = Remarks;
 			sourceTree = "<group>";
 		};
-		3F7C51D41CF43B3900D3565D /* 确认订单页面 */ = {
+		3F7C51D41CF43B3900D3565D /* ConfirmOrder */ = {
 			isa = PBXGroup;
 			children = (
-				3FE8D7B11DD08F6D00F3A21C /* 选择优惠券 */,
+				3FE8D7B11DD08F6D00F3A21C /* ChooseBenefit(选择优惠券) */,
 				3FFF77921D5256D60002665D /* DD_ClearingTabbar.h */,
 				3FFF77931D5256D60002665D /* DD_ClearingTabbar.m */,
-				3F7C51D61CF43B7800D3565D /* 选择地址 */,
-				3F7C51D51CF43B6300D3565D /* 总结 */,
+				3F7C51D61CF43B7800D3565D /* ChooseAddress(选择地址) */,
+				3F7C51D51CF43B6300D3565D /* SummaryView(总结) */,
 				3F4188051CEEFF5A001BCA3D /* DD_ClearingViewController.h */,
 				3F4188061CEEFF5A001BCA3D /* DD_ClearingViewController.m */,
 			);
-			name = "确认订单页面";
+			name = ConfirmOrder;
 			sourceTree = "<group>";
 		};
-		3F7C51D51CF43B6300D3565D /* 总结 */ = {
+		3F7C51D51CF43B6300D3565D /* SummaryView(总结) */ = {
 			isa = PBXGroup;
 			children = (
 				3F7C51C81CF42B2C00D3565D /* DD_ClearingView.h */,
 				3F7C51C91CF42B2C00D3565D /* DD_ClearingView.m */,
 			);
-			name = "总结";
+			name = "SummaryView(总结)";
 			sourceTree = "<group>";
 		};
-		3F7C51D61CF43B7800D3565D /* 选择地址 */ = {
+		3F7C51D61CF43B7800D3565D /* ChooseAddress(选择地址) */ = {
 			isa = PBXGroup;
 			children = (
 				3FD74B661CF445B400C10C32 /* DD_SetAddressBtn.h */,
 				3FD74B671CF445B400C10C32 /* DD_SetAddressBtn.m */,
 			);
-			name = "选择地址";
+			name = "ChooseAddress(选择地址)";
 			sourceTree = "<group>";
 		};
 		3F7E58B41D40667D000FDE5F /* Waterflow */ = {
@@ -2636,55 +2608,55 @@
 			name = Waterflow;
 			sourceTree = "<group>";
 		};
-		3F8228EB1D0D0F0000F95E79 /* 我关注的 */ = {
+		3F8228EB1D0D0F0000F95E79 /* Follow */ = {
 			isa = PBXGroup;
 			children = (
 				3F8228EC1D0D0F2000F95E79 /* DD_DesignerFollowViewController.h */,
 				3F8228ED1D0D0F2000F95E79 /* DD_DesignerFollowViewController.m */,
 			);
-			name = "我关注的";
+			name = Follow;
 			sourceTree = "<group>";
 		};
-		3F8228F11D0DA09300F95E79 /* 设计师-发布品 */ = {
+		3F8228F11D0DA09300F95E79 /* DesignerItem(设计师-发布品) */ = {
 			isa = PBXGroup;
 			children = (
 				3F8228F41D0DA0CC00F95E79 /* DD_DesignerItemViewController.h */,
 				3F8228F51D0DA0CC00F95E79 /* DD_DesignerItemViewController.m */,
 			);
-			name = "设计师-发布品";
+			name = "DesignerItem(设计师-发布品)";
 			sourceTree = "<group>";
 		};
-		3F8228F21D0DA09B00F95E79 /* 设计师-共享带 */ = {
+		3F8228F21D0DA09B00F95E79 /* DesignerCircle(设计师-共享带) */ = {
 			isa = PBXGroup;
 			children = (
 				3F8228F91D0DA0E700F95E79 /* DD_DesignerCircleViewController.h */,
 				3F8228FA1D0DA0E700F95E79 /* DD_DesignerCircleViewController.m */,
 			);
-			name = "设计师-共享带";
+			name = "DesignerCircle(设计师-共享带)";
 			sourceTree = "<group>";
 		};
-		3F8228F31D0DA0AB00F95E79 /* 设计师-故事 */ = {
+		3F8228F31D0DA0AB00F95E79 /* DesignerIntro(设计师-故事) */ = {
 			isa = PBXGroup;
 			children = (
 				3F8228FE1D0DA10500F95E79 /* DD_DesignerIntroViewController.h */,
 				3F8228FF1D0DA10500F95E79 /* DD_DesignerIntroViewController.m */,
 			);
-			name = "设计师-故事";
+			name = "DesignerIntro(设计师-故事)";
 			sourceTree = "<group>";
 		};
-		3F8257161CF1BEFF0055DB78 /* 我的主页 */ = {
+		3F8257161CF1BEFF0055DB78 /* UserView */ = {
 			isa = PBXGroup;
 			children = (
-				3F3DDAD11DC2F57A00E11ED8 /* 积分 */,
-				3F3DDAD01DC2F57200E11ED8 /* 优惠 */,
-				3F85BAC71D66AED600820018 /* 体验店 */,
-				3F00D4111D5A4C1E00896ED5 /* 我的消息 */,
-				3F4553061D21310700524738 /* 我的粉丝 */,
-				3F4938A31D0EB6DB000D213B /* 我参与的发布会 */,
-				3F49388C1D0EAE9D000D213B /* 收藏 */,
-				3F49388B1D0EAE8E000D213B /* 我的主页 */,
+				3F49388B1D0EAE8E000D213B /* UserView */,
+				3F3DDAD11DC2F57A00E11ED8 /* Integral */,
+				3F3DDAD01DC2F57200E11ED8 /* Benefit */,
+				3F85BAC71D66AED600820018 /* ShowRoom */,
+				3F00D4111D5A4C1E00896ED5 /* Message */,
+				3F4553061D21310700524738 /* Fans */,
+				3F4938A31D0EB6DB000D213B /* UserDDAY */,
+				3F49388C1D0EAE9D000D213B /* UserCollect */,
 			);
-			name = "我的主页";
+			name = UserView;
 			sourceTree = "<group>";
 		};
 		3F83EE9E1D3891520051C89E /* UITextField+Custom */ = {
@@ -2705,16 +2677,16 @@
 			name = "UILabel+DD_Custom";
 			sourceTree = "<group>";
 		};
-		3F85BAC71D66AED600820018 /* 体验店 */ = {
+		3F85BAC71D66AED600820018 /* ShowRoom */ = {
 			isa = PBXGroup;
 			children = (
-				3F17B8261D86583700209675 /* cell */,
+				3F17B8261D86583700209675 /* Cell */,
 				3F85BAC81D66AFB300820018 /* DD_ShowRoomViewController.h */,
 				3F85BAC91D66AFB300820018 /* DD_ShowRoomViewController.m */,
 				3F17B8231D86583300209675 /* DD_ShowRoomDetailViewController.h */,
 				3F17B8241D86583300209675 /* DD_ShowRoomDetailViewController.m */,
 			);
-			name = "体验店";
+			name = ShowRoom;
 			sourceTree = "<group>";
 		};
 		3F85BACE1D66D1E200820018 /* 体验店 */ = {
@@ -2748,18 +2720,18 @@
 			isa = PBXGroup;
 			children = (
 				3F8E76631D1B923E00722FDA /* headView */,
-				3F8E76621D1B922600722FDA /* 评论视图 */,
+				3F8E76621D1B922600722FDA /* CommentView */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
 		};
-		3F8E765D1D1B7E8200722FDA /* 键盘上视图 */ = {
+		3F8E765D1D1B7E8200722FDA /* CommentSignBoard */ = {
 			isa = PBXGroup;
 			children = (
 				3F8E765A1D1B77D600722FDA /* DD_CircleCommentSignBoard.h */,
 				3F8E765B1D1B77D600722FDA /* DD_CircleCommentSignBoard.m */,
 			);
-			name = "键盘上视图";
+			name = CommentSignBoard;
 			sourceTree = "<group>";
 		};
 		3F8E765E1D1B7E8F00722FDA /* CommentView */ = {
@@ -2771,13 +2743,13 @@
 			name = CommentView;
 			sourceTree = "<group>";
 		};
-		3F8E76621D1B922600722FDA /* 评论视图 */ = {
+		3F8E76621D1B922600722FDA /* CommentView */ = {
 			isa = PBXGroup;
 			children = (
 				3F8E765E1D1B7E8F00722FDA /* CommentView */,
-				3F8E765D1D1B7E8200722FDA /* 键盘上视图 */,
+				3F8E765D1D1B7E8200722FDA /* CommentSignBoard */,
 			);
-			name = "评论视图";
+			name = CommentView;
 			sourceTree = "<group>";
 		};
 		3F8E76631D1B923E00722FDA /* headView */ = {
@@ -2811,15 +2783,15 @@
 			name = "搭配图放大";
 			sourceTree = "<group>";
 		};
-		3F8E76741D1BCE1C00722FDA /* 申请成为达人 */ = {
+		3F8E76741D1BCE1C00722FDA /* Apply */ = {
 			isa = PBXGroup;
 			children = (
-				3F2F76591D1CF03C002E22A6 /* 设计师列表 */,
+				3F2F76591D1CF03C002E22A6 /* ApplyDesignerList */,
 				3F2F76451D1CC529002E22A6 /* InfoView */,
 				3F8E76751D1BCE4100722FDA /* DD_CircleApplyViewController.h */,
 				3F8E76761D1BCE4100722FDA /* DD_CircleApplyViewController.m */,
 			);
-			name = "申请成为达人";
+			name = Apply;
 			sourceTree = "<group>";
 		};
 		3F90A8731E53268200DBEF1A /* NSDate+Formatter */ = {
@@ -2831,34 +2803,34 @@
 			name = "NSDate+Formatter";
 			sourceTree = "<group>";
 		};
-		3F9291AF1D66F99E00FD7EE2 /* 关于 */ = {
+		3F9291AF1D66F99E00FD7EE2 /* About */ = {
 			isa = PBXGroup;
 			children = (
 				3F9291B01D66F9B300FD7EE2 /* DD_AboutViewController.h */,
 				3F9291B11D66F9B300FD7EE2 /* DD_AboutViewController.m */,
 			);
-			name = "关于";
+			name = About;
 			sourceTree = "<group>";
 		};
-		3F93D1DF1DFE7F2700749789 /* 线上 */ = {
+		3F93D1DF1DFE7F2700749789 /* Onlline(线上) */ = {
 			isa = PBXGroup;
 			children = (
 				3F3C3EFF1CFEBCB00056CD6B /* DD_DDAYCell.h */,
 				3F3C3F001CFEBCB00056CD6B /* DD_DDAYCell.m */,
 			);
-			name = "线上";
+			name = "Onlline(线上)";
 			sourceTree = "<group>";
 		};
-		3F93D1E01DFE7F3000749789 /* 线下 */ = {
+		3F93D1E01DFE7F3000749789 /* Offline(线下) */ = {
 			isa = PBXGroup;
 			children = (
 				3F93D1E11DFE7F5E00749789 /* DD_DDAYOfflineCell.h */,
 				3F93D1E21DFE7F5E00749789 /* DD_DDAYOfflineCell.m */,
 			);
-			name = "线下";
+			name = "Offline(线下)";
 			sourceTree = "<group>";
 		};
-		3F93D1E81DFE9AE400749789 /* 线上 */ = {
+		3F93D1E81DFE9AE400749789 /* Onlline */ = {
 			isa = PBXGroup;
 			children = (
 				3F4B81CF1D0052CB00B323E4 /* DD_DDAYDetailViewController.h */,
@@ -2868,10 +2840,10 @@
 				3F5888E71D589D5A00AFD0A3 /* DD_DDAYContainerView.h */,
 				3F5888E81D589D5A00AFD0A3 /* DD_DDAYContainerView.m */,
 			);
-			name = "线上";
+			name = Onlline;
 			sourceTree = "<group>";
 		};
-		3F93D1E91DFE9AEC00749789 /* 线下 */ = {
+		3F93D1E91DFE9AEC00749789 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
 				3F24618F1E08B43F00F18A44 /* DD_CustomChooseView.h */,
@@ -2885,86 +2857,87 @@
 				3FD788DA1E00E4620062859D /* DD_DDAYOfflineDetailBar.h */,
 				3FD788DB1E00E4620062859D /* DD_DDAYOfflineDetailBar.m */,
 			);
-			name = "线下";
+			name = Offline;
 			sourceTree = "<group>";
 		};
-		3F9B8ABE1CEF542E008EC460 /* 登录 */ = {
+		3F9B8ABE1CEF542E008EC460 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				3F3A0BEF1D37CE9E006CD46F /* DD_LoginTextView.h */,
 				3F3A0BF01D37CE9E006CD46F /* DD_LoginTextView.m */,
-				3F9B8B1E1CF046D9008EC460 /* 忘记密码 */,
-				3F9B8B1D1CF046CE008EC460 /* 注册 */,
-				3F9B8ABF1CEF5439008EC460 /* 登录 */,
+				3F9B8B1E1CF046D9008EC460 /* ForgetPSW */,
+				3F9B8B1D1CF046CE008EC460 /* Register */,
+				3F9B8ABF1CEF5439008EC460 /* Login */,
 			);
-			name = "登录";
+			name = Login;
 			sourceTree = "<group>";
 		};
-		3F9B8ABF1CEF5439008EC460 /* 登录 */ = {
+		3F9B8ABF1CEF5439008EC460 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B0C1CF0019B008EC460 /* DD_LoginViewController.h */,
 				3F9B8B0D1CF0019B008EC460 /* DD_LoginViewController.m */,
 			);
-			name = "登录";
+			name = Login;
 			sourceTree = "<group>";
 		};
-		3F9B8AC01CEF5457008EC460 /* 发布日 */ = {
+		3F9B8AC01CEF5457008EC460 /* DDAY */ = {
 			isa = PBXGroup;
 			children = (
-				3F5717281D6EBBC2006E1940 /* 日历 */,
-				3F4B81DD1D01157100B323E4 /* 发布会 */,
-				3F4B81CE1D0052A700B323E4 /* 发布日详情 */,
-				3F3C3F051CFEBCBB0056CD6B /* 发布日首页 */,
+				3F5717281D6EBBC2006E1940 /* Calendar */,
+				3F4B81DD1D01157100B323E4 /* Meet */,
+				3F4B81CE1D0052A700B323E4 /* DDAYDetail */,
+				3F3C3F051CFEBCBB0056CD6B /* DDAYList */,
 			);
-			name = "发布日";
+			name = DDAY;
 			sourceTree = "<group>";
 		};
-		3F9B8AC11CEF545D008EC460 /* 发布品 */ = {
+		3F9B8AC11CEF545D008EC460 /* Goods */ = {
 			isa = PBXGroup;
 			children = (
 				3F7E58B51D4079AA000FDE5F /* DD_ItemTool.h */,
 				3F7E58B61D4079AA000FDE5F /* DD_ItemTool.m */,
-				3F552E8C1CF201EC00BC5E33 /* 单品详情页 */,
-				3F552E8B1CF201D500BC5E33 /* 发布品列表 */,
+				3F552E8C1CF201EC00BC5E33 /* GoodsDetail */,
+				3F552E8B1CF201D500BC5E33 /* GoodsList */,
 			);
-			name = "发布品";
+			name = Goods;
 			sourceTree = "<group>";
 		};
-		3F9B8AC21CEF546B008EC460 /* 设计师 */ = {
+		3F9B8AC21CEF546B008EC460 /* Designer */ = {
 			isa = PBXGroup;
 			children = (
 				3F8228E61D0D0D8900F95E79 /* DD_DesignerMainViewController.h */,
 				3F8228E71D0D0D8900F95E79 /* DD_DesignerMainViewController.m */,
-				3F8228EB1D0D0F0000F95E79 /* 我关注的 */,
-				3F552E841CF1FF1E00BC5E33 /* 设计师列表 */,
+				3F8228EB1D0D0F0000F95E79 /* Follow */,
+				3F552E841CF1FF1E00BC5E33 /* DesignerList */,
 			);
-			name = "设计师";
+			name = Designer;
 			sourceTree = "<group>";
 		};
-		3F9B8AC31CEF5472008EC460 /* 共享带 */ = {
+		3F9B8AC31CEF5472008EC460 /* Circle */ = {
 			isa = PBXGroup;
 			children = (
-				3F6813A51D1A378200F4807A /* 搭配详情页 */,
-				3FA39EA91D87CA8B00CA9A3C /* 发布日常 */,
-				3F4904D81D18D33E009F4CD3 /* cell */,
-				3F8E76741D1BCE1C00722FDA /* 申请成为达人 */,
-				3F4904F41D19228D009F4CD3 /* 搭配商品列表 */,
-				3FB3425D1D0FFF2400C9A682 /* 发布搭配 */,
+				3FC8B5B21F2F206600A1150A /* Publish */,
+				3F4904D81D18D33E009F4CD3 /* Cell */,
+				3F6813A51D1A378200F4807A /* CircleDetail */,
+				3F8E76741D1BCE1C00722FDA /* Apply */,
+				3F4904F41D19228D009F4CD3 /* ItemList */,
 				3F9B8ADF1CEF55DA008EC460 /* DD_CircleViewController.h */,
 				3F9B8AE01CEF55DA008EC460 /* DD_CircleViewController.m */,
 			);
-			name = "共享带";
+			name = Circle;
 			sourceTree = "<group>";
 		};
-		3F9B8AC41CEF5479008EC460 /* 我的 */ = {
+		3F9B8AC41CEF5479008EC460 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				3F4552F61D21035D00524738 /* 个人主页 */,
-				3F9B8B2B1CF08D00008EC460 /* 设置 */,
-				3F8257161CF1BEFF0055DB78 /* 我的主页 */,
+				3F9B8B031CEF6C58008EC460 /* DD_UserCell.h */,
+				3F9B8B041CEF6C58008EC460 /* DD_UserCell.m */,
+				3F4552F61D21035D00524738 /* HomePage */,
+				3F9B8B2B1CF08D00008EC460 /* Setting */,
+				3F8257161CF1BEFF0055DB78 /* UserView */,
 			);
-			name = "我的";
+			name = User;
 			sourceTree = "<group>";
 		};
 		3F9B8ACA1CEF54E2008EC460 /* Tabbar */ = {
@@ -2994,7 +2967,7 @@
 			name = TabbarItem;
 			sourceTree = "<group>";
 		};
-		3F9B8B111CF00942008EC460 /* 注册 */ = {
+		3F9B8B111CF00942008EC460 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B121CF0095C008EC460 /* DD_RegisterViewController.h */,
@@ -3002,66 +2975,66 @@
 				3FBCD9AE1D98FF59002155F9 /* DD_ProtocolViewController.h */,
 				3FBCD9AF1D98FF59002155F9 /* DD_ProtocolViewController.m */,
 			);
-			name = "注册";
+			name = Register;
 			sourceTree = "<group>";
 		};
-		3F9B8B171CF01F62008EC460 /* 输入密码 */ = {
+		3F9B8B171CF01F62008EC460 /* SetPSW */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B181CF01F8D008EC460 /* DD_SetPSWViewController.h */,
 				3F9B8B191CF01F8D008EC460 /* DD_SetPSWViewController.m */,
 			);
-			name = "输入密码";
+			name = SetPSW;
 			sourceTree = "<group>";
 		};
-		3F9B8B1D1CF046CE008EC460 /* 注册 */ = {
+		3F9B8B1D1CF046CE008EC460 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				3F9B8B171CF01F62008EC460 /* 输入密码 */,
-				3F9B8B111CF00942008EC460 /* 注册 */,
+				3F9B8B171CF01F62008EC460 /* SetPSW */,
+				3F9B8B111CF00942008EC460 /* Register */,
 			);
-			name = "注册";
+			name = Register;
 			sourceTree = "<group>";
 		};
-		3F9B8B1E1CF046D9008EC460 /* 忘记密码 */ = {
+		3F9B8B1E1CF046D9008EC460 /* ForgetPSW */ = {
 			isa = PBXGroup;
 			children = (
-				3F9B8B251CF04907008EC460 /* 设置密码 */,
-				3F9B8B1F1CF046E0008EC460 /* 忘记密码 */,
+				3F9B8B251CF04907008EC460 /* SetPSW */,
+				3F9B8B1F1CF046E0008EC460 /* ForgetPSW */,
 			);
-			name = "忘记密码";
+			name = ForgetPSW;
 			sourceTree = "<group>";
 		};
-		3F9B8B1F1CF046E0008EC460 /* 忘记密码 */ = {
+		3F9B8B1F1CF046E0008EC460 /* ForgetPSW */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B201CF0472A008EC460 /* DD_forgetViewController.h */,
 				3F9B8B211CF0472A008EC460 /* DD_forgetViewController.m */,
 			);
-			name = "忘记密码";
+			name = ForgetPSW;
 			sourceTree = "<group>";
 		};
-		3F9B8B251CF04907008EC460 /* 设置密码 */ = {
+		3F9B8B251CF04907008EC460 /* SetPSW */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B261CF04923008EC460 /* DD_SetPSW_forget_ViewController.h */,
 				3F9B8B271CF04923008EC460 /* DD_SetPSW_forget_ViewController.m */,
 			);
-			name = "设置密码";
+			name = SetPSW;
 			sourceTree = "<group>";
 		};
-		3F9B8B2B1CF08D00008EC460 /* 设置 */ = {
+		3F9B8B2B1CF08D00008EC460 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				3F9291AF1D66F99E00FD7EE2 /* 关于 */,
-				3F9B8B401CF0D47A008EC460 /* 个人资料 */,
-				3F9B8B351CF0AD62008EC460 /* 建议 */,
-				3F9B8B341CF0AD55008EC460 /* 设置主页 */,
+				3F9B8B341CF0AD55008EC460 /* Setting */,
+				3F9291AF1D66F99E00FD7EE2 /* About */,
+				3F9B8B401CF0D47A008EC460 /* UserInfo */,
+				3F9B8B351CF0AD62008EC460 /* Suggest */,
 			);
-			name = "设置";
+			name = Setting;
 			sourceTree = "<group>";
 		};
-		3F9B8B341CF0AD55008EC460 /* 设置主页 */ = {
+		3F9B8B341CF0AD55008EC460 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				3F64573D1D5495D1003B4E1A /* DD_SetCell.h */,
@@ -3071,31 +3044,31 @@
 				3F9B8B2C1CF08D32008EC460 /* DD_SetViewController.h */,
 				3F9B8B2D1CF08D32008EC460 /* DD_SetViewController.m */,
 			);
-			name = "设置主页";
+			name = Setting;
 			sourceTree = "<group>";
 		};
-		3F9B8B351CF0AD62008EC460 /* 建议 */ = {
+		3F9B8B351CF0AD62008EC460 /* Suggest */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B3B1CF0AF17008EC460 /* DD_SuggestViewController.h */,
 				3F9B8B3C1CF0AF17008EC460 /* DD_SuggestViewController.m */,
 			);
-			name = "建议";
+			name = Suggest;
 			sourceTree = "<group>";
 		};
-		3F9B8B401CF0D47A008EC460 /* 个人资料 */ = {
+		3F9B8B401CF0D47A008EC460 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				3F7647C11D77D16200843F43 /* 性别修改 */,
-				3F9B8B551CF1B712008EC460 /* 昵称职业修改 */,
-				3F9B8B561CF1B722008EC460 /* 修改登录密码 */,
-				3F9B8B541CF1B702008EC460 /* 身材信息修改 */,
-				3F9B8B531CF1B6F7008EC460 /* 个人资料 */,
+				3F7647C11D77D16200843F43 /* Sex(性别修改) */,
+				3F9B8B561CF1B722008EC460 /* AlertPSW(修改登录密码) */,
+				3F9B8B541CF1B702008EC460 /* Body(身材修改) */,
+				3F9B8B531CF1B6F7008EC460 /* UserInfo(个人资料) */,
+				3F9B8B551CF1B712008EC460 /* Other(昵称/职业修改) */,
 			);
-			name = "个人资料";
+			name = UserInfo;
 			sourceTree = "<group>";
 		};
-		3F9B8B531CF1B6F7008EC460 /* 个人资料 */ = {
+		3F9B8B531CF1B6F7008EC460 /* UserInfo(个人资料) */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B461CF160BC008EC460 /* DD_UserInfoTool.h */,
@@ -3103,34 +3076,34 @@
 				3F9B8B411CF0D494008EC460 /* DD_UserInfoViewController.h */,
 				3F9B8B421CF0D494008EC460 /* DD_UserInfoViewController.m */,
 			);
-			name = "个人资料";
+			name = "UserInfo(个人资料)";
 			sourceTree = "<group>";
 		};
-		3F9B8B541CF1B702008EC460 /* 身材信息修改 */ = {
+		3F9B8B541CF1B702008EC460 /* Body(身材修改) */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B4E1CF1AE08008EC460 /* DD_BodyViewController.h */,
 				3F9B8B4F1CF1AE08008EC460 /* DD_BodyViewController.m */,
 			);
-			name = "身材信息修改";
+			name = "Body(身材修改)";
 			sourceTree = "<group>";
 		};
-		3F9B8B551CF1B712008EC460 /* 昵称职业修改 */ = {
+		3F9B8B551CF1B712008EC460 /* Other(昵称/职业修改) */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B491CF1A652008EC460 /* DD_AlertViewController.h */,
 				3F9B8B4A1CF1A652008EC460 /* DD_AlertViewController.m */,
 			);
-			name = "昵称职业修改";
+			name = "Other(昵称/职业修改)";
 			sourceTree = "<group>";
 		};
-		3F9B8B561CF1B722008EC460 /* 修改登录密码 */ = {
+		3F9B8B561CF1B722008EC460 /* AlertPSW(修改登录密码) */ = {
 			isa = PBXGroup;
 			children = (
 				3F9B8B571CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.h */,
 				3F9B8B581CF1B743008EC460 /* DD_UserInfo_AlertPSWViewController.m */,
 			);
-			name = "修改登录密码";
+			name = "AlertPSW(修改登录密码)";
 			sourceTree = "<group>";
 		};
 		3FA321A61DEFFA74008FB672 /* 版本更新 */ = {
@@ -3151,28 +3124,28 @@
 			name = VersionView;
 			sourceTree = "<group>";
 		};
-		3FA32FF21D59989700311A6A /* 结算成功订单列表 */ = {
+		3FA32FF21D59989700311A6A /* ClearingDone */ = {
 			isa = PBXGroup;
 			children = (
 				3FA32FF31D5998E200311A6A /* DD_ClearingOrderViewController.h */,
 				3FA32FF41D5998E200311A6A /* DD_ClearingOrderViewController.m */,
 			);
-			name = "结算成功订单列表";
+			name = ClearingDone;
 			sourceTree = "<group>";
 		};
-		3FA39EA91D87CA8B00CA9A3C /* 发布日常 */ = {
+		3FA39EA91D87CA8B00CA9A3C /* PublishDaily */ = {
 			isa = PBXGroup;
 			children = (
-				3FA39EBB1D87E3D800CA9A3C /* 日常详情页 */,
-				3FA39EBA1D87E3B000CA9A3C /* 预览 */,
-				3FA39EB31D87D09800CA9A3C /* custom */,
+				3FA39EBB1D87E3D800CA9A3C /* DailyDetail */,
+				3FA39EBA1D87E3B000CA9A3C /* PublishDailyPreView */,
+				3FA39EB31D87D09800CA9A3C /* Custom */,
 				3FA39EAA1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.h */,
 				3FA39EAB1D87CACB00CA9A3C /* DD_CirclePublishDailyViewController.m */,
 			);
-			name = "发布日常";
+			name = PublishDaily;
 			sourceTree = "<group>";
 		};
-		3FA39EB31D87D09800CA9A3C /* custom */ = {
+		3FA39EB31D87D09800CA9A3C /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				3FA39EB41D87D0FF00CA9A3C /* DD_CircleDailyInfoImgView.h */,
@@ -3180,33 +3153,33 @@
 				3FA39EAD1D87CB6800CA9A3C /* DD_CircleDailyInfoView.h */,
 				3FA39EAE1D87CB6800CA9A3C /* DD_CircleDailyInfoView.m */,
 			);
-			name = custom;
+			name = Custom;
 			sourceTree = "<group>";
 		};
-		3FA39EBA1D87E3B000CA9A3C /* 预览 */ = {
+		3FA39EBA1D87E3B000CA9A3C /* PublishDailyPreView */ = {
 			isa = PBXGroup;
 			children = (
 				3FA39EB01D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.h */,
 				3FA39EB11D87CD8500CA9A3C /* DD_CirclePublishDailyPreViewController.m */,
 			);
-			name = "预览";
+			name = PublishDailyPreView;
 			sourceTree = "<group>";
 		};
-		3FA39EBB1D87E3D800CA9A3C /* 日常详情页 */ = {
+		3FA39EBB1D87E3D800CA9A3C /* DailyDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3FA39EBC1D87E41A00CA9A3C /* headView */,
+				3FA39EBC1D87E41A00CA9A3C /* HeadView */,
 			);
-			name = "日常详情页";
+			name = DailyDetail;
 			sourceTree = "<group>";
 		};
-		3FA39EBC1D87E41A00CA9A3C /* headView */ = {
+		3FA39EBC1D87E41A00CA9A3C /* HeadView */ = {
 			isa = PBXGroup;
 			children = (
 				3FA39EBD1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.h */,
 				3FA39EBE1D87E42E00CA9A3C /* DD_CircleDailyDetailHeadView.m */,
 			);
-			name = headView;
+			name = HeadView;
 			sourceTree = "<group>";
 		};
 		3FA6E0151D5078760038569C /* DD_NavBtn */ = {
@@ -3218,32 +3191,32 @@
 			name = DD_NavBtn;
 			sourceTree = "<group>";
 		};
-		3FA8365E1D050B73006D2919 /* 我的订单 */ = {
+		3FA8365E1D050B73006D2919 /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				3F0A8CE51D07F6CE005549BE /* 退款界面 */,
 				3FA836851D055C19006D2919 /* DD_OrderHeadView.h */,
 				3FA836861D055C19006D2919 /* DD_OrderHeadView.m */,
 				3FA836721D051B3F006D2919 /* DD_OrderTool.h */,
 				3FA836731D051B3F006D2919 /* DD_OrderTool.m */,
-				3FC2D17B1D06A25D005A1FF0 /* 订单详情 */,
-				3FC2D1751D069DA7005A1FF0 /* 物流信息 */,
-				3FA836641D050B89006D2919 /* 订单列表 */,
+				3F0A8CE51D07F6CE005549BE /* OrderRefund */,
+				3FC2D17B1D06A25D005A1FF0 /* OrderDetail */,
+				3FC2D1751D069DA7005A1FF0 /* LogisticsInfo */,
+				3FA836641D050B89006D2919 /* OrderList */,
 			);
-			name = "我的订单";
+			name = Order;
 			sourceTree = "<group>";
 		};
-		3FA836641D050B89006D2919 /* 订单列表 */ = {
+		3FA836641D050B89006D2919 /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
-				3F6457391D547F78003B4E1A /* cell */,
+				3F6457391D547F78003B4E1A /* Cell */,
 				3FA8365F1D050B86006D2919 /* DD_OrderViewController.h */,
 				3FA836601D050B86006D2919 /* DD_OrderViewController.m */,
 			);
-			name = "订单列表";
+			name = OrderList;
 			sourceTree = "<group>";
 		};
-		3FB3425D1D0FFF2400C9A682 /* 发布搭配 */ = {
+		3FB3425D1D0FFF2400C9A682 /* PublishCircle */ = {
 			isa = PBXGroup;
 			children = (
 				3F2F76601D1D1968002E22A6 /* DD_CirclePublishTool.h */,
@@ -3252,7 +3225,7 @@
 				3FB3425E1D0FFF4D00C9A682 /* DD_CirclePublishViewController.h */,
 				3FB3425F1D0FFF4D00C9A682 /* DD_CirclePublishViewController.m */,
 			);
-			name = "发布搭配";
+			name = PublishCircle;
 			sourceTree = "<group>";
 		};
 		3FBE22D71D48B254000C3EE9 /* Model */ = {
@@ -3389,7 +3362,7 @@
 			name = "款式选择视图";
 			sourceTree = "<group>";
 		};
-		3FC2D1751D069DA7005A1FF0 /* 物流信息 */ = {
+		3FC2D1751D069DA7005A1FF0 /* LogisticsInfo */ = {
 			isa = PBXGroup;
 			children = (
 				3F73CC6A1D6D4CE400E419B9 /* DD_OrderLogisticsHeadView.h */,
@@ -3399,10 +3372,79 @@
 				3FC2D1761D069DDF005A1FF0 /* DD_OrderLogisticsViewController.h */,
 				3FC2D1771D069DDF005A1FF0 /* DD_OrderLogisticsViewController.m */,
 			);
-			name = "物流信息";
+			name = LogisticsInfo;
 			sourceTree = "<group>";
 		};
-		3FC2D17B1D06A25D005A1FF0 /* 订单详情 */ = {
+		3FC2D17B1D06A25D005A1FF0 /* OrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8B5B71F2F236B00A1150A /* CustomView */,
+				3FC2D17C1D06A272005A1FF0 /* DD_OrderDetailViewController.h */,
+				3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */,
+			);
+			name = OrderDetail;
+			sourceTree = "<group>";
+		};
+		3FC8B5B21F2F206600A1150A /* Publish */ = {
+			isa = PBXGroup;
+			children = (
+				3FA39EA91D87CA8B00CA9A3C /* PublishDaily */,
+				3FB3425D1D0FFF2400C9A682 /* PublishCircle */,
+			);
+			name = Publish;
+			sourceTree = "<group>";
+		};
+		3FC8B5B31F2F215300A1150A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8B5B41F2F217300A1150A /* AppStartView */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		3FC8B5B41F2F217300A1150A /* AppStartView */ = {
+			isa = PBXGroup;
+			children = (
+				3F50034D1D9E37B0001551C1 /* DD_StartView.h */,
+				3F50034E1D9E37B0001551C1 /* DD_StartView.m */,
+				3F5003441D9E3152001551C1 /* DD_StartViewController.h */,
+				3F5003451D9E3152001551C1 /* DD_StartViewController.m */,
+				3F2309991DF945CC00CA1E10 /* DD_StartViewPlayer.h */,
+				3F23099A1DF945CC00CA1E10 /* DD_StartViewPlayer.m */,
+			);
+			name = AppStartView;
+			sourceTree = "<group>";
+		};
+		3FC8B5B51F2F21D400A1150A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3FE98D4F1DC8767B00F273E8 /* gif */,
+				3F41877F1CEEFB24001BCA3D /* Assets.xcassets */,
+				3F93D1DD1DFE394100749789 /* loading.mp4 */,
+				3F43B6BA1DE6C180006D259C /* DIN-Medium.otf */,
+				3F4187AD1CEEFD02001BCA3D /* area.json */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		3FC8B5B61F2F235400A1150A /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				3FD02DB91D50F06800E9D6EB /* DD_ShopAlertSizeView.h */,
+				3FD02DBA1D50F06800E9D6EB /* DD_ShopAlertSizeView.m */,
+				3FFC4FE11D50E1FD00FD6866 /* DD_ShopAlertNumView.h */,
+				3FFC4FE21D50E1FD00FD6866 /* DD_ShopAlertNumView.m */,
+				3FCB11531CFC33BC00FBB018 /* DD_ShopClearingView.h */,
+				3FCB11541CFC33BC00FBB018 /* DD_ShopClearingView.m */,
+				3F1401511CFC0AD70093474A /* DD_ShopHeaderView.h */,
+				3F1401521CFC0AD70093474A /* DD_ShopHeaderView.m */,
+				3F1401431CF82B2A0093474A /* DD_ShopTool.h */,
+				3F1401441CF82B2A0093474A /* DD_ShopTool.m */,
+			);
+			name = CustomView;
+			sourceTree = "<group>";
+		};
+		3FC8B5B71F2F236B00A1150A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
 				3F2F63831DD4431100F9D947 /* DD_CustomContentView.h */,
@@ -3413,19 +3455,17 @@
 				3F48935C1DD37D0900D9735F /* DD_OrderDetailFootView.m */,
 				3F82AEE71DD2FBC7004C8219 /* DD_OrderDetailHeadView.h */,
 				3F82AEE81DD2FBC7004C8219 /* DD_OrderDetailHeadView.m */,
-				3FC2D17C1D06A272005A1FF0 /* DD_OrderDetailViewController.h */,
-				3FC2D17D1D06A272005A1FF0 /* DD_OrderDetailViewController.m */,
 			);
-			name = "订单详情";
+			name = CustomView;
 			sourceTree = "<group>";
 		};
-		3FE8D7B11DD08F6D00F3A21C /* 选择优惠券 */ = {
+		3FE8D7B11DD08F6D00F3A21C /* ChooseBenefit(选择优惠券) */ = {
 			isa = PBXGroup;
 			children = (
 				3FE8D7B21DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.h */,
 				3FE8D7B31DD08F8D00F3A21C /* DD_ChooseBenefitListViewController.m */,
 			);
-			name = "选择优惠券";
+			name = "ChooseBenefit(选择优惠券)";
 			sourceTree = "<group>";
 		};
 		3FE98D4F1DC8767B00F273E8 /* gif */ = {
@@ -3494,13 +3534,13 @@
 			name = SignInAnimationView;
 			sourceTree = "<group>";
 		};
-		3FFA8B261D73452400DD51C1 /* cell */ = {
+		3FFA8B261D73452400DD51C1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				3F57172F1D6EBD75006E1940 /* DD_CalendarCell.h */,
 				3F5717301D6EBD75006E1940 /* DD_CalendarCell.m */,
 			);
-			name = cell;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3FFA8B271D73453E00DD51C1 /* 日历 */ = {
@@ -3512,13 +3552,13 @@
 			name = "日历";
 			sourceTree = "<group>";
 		};
-		3FFCCF5B1D6211AE00E1DC7C /* 预览 */ = {
+		3FFCCF5B1D6211AE00E1DC7C /* PushlishPreView */ = {
 			isa = PBXGroup;
 			children = (
 				3FFCCF5C1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.h */,
 				3FFCCF5D1D6211E800E1DC7C /* DD_CirclePushlishPreViewController.m */,
 			);
-			name = "预览";
+			name = PushlishPreView;
 			sourceTree = "<group>";
 		};
 		3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */ = {
@@ -3985,7 +4025,7 @@
 				3F82E78D1D81417100EA4950 /* DD_UserMessageTool.m in Sources */,
 				3F9B8ABD1CEF1E84008EC460 /* DD_AddressModel.m in Sources */,
 				3F9291B21D66F9B300FD7EE2 /* DD_AboutViewController.m in Sources */,
-				3F4187F21CEEFF1A001BCA3D /* DD_CityVCT.m in Sources */,
+				3F4187F21CEEFF1A001BCA3D /* DD_CityViewController.m in Sources */,
 				3F93D1E31DFE7F5E00749789 /* DD_DDAYOfflineCell.m in Sources */,
 				3F8E76611D1B7EC300722FDA /* DD_CircleComentInputView.m in Sources */,
 				3F7160AA1D4EDD5000E165D2 /* DD_GoodsListView.m in Sources */,
@@ -3998,7 +4038,7 @@
 				3F8228F71D0DA0CC00F95E79 /* DD_DesignerItemViewController.m in Sources */,
 				3F2461911E08B43F00F18A44 /* DD_CustomChooseView.m in Sources */,
 				3F9B8B511CF1AE08008EC460 /* DD_BodyViewController.m in Sources */,
-				3F4187F01CEEFF1A001BCA3D /* DD_ProvinceVCT.m in Sources */,
+				3F4187F01CEEFF1A001BCA3D /* DD_ProvinceViewController.m in Sources */,
 				3F21E2011D177E5000FE7ADF /* DD_CircleChooseDetailView.m in Sources */,
 				3FEEAF4B1D891774008F6EB6 /* DD_UserMessageItemModel.m in Sources */,
 				3F5888E91D589D5A00AFD0A3 /* DD_DDAYContainerView.m in Sources */,

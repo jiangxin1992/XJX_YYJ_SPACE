@@ -128,7 +128,6 @@
                 [self.navigationController pushViewController:_DesignerHomePage animated:YES];
                 [[DD_CustomViewController sharedManager] tabbarHide];
             }
-            
         }];
     }
     [_pageVc setViewControllers:@[_left] direction:1 animated:YES completion:nil];

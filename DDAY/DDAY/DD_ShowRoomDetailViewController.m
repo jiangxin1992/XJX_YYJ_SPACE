@@ -376,10 +376,12 @@
 
 - (void)openBaiDuMap{
     
-    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-    NSString *url=[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%@,%@|name:我的位置&destination=latlng:%f,%f|name:%@&mode=driving",_showRoomModel.latitude,_showRoomModel.longitude,currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude,_showRoomModel.baiduMapName];
-    NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+//    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+//    NSString *url=[NSString stringWithFormat:@"baidumap://map/direction?origin=latlng:%@,%@|name:我的位置&destination=latlng:%f,%f|name:%@&mode=driving",_showRoomModel.latitude,_showRoomModel.longitude,currentLocation.placemark.location.coordinate.latitude,currentLocation.placemark.location.coordinate.longitude,_showRoomModel.baiduMapName];
+//    NSString *urlString = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
+    NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin=我的位置&destination=%@&mode=driving",_showRoomModel.baiduMapName] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];//_orderingModel.address
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlString]];
     
 }

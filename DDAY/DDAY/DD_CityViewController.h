@@ -1,5 +1,5 @@
 //
-//  DD_ProvinceVCT.h
+//  DD_CityViewController.h
 //  DDAY
 //
 //  Created by yyj on 16/5/17.
@@ -8,10 +8,12 @@
 
 #import "DD_BaseViewController.h"
 
-@interface DD_ProvinceVCT : DD_BaseViewController
+@interface DD_CityViewController : DD_BaseViewController
 
 -(instancetype)initWithBlock:(void(^)(NSString *p_id,NSString *c_id))block;
 
 @property (nonatomic,copy) void(^chooseblock)(NSString *p_id,NSString *c_id);
+
+__string(p_id);
 
 @end

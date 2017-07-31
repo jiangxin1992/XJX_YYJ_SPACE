@@ -1,23 +1,23 @@
 //
-//  DD_ProvinceVCT.m
+//  DD_ProvinceViewController.m
 //  DDAY
 //
 //  Created by yyj on 16/5/17.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import "DD_ProvinceVCT.h"
+#import "DD_ProvinceViewController.h"
 
-#import "DD_CityVCT.h"
+#import "DD_CityViewController.h"
 
 #import "DD_CityTool.h"
 #import "DD_ProvinceModel.h"
 
-@interface DD_ProvinceVCT ()<UITableViewDataSource,UITableViewDelegate>
+@interface DD_ProvinceViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation DD_ProvinceVCT
+@implementation DD_ProvinceViewController
 {
     NSArray *_dataArr;
     UITableView *_tableview;
@@ -101,7 +101,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DD_ProvinceModel *_p_model=_dataArr[indexPath.section];
-    DD_CityVCT *_city=[[DD_CityVCT alloc] initWithBlock:^(NSString *p_id, NSString *c_id) {
+    DD_CityViewController *_city=[[DD_CityViewController alloc] initWithBlock:^(NSString *p_id, NSString *c_id) {
         self.chooseblock(p_id,c_id);
     }];
     _city.title=@"选择城市";

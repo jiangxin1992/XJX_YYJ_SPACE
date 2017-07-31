@@ -333,23 +333,23 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    //    获取选择图片
+    //    获取选择图片并选择适合的压缩比例
     UIImage *originImage = info[UIImagePickerControllerEditedImage];
-    //    压缩比例0.5
     NSData *data1 = UIImageJPEGRepresentation(originImage, 0.5f);
-    //    获取七牛上传文件所需的token
+    //    获取七牛上传文件所需的token(问后台要)
     [[JX_AFNetworking alloc] GET:@"user/getQiNiuToken.do" parameters:@{@"token":[DD_UserModel getToken]} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
             NSString *upLoadToken=[data objectForKey:@"upLoadToken"];
             
-            //            上传qiniu
+            //            通过qiniu sdk上传图片
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
             [upManager putData:data1 key:nil token:upLoadToken
                       complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                          
+                          // statusCode200表示成功
                           if(info.statusCode==200)
                           {
+                              //把这个返回的标示（key）传给后台
                               [self uploadImage:resp[@"key"]];
                           }else
                           {

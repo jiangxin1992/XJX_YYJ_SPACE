@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class DrawView;
 @class DD_MonthModel;
 
 @interface DD_CalendarCell : UICollectionViewCell

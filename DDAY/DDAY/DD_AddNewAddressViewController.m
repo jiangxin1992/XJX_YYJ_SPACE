@@ -8,7 +8,7 @@
 
 #import "DD_AddNewAddressViewController.h"
 
-#import "DD_ProvinceVCT.h"
+#import "DD_ProvinceViewController.h"
 
 #import "DD_AddNewAddressDefaultBtn.h"
 
@@ -306,7 +306,7 @@
 }
 -(void)chooseProvince
 {
-    DD_ProvinceVCT *_Province=[[DD_ProvinceVCT alloc] initWithBlock:^(NSString *p_id, NSString *c_id) {
+    DD_ProvinceViewController *_Province=[[DD_ProvinceViewController alloc] initWithBlock:^(NSString *p_id, NSString *c_id) {
         _p_id=p_id;
         _c_id=c_id;
         

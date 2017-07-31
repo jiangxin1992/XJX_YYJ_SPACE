@@ -1,12 +1,12 @@
 //
-//  DD_CityVCT.m
+//  DD_CityViewController.m
 //  DDAY
 //
 //  Created by yyj on 16/5/17.
 //  Copyright © 2016年 mike_xie. All rights reserved.
 //
 
-#import "DD_CityVCT.h"
+#import "DD_CityViewController.h"
 
 #import "DD_AddNewAddressViewController.h"
 
@@ -14,11 +14,11 @@
 #import "DD_ProvinceModel.h"
 #import "DD_CityModel.h"
 
-@interface DD_CityVCT ()<UITableViewDataSource,UITableViewDelegate>
+@interface DD_CityViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation DD_CityVCT{
+@implementation DD_CityViewController{
     NSArray *_dataArr;
     UITableView *_tableview;
 }
