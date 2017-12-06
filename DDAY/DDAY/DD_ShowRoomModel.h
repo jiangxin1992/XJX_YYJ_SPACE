@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "DD_ImageModel.h"
+#import "DD_baseModel.h"
 
-@interface DD_ShowRoomModel : NSObject
+@interface DD_ShowRoomModel : DD_baseModel
 /**
  * 获取体验店model
  */

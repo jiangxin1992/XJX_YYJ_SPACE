@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_ClearingSeriesModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_ClearingSeriesModel : DD_baseModel
 
 /**
  * 系列对应价格小计/不包括运费

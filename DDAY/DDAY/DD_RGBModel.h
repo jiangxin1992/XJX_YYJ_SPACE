@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_RGBModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_RGBModel : DD_baseModel
 
 +(DD_RGBModel *)initWithColorCode:(NSString *)colorCode;
 

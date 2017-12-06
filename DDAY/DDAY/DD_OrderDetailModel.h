@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_OrderDetailInfoModel;
 @class DD_AddressModel;
 @class DD_OrderLogisticsModel;
 
-@interface DD_OrderDetailModel : NSObject
+@interface DD_OrderDetailModel : DD_baseModel
 /**
  * 获取解析model
  */

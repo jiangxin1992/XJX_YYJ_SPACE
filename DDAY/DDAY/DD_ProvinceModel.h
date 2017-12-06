@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_ProvinceModel;
 
-@interface DD_ProvinceModel : NSObject
+@interface DD_ProvinceModel : DD_baseModel
 
 +(NSArray *)getProvinceModelArray:(NSArray *)arrdata;
 

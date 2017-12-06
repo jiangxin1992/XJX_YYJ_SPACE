@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CircleCommentModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CircleCommentModel : DD_baseModel
 
 /**
  * 获取搭配评论列表model

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_UserMessageModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_UserMessageModel : DD_baseModel
 
 /**
  * 获取消息列表model

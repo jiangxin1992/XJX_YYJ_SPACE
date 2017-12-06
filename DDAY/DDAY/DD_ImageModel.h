@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 #define __string(__k__) @property(nonatomic,strong) NSString *__k__
 
-@interface DD_ImageModel : NSObject
+@interface DD_ImageModel : DD_baseModel
 
 /**
  * 获取图片model

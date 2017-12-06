@@ -505,6 +505,8 @@
     if(index)
     {
         DD_ItemsModel *_model=_dataArr[index-1];
+        NSString *description = [_model description];
+        NSLog(@"description = %@",description);
         DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_model WithBlock:^(DD_ItemsModel *model, NSString *type) {
             //        if(type)
         }];

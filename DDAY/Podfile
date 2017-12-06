@@ -1,24 +1,24 @@
 source ‘https://github.com/CocoaPods/Specs.git’
 
 =begin
-pod 'OLImageView', '~> 1.5.1’
+ pod 'OLImageView', '~> 1.5.1’
 =end
 
 platform :ios, ‘7.0’
 use_frameworks!
 target “YCOSPACE” do
-pod 'AFNetworking', '~> 3.1.0'
-pod 'YYKit'
-pod 'TTTAttributedLabel'
-pod 'SDWebImage','~>3.8.2’
-pod 'MJRefresh','~>3.1.12’
-pod 'MJExtension','~>3.0.13'
-pod 'Masonry','~>1.0.2’
-pod 'Qiniu', '~> 7.1’
-pod 'BlocksKit', '~> 2.2.5’
-pod 'GTSDK'
-pod 'Bugly'
 
+ pod 'AFNetworking', '~> 3.1.0'
+ pod 'YYKit', '~> 1.0.9’
+ pod 'TTTAttributedLabel', '~> 1.13.4’
+ pod 'SDWebImage', '~> 3.8.2’
+ pod 'MJRefresh', '~> 3.1.12’
+ pod 'MJExtension', '~> 3.0.13'
+ pod 'Masonry', '~> 1.0.2’
+ pod 'Qiniu', '~> 7.1’
+ pod 'BlocksKit', '~> 2.2.5’
+ pod 'GTSDK', '~> 1.5.3’
+ pod 'Bugly', '~> 2.4.2’
 
 
  # 主模块(必须)

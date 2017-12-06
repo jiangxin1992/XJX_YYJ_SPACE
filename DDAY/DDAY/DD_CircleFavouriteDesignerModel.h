@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CircleFavouriteDesignerModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CircleFavouriteDesignerModel : DD_baseModel
 
 +(DD_CircleFavouriteDesignerModel *)initDesignerModel;
 

@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_ImageModel;
 
 #define __bool(__k__) @property(nonatomic,assign) BOOL __k__
 #define __long(__k__) @property(nonatomic,assign) long __k__
 #define __int(__k__) @property(nonatomic,assign) NSInteger __k__
 
-@interface DD_BenefitInfoModel : NSObject
+@interface DD_BenefitInfoModel : DD_baseModel
 
 /**
  * 获取优惠券model

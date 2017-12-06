@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_ImageModel;
 
-@interface DD_BenefitDetailModel : NSObject
+@interface DD_BenefitDetailModel : DD_baseModel
 
 /**
  * 获取优惠券model数组

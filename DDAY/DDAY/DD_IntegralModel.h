@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_IntegralModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_IntegralModel : DD_baseModel
 
 /**
  * 获取积分model数组

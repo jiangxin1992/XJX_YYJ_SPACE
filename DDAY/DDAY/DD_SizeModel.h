@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_SizeModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_SizeModel : DD_baseModel
 
 +(NSArray *)getSizeModelArr:(NSArray *)arr;
 

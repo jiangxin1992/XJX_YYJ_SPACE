@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_MonthModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_MonthModel : DD_baseModel
 
 /** 几号*/
 @property (assign, nonatomic) NSInteger dayValue;

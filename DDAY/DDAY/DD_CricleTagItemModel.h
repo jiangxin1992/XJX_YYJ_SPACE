@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CricleTagItemModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CricleTagItemModel : DD_baseModel
 
 /**
  * 获取标签model

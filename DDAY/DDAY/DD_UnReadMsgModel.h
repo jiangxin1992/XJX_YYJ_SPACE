@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 #define __number(__k__) @property(nonatomic,strong) NSNumber *__k__
 #define __bool(__k__) @property(nonatomic,assign) BOOL __k__
 
-@interface DD_UnReadMsgModel : NSObject
+@interface DD_UnReadMsgModel : DD_baseModel
 
 +(DD_UnReadMsgModel *)getUnReadMsgModel:(NSDictionary *)dict;
 

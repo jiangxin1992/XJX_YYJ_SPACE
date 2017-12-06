@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_BenefitInfoModel;
 @class DD_VersionModel;
 
@@ -15,7 +17,7 @@
 #define __long(__k__) @property(nonatomic,assign) long __k__
 #define __int(__k__) @property(nonatomic,assign) NSInteger __k__
 
-@interface DD_UserModel : NSObject
+@interface DD_UserModel : DD_baseModel
 
 /*********************************用户信息*********************************/
 /**

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_OrderModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_OrderModel : DD_baseModel
 
 /**
  * 获取解析数组

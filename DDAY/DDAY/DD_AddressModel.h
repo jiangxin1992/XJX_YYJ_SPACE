@@ -7,7 +7,9 @@
 //
 #import <Foundation/Foundation.h>
 
-@interface DD_AddressModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_AddressModel : DD_baseModel
 
 +(NSArray *)getAddressModelArray:(NSArray *)arrdata;
 

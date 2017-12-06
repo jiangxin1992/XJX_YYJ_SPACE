@@ -10,4 +10,8 @@
 
 @implementation DD_baseModel
 
+-(NSString *)description{
+    return [NSString stringWithFormat:@"<%@: %p, %@>",[self class],self,[self mj_JSONObject]];
+}
+
 @end

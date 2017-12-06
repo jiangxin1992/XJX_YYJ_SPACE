@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CricleCategoryModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CricleCategoryModel : DD_baseModel
 
 /**
  * 获取分类标签model 数组

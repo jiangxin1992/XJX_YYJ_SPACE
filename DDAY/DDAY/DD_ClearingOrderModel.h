@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_ClearingOrderModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_ClearingOrderModel : DD_baseModel
 
 /**
  * 获取订单model arr

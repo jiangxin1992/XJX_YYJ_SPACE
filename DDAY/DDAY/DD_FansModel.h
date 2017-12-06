@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_FansModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_FansModel : DD_baseModel
 
 /**
  * 获取粉丝model数组

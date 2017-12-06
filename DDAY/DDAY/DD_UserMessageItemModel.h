@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_UserModel;
 
-@interface DD_UserMessageItemModel : NSObject
+@interface DD_UserMessageItemModel : DD_baseModel
 
 /**
  * 获取消息列表model

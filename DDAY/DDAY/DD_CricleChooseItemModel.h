@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_ImageModel;
 
-@interface DD_CricleChooseItemModel : NSObject
+@interface DD_CricleChooseItemModel : DD_baseModel
 
 /**
  * 获取款式model 数组 

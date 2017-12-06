@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_GoodSeriesModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_GoodSeriesModel : DD_baseModel
 
 +(DD_GoodSeriesModel *)getGoodSeriesModel:(NSDictionary *)dict;
 

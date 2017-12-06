@@ -7,7 +7,9 @@
 //
 #import <Foundation/Foundation.h>
 
-@interface DD_CityModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CityModel : DD_baseModel
 
 +(NSArray *)getCityModelArray:(NSArray *)arrdata;
 

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_ImageModel;
 @class DD_ShowRoomModel;
 
-@interface DD_DDayDetailModel : NSObject
+@interface DD_DDayDetailModel : DD_baseModel
 
 /** 获取解析model*/
 +(DD_DDayDetailModel *)getDDayDetailModel:(NSDictionary *)dict;

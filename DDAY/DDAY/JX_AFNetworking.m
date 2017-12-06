@@ -13,25 +13,7 @@
 #include<netdb.h>
 
 @implementation JX_AFNetworking
-
--(NSString *)getUrl:(NSString *)url
-{
-//    JXLOG(@"%@",[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],url]);
-    return [[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],url];
-}
--(void)NETWorkingData:(id )responseObject WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
-{
-    NSDictionary *dict=responseObject;
-    NSDictionary *_data=[dict objectForKey:@"data"];
-    if([[dict objectForKey:@"status"] integerValue]==100)
-    {
-        successBlock(YES,_data,nil);
-    }else
-    {
-        successBlock(NO,_data,[regular alertTitle_Simple:[dict objectForKey:@"message"]]);
-    }
-    
-}
+#pragma mark - 网络请求
 -(void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -44,27 +26,50 @@
     manager.securityPolicy.allowInvalidCertificates = YES;//忽略https证书
     
     manager.securityPolicy.validatesDomainName = NO;//是否验证域名
+
     NSString *urlstr=[self getUrl:url];
-    [manager GET:urlstr parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    [manager GET:urlstr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应Body：%@\n", (NSDictionary *)responseObject);
+
         [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应error：%@\n",error);
+
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
-
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//            successBlock(success,data,successAlert);
-//        }];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        failureBlock(error,[regular alert_NONETWORKING]);
-//    }];
 }
 -(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
@@ -79,12 +84,48 @@
     manager.securityPolicy.allowInvalidCertificates = YES;//忽略https证书
     
     manager.securityPolicy.validatesDomainName = NO;//是否验证域名
+
+    NSString *urlstr=[self getUrl:url];
     
-    [manager DELETE:[self getUrl:url] parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager DELETE:urlstr parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应Body：%@\n", (NSDictionary *)responseObject);
+
         [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应error：%@\n",error);
+
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
 }
@@ -100,26 +141,50 @@
     manager.securityPolicy.allowInvalidCertificates = YES;//忽略https证书
     
     manager.securityPolicy.validatesDomainName = NO;//是否验证域名
-    
-    [manager POST:[self getUrl:url] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    NSString *urlstr=[self getUrl:url];
+
+    [manager POST:urlstr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应Body：%@\n", (NSDictionary *)responseObject);
+
         [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应error：%@\n",error);
+
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
-//
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager POST:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//            successBlock(success,data,successAlert);
-//        }];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        failureBlock(error,[regular alert_NONETWORKING]);
-//    }];
 }
 -(void)PUT:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock
 {
@@ -133,24 +198,66 @@
     manager.securityPolicy.allowInvalidCertificates = YES;//忽略https证书
     
     manager.securityPolicy.validatesDomainName = NO;//是否验证域名
-    
-    [manager PUT:[self getUrl:url] parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    NSString *urlstr=[self getUrl:url];
+
+    [manager PUT:urlstr parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应Body：%@\n", (NSDictionary *)responseObject);
+
         [self NETWorkingData:responseObject WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             successBlock(success,data,successAlert);
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+
+        NSDictionary *responseHeaders = response.allHeaderFields;
+
+        JXLOG(@"----------Http请求----------\n");
+
+        JXLOG(@"----------Http请求Headers：%@\n", responseHeaders);
+
+        JXLOG(@"----------Http请求Body：%@\n", parameters);
+
+        JXLOG(@"----------Http请求Url：%@\n", urlstr);
+
+        JXLOG(@"----------Http响应----------\n");
+
+        JXLOG(@"----------Http响应error：%@\n",error);
+
         failureBlock(error,[regular alert_NONETWORKING]);
     }];
-
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager PUT:[self getUrl:url] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        [self NETWorkingData:operation WithBlock:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
-//            successBlock(success,data,successAlert);
-//        }];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        failureBlock(error,[regular alert_NONETWORKING]);
-//    }];
+}
+#pragma mark - SomeAction
+-(void)NETWorkingData:(id )responseObject WithBlock:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock
+{
+    NSDictionary *dict=responseObject;
+    NSDictionary *_data=[dict objectForKey:@"data"];
+    if([[dict objectForKey:@"status"] integerValue]==100)
+    {
+        successBlock(YES,_data,nil);
+    }else
+    {
+        successBlock(NO,_data,[regular alertTitle_Simple:[dict objectForKey:@"message"]]);
+    }
+}
+-(NSString *)getUrl:(NSString *)url
+{
+    return [[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],url];
 }
 @end

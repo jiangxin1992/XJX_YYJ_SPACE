@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_GoodsItemModel;
 @class DD_SizeModel;
 @class DD_GoodSeriesModel;
 
-@interface DD_GoodsItemModel : NSObject
+@interface DD_GoodsItemModel : DD_baseModel
 
 +(DD_GoodsItemModel *)getGoodsItemModel:(NSDictionary *)dict;
 

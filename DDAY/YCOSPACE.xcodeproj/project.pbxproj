@@ -200,6 +200,7 @@
 		3F6813B11D1A6C1D00F4807A /* UIImageView+LoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6813B01D1A6C1D00F4807A /* UIImageView+LoadImage.m */; };
 		3F6813B71D1A813300F4807A /* DD_CircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6813B51D1A813300F4807A /* DD_CircleCommentCell.m */; };
 		3F6813BC1D1A81B100F4807A /* DD_CircleCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */; };
+		3F6BDD031F5425E400222951 /* Foundtion+JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BDD021F5425E400222951 /* Foundtion+JRLog.m */; };
 		3F6F0F7F1D6BF0540074EAF4 /* DD_CustomBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6F0F7E1D6BF0540074EAF4 /* DD_CustomBtn.m */; };
 		3F6F0F831D6BF3690074EAF4 /* DD_ShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6F0F821D6BF3680074EAF4 /* DD_ShareTool.m */; };
 		3F6F0F871D6C45D30074EAF4 /* DD_MoreCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6F0F861D6C45D30074EAF4 /* DD_MoreCircleViewController.m */; };
@@ -833,6 +834,7 @@
 		3F6813B51D1A813300F4807A /* DD_CircleCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleCommentCell.m; sourceTree = "<group>"; };
 		3F6813BA1D1A81B100F4807A /* DD_CircleCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CircleCommentModel.h; sourceTree = "<group>"; };
 		3F6813BB1D1A81B100F4807A /* DD_CircleCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CircleCommentModel.m; sourceTree = "<group>"; };
+		3F6BDD021F5425E400222951 /* Foundtion+JRLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundtion+JRLog.m"; sourceTree = "<group>"; };
 		3F6F0F7D1D6BF0540074EAF4 /* DD_CustomBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_CustomBtn.h; sourceTree = "<group>"; };
 		3F6F0F7E1D6BF0540074EAF4 /* DD_CustomBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DD_CustomBtn.m; sourceTree = "<group>"; };
 		3F6F0F811D6BF3680074EAF4 /* DD_ShareTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DD_ShareTool.h; sourceTree = "<group>"; };
@@ -1802,6 +1804,7 @@
 		3F4187C11CEEFE9F001BCA3D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3F6BDD021F5425E400222951 /* Foundtion+JRLog.m */,
 				3F90A8731E53268200DBEF1A /* NSDate+Formatter */,
 				3F4BA4311DE5550E00D80D68 /* YYAnimatedImageView+LoadImage */,
 				3FFE38B91D7D6D9B00B46768 /* CornerRadiusCategory */,
@@ -3818,13 +3821,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YCOSPACE-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77EB18115C8320535AB8D74E /* [CP] Embed Pods Frameworks */ = {
@@ -3833,9 +3839,30 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
+				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Qiniu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3848,9 +3875,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YCOSPACE/Pods-YCOSPACE-resources.sh",
+				"${PODS_ROOT}/ShareSDK3/ShareSDK/Support/Required/ShareSDK.bundle",
+				"${PODS_ROOT}/ShareSDK3/ShareSDK/Support/PlatformSDK/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
+				"${PODS_ROOT}/ShareSDK3/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3867,6 +3899,7 @@
 				3FD20D961D92B7AF0030FCCA /* Waterflow.a in Sources */,
 				3F93D1ED1DFE9B9100749789 /* DD_DDAYOfflineContainerView.m in Sources */,
 				3F14014E1CF836C80093474A /* DD_ShopEditingCell.m in Sources */,
+				3F6BDD031F5425E400222951 /* Foundtion+JRLog.m in Sources */,
 				3F4938A71D0EB70F000D213B /* DD_UserDDAYViewController.m in Sources */,
 				3F552E9B1CF20EC600BC5E33 /* DD_GoodsDesignerModel.m in Sources */,
 				3F9B8B021CEF6562008EC460 /* DD_UserModel.m in Sources */,

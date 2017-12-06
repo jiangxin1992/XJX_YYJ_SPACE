@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_GoodsCategorySubModel;
 
-@interface DD_GoodsCategoryModel : NSObject
+@interface DD_GoodsCategoryModel : DD_baseModel
 
 +(DD_GoodsCategoryModel *)getGoodsCategoryModel:(NSDictionary *)dict;
 

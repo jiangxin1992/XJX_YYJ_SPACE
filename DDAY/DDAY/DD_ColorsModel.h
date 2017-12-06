@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_ColorsModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_ColorsModel : DD_baseModel
 
 +(DD_ColorsModel *)getColorsModel:(NSDictionary *)dict;
 

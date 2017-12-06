@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface MyPoint : NSObject <MKAnnotation>
+#import "DD_baseModel.h"
+
+@interface MyPoint : DD_baseModel <MKAnnotation>
 
 //初始化方法
 -(id)initWithCoordinate:(CLLocationCoordinate2D)c andTitle:(NSString*)t;

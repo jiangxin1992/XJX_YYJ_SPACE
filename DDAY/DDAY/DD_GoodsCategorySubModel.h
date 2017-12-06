@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_GoodsCategorySubModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_GoodsCategorySubModel : DD_baseModel
 
 +(NSArray *)getGoodsCategorySubModelArr:(NSArray *)arr;
 

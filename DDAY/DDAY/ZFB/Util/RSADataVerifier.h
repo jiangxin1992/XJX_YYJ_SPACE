@@ -16,3 +16,4 @@
 - (id)initWithPublicKey:(NSString *)publicKey;
 
 @end
+#import "DD_baseModel.h"

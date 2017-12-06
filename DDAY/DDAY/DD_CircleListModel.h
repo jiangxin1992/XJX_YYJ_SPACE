@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CircleListModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CircleListModel : DD_baseModel
 
 /**
  * 获取搭配列表model

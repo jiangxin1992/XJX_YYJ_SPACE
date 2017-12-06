@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_GoodsDesignerModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_GoodsDesignerModel : DD_baseModel
 
 +(DD_GoodsDesignerModel *)getGoodsDesignerModel:(NSDictionary *)dict;
 

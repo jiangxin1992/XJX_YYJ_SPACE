@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_OrderLogisticsManageModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_OrderLogisticsManageModel : DD_baseModel
 
 +(DD_OrderLogisticsManageModel *)getLogisticsManageModel:(NSDictionary *)dict;
 

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_PointModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_PointModel : DD_baseModel
 
 __float(x_p);
 

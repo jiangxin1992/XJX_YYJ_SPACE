@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DD_CircleApplyDesignerModel : NSObject
+#import "DD_baseModel.h"
+
+@interface DD_CircleApplyDesignerModel : DD_baseModel
 
 /**
  * 获取单品model数组

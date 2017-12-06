@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DD_baseModel.h"
+
 @class DD_AddressModel;
 @class DD_BenefitInfoModel;
 
-@interface DD_ClearingModel : NSObject
+@interface DD_ClearingModel : DD_baseModel
 +(DD_ClearingModel *)getClearingModel:(NSDictionary *)dict;
 
 /**
