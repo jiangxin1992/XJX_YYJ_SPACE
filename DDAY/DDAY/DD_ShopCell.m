@@ -28,12 +28,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
--(id)initWithIsInvalid:(BOOL )isInvalid style:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        _isInvalid = isInvalid;
         _clickblock=block;
         [self SomePrepare];
         [self UIConfig];
@@ -80,7 +79,7 @@
     _itemImg.contentMode=2;
     [regular setZeroBorder:_itemImg];
     [_itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
     }];
     
     //    款式信息
@@ -91,10 +90,13 @@
         make.left.mas_equalTo(imageBack.mas_right).with.offset(15);
         make.top.mas_equalTo(17);
         make.right.mas_equalTo(-kEdge);
+        //        make.right.mas_equalTo(-kEdge);
     }];
+//    [_itemNameLabel sizeToFit];
     
     _sizeNameBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
     [self.contentView addSubview:_sizeNameBtn];
+//    _sizeNameBtn.backgroundColor=[UIColor redColor];
     [_sizeNameBtn addTarget:self action:@selector(sizeAction) forControlEvents:UIControlEventTouchUpInside];
     [_sizeNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(22);
@@ -105,6 +107,7 @@
     [_sizeNameBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:20];
     
     _numBtn=[UIButton getCustomTitleBtnWithAlignment:2 WithFont:12.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:nil WithSelectedTitle:@"" WithSelectedColor:nil];
+//    _numBtn.backgroundColor=[UIColor redColor];
     [self.contentView addSubview:_numBtn];
     [_numBtn addTarget:self action:@selector(numAction) forControlEvents:UIControlEventTouchUpInside];
     [_numBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,6 +121,7 @@
     _colorView=[UIView getCustomViewWithColor:nil];
     [self.contentView addSubview:_colorView];
     [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.top.mas_equalTo(_priceLabel.mas_bottom).with.offset(11);
         make.bottom.mas_equalTo(_sizeNameBtn.mas_top).with.offset(-9);
         make.left.mas_equalTo(_itemNameLabel);
         make.width.mas_equalTo(32);
@@ -128,13 +132,17 @@
     _priceLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:12.0f WithTextColor:_define_light_red_color WithSpacing:0];
     [self.contentView addSubview:_priceLabel];
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.top.mas_equalTo(_typeLabel.mas_bottom).with.offset(15);
         make.bottom.mas_equalTo(_colorView.mas_top).with.offset(-11);
         make.left.mas_equalTo(_itemNameLabel);
+        //        make.right.mas_equalTo(_itemNameLabel);
     }];
+//    [_priceLabel sizeToFit];
     
     //    失效
     if(_isInvalid)
     {
+        
         UIImageView *invalidImg=[UIImageView getImgWithImageStr:@"System_Mask"];
         [self.contentView addSubview:invalidImg];
         invalidImg.contentMode=UIViewContentModeScaleToFill;
@@ -190,7 +198,7 @@
 #pragma mark - SomeAction
 -(void)chooseAction
 {
-    if(!_isInvalid && _clickblock)
+    if(!_isInvalid)
     {
         if(selectBtn.selected)
         {
@@ -205,19 +213,17 @@
 }
 -(void)numAction
 {
-    if(_clickblock){
-        _clickblock(@"num_alert",_indexPath);
-    }
+    _clickblock(@"num_alert",_indexPath);
 }
 -(void)sizeAction
 {
-    if(_clickblock){
-        _clickblock(@"size_alert",_indexPath);
-    }
+    _clickblock(@"size_alert",_indexPath);
 }
 #pragma mark - Other
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
 }
 
 @end

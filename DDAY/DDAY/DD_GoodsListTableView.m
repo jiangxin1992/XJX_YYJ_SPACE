@@ -42,7 +42,14 @@
         _categoryArr=categoryArr;
         [self setupBtn];
         [self reloadData];
+        [self createHeadView];
     }
+}
+-(void)createHeadView
+{
+    UIView *headview=[UIView getCustomViewWithColor:_define_white_color];
+    headview.frame=CGRectMake(0, 0, ScreenWidth, kNavHeight);
+    self.tableHeaderView=headview;
 }
 -(void)setupBtn
 {

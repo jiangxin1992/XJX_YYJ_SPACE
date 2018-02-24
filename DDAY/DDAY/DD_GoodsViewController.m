@@ -57,7 +57,6 @@
     [self UIConfig];
     [DD_UserModel SigninAction];
     [DD_UserModel CheckVersion];
-    JXLOG(@"111");
 }
 
 #pragma mark - SomePrepare
@@ -143,7 +142,7 @@
     {
         btn.selected=NO;
         [UIView animateWithDuration:0.5 animations:^{
-            listTableView.frame=CGRectMake(0, -(ScreenHeight-kTabbarHeight), ScreenWidth, ScreenHeight-kTabbarHeight);
+            listTableView.frame=CGRectMake(0, -(ScreenHeight-ktabbarHeight), ScreenWidth, ScreenHeight-ktabbarHeight);
         } completion:^(BOOL finished) {
             [self listTableViewHide];
         }];
@@ -151,7 +150,7 @@
     }else
     {
         btn.selected=YES;
-        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-kTabbarHeight-(IsPhone6_gt?16:0)), ScreenWidth, ScreenHeight-kTabbarHeight-(IsPhone6_gt?16:0)) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID) {
+        listTableView=[[DD_GoodsListTableView alloc] initWithFrame:CGRectMake(0, -(ScreenHeight-ktabbarHeight), ScreenWidth, ScreenHeight-ktabbarHeight) style:UITableViewStylePlain WithBlock:^(NSString *type,NSString *categoryOneName,NSString *categoryTwoName,NSString *categoryID) {
             
             btn.selected=NO;
             if([type isEqualToString:@"click"])
@@ -177,7 +176,7 @@
         }];
         [self.view addSubview:listTableView];
         [UIView animateWithDuration:0.5 animations:^{
-            listTableView.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight-kTabbarHeight-(IsPhone6_gt?16:0));
+            listTableView.frame=CGRectMake(0, 0, ScreenWidth, ScreenHeight-ktabbarHeight);
         }];
         [self RequestListData];
     }
@@ -284,10 +283,11 @@
     
     if(_noTabbar)
     {
-        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight);
     }else
     {
-        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-kTabbarHeight-(IsPhone6_gt?16:0));
+        
+        mywaterflow.frame = CGRectMake(0, 0, ScreenWidth, IsPhone6_gt?(ScreenHeight-16):ScreenHeight);
     }
     
     mywaterflow.dataSource = self;
@@ -506,7 +506,7 @@
     {
         DD_ItemsModel *_model=_dataArr[index-1];
         NSString *description = [_model description];
-        JXLOG(@"description = %@",description);
+        NSLog(@"description = %@",description);
         DD_GoodsDetailViewController *_GoodsDetail=[[DD_GoodsDetailViewController alloc] initWithModel:_model WithBlock:^(DD_ItemsModel *model, NSString *type) {
             //        if(type)
         }];

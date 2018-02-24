@@ -156,21 +156,21 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(_scrollView);
-        make.width.mas_equalTo(_scrollView);
+        make.edges.equalTo(_scrollView);
+        make.width.equalTo(_scrollView);
     }];
 }
 -(void)CreateTabbar
 {
-    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预   览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:_preView];
     _preView.backgroundColor=_define_black_color;
     [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
     
     [_preView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(kInteractionHeight);
+        make.height.mas_equalTo(ktabbarHeight);
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.bottom.mas_equalTo(0);
     }];
 }
 -(void)CreateContentView
@@ -179,8 +179,7 @@
     [self CreateInforView];
     [self getTags];
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-kTabbarHeight);
+        make.edges.mas_equalTo(self.view);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_infoView.mas_bottom).with.offset(0);
     }];
@@ -575,7 +574,7 @@
     
     NSString *mediaType = AVMediaTypeVideo;
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    if (author == AVAuthorizationStatusRestricted || author == AVAuthorizationStatusDenied){
+    if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
         
         [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"system_album", @"") WithBlock:^{
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
@@ -607,7 +606,7 @@
         {
             //        相册
             ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-            if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied){
+            if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
                 //无权限
                 [self ShowAlertview:NSLocalizedString(@"system_album_no_root", @"")];
             }else

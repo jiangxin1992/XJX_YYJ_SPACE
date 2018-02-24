@@ -32,12 +32,12 @@
 //    if(type==0||type==1)
 //    {
 //        UIView *view=[UIView getCustomViewWithColor:_define_black_color];
-//        view.frame=CGRectMake(t_width-3, 22, 3, kTabbarHeight-27);
+//        view.frame=CGRectMake(t_width-3, 22, 3, ktabbarHeight-27);
 //        [self addSubview:view];
 //    }else if(type==3||type==4)
 //    {
 //        UIView *view=[UIView getCustomViewWithColor:_define_black_color];
-//        view.frame=CGRectMake(0, 22, 3, kTabbarHeight-27);
+//        view.frame=CGRectMake(0, 22, 3, ktabbarHeight-27);
 //        [self addSubview:view];
 //    }
 //}
@@ -53,7 +53,7 @@
         return CGRectMake((t_width-40)/2.0f, 16, 40, 40);
     }else
     {
-        return CGRectMake((t_width-25)/2.0f, (kTabbarHeight-25)/2.0f, 25, 25);
+        return CGRectMake((t_width-25)/2.0f, (ktabbarHeight-25)/2.0f, 25, 25);
     }
 }
 

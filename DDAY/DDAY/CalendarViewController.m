@@ -98,7 +98,7 @@
 }
 -(void)CreateScrollView
 {
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight+ktabbarHeight)];
     [self.view addSubview:_scrollView];
     _scrollView.contentSize=CGSizeMake(ScreenWidth, 3000);
 }

@@ -66,7 +66,7 @@
                 make.top.mas_equalTo(lastView.mas_bottom).with.offset(IsPhone6_gt?18:11);
             }else
             {
-                make.bottom.mas_equalTo(self.view.mas_centerY).with.offset(IsPhone6_gt?-68-kStatusBarAndNavigationBarHeight:-61-kStatusBarAndNavigationBarHeight);
+                make.bottom.mas_equalTo(self.view.mas_centerY).with.offset(IsPhone6_gt?-68-kNavHeight:-61-kNavHeight);
             }
         }];
         lastView=_textFiled;

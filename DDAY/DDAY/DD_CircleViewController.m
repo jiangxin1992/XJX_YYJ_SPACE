@@ -193,15 +193,15 @@
 -(void)CreateTableview
 {
     _tableview=[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+    
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
-    CGFloat bottom = -kTabbarHeight-(IsPhone6_gt?16:0);
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(bottom);
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, IsPhone6_gt?16:0, 0));
     }];
 }
 #pragma mark - RequestData
@@ -489,7 +489,7 @@
         if(success)
         {
             listModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
+            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
             [_tableview reloadData];
         }else
         {
@@ -516,7 +516,7 @@
     [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":listModel.shareId} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
         if(success)
         {
-            listModel.collectTimes=[[data objectForKey:@"collectTimes"] longLongValue];
+            listModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
             listModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
             [_tableview reloadData];
         }else
@@ -608,7 +608,7 @@
         return cell;
     }
     DD_CircleListModel *listModel=_dataArr[indexPath.row];
-    if([listModel.shareType longLongValue]==4)
+    if([listModel.shareType longValue]==4)
     {
         //获取到数据以后
         static NSString *cellid=@"CircleListCell";

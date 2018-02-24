@@ -56,36 +56,31 @@
 -(void)SetState
 {
     [_ActionBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
+        make.bottom.left.right.top.mas_equalTo(0);
         if(_orderDetailModel)
         {
             if(_orderDetailModel.orderInfo.orderStatus==2)
             {
-                make.height.mas_equalTo(kInteractionHeight);
-                make.bottom.mas_equalTo(-kSafetyZoneHeight);
+                make.height.mas_equalTo(ktabbarHeight);
             }else if(_orderDetailModel.orderInfo.orderStatus==0)
             {
                //未支付
                 if(_orderDetailModel.orderInfo.expire)
                 {
                     //已过期
-                    make.height.mas_equalTo(0);
-                    make.bottom.mas_equalTo(0);
+                     make.height.mas_equalTo(0);
                 }else
                 {
                     //未过期
-                    make.height.mas_equalTo(kInteractionHeight);
-                    make.bottom.mas_equalTo(-kSafetyZoneHeight);
+                    make.height.mas_equalTo(ktabbarHeight);
                 }
             }else
             {
-                make.height.mas_equalTo(0);
-                make.bottom.mas_equalTo(0);
+                 make.height.mas_equalTo(0);
             }
         }else
         {
             make.height.mas_equalTo(0);
-            make.bottom.mas_equalTo(0);
         }
     }];
     NSString *_title=nil;

@@ -1,8 +1,7 @@
 //
 //  BuglyLog.h
-//  Bugly
 //
-//  Copyright (c) 2017年 Tencent. All rights reserved.
+//  Copyright © 2016年 tencent.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,11 +15,12 @@ typedef NS_ENUM(NSUInteger, BuglyLogLevel) {
     BuglyLogLevelDebug   = 4,
     BuglyLogLevelVerbose = 5,
 };
+
 #pragma mark -
 
-OBJC_EXTERN void BLYLog(BuglyLogLevel level, NSString *format, ...) NS_FORMAT_FUNCTION(2, 3);
+FOUNDATION_EXPORT void BLYLog(BuglyLogLevel level, NSString *format, ...);
 
-OBJC_EXTERN void BLYLogv(BuglyLogLevel level, NSString *format, va_list args) NS_FORMAT_FUNCTION(2, 0);
+FOUNDATION_EXPORT void BLYLogv(BuglyLogLevel level, NSString *format, va_list args);
 
 #pragma mark -
 #define BUGLY_LOG_MACRO(_level, fmt, ...) [BuglyLog level:_level tag:nil log:fmt, ##__VA_ARGS__]
@@ -41,20 +41,20 @@ OBJC_EXTERN void BLYLogv(BuglyLogLevel level, NSString *format, va_list args) NS
  *
  *    @param printConsole 是否打印到控制台，默认NO
  */
-+ (void)initLogger:(BuglyLogLevel) level consolePrint:(BOOL)printConsole;
++ (void)initLogger:(BuglyLogLevel) level consolePrint:(BOOL) printConsole;
 
 /**
  *    @brief 打印BLYLogLevelInfo日志
  *
- *    @param format   日志内容 总日志大小限制为：字符串长度30k，条数200
+ *    @param fmt   日志内容 总日志大小限制为：字符串长度30k，条数200
  */
-+ (void)log:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
++ (void)log:(NSString *)format, ...;
 
 /**
  *    @brief  打印日志
  *
  *    @param level 日志级别
- *    @param message   日志内容 总日志大小限制为：字符串长度30k，条数200
+ *    @param fmt   日志内容 总日志大小限制为：字符串长度30k，条数200
  */
 + (void)level:(BuglyLogLevel) level logs:(NSString *)message;
 
@@ -62,17 +62,17 @@ OBJC_EXTERN void BLYLogv(BuglyLogLevel level, NSString *format, va_list args) NS
  *    @brief  打印日志
  *
  *    @param level 日志级别
- *    @param format   日志内容 总日志大小限制为：字符串长度30k，条数200
+ *    @param fmt   日志内容 总日志大小限制为：字符串长度30k，条数200
  */
-+ (void)level:(BuglyLogLevel) level log:(NSString *)format, ... NS_FORMAT_FUNCTION(2, 3);
++ (void)level:(BuglyLogLevel) level log:(NSString *)format, ...;
 
 /**
  *    @brief  打印日志
  *
  *    @param level  日志级别
  *    @param tag    日志模块分类
- *    @param format   日志内容 总日志大小限制为：字符串长度30k，条数200
+ *    @param fmt   日志内容 总日志大小限制为：字符串长度30k，条数200
  */
-+ (void)level:(BuglyLogLevel) level tag:(NSString *) tag log:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4);
++ (void)level:(BuglyLogLevel) level tag:(NSString *) tag log:(NSString *)format, ...;
 
 @end

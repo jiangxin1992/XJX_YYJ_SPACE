@@ -41,8 +41,8 @@ static DD_SignInAnimationView *animationView = nil;
         _title=title;
         _block=block;
         _animationStarting=NO;
-        _startRect=CGRectMake(ScreenWidth, kStatusBarAndNavigationBarHeight+24, 144, 62);
-        _endRect=CGRectMake((ScreenWidth-144)/2.0f, kStatusBarAndNavigationBarHeight+24, 144, 62);
+        _startRect=CGRectMake(ScreenWidth, kNavHeight+24, 144, 62);
+        _endRect=CGRectMake((ScreenWidth-144)/2.0f, kNavHeight+24, 144, 62);
         
         _labelView=[UILabel getLabelWithAlignment:1 WithTitle:_title WithFont:14.0f WithTextColor:nil WithSpacing:0];
         [self addSubview:_labelView];

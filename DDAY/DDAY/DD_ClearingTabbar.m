@@ -47,30 +47,18 @@
         make.right.mas_equalTo(0);
         make.top.mas_equalTo(upline.mas_bottom).with.offset(0);
         make.width.mas_equalTo(130);
-        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.bottom.mas_equalTo(0);
     }];
     [ConfirmBtn addTarget:self action:@selector(ConfirmAction) forControlEvents:UIControlEventTouchUpInside];
     ConfirmBtn.backgroundColor=_define_black_color;
-
     countlabel=[UILabel getLabelWithAlignment:0 WithTitle:@"" WithFont:15.0f WithTextColor:nil WithSpacing:0];
     [self addSubview:countlabel];
     countlabel.font=[regular getSemiboldFont:15.0f];
     [countlabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.top.bottom.mas_equalTo(0);
     }];
-
-    if(kIPhoneX){
-        UIView *safetyLine = [UIView getCustomViewWithColor:_define_light_gray_color3];
-        [self addSubview:safetyLine];
-        [safetyLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(ConfirmBtn.mas_bottom).with.offset(0);
-            make.height.mas_equalTo(1);
-        }];
-    }
 }
 
 -(void)SetState

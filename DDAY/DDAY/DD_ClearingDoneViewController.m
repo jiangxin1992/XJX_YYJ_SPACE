@@ -116,7 +116,7 @@
     [self.view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
-        make.top.mas_equalTo(((ScreenHeight/2.0f)-kStatusBarAndNavigationBarHeight-kTabbarHeight));
+        make.top.mas_equalTo(((ScreenHeight/2.0f)-kNavHeight-ktabbarHeight));
         make.height.width.mas_equalTo(72);
     }];
     

@@ -12,7 +12,7 @@
 
 @interface DD_ShopCell : DD_BaseCell
 
--(id)initWithIsInvalid:(BOOL )isInvalid style:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithBlock:(void(^)(NSString *type,NSIndexPath *indexPath))block;
 
 @property (nonatomic,strong)DD_ShopItemModel *ItemModel;
 

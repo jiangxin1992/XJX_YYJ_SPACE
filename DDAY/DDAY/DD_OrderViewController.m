@@ -182,7 +182,7 @@
     _tableview.alwaysBounceHorizontal=NO;
     _tableview.alwaysBounceVertical=YES;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
 }
 #pragma mark - RequestData
@@ -295,7 +295,7 @@
             if(success)
             {
                 //更新当前状态
-                _OrderModel.orderStatus=[[data objectForKey:@"status"] longLongValue];
+                _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
                 [_tableview reloadData];
             }else
             {

@@ -10,7 +10,6 @@
 
 #import "DD_ShopViewController.h"
 #import "DD_ClearingViewController.h"
-#import "DD_DDAYMeetViewController.h"
 #import "DD_DesignerHomePageViewController.h"
 #import "ImageViewController.h"
 #import "DD_LoginViewController.h"
@@ -155,8 +154,9 @@ __bool(isExpanded);
     container = [UIView new];
     [_scrollview addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(_scrollview);
-        make.width.mas_equalTo(_scrollview);
+        make.edges.equalTo(_scrollview);
+        make.width.equalTo(_scrollview);
+//        make.bottom.mas_equalTo();
     }];
 }
 -(void)UIConfig
@@ -179,6 +179,7 @@ __bool(isExpanded);
     
     if(_colorModel.pics.count)
     {
+        
         //    创建pageViewControler（活动图片浏览视图）
         _pageViewControler = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         [container addSubview:_pageViewControler.view];
@@ -232,7 +233,6 @@ __bool(isExpanded);
             [tabbar setState];
         }else if([type isEqualToString:@"collect"])
         {
-            //            收藏
             if(![DD_UserModel isLogin])
             {
                 [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"login_first", @"") WithBlock:^{
@@ -240,13 +240,9 @@ __bool(isExpanded);
                 }] animated:YES completion:nil];
             }else
             {
+                //            收藏
                 [self Colloct_Action];
             } 
-        }else if([type isEqualToString:@"check_othergoods"]){
-            //查看其余发布品
-
-            JXLOG(@"check_othergoods");
-            [self.navigationController pushViewController:[[DD_DDAYMeetViewController alloc] initWithType:@"meet" WithSeriesID:_DetailModel.item.series.s_id WithBlock:nil] animated:YES];
         }
     }];
     [container addSubview:_InformView];
@@ -333,7 +329,7 @@ __bool(isExpanded);
         }];
         [container addSubview:_CircleView];
         [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_DesignerView.mas_bottom);
+            make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
             make.left.and.right.mas_equalTo(0);
         }];
     }else
@@ -341,7 +337,7 @@ __bool(isExpanded);
         _CircleView=[[DD_GoodsCircleView alloc] init];
         [container addSubview:_CircleView];
         [_CircleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_DesignerView.mas_bottom);
+            make.top.mas_equalTo(_DesignerView.mas_bottom).with.offset(0);
             make.left.height.right.mas_equalTo(0);
         }];
         
@@ -360,7 +356,7 @@ __bool(isExpanded);
     [container addSubview:_FabricView];
     _FabricView.is_show=NO;
     [_FabricView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_CircleView.mas_bottom);
+        make.top.mas_equalTo(_CircleView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
     }];
 }
@@ -375,7 +371,7 @@ __bool(isExpanded);
     [container addSubview:_ReturnView];
     _ReturnView.is_show=NO;
     [_ReturnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_FabricView.mas_bottom);
+        make.top.mas_equalTo(_FabricView.mas_bottom).with.offset(0);
         make.left.and.right.mas_equalTo(0);
     }];
 }
@@ -397,7 +393,7 @@ __bool(isExpanded);
         [container addSubview:_K_PonitView];
         _K_PonitView.is_show=NO;
         [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_ReturnView.mas_bottom);
+            make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
             make.left.and.right.mas_equalTo(0);
         }];
     }else
@@ -405,7 +401,7 @@ __bool(isExpanded);
         _K_PonitView=[[DD_GoodsK_POINTView alloc] init];
         [container addSubview:_K_PonitView];
         [_K_PonitView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_ReturnView.mas_bottom);
+            make.top.mas_equalTo(_ReturnView.mas_bottom).with.offset(0);
             make.left.height.right.mas_equalTo(0);
         }];
     }
@@ -430,20 +426,18 @@ __bool(isExpanded);
         }];
         [container addSubview:_SimilarView];
         [_SimilarView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_K_PonitView.mas_bottom);
+            make.top.mas_equalTo(_K_PonitView.mas_bottom).with.offset(0);
             make.left.and.right.mas_equalTo(0);
         }];
         [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(-kTabbarHeight);
+            make.edges.mas_equalTo(self.view);
             // 让scrollview的contentSize随着内容的增多而变化
             make.bottom.mas_equalTo(_SimilarView.mas_bottom).with.offset(48);
         }];
     }else
     {
         [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(-kTabbarHeight);
+            make.edges.mas_equalTo(self.view);
             // 让scrollview的contentSize随着内容的增多而变化
             make.bottom.mas_equalTo(_K_PonitView.mas_bottom).with.offset(48);
         }];
@@ -465,7 +459,7 @@ __bool(isExpanded);
         }];
         [self.view addSubview:tabbar];
         [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
+            make.left.and.right.mas_equalTo(0);
             make.bottom.mas_equalTo(0);
         }];
     }else

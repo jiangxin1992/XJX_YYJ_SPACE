@@ -30,8 +30,8 @@ static regular *_t = nil;
 + (NSData*)getImageForSize:(CGFloat)size WithImage:(UIImage *)image
 {
     NSData *tempData = UIImageJPEGRepresentation(image, 1);
-    JXLOG(@"原图大小=%lu %lfM",(unsigned long)tempData.length,[regular getSizeMWithBytes:tempData.length]);
-    JXLOG(@"原图0.1大小=%lu %lfM",(unsigned long)(UIImageJPEGRepresentation(image, 0.1)).length,[regular getSizeMWithBytes:(UIImageJPEGRepresentation(image, 0.1)).length]);
+    NSLog(@"原图大小=%lu %lfM",(unsigned long)tempData.length,[regular getSizeMWithBytes:tempData.length]);
+    NSLog(@"原图0.1大小=%lu %lfM",(unsigned long)(UIImageJPEGRepresentation(image, 0.1)).length,[regular getSizeMWithBytes:(UIImageJPEGRepresentation(image, 0.1)).length]);
     if([regular getSizeMWithBytes:tempData.length]<size)
     {
         return tempData;
@@ -40,7 +40,7 @@ static regular *_t = nil;
         NSArray *tempArr = @[@(0.9),@(0.8),@(0.7),@(0.6),@(0.5),@(0.4),@(0.3),@(0.2),@(0.1)];
         for (int i=0; i<tempArr.count; i++) {
             NSData *tempData1 = UIImageJPEGRepresentation(image, [[tempArr objectAtIndex:i] floatValue]);
-            JXLOG(@"处理%d次后的大小%lu %lfM",i+1,(unsigned long)tempData1.length,[regular getSizeMWithBytes:tempData1.length]);
+            NSLog(@"处理%d次后的大小%lu %lfM",i+1,(unsigned long)tempData1.length,[regular getSizeMWithBytes:tempData1.length]);
             if([regular getSizeMWithBytes:tempData1.length]<size)
             {
                 return tempData1;
@@ -53,15 +53,18 @@ static regular *_t = nil;
 {
     return (bytes/1024.0f)/1024.0f;
 }
-
-//判断推送是否开启
-+ (BOOL)isAllowedNotification{
-    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
-    if(UIUserNotificationTypeNone != setting.types) {
-        return YES;
++(BOOL)isEnableAPNS
+{
+    UIRemoteNotificationType types;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
     }else{
-        return NO;
+        // 原来的代码
+        types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        
     }
+    return (types & UIRemoteNotificationTypeAlert);
+    
 }
 + (NSString *)getHTMLStringWithContent:(NSString *)content WithFont:(NSString *)font WithColorCode:(NSString *)color
 {

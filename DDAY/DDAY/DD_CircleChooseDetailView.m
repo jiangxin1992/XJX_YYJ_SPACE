@@ -119,7 +119,7 @@
     [_upView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.width.mas_equalTo(ScreenWidth);
-        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight);
+        make.top.mas_equalTo(64);
         make.height.mas_equalTo(42);
     }];
 }
@@ -148,7 +148,7 @@
     [searchView addSubview:searchBtn];
     [searchBtn setImage:[UIImage imageNamed:@"System_Search"] forState:UIControlStateNormal];
     [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(3, 20, 3, ScreenWidth-19-25-kEdge)];
-    [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 35, 0, 0)];
+    [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 0)];
     [searchBtn addTarget:self action:@selector(ShowSearchView) forControlEvents:UIControlEventTouchUpInside];
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.mas_equalTo(0);
@@ -176,7 +176,7 @@
     [_chooseImgBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(0);
-        make.bottom.mas_equalTo(- kInteractionHeight - kSafetyZoneHeight);
+        make.bottom.mas_equalTo(-50);
     }];
 }
 -(void)CreateImgSubView
@@ -187,7 +187,7 @@
             make.height.mas_equalTo(_width+21+12);
         }];
         [_downView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-_width-21-12- kInteractionHeight -kSafetyZoneHeight);
+            make.bottom.mas_equalTo(-_width-21-12-50);
         }];
         [mywaterflow mas_updateConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(_downView);
@@ -243,7 +243,7 @@
             make.height.mas_equalTo(0);
         }];
         [_downView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(- kInteractionHeight - kSafetyZoneHeight);
+            make.bottom.mas_equalTo(-50);
         }];
         [mywaterflow mas_updateConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(_downView);
@@ -259,9 +259,8 @@
     doneBtn.backgroundColor=_define_black_color;
     [doneBtn addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
     [doneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(kInteractionHeight);
-        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(50);
     }];
 }
 

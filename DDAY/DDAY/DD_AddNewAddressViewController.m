@@ -92,7 +92,7 @@
                 make.top.mas_equalTo(lastview.mas_bottom);
             }else
             {
-                make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+20);
+                make.top.mas_equalTo(kNavHeight+20);
             }
             make.left.right.mas_equalTo(0);
             make.height.mas_equalTo(41);

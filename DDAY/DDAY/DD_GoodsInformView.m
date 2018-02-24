@@ -27,7 +27,6 @@
 @implementation DD_GoodsInformView
 {
     UIView *downView;//下部视图
-    UIView *middleView;//中间视图
     UIView *upview;//上部视图
     
     dispatch_source_t _timer;//计时线程/页面退出时销毁
@@ -76,7 +75,6 @@
 -(void)UIConfig
 {
     [self CreateInformView];
-    [self CreateDDAYInfoView];
     [self CreateIntroduceView];
 }
 #pragma mark - UpView
@@ -99,7 +97,7 @@
     [upview addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
-        make.left.and.right.mas_equalTo(view.superview);
+        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
@@ -161,7 +159,7 @@
                 }
                 
             }else{
-                make.right.mas_equalTo(collect_btn.mas_left);
+                make.right.mas_equalTo(collect_btn.mas_left).with.offset(0);
                 make.centerY.mas_equalTo(collect_btn);
             }
         }];
@@ -240,7 +238,7 @@
         colorView.userInteractionEnabled=NO;
         [backBtn addSubview:colorView];
         [colorView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(backBtn).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
+            make.edges.equalTo(backBtn).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
         }];
         
         UIView *downLine=[UIView getCustomViewWithColor:_define_black_color];
@@ -255,61 +253,6 @@
     }];
     
 }
-#pragma mark - MiddleView
--(void)CreateDDAYInfoView{
-    [self CreateMiddleView];
-    [self CreateDDAYInfo];
-}
--(void)CreateMiddleView{
-    middleView=[UIView getCustomViewWithColor:nil];
-    [self addSubview:middleView];
-    [middleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(upview.mas_bottom).with.offset(0);
-    }];
-
-    UIView *downline=[UIView getCustomViewWithColor:_define_black_color];
-    [middleView addSubview:downline];
-    [downline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(1);
-        make.left.and.right.mas_equalTo(self).with.offset(0);
-        make.bottom.mas_equalTo(middleView);
-    }];
-}
--(void)CreateDDAYInfo{
-    UIView *infoTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"发布会信息" WithFont:15.0f WithTextColor:nil WithSpacing:0];
-    [middleView addSubview:infoTitleLabel];
-    [infoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(ver_edge);
-        make.left.mas_equalTo(kEdge);
-    }];
-
-    UIView *infoDesLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"（不同发布会的商品需各自计算邮费哦）" WithFont:IsPhone6_gt?13.0f:12.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
-    [middleView addSubview:infoDesLabel];
-    [infoDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(infoTitleLabel);
-        make.left.mas_equalTo(infoTitleLabel.mas_right).with.offset(0);
-    }];
-
-    UILabel *ddayNameLabel = [UILabel getLabelWithAlignment:0 WithTitle:_detailModel.item.series.name WithFont:13.0f WithTextColor:nil WithSpacing:0];
-    [middleView addSubview:ddayNameLabel];
-    [ddayNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(infoTitleLabel.mas_bottom).with.offset(11);
-        make.left.mas_equalTo(kEdge);
-        make.bottom.mas_equalTo(middleView.mas_bottom).with.offset(-ver_edge);
-    }];
-
-    UIButton *checkOtherGoodsButton=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:15.0f WithSpacing:0 WithNormalTitle:@"查看其余发布品" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
-    [middleView addSubview:checkOtherGoodsButton];
-    checkOtherGoodsButton.backgroundColor = _define_black_color;
-    [checkOtherGoodsButton addTarget:self action:@selector(checkOtherGoods) forControlEvents:UIControlEventTouchUpInside];
-    [checkOtherGoodsButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kEdge);
-        make.width.mas_equalTo(140);
-        make.height.mas_equalTo(25);
-        make.bottom.mas_equalTo(-12);
-    }];
-}
 #pragma mark - DownView
 -(void)CreateIntroduceView
 {
@@ -323,7 +266,7 @@
     [self addSubview:downView];
     [downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
-        make.top.mas_equalTo(middleView.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(upview.mas_bottom).with.offset(0);
         make.bottom.mas_equalTo(self).with.offset(-1);
     }];
     
@@ -375,12 +318,7 @@
 }
 
 #pragma mark - SomeAction
-/**
- * 查看其余发布品
- */
--(void)checkOtherGoods{
-    _block(@"check_othergoods");
-}
+
 /**
  * 收藏
  */

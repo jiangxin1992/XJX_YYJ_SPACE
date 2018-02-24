@@ -46,8 +46,7 @@
 //    [backimg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction)]];
     [backimg bk_whenTapped:^{
         _block(@"resign",_commentField.text,0);
-//        [_commentField resignFirstResponder];
-        [regular dismissKeyborad];
+        [_commentField resignFirstResponder];
     }];
     [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
@@ -77,7 +76,7 @@
     
     [_commentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(kTabbarHeight);
+        make.height.mas_equalTo(ktabbarHeight);
         make.right.mas_equalTo(sendBtn.mas_left).with.offset(0);
         make.height.mas_equalTo(sendBtn);
     }];
@@ -89,6 +88,7 @@
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
+
 }
 #pragma mark - OtherAction
 //-(void)clickAction
@@ -126,9 +126,9 @@
     CGSize constraintSize = CGSizeMake(frame.size.width, MAXFLOAT);
     CGSize size = [textView sizeThatFits:constraintSize];
     //    if (size.height<=frame.size.height) {
-    if (size.height<=kTabbarHeight) {
+    if (size.height<=ktabbarHeight) {
         //        size.height=frame.size.height;
-        size.height=kTabbarHeight;
+        size.height=ktabbarHeight;
     }else{
         if (size.height >= maxHeight)
         {
@@ -141,9 +141,9 @@
         }
     }
     [_commentField mas_updateConstraints:^(MASConstraintMaker *make) {
-        if(size.height<kTabbarHeight)
+        if(size.height<ktabbarHeight)
         {
-            make.height.mas_equalTo(kTabbarHeight);
+            make.height.mas_equalTo(ktabbarHeight);
         }else
         {
             make.height.mas_equalTo(size.height);
@@ -163,8 +163,7 @@
 -(void)sendAction
 {
     _block(@"send",_commentField.text,0);
-//    [_commentField resignFirstResponder];
-    [regular dismissKeyborad];
+    [_commentField resignFirstResponder];
 }
 #pragma mark - UITextViewDelegate
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView

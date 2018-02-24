@@ -62,7 +62,7 @@
     itemImg.contentMode=2;
     [regular setZeroBorder:itemImg];
     [itemImg mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
+//        make.edges.equalTo(imageBack).with.insets(UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5));
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(kEdge);
         make.height.width.mas_equalTo(90);

@@ -185,7 +185,7 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kStatusBarAndNavigationBarHeight, ScreenWidth, ScreenHeight-kTabbarHeight-kStatusBarAndNavigationBarHeight-(IsPhone6_gt?16:0)) style:UITableViewStylePlain];
+    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, ScreenHeight-ktabbarHeight-kNavHeight-(IsPhone6_gt?16:0)) style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;

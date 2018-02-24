@@ -39,19 +39,11 @@
         [self pushMainView];
     }else
     {
-
-
-        //这个category的应用会随着静音键和屏幕关闭而静音。并且不会中止其它应用播放声音，可以和其它自带应用如iPod，safari等同时播放声音。注意：该Category无法在后台播放声音
-        NSError *setCategoryError = nil;
-        [[AVAudioSession sharedInstance]
-                        setCategory: AVAudioSessionCategoryAmbient
-                        error: &setCategoryError];
-
         NSURL *url=[NSURL fileURLWithPath:thePath];
         AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
         
         _player = [AVPlayer playerWithPlayerItem:playerItem];
-
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushMainView) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
         
         [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性

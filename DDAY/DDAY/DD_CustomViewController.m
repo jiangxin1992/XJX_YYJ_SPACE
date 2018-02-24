@@ -8,11 +8,13 @@
 
 #import "DD_CustomViewController.h"
 
-#import "DD_GoodsViewController.h"
-#import "DD_DesignerMainViewController.h"
-#import "DD_DDAYViewController.h"
-#import "DD_CircleViewController.h"
+#import "DD_BenefitListViewController.h"
 #import "DD_UserViewController.h"
+#import "DD_CircleViewController.h"
+#import "DD_DesignerMainViewController.h"
+#import "DD_GoodsViewController.h"
+#import "DD_DDAYViewController.h"
+#import "DD_LoginViewController.h"
 
 #import "DD_TabbarItem.h"
 #import "DD_SignInAnimationView.h"
@@ -26,7 +28,7 @@
 @interface DD_CustomViewController ()<UITabBarControllerDelegate>
 {
     //    自定义的标签栏
-    UITabBar *_tabbar;
+    UIImageView *_tabbar;
     NSMutableArray *btnarr;
     
     DD_TabbarItem *_goodsItem;
@@ -45,7 +47,6 @@
 static DD_CustomViewController *tabbarController = nil;
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
     //1.隐藏系统自带的标签栏
     [self SomePrepare];
@@ -67,14 +68,15 @@ static DD_CustomViewController *tabbarController = nil;
     JXLOG(@"app1=%d app2=%d",app1,app2);
     
 }
+
 #pragma mark - SomePrepare
 -(void)SomePrepare
 {
     btnarr=[[NSMutableArray alloc] init];
     self.delegate=self;
-//    1.隐藏系统自带的标签栏
+    //1.隐藏系统自带的标签栏
     self.tabBar.hidden = YES;
-
+    
     _goodsCtn=[[DD_GoodsViewController alloc]init];
     _designerCtn=[[DD_DesignerMainViewController alloc] init];
     _ddayCtn=[[DD_DDAYViewController alloc] init];
@@ -240,9 +242,8 @@ static DD_CustomViewController *tabbarController = nil;
         }
         [item mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(idx*buttonWidth);
-            make.top.mas_equalTo(0);
+            make.bottom.and.top.mas_equalTo(0);
             make.width.mas_equalTo(buttonWidth);
-            make.height.mas_equalTo(IsPhone6_gt?49+16:49);
         }];
     }];
 
@@ -250,14 +251,13 @@ static DD_CustomViewController *tabbarController = nil;
 -(void)createTabbar
 {
     //     对_tabbar进行初始化，并进行ui布局
-    _tabbar = [[UITabBar alloc] init];
-//    _tabbar = [UIImageView getImgWithImageStr:nil];
+    _tabbar = [UIImageView getImgWithImageStr:nil];
     _tabbar.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:_tabbar];
     [_tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.view).with.offset(0);
-        make.height.mas_equalTo(IsPhone6_gt?(kTabbarHeight+16):kTabbarHeight);
+        make.height.mas_equalTo(IsPhone6_gt?ktabbarHeight+16:ktabbarHeight);
     }];
     
 }
@@ -466,7 +466,6 @@ static DD_CustomViewController *tabbarController = nil;
 -(void)tabbarAppear
 {
     _tabbar.hidden=NO;
-//    _tabbar.hidden=YES;
 }
 -(void)tabbarHide
 {

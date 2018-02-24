@@ -126,14 +126,14 @@
     _container = [DD_DDAYOfflineContainerView new];
     [_scrollView addSubview:_container];
     [_container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(_scrollView);
-        make.width.mas_equalTo(_scrollView);
+        make.edges.equalTo(_scrollView);
+        make.width.equalTo(_scrollView);
     }];
 }
 -(void)CreateTabbar
 {
     
-    _tabBar=[[DD_DDAYOfflineDetailBar alloc] initWithFrame:CGRectMake(0, ScreenHeight-kTabbarHeight, ScreenWidth, kTabbarHeight) WithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
+    _tabBar=[[DD_DDAYOfflineDetailBar alloc] initWithFrame:CGRectMake(0, ScreenHeight-ktabbarHeight, ScreenWidth, ktabbarHeight) WithGoodsDetailModel:_detailModel WithBlock:^(NSString *type) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"join"])
         {
             if(![DD_UserModel isLogin])
@@ -256,7 +256,7 @@
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(50);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight-10);
+        make.top.mas_equalTo(kNavHeight-10);
     }];
     
 }
@@ -278,7 +278,7 @@
                     {
                         _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
                         _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                        _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longLongValue];
+                        _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
                         
                         _model.isJoin=_detailModel.isJoin;
                         _model.leftQuota=_detailModel.leftQuota;
@@ -400,8 +400,7 @@
                 make.left.right.top.mas_equalTo(0);
             }];
             [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.top.mas_equalTo(self.view);
-                make.bottom.mas_equalTo(-kTabbarHeight);
+                make.edges.mas_equalTo(self.view);
                 // 让scrollview的contentSize随着内容的增多而变化
                 make.bottom.mas_equalTo(_DDAYContainerView.mas_bottom).with.offset(0);
             }];

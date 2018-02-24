@@ -19,7 +19,7 @@
 + (NSData*)getImageForSize:(CGFloat)size WithImage:(UIImage *)image;
 
 /** 用户是否打开推送开关*/
-+ (BOOL)isAllowedNotification;
++ (BOOL)isEnableAPNS;
 
 /** 获取当前DNS*/
 + (NSString *)getDNS;

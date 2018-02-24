@@ -36,7 +36,7 @@
         _backImg.contentMode=2;
         [regular setZeroBorder:_backImg];
         [_backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(self.contentView);
+            make.edges.equalTo(self.contentView);
         }];
         
         backview=[UIView getCustomViewWithColor:nil];

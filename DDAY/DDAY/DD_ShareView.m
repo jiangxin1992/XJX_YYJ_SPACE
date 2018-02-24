@@ -160,9 +160,8 @@
     cancelBtn.backgroundColor=_define_black_color;
     [cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(kInteractionHeight);
-        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(ktabbarHeight);
     }];
     
 }

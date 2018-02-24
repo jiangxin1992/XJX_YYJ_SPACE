@@ -217,6 +217,7 @@
             {
 //                1、展示
                 [_default setObject:@1 forKey:@"devState"];
+//                [_default setObject:@"http://show.ycospace.com:8051/dday-web/service/" forKey:@"devDNS"];
                 [_default setObject:@"https://show.ycospace.com/" forKey:@"devDNS"];
                 [_phoneTextfiled resignFirstResponder];
                 [self presentViewController:[regular alertTitle_Simple:@"已成功切换到展示"] animated:YES completion:nil];

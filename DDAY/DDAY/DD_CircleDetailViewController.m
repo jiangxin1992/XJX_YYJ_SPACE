@@ -168,7 +168,7 @@
 }
 -(void)CreateTableViewHead
 {
-    if([_ListModel.shareType longLongValue]==4)
+    if([_ListModel.shareType longValue]==4)
     {
         __block DD_CircleDetailViewController *_DetailView=self;
         _headView=[[DD_CircleDetailHeadView alloc] initWithCircleListModel:nowListModel IsHomePage:_isHomePage WithBlock:^(NSString *type,NSInteger index,DD_OrderItemModel *item) {
@@ -383,7 +383,7 @@
         {
             nowListModel=[DD_CircleListModel getCircleListImgModel:[data objectForKey:@"shareInfo"]];
 //            已创建就更新
-            if([_ListModel.shareType longLongValue]==4)
+            if([_ListModel.shareType longValue]==4)
             {
                 if(_headView)
                 {
@@ -681,14 +681,14 @@
         [[JX_AFNetworking alloc] GET:url parameters:@{@"token":[DD_UserModel getToken],@"shareId":_ShareID} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                nowListModel.collectTimes=[[data objectForKey:@"collectTimes"] longLongValue];
+                nowListModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
                 nowListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 if(_ListModel)
                 {
-                    _ListModel.collectTimes=[[data objectForKey:@"collectTimes"] longLongValue];
+                    _ListModel.collectTimes=[[data objectForKey:@"collectTimes"] longValue];
                     _ListModel.isCollect=[[data objectForKey:@"isCollect"] boolValue];
                 }
-                if([_ListModel.shareType longLongValue]==4)
+                if([_ListModel.shareType longValue]==4)
                 {
                     [_headView setState];
                 }else
@@ -735,13 +735,13 @@
             if(success)
             {
                 nowListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-                nowListModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
+                nowListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
                 if(_ListModel)
                 {
                     _ListModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-                    _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
+                    _ListModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
                 }
-                if([_ListModel.shareType longLongValue]==4)
+                if([_ListModel.shareType longValue]==4)
                 {
                     [_headView setState];
                 }else
@@ -789,7 +789,7 @@
             if(success)
             {
                 CommentModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-                CommentModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
+                CommentModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
                 [_tableview reloadData];
             }else
             {
@@ -833,16 +833,16 @@
             _is_send_comment=NO;
             if(success)
             {
-                nowListModel.commentTimes=[[data objectForKey:@"commentTimes"] longLongValue];
+                nowListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
                 if(_ListModel)
                 {
-                    _ListModel.commentTimes=[[data objectForKey:@"commentTimes"] longLongValue];
+                    _ListModel.commentTimes=[[data objectForKey:@"commentTimes"] longValue];
                 }
                 commToId=@"";
                 [_tableview.mj_header beginRefreshing];
                 
                 [_commentview initTextView];
-                if([_ListModel.shareType longLongValue]==4)
+                if([_ListModel.shareType longValue]==4)
                 {
                     [_headView setState];
                 }else

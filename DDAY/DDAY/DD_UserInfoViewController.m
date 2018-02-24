@@ -248,7 +248,7 @@
     
     NSString *mediaType = AVMediaTypeVideo;
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    if (author == AVAuthorizationStatusRestricted || author == AVAuthorizationStatusDenied){
+    if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
         
         [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"system_album", @"") WithBlock:^{
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
@@ -280,7 +280,7 @@
         {
             //        相册
             ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-            if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied){
+            if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
                 //无权限
                 [self ShowAlertview:NSLocalizedString(@"system_album_no_root", @"")];
             }else
@@ -322,7 +322,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
 }
 #pragma mark - UIImagePickerControllerDelegate

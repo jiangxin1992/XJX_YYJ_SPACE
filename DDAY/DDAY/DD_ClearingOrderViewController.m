@@ -167,7 +167,7 @@
     _tableview.alwaysBounceHorizontal=NO;
     _tableview.alwaysBounceVertical=YES;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -kTabbarHeight, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
     }];
     [_tableview reloadData];
     
@@ -261,7 +261,7 @@
         [[JX_AFNetworking alloc] GET:@"order/v1_0_7/cancelOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                _OrderModel.orderStatus=[[data objectForKey:@"status"] longLongValue];
+                _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
                 [_tableview reloadData];
             }else
             {

@@ -160,7 +160,7 @@
     _UpView=[UIView getCustomViewWithColor:nil];
     [self.view addSubview:_UpView];
     [_UpView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight);
+        make.top.mas_equalTo(kNavHeight);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(145);
     }];
@@ -222,7 +222,7 @@
 -(void)CreatePageViewCtn
 {
     _pageVc = [[UIPageViewController alloc]initWithTransitionStyle:1 navigationOrientation:0 options:nil];
-    _pageVc.view.frame = CGRectMake(0, 145+kStatusBarAndNavigationBarHeight+28, 1000, 1000);
+    _pageVc.view.frame = CGRectMake(0, 145+kNavHeight+28, 1000, 1000);
     if(ctn1==nil)
     {
         ctn1=[[DD_DesignerItemViewController alloc] initWithDesignerID:_designerId WithBlock:^(NSString *type, DD_ItemsModel *model) {

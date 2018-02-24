@@ -27,8 +27,6 @@
 #import "DD_ClearingView.h"
 #import "DD_ClearingModel.h"
 
-#import "RSAEncryptor.h"
-
 @interface DD_ClearingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableDictionary *_dataDict;
@@ -113,7 +111,7 @@
     _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, kTabbarHeight, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 
@@ -127,6 +125,12 @@
     CGFloat _count=[[_dataDict objectForKey:@"subTotal"] floatValue];
     CGFloat _countPrice=_count+_Freight;
     
+//    _tabBar=[[DD_ClearingTabbar alloc] initWithNumStr:[[NSString alloc] initWithFormat:@"%ld件商品",[self getGoodsCount]] WithCountStr:[[NSString alloc] initWithFormat:@"总计 ￥%@",[regular getRoundNum:_countPrice]] WithBlock:^(NSString *type) {
+//        if([type isEqualToString:@"confirm"])
+//        {
+//            [self ConfirmAction];
+//        }
+//    }];
     _tabBar=[[DD_ClearingTabbar alloc] initWithClearingModel:_Clearingmodel WithCountPrice:_countPrice WithCount:_count WithBlock:^(NSString *type) {
         if([type isEqualToString:@"confirm"])
         {
@@ -137,7 +141,7 @@
     
     [_tabBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(kTabbarHeight);
+        make.height.mas_equalTo(ktabbarHeight);
     }];
 }
 /**
@@ -370,17 +374,12 @@
                                     ,@"deduction":_Clearingmodel.use_rewardPoints?[NSNumber numberWithLong:_Clearingmodel.employ_rewardPoints]:[NSNumber numberWithLong:0]
                                     ,@"actuallyPay":[NSNumber numberWithFloat:_price]
                                     };
-        [[JX_AFNetworking alloc] GET:@"order/v1_0_7/createOrderNew" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+        [[JX_AFNetworking alloc] GET:@"order/v1_0_7/createOrder.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
                 NSString *appScheme = @"DDAY";
                 NSString *orderSpec = [data objectForKey:@"order"];
-
-                NSString *private_key_path = [[NSBundle mainBundle] pathForResource:@"private_key.p12" ofType:nil];
-                NSString *private_key_encryption = [data objectForKey:@"privateKey"];
-                NSString *privateKey = [RSAEncryptor decryptString:private_key_encryption privateKeyWithContentsOfFile:private_key_path password:@"yyj"];
-
-                id<DataSigner> signer = CreateRSADataSigner(privateKey);
+                id<DataSigner> signer = CreateRSADataSigner([data objectForKey:@"privateKey"]);
                 NSString *signedString = [signer signString:orderSpec];
                 NSString *orderString = nil;
                 if (signedString != nil) {
@@ -394,6 +393,7 @@
                         _successblock(@"pay_back",_resultDic);
                     }];
                 }
+                
             }else
             {
                 [self presentViewController:successAlert animated:YES completion:nil];

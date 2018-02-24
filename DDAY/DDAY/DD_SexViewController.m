@@ -58,7 +58,7 @@
     [maleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(15+kStatusBarAndNavigationBarHeight);
+        make.top.mas_equalTo(15+kNavHeight);
         make.height.mas_equalTo(32);
     }];
     

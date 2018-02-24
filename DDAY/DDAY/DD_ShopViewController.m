@@ -140,8 +140,8 @@
     [self.view addSubview:_tabbar];
     [_tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.view).with.offset(-kSafetyZoneHeight);
-        make.height.mas_equalTo(kInteractionHeight);
+        make.bottom.mas_equalTo(self.view).with.offset(0);
+        make.height.mas_equalTo(ktabbarHeight);
     }];
     
 }
@@ -160,8 +160,7 @@
     _tableview.tableHeaderView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(-kTabbarHeight);
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 /**
@@ -698,14 +697,17 @@
         DD_ShopCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[DD_ShopCell alloc] initWithIsInvalid:NO style:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:^(NSString *type, NSIndexPath *indexPath) {
+            
+            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:^(NSString *type, NSIndexPath *indexPath) {
                 if([type isEqualToString:@"select"])
                 {
+                    //                    select
                     ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=YES;
                     [self updateTabbarState];
                     
                 }else if([type isEqualToString:@"cancel"])
                 {
+                    //                    cancel
                     ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=NO;
                     [self updateTabbarState];
                 }else if([type isEqualToString:@"num_alert"])
@@ -719,10 +721,10 @@
                 }
                 
             }];
-            cell.selectionStyle=UITableViewCellSelectionStyleNone;
         }
         cell.indexPath=indexPath;
         cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else
     {
@@ -731,12 +733,12 @@
         DD_ShopCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
         if(!cell)
         {
-            cell=[[DD_ShopCell alloc] initWithIsInvalid:YES style:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
-            cell.selectionStyle=UITableViewCellSelectionStyleNone;
-            cell.contentView.backgroundColor=_define_backview_color;
+            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid WithBlock:nil];
         }
         cell.indexPath=indexPath;
         cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+        cell.contentView.backgroundColor=_define_backview_color;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
@@ -781,5 +783,233 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - 弃用代码
+/**
+ * 编辑,改变cell样式
+ */
+//-(void)editingAction:(UIButton *)btn
+//{
+//    if(btn.selected)
+//    {
+//        btn.selected=NO;
+//        _isEditing=NO;
+//    }else
+//    {
+//        btn.selected=YES;
+//        _isEditing=YES;
+//    }
+//    [_tableview reloadData];
+//}
+
+//section头部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//section头部高度
+//    return 40;
+//    return 0;
+//}
+//section头部视图
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    DD_ShopHeaderView *headerView=[[DD_ShopHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40) WithSection:section WithShopModel:_shopModel WithBlock:^(NSString *type, NSInteger section) {
+//        if(![DD_ShopTool isInvalidWithSection:section WithModel:_shopModel])
+//        {
+//            if([type isEqualToString:@"cancel_all"])
+//            {
+//                [DD_ShopTool selectAllWithModel:_shopModel WithSelect:NO WithSection:section];
+//                headerView.shopModel=_shopModel;
+//                [self updateTabbarState];
+//            }else if([type isEqualToString:@"select_all"])
+//            {
+//                [DD_ShopTool selectAllWithModel:_shopModel WithSelect:YES  WithSection:section];
+//                headerView.shopModel=_shopModel;
+//                [self updateTabbarState];
+//            }else if([type isEqualToString:@"refresh"])
+//            {
+//                headerView.shopModel=_shopModel;
+//                [self updateTabbarState];
+//            }
+//        }
+//    }];
+//    return headerView;
+//    return [[UIView alloc] init];
+//}
+//section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 0;
+//    if(_shopModel.seriesInvalid.count)
+//    {
+//        if(section==[DD_ShopTool getInvalidSectionNum:_shopModel])
+//        {
+//            return 40;
+//        }
+//        return 0;
+//    }else
+//    {
+//
+//        return 0;
+//    }
+//}
+//section底部视图
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return [[UIView alloc] init];
+//    if(_shopModel.seriesInvalid.count)
+//    {
+//        if(section==[DD_ShopTool getInvalidSectionNum:_shopModel])
+//        {
+//            return [DD_ShopTool getViewFooter];
+//        }
+//        return [[UIView alloc] init];
+//    }else
+//    {
+//        return [[UIView alloc] init];
+//    }
+//}
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //    数据还未获取时候
+//    if(_shopModel==nil)
+//    {
+//        static NSString *cellid=@"cellid";
+//        UITableViewCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+//        if(!cell)
+//        {
+//            cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+//        }
+//        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+//    if(![DD_ShopTool isInvalidWithSection:indexPath.section WithModel:_shopModel])
+//    {
+//        if(!_isEditing)
+//        {
+//            //获取到数据以后
+//            static NSString *cellid=@"cell_normal";
+//            DD_ShopCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+//            if(!cell)
+//            {
+//                
+//                cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid cellForRowAtIndexPath:indexPath WithIsInvalid:NO WithBlock:^(NSString *type, NSIndexPath *indexPath) {
+//                    if([type isEqualToString:@"select"])
+//                    {
+//                        //                    select
+//                        ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=YES;
+//                        [self updateTabbarState];
+//                        
+//                    }else if([type isEqualToString:@"cancel"])
+//                    {
+//                        //                    cancel
+//                        ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=NO;
+//                        [self updateTabbarState];
+//                    }
+//                    
+//                    
+//                }];
+//            }
+//            cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+//            cell.contentView.backgroundColor=_define_backview_color;
+//            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//            return cell;
+//        }else
+//        {
+//            //获取到数据以后
+//            //            initWithStyle
+//            static NSString *cellid=@"cell_normal_edit";
+//            DD_ShopEditingCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+//            if(!cell)
+//            {
+//                
+//                cell=[[DD_ShopEditingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid cellForRowAtIndexPath:indexPath WithBlock:^(NSString *type, NSIndexPath *indexPath,DD_ShopModel *shopModel) {
+//                    if([type isEqualToString:@"select"])
+//                    {
+//                        //                    select
+//                        ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=YES;
+//                        [self updateTabbarState];
+//                        
+//                    }else if([type isEqualToString:@"cancel"])
+//                    {
+//                        //                    cancel
+//                        ((DD_ShopItemModel *)[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel]).is_select=NO;
+//                        [self updateTabbarState];
+//                    }else if([type isEqualToString:@"choose_size"])
+//                    {
+//                        DD_ShopItemModel *shopItem=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+//                        [self ChooseSizeWithItem:shopItem WithIndexPath:indexPath] ;
+//                        
+//                    }else if([type isEqualToString:@"add"]||[type isEqualToString:@"cut"])
+//                    {
+//                        DD_ShopItemModel *itemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:shopModel];
+//                        NSDictionary *_parameters=@{
+//                                                    @"items":[@[@{
+//                                                                    @"itemId":itemModel.itemId
+//                                                                    ,@"itemName":itemModel.itemName
+//                                                                    ,@"colorId":itemModel.colorId
+//                                                                    ,@"colorName":itemModel.colorName
+//                                                                    ,@"sizeId":itemModel.sizeId
+//                                                                    ,@"sizeName":itemModel.sizeName
+//                                                                    ,@"discountEnable":[NSNumber numberWithBool:itemModel.discountEnable]
+//                                                                    ,@"seriesId":itemModel.seriesId
+//                                                                    ,@"seriesName":itemModel.seriesName
+//                                                                    ,@"designerId":itemModel.designerId
+//                                                                    ,@"brandName":itemModel.brandName
+//                                                                    ,@"number":itemModel.number
+//                                                                    ,@"price":itemModel.price
+//                                                                    ,@"originalPrice":itemModel.originalPrice
+//                                                                    ,@"pics":itemModel.pics
+//                                                                    ,@"saleEndTime":[NSNumber numberWithLong:itemModel.saleEndTime*1000]
+//                                                                    ,@"saleStartTime":[NSNumber numberWithLong:itemModel.saleStartTime*1000]
+//                                                                    ,@"signEndTime":[NSNumber numberWithLong:itemModel.signEndTime*1000]
+//                                                                    ,@"signStartTime":[NSNumber numberWithLong:itemModel.signStartTime*1000]
+//                                                                    ,@"oldSizeId":itemModel.sizeId
+//                                                                    }
+//                                                                ] JSONString]
+//                                                    ,@"token":[DD_UserModel getToken]
+//                                                    };
+//                        [[JX_AFNetworking alloc] GET:@"item/editShoppingCart.do" parameters:_parameters success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
+//                            if(success)
+//                            {
+//                                _shopModel=shopModel;
+//                                [self updateTabbarState];
+//                            }else
+//                            {
+//                                [self presentViewController:successAlert animated:YES completion:nil];
+//                            }
+//                        } failure:^(NSError *error, UIAlertController *failureAlert) {
+//                            [self presentViewController:failureAlert animated:YES completion:nil];
+//                        }];
+//                        
+//                        
+//                    }else if([type isEqualToString:@"cut_no"])
+//                    {
+//                        [self presentViewController:[regular alertTitle_Simple:@"受不了了，宝贝不能在减少了哦"] animated:YES completion:nil];
+//                    }
+//                }];
+//            }
+//            cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+//            cell.shopModel=_shopModel;
+//            cell.contentView.backgroundColor=_define_backview_color;
+//            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//            return cell;
+//        }
+//        
+//    }else
+//    {
+//        //获取到数据以后
+//        static NSString *cellid=@"cell_invalid";
+//        DD_ShopCell *cell=[_tableview dequeueReusableCellWithIdentifier:cellid];
+//        if(!cell)
+//        {
+//            cell=[[DD_ShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid cellForRowAtIndexPath:indexPath WithIsInvalid:YES WithBlock:nil];
+//        }
+//        cell.ItemModel=[DD_ShopTool getNumberOfRowsIndexPath:indexPath WithModel:_shopModel];
+//        cell.contentView.backgroundColor=_define_backview_color;
+//        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+//}
 @end

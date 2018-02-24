@@ -18,7 +18,7 @@
 {
     {
         DD_UserMessageItemModel *MessageModel=[DD_UserMessageItemModel mj_objectWithKeyValues:dict];
-        MessageModel.messageID=[[NSString alloc] initWithFormat:@"%lld",[[dict objectForKey:@"id"] longLongValue]];
+        MessageModel.messageID=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] longValue]];
         MessageModel.createTime=MessageModel.createTime/1000;
         
         NSDate *_getDate=[NSDate dateWithTimeIntervalSince1970:MessageModel.createTime];

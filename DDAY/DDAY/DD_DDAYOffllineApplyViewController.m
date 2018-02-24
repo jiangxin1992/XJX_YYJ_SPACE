@@ -55,7 +55,7 @@
     [self.view addSubview:nickNameTitleLabel];
     [nickNameTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
-        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+12);
+        make.top.mas_equalTo(kNavHeight+12);
         make.height.mas_equalTo(32);
         make.width.mas_equalTo(60);
     }];
@@ -125,7 +125,7 @@
                 {
                     _detailModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
                     _detailModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                    _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longLongValue];
+                    _detailModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
                     _block(@"apply_success");
                     [self.navigationController popViewControllerAnimated:YES];
                 }else

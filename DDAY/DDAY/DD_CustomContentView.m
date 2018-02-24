@@ -19,10 +19,9 @@
     self=[super init];
     if(self)
     {
-
         CGFloat _width=floor([regular getWidthWithHeight:35 WithContent:title WithFont:[regular getFont:15.0f]]+35+13);
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, _width, 25);
-
+        self.size=CGSizeMake(_width, 25);
+        
         imgView=[UIImageView getImgWithImageStr:img];
         [self addSubview:imgView];
         [imgView mas_makeConstraints:^(MASConstraintMaker *make) {

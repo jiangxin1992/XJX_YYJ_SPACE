@@ -52,9 +52,6 @@
                 make.left.mas_equalTo(_x_p);
                 make.width.mas_equalTo(__width);
                 make.height.mas_equalTo(28);
-                if(idx == _tagArr.count - 1){
-                    make.bottom.mas_equalTo(0);
-                }
             }];
             if((_x_p+__width+intes)>ScreenWidth-2*kEdge)
             {
@@ -64,6 +61,7 @@
             }
             _lastView=label;
         }];
+
     }
 }
 +(CGFloat)GetHeightWithTagArr:(NSArray *)tagArr

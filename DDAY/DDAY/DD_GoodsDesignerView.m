@@ -138,14 +138,14 @@
     [downView addTarget:self action:@selector(serviesAction) forControlEvents:UIControlEventTouchUpInside];
     [downView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(0);
-        make.top.mas_equalTo(upView.mas_bottom);
+        make.top.mas_equalTo(upView.mas_bottom).with.offset(0);
         make.bottom.mas_equalTo(self);
     }];
     UIView *view=[UIView getCustomViewWithColor:_define_black_color];
     [downView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
-        make.left.and.right.mas_equalTo(view.superview);
+        make.left.and.right.mas_equalTo(view.superview).with.offset(0);
         make.bottom.mas_equalTo(view.superview).with.offset(-1);
     }];
     
