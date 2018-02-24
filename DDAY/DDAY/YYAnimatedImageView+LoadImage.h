@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YYJ. All rights reserved.
 //
 
-#import <YYKit/YYKit.h>
+#import <YYImage/YYImage.h>
 
 @interface YYAnimatedImageView (LoadImage)
 

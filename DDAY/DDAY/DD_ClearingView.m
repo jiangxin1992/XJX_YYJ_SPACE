@@ -67,14 +67,20 @@
 #pragma mark - UIConfig
 -(void)UIConfig
 {
-    freightTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"邮费：" WithFont:12 WithTextColor:_define_light_gray_color1 WithSpacing:0];
+
+    freightTitleLabel=[UILabel getLabelWithAlignment:0 WithTitle:@"邮费：（不同的发布会的商品需各自计算邮费哦）" WithFont:IsPhone6_gt?12.0f:11.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self addSubview:freightTitleLabel];
-    
-    freightTitleLabel.frame=CGRectMake(kEdge, 0, 100, 30);
+
+    [freightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kEdge);
+        make.height.mas_equalTo(30);
+        make.top.mas_equalTo(0);
+    }];
     
     CGFloat _Freight=_dataArr.count*[_clearingModel.freight floatValue];
-    
-    UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥%@",[regular getRoundNum:_Freight]] WithFont:12 WithTextColor:nil WithSpacing:0];
+
+    NSInteger orderNum = [[regular getRoundNum:_Freight] floatValue]/10.0f;
+    UILabel *freightLabel=[UILabel getLabelWithAlignment:2 WithTitle:[[NSString alloc] initWithFormat:@"￥10 × %ld",orderNum] WithFont:IsPhone6_gt?12.0f:11.0f WithTextColor:_define_light_gray_color1 WithSpacing:0];
     [self addSubview:freightLabel];
     freightLabel.font=[regular getSemiboldFont:12];
     freightLabel.frame=CGRectMake(ScreenWidth-kEdge-100, 0, 100, 30);
@@ -441,7 +447,7 @@
         make.height.mas_equalTo(_isShow?170:41);
     }];
     [self layoutIfNeeded];
-    _block(@"height",payView.origin.y + payView.size.height,_payWay);
+    _block(@"height",payView.frame.origin.y + payView.frame.size.height,_payWay);
 }
 ///**
 // * 添加备注
@@ -470,7 +476,7 @@
         remarksView.frame=CGRectMake(CGRectGetMinX(remarksView.frame), CGRectGetMinY(remarksView.frame), CGRectGetWidth(remarksView.frame), frame.size.height);
         line1.frame=CGRectMake(kEdge, CGRectGetMaxY(remarksView.frame)+10, ScreenWidth-2*kEdge, 1);
         [self layoutIfNeeded];
-        CGFloat _y_p=payView.origin.y + payView.size.height;
+        CGFloat _y_p=payView.frame.origin.y + payView.frame.size.height;
         _block(@"height",_y_p,_payWay);
     }];
 }

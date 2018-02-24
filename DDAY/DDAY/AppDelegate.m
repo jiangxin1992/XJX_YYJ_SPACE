@@ -59,12 +59,16 @@
 //微信SDK头文件
 #import "WXApi.h"
 
-//新浪微博SDK头文件
+//新浪微博SDK头文件<
 #import "WeiboSDK.h"
 
 #import <Bugly/Bugly.h>
 
 #import "DD_NOTInformClass.h"
+
+#define kGtAppId           @"xj4QqJvMWb6XvatHms1gx2"
+#define kGtAppKey          @"IgCKHHEC326WiTBEZv8Nx1"
+#define kGtAppSecret       @"dk9YyBRyA0AhoSUht6QbL5"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -73,31 +77,38 @@
 @implementation AppDelegate
 {
     BOOL _is_first_register;//是否是第一次提交设备token
-//    DD_StartViewController *_startController;
     DD_StartViewPlayer *_startPlayer;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     _is_first_register=YES;
+
+    [UITableView appearance].estimatedRowHeight = 0;
+    [UITableView appearance].estimatedSectionHeaderHeight = 0;
+    [UITableView appearance].estimatedSectionFooterHeight = 0;
+
     [Bugly startWithAppId:@"900056338"];
-    /**
-     *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册
-     *  在将生成的AppKey传入到此方法中。
-     *  方法中的第二个第三个参数为需要连接社交平台SDK时触发，
-     *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
-     *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
+
+    /**初始化ShareSDK应用
+
+     @param activePlatforms
+     使用的分享平台集合
+     @param importHandler (onImport)
+     导入回调处理，当某个平台的功能需要依赖原平台提供的SDK支持时，需要在此方法中对原平台SDK进行导入操作
+     @param configurationHandler (onConfiguration)
+     配置回调处理，在此方法中根据设置的platformType来填充应用配置信息
      */
-    [ShareSDK registerApp:@"1091093f428f8"
-     
-          activePlatforms:@[
-                            @(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformTypeMail),
-                            @(SSDKPlatformTypeSMS),
-                            @(SSDKPlatformTypeCopy),
-                            @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ)]
-                 onImport:^(SSDKPlatformType platformType)
+
+    [ShareSDK registerActivePlatforms:@[
+                                        @(SSDKPlatformTypeSinaWeibo),
+                                        @(SSDKPlatformTypeMail),
+                                        @(SSDKPlatformTypeSMS),
+                                        @(SSDKPlatformTypeCopy),
+                                        @(SSDKPlatformTypeWechat),
+                                        @(SSDKPlatformTypeQQ)
+                                        ]
+                             onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
          {
@@ -114,9 +125,9 @@
                  break;
          }
      }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+                      onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
      {
-         
+
          switch (platformType)
          {
              case SSDKPlatformTypeSinaWeibo:
@@ -138,30 +149,13 @@
              default:
                  break;
          }
-     }];
+       }];
     
-    // 通过 appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
+    // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
-    JXLOG(@"versionGeTuiSdk=%@",[GeTuiSdk version]);
-    // 注册APNS
+    // 注册 APNs
     [self registerRemoteNotification];
-    if (IS_IOS10_OR_LATER) {  //IOS10 之后采用UNUserNotificationCenter注册通知
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        center.delegate = self;
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (!error) {
-                [[UIApplication sharedApplication] registerForRemoteNotifications];
-                JXLOG(@"succeeded!");
-            }
-        }];
-    }else{ //IOS10 之前注册通知
-        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge |UIUserNotificationTypeSound |UIUserNotificationTypeAlert)
-                                                                                     categories:nil];
-            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
-        }
-    }
+
     //1.创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    _startController=[[DD_StartViewController alloc] init];
@@ -211,37 +205,44 @@
 }
 #pragma mark - 用户通知(推送) _自定义方法
 
-/** 注册APNS */
+/** 注册 APNs */
 - (void)registerRemoteNotification {
-#ifdef __IPHONE_8_0
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        
-        UIUserNotificationType types = (UIUserNotificationTypeAlert |
-                                        UIUserNotificationTypeSound |
-                                        UIUserNotificationTypeBadge);
-        
-        UIUserNotificationSettings *settings;
-        settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    /*
+     警告：Xcode8 需要手动开启"TARGETS -> Capabilities -> Push Notifications"
+     */
+
+    /*
+     警告：该方法需要开发者自定义，以下代码根据 APP 支持的 iOS 系统不同，代码可以对应修改。
+     以下为演示代码，注意根据实际需要修改，注意测试支持的 iOS 系统都能获取到 DeviceToken
+     */
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0 // Xcode 8编译会调用
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay) completionHandler:^(BOOL granted, NSError *_Nullable error) {
+            if (!error) {
+                JXLOG(@"request authorization succeeded!");
+            }
+        }];
+
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+#else // Xcode 7编译会调用
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        
+#endif
+    } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        
         UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
                                                                        UIRemoteNotificationTypeSound |
                                                                        UIRemoteNotificationTypeBadge);
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
-#pragma clang diagnostic pop
     }
-#else
-    UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
-                                                                   UIRemoteNotificationTypeSound |
-                                                                   UIRemoteNotificationTypeBadge);
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
-#endif
-    
 }
 
 #pragma mark - 用户通知(推送)回调 _IOS 8.0以上使用
@@ -263,8 +264,8 @@
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     JXLOG(@"\n>>>[DeviceToken Success]:%@\n\n", token);
-    
-    //向个推服务器注册deviceToken
+
+    // 向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
     [DD_UserModel setDeviceToken:token];
 
@@ -366,21 +367,34 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTLIVESERIES_NOT" object:nil];
         }
     }
+    // 将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
     
 }
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
-{
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+//  iOS 10: App在前台获取到通知
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+
+    JXLOG(@"willPresentNotification：%@", notification.request.content.userInfo);
+
+    // 根据APP需要，判断是否要提示用户Badge、Sound、Alert
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
-//IOS10之后 推送消息接收
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+
+//  iOS 10: 点击通知进入App时触发，在该方法内统计有效用户点击数
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+
+    JXLOG(@"didReceiveNotification：%@", response.notification.request.content.userInfo);
+
     NSDictionary *userInfo = response.notification.request.content.userInfo;
     if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive)
     {
-        
+
         // 处理APN
         JXLOG(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n", userInfo);
-        
+
         completionHandler(UIBackgroundFetchResultNewData);
         NSData* data=[[[userInfo objectForKey:@"aps"] objectForKey:@"category"] dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dict=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
@@ -396,7 +410,7 @@
         }else if([[dict objectForKey:@"type"]isEqualToString:@"REFUNDAPPLY"])
         {
             //        申请退款的通知
-            
+
         }else if([[dict objectForKey:@"type"]isEqualToString:@"NEWSERIES"])
         {
             //        新的发布会通知
@@ -407,13 +421,13 @@
             //        已报名发布会开始的通知
             [DD_NOTInformClass SET_STARTSERIES_NOT_SERIESID:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTSERIES_NOT" object:nil];
-            
+
         }else if([[dict objectForKey:@"type"]isEqualToString:@"REPLYCOMMENT"])
         {
             //        评论回复的通知
             [DD_NOTInformClass SET_REPLYCOMMENT_NOT_COMMENT:dict];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"REPLYCOMMENT_NOT" object:nil];
-            
+
         }else if([[dict objectForKey:@"type"]isEqualToString:@"COMMENTSHARE"])
         {
             //        评论的通知
@@ -431,8 +445,15 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"STARTLIVESERIES_NOT" object:nil];
         }
     }
-    completionHandler(UIBackgroundFetchResultNewData);
+
+    // [ GTSdk ]：将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:response.notification.request.content.userInfo];
+
+    completionHandler();
 }
+
+#endif
+
 #pragma mark - GeTuiSdkDelegate
 
 /** SDK启动成功返回cid */
@@ -451,16 +472,16 @@
 
 /** SDK收到透传消息回调 */
 - (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
-    
-    // [4]: 收到个推消息
+    //收到个推消息
     NSString *payloadMsg = nil;
     if (payloadData) {
         payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
     }
-    
-    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
+
+    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@",taskId,msgId, payloadMsg,offLine ? @"<离线消息>" : @""];
     JXLOG(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
 }
+
 
 /** SDK收到sendMessage消息回调 */
 - (void)GeTuiSdkDidSendMessage:(NSString *)messageId result:(int)result {

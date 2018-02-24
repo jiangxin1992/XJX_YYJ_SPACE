@@ -56,8 +56,9 @@
 //将底部的评论 view，根据键盘的变化而变化
 - (void)keyboardWillHide:(NSNotification *)not
 {
-    [_SignBoard.commentField resignFirstResponder];
-    
+//    [_SignBoard.commentField resignFirstResponder];
+    [regular dismissKeyborad];
+
 }
 //键盘将要出现时调用的方法
 //将底部的评论 view，根据键盘的变化而变化
@@ -81,9 +82,9 @@
     sendBtn.backgroundColor=_define_black_color;
     [sendBtn addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     [sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.right.mas_equalTo(0);
+        make.top.right.mas_equalTo(0);
         make.width.mas_equalTo(IsPhone6_gt?95:75);
-        
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
     }];
     
     _commentField=[[UITextView alloc] init];
@@ -97,7 +98,8 @@
         {
             _commentField.text=_SignBoard.commentField.text;
             _block(type,content);
-            [_commentField resignFirstResponder];
+//            [_commentField resignFirstResponder];
+            [regular dismissKeyborad];
         }
         
     }];
@@ -118,12 +120,21 @@
 
     
     [_commentField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.left.top.mas_equalTo(0);
+        make.height.mas_equalTo(kTabbarHeight);
         make.right.mas_equalTo(sendBtn.mas_left).with.offset(0);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
     }];
-    
-    
+
+    if(kIPhoneX){
+        UIView *safetyLine = [UIView getCustomViewWithColor:_define_light_gray_color3];
+        [self addSubview:safetyLine];
+        [safetyLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(sendBtn.mas_bottom).with.offset(0);
+            make.height.mas_equalTo(1);
+        }];
+    }
 }
 #pragma mark - SomeAction
 - (void)textViewDidEndEditing:(UITextView *)textView
@@ -151,9 +162,9 @@
     CGSize constraintSize = CGSizeMake(frame.size.width, MAXFLOAT);
     CGSize size = [textView sizeThatFits:constraintSize];
     //    if (size.height<=frame.size.height) {
-    if (size.height<=ktabbarHeight) {
+    if (size.height<=kTabbarHeight) {
         //        size.height=frame.size.height;
-        size.height=ktabbarHeight;
+        size.height=kTabbarHeight;
     }else{
         if (size.height >= maxHeight)
         {
@@ -166,9 +177,9 @@
         }
     }
     [_commentField mas_updateConstraints:^(MASConstraintMaker *make) {
-        if(size.height<ktabbarHeight)
+        if(size.height<kTabbarHeight)
         {
-            make.height.mas_equalTo(ktabbarHeight);
+            make.height.mas_equalTo(kTabbarHeight);
         }else
         {
             make.height.mas_equalTo(size.height);
@@ -193,7 +204,8 @@
     }
     
     [self reloadHeight:_commentField];
-    [_commentField resignFirstResponder];
+//    [_commentField resignFirstResponder];
+    [regular dismissKeyborad];
 }
 /**
  * 初始化输入框内容

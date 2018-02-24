@@ -36,8 +36,9 @@
     [self addSubview:buyBtn];
     [buyBtn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
     [buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.left.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
+        make.height.mas_equalTo(kInteractionHeight);
     }];
     
 }

@@ -169,7 +169,7 @@
     long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
     if(dict)
     {
-        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        if(nowFirstTime==[[dict objectForKey:@"time"] longLongValue])
         {
             
         }else
@@ -190,7 +190,7 @@
     long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
     if(dict)
     {
-        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        if(nowFirstTime==[[dict objectForKey:@"time"] longLongValue])
         {
             return [[dict objectForKey:@"isread"] boolValue];
         }else
@@ -209,7 +209,7 @@
     long nowFirstTime=[[[NSDate nowDate] getFirstTime] getTime];
     if(dict)
     {
-        if(nowFirstTime==[[dict objectForKey:@"time"] longValue])
+        if(nowFirstTime==[[dict objectForKey:@"time"] longLongValue])
         {
             [_default setObject:@{@"isread":[NSNumber numberWithBool:YES],@"time":[dict objectForKey:@"time"]} forKey:@"dailyIntegral"];
         }else
@@ -328,21 +328,21 @@
     NSDictionary *_versionKVLoc=[_default objectForKey:@"versionKV"];
     NSString *nowVersion=[DD_UserModel GetBundleVersion];
 // versionKV appVersion isRead
-    if([nowVersion longValue]<[versionModel.appBundleVersion longValue])
+    if([nowVersion longLongValue]<[versionModel.appBundleVersion longLongValue])
     {
         //当前版本小于App Store版本时候
         //本地是否有数据
         if(_versionKVLoc)
         {
             //本地有数据时
-            if([[_versionKVLoc objectForKey:@"appBundleVersion"] longValue]<[versionModel.appBundleVersion longValue])
+            if([[_versionKVLoc objectForKey:@"appBundleVersion"] longLongValue]<[versionModel.appBundleVersion longLongValue])
             {
                 //显示版本更新视图
                 [_default setObject:@{@"appVersion":versionModel.appVersion,@"isRead":[NSNumber numberWithBool:YES],@"appBundleVersion":versionModel.appBundleVersion} forKey:@"versionKV"];
                 [[DD_CustomViewController sharedManager] showVersionViewWithVersonModel:versionModel];
             }else
             {
-                if([[_versionKVLoc objectForKey:@"appBundleVersion"] longValue]==[versionModel.appBundleVersion longValue])
+                if([[_versionKVLoc objectForKey:@"appBundleVersion"] longLongValue]==[versionModel.appBundleVersion longLongValue])
                 {
                     if(![[_versionKVLoc objectForKey:@"isRead"] boolValue])
                     {

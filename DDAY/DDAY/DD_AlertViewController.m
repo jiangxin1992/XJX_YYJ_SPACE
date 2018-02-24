@@ -88,7 +88,7 @@
     [_inputTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(kNavHeight+15);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+15);
         make.height.mas_equalTo(32);
     }];
 }

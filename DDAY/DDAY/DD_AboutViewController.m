@@ -60,8 +60,8 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo(_scrollView);
     }];
 }
 -(void)CreateUI
@@ -143,12 +143,11 @@
     
     brief.text=[_data_dict objectForKey:@"brief"];
 
-    NSString *time=[regular getTimeStr:[[_data_dict objectForKey:@"time"] longValue]/1000 WithFormatter:@"YYYY.MM"];
+    NSString *time=[regular getTimeStr:[[_data_dict objectForKey:@"time"] longLongValue]/1000 WithFormatter:@"YYYY.MM"];
     version.text=[[NSString alloc] initWithFormat:@"%@   V%@",time,[_data_dict objectForKey:@"version"]];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
+        make.top.left.right.bottom.mas_equalTo(0);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(version_back.mas_bottom).with.offset(40);
     }];

@@ -44,11 +44,10 @@
     _webview=[[WKWebView alloc] init];
     [self.view addSubview:_webview];
 
-    [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],@"user/getProtocolPage.htm"]]]];
-//    [_webview sizeToFit];
-    
+    NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",[regular getDNS],@"user/getProtocolPage.htm"];
+    [_webview loadRequest:[[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:urlStr]]];
     [_webview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kNavHeight);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];

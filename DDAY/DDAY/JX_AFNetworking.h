@@ -14,17 +14,28 @@
  * GET
  */
 -(void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
-/**
- * DELETE
- */
--(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
+//-(void)GET:(NSString *)url parameters:(NSDictionary *)parameters successByStatus:(void (^)(NSInteger status,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
 /**
  * POST
  */
 -(void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
+//-(void)POST:(NSString *)url parameters:(NSDictionary *)parameters successByStatus:(void (^)(NSInteger status,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
 /**
  * PUT
  */
 -(void)PUT:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
+//-(void)PUT:(NSString *)url parameters:(NSDictionary *)parameters successByStatus:(void (^)(NSInteger status,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
+/**
+ * DELETE
+ */
+-(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(BOOL success,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
+
+//-(void)DELETE:(NSString *)url parameters:(NSDictionary *)parameters successByStatus:(void (^)(NSInteger status,NSDictionary *data,UIAlertController *successAlert))successBlock failure:(void (^)(NSError *error,UIAlertController *failureAlert))failureBlock;
 
 @end

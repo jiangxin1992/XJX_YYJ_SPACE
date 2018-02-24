@@ -84,7 +84,7 @@
     [_tagTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(kNavHeight+15);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+15);
         make.height.mas_equalTo(32);
     }];
 }
@@ -110,8 +110,8 @@
                 {
                     DD_CricleTagItemModel *model=[[DD_CricleTagItemModel alloc] init];
                     model.tagName=[data objectForKey:@"tagName"];
-                    model.t_id=[[NSString alloc] initWithFormat:@"%ld",[[data objectForKey:@"id"] longValue]];
-                    model.createTime=[[data objectForKey:@"createTime"] longValue]/1000;
+                    model.t_id=[[NSString alloc] initWithFormat:@"%lld",[[data objectForKey:@"id"] longLongValue]];
+                    model.createTime=[[data objectForKey:@"createTime"] longLongValue]/1000;
                     _block(@"add_new_tag",model);
                     [self.navigationController popViewControllerAnimated:YES];
                 }else

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=_define_backview_color;
-    
+
 //    self.navigationController.navigationBar.barTintColor = _define_white_color;
 //    //   应对导航栏黑线问题（异常）
 //    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){

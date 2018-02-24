@@ -68,7 +68,7 @@
     [_tabbar addTarget:self action:@selector(disuseBenefit) forControlEvents:UIControlEventTouchUpInside];
     [_tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(kTabbarHeight);
     }];
 }
 -(void)CreateTableview
@@ -81,7 +81,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 -(void)CreateTableHeadView

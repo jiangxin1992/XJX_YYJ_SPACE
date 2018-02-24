@@ -130,8 +130,9 @@
     }
     
     [submit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(40);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(kInteractionHeight);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
     }];
 }
 -(void)CreateScrollView
@@ -141,8 +142,8 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo(_scrollView);
     }];
 }
 -(void)CreateContentView
@@ -228,7 +229,7 @@
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.edges.mas_equalTo(self.view);
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(kNavHeight);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight);
         make.bottom.mas_equalTo(submit.mas_top).with.offset(0);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(conentLabel.mas_bottom).with.offset(20);
@@ -294,7 +295,7 @@
                 {
                     if([[data objectForKey:@"isGetPoint"] boolValue])
                     {
-                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:[[NSString alloc] initWithFormat:@"积分 +%ld",[[data objectForKey:@"points"] longValue]] WithType:@"getIntegral"];
+                        [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:[[NSString alloc] initWithFormat:@"积分 +%lld",[[data objectForKey:@"points"] longLongValue]] WithType:@"getIntegral"];
                     }else
                     {
                         [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:[data objectForKey:@"message"] WithType:@"getIntegral"];
@@ -347,7 +348,7 @@
     _CircleTagView.tagArr=[_circleModel getTagArr];
     [_CircleTagView setState];
     [_CircleTagView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(_CircleTagView.height);
+        make.height.mas_equalTo(_CircleTagView);
     }];
     
     NSArray *items=[DD_CirclePublishTool getParameterItemArrWithCircleModel:_circleModel];

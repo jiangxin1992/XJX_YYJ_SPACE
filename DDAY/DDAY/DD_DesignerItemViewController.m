@@ -107,7 +107,7 @@
 
     mywaterflow = [[Waterflow alloc] init];
     
-    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kNavHeight-145-28);
+    mywaterflow.frame = CGRectMake(0, 0, ScreenWidth,ScreenHeight-kStatusBarAndNavigationBarHeight-145-28);
     
     mywaterflow.dataSource = self;
     

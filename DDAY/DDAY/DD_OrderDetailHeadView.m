@@ -173,7 +173,7 @@
     [self SetAddressView];
     
     [self layoutIfNeeded];
-    CGFloat _y_p=_addressView.origin.y + _addressView.size.height;
+    CGFloat _y_p=_addressView.frame.origin.y + _addressView.frame.size.height;
     _block(@"height",_y_p,@"");
 }
 -(void)SetAddressView

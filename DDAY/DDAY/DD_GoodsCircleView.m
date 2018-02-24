@@ -59,7 +59,7 @@
     [self addSubview:backBtn];
     [backBtn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     
     UIView *view=[UIView getCustomViewWithColor:_define_black_color];

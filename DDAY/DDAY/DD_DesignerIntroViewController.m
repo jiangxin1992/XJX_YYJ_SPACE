@@ -54,12 +54,12 @@
 
 -(void)CreateScrollView
 {
-    _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kNavHeight-145-28)];
+    _scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-kStatusBarAndNavigationBarHeight-145-28)];
     [self.view addSubview:_scrollView];
 }
 -(void)CreateWebView
 {
-    _webView=[[WKWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kNavHeight-145-28)];
+    _webView=[[WKWebView alloc] initWithFrame:CGRectMake( 0, 0, ScreenWidth, ScreenHeight-kStatusBarAndNavigationBarHeight-145-28)];
     [_scrollView addSubview:_webView];
     
 }

@@ -198,7 +198,7 @@
 //        make.right.mas_equalTo(-kEdge);
 //        make.left.mas_equalTo(kEdge);
         make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(kTabbarHeight);
     }];
 }
 -(void)confirmAction

@@ -50,7 +50,7 @@
     }];
     [_sizeView layoutIfNeeded];
     CGRect frame =  _sizeView.shop.frame;
-    return frame.origin.y + frame.size.height;
+    return frame.origin.y + frame.size.height + kSafetyZoneHeight;
 }
 #pragma mark - SomePrepare
 -(void)SomePrepare
@@ -200,8 +200,6 @@
         make.top.mas_equalTo(subtract);
     }];
 
-    
-    
     _shop=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"加入购物车" WithNormalColor:nil WithSelectedTitle:nil WithSelectedColor:nil];
     [self addSubview:_shop];
     _shop.backgroundColor=_define_white_color;
@@ -209,8 +207,8 @@
     [_shop mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(add.mas_bottom).with.offset(IsPhone6_gt?25:15);
         make.left.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
         make.width.mas_equalTo(ScreenWidth/2.0f);
+        make.height.mas_equalTo(kInteractionHeight);
     }];
     
     UIView *lineView=[UIView getCustomViewWithColor:_define_black_color];
@@ -227,10 +225,18 @@
     [buy mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
         make.top.mas_equalTo(_shop);
-        make.height.mas_equalTo(_shop);
         make.width.mas_equalTo(ScreenWidth/2.0f);
+        make.height.mas_equalTo(kInteractionHeight);
     }];
-    
+
+    if(kIPhoneX){
+        UIView *safetyLine = [UIView getCustomViewWithColor:_define_light_gray_color3];
+        [_shop addSubview:safetyLine];
+        [safetyLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.left.right.bottom.mas_equalTo(0);
+        }];
+    }
 }
 
 -(void)addAction

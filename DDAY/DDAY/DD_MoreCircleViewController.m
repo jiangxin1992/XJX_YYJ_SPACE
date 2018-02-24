@@ -174,7 +174,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 #pragma mark - RequestData
@@ -394,7 +394,7 @@
         if(success)
         {
             listModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
+            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
             [_tableview reloadData];
         }else
         {
@@ -474,7 +474,7 @@
         return cell;
     }
     DD_CircleListModel *listModel=_dataArr[indexPath.section];
-    if([listModel.shareType longValue]==4)
+    if([listModel.shareType longLongValue]==4)
     {
         //获取到数据以后
         static NSString *cellid=@"CircleListCell";

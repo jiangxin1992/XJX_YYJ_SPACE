@@ -121,7 +121,7 @@
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(0);
-        make.height.mas_equalTo(ScreenHeight-kNavHeight-145-28);
+        make.height.mas_equalTo(ScreenHeight-kStatusBarAndNavigationBarHeight-145-28);
         make.width.mas_equalTo(ScreenWidth);
     }];
 }
@@ -193,7 +193,7 @@
         return cell;
     }
     DD_CircleListModel *listModel=_dataArr[indexPath.section];
-    if([listModel.shareType longValue]==4)
+    if([listModel.shareType longLongValue]==4)
     {
         //获取到数据以后
         static NSString *cellid=@"CircleListCell";
@@ -362,7 +362,7 @@
         if(success)
         {
             listModel.isLike=[[data objectForKey:@"isLike"] boolValue];
-            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longValue];
+            listModel.likeTimes=[[data objectForKey:@"likeTimes"] longLongValue];
             [_tableview reloadData];
         }else
         {
