@@ -14,7 +14,7 @@
 +(DD_ShowRoomModel *)getShowRoomModel:(NSDictionary *)dict
 {
     DD_ShowRoomModel *_ShowRoomModel=[DD_ShowRoomModel mj_objectWithKeyValues:dict];
-    _ShowRoomModel.s_id=[[NSString alloc] initWithFormat:@"%ld",[[dict objectForKey:@"id"] longValue]];
+    _ShowRoomModel.s_id=[[NSString alloc] initWithFormat:@"%lld",[[dict objectForKey:@"id"] longLongValue]];
     _ShowRoomModel.pics=[DD_ImageModel getImageModelArr:[dict objectForKey:@"pics"]];
     _ShowRoomModel.listImg=[DD_ImageModel getImageModel:[dict objectForKey:@"picInfo"]];
     return _ShowRoomModel;

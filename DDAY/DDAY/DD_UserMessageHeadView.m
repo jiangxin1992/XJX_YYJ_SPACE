@@ -62,7 +62,7 @@
             [self addSubview:_notBtn];
             [_notBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(_title.mas_right).with.offset(6);
-                make.centerY.mas_equalTo(_title.centerY);
+                make.centerY.mas_equalTo(_title.mas_centerY);
                 make.height.mas_equalTo(18);
                 make.width.mas_equalTo(25);
             }];

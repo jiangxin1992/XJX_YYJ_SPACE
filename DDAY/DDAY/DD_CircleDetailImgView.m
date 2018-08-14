@@ -93,8 +93,8 @@
     _pageControl.currentPageIndicatorTintColor = _define_black_color;
     _pageControl.pageIndicatorTintColor = _define_white_color;
     [_pageControl mas_makeConstraints:^(MASConstraintMaker * make){
-        make.bottom.equalTo(self.mas_bottom).with.offset(-10);
-        make.centerX.equalTo(self.mas_centerX);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-10);
+        make.centerX.mas_equalTo(self.mas_centerX);
     }];
     
 //    itemBtn=[UIButton buttonWithType:UIButtonTypeCustom];

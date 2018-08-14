@@ -51,21 +51,21 @@
 {
     backBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
     [self addSubview:backBtn];
-    backBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    backBtn.frame=CGRectMake(0, 0, CGRectGetWidth(self.frame), kInteractionHeight);
     [backBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [regular setBorder:backBtn WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:1];
     
     leftLabel=[UILabel getLabelWithAlignment:1 WithTitle:@"" WithFont:18.0f WithTextColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithSpacing:0];
     [backBtn addSubview:leftLabel];
     leftLabel.backgroundColor=_define_white_color;
-    leftLabel.frame=CGRectMake(0, 1, ScreenWidth-150, ktabbarHeight-1);
+    leftLabel.frame=CGRectMake(0, 1, ScreenWidth-150, kInteractionHeight-1);
     [regular setBorder:leftLabel WithColor:[UIColor colorWithHexString:_detailModel.seriesColor] WithWidth:1];
     
     
     rightBtn=[DD_CustomBtn getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"" WithNormalColor:_define_white_color WithSelectedTitle:@"" WithSelectedColor:_define_white_color];
     [backBtn addSubview:rightBtn];
     rightBtn.backgroundColor=[UIColor colorWithHexString:_detailModel.seriesColor];
-    rightBtn.frame=CGRectMake(ScreenWidth-150, 1, 150, ktabbarHeight-1);
+    rightBtn.frame=CGRectMake(ScreenWidth-150, 1, 150, kInteractionHeight-1);
     [rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
 }

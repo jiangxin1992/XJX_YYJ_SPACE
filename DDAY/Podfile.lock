@@ -29,68 +29,78 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bugly (2.4.2)
-  - GTSDK (1.5.3)
-  - HappyDNS (0.3.10)
-  - Masonry (1.0.2)
+  - Bugly (2.5.0)
+  - GTSDK (2.1.0.0-noidfa)
+  - HappyDNS (0.3.12)
+  - Masonry (1.1.0)
   - MJExtension (3.0.13)
-  - MJRefresh (3.1.12)
-  - MOBFoundation_IDFA (2.2.3)
-  - Qiniu (7.1.4):
-    - AFNetworking (~> 3)
+  - MJRefresh (3.1.15.3)
+  - mob_sharesdk (4.1.1):
+    - mob_sharesdk/ShareSDK (= 4.1.1)
+    - MOBFoundation
+  - mob_sharesdk/ShareSDK (4.1.1):
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKExtension (4.1.1):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/Copy (4.1.1):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/QQ (4.1.1):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.1.1):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/WeChat (4.1.1):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - MOBFoundation (3.1.2)
+  - Qiniu (7.2.3):
     - HappyDNS (~> 0.3)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - ShareSDK3 (3.5.2):
-    - ShareSDK3/ShareSDK (= 3.5.2)
-  - ShareSDK3/ShareSDK (3.5.2)
-  - ShareSDK3/ShareSDKExtension (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/Copy (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/QQ (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.2)
-  - TTTAttributedLabel (1.13.4)
-  - YYKit (1.0.9):
-    - YYKit/no-arc (= 1.0.9)
-  - YYKit/no-arc (1.0.9)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
+  - TTTAttributedLabel (2.0.0)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1.0)
-  - BlocksKit (~> 2.2.5)
-  - Bugly (~> 2.4.2)
-  - GTSDK (~> 1.5.3)
-  - Masonry (~> 1.0.2)
-  - MJExtension (~> 3.0.13)
-  - MJRefresh (~> 3.1.12)
-  - MOBFoundation_IDFA (~> 2.2.1)
-  - Qiniu (~> 7.1)
-  - SDWebImage (~> 3.8.2)
-  - ShareSDK3 (~> 3.5.0)
-  - ShareSDK3/ShareSDKExtension
-  - ShareSDK3/ShareSDKPlatforms/Copy
-  - ShareSDK3/ShareSDKPlatforms/QQ
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo
-  - ShareSDK3/ShareSDKPlatforms/WeChat
-  - TTTAttributedLabel (~> 1.13.4)
-  - YYKit (~> 1.0.9)
+  - AFNetworking (= 3.1.0)
+  - BlocksKit (= 2.2.5)
+  - Bugly (= 2.5.0)
+  - GTSDK (= 2.1.0.0-noidfa)
+  - Masonry (= 1.1.0)
+  - MJExtension (= 3.0.13)
+  - MJRefresh (= 3.1.15.3)
+  - mob_sharesdk (= 4.1.1)
+  - mob_sharesdk/ShareSDKExtension (= 4.1.1)
+  - mob_sharesdk/ShareSDKPlatforms/Copy (= 4.1.1)
+  - mob_sharesdk/ShareSDKPlatforms/QQ (= 4.1.1)
+  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (= 4.1.1)
+  - mob_sharesdk/ShareSDKPlatforms/WeChat (= 4.1.1)
+  - Qiniu (= 7.2.3)
+  - SDWebImage (= 4.2.3)
+  - TTTAttributedLabel (= 2.0.0)
+  - YYImage (= 1.0.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
-  GTSDK: 1b55fc5b0f29c7ea9061946f07aeee49ef70c90e
-  HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  GTSDK: 940f6eb5191f7655499c3ec0d6c6f034b84f3f85
+  HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  MOBFoundation_IDFA: bdc119aa1dd48c741d913695dcecfbef350555df
-  Qiniu: a4c962782035ee25b9da3e195181d8c384bb75be
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  ShareSDK3: 08ed714e2bbdcd97ab60f58cb398227341dfc20a
-  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  mob_sharesdk: 6cb2159a5205d79c0f3e2d5a10ae63362c8e09d3
+  MOBFoundation: 5c7cd437320b5252ebe0ca20283cc1ffe66f7669
+  Qiniu: ae0fea1cc379fae1560d8748ac537e0fbeb8626e
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: ca86c3e86807e2acc3d6ba0b6abb1258890a1edf
+PODFILE CHECKSUM: 1ad83d7f43f0b49724b5437105f5a2d3f85a84ab
 
 COCOAPODS: 1.3.1

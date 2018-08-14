@@ -99,8 +99,8 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo(_scrollView);
     }];
 }
 -(void)CreateContent
@@ -193,7 +193,7 @@
     }];
 
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, kTabbarHeight, 0));
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(lastView.mas_bottom).with.offset(60);
     }];
@@ -204,7 +204,7 @@
     [self.view addSubview:tabbar];
     [tabbar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(kTabbarHeight);
     }];
     
     CGFloat _width=(ScreenWidth-2)/2.0f;
@@ -214,7 +214,8 @@
     _navigationBtn.backgroundColor=_define_black_color;
     [_navigationBtn addTarget:self action:@selector(navigationAction) forControlEvents:UIControlEventTouchUpInside];
     [_navigationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.mas_equalTo(0);
+        make.left.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
         make.width.mas_equalTo(_width);
     }];
     
@@ -223,7 +224,8 @@
     _zoomBtn.backgroundColor=_define_black_color;
     [_zoomBtn addTarget:self action:@selector(zoomAction:) forControlEvents:UIControlEventTouchUpInside];
     [_zoomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.bottom.mas_equalTo(0);
+        make.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
         make.width.mas_equalTo(_width);
     }];
     
@@ -231,7 +233,7 @@
     [tabbar addSubview:middleLine];
     [middleLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_navigationBtn.mas_right);
-        make.centerY.mas_equalTo(tabbar);
+        make.centerY.mas_equalTo(tabbar).with.offset(-kSafetyZoneHeight/2);
         make.width.mas_equalTo(2);
         make.height.mas_equalTo(30);
     }];
@@ -273,7 +275,7 @@
         }
         
         [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, kTabbarHeight, 0));
             // 让scrollview的contentSize随着内容的增多而变化
             make.bottom.mas_equalTo(lastView.mas_bottom).with.offset(60);
         }];
@@ -297,7 +299,7 @@
         [self.view addSubview:mengban];
         [mengban mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.mas_equalTo(0);
-            make.bottom.mas_equalTo(-ktabbarHeight);
+            make.bottom.mas_equalTo(-kTabbarHeight);
         }];
         [mengban addSubview:_mapView];
         [_mapView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -309,45 +311,32 @@
 }
 -(void)navigationAction
 {
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    if (kCLAuthorizationStatusDenied == status || kCLAuthorizationStatusRestricted == status) {
-        
-        [self presentViewController:[regular alertTitleCancel_Simple:NSLocalizedString(@"system_loc", @"") WithBlock:^{
-            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
-            {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-            }
-        }] animated:YES completion:nil];
-        
-    }else
+    BOOL gaoDeMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]];
+    BOOL baiduMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
+
+    UIAlertAction *iPhoneAction = [UIAlertAction actionWithTitle:@"用iPhone自带地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self openAppleMap];
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:iPhoneAction];
+    if(baiduMapCanOpen)
     {
-        BOOL gaoDeMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]];
-        BOOL baiduMapCanOpen=[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleCancel handler:nil];
-        
-        UIAlertAction *iPhoneAction = [UIAlertAction actionWithTitle:@"用iPhone自带地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self openAppleMap];
+        UIAlertAction *baiduAction = [UIAlertAction actionWithTitle:@"用百度地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self openBaiDuMap];
         }];
-        [alertController addAction:cancelAction];
-        [alertController addAction:iPhoneAction];
-        if(baiduMapCanOpen)
-        {
-            UIAlertAction *baiduAction = [UIAlertAction actionWithTitle:@"用百度地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self openBaiDuMap];
-            }];
-            [alertController addAction:baiduAction];
-        }
-        if(gaoDeMapCanOpen)
-        {
-            UIAlertAction *gaoDeAction = [UIAlertAction actionWithTitle:@"用高德地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self openGaoDeMap];
-            }];
-            [alertController addAction:gaoDeAction];
-        }
-        [self presentViewController:alertController animated:YES completion:nil];
+        [alertController addAction:baiduAction];
     }
+    if(gaoDeMapCanOpen)
+    {
+        UIAlertAction *gaoDeAction = [UIAlertAction actionWithTitle:@"用高德地图导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self openGaoDeMap];
+        }];
+        [alertController addAction:gaoDeAction];
+    }
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 -(void)locationAction
 {
@@ -392,21 +381,21 @@
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
     
     //目的地的位置
-    
+
     CLLocationCoordinate2D coords2 = CLLocationCoordinate2DMake([_showRoomModel.latitude doubleValue], [_showRoomModel.longitude doubleValue]);
-    
+
     MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
-    
+
     toLocation.name =_showRoomModel.address;
-    
+
     NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
-    
+
     NSDictionary *options = @{ MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapTypeKey: [NSNumber numberWithInteger:MKMapTypeStandard], MKLaunchOptionsShowsTrafficKey:@YES };
-    
+
     //打开苹果自身地图应用，并呈现特定的item
-    
+
     [MKMapItem openMapsWithItems:items launchOptions:options];
-    
+
 }
 -(MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     

@@ -67,8 +67,9 @@
 //将底部的评论 view，根据键盘的变化而变化
 - (void)keyboardWillHide:(NSNotification *)not
 {
-    [_SignBoard.commentField resignFirstResponder];
-    
+//    [_SignBoard.commentField resignFirstResponder];
+    [regular dismissKeyborad];
+
 }
 //键盘将要出现时调用的方法
 //将底部的评论 view，根据键盘的变化而变化
@@ -86,7 +87,8 @@
     _SignBoard=[[DD_CircleInfoSuggestSignBoard alloc] initWithHoldStr:_holdStr WithBlock:^(NSString *type, NSString *content) {
         if([type isEqualToString:@"cancel"]||[type isEqualToString:@"resign"])
         {
-            [_textfield resignFirstResponder];
+//            [_textfield resignFirstResponder];
+            [regular dismissKeyborad];
         }else if([type isEqualToString:@"save"])
         {
             _content=content;
@@ -100,8 +102,9 @@
                  _block(@"save",_content);
             }
             _textfield.text=_content;
-            [_textfield resignFirstResponder];
-           
+//            [_textfield resignFirstResponder];
+            [regular dismissKeyborad];
+
         }else
         {
             _block(type,_content);

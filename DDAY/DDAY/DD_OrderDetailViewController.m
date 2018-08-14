@@ -21,6 +21,7 @@
 #import "DD_ClearingTableViewCell.h"
 #import "DD_OrderDetailHeadView.h"
 #import "DD_CustomBtn.h"
+#import "DD_AlertView.h"
 
 #import "DD_OrderTool.h"
 #import "DD_OrderDetailModel.h"
@@ -29,7 +30,7 @@
 #import "DD_OrderItemModel.h"
 #import "DD_OrderModel.h"
 
-@interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface DD_OrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -105,7 +106,7 @@
     _tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectMake(0,0,0,0.1)];
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(kNavHeight);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight);
         make.bottom.mas_equalTo(_tabBar.mas_top).with.offset(0);
     }];
 }
@@ -290,17 +291,7 @@
         [self presentViewController:failureAlert animated:YES completion:nil];
     }];
 }
-#pragma mark  UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",alertView.title];
-    if (buttonIndex == 0) {
-        
-    }
-    else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
-    }
-}
+
 #pragma mark - TableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -426,15 +417,20 @@
         UIAlertAction *dialAction = [UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:cancelAction];
         [alert addAction:dialAction];
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
+    }else {
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:phoneNumber message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-        
+        DD_AlertView *alertView = [[DD_AlertView alloc] initWithTitle:phoneNumber message:nil cancelButtonTitle:NSLocalizedString(@"cancel", @"") otherButtonTitles:@"呼叫", nil];
+        __weak DD_AlertView *alertView_block = alertView;
+        [alertView setClickBlock:^(NSInteger buttonIndex) {
+            NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",alertView_block.title];
+            if (buttonIndex) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
+            }
+        }];
         [alertView show];
     }
 }
@@ -545,8 +541,8 @@
                 if(success)
                 {
                     //更新当前状态
-                    _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
-                    _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
+                    _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longLongValue];
+                    _OrderModel.orderStatus=[[data objectForKey:@"status"] longLongValue];
                     [self updateView];
                 }else
                 {
@@ -573,8 +569,8 @@
             if(success)
             {
                 //更新当前状态
-                _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longValue];
-                _OrderModel.orderStatus=[[data objectForKey:@"status"] longValue];
+                _OrderDetailModel.orderInfo.orderStatus=[[data objectForKey:@"status"] longLongValue];
+                _OrderModel.orderStatus=[[data objectForKey:@"status"] longLongValue];
                 [self updateView];
             }else
             {

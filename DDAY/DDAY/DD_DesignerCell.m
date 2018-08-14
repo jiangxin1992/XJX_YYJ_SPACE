@@ -101,7 +101,7 @@
         make.right.mas_equalTo(0);
         make.height.mas_equalTo(21);
     }];
-    JXLOG(@"%d",-kEdge);
+    JXLOG(@"%lf",-kEdge);
     JXLOG(@"111");
     _scrollview=[[UIScrollView alloc] init];
     [self.contentView addSubview:_scrollview];

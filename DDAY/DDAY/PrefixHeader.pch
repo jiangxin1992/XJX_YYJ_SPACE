@@ -10,8 +10,7 @@
 #define PrefixHeader_pch
 
 //************** DNS **************
-//#define DNS @"http://10.200.5.73:8080/dday-web/service/" //本地
-//#define DNS @"http://show.ycospace.com:8051/dday-web/service/"//展示环境
+//#define DNS @"http://192.168.0.115:8080/dday-web/service/" //本地
 //#define DNS @"https://show.ycospace.com/"//展示环境
 #define DNS @"https://app.ycospace.com/"//正式环境
 
@@ -61,39 +60,45 @@
 /*************** SIZE ***************/
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 
-#define kEdge (IsPhone6_gt?26:20)
+#define kEdge (IsPhone6_gt ? 26.f : 20.f)
 
-#define water_margin 20
+#define water_margin 20.f
 
-#define water_Spacing 21
+#define water_Spacing 21.f
 
-#define water_Top 9
+#define water_Top 9.f
 
-#define water_Bottom 12
+#define water_Bottom 12.f
 
-#define kStatusBarHeight         20 //状态栏高度
+#define kStatusBarHeight         (kIPhoneX ? 44.f:20.f) //状态栏高度
 
-#define kNavigationBarHeight     44 //导航栏高度
+#define kNavigationBarHeight     44.f //导航栏高度
 
-#define kNavHeight     64 //导航栏高度+状态栏高度
+#define kStatusBarAndNavigationBarHeight     (kIPhoneX ? 88.f : 64.f) //导航栏高度+状态栏高度
 
-#define ktabbarHeight 49 //tabbar高度
+#define kTabbarHeight (kIPhoneX ? (49.f + 34.f) : 49.f) //tabbar高度
+
+#define kInteractionHeight 49.f //底部交互高度
+
+#define kSafetyZoneHeight (kIPhoneX ? 34.f : 0.f)//底部安全区域高度
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height //当前设备屏幕高
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width //当前设备屏幕宽
 
+#define kIPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)//判断是否为5.8英寸屏幕
+
 #define kIPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2208), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为5.5英寸屏幕
 
-#define kIiPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为4.7寸屏幕
+#define kIPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为4.7寸屏幕
 
 #define kIPhone5s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640,1136), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否为4英寸屏幕
 
 #define kIPhone4s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640,960), [[UIScreen mainScreen] currentMode].size) : NO) //判断是否3.5英寸屏幕
 
-#define IsPhone6_gt kIPhone6Plus||kIiPhone6 //判断当前设备是否为iPhone 6以上
+#define IsPhone6_gt !kIPhone4s && !kIPhone5s //判断当前设备是否为iPhone 6以上
 
-#define IsPhone5_gt kIPhone6Plus||kIiPhone6||kIPhone5s //判断当前设备是否为iPhone 5以上
+#define IsPhone5_gt !kIPhone4s //判断当前设备是否为iPhone 5以上
 
 #define _isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) //是否是pad
 
@@ -139,11 +144,6 @@
 
 
 /*************** Other ***************/
-
-//#define PARTNER @"2088911850774983"
-//
-//#define SELLER  @"info@yunejian.com"
-//
 //#define PRIVATEKEY @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAO/LzQd+GvuL5/cZyfXwQoSqQqjVQ4XGdRmosXk9a15+hHU1XimmpqpH7c55U244jhaPiLgOpbWbNxSZ4WhmDhY8Hr/vEbjgxg02AWiJDKWcwXVdP/UNyMzYy4vOarICmYMka2L2uJOF7zErewaTAzygtbPuTfbpM8Valxk5iRvDAgMBAAECgYBAu+fRif2GwrIQRun6dq2+Wqg8I7ZiuryJ/LxMWoRNsiHX8lxFKjP77AcKoj4flyzkckMaTPn3GLu52AC9yi8q06pBKczxt74pFHjd6ysQkWBoWhQwKX7fhj/g6YQpQEUiH51eeaYBZ7wlsnOQ5FqzlTbYz/my2JTNEjlqXdQpYQJBAP0nnURlHPM1qq8YqsMaU+yW6CO+nLnLYp48h0mkSLVpN8U/xdNXRJhUFSp+AEuNMaKs3be/2hYS520CyDZOkK0CQQDyfcAnx1s1gntggcwgdJvw3HKQbp4bKpqZfULGzLzuSj9hQuivU0HhUCKQgrwx4MXxjilJcgAVZ76+xuT2hDwvAkBeDAh97z55EBfv4q8VukMxYsKs/NRGpctmU8BC2Hh2hLdGXTHGGOaP3LTcS2EasEKfV68q42hGyREWy3DL1BYlAkBuO3v+mUF9MbOkS1zf5CJ/e7cYsTBuaQ+edrLEbI32RQpKzH+6M77fDe6ogsXKZsOU62sZWBlxoZe0YfXzmmlBAkAqdmOPc41VhLaWxgx53C2VdPjoULOQzAzWoU3NAtyJR54/5mdTYuTzWo8p+cMBKSCttMf8MqDZCLvX9uq8bloY"
 
 #endif /* PrefixHeader_pch */

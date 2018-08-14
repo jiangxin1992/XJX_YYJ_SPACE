@@ -113,7 +113,7 @@
                     {
                         dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
                         dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                        dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                        dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longLongValue];
                         [__tableview reloadData];
                     }else
                     {
@@ -138,13 +138,18 @@
 }
 -(void)CreateTableview
 {
-    _tableview=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-(IsPhone6_gt?16:0)) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:_tableview];
     //    消除分割线
     _tableview.backgroundColor=_define_backview_color;
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableview.delegate=self;
     _tableview.dataSource=self;
+    CGFloat bottom = -kTabbarHeight-(IsPhone6_gt?16:0);
+    [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(bottom);
+    }];
 }
 
 #pragma mark - RequestData
@@ -206,7 +211,7 @@
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return  kIPhone4s?568-ktabbarHeight-kNavHeight:ScreenHeight-ktabbarHeight-kNavHeight;
+//    return  kIPhone4s?568-kTabbarHeight-kStatusBarAndNavigationBarHeight:ScreenHeight-kTabbarHeight-kStatusBarAndNavigationBarHeight;
     return ScreenWidth;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

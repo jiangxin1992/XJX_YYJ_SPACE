@@ -74,7 +74,7 @@
             {
                 dayModel.isJoin=[[data objectForKey:@"isJoin"] boolValue];
                 dayModel.isQuotaLimt=[[data objectForKey:@"isQuotaLimt"] boolValue];
-                dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longValue];
+                dayModel.leftQuota=[[data objectForKey:@"leftQuota"] longLongValue];
                 [__tableview reloadData];
             }else
             {
@@ -101,7 +101,7 @@
     _tableview.delegate=self;
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, -ktabbarHeight, 0));
+        make.edges.mas_equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 

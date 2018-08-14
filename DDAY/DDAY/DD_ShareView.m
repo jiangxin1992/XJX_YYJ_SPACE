@@ -20,7 +20,7 @@
 #import "DD_ShareTool.h"
 #import "DD_BenefitInfoModel.h"
 
-@interface DD_ShareView()<UIAlertViewDelegate>
+@interface DD_ShareView()
 
 @end
 
@@ -160,8 +160,9 @@
     cancelBtn.backgroundColor=_define_black_color;
     [cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(kInteractionHeight);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
     }];
     
 }
@@ -281,18 +282,6 @@
                     
                 }
                 
-//                if(!_is_show)
-//                {
-//                    _is_show=YES;
-//                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-//                                                                        message:nil
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"确定"
-//                                                              otherButtonTitles:nil];
-//                    alertView.delegate=self;
-//                    [alertView show];
-//                }
-                
                 break;
             }
             case SSDKResponseStateFail:
@@ -300,49 +289,18 @@
                 
                 if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
                 {
-//                    if(!_is_show)
-//                    {
-//                        _is_show=YES;
-//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-//                                                                        message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"OK"
-//                                                              otherButtonTitles:nil, nil];
-//                        alert.delegate=self;
-//                        [alert show];
-//                    }
+                    //失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。
                     [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
                 else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
                 {
-//                    if(!_is_show)
-//                    {
-//                        _is_show=YES;
-//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-//                                                                        message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"OK"
-//                                                              otherButtonTitles:nil, nil];
-//                        alert.delegate=self;
-//                        [alert show];
-//                    }
+                    //失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；
                     [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
                 else
                 {
-//                    if(!_is_show)
-//                    {
-//                        _is_show=YES;
-//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-//                                                                        message:[NSString stringWithFormat:@"%@",error]
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"OK"
-//                                                              otherButtonTitles:nil, nil];
-//                        alert.delegate=self;
-//                        [alert show];
-//                    }
                     [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享失败" WithType:@"share"];
                     break;
                 }
@@ -350,18 +308,6 @@
             }
             case SSDKResponseStateCancel:
             {
-//                if(!_is_show)
-//                {
-//                    _is_show=YES;
-//                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
-//                                                                        message:nil
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"确定"
-//                                                              otherButtonTitles:nil];
-//                    alertView.delegate=self;
-//                    [alertView show];
-//                }
-//
                 if(platformType!=SSDKPlatformSubTypeWechatSession&&platformType!=SSDKPlatformSubTypeQQFriend)
                 {
                     [[DD_CustomViewController sharedManager] startSignInAnimationWithTitle:@"分享已取消" WithType:@"share"];
@@ -375,11 +321,4 @@
     }];
 }
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    if(buttonIndex==0)
-//    {
-//        _is_show=NO;
-//    }
-//}
 @end

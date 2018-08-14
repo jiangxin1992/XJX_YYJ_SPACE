@@ -88,7 +88,7 @@
 }
 -(void)CreateUpView
 {
-    _UpView=[[UIView alloc] initWithFrame:CGRectMake(0, kNavHeight, ScreenWidth, 36)];
+    _UpView=[[UIView alloc] initWithFrame:CGRectMake(0, kStatusBarAndNavigationBarHeight, ScreenWidth, 36)];
     [self.view addSubview:_UpView];
     _UpView.backgroundColor=_define_white_color;
     

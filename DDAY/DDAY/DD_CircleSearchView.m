@@ -103,7 +103,7 @@
     }];
     searchField.leftView=leftview;
     
-    UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:@"取消" WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
+    UIButton *cancelBtn=[UIButton getCustomTitleBtnWithAlignment:1 WithFont:13.0f WithSpacing:0 WithNormalTitle:NSLocalizedString(@"cancel", @"") WithNormalColor:_define_black_color WithSelectedTitle:nil WithSelectedColor:nil];
     [searchView addSubview:cancelBtn];
     [cancelBtn setEnlargeEdgeWithTop:0 right:0 bottom:0 left:15];
     [cancelBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];

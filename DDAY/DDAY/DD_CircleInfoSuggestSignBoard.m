@@ -53,7 +53,7 @@
             _commentField.textColor=_define_black_color;
         }
         _block(@"resign",_commentField.text);
-        [_commentField resignFirstResponder];
+        [regular dismissKeyborad];
     }];
     [backimg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
@@ -83,7 +83,7 @@
     
     [_commentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(kTabbarHeight);
         make.right.mas_equalTo(sendBtn.mas_left).with.offset(0);
         make.height.mas_equalTo(sendBtn);
     }];
@@ -107,7 +107,7 @@
 //        _commentField.textColor=_define_black_color;
 //    }
 //    _block(@"resign",_commentField.text);
-//    [_commentField resignFirstResponder];
+//    [regular dismissKeyborad];
 //}
 /**
  * 取消
@@ -122,7 +122,7 @@
         _commentField.textColor=_define_black_color;
     }
     _block(@"cancel",_commentField.text);
-    [_commentField resignFirstResponder];
+    [regular dismissKeyborad];
 }
 /**
  * 发送
@@ -138,7 +138,7 @@
     }
     JXLOG(@"_commentField111=%@",_commentField.text);
     _block(@"save",_commentField.text);
-    [_commentField resignFirstResponder];
+    [regular dismissKeyborad];
 }
 //在开始编辑的代理方法中进行如下操作
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -161,9 +161,9 @@
     CGSize constraintSize = CGSizeMake(frame.size.width, MAXFLOAT);
     CGSize size = [textView sizeThatFits:constraintSize];
     //    if (size.height<=frame.size.height) {
-    if (size.height<=ktabbarHeight) {
+    if (size.height<=kTabbarHeight) {
         //        size.height=frame.size.height;
-        size.height=ktabbarHeight;
+        size.height=kTabbarHeight;
     }else{
         if (size.height >= maxHeight)
         {
@@ -176,9 +176,9 @@
         }
     }
     [_commentField mas_updateConstraints:^(MASConstraintMaker *make) {
-        if(size.height<ktabbarHeight)
+        if(size.height<kTabbarHeight)
         {
-            make.height.mas_equalTo(ktabbarHeight);
+            make.height.mas_equalTo(kTabbarHeight);
         }else
         {
             make.height.mas_equalTo(size.height);

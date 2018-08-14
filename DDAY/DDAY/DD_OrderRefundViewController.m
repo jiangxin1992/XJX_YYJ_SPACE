@@ -49,7 +49,7 @@
         [[JX_AFNetworking alloc] GET:@"order/queryOrderStatus.do" parameters:@{@"token":[DD_UserModel getToken],@"orderCode":_order.subOrderCode} success:^(BOOL success, NSDictionary *data, UIAlertController *successAlert) {
             if(success)
             {
-                _status=[[data objectForKey:@"status"] longValue];
+                _status=[[data objectForKey:@"status"] longLongValue];
                 [self UIConfig];
                 
             }else
@@ -136,7 +136,7 @@
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
-        make.top.mas_equalTo(kNavHeight+10);
+        make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+10);
         make.height.mas_equalTo(200);
     }];
 }
@@ -175,7 +175,7 @@
                 {
                     //                提交成功后
                     [regular dismissKeyborad];
-                    _order.orderStatus=[[data objectForKey:@"status"] longValue];;
+                    _order.orderStatus=[[data objectForKey:@"status"] longLongValue];;
                     _block(@"update",_order.orderStatus);
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"submit_success", @"") preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

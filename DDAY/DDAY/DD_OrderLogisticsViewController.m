@@ -12,12 +12,13 @@
 
 #import "DD_OrderLogisticsCell.h"
 #import "DD_OrderLogisticsHeadView.h"
+#import "DD_AlertView.h"
 
 #import "DD_OrderLogisticsModel.h"
 #import "DD_OrderLogisticsManageModel.h"
 #import "DD_OrderModel.h"
 
-@interface DD_OrderLogisticsViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface DD_OrderLogisticsViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -73,7 +74,7 @@
     _tableview.dataSource=self;
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
+        make.bottom.mas_equalTo(0);
     }];
 
 }
@@ -125,15 +126,21 @@
         UIAlertAction *dialAction = [UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancel", @"") style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:cancelAction];
         [alert addAction:dialAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:phoneNumber message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-        
+        DD_AlertView *alertView = [[DD_AlertView alloc] initWithTitle:phoneNumber message:nil cancelButtonTitle:NSLocalizedString(@"cancel", @"") otherButtonTitles:@"呼叫", nil];
+        __weak DD_AlertView *alertView_block = alertView;
+        [alertView setClickBlock:^(NSInteger buttonIndex) {
+            NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",alertView_block.title];
+            if (buttonIndex) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
+            }
+        }];
         [alertView show];
     }
 }
@@ -213,18 +220,6 @@
 {
 //    _block(@"choose_design",_dataArr[indexPath.section]);
 //    [self.navigationController popViewControllerAnimated:YES];
-}
-#pragma mark  ---------------UIAlertViewDelegate--------------
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-
-    NSString *phoneStr = [NSString stringWithFormat:@"tel://%@",alertView.title];
-    if (buttonIndex == 0) {
-
-    }
-    else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneStr]];
-    }
 }
 #pragma mark - Other
 -(void)viewWillAppear:(BOOL)animated

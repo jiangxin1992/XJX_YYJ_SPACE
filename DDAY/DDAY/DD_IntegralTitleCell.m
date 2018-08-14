@@ -44,8 +44,7 @@
         make.left.mas_equalTo(kEdge);
         make.right.mas_equalTo(-kEdge);
         make.height.mas_equalTo(1);
-        make.bottom.mas_equalTo(self.bottom).with.offset(0);
-        
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(0);
     }];
 }
 

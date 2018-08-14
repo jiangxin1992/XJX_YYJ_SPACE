@@ -13,6 +13,7 @@
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "DD_CricleShowViewController.h"
 #import "DD_CirclePublishDailyPreViewController.h"
@@ -86,21 +87,21 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo(_scrollView);
     }];
 }
 -(void)CreateTabbar
 {
-    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
+    _preView=[UIButton getCustomTitleBtnWithAlignment:0 WithFont:18.0f WithSpacing:0 WithNormalTitle:@"预   览" WithNormalColor:_define_white_color WithSelectedTitle:nil WithSelectedColor:nil];
     [self.view addSubview:_preView];
     _preView.backgroundColor=_define_black_color;
     [_preView addTarget:self action:@selector(SubmitAction) forControlEvents:UIControlEventTouchUpInside];
     
     [_preView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(ktabbarHeight);
+        make.height.mas_equalTo(kInteractionHeight);
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kSafetyZoneHeight);
     }];
 }
 -(void)CreateContentView
@@ -110,7 +111,7 @@
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.top.right.left.mas_equalTo(0);
-        //        make.bottom.mas_equalTo(ktabbarHeight);
+        //        make.bottom.mas_equalTo(kTabbarHeight);
         make.edges.mas_equalTo(self.view);
         // 让scrollview的contentSize随着内容的增多而变化
         make.bottom.mas_equalTo(_infoView.mas_bottom).with.offset(0);

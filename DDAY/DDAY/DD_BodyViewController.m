@@ -69,7 +69,7 @@
                 make.top.mas_equalTo(lastView.mas_bottom).with.offset(15);
             }else
             {
-                make.top.mas_equalTo(kNavHeight+15);
+                make.top.mas_equalTo(kStatusBarAndNavigationBarHeight+15);
             }
             make.width.mas_equalTo(45);
             make.height.mas_equalTo(32);

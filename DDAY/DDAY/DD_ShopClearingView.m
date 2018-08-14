@@ -89,7 +89,15 @@
         make.right.mas_equalTo(ConfirmBtn.mas_left).with.offset(-16);
         make.height.mas_equalTo(self);
     }];
-    
+
+    if(kIPhoneX){
+        UIView *downLine=[UIView getCustomViewWithColor:_define_light_gray_color3];
+        [self addSubview:downLine];
+        [downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(1);
+            make.bottom.left.right.mas_equalTo(0);
+        }];
+    }
 }
 #pragma mark - SomeAction
 /**

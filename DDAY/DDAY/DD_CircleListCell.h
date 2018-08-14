@@ -8,8 +8,7 @@
 
 #import "DD_BaseCell.h"
 
-@class DD_OrderItemModel;
-@class DD_CircleListModel;
+@class DD_OrderItemModel,DD_CircleListModel;
 
 @interface DD_CircleListCell : DD_BaseCell
 

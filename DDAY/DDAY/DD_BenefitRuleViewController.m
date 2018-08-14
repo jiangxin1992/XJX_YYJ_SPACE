@@ -52,7 +52,7 @@
 //    _webView.dataDetectorTypes = UIDataDetectorTypeNone;
     [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(ktabbarHeight);
+        make.bottom.mas_equalTo(kTabbarHeight);
     }];
 }
 #pragma mark - RequestData

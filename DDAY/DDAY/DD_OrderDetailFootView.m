@@ -99,8 +99,8 @@
     _contactView.userInteractionEnabled=NO;
     [_contactView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_contactBtn);
-        make.height.mas_equalTo(_contactView.size.height);
-        make.width.mas_equalTo(_contactView.size.width);
+        make.height.mas_equalTo(_contactView.frame.size.height);
+        make.width.mas_equalTo(_contactView.frame.size.width);
     }];
     
     _contactLeftBtn=[UIButton getCustomBtn];
@@ -117,8 +117,8 @@
     _contactLeftView.userInteractionEnabled=NO;
     [_contactLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_contactLeftBtn);
-        make.height.mas_equalTo(_contactLeftView.size.height);
-        make.width.mas_equalTo(_contactLeftView.size.width);
+        make.height.mas_equalTo(_contactLeftView.frame.size.height);
+        make.width.mas_equalTo(_contactLeftView.frame.size.width);
     }];
     
     
@@ -138,8 +138,8 @@
     _refundView.userInteractionEnabled=NO;
     [_refundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_refundBtn);
-        make.height.mas_equalTo(_refundView.size.height);
-        make.width.mas_equalTo(_refundView.size.width);
+        make.height.mas_equalTo(_refundView.frame.size.height);
+        make.width.mas_equalTo(_refundView.frame.size.width);
     }];
 }
 -(void)CreateOrderDetailView
@@ -223,7 +223,7 @@
     [self SetOrderDetailView];
     [self SetActionBtn];
     [self layoutIfNeeded];
-    CGFloat _y_p=_contactBtn.origin.y + _contactBtn.size.height+30;
+    CGFloat _y_p=_contactBtn.frame.origin.y + _contactBtn.frame.size.height+30;
     _block(@"height",_y_p);
 }
 -(void)SetActionBtn

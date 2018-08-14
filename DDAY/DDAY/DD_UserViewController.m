@@ -82,8 +82,8 @@
     container = [UIView new];
     [_scrollView addSubview:container];
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_scrollView);
-        make.width.equalTo(_scrollView);
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo(_scrollView);
     }];
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
@@ -129,8 +129,8 @@
     
     __block CGFloat _y_p=IsPhone6_gt?320:IsPhone5_gt?250:220;
     _y_p=_y_p-64;
-    __block CGFloat _offset=kIiPhone6?25:15;
-    __block CGFloat _bianju=kIiPhone6?43:33;
+    __block CGFloat _offset=kIPhone6?25:15;
+    __block CGFloat _bianju=kIPhone6?43:33;
     __block CGFloat _width=(ScreenWidth-_bianju*2)/2.0f;
     __block CGFloat _height=IsPhone5_gt?60:50;
     __block CGFloat _end_y = 0;
